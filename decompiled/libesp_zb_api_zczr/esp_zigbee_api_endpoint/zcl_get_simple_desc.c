@@ -1,9 +1,9 @@
 /*
- * Last changed at upstream commit 2941fbcc815001461b9ea708a1d755b07ce24ea3
- * https://github.com/espressif/esp-zigbee-sdk/commit/2941fbcc815001461b9ea708a1d755b07ce24ea3
- * Upstream date: 2022-08-09 20:36:03 +0800
- * Upstream subject: esp-zigbee-sdk: First sdk release
- * Source: libesp_zb_api_zczr -> esp_zigbee_api_core.o -> zcl_get_simple_desc
+ * Last changed at upstream commit 161b24f200d3999849a30e5fddeac9123c04dbfe
+ * https://github.com/espressif/esp-zigbee-sdk/commit/161b24f200d3999849a30e5fddeac9123c04dbfe
+ * Upstream date: 2022-09-02 14:39:54 +0800
+ * Upstream subject: Components: Separation of the zigbee_core_api header
+ * Source: libesp_zb_api_zczr -> esp_zigbee_api_endpoint.o -> zcl_get_simple_desc
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
@@ -38,7 +38,7 @@ zcl_get_simple_desc(undefined2 *param_1,int param_2,undefined1 param_3,undefined
   puVar4[7] = bVar2;
   if (param_1 == (undefined2 *)0x0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_API_CORE",&_LC3,uVar5,"ESP_ZIGBEE_API_CORE");
+    esp_log_write(1,0x10000,&_LC1,uVar5,0x10000);
   }
   uVar6 = 0;
   while (param_1 = *(undefined2 **)(param_1 + 8), param_1 != (undefined2 *)0x0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2941fbcc815001461b9ea708a1d755b07ce24ea3
- * https://github.com/espressif/esp-zigbee-sdk/commit/2941fbcc815001461b9ea708a1d755b07ce24ea3
- * Upstream date: 2022-08-09 20:36:03 +0800
- * Upstream subject: esp-zigbee-sdk: First sdk release
+ * Last changed at upstream commit 161b24f200d3999849a30e5fddeac9123c04dbfe
+ * https://github.com/espressif/esp-zigbee-sdk/commit/161b24f200d3999849a30e5fddeac9123c04dbfe
+ * Upstream date: 2022-09-02 14:39:54 +0800
+ * Upstream subject: Components: Separation of the zigbee_core_api header
  * Source: libesp_zb_api_zczr -> esp_zigbee_api_core.o -> zcl_device_callback_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,31 +22,31 @@ void zcl_device_callback_entry(void)
   puVar1 = (uint *)zb_buf_get_tail_func(0x38);
   uVar2 = *puVar1;
   puVar1[2] = 0;
-  if (uVar2 == 0x1d) {
-    zcl_device_clusters_attr_init(0,(char)puVar1[1]);
-    return;
+  if (uVar2 != 7) {
+    if (uVar2 < 8) {
+      if (uVar2 == 0) {
+        local_20 = puVar1[3];
+        uStack_1c = puVar1[4];
+        uStack_18 = puVar1[5];
+        zcl_device_attribute_update(0,(char)puVar1[1],&local_20);
+        return;
+      }
+    }
+    else {
+      if (uVar2 == 0x53) {
+        return;
+      }
+      if (uVar2 < 0x54) {
+        if (uVar2 == 0x1d) {
+          return;
+        }
+      }
+      else if (uVar2 - 0x56 < 2) {
+        return;
+      }
+    }
+    puVar1[2] = 0xffffffff;
   }
-  if (uVar2 < 0x1e) {
-    if (uVar2 == 0) {
-      local_20 = puVar1[3];
-      uStack_1c = puVar1[4];
-      uStack_18 = puVar1[5];
-      zcl_device_attribute_update(0,&local_20);
-      return;
-    }
-    if (uVar2 == 7) {
-      return;
-    }
-  }
-  else {
-    if (uVar2 == 0x53) {
-      return;
-    }
-    if ((0x52 < uVar2) && (uVar2 - 0x56 < 2)) {
-      return;
-    }
-  }
-  puVar1[2] = 0xffffffff;
   return;
 }
 

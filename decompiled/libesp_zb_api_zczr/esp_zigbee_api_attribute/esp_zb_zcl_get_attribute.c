@@ -3,30 +3,17 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/161b24f200d3999849a30e5fddeac9123c04dbfe
  * Upstream date: 2022-09-02 14:39:54 +0800
  * Upstream subject: Components: Separation of the zigbee_core_api header
- * Source: libesp_zb_api_zczr -> esp_zigbee_api_core.o -> esp_zb_factory_reset
+ * Source: libesp_zb_api_zczr -> esp_zigbee_api_attribute.o -> esp_zb_zcl_get_attribute
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_factory_reset(void)
+void esp_zb_zcl_get_attribute(void)
 
 {
-  int iVar1;
-  
-  zb_zcl_init_reporting_info();
-  zb_zcl_reset_reporting_ctx();
-  zb_bdb_reset_via_local_action(0);
-  zb_nvram_erase();
-  DAT_00014195 = DAT_00014195 | 8;
-  iVar1 = esp_restart();
-  if (iVar1 == 0) {
-    esp_zb_start_no_autostart();
-  }
-  else {
-    esp_zb_start_autostart();
-  }
+  zb_zcl_get_attr_desc_a();
   return;
 }
 

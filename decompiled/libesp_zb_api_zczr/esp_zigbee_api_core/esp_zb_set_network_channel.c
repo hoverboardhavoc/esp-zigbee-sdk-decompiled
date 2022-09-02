@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2941fbcc815001461b9ea708a1d755b07ce24ea3
- * https://github.com/espressif/esp-zigbee-sdk/commit/2941fbcc815001461b9ea708a1d755b07ce24ea3
- * Upstream date: 2022-08-09 20:36:03 +0800
- * Upstream subject: esp-zigbee-sdk: First sdk release
+ * Last changed at upstream commit 161b24f200d3999849a30e5fddeac9123c04dbfe
+ * https://github.com/espressif/esp-zigbee-sdk/commit/161b24f200d3999849a30e5fddeac9123c04dbfe
+ * Upstream date: 2022-09-02 14:39:54 +0800
+ * Upstream subject: Components: Separation of the zigbee_core_api header
  * Source: libesp_zb_api_zczr -> esp_zigbee_api_core.o -> esp_zb_set_network_channel
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ undefined4 esp_zb_set_network_channel(uint param_1)
     }
     else {
       uVar1 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_API_CORE",&_L0,uVar1,"ESP_ZIGBEE_API_CORE");
+      esp_log_write(1,0x10000,&_LC2,uVar1,0x10000);
     }
     return 0;
   }
