@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 3177f0284ed6d95b1f865fe68f364e4b3119ec73
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3177f0284ed6d95b1f865fe68f364e4b3119ec73
+ * Upstream date: 2022-10-21 18:05:33 +0800
+ * Upstream subject: examples: Add gateway uart update rcp
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_door_lock_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -69,7 +69,7 @@ undefined4 esp_zb_cluster_list_update_door_lock_cluster(int param_1,int param_2,
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC19,uVar4,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC20,uVar4,"ESP_ZIGBEE_CLUSTER");
     uVar4 = 0x102;
   }
   return uVar4;

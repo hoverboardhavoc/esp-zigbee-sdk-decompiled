@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 3177f0284ed6d95b1f865fe68f364e4b3119ec73
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3177f0284ed6d95b1f865fe68f364e4b3119ec73
+ * Upstream date: 2022-10-21 18:05:33 +0800
+ * Upstream subject: examples: Add gateway uart update rcp
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_custom_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,16 +13,16 @@
 undefined4 esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,byte param_3)
 
 {
-  short sVar1;
+  ushort uVar1;
   undefined2 uVar2;
   undefined4 *puVar3;
   undefined4 uVar4;
-  short *__ptr;
+  ushort *__ptr;
   undefined4 local_30;
   uint uStack_28;
   
   puVar3 = (undefined4 *)malloc(0x14);
-  sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 8);
+  uVar1 = *(ushort *)(*(int *)(param_2 + 0xc) + 8);
   uVar4 = zcl_get_attr_lists(param_2);
   uVar2 = zcl_get_attr_count(param_2);
   if (param_1 == 0) {
@@ -30,11 +30,16 @@ undefined4 esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,byt
     esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar4,"ESP_ZIGBEE_CLUSTER");
     uVar4 = 0x102;
   }
+  else if (uVar1 < 0xfc00) {
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC16,uVar4,"ESP_ZIGBEE_CLUSTER");
+    uVar4 = 0x102;
+  }
   else {
-    __ptr = *(short **)(param_1 + 0x10);
-    while (__ptr != (short *)0x0) {
-      if (*__ptr == sVar1) {
-        local_30 = CONCAT22(uVar2,sVar1);
+    __ptr = *(ushort **)(param_1 + 0x10);
+    while (__ptr != (ushort *)0x0) {
+      if (*__ptr == uVar1) {
+        local_30 = CONCAT22(uVar2,uVar1);
         uStack_28 = (uint)param_3;
         *puVar3 = local_30;
         puVar3[1] = uVar4;
@@ -46,8 +51,8 @@ undefined4 esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,byt
         *(undefined4 **)(param_1 + 0x10) = puVar3;
         return 0;
       }
-      __ptr = *(short **)(__ptr + 8);
-      if (__ptr == (short *)0x0) break;
+      __ptr = *(ushort **)(__ptr + 8);
+      if (__ptr == (ushort *)0x0) break;
       param_1 = *(int *)(param_1 + 0x10);
     }
     uVar4 = esp_log_timestamp();
