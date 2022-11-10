@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
+ * Upstream date: 2022-11-10 11:13:02 +0800
+ * Upstream subject: examples: apply new signal handler API function
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> find_device_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void find_device_cb(int param_1)
     if (iVar3 != 0) {
       _esp_error_check_failed
                 ("/home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c",
-                 0x59,"find_device_cb","zb_err_code");
+                 0x5a,"find_device_cb","zb_err_code");
       goto _L0;
     }
   }

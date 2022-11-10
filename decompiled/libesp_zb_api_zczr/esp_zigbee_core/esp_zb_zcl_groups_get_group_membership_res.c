@@ -1,0 +1,64 @@
+/*
+ * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
+ * Upstream date: 2022-11-10 11:13:02 +0800
+ * Upstream subject: examples: apply new signal handler API function
+ * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_groups_get_group_membership_res
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+void esp_zb_zcl_groups_get_group_membership_res(undefined4 param_1)
+
+{
+  undefined1 *puVar1;
+  undefined1 *__ptr;
+  uint uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  byte bVar5;
+  
+  __ptr = (undefined1 *)malloc(4);
+  zb_buf_begin_func(param_1);
+  uVar2 = zb_buf_len_func(param_1);
+  if (uVar2 < 2) {
+    puVar1 = (undefined1 *)0x0;
+  }
+  else {
+    puVar1 = (undefined1 *)zb_buf_begin_func(param_1);
+    if (puVar1 != (undefined1 *)0x0) {
+      bVar5 = puVar1[1];
+      uVar2 = zb_buf_len_func(param_1);
+      if (uVar2 < ((bVar5 + 1) * 2 & 0xff)) {
+        uVar3 = 0;
+        goto _L0;
+      }
+      for (bVar5 = 0; bVar5 < (byte)puVar1[1]; bVar5 = bVar5 + 1) {
+      }
+    }
+  }
+  if (puVar1 == (undefined1 *)0x0) {
+    uVar3 = 0;
+  }
+  else {
+    *__ptr = 0;
+    __ptr[1] = *puVar1;
+    bVar5 = puVar1[1];
+    __ptr[2] = bVar5;
+    __ptr = (undefined1 *)realloc(__ptr,(bVar5 + 1) * 4);
+    uVar3 = *(undefined4 *)(__ptr + 4);
+    for (iVar4 = 0; iVar4 < (int)(uint)(byte)__ptr[2]; iVar4 = iVar4 + 1) {
+      **(undefined2 **)(__ptr + 4) = *(undefined2 *)(puVar1 + iVar4 * 2 + 2);
+      *(int *)(__ptr + 4) = *(int *)(__ptr + 4) + 2;
+    }
+  }
+_L0:
+  if (__ptr != (undefined1 *)0x0) {
+    (*zcl_get_group_membership_resp_user_cb)
+              (*__ptr,__ptr[1],__ptr[2],uVar3,zcl_get_group_membership_resp_user_cb);
+  }
+  return;
+}
+

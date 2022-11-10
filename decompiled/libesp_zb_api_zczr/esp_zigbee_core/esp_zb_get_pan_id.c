@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
+ * Upstream date: 2022-11-10 11:13:02 +0800
+ * Upstream subject: examples: apply new signal handler API function
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_get_pan_id
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,6 +15,6 @@
 undefined2 esp_zb_get_pan_id(void)
 
 {
-  return _DAT_00013306;
+  return _DAT_0001430a;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
+ * Upstream date: 2022-11-10 11:13:02 +0800
+ * Upstream subject: examples: apply new signal handler API function
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,7 +58,7 @@ void esp_zb_zcl_custom_cluster_cmd_req(int param_1)
     }
   }
   uVar4 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC1,uVar4,"ESP_ZIGBEE_COMMAND");
+  esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC2,uVar4,"ESP_ZIGBEE_COMMAND");
 _L0:
   zb_zcl_finish_and_send_packet
             (uVar2,puVar3,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),

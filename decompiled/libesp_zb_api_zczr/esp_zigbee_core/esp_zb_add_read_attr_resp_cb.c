@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
+ * Upstream date: 2022-11-10 11:13:02 +0800
+ * Upstream subject: examples: apply new signal handler API function
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_add_read_attr_resp_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,8 +17,8 @@ void esp_zb_add_read_attr_resp_cb(undefined4 param_1)
   
   if (zb_endpoint_handler_initialized == '\0') {
     iVar1 = zb_af_get_endpoint_desc();
-    *(undefined1 *)(iVar1 + 3) = 0x26;
-    *(undefined1 *)(iVar1 + 4) = 3;
+    *(undefined1 *)(iVar1 + 3) = 0xec;
+    *(undefined1 *)(iVar1 + 4) = 4;
     *(undefined1 *)(iVar1 + 5) = 1;
     *(undefined1 *)(iVar1 + 6) = 0;
     zb_endpoint_handler_initialized = '\x01';
