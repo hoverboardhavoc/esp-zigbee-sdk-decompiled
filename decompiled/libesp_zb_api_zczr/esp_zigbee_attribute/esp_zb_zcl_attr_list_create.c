@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_zcl_attr_list_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,20 +19,22 @@ void * esp_zb_zcl_attr_list_create(int param_1)
   
   pvVar1 = malloc(0x10);
   puVar2 = (undefined2 *)malloc(0x10);
-  puVar2[4] = (short)param_1;
+  puVar2[5] = (short)param_1;
   *puVar2 = 0xfffd;
   *(undefined1 *)((int)puVar2 + 3) = 1;
   *(undefined1 *)(puVar2 + 1) = 0x21;
-  *(undefined2 **)(puVar2 + 2) = &cluster_revision_1;
+  puVar2[2] = 0xffff;
+  *(undefined2 **)(puVar2 + 3) = &cluster_revision_1;
   *(undefined4 *)(puVar2 + 6) = 0;
   *(undefined2 **)((int)pvVar1 + 0xc) = puVar2;
   if (param_1 == 8) {
     puVar3 = (undefined2 *)malloc(0x10);
-    puVar3[4] = (short)param_1;
+    puVar3[5] = (short)param_1;
     *puVar3 = 0xefff;
     *(undefined1 *)((int)puVar3 + 3) = 0x40;
     *(undefined1 *)(puVar3 + 1) = 0;
-    *(undefined1 **)(puVar3 + 2) = ls_move_status_data_ctx_0;
+    puVar2[2] = 0xffff;
+    *(undefined1 **)(puVar3 + 3) = ls_move_status_data_ctx_0;
     *(undefined4 *)(puVar3 + 6) = 0;
     *(undefined2 **)(puVar2 + 6) = puVar3;
   }

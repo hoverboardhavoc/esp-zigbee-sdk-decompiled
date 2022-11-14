@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_on_off_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,9 +25,9 @@ undefined4 esp_zb_on_off_cluster_add_attr(int param_1,uint param_2,undefined4 pa
     return 0x102;
   }
   puVar1 = *(ushort **)(param_1 + 0xc);
-  if ((*(ushort **)(param_1 + 0xc))[4] != 6) {
+  if ((*(ushort **)(param_1 + 0xc))[5] != 6) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar2,"ESP_ZIGBEE_ATTRIBUTE");
+    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC8,uVar2,"ESP_ZIGBEE_ATTRIBUTE");
     return 0x102;
   }
   do {
@@ -71,8 +71,10 @@ _L0:
     *(undefined1 *)((int)__ptr + 3) = 3;
     *(undefined1 *)(__ptr + 1) = 0x30;
   }
-  *(undefined4 *)(__ptr + 2) = param_3;
-  __ptr[4] = 6;
+  __ptr[2] = 0xffff;
+  __ptr[3] = (short)param_3;
+  __ptr[4] = (short)((uint)param_3 >> 0x10);
+  __ptr[5] = 6;
   *(undefined4 *)(__ptr + 6) = 0;
   if (puVar3 == (ushort *)0x0) {
     *(undefined2 **)(param_1 + 0xc) = __ptr;

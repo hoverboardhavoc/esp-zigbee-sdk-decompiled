@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_callback_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,15 +33,15 @@ void zcl_device_callback_entry(void)
       }
     }
     else {
-      if (uVar2 == 0x53) {
+      if (uVar2 == 0x54) {
         return;
       }
-      if (uVar2 < 0x54) {
+      if (uVar2 < 0x55) {
         if (uVar2 == 0x1d) {
           return;
         }
       }
-      else if (uVar2 - 0x56 < 2) {
+      else if (uVar2 - 0x57 < 2) {
         return;
       }
     }

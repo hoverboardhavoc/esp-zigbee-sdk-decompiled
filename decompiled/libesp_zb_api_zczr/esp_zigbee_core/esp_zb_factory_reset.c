@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_factory_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ void esp_zb_factory_reset(void)
   zb_zcl_reset_reporting_ctx();
   zb_bdb_reset_via_local_action(0);
   zb_nvram_erase();
-  DAT_0001519d = DAT_0001519d | 8;
+  DAT_0001523d = DAT_0001523d | 8;
   iVar1 = esp_restart();
   if (iVar1 == 0) {
     esp_zb_start_no_autostart();

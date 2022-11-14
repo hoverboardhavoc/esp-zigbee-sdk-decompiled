@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -87,7 +87,9 @@ _L0:
       else {
         puVar6 = (undefined2 *)zb_buf_begin_func(param_1);
         if (puVar6 != (undefined2 *)0x0) {
-          if (*(char *)(puVar6 + 1) == '\0') {
+          iVar3 = zb_zcl_zcl8_statuses_conversion(*(undefined1 *)(puVar6 + 1));
+          *(char *)(puVar6 + 1) = (char)iVar3;
+          if (iVar3 == 0) {
             iVar3 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar6 + 3),puVar6 + 2);
             uVar5 = iVar3 + 4U & 0xff;
             zb_buf_len_func(param_1);

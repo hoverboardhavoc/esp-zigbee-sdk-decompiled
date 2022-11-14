@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3177f0284ed6d95b1f865fe68f364e4b3119ec73
- * https://github.com/espressif/esp-zigbee-sdk/commit/3177f0284ed6d95b1f865fe68f364e4b3119ec73
- * Upstream date: 2022-10-21 18:05:33 +0800
- * Upstream subject: examples: Add gateway uart update rcp
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,11 +28,11 @@ esp_zb_custom_cluster_add_custom_attr
     uVar4 = 0x102;
   }
   else {
-    uVar1 = (*(ushort **)(param_1 + 0xc))[4];
+    uVar1 = (*(ushort **)(param_1 + 0xc))[5];
     puVar2 = *(ushort **)(param_1 + 0xc);
     if (uVar1 < 0xfc00) {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC15,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
+      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
       uVar4 = 0x102;
     }
     else {
@@ -49,8 +49,10 @@ esp_zb_custom_cluster_add_custom_attr
       *puVar3 = (short)param_2;
       *(undefined1 *)(puVar3 + 1) = param_3;
       *(undefined1 *)((int)puVar3 + 3) = param_4;
-      *(undefined4 *)(puVar3 + 2) = param_5;
-      puVar3[4] = uVar1;
+      puVar3[2] = 0xffff;
+      puVar3[3] = (short)param_5;
+      puVar3[4] = (short)((uint)param_5 >> 0x10);
+      puVar3[5] = uVar1;
       *(undefined4 *)(puVar3 + 6) = 0;
       if (puVar5 == (ushort *)0x0) {
         *(undefined2 **)(param_1 + 0xc) = puVar3;

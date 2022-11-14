@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3177f0284ed6d95b1f865fe68f364e4b3119ec73
- * https://github.com/espressif/esp-zigbee-sdk/commit/3177f0284ed6d95b1f865fe68f364e4b3119ec73
- * Upstream date: 2022-10-21 18:05:33 +0800
- * Upstream subject: examples: Add gateway uart update rcp
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_color_control_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ undefined4 esp_zb_cluster_list_update_color_control_cluster(int param_1,int para
   undefined2 uStack_24;
   
   puVar3 = (undefined4 *)malloc(0x14);
-  sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 8);
+  sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 10);
   uVar4 = zcl_get_attr_lists(param_2);
   uVar2 = zcl_get_attr_count(param_2);
   if (param_1 == 0) {

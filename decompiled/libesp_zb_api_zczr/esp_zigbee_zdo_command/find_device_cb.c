@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> find_device_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ void find_device_cb(int param_1)
   undefined1 uVar6;
   
   iVar2 = zb_buf_begin_func();
-  iVar3 = zb_buf_get_tail_func(param_1,0x18);
+  iVar3 = zb_buf_get_tail_func(param_1,0x1c);
   uVar5 = ZDO_INVALID_SHORT_ADDR;
   uVar6 = ZDO_INVALID_ENDPOINT;
   pbVar4 = (byte *)zb_buf_begin_func(param_1);

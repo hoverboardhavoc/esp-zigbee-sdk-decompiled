@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
+ * Upstream date: 2022-11-14 17:26:16 +0800
+ * Upstream subject: examples: support rename esp32h2 to esp32h4
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> zcl_get_attr_lists
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,55 +20,61 @@ void * zcl_get_attr_lists(int param_1)
   undefined1 uVar5;
   undefined1 uVar6;
   undefined1 uVar7;
-  char cVar8;
-  undefined1 *puVar9;
-  void *pvVar10;
-  undefined4 uVar11;
-  uint uVar12;
-  undefined1 *puVar13;
-  int iVar14;
+  undefined1 uVar8;
+  undefined1 uVar9;
+  char cVar10;
+  undefined1 *puVar11;
+  void *pvVar12;
+  undefined4 uVar13;
+  uint uVar14;
+  undefined1 *puVar15;
+  int iVar16;
   
   if (param_1 == 0) {
-    uVar11 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC1,uVar11,"ESP_ZIGBEE_CLUSTER");
-    pvVar10 = (void *)0x0;
+    uVar13 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC1,uVar13,"ESP_ZIGBEE_CLUSTER");
+    pvVar12 = (void *)0x0;
   }
   else {
-    cVar8 = '\0';
-    iVar14 = param_1;
-    while (iVar14 = *(int *)(iVar14 + 0xc), iVar14 != 0) {
-      cVar8 = cVar8 + '\x01';
+    cVar10 = '\0';
+    iVar16 = param_1;
+    while (iVar16 = *(int *)(iVar16 + 0xc), iVar16 != 0) {
+      cVar10 = cVar10 + '\x01';
     }
-    if (cVar8 == '\0') {
-      uVar11 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CLUSTER",&_LC2,uVar11,"ESP_ZIGBEE_CLUSTER");
-      pvVar10 = (void *)0x0;
+    if (cVar10 == '\0') {
+      uVar13 = esp_log_timestamp();
+      esp_log_write(3,"ESP_ZIGBEE_CLUSTER",&_LC2,uVar13,"ESP_ZIGBEE_CLUSTER");
+      pvVar12 = (void *)0x0;
     }
     else {
       zcl_finish_attr_lists();
-      puVar9 = *(undefined1 **)(param_1 + 0xc);
-      pvVar10 = calloc((uint)(byte)(cVar8 + 1),8);
-      for (uVar12 = 0; uVar12 < (byte)(cVar8 + 1); uVar12 = uVar12 + 1 & 0xff) {
-        puVar13 = (undefined1 *)(uVar12 * 8 + (int)pvVar10);
-        uVar1 = puVar9[1];
-        uVar2 = puVar9[2];
-        uVar3 = puVar9[3];
-        uVar4 = puVar9[4];
-        uVar5 = puVar9[5];
-        uVar6 = puVar9[6];
-        uVar7 = puVar9[7];
-        *puVar13 = *puVar9;
-        puVar13[1] = uVar1;
-        puVar13[2] = uVar2;
-        puVar13[3] = uVar3;
-        puVar13[4] = uVar4;
-        puVar13[5] = uVar5;
-        puVar13[6] = uVar6;
-        puVar13[7] = uVar7;
-        puVar9 = *(undefined1 **)(puVar9 + 0xc);
+      puVar11 = *(undefined1 **)(param_1 + 0xc);
+      pvVar12 = calloc((uint)(byte)(cVar10 + 1),10);
+      for (uVar14 = 0; uVar14 < (byte)(cVar10 + 1); uVar14 = uVar14 + 1 & 0xff) {
+        puVar15 = (undefined1 *)(uVar14 * 10 + (int)pvVar12);
+        uVar1 = puVar11[1];
+        uVar2 = puVar11[2];
+        uVar3 = puVar11[3];
+        uVar4 = puVar11[4];
+        uVar5 = puVar11[5];
+        uVar6 = puVar11[6];
+        uVar7 = puVar11[7];
+        uVar8 = puVar11[8];
+        uVar9 = puVar11[9];
+        *puVar15 = *puVar11;
+        puVar15[1] = uVar1;
+        puVar15[2] = uVar2;
+        puVar15[3] = uVar3;
+        puVar15[4] = uVar4;
+        puVar15[5] = uVar5;
+        puVar15[6] = uVar6;
+        puVar15[7] = uVar7;
+        puVar15[8] = uVar8;
+        puVar15[9] = uVar9;
+        puVar11 = *(undefined1 **)(puVar11 + 0xc);
       }
     }
   }
-  return pvVar10;
+  return pvVar12;
 }
 
