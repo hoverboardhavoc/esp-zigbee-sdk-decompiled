@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_temperature_meas_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,9 +17,9 @@ undefined4 esp_zb_temperature_meas_cluster_create(int param_1)
   
   uVar1 = esp_zb_zcl_attr_list_create(0x402);
   if (param_1 == 0) {
-    esp_zb_temperature_meas_cluster_add_attr(0,&ls16_measure_value_2);
-    esp_zb_temperature_meas_cluster_add_attr(uVar1,1,&ls16_min_value_1);
-    esp_zb_temperature_meas_cluster_add_attr(uVar1,2,&ls16_max_value_0);
+    esp_zb_temperature_meas_cluster_add_attr(0,&ls16_measure_value_10);
+    esp_zb_temperature_meas_cluster_add_attr(uVar1,1,&ls16_min_value_9);
+    esp_zb_temperature_meas_cluster_add_attr(uVar1,2,&ls16_max_value_8);
   }
   else {
     esp_zb_temperature_meas_cluster_add_attr(0,param_1);

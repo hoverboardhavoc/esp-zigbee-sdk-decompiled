@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
- * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
- * Upstream date: 2022-11-14 17:26:16 +0800
- * Upstream subject: examples: support rename esp32h2 to esp32h4
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_get_pan_id
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,6 +15,6 @@
 undefined2 esp_zb_get_pan_id(void)
 
 {
-  return _DAT_0001430e;
+  return _DAT_0001534a;
 }
 

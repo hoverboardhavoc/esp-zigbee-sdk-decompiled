@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ void cmd_zb_active_ep_cb(undefined4 param_1)
   else {
     if (puVar3[1] == '\0') {
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC24,uVar5,&_LC3,*(undefined2 *)(puVar3 + 2));
+      esp_log_write(3,&_LC3,&_L0,uVar5,&_LC3,*(undefined2 *)(puVar3 + 2));
       uStack_84 = 0x3d7065;
       uVar2 = 3;
       for (bVar1 = 0; bVar1 < (byte)puVar3[4]; bVar1 = bVar1 + 1) {

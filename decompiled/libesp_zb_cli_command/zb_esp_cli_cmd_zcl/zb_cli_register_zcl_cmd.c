@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,8 +16,8 @@ void zb_cli_register_zcl_cmd(void)
 
 {
   int iVar1;
-  undefined *puStack_24;
-  char *pcStack_20;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
   undefined4 uStack_1c;
   code *pcStack_18;
   undefined4 *puStack_14;
@@ -28,18 +28,18 @@ void zb_cli_register_zcl_cmd(void)
                           "Subscribe/Unsubscribe to the attribute changes on the remote node");
   DAT_000103c0 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
   DAT_000103c4 = arg_end(4);
-  puStack_24 = &_LC0;
-  pcStack_20 = "ZigBee zcl command";
+  uStack_24 = 0x10388;
+  uStack_20 = 0x1038c;
   uStack_1c = 0;
   pcStack_18 = zb_cli_zcl_cmd_cb;
   puStack_14 = &zcl_args;
-  iVar1 = esp_console_cmd_register(&puStack_24);
+  iVar1 = esp_console_cmd_register(&uStack_24);
   if (iVar1 == 0) {
     return;
   }
   _esp_error_check_failed
-            ("/home/likunqiao/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",0x66,
-             "zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
+            ("/home/abudlrehman/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",
+             0x66,"zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,6 +19,7 @@ void esp_zb_init(uint *param_1)
   undefined2 auStack_14 [6];
   
   zb_init();
+  esp_zb_zcl_scenes_table_parameter();
   zb_nwk_type = *param_1;
   uVar3 = zb_nwk_type & 0xff;
   if (uVar3 == 1) {
@@ -65,7 +66,7 @@ void esp_zb_init(uint *param_1)
   }
   else {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar1,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC13,uVar1,"ESP_ZIGBEE_CORE");
   }
   return;
 }

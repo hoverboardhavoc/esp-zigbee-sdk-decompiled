@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
- * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
- * Upstream date: 2022-11-14 17:26:16 +0800
- * Upstream subject: examples: support rename esp32h2 to esp32h4
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ esp_zb_custom_cluster_add_custom_attr
     puVar2 = *(ushort **)(param_1 + 0xc);
     if (uVar1 < 0xfc00) {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
+      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC16,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
       uVar4 = 0x102;
     }
     else {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
+ * Upstream date: 2022-12-14 19:24:05 +0800
+ * Upstream subject: examples:Add ota application example(986c075)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -71,12 +71,12 @@ void initialize_console(void)
   }
   else {
     _esp_error_check_failed
-              ("/home/likunqiao/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+              ("/home/abudlrehman/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
                ,0x5c,"initialize_console",0x10000);
   }
   _esp_error_check_failed
-            ("/home/likunqiao/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
-             0x66,"initialize_console","esp_console_init(&console_config)");
+            ("/home/abudlrehman/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+             ,0x66,"initialize_console","esp_console_init(&console_config)");
 _L0:
   puts(
       "\nYour terminal application does not support escape sequences.\nLine editing and history features are disabled.\nOn Windows, try using Putty instead."
