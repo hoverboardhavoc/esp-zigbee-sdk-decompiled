@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_device_bind_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zdo_device_bind_req(undefined1 *param_1,undefined4 param_2)
+void esp_zb_zdo_device_bind_req(undefined1 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
   undefined1 uVar1;
@@ -22,7 +22,6 @@ void esp_zb_zdo_device_bind_req(undefined1 *param_1,undefined4 param_2)
   undefined1 uVar7;
   undefined4 uVar8;
   undefined1 *puVar9;
-  int iVar10;
   
   uVar8 = zb_buf_get_out_func();
   puVar9 = (undefined1 *)zb_buf_get_tail_func(0x18);
@@ -61,8 +60,9 @@ void esp_zb_zdo_device_bind_req(undefined1 *param_1,undefined4 param_2)
   puVar9[0x14] = uVar7;
   puVar9[0x15] = param_1[0x14];
   *(undefined2 *)(puVar9 + 0x16) = *(undefined2 *)(param_1 + 0x16);
-  iVar10 = zb_zdo_bind_req(uVar8,bind_device_cb);
-  *(undefined4 *)(bind_user_cb + iVar10 * 4) = param_2;
+  uVar8 = zb_zdo_bind_req(uVar8,bind_device_cb);
+  zb_schedule_app_alarm(bind_device_req_timeout,uVar8,0x14a);
+  esp_zb_zdo_callback_register(uVar8,0x21,param_2,param_3);
   return;
 }
 

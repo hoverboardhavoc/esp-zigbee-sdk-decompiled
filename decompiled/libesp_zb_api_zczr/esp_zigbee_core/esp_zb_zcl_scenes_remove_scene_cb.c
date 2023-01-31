@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_remove_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ void esp_zb_zcl_scenes_remove_scene_cb(undefined4 param_1)
   }
   else {
     (&esp_zb_zcl_scenes_table)[iVar3 * 6] = 0xffff;
-    device_scene_free_fields((&DAT_000122dc)[iVar3 * 3]);
+    device_scene_free_fields((&DAT_0001235c)[iVar3 * 3]);
     *puVar4 = 0;
   }
   return;

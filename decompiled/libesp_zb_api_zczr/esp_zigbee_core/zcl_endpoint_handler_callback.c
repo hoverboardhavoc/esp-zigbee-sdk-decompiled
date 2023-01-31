@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,9 +17,10 @@ char zcl_endpoint_handler_callback(undefined4 param_1)
   char cVar2;
   int iVar3;
   uint uVar4;
-  uint uVar5;
+  int iVar5;
+  uint uVar6;
   undefined4 *__ptr;
-  undefined2 *puVar6;
+  undefined2 *puVar7;
   
   iVar3 = zb_buf_get_tail_func(0x1a);
   if (zcl_cli_resp_user_cb == (code *)0x0) {
@@ -68,35 +69,35 @@ char zcl_endpoint_handler_callback(undefined4 param_1)
         else {
           uVar4 = zb_buf_len_func(param_1);
           if (uVar4 < 3) {
-            puVar6 = (undefined2 *)0x0;
+            puVar7 = (undefined2 *)0x0;
           }
           else {
-            puVar6 = (undefined2 *)zb_buf_begin_func(param_1);
-            if (puVar6 != (undefined2 *)0x0) {
-              iVar3 = zb_zcl_zcl8_statuses_conversion(*(undefined1 *)(puVar6 + 1));
-              *(char *)(puVar6 + 1) = (char)iVar3;
-              if (iVar3 == 0) {
-                iVar3 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar6 + 3),puVar6 + 2);
-                uVar4 = iVar3 + 4U & 0xff;
+            puVar7 = (undefined2 *)zb_buf_begin_func(param_1);
+            if (puVar7 != (undefined2 *)0x0) {
+              iVar5 = zb_zcl_zcl8_statuses_conversion(*(undefined1 *)(puVar7 + 1));
+              *(char *)(puVar7 + 1) = (char)iVar5;
+              if (iVar5 == 0) {
+                iVar5 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar7 + 3),puVar7 + 2);
+                uVar4 = iVar5 + 4U & 0xff;
                 zb_buf_len_func(param_1);
               }
               else {
                 uVar4 = 3;
               }
-              uVar5 = zb_buf_len_func(param_1);
-              if (uVar5 < uVar4) {
+              uVar6 = zb_buf_len_func(param_1);
+              if (uVar6 < uVar4) {
                 return '\0';
               }
               zb_buf_cut_left_func(param_1,uVar4);
             }
           }
-          if (puVar6 == (undefined2 *)0x0) {
+          if (puVar7 == (undefined2 *)0x0) {
             cVar2 = '\0';
           }
           else {
             (*zcl_read_attr_user_cb)
-                      (*(undefined1 *)(puVar6 + 1),*puVar6,*(undefined1 *)((int)puVar6 + 3),
-                       puVar6 + 2,zcl_read_attr_user_cb);
+                      (*(undefined1 *)(puVar7 + 1),*(undefined2 *)(iVar3 + 0xe),*puVar7,
+                       *(undefined1 *)((int)puVar7 + 3),puVar7 + 2,zcl_read_attr_user_cb);
             zb_buf_free_func(param_1);
           }
         }

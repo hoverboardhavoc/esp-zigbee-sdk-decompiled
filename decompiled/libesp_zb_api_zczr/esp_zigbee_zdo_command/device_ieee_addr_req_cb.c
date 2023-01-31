@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,24 +13,37 @@
 void device_ieee_addr_req_cb(int param_1)
 
 {
-  byte bVar1;
-  byte *pbVar2;
+  undefined1 uVar1;
+  undefined1 *puVar2;
   int iVar3;
+  int iVar4;
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  pbVar2 = (byte *)zb_buf_begin_func();
-  bVar1 = *pbVar2;
+  puVar2 = (undefined1 *)zb_buf_begin_func();
+  uVar1 = *puVar2;
   iVar3 = zb_buf_begin_func(param_1);
   uStack_18 = ZDO_INVALID_IEEE_ADDR;
-  uStack_14 = DAT_00012b14;
+  uStack_14 = DAT_00011758;
   if (*(char *)(iVar3 + 1) == '\0') {
     zb_memcpy8(&uStack_18,iVar3 + 2);
+    iVar4 = zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);
+    if (iVar4 == 0) goto _L0;
+    iVar4 = _esp_error_check_failed
+                      ("/home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
+                       ,0xe6,"device_ieee_addr_req_cb",
+                       "ZB_SCHEDULE_APP_ALARM_CANCEL(ieee_addr_req_timeout, ZB_ALARM_ANY_PARAM)");
   }
-  if (*(code **)(ieee_user_cb + (uint)bVar1 * 4) != (code *)0x0) {
-    (**(code **)(ieee_user_cb + (uint)bVar1 * 4))(*(undefined1 *)(iVar3 + 1),&uStack_18);
-    *(undefined4 *)(ieee_user_cb + (uint)bVar1 * 4) = 0;
+  else {
+_L0:
+    iVar4 = esp_zb_zdo_callback_find(uVar1);
+    if ((iVar4 == 0) || (*(char *)(iVar4 + 1) != '\x01')) goto _L0;
   }
+  if (*(code **)(iVar4 + 4) != (code *)0x0) {
+    (**(code **)(iVar4 + 4))(*(undefined1 *)(iVar3 + 1),&uStack_18,*(undefined4 *)(iVar4 + 8));
+  }
+_L0:
+  esp_zb_zdo_callback_remove(uVar1);
   if (param_1 != 0) {
     zb_buf_free_func(param_1);
   }

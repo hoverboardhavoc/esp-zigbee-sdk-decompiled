@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,9 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,short *pa
   if (sVar1 == 8) {
     if (sVar2 == 0) {
       asStack_22[0] = CONCAT11(asStack_22[0]._1_1_,(char)param_3[2]);
-      (*zcl_set_attr_user_cb)(param_1,8,0,asStack_22,zcl_set_attr_user_cb);
+      if (zcl_set_attr_user_cb != (code *)0x0) {
+        (*zcl_set_attr_user_cb)(param_1,8,0,asStack_22);
+      }
     }
   }
   else if (sVar1 == 0x300) {

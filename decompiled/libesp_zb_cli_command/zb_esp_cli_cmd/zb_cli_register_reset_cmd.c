@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd.o -> zb_cli_register_reset_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ void zb_cli_register_reset_cmd(void)
     return;
   }
   _esp_error_check_failed
-            ("/home/abudlrehman/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd.c",0x10a,
+            ("/home/likunqiao/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd.c",0x10a,
              "zb_cli_register_reset_cmd","esp_console_cmd_register(&reset_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

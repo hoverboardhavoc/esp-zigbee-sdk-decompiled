@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_add_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
   if (iVar4 == 0xff) {
     *puVar14 = 0x89;
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC2,uVar10,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar10,"ESP_ZIGBEE_CORE");
   }
   else {
     uVar5 = zb_buf_len_func(param_1);
@@ -50,13 +50,13 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
       {
         if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] != -1) {
           *puVar14 = 0xe5;
-          device_scene_free_fields((&DAT_000122dc)[iVar4 * 3]);
+          device_scene_free_fields((&DAT_0001235c)[iVar4 * 3]);
         }
         iVar11 = iVar4 * 0xc;
         (&esp_zb_zcl_scenes_table)[iVar4 * 6] = *puVar12;
-        (&DAT_000122d8)[iVar11] = *(undefined1 *)(puVar12 + 1);
-        *(undefined2 *)(&DAT_000122d6 + iVar11) = *(undefined2 *)((int)puVar12 + 3);
-        (&DAT_000122d9)[iVar11] = cVar1 + 3U;
+        (&DAT_00012358)[iVar11] = *(undefined1 *)(puVar12 + 1);
+        *(undefined2 *)(&DAT_00012356 + iVar11) = *(undefined2 *)((int)puVar12 + 3);
+        (&DAT_00012359)[iVar11] = cVar1 + 3U;
         puVar7 = (undefined2 *)malloc(0xc);
         *puVar7 = *puVar6;
         bVar2 = *(byte *)(puVar6 + 1);
@@ -82,7 +82,7 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
           uVar5 = uVar5 + 1 & 0xff;
           puVar12 = puVar9;
         }
-        (&DAT_000122dc)[iVar4 * 3] = puVar7;
+        (&DAT_0001235c)[iVar4 * 3] = puVar7;
         *puVar14 = 0;
       }
     }

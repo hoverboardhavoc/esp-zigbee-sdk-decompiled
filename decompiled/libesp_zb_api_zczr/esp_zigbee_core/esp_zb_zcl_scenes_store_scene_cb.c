@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_store_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,8 +36,8 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
   else {
     if ((&esp_zb_zcl_scenes_table)[iVar2 * 6] == -1) {
       (&esp_zb_zcl_scenes_table)[iVar2 * 6] = uVar1;
-      (&DAT_000122d8)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
-      *(undefined2 *)(&DAT_000122d6 + iVar2 * 0xc) = 0;
+      (&DAT_00012358)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
+      *(undefined2 *)(&DAT_00012356 + iVar2 * 0xc) = 0;
     }
     else {
       *puVar3 = 0xe5;
@@ -45,7 +45,7 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
     *puVar3 = 0;
   }
   if (zcl_scenes_store_user_cb != (code *)0x0) {
-    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_000122dc)[iVar2 * 3]);
+    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_0001235c)[iVar2 * 3]);
   }
   return;
 }

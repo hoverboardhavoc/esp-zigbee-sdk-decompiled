@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> simple_desc_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,41 +13,53 @@
 void simple_desc_cb(int param_1)
 
 {
-  byte bVar1;
-  byte bVar2;
-  byte *pbVar3;
-  byte *__ptr;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 *puVar3;
+  undefined1 *__ptr;
   int iVar4;
   int iVar5;
   uint uVar6;
   
-  pbVar3 = (byte *)zb_buf_begin_func();
-  bVar1 = *pbVar3;
-  __ptr = (byte *)malloc(0xc);
-  if (pbVar3[1] == 0) {
-    uVar6 = (uint)pbVar3[0xb] + (uint)pbVar3[0xc] & 0xff;
-    __ptr = (byte *)realloc(__ptr,(uVar6 + 4) * 2);
-    bVar2 = pbVar3[9];
-    __ptr[3] = pbVar3[8];
-    __ptr[4] = bVar2;
-    __ptr[5] = __ptr[5] & 0xf0 | pbVar3[10] & 0xf;
-    __ptr[6] = pbVar3[0xb];
-    __ptr[7] = pbVar3[0xc];
-    bVar2 = pbVar3[7];
-    __ptr[1] = pbVar3[6];
-    __ptr[2] = bVar2;
-    *__ptr = pbVar3[5];
+  puVar3 = (undefined1 *)zb_buf_begin_func();
+  uVar1 = *puVar3;
+  __ptr = (undefined1 *)malloc(0xc);
+  if (puVar3[1] == '\0') {
+    uVar6 = (uint)(byte)puVar3[0xb] + (uint)(byte)puVar3[0xc] & 0xff;
+    __ptr = (undefined1 *)realloc(__ptr,(uVar6 + 4) * 2);
+    uVar2 = puVar3[9];
+    __ptr[3] = puVar3[8];
+    __ptr[4] = uVar2;
+    __ptr[5] = __ptr[5] & 0xf0 | puVar3[10] & 0xf;
+    __ptr[6] = puVar3[0xb];
+    __ptr[7] = puVar3[0xc];
+    uVar2 = puVar3[7];
+    __ptr[1] = puVar3[6];
+    __ptr[2] = uVar2;
+    *__ptr = puVar3[5];
     for (iVar4 = 0; iVar4 < (int)uVar6; iVar4 = iVar4 + 1) {
       iVar5 = iVar4 * 2;
-      bVar2 = pbVar3[iVar5 + 0xe];
-      __ptr[iVar5 + 8] = pbVar3[iVar5 + 0xd];
-      __ptr[iVar5 + 9] = bVar2;
+      uVar2 = puVar3[iVar5 + 0xe];
+      __ptr[iVar5 + 8] = puVar3[iVar5 + 0xd];
+      __ptr[iVar5 + 9] = uVar2;
     }
+    iVar4 = zb_schedule_alarm_cancel(simple_desc_req_timeout,0xff,0);
+    if (iVar4 == 0) goto _L0;
+    iVar4 = _esp_error_check_failed
+                      ("/home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
+                       ,0x1c1,"simple_desc_cb",
+                       "ZB_SCHEDULE_APP_ALARM_CANCEL(simple_desc_req_timeout, ZB_ALARM_ANY_PARAM)");
   }
-  if (*(code **)(simple_desc_user_cb + (uint)bVar1 * 4) != (code *)0x0) {
-    (**(code **)(simple_desc_user_cb + (uint)bVar1 * 4))(pbVar3[1],__ptr);
-    *(undefined4 *)(simple_desc_user_cb + (uint)bVar1 * 4) = 0;
+  else {
+_L0:
+    iVar4 = esp_zb_zdo_callback_find(uVar1);
+    if ((iVar4 == 0) || (*(char *)(iVar4 + 1) != '\x04')) goto _L0;
   }
+  if (*(code **)(iVar4 + 4) != (code *)0x0) {
+    (**(code **)(iVar4 + 4))(puVar3[1],__ptr,*(undefined4 *)(iVar4 + 8));
+  }
+_L0:
+  esp_zb_zdo_callback_remove(uVar1);
   free(__ptr);
   if (param_1 != 0) {
     zb_buf_free_func(param_1);

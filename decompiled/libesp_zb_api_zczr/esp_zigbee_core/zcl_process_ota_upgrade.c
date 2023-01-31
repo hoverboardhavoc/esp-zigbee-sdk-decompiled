@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_process_ota_upgrade
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,8 +58,8 @@ _L0:
       if ((uVar6 < 0x38) && (uVar5 = *(byte *)(param_1 + 0x14) + uVar6, 0x38 < uVar5)) {
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
-          __assert_func("//home/abudlrehman/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c"
-                        ,0x1fc,"zcl_process_ota_upgrade","update_partition != NULL");
+          __assert_func("//home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c"
+                        ,0x208,"zcl_process_ota_upgrade","update_partition != NULL");
         }
         else {
           iVar2 = esp_ota_begin(0xfffffffe,&update_handle);

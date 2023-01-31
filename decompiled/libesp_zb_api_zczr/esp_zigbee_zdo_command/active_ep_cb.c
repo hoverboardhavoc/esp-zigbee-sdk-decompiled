@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
+ * Upstream date: 2023-01-31 10:56:39 +0800
+ * Upstream subject: example: Support new zdo API(0d9da4e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,27 +13,39 @@
 void active_ep_cb(int param_1)
 
 {
-  byte bVar1;
-  byte bVar2;
-  byte *pbVar3;
+  undefined1 uVar1;
+  undefined1 *puVar2;
   void *__ptr;
-  int iVar4;
+  int iVar3;
+  undefined1 uVar4;
   
-  pbVar3 = (byte *)zb_buf_begin_func();
-  bVar1 = *pbVar3;
+  puVar2 = (undefined1 *)zb_buf_begin_func();
+  uVar1 = *puVar2;
   __ptr = calloc(1,1);
-  bVar2 = ZDO_INVALID_ENDPOINT;
-  if (pbVar3[1] == 0) {
-    __ptr = realloc(__ptr,(uint)pbVar3[4]);
-    bVar2 = pbVar3[4];
-    for (iVar4 = 0; iVar4 < (int)(uint)pbVar3[4]; iVar4 = iVar4 + 1) {
-      *(byte *)((int)__ptr + iVar4) = pbVar3[iVar4 + 5];
+  uVar4 = ZDO_INVALID_ENDPOINT;
+  if (puVar2[1] == '\0') {
+    __ptr = realloc(__ptr,(uint)(byte)puVar2[4]);
+    uVar4 = puVar2[4];
+    for (iVar3 = 0; iVar3 < (int)(uint)(byte)puVar2[4]; iVar3 = iVar3 + 1) {
+      *(undefined1 *)((int)__ptr + iVar3) = puVar2[iVar3 + 5];
     }
+    iVar3 = zb_schedule_alarm_cancel(active_ep_req_timeout,0xff,0);
+    if (iVar3 == 0) goto _L0;
+    iVar3 = _esp_error_check_failed
+                      ("/home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
+                       ,0x186,"active_ep_cb",
+                       "ZB_SCHEDULE_APP_ALARM_CANCEL(active_ep_req_timeout, ZB_ALARM_ANY_PARAM)");
   }
-  if (*(code **)(active_ep_user_cb + (uint)bVar1 * 4) != (code *)0x0) {
-    (**(code **)(active_ep_user_cb + (uint)bVar1 * 4))(pbVar3[1],bVar2,__ptr);
-    *(undefined4 *)(active_ep_user_cb + (uint)bVar1 * 4) = 0;
+  else {
+_L0:
+    iVar3 = esp_zb_zdo_callback_find(uVar1);
+    if ((iVar3 == 0) || (*(char *)(iVar3 + 1) != '\x05')) goto _L0;
   }
+  if (*(code **)(iVar3 + 4) != (code *)0x0) {
+    (**(code **)(iVar3 + 4))(puVar2[1],uVar4,__ptr,*(undefined4 *)(iVar3 + 8));
+  }
+_L0:
+  esp_zb_zdo_callback_remove(uVar1);
   if (param_1 != 0) {
     zb_buf_free_func(param_1);
   }
