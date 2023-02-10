@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * Upstream date: 2023-02-10 16:01:53 +0800
+ * Upstream subject: examples: provide new API for channel set(5818e5d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_process_ota_upgrade
  *
  * (C) Espressif, Apache License 2.0.
@@ -59,7 +59,7 @@ _L0:
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
           __assert_func("//home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c"
-                        ,0x208,"zcl_process_ota_upgrade","update_partition != NULL");
+                        ,0x206,"zcl_process_ota_upgrade","update_partition != NULL");
         }
         else {
           iVar2 = esp_ota_begin(0xfffffffe,&update_handle);

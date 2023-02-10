@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * Upstream date: 2023-02-10 16:01:53 +0800
+ * Upstream subject: examples: provide new API for channel set(5818e5d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> send_get_scene_membership_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -42,7 +42,7 @@ void send_get_scene_membership_resp(undefined4 param_1)
     for (uVar5 = 0; uVar5 < 10; uVar5 = uVar5 + 1 & 0xff) {
       if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == scene_resp_info._56_2_) {
         *pcVar4 = *pcVar4 + '\x01';
-        *pcVar3 = (&DAT_00012358)[uVar5 * 0xc];
+        *pcVar3 = (&DAT_00012328)[uVar5 * 0xc];
         pcVar3 = pcVar3 + 1;
       }
       else if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == -1) {
@@ -51,7 +51,7 @@ void send_get_scene_membership_resp(undefined4 param_1)
     }
   }
   zb_zcl_finish_and_send_packet
-            (param_1,pcVar3,0x123cd,2,scene_resp_info[0xb],scene_resp_info[0xc],
+            (param_1,pcVar3,0x1239d,2,scene_resp_info[0xb],scene_resp_info[0xc],
              scene_resp_info._16_2_,5);
   return;
 }

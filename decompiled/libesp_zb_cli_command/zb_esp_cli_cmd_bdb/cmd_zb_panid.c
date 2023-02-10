@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
+ * Upstream date: 2023-02-10 16:01:53 +0800
+ * Upstream subject: examples: provide new API for channel set(5818e5d)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_panid
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void cmd_zb_panid(char *param_1)
   iVar2 = strcmp(param_1,"get");
   if (iVar2 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(3,0x10000,&_LC14,uVar3,0x10000,_DAT_000152d6);
+    esp_log_write(3,0x10000,&_LC14,uVar3,0x10000,_DAT_000152ee);
   }
   else if (((sVar1 & 0xff) == 4) ||
           ((((sVar1 & 0xff) == 6 && (*param_1 == '0')) && (param_1[1] == 'x')))) {
@@ -35,7 +35,7 @@ void cmd_zb_panid(char *param_1)
       esp_log_write(1,0x10000,&_LC16,uVar3,0x10000);
     }
     else {
-      _DAT_000152d6 = auStack_12[0];
+      _DAT_000152ee = auStack_12[0];
       uVar3 = esp_log_timestamp();
       esp_log_write(3,0x10000,&_LC15,uVar3,0x10000,auStack_12[0]);
     }
