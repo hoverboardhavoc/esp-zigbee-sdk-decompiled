@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
+ * Upstream date: 2023-02-27 14:43:05 +0800
+ * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_groups_get_group_membership_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zcl_groups_get_group_membership_cmd_req(int param_1)
   uVar3 = zb_buf_get_out_func();
   if (10 < *(byte *)(param_1 + 0x10)) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC1,uVar5,"ESP_ZIGBEE_COMMAND");
+    esp_log_write(1,0x10000,&_L0,uVar5,0x10000);
   }
   pcVar4 = (char *)zb_zcl_start_command_header(uVar3,1,0,2,0);
   cVar1 = *(char *)(param_1 + 0x10);

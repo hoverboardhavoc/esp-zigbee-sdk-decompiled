@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
+ * Upstream date: 2023-02-27 14:43:05 +0800
+ * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_scenes_add_scene_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,7 @@ void esp_zb_zcl_scenes_add_scene_cmd_req(int param_1)
   uVar2 = zb_buf_get_out_func();
   if ((*(short *)(param_1 + 0x10) == 0) && (*(char *)(param_1 + 0x16) != '\0')) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC2,uVar4,"ESP_ZIGBEE_COMMAND",
-                  *(undefined2 *)(param_1 + 0x10));
+    esp_log_write(1,0x10000,&_LC5,uVar4,0x10000,*(undefined2 *)(param_1 + 0x10));
   }
   zb_zcl_start_command_header(uVar2,1,0,0,0);
   puVar3 = (undefined1 *)zb_put_next_htole16(*(undefined2 *)(param_1 + 10));
@@ -35,8 +34,7 @@ void esp_zb_zcl_scenes_add_scene_cmd_req(int param_1)
   if (*(short *)(param_1 + 0x10) != 0) {
     if (*(char *)(param_1 + 0x16) == '\0') {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC2,uVar4,"ESP_ZIGBEE_COMMAND",
-                    *(undefined2 *)(param_1 + 0x10));
+      esp_log_write(1,0x10000,&_LC5,uVar4,0x10000,*(undefined2 *)(param_1 + 0x10));
     }
     else {
       for (uVar1 = 0; uVar1 < *(ushort *)(param_1 + 0x10); uVar1 = uVar1 + 1) {

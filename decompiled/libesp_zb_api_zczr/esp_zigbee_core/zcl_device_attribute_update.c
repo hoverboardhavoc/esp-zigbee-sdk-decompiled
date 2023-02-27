@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
+ * Upstream date: 2023-02-27 14:43:05 +0800
+ * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,28 +41,28 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,short *pa
         (*zcl_set_attr_user_cb)(param_1,param_2,0x300,4,asStack_22);
       }
     }
-    if (sVar2 == 8) {
+    if (sVar2 == 0) {
       asStack_22[0] = CONCAT11(asStack_22[0]._1_1_,(char)param_3[2]);
       if (zcl_set_attr_user_cb != (code *)0x0) {
-        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,8,asStack_22);
+        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0,asStack_22);
       }
     }
-    if (sVar2 == 0xf) {
+    if (sVar2 == 1) {
       asStack_22[0] = CONCAT11(asStack_22[0]._1_1_,(char)param_3[2]);
       if (zcl_set_attr_user_cb != (code *)0x0) {
-        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0xf,asStack_22);
+        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,1,asStack_22);
       }
     }
-    if (sVar2 == 0x4001) {
-      asStack_22[0] = CONCAT11(asStack_22[0]._1_1_,(char)param_3[2]);
-      if (zcl_set_attr_user_cb != (code *)0x0) {
-        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x4001,asStack_22);
-      }
-    }
-    if (sVar2 == 0x400a) {
+    if (sVar2 == 7) {
       asStack_22[0] = param_3[2];
       if (zcl_set_attr_user_cb != (code *)0x0) {
-        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x400a,asStack_22);
+        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,7,asStack_22);
+      }
+    }
+    if (sVar2 == 0x4000) {
+      asStack_22[0] = param_3[2];
+      if (zcl_set_attr_user_cb != (code *)0x0) {
+        (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x4000,asStack_22);
       }
     }
   }

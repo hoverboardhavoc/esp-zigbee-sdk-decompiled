@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
- * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
- * Upstream date: 2023-02-10 16:01:53 +0800
- * Upstream subject: examples: provide new API for channel set(5818e5d)
+ * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
+ * Upstream date: 2023-02-27 14:43:05 +0800
+ * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_get_free_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ uint device_scenes_get_free_entry(uint param_1,uint param_2)
   uVar2 = 0xff;
   for (uVar1 = 0; uVar1 < 10; uVar1 = uVar1 + 1 & 0xff) {
     if (((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == param_1) &&
-       ((byte)(&DAT_00012328)[uVar1 * 0xc] == param_2)) goto _L0;
+       ((byte)(&DAT_00012320)[uVar1 * 0xc] == param_2)) goto _L0;
     if ((uVar2 == 0xff) && ((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == 0xffff)) {
       uVar2 = uVar1;
     }

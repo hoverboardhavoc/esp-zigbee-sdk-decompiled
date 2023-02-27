@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
- * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
- * Upstream date: 2023-02-10 16:01:53 +0800
- * Upstream subject: examples: provide new API for channel set(5818e5d)
+ * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
+ * Upstream date: 2023-02-27 14:43:05 +0800
+ * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> send_view_scene_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,28 +43,28 @@ void send_view_scene_resp(undefined4 param_1,int param_2)
   *puVar2 = scene_resp_info[0x26];
   puVar3 = puVar2 + 1;
   if (cVar8 == '\0') {
-    puVar2[1] = (&DAT_00012326)[param_2 * 0xc];
-    puVar2[2] = (&DAT_00012327)[param_2 * 0xc];
+    puVar2[1] = (&DAT_0001231e)[param_2 * 0xc];
+    puVar2[2] = (&DAT_0001231f)[param_2 * 0xc];
     puVar2[3] = 0;
     puVar3 = puVar2 + 4;
-    puVar1 = (undefined2 *)(&DAT_0001232c)[param_2 * 3];
+    puVar1 = (undefined2 *)(&DAT_00012324)[param_2 * 3];
     uVar7 = 0;
     bVar5 = 0;
     while( true ) {
-      if ((byte)(&DAT_00012329)[param_2 * 0xc] <= bVar5) break;
+      if ((byte)(&DAT_00012321)[param_2 * 0xc] <= bVar5) break;
       puVar3 = (undefined1 *)zb_put_next_htole16(*puVar1);
       *puVar3 = *(undefined1 *)(puVar1 + 1);
       for (uVar6 = 0; puVar3 = puVar3 + 1, uVar6 < *(byte *)(puVar1 + 1); uVar6 = uVar6 + 1 & 0xff)
       {
         *puVar3 = *(undefined1 *)(*(int *)(puVar1 + 2) + uVar6);
       }
-      bVar5 = *(char *)(uVar7 * 0xc + (&DAT_0001232c)[param_2 * 3] + 2) + bVar5;
+      bVar5 = *(char *)(uVar7 * 0xc + (&DAT_00012324)[param_2 * 3] + 2) + bVar5;
       uVar7 = uVar7 + 1 & 0xff;
       puVar1 = *(undefined2 **)(puVar1 + 4);
     }
   }
   zb_zcl_finish_and_send_packet
-            (param_1,puVar3,0x1239d,2,scene_resp_info[0xb],scene_resp_info[0xc],
+            (param_1,puVar3,0x12395,2,scene_resp_info[0xb],scene_resp_info[0xc],
              scene_resp_info._16_2_,5);
   return;
 }
