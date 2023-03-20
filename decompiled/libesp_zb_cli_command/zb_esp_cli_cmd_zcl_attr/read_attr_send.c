@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr.o -> read_attr_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,24 +25,24 @@ void read_attr_send(undefined4 param_1,uint param_2)
   
   param_2 = param_2 & 0xff;
   puVar4 = (undefined1 *)zb_zcl_get_ctx();
-  (&DAT_0001144d)[param_2 * 0x3c] = *puVar4;
+  (&DAT_00011415)[param_2 * 0x3c] = *puVar4;
   iVar5 = zb_schedule_app_alarm(invalidate_row_cb,param_2,0x294);
   if (iVar5 == 0) {
     pcVar6 = (char *)zb_buf_reuse_func(param_1);
     iVar5 = param_2 * 0x3c;
-    *pcVar6 = (&DAT_00011485)[iVar5] << 3;
+    *pcVar6 = (&DAT_0001144d)[iVar5] << 3;
     pcVar7 = (char *)zb_zcl_get_ctx();
     cVar1 = *pcVar7;
     *pcVar7 = cVar1 + '\x01';
     pcVar6[1] = cVar1;
     pcVar6[2] = '\0';
-    uVar8 = zb_put_next_htole16(pcVar6 + 3,*(undefined2 *)(&DAT_00011462 + iVar5));
-    uVar2 = (&DAT_0001145c)[iVar5];
-    uVar3 = (&DAT_0001145d)[iVar5];
+    uVar8 = zb_put_next_htole16(pcVar6 + 3,*(undefined2 *)(&DAT_0001142a + iVar5));
+    uVar2 = (&DAT_00011424)[iVar5];
+    uVar3 = (&DAT_00011425)[iVar5];
     uVar9 = zb_cli_get_endpoint();
     zb_zcl_finish_and_send_packet
-              (param_1,uVar8,iVar5 + 0x11454,uVar2,uVar3,uVar9,
-               *(undefined2 *)(&DAT_0001145e + iVar5),*(undefined2 *)(&DAT_00011460 + iVar5));
+              (param_1,uVar8,iVar5 + 0x1141c,uVar2,uVar3,uVar9,
+               *(undefined2 *)(&DAT_00011426 + iVar5),*(undefined2 *)(&DAT_00011428 + iVar5));
   }
   else {
     uVar8 = esp_log_timestamp();

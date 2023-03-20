@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr.o -> print_write_attr_response
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,20 +25,19 @@ void print_write_attr_response(undefined4 param_1)
   }
   else {
     pcVar1 = (char *)zb_buf_begin_func(param_1);
-    if (pcVar1 != (char *)0x0) {
-      iVar2 = zb_zcl_zcl8_statuses_conversion(*pcVar1);
-      *pcVar1 = (char)iVar2;
-      if (iVar2 == 0) {
-        uVar5 = 1;
-      }
-      else {
-        zb_buf_len_func(param_1);
-        uVar5 = 3;
-      }
-      uVar4 = zb_buf_len_func(param_1);
-      if (uVar4 < uVar5) goto _L0;
-      zb_buf_cut_left_func(param_1,uVar5);
+    if (pcVar1 == (char *)0x0) goto _L0;
+    iVar2 = zb_zcl_zcl8_statuses_conversion(*pcVar1);
+    *pcVar1 = (char)iVar2;
+    if (iVar2 == 0) {
+      uVar5 = 1;
     }
+    else {
+      zb_buf_len_func(param_1);
+      uVar5 = 3;
+    }
+    uVar4 = zb_buf_len_func(param_1);
+    if (uVar4 < uVar5) goto _L0;
+    zb_buf_cut_left_func(param_1,uVar5);
   }
   if (pcVar1 != (char *)0x0) {
     if (*pcVar1 == '\0') {

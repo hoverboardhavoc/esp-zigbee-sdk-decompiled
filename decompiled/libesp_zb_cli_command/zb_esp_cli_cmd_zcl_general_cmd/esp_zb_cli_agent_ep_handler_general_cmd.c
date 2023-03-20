@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_general_cmd.o -> esp_zb_cli_agent_ep_handler_general_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,25 +45,25 @@ int esp_zb_cli_agent_ep_handler_general_cmd(undefined4 param_1)
         }
         if (puVar1[1] == '\0') {
           uVar6 = esp_log_timestamp();
-          esp_log_write(3,&_LC0,&_LC21,uVar6,&_LC0,*puVar1,puVar1[1]);
+          esp_log_write(3,&_L0,&_LC21,uVar6,&_L0,*puVar1,puVar1[1]);
           uVar6 = esp_log_timestamp();
-          esp_log_write(3,&_LC0,&_LC2,uVar6,&_LC0);
+          esp_log_write(3,&_L0,&_LC2,uVar6,&_L0);
         }
         else {
           uVar6 = esp_log_timestamp();
-          esp_log_write(1,&_LC0,&_LC19,uVar6,&_LC0,*puVar1,puVar1[1]);
+          esp_log_write(1,&_L0,&_L0,uVar6,&_L0,*puVar1,puVar1[1]);
           uVar6 = esp_log_timestamp();
-          esp_log_write(1,&_LC0,&_LC20,uVar6,&_LC0);
+          esp_log_write(1,&_L0,&_LC20,uVar6,&_L0);
         }
       }
       else {
         uVar6 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC22,uVar6,&_LC0);
+        esp_log_write(1,&_L0,&_LC22,uVar6,&_L0);
       }
-      if (((&DAT_00010db4)[uVar4 * 0x2e] == '\0') &&
+      if (((&DAT_00010da4)[uVar4 * 0x2e] == '\0') &&
          (iVar3 = zb_schedule_alarm_cancel(invalidate_row_cb,uVar4 & 0xff,0), iVar3 != 0)) {
         uVar6 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC23,uVar6,&_LC0,iVar3);
+        esp_log_write(1,&_L0,&_LC23,uVar6,&_L0,iVar3);
       }
       invalidate_row(uVar4 & 0xff);
       zb_buf_free_func(param_1);

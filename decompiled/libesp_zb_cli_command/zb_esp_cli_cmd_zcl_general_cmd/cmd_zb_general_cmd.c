@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_general_cmd.o -> cmd_zb_general_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,57 +19,52 @@ void cmd_zb_general_cmd(uint param_1,undefined4 *param_2)
   size_t sVar4;
   undefined4 uVar5;
   int iVar6;
-  char *pcVar7;
   
   uVar2 = acquire_row_table();
   if ((int)uVar2 < 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC4,uVar5,&_LC0);
+    esp_log_write(1,&_L0,&_LC4,uVar5,&_L0);
     return;
   }
   if (5 < param_1 - 4) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC5,uVar5,&_LC0);
+    esp_log_write(1,&_L0,&_LC5,uVar5,&_L0);
     goto _L0;
   }
   iVar6 = uVar2 * 0x2e;
-  (&DAT_00010db4)[iVar6] = 1;
-  (&DAT_00010db1)[iVar6] = 0;
-  *(undefined2 *)(&DAT_00010d94 + iVar6) = 0x104;
-  (&DAT_00010db4)[iVar6] = 0;
-  cVar1 = parse_address(*param_2,&DAT_00010d8b + iVar6,1);
-  (&DAT_00010d8a)[iVar6] = cVar1;
+  (&DAT_00010da4)[iVar6] = 1;
+  (&DAT_00010da1)[iVar6] = 0;
+  *(undefined2 *)(&DAT_00010d84 + iVar6) = 0x104;
+  (&DAT_00010da4)[iVar6] = 0;
+  cVar1 = parse_address(*param_2,&DAT_00010d7b + iVar6,1);
+  (&DAT_00010d7a)[iVar6] = cVar1;
   if (cVar1 == '\0') {
     iVar3 = strcmp((char *)*param_2,"0");
     if (iVar3 != 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC0,&_LC7,uVar5,&_LC0);
+      esp_log_write(1,&_L0,&_LC7,uVar5,&_L0);
       goto _L0;
     }
-    (&DAT_00010d8a)[iVar6] = 0;
-    (&DAT_00010d8b)[iVar6] = 0;
-    (&DAT_00010d8c)[iVar6] = 0;
+    (&DAT_00010d7a)[iVar6] = 0;
+    (&DAT_00010d7b)[iVar6] = 0;
+    (&DAT_00010d7c)[iVar6] = 0;
   }
-  iVar6 = sscan_uint8(param_2[1],&DAT_00010d93 + uVar2 * 0x2e);
+  iVar6 = sscan_uint8(param_2[1],&DAT_00010d83 + uVar2 * 0x2e);
   if (iVar6 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC8,uVar5,&_LC0);
+    esp_log_write(1,&_L0,&_LC8,uVar5,&_L0);
     goto _L0;
   }
-  pcVar7 = (char *)param_2[2];
-  sVar4 = strlen(pcVar7);
-  iVar6 = parse_hex_str(pcVar7,sVar4 & 0xff,&DAT_00010d96 + uVar2 * 0x2e,2,1);
+  iVar6 = parse_hex_u16(param_2[2],&DAT_00010d86 + uVar2 * 0x2e);
   if (iVar6 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC9,uVar5,&_LC0);
+    esp_log_write(1,&_L0,&_LC9,uVar5,&_L0);
     goto _L0;
   }
-  pcVar7 = (char *)param_2[3];
-  sVar4 = strlen(pcVar7);
-  iVar6 = parse_hex_str(pcVar7,sVar4 & 0xff,&DAT_00010db2 + uVar2 * 0x2e,2,1);
+  iVar6 = parse_hex_u16(param_2[3],&DAT_00010da2 + uVar2 * 0x2e);
   if (iVar6 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC10,uVar5,&_LC0);
+    esp_log_write(1,&_L0,&_LC10,uVar5,&_L0);
     goto _L0;
   }
   if (param_1 != 4) {
@@ -77,12 +72,10 @@ void cmd_zb_general_cmd(uint param_1,undefined4 *param_2)
     iVar3 = strcmp((char *)param_2[4],"profile");
     if (iVar3 == 0) {
       if (param_1 < 6) goto _L0;
-      pcVar7 = (char *)param_2[5];
-      sVar4 = strlen(pcVar7);
-      iVar6 = parse_hex_str(pcVar7,sVar4 & 0xff,&DAT_00010d94 + uVar2 * 0x2e,2,1);
+      iVar6 = parse_hex_u16(param_2[5],&DAT_00010d84 + uVar2 * 0x2e);
       if (iVar6 == 0) {
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC12,uVar5,&_LC0);
+        esp_log_write(1,&_L0,&_LC12,uVar5,&_L0);
         goto _L0;
       }
       if (param_1 == 6) goto _L0;
@@ -102,28 +95,28 @@ void cmd_zb_general_cmd(uint param_1,undefined4 *param_2)
       }
       else {
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC14,uVar5,&_LC0,0x19);
+        esp_log_write(1,&_L0,&_LC14,uVar5,&_L0,0x19);
         sVar4 = 0x32;
 _L0:
         if ((sVar4 & 1) != 0) {
           uVar5 = esp_log_timestamp();
-          esp_log_write(1,&_LC0,&_LC15,uVar5,&_LC0);
+          esp_log_write(1,&_L0,&_LC15,uVar5,&_L0);
           goto _L0;
         }
       }
-      iVar6 = parse_hex_str(param_2[1],sVar4 & 0xff,&DAT_00010d98 + uVar2 * 0x2e,0x19,0);
+      iVar6 = parse_hex_str(param_2[1],sVar4 & 0xff,&DAT_00010d88 + uVar2 * 0x2e,0x19,0);
       if (iVar6 == 0) {
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC16,uVar5,&_LC0);
+        esp_log_write(1,&_L0,&_LC16,uVar5,&_L0);
         goto _L0;
       }
-      (&DAT_00010db1)[uVar2 * 0x2e] = (char)(sVar4 >> 1);
+      (&DAT_00010da1)[uVar2 * 0x2e] = (char)(sVar4 >> 1);
       if (param_1 == iVar3 + 2U) goto _L0;
       param_2 = param_2 + 2;
     }
     iVar6 = strcmp((char *)*param_2,"default");
     if (iVar6 == 0) {
-      (&DAT_00010db4)[uVar2 * 0x2e] = 0;
+      (&DAT_00010da4)[uVar2 * 0x2e] = 0;
     }
   }
 _L0:
@@ -132,7 +125,7 @@ _L0:
     return;
   }
   uVar5 = esp_log_timestamp();
-  esp_log_write(1,&_LC0,&_LC18,uVar5,&_LC0);
+  esp_log_write(1,&_L0,&_LC18,uVar5,&_L0);
 _L0:
   invalidate_row(uVar2 & 0xff);
   return;

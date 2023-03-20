@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_custom_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,12 +26,12 @@ undefined4 esp_zb_cluster_list_add_custom_cluster(int param_1,int param_2,uint p
   uVar1 = *(ushort *)(*(int *)(param_2 + 0xc) + 10);
   if (param_1 == 0) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar6,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC3,uVar6,"ESP_ZIGBEE_CLUSTER");
     uVar6 = 0x102;
   }
   else if (uVar1 < 0xfc00) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC17,uVar6,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC20,uVar6,"ESP_ZIGBEE_CLUSTER");
     uVar6 = 0x102;
   }
   else {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,11 +23,11 @@ void zb_cli_register_zcl_cmd(void)
   undefined4 *puStack_14;
   
   zcl_args = arg_lit0(&_LC7,&_LC6,"Send a generic command to the remote node");
-  DAT_000103b8 = arg_lit0(&_LC10,&_LC9,"Write/Read the attribute value to the remote node");
-  DAT_000103bc = arg_lit0(&_LC13,"subscribe",
+  DAT_000103bc = arg_lit0(&_LC10,&_LC9,"Write/Read the attribute value to the remote node");
+  DAT_000103c0 = arg_lit0(&_LC13,"subscribe",
                           "Subscribe/Unsubscribe to the attribute changes on the remote node");
-  DAT_000103c0 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
-  DAT_000103c4 = arg_end(4);
+  DAT_000103c4 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
+  DAT_000103c8 = arg_end(4);
   puStack_24 = &_LC0;
   pcStack_20 = "ZigBee zcl command";
   uStack_1c = 0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
- * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
- * Upstream date: 2023-02-27 14:43:05 +0800
- * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_store_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,8 +36,8 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
   else {
     if ((&esp_zb_zcl_scenes_table)[iVar2 * 6] == -1) {
       (&esp_zb_zcl_scenes_table)[iVar2 * 6] = uVar1;
-      (&DAT_00012320)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
-      *(undefined2 *)(&DAT_0001231e + iVar2 * 0xc) = 0;
+      (&DAT_00012364)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
+      *(undefined2 *)(&DAT_00012362 + iVar2 * 0xc) = 0;
     }
     else {
       *puVar3 = 0xe5;
@@ -45,7 +45,7 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
     *puVar3 = 0;
   }
   if (zcl_scenes_store_user_cb != (code *)0x0) {
-    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_00012324)[iVar2 * 3]);
+    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_00012368)[iVar2 * 3]);
   }
   return;
 }

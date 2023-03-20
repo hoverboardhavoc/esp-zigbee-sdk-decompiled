@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> ping_reply_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ void ping_reply_send(int param_1)
   iVar2 = zb_buf_get_out_func();
   if (iVar2 == 0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,&_L0,&_L0,uVar1,&_L0);
+    esp_log_write(1,&_LC0,&_LC10,uVar1,&_LC0);
     ping_release_reply(param_1);
   }
   else {

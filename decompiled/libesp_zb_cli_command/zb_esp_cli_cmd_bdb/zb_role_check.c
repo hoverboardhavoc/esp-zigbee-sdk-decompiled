@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_role_check
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ undefined1 zb_role_check(char *param_1)
     if (3 < uVar1) {
       return 0xff;
     }
-    iVar2 = strcmp(param_1,(&PTR__LC95_000121a8)[uVar1 * 2]);
+    iVar2 = strcmp(param_1,(&PTR__LC95_00012178)[uVar1 * 2]);
     if (iVar2 == 0) break;
     uVar1 = uVar1 + 1 & 0xff;
   }

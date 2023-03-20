@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_short
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,11 +21,11 @@ void cmd_zb_short(void)
   iVar1 = zb_address_short_by_ieee(auStack_18);
   if (iVar1 == 0xffff) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_LC44,uVar2,&_LC3);
+    esp_log_write(1,&_LC3,&_LC54,uVar2,&_LC3);
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(3,&_LC3,&_LC43,uVar2,&_LC3,iVar1);
+    esp_log_write(3,&_LC3,&_LC53,uVar2,&_LC3,iVar1);
     uVar2 = esp_log_timestamp();
     esp_log_write(3,&_LC3,&_LC7,uVar2,&_LC3);
   }

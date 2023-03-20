@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
- * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
- * Upstream date: 2022-11-14 17:26:16 +0800
- * Upstream subject: examples: support rename esp32h2 to esp32h4
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_scenes_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ undefined4 esp_zb_cluster_list_add_scenes_cluster(int param_1,int param_2,uint p
   puVar4 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC3,uVar5,"ESP_ZIGBEE_CLUSTER");
     uVar5 = 0x102;
   }
   else if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 5) {

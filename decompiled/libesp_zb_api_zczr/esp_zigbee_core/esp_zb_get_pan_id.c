@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
- * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
- * Upstream date: 2023-02-10 16:01:53 +0800
- * Upstream subject: examples: provide new API for channel set(5818e5d)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_get_pan_id
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,6 +15,6 @@
 undefined2 esp_zb_get_pan_id(void)
 
 {
-  return _DAT_0001535e;
+  return _DAT_0001619a;
 }
 

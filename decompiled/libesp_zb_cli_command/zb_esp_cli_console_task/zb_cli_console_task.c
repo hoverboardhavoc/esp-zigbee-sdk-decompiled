@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> zb_cli_console_task
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,11 +27,13 @@ void zb_cli_console_task(void)
       puts("Unrecognized command");
     }
     else if (iVar2 != 0x102) {
-      if ((iVar2 == 0) && (aiStack_14[0] != 0)) {
-        esp_err_to_name();
-        printf("Command returned non-zero error code: 0x%x (%s)\n");
+      if (iVar2 == 0) {
+        if (aiStack_14[0] != 0) {
+          esp_err_to_name();
+          printf("Command returned non-zero error code: 0x%x (%s)\n");
+        }
       }
-      else if (iVar2 != 0) {
+      else {
         esp_err_to_name();
         printf("Internal error: %s\n");
       }

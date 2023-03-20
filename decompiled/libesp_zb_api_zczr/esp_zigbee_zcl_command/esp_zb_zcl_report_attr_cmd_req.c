@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
- * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
- * Upstream date: 2023-02-27 14:43:05 +0800
- * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,22 +54,20 @@ undefined4 esp_zb_zcl_report_attr_cmd_req(undefined2 *param_1)
             iVar4 = zb_zcl_get_ctx();
             if (*(byte *)(*(int *)(*(int *)(*(int *)(iVar4 + 4) + 1) + iVar6) + 0x19) <= bVar2)
             break;
-            if (*(short *)(iVar3 + 2) == param_1[8]) {
-              if (*(short *)(iVar3 + 6) == param_1[10]) {
-                bVar1 = *(byte *)(iVar3 + 8);
-                *(byte *)(iVar3 + 8) = bVar1 | 2;
-                *(byte *)(iVar3 + 8) = bVar1 | 6;
-                *(byte *)(iVar3 + 8) = bVar1 & 0xf7 | 6;
-                *(undefined2 *)(iVar3 + 0x28) = *param_1;
-                *(undefined1 *)(iVar3 + 0x2a) = *(undefined1 *)(param_1 + 4);
-                *(undefined1 *)(iVar3 + 1) = *(undefined1 *)((int)param_1 + 9);
-                *(undefined2 *)(iVar3 + 0x2c) = 0x104;
-                iVar4 = zb_zcl_get_ctx();
-                if (*(char *)(iVar4 + 0xaa) != '\0') {
-                  uVar5 = zb_buf_get_out_func();
-                  esp_zb_zcl_send_report_attr_command(iVar3,uVar5,*(undefined4 *)(param_1 + 6));
-                  break;
-                }
+            if ((*(short *)(iVar3 + 2) == param_1[8]) && (*(short *)(iVar3 + 6) == param_1[10])) {
+              bVar1 = *(byte *)(iVar3 + 8);
+              *(byte *)(iVar3 + 8) = bVar1 | 2;
+              *(byte *)(iVar3 + 8) = bVar1 | 6;
+              *(byte *)(iVar3 + 8) = bVar1 & 0xf7 | 6;
+              *(undefined2 *)(iVar3 + 0x28) = *param_1;
+              *(undefined1 *)(iVar3 + 0x2a) = *(undefined1 *)(param_1 + 4);
+              *(undefined1 *)(iVar3 + 1) = *(undefined1 *)((int)param_1 + 9);
+              *(undefined2 *)(iVar3 + 0x2c) = 0x104;
+              iVar4 = zb_zcl_get_ctx();
+              if (*(char *)(iVar4 + 0xaa) != '\0') {
+                uVar5 = zb_buf_get_out_func();
+                esp_zb_zcl_send_report_attr_command(iVar3,uVar5,*(undefined4 *)(param_1 + 6));
+                break;
               }
             }
             iVar3 = iVar3 + 0x30;

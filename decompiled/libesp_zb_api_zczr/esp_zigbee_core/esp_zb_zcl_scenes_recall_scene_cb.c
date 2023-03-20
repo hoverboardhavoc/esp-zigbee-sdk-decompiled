@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
- * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
- * Upstream date: 2023-02-27 14:43:05 +0800
- * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_recall_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void esp_zb_zcl_scenes_recall_scene_cb(undefined4 param_1)
     *puVar2 = 0;
   }
   if (zcl_scenes_recall_user_cb != (code *)0x0) {
-    (*zcl_scenes_recall_user_cb)(*puVar2,(&DAT_00012324)[iVar3 * 3]);
+    (*zcl_scenes_recall_user_cb)(*puVar2,(&DAT_00012368)[iVar3 * 3]);
   }
   return;
 }

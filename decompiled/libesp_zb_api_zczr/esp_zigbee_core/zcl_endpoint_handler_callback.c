@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -73,23 +73,24 @@ char zcl_endpoint_handler_callback(undefined4 param_1)
           }
           else {
             puVar7 = (undefined2 *)zb_buf_begin_func(param_1);
-            if (puVar7 != (undefined2 *)0x0) {
-              iVar5 = zb_zcl_zcl8_statuses_conversion(*(undefined1 *)(puVar7 + 1));
-              *(char *)(puVar7 + 1) = (char)iVar5;
-              if (iVar5 == 0) {
-                iVar5 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar7 + 3),puVar7 + 2);
-                uVar4 = iVar5 + 4U & 0xff;
-                zb_buf_len_func(param_1);
-              }
-              else {
-                uVar4 = 3;
-              }
-              uVar6 = zb_buf_len_func(param_1);
-              if (uVar6 < uVar4) {
-                return '\0';
-              }
-              zb_buf_cut_left_func(param_1,uVar4);
+            if (puVar7 == (undefined2 *)0x0) {
+              return '\0';
             }
+            iVar5 = zb_zcl_zcl8_statuses_conversion(*(undefined1 *)(puVar7 + 1));
+            *(char *)(puVar7 + 1) = (char)iVar5;
+            if (iVar5 == 0) {
+              iVar5 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar7 + 3),puVar7 + 2);
+              uVar4 = iVar5 + 4U & 0xff;
+              zb_buf_len_func(param_1);
+            }
+            else {
+              uVar4 = 3;
+            }
+            uVar6 = zb_buf_len_func(param_1);
+            if (uVar6 < uVar4) {
+              return '\0';
+            }
+            zb_buf_cut_left_func(param_1,uVar4);
           }
           if (puVar7 == (undefined2 *)0x0) {
             cVar2 = '\0';

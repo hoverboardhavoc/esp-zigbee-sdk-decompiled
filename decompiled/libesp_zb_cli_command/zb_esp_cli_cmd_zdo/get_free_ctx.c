@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> get_free_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,17 +13,19 @@
 undefined1 * get_free_ctx(void)
 
 {
-  uint uVar1;
+  int iVar1;
+  uint uVar2;
   
-  uVar1 = 0;
+  uVar2 = 0;
   while( true ) {
-    if (2 < uVar1) {
+    if (2 < uVar2) {
       return (undefined1 *)0x0;
     }
-    if (m_tsn_ctx[uVar1 * 0xc + 5] == '\0') break;
-    uVar1 = uVar1 + 1 & 0xff;
+    iVar1 = uVar2 * 0xc;
+    if (m_tsn_ctx[iVar1 + 5] == '\0') break;
+    uVar2 = uVar2 + 1 & 0xff;
   }
-  m_tsn_ctx[uVar1 * 0xc + 5] = 1;
-  return m_tsn_ctx + uVar1 * 0xc;
+  m_tsn_ctx[iVar1 + 5] = 1;
+  return m_tsn_ctx + iVar1;
 }
 

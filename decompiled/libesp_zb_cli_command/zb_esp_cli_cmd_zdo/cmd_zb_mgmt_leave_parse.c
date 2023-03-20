@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_mgmt_leave_parse
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,13 +13,12 @@
 int cmd_zb_mgmt_leave_parse(undefined1 *param_1,uint param_2,undefined4 *param_3)
 
 {
-  char *pcVar1;
-  uint uVar2;
-  size_t sVar3;
-  int iVar4;
-  int iVar5;
-  undefined4 uVar6;
-  uint uVar7;
+  uint uVar1;
+  int iVar2;
+  int iVar3;
+  undefined4 uVar4;
+  uint uVar5;
+  char *__s1;
   undefined1 auStack_22 [6];
   
   *param_1 = 0;
@@ -34,51 +33,49 @@ int cmd_zb_mgmt_leave_parse(undefined1 *param_1,uint param_2,undefined4 *param_3
   param_1[9] = 0;
   param_1[10] = 0;
   if (param_2 == 0) {
-    uVar6 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_LC50,uVar6,&_LC3);
-    iVar4 = 0;
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,&_LC3,&_L0,uVar4,&_LC3);
+    iVar2 = 0;
   }
   else {
-    pcVar1 = (char *)*param_3;
-    sVar3 = strlen(pcVar1);
-    iVar4 = parse_hex_str(pcVar1,sVar3 & 0xff,auStack_22,2,1);
-    if (iVar4 == 0) {
-      uVar6 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC51,uVar6,&_LC3);
+    iVar2 = parse_hex_u16(*param_3,auStack_22);
+    if (iVar2 == 0) {
+      uVar4 = esp_log_timestamp();
+      esp_log_write(1,&_LC3,&_LC47,uVar4,&_LC3);
     }
     else {
       param_1[8] = (char)auStack_22._0_2_;
       param_1[9] = SUB21(auStack_22._0_2_,1);
       if (param_2 < 2) {
-        uVar7 = 1;
+        uVar5 = 1;
       }
       else if (*(char *)param_3[1] == 'r') {
-        uVar7 = 1;
+        uVar5 = 1;
       }
       else if (*(char *)param_3[1] == 'c') {
-        uVar7 = 1;
+        uVar5 = 1;
       }
       else {
-        iVar5 = parse_address(param_1,3);
-        if (iVar5 == 0) {
-          uVar6 = esp_log_timestamp();
-          esp_log_write(1,&_LC3,&_LC52,uVar6,&_LC3);
+        iVar3 = parse_address(param_1,3);
+        if (iVar3 == 0) {
+          uVar4 = esp_log_timestamp();
+          esp_log_write(1,&_LC3,&_LC48,uVar4,&_LC3);
           return 0;
         }
-        uVar7 = 2;
+        uVar5 = 2;
       }
-      while (uVar2 = uVar7 + 1, uVar2 <= param_2) {
-        pcVar1 = (char *)param_3[uVar7];
-        iVar5 = strcmp(pcVar1,"children");
-        uVar7 = uVar2;
-        if (iVar5 == 0) {
+      while (uVar1 = uVar5 + 1, uVar1 <= param_2) {
+        __s1 = (char *)param_3[uVar5];
+        iVar3 = strcmp(__s1,"children");
+        uVar5 = uVar1;
+        if (iVar3 == 0) {
           param_1[10] = param_1[10] | 0x40;
         }
         else {
-          iVar5 = strcmp(pcVar1,"rejoin");
-          if (iVar5 != 0) {
-            uVar6 = esp_log_timestamp();
-            esp_log_write(1,&_LC3,&_LC55,uVar6,&_LC3);
+          iVar3 = strcmp(__s1,"rejoin");
+          if (iVar3 != 0) {
+            uVar4 = esp_log_timestamp();
+            esp_log_write(1,&_LC3,&_LC51,uVar4,&_LC3);
             return 0;
           }
           param_1[10] = param_1[10] | 0x80;
@@ -86,6 +83,6 @@ int cmd_zb_mgmt_leave_parse(undefined1 *param_1,uint param_2,undefined4 *param_3
       }
     }
   }
-  return iVar4;
+  return iVar2;
 }
 

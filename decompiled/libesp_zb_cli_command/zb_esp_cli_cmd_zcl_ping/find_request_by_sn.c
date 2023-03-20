@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> find_request_by_sn
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ undefined1 * find_request_by_sn(uint param_1)
       return (undefined1 *)0x0;
     }
     iVar1 = iVar2 * 0x20;
-    if (((&m_ping_request_table)[iVar1] != '\0') && ((byte)(&DAT_00011082)[iVar1] == param_1))
+    if (((&m_ping_request_table)[iVar1] != '\0') && ((byte)(&DAT_0001108a)[iVar1] == param_1))
     break;
     iVar2 = iVar2 + 1;
   }

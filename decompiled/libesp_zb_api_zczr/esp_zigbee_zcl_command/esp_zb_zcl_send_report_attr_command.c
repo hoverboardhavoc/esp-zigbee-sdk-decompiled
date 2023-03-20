@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
- * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
- * Upstream date: 2023-02-27 14:43:05 +0800
- * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_send_report_attr_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
   undefined1 *puVar9;
   undefined2 *puVar10;
   uint uVar11;
-  uint uVar12;
+  int iVar12;
   
   iVar4 = zb_zcl_get_attr_desc_manuf_a
                     (*(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 2),
@@ -59,12 +59,12 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
                          *(undefined1 *)(iVar4 + 4),*(undefined2 *)(iVar4 + 6),
                          *(undefined2 *)(iVar4 + 0x2e));
     uVar11 = zb_buf_get_ptr_off_func(param_2,pbVar5);
-    uVar12 = zb_zcl_get_attribute_size(*(undefined1 *)(puVar10 + 1),*(undefined4 *)(puVar10 + 3));
-    if ((0x52 - (uVar11 & 0xffff) & 0xffff) < uVar12 + 3) break;
+    iVar12 = zb_zcl_get_attribute_size(*(undefined1 *)(puVar10 + 1),*(undefined4 *)(puVar10 + 3));
+    if ((0x52 - (uVar11 & 0xffff) & 0xffff) < iVar12 + 3U) break;
     puVar9 = (undefined1 *)zb_put_next_htole16(pbVar5,*puVar10);
     *puVar9 = *(undefined1 *)(puVar10 + 1);
     pbVar5 = (byte *)esp_zb_zcl_put_attribute_value
-                               (puVar9 + 1,puVar10,*(undefined4 *)(puVar10 + 3),uVar12 & 0xffff);
+                               (puVar9 + 1,puVar10,*(undefined4 *)(puVar10 + 3),iVar12);
     zb_zcl_save_reported_value(iVar4,puVar10);
     bVar1 = *(byte *)(iVar4 + 8);
     *(byte *)(iVar4 + 8) = bVar1 & 0xfd;

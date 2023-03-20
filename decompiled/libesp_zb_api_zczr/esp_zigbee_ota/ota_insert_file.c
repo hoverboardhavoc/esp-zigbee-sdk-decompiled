@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_api_zczr -> esp_zigbee_ota.o -> ota_insert_file
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,8 +22,8 @@ void ota_insert_file(int param_1)
     puVar1 = (undefined1 *)zb_buf_get_tail_func(0x10);
     *puVar1 = ota_config;
     puVar1[1] = 0;
-    *(undefined **)(puVar1 + 4) = &DAT_000102f0;
-    *(undefined4 *)(puVar1 + 0xc) = DAT_000102ec;
+    *(undefined1 **)(puVar1 + 4) = &ota_config;
+    *(undefined4 *)(puVar1 + 0xc) = DAT_000102f4;
     puVar1[8] = 1;
     zb_zcl_ota_upgrade_insert_file(param_1);
   }

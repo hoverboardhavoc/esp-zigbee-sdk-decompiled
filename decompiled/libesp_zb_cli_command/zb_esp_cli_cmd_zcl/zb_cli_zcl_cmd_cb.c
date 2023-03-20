@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
+ * Upstream date: 2023-03-20 14:23:27 +0800
+ * Upstream subject: zcl: support more ZCL cluster(caef391)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_zcl_cmd_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,13 +26,13 @@ int zb_cli_zcl_cmd_cb(int param_1,int param_2)
     if (*(int *)(zcl_args + 0x34) != 0) {
       cmd_zb_general_cmd(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_000103b8 + 0x34) != 0) {
+    if (*(int *)(DAT_000103bc + 0x34) != 0) {
       cmd_zb_attr(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_000103bc + 0x34) != 0) {
+    if (*(int *)(DAT_000103c0 + 0x34) != 0) {
       cmd_zb_subscribe(param_1 + -2,param_2 + 8);
     }
-    iVar1 = *(int *)(DAT_000103c0 + 0x34);
+    iVar1 = *(int *)(DAT_000103c4 + 0x34);
     if (iVar1 != 0) {
       cmd_zb_ping(param_1 + -2,param_2 + 8);
       iVar1 = 0;
