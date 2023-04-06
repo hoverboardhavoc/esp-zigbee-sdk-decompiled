@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_store_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,8 +36,8 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
   else {
     if ((&esp_zb_zcl_scenes_table)[iVar2 * 6] == -1) {
       (&esp_zb_zcl_scenes_table)[iVar2 * 6] = uVar1;
-      (&DAT_00012364)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
-      *(undefined2 *)(&DAT_00012362 + iVar2 * 0xc) = 0;
+      (&DAT_000121f0)[iVar2 * 0xc] = *(undefined1 *)(puVar4 + 1);
+      *(undefined2 *)(&DAT_000121ee + iVar2 * 0xc) = 0;
     }
     else {
       *puVar3 = 0xe5;
@@ -45,7 +45,7 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
     *puVar3 = 0;
   }
   if (zcl_scenes_store_user_cb != (code *)0x0) {
-    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_00012368)[iVar2 * 3]);
+    (*zcl_scenes_store_user_cb)(*puVar3,(&DAT_000121f4)[iVar2 * 3]);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_color_control_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,12 +17,12 @@ undefined4 esp_zb_color_control_cluster_create(int param_1)
   
   uVar1 = esp_zb_zcl_attr_list_create(0x300);
   if (param_1 == 0) {
-    esp_zb_color_control_cluster_add_attr(3,&lu16_color_control_current_X_31);
-    esp_zb_color_control_cluster_add_attr(uVar1,4,&lu16_color_control_current_Y_30);
-    esp_zb_color_control_cluster_add_attr(uVar1,8,&lu8_color_mode_29);
-    esp_zb_color_control_cluster_add_attr(uVar1,0xf,&lu8_options_28);
-    esp_zb_color_control_cluster_add_attr(uVar1,0x4001,&eu8_enhanced_color_mode_27);
-    esp_zb_color_control_cluster_add_attr(uVar1,0x400a,&lu16_color_capabilities_26);
+    esp_zb_color_control_cluster_add_attr(3,&lu16_color_control_current_X_34);
+    esp_zb_color_control_cluster_add_attr(uVar1,4,&lu16_color_control_current_Y_33);
+    esp_zb_color_control_cluster_add_attr(uVar1,8,&lu8_color_mode_32);
+    esp_zb_color_control_cluster_add_attr(uVar1,0xf,&lu8_options_31);
+    esp_zb_color_control_cluster_add_attr(uVar1,0x4001,&eu8_enhanced_color_mode_30);
+    esp_zb_color_control_cluster_add_attr(uVar1,0x400a,&lu16_color_capabilities_29);
   }
   else {
     esp_zb_color_control_cluster_add_attr(3,param_1);

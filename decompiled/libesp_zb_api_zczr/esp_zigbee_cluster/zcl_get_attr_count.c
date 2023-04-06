@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> zcl_get_attr_count
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ char zcl_get_attr_count(int param_1)
     return cVar1;
   }
   uVar2 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC1,uVar2,"ESP_ZIGBEE_CLUSTER");
+  esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC6,uVar2,"ESP_ZIGBEE_CLUSTER");
   return '\0';
 }
 

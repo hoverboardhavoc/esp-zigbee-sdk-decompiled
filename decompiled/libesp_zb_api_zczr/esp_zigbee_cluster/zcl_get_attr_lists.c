@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 7abab98979b3ea95f88c7b3687103b07986e5dd5
- * https://github.com/espressif/esp-zigbee-sdk/commit/7abab98979b3ea95f88c7b3687103b07986e5dd5
- * Upstream date: 2022-11-14 17:26:16 +0800
- * Upstream subject: examples: support rename esp32h2 to esp32h4
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> zcl_get_attr_lists
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ void * zcl_get_attr_lists(int param_1)
   
   if (param_1 == 0) {
     uVar13 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC1,uVar13,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC6,uVar13,"ESP_ZIGBEE_CLUSTER");
     pvVar12 = (void *)0x0;
   }
   else {
@@ -43,7 +43,7 @@ void * zcl_get_attr_lists(int param_1)
     }
     if (cVar10 == '\0') {
       uVar13 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CLUSTER",&_LC2,uVar13,"ESP_ZIGBEE_CLUSTER");
+      esp_log_write(3,"ESP_ZIGBEE_CLUSTER",&_LC7,uVar13,"ESP_ZIGBEE_CLUSTER");
       pvVar12 = (void *)0x0;
     }
     else {

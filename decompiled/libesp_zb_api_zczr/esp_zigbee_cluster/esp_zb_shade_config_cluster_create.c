@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_shade_config_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,9 +17,9 @@ undefined4 esp_zb_shade_config_cluster_create(int param_1)
   
   uVar1 = esp_zb_zcl_attr_list_create(0x100);
   if (param_1 == 0) {
-    esp_zb_shade_config_cluster_add_attr(2,&lu8_status_23);
-    esp_zb_shade_config_cluster_add_attr(uVar1,0x10,&lu8_closed_limit_22);
-    esp_zb_shade_config_cluster_add_attr(uVar1,0x11,&lu8_mode_21);
+    esp_zb_shade_config_cluster_add_attr(2,&lu8_status_26);
+    esp_zb_shade_config_cluster_add_attr(uVar1,0x10,&lu8_closed_limit_25);
+    esp_zb_shade_config_cluster_add_attr(uVar1,0x11,&lu8_mode_24);
   }
   else {
     esp_zb_shade_config_cluster_add_attr(2,param_1);

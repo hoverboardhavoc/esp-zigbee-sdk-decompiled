@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_binary_input_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ undefined4 esp_zb_cluster_list_add_binary_input_cluster(int param_1,int param_2,
   puVar4 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC3,uVar5,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC1,uVar5,"ESP_ZIGBEE_CLUSTER");
     uVar5 = 0x102;
   }
   else if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 0xf) {
@@ -73,7 +73,7 @@ undefined4 esp_zb_cluster_list_add_binary_input_cluster(int param_1,int param_2,
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC15,uVar5,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC9,uVar5,"ESP_ZIGBEE_CLUSTER");
     uVar5 = 0x102;
   }
   return uVar5;

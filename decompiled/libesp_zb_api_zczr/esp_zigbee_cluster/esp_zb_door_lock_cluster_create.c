@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_door_lock_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,9 +17,9 @@ undefined4 esp_zb_door_lock_cluster_create(int param_1)
   
   uVar1 = esp_zb_zcl_attr_list_create(0x101);
   if (param_1 == 0) {
-    esp_zb_door_lock_cluster_add_attr(0,&lu8_lockstate_13);
-    esp_zb_door_lock_cluster_add_attr(uVar1,1,&lu8_locktype_12);
-    esp_zb_door_lock_cluster_add_attr(uVar1,2,&lu8_actuator_enable_11);
+    esp_zb_door_lock_cluster_add_attr(0,&lu8_lockstate_16);
+    esp_zb_door_lock_cluster_add_attr(uVar1,1,&lu8_locktype_15);
+    esp_zb_door_lock_cluster_add_attr(uVar1,2,&lu8_actuator_enable_14);
   }
   else {
     esp_zb_door_lock_cluster_add_attr(0,param_1);

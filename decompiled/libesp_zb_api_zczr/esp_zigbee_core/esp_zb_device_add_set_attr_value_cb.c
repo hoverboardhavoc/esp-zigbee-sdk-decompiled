@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_device_add_set_attr_value_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,13 +13,7 @@
 void esp_zb_device_add_set_attr_value_cb(undefined4 param_1)
 
 {
-  int iVar1;
-  
-  if (zb_device_cb_initialized == '\0') {
-    iVar1 = zb_zcl_get_ctx();
-    *(code **)(iVar1 + 0x9c) = zcl_device_callback_entry;
-    zb_device_cb_initialized = '\x01';
-  }
+  esp_zb_check_initialize_device_callback();
   zcl_set_attr_user_cb = param_1;
   return;
 }

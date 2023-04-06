@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void device_ieee_addr_req_cb(int param_1)
   uVar1 = *puVar2;
   iVar3 = zb_buf_begin_func(param_1);
   uStack_18 = ZDO_INVALID_IEEE_ADDR;
-  uStack_14 = DAT_00011758;
+  uStack_14 = DAT_00011770;
   if (*(char *)(iVar3 + 1) == '\0') {
     zb_memcpy8(&uStack_18,iVar3 + 2);
     iVar4 = zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);

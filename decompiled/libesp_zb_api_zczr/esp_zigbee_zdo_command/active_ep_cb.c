@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void active_ep_cb(int param_1)
     if (iVar3 == 0) goto _L0;
     iVar3 = _esp_error_check_failed
                       ("/home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                       ,0x186,"active_ep_cb",
+                       ,0x18c,"active_ep_cb",
                        "ZB_SCHEDULE_APP_ALARM_CANCEL(active_ep_req_timeout, ZB_ALARM_ANY_PARAM)");
   }
   else {

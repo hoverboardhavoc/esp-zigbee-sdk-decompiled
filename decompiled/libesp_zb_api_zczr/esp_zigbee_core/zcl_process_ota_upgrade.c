@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
- * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
- * Upstream date: 2023-02-10 16:01:53 +0800
- * Upstream subject: examples: provide new API for channel set(5818e5d)
+ * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
+ * Upstream date: 2023-04-06 16:02:34 +0800
+ * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_process_ota_upgrade
  *
  * (C) Espressif, Apache License 2.0.
@@ -59,7 +59,7 @@ _L0:
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
           __assert_func("//home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c"
-                        ,0x206,"zcl_process_ota_upgrade","update_partition != NULL");
+                        ,0x204,"zcl_process_ota_upgrade","update_partition != NULL");
         }
         else {
           iVar2 = esp_ota_begin(0xfffffffe,&update_handle);
