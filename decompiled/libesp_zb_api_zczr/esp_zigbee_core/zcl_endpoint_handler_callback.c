@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
+ * Upstream date: 2023-05-15 14:58:37 +0800
+ * Upstream subject: esp-zigbee-lib: Support customized attribute read and command(225be55)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,18 +25,9 @@ char zcl_endpoint_handler_callback(undefined4 param_1)
   iVar3 = zb_buf_get_tail_func(0x1a);
   if (zcl_cli_resp_user_cb == (code *)0x0) {
     if (*(char *)(iVar3 + 0x13) == '\x01') {
-      uVar4 = (uint)*(ushort *)(iVar3 + 0xe);
-      if (uVar4 < 9) {
-        if ((0x179U >> (uVar4 & 0x1f) & 1) == 0) {
-          return '\0';
-        }
-      }
-      else if (uVar4 != 0x300) {
-        return '\0';
-      }
       cVar2 = *(char *)(iVar3 + 0x15);
       if (cVar2 == '\0') {
-        if (uVar4 == 4) {
+        if (*(short *)(iVar3 + 0xe) == 4) {
           bVar1 = *(byte *)(iVar3 + 0x12);
           if (bVar1 == 2) {
             if (zcl_get_group_membership_resp_user_cb != 0) {
@@ -110,15 +101,16 @@ char zcl_endpoint_handler_callback(undefined4 param_1)
     else if (*(char *)(iVar3 + 0x13) == '\0') {
       uVar4 = esp_zb_get_global_custom_cluster_id();
       if (uVar4 == *(ushort *)(iVar3 + 0xe)) {
-        if (zcl_custom_cluster_cmd_cb == (code *)0x0) {
+        if (*(char *)(iVar3 + 0x15) == '\0') {
           cVar2 = '\0';
+          if (zcl_custom_cluster_cmd_cb != (code *)0x0) {
+            __ptr = (undefined4 *)malloc(9);
+            esp_zb_custom_cluster_get_cmd_req(param_1,__ptr);
+            (*zcl_custom_cluster_cmd_cb)(*__ptr,(int)__ptr + 5,zcl_custom_cluster_cmd_cb);
+            free(__ptr);
+          }
         }
         else {
-          __ptr = (undefined4 *)malloc(9);
-          esp_zb_custom_cluster_get_cmd_req(param_1,__ptr);
-          (*zcl_custom_cluster_cmd_cb)
-                    (*__ptr,*(undefined4 *)((int)__ptr + 5),zcl_custom_cluster_cmd_cb);
-          free(__ptr);
           cVar2 = '\0';
         }
       }

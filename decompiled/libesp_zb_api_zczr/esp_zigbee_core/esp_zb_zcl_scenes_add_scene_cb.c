@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
+ * Upstream date: 2023-05-15 14:58:37 +0800
+ * Upstream subject: esp-zigbee-lib: Support customized attribute read and command(225be55)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_add_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -50,13 +50,13 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
       {
         if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] != -1) {
           *puVar14 = 0xe5;
-          device_scene_free_fields((&DAT_000121f4)[iVar4 * 3]);
+          device_scene_free_fields((&DAT_000121bc)[iVar4 * 3]);
         }
         iVar11 = iVar4 * 0xc;
         (&esp_zb_zcl_scenes_table)[iVar4 * 6] = *puVar12;
-        (&DAT_000121f0)[iVar11] = *(undefined1 *)(puVar12 + 1);
-        *(undefined2 *)(&DAT_000121ee + iVar11) = *(undefined2 *)((int)puVar12 + 3);
-        (&DAT_000121f1)[iVar11] = cVar1 + 3U;
+        (&DAT_000121b8)[iVar11] = *(undefined1 *)(puVar12 + 1);
+        *(undefined2 *)(&DAT_000121b6 + iVar11) = *(undefined2 *)((int)puVar12 + 3);
+        (&DAT_000121b9)[iVar11] = cVar1 + 3U;
         puVar7 = (undefined2 *)malloc(0xc);
         *puVar7 = *puVar6;
         bVar2 = *(byte *)(puVar6 + 1);
@@ -82,7 +82,7 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
           uVar5 = uVar5 + 1 & 0xff;
           puVar12 = puVar9;
         }
-        (&DAT_000121f4)[iVar4 * 3] = puVar7;
+        (&DAT_000121bc)[iVar4 * 3] = puVar7;
         *puVar14 = 0;
       }
     }
