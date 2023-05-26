@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
+ * Upstream date: 2023-05-26 18:12:14 +0800
+ * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_process_ota_upgrade
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,21 +31,21 @@ void zcl_process_ota_upgrade(int param_1)
       if (iVar7 == 0x1503) goto _L0;
       uVar4 = esp_log_timestamp();
       uVar3 = esp_err_to_name(iVar7);
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC8,uVar4,"ESP_ZIGBEE_CORE",uVar3);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC9,uVar4,"ESP_ZIGBEE_CORE",uVar3);
     }
     do {
       iVar7 = esp_ota_set_boot_partition(update_partition);
       if (iVar7 != 0) {
         uVar4 = esp_log_timestamp();
         uVar3 = esp_err_to_name(iVar7);
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC9,uVar4,"ESP_ZIGBEE_CORE",uVar3);
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC10,uVar4,"ESP_ZIGBEE_CORE",uVar3);
       }
       uVar4 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC10,uVar4,"ESP_ZIGBEE_CORE");
+      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC11,uVar4,"ESP_ZIGBEE_CORE");
       esp_restart();
 _L0:
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC7,uVar4,"ESP_ZIGBEE_CORE",iVar7);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC8,uVar4,"ESP_ZIGBEE_CORE",iVar7);
     } while( true );
   }
   if (bVar1 < 4) {
@@ -58,28 +58,28 @@ _L0:
       if ((uVar6 < 0x38) && (uVar5 = *(byte *)(param_1 + 0x14) + uVar6, 0x38 < uVar5)) {
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
-          __assert_func("//home/likunqiao/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c"
-                        ,0x204,"zcl_process_ota_upgrade","update_partition != NULL");
+          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
+                        0x22c,"zcl_process_ota_upgrade","update_partition != NULL");
         }
         else {
           iVar2 = esp_ota_begin(0xfffffffe,&update_handle);
           if (iVar2 != 0) {
             uVar4 = esp_log_timestamp();
             uVar3 = esp_err_to_name(iVar2);
-            esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC5,uVar4,"ESP_ZIGBEE_CORE",uVar3);
+            esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC6,uVar4,"ESP_ZIGBEE_CORE",uVar3);
             return;
           }
         }
         iVar7 = esp_ota_write(update_handle,iVar7 + (0x38 - uVar6),uVar5 - 0x38);
         if (iVar7 != 0) {
           uVar4 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC6,uVar4,"ESP_ZIGBEE_CORE",iVar7);
+          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC7,uVar4,"ESP_ZIGBEE_CORE",iVar7);
           return;
         }
       }
       else if ((0x38 < uVar6) && (iVar7 = esp_ota_write(update_handle,iVar7), iVar7 != 0)) {
         uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC6,uVar4,"ESP_ZIGBEE_CORE",iVar7);
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC7,uVar4,"ESP_ZIGBEE_CORE",iVar7);
         return;
       }
       *(undefined1 *)(param_1 + 0xc) = 6;
@@ -90,11 +90,11 @@ _L0:
   }
   else if (bVar1 == 7) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC12,uVar4,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC13,uVar4,"ESP_ZIGBEE_CORE");
   }
   else if (bVar1 == 10) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC11,uVar4,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC12,uVar4,"ESP_ZIGBEE_CORE");
   }
   else if (bVar1 == 5) {
     *(undefined1 *)(param_1 + 0xc) = 6;
