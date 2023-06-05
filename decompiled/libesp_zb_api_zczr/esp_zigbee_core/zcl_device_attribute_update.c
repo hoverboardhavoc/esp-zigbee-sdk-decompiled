@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
+ * Upstream date: 2023-06-05 10:37:46 +0800
+ * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,13 +15,12 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
 {
   byte bVar1;
   ushort uVar2;
-  uint uVar3;
-  uint uVar4;
+  ushort uVar3;
+  int iVar4;
   undefined4 uVar5;
-  int iVar6;
-  ushort *puVar7;
-  int iVar8;
-  ushort *puVar9;
+  ushort *puVar6;
+  int iVar7;
+  ushort *puVar8;
   ushort uStack_3c;
   byte bStack_3a;
   undefined1 uStack_39;
@@ -32,90 +31,89 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
   undefined1 uStack_34;
   undefined1 uStack_33;
   
-  uVar3 = (uint)*param_3;
-  uVar2 = param_3[1];
-  if (uVar3 == 8) {
-    if ((uVar2 == 0) &&
+  uVar2 = *param_3;
+  uVar3 = param_3[1];
+  if (uVar2 == 8) {
+    if ((uVar3 == 0) &&
        (uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]), zcl_set_attr_user_cb != (code *)0x0)
        ) {
       (*zcl_set_attr_user_cb)(param_1,8,0,&uStack_3c);
     }
   }
-  else if (uVar3 == 0x300) {
-    if ((uVar2 == 3) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
+  else if (uVar2 == 0x300) {
+    if ((uVar3 == 3) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,0x300,3,&uStack_3c);
     }
-    if ((uVar2 == 4) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
+    if ((uVar3 == 4) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,param_2,0x300,4,&uStack_3c);
     }
-    if (uVar2 == 0) {
+    if (uVar3 == 0) {
       uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]);
       if (zcl_set_attr_user_cb != (code *)0x0) {
         (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0,&uStack_3c);
       }
     }
-    if (uVar2 == 1) {
+    if (uVar3 == 1) {
       uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]);
       if (zcl_set_attr_user_cb != (code *)0x0) {
         (*zcl_set_attr_user_cb)(param_1,param_2,0x300,1,&uStack_3c);
       }
     }
-    if ((uVar2 == 7) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
+    if ((uVar3 == 7) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,param_2,0x300,7,&uStack_3c);
     }
-    if ((uVar2 == 0x4000) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
+    if ((uVar3 == 0x4000) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x4000,&uStack_3c);
     }
   }
-  else if (uVar3 == 6) {
-    if ((uVar2 == 0) && (zcl_set_attr_user_cb != (code *)0x0)) {
+  else if (uVar2 == 6) {
+    if ((uVar3 == 0) && (zcl_set_attr_user_cb != (code *)0x0)) {
       uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]);
       (*zcl_set_attr_user_cb)(param_1,6,0,&uStack_3c);
     }
   }
+  else if (uVar2 < 0xfc00) {
+    uVar5 = esp_log_timestamp();
+    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE",uVar2,uVar3);
+  }
   else {
-    uVar4 = esp_zb_get_global_custom_cluster_id();
-    if (uVar4 == uVar3) {
-      iVar6 = esp_zb_zcl_get_cluster(param_2,uVar3,1);
-      bVar1 = *(byte *)(iVar6 + 2);
-      puVar9 = (ushort *)0x0;
-      for (iVar8 = 0; iVar8 < (int)(uint)bVar1; iVar8 = iVar8 + 1) {
-        puVar7 = (ushort *)(*(int *)(iVar6 + 4) + iVar8 * 10);
-        uStack_3c = *puVar7;
-        bStack_3a = (byte)puVar7[1];
-        uStack_39 = *(undefined1 *)((int)puVar7 + 3);
-        uStack_38 = (undefined1)puVar7[2];
-        uStack_37 = *(undefined1 *)((int)puVar7 + 5);
-        uStack_36 = (undefined1)puVar7[3];
-        uStack_35 = *(undefined1 *)((int)puVar7 + 7);
-        uStack_34 = (undefined1)puVar7[4];
-        uStack_33 = *(undefined1 *)((int)puVar7 + 9);
-        if (uStack_3c == uVar2) {
+    iVar4 = esp_zb_zcl_get_cluster(param_2,uVar2,1);
+    if (iVar4 != 0) {
+      bVar1 = *(byte *)(iVar4 + 2);
+      puVar8 = (ushort *)0x0;
+      for (iVar7 = 0; iVar7 < (int)(uint)bVar1; iVar7 = iVar7 + 1) {
+        puVar6 = (ushort *)(*(int *)(iVar4 + 4) + iVar7 * 10);
+        uStack_3c = *puVar6;
+        bStack_3a = (byte)puVar6[1];
+        uStack_39 = *(undefined1 *)((int)puVar6 + 3);
+        uStack_38 = (undefined1)puVar6[2];
+        uStack_37 = *(undefined1 *)((int)puVar6 + 5);
+        uStack_36 = (undefined1)puVar6[3];
+        uStack_35 = *(undefined1 *)((int)puVar6 + 7);
+        uStack_34 = (undefined1)puVar6[4];
+        uStack_33 = *(undefined1 *)((int)puVar6 + 9);
+        if (uStack_3c == uVar3) {
           if (bStack_3a < 0x22) {
             if (bStack_3a < 0x20) {
 _L0:
               uVar5 = esp_log_timestamp();
               esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC1,uVar5,"ESP_ZIGBEE_CORE");
-              if (puVar9 == (ushort *)0x0) goto _L0;
+              if (puVar8 == (ushort *)0x0) goto _L0;
             }
             else {
-              puVar9 = param_3 + 2;
+              puVar8 = param_3 + 2;
             }
           }
           else {
             if (bStack_3a != 0x23) goto _L0;
-            puVar9 = param_3 + 2;
+            puVar8 = param_3 + 2;
           }
           if (zcl_set_attr_user_cb != (code *)0x0) {
-            (*zcl_set_attr_user_cb)(param_1,param_2,uVar3,uVar2,puVar9);
+            (*zcl_set_attr_user_cb)(param_1,param_2,uVar2,uVar3,puVar8);
           }
         }
 _L0:
       }
-    }
-    else {
-      uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE",uVar3,uVar2);
     }
   }
   return;

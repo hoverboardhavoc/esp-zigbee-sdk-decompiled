@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
+ * Upstream date: 2023-06-05 10:37:46 +0800
+ * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,36 +11,94 @@
  */
 
 int esp_zb_custom_cluster_add_custom_attr
-              (int param_1,undefined4 param_2,undefined1 param_3,undefined1 param_4,
-              undefined4 param_5)
+              (int param_1,undefined4 param_2,uint param_3,undefined1 param_4,char *param_5)
 
 {
   undefined2 *__ptr;
   int iVar1;
-  int aiStack_24 [2];
+  undefined4 *puVar2;
+  char *pcVar3;
+  size_t sVar4;
+  undefined2 *puVar5;
+  undefined4 uVar6;
+  int aiStack_34 [4];
   
   __ptr = (undefined2 *)malloc(0x10);
-  aiStack_24[0] = 0;
-  iVar1 = esp_zb_attr_list_get_tail(param_1,0xfc00,param_2,aiStack_24);
-  if (aiStack_24[0] == 0) {
-    *__ptr = (short)param_2;
-    *(undefined1 *)(__ptr + 1) = param_3;
-    *(undefined1 *)((int)__ptr + 3) = param_4;
-    __ptr[2] = 0xffff;
-    __ptr[3] = (short)param_5;
-    __ptr[4] = (short)((uint)param_5 >> 0x10);
-    __ptr[5] = *(undefined2 *)(iVar1 + 10);
-    *(undefined4 *)(__ptr + 6) = 0;
-    if (iVar1 == 0) {
-      *(undefined2 **)(param_1 + 0xc) = __ptr;
+  aiStack_34[0] = 0;
+  iVar1 = esp_zb_attr_list_get_tail(param_1,0xfc00,param_2,aiStack_34);
+  if (aiStack_34[0] != 0) {
+    free(__ptr);
+    return aiStack_34[0];
+  }
+  *__ptr = (short)param_2;
+  *(char *)(__ptr + 1) = (char)param_3;
+  *(undefined1 *)((int)__ptr + 3) = param_4;
+  __ptr[2] = 0xffff;
+  if (param_3 == 0x28) {
+    pcVar3 = (char *)malloc(1);
+    *pcVar3 = *param_5;
+    __ptr[3] = (short)pcVar3;
+    __ptr[4] = (short)((uint)pcVar3 >> 0x10);
+    goto _L0;
+  }
+  if (param_3 < 0x29) {
+    if (param_3 == 0x21) {
+      puVar5 = (undefined2 *)malloc(2);
+      *puVar5 = *(undefined2 *)param_5;
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
+      goto _L0;
     }
-    else {
-      *(undefined2 **)(iVar1 + 0xc) = __ptr;
+    if (param_3 == 0x23) {
+      puVar2 = (undefined4 *)malloc(4);
+      *puVar2 = *(undefined4 *)param_5;
+      __ptr[3] = (short)puVar2;
+      __ptr[4] = (short)((uint)puVar2 >> 0x10);
+      goto _L0;
+    }
+    if (param_3 == 0x20) {
+      pcVar3 = (char *)malloc(1);
+      *pcVar3 = *param_5;
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
+      goto _L0;
     }
   }
   else {
-    free(__ptr);
+    if (param_3 == 0x2b) {
+      puVar2 = (undefined4 *)malloc(4);
+      *puVar2 = *(undefined4 *)param_5;
+      __ptr[3] = (short)puVar2;
+      __ptr[4] = (short)((uint)puVar2 >> 0x10);
+      goto _L0;
+    }
+    if (param_3 == 0x42) {
+      sVar4 = strlen(param_5);
+      pcVar3 = (char *)malloc(sVar4 + 1);
+      strcpy(pcVar3,param_5);
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
+      goto _L0;
+    }
+    if (param_3 == 0x29) {
+      puVar5 = (undefined2 *)malloc(2);
+      *puVar5 = *(undefined2 *)param_5;
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
+      goto _L0;
+    }
   }
-  return aiStack_24[0];
+  uVar6 = esp_log_timestamp();
+  esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
+_L0:
+  __ptr[5] = *(undefined2 *)(iVar1 + 10);
+  *(undefined4 *)(__ptr + 6) = 0;
+  if (iVar1 == 0) {
+    *(undefined2 **)(param_1 + 0xc) = __ptr;
+  }
+  else {
+    *(undefined2 **)(iVar1 + 0xc) = __ptr;
+  }
+  return 0;
 }
 

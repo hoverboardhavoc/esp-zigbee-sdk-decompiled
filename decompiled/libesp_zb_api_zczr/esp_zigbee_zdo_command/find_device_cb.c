@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
+ * Upstream date: 2023-06-05 10:37:46 +0800
+ * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> find_device_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void find_device_cb(int param_1)
     if (iVar3 == 0) goto _L0;
     iVar3 = _esp_error_check_failed
                       ("/home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                       ,0x96,"find_device_cb","zb_err_code");
+                       ,0xec,"find_device_cb","zb_err_code");
   }
   else {
 _L0:

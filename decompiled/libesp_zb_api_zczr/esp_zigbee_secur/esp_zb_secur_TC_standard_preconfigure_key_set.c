@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
+ * Upstream date: 2023-06-05 10:37:46 +0800
+ * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
  * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_TC_standard_preconfigure_key_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,10 +10,10 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_secur_TC_standard_preconfigure_key_set(void)
+void esp_zb_secur_TC_standard_preconfigure_key_set(void *param_1)
 
 {
-  zb_aps_set_preconfigure_security_key();
+  memcpy((void *)0x145dc,param_1,0x10);
   return;
 }
 

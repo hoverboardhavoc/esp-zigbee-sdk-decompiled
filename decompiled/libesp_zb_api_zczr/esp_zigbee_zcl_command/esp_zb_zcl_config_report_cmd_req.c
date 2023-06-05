@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
+ * Upstream date: 2023-06-05 10:37:46 +0800
+ * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_config_report_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,8 @@ void esp_zb_zcl_config_report_cmd_req(int param_1)
   uVar5 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x18));
   iVar6 = zb_zcl_is_analog_data_type(*(undefined1 *)(param_1 + 0x14));
   if (iVar6 != 0) {
-    uVar5 = zb_zcl_put_value_to_packet(uVar5,*(undefined1 *)(param_1 + 0x14),param_1 + 0x1a);
+    uVar5 = zb_zcl_put_value_to_packet
+                      (uVar5,*(undefined1 *)(param_1 + 0x14),*(undefined4 *)(param_1 + 0x1c));
   }
   zb_zcl_finish_and_send_packet
             (uVar2,uVar5,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
