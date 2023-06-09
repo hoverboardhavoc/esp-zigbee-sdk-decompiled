@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
- * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
- * Upstream date: 2023-06-05 10:37:46 +0800
- * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
+ * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
+ * Upstream date: 2023-06-09 17:12:37 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -74,7 +74,7 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
   }
   else if (uVar2 < 0xfc00) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE",uVar2,uVar3);
+    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC3,uVar5,"ESP_ZIGBEE_CORE",uVar2,uVar3);
   }
   else {
     iVar4 = esp_zb_zcl_get_cluster(param_2,uVar2,1);
@@ -97,7 +97,7 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
             if (bStack_3a < 0x20) {
 _L0:
               uVar5 = esp_log_timestamp();
-              esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC1,uVar5,"ESP_ZIGBEE_CORE");
+              esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE");
               if (puVar8 == (ushort *)0x0) goto _L0;
             }
             else {

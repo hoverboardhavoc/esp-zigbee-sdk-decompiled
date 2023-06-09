@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
- * https://github.com/espressif/esp-zigbee-sdk/commit/e1a2ba67503f907a4a18f5b9e27b306ea1eb6a05
- * Upstream date: 2023-05-15 14:58:37 +0800
- * Upstream subject: esp-zigbee-lib: Support customized attribute read and command(225be55)
+ * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
+ * Upstream date: 2023-06-09 17:12:37 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -66,7 +66,7 @@ void esp_zb_zcl_custom_cluster_cmd_req(int param_1)
     }
   }
   uVar3 = esp_log_timestamp();
-  esp_log_write(1,0x10000,&_L0,uVar3,0x10000);
+  esp_log_write(1,0x10000,&_LC8,uVar3,0x10000);
 _L0:
   zb_zcl_finish_and_send_packet
             (uVar1,puVar2,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
