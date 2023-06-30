@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * Upstream date: 2023-06-30 20:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_add_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
   if (iVar4 == 0xff) {
     *puVar14 = 0x89;
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC4,uVar10,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar10,"ESP_ZIGBEE_CORE");
   }
   else {
     uVar5 = zb_buf_len_func(param_1);
@@ -50,13 +50,13 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
       {
         if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] != -1) {
           *puVar14 = 0xe5;
-          device_scene_free_fields((&DAT_00012544)[iVar4 * 3]);
+          device_scene_free_fields((&DAT_000128a4)[iVar4 * 3]);
         }
         iVar11 = iVar4 * 0xc;
         (&esp_zb_zcl_scenes_table)[iVar4 * 6] = *puVar12;
-        (&DAT_00012540)[iVar11] = *(undefined1 *)(puVar12 + 1);
-        *(undefined2 *)(&DAT_0001253e + iVar11) = *(undefined2 *)((int)puVar12 + 3);
-        (&DAT_00012541)[iVar11] = cVar1 + 3U;
+        (&DAT_000128a0)[iVar11] = *(undefined1 *)(puVar12 + 1);
+        *(undefined2 *)(&DAT_0001289e + iVar11) = *(undefined2 *)((int)puVar12 + 3);
+        (&DAT_000128a1)[iVar11] = cVar1 + 3U;
         puVar7 = (undefined2 *)malloc(0xc);
         *puVar7 = *puVar6;
         bVar2 = *(byte *)(puVar6 + 1);
@@ -82,7 +82,7 @@ void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
           uVar5 = uVar5 + 1 & 0xff;
           puVar12 = puVar9;
         }
-        (&DAT_00012544)[iVar4 * 3] = puVar7;
+        (&DAT_000128a4)[iVar4 * 3] = puVar7;
         *puVar14 = 0;
       }
     }

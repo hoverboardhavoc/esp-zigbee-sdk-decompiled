@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * Upstream date: 2023-06-30 20:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_ha_standard.o -> esp_zb_on_off_light_ep_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,7 +18,7 @@ undefined4 esp_zb_on_off_light_ep_create(undefined4 param_1,undefined4 param_2)
   
   uVar1 = esp_zb_ep_list_create();
   uVar2 = esp_zb_on_off_light_clusters_create(param_2);
-  esp_zb_ep_list_add_ep(uVar1,uVar2,param_1,0x104,2);
+  esp_zb_ep_list_add_ep(uVar1,uVar2,param_1,0x104,0x100);
   return uVar1;
 }
 

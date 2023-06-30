@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * Upstream date: 2023-06-30 20:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -89,7 +89,7 @@ int esp_zb_custom_cluster_add_custom_attr
     }
   }
   uVar6 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC9,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
+  esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC10,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
 _L0:
   __ptr[5] = *(undefined2 *)(iVar1 + 10);
   *(undefined4 *)(__ptr + 6) = 0;

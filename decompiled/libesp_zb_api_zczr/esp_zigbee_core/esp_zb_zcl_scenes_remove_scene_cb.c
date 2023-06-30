@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * Upstream date: 2023-06-30 20:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_remove_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ void esp_zb_zcl_scenes_remove_scene_cb(undefined4 param_1)
   }
   else {
     (&esp_zb_zcl_scenes_table)[iVar3 * 6] = 0xffff;
-    device_scene_free_fields((&DAT_00012544)[iVar3 * 3]);
+    device_scene_free_fields((&DAT_000128a4)[iVar3 * 3]);
     *puVar4 = 0;
   }
   return;

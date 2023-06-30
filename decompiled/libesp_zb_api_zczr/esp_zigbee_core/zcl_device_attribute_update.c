@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
+ * Upstream date: 2023-06-30 20:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,14 +33,7 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
   
   uVar2 = *param_3;
   uVar3 = param_3[1];
-  if (uVar2 == 8) {
-    if ((uVar3 == 0) &&
-       (uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]), zcl_set_attr_user_cb != (code *)0x0)
-       ) {
-      (*zcl_set_attr_user_cb)(param_1,8,0,&uStack_3c);
-    }
-  }
-  else if (uVar2 == 0x300) {
+  if (uVar2 == 0x300) {
     if ((uVar3 == 3) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,0x300,3,&uStack_3c);
     }
@@ -62,19 +55,50 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
     if ((uVar3 == 7) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
       (*zcl_set_attr_user_cb)(param_1,param_2,0x300,7,&uStack_3c);
     }
-    if ((uVar3 == 0x4000) && (uStack_3c = param_3[2], zcl_set_attr_user_cb != (code *)0x0)) {
-      (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x4000,&uStack_3c);
+    if (uVar3 != 0x4000) {
+      return;
     }
+    uStack_3c = param_3[2];
+    if (zcl_set_attr_user_cb == (code *)0x0) {
+      return;
+    }
+    (*zcl_set_attr_user_cb)(param_1,param_2,0x300,0x4000,&uStack_3c);
+    return;
   }
-  else if (uVar2 == 6) {
-    if ((uVar3 == 0) && (zcl_set_attr_user_cb != (code *)0x0)) {
+  if (uVar2 < 0x301) {
+    if (uVar2 == 6) {
+      if (uVar3 != 0) {
+        return;
+      }
+      if (zcl_set_attr_user_cb == (code *)0x0) {
+        return;
+      }
       uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]);
       (*zcl_set_attr_user_cb)(param_1,6,0,&uStack_3c);
+      return;
+    }
+    if (uVar2 == 8) {
+      if (uVar3 != 0) {
+        return;
+      }
+      uStack_3c = CONCAT11(uStack_3c._1_1_,(char)param_3[2]);
+      if (zcl_set_attr_user_cb == (code *)0x0) {
+        return;
+      }
+      (*zcl_set_attr_user_cb)(param_1,8,0,&uStack_3c);
+      return;
     }
   }
-  else if (uVar2 < 0xfc00) {
+  else if (uVar2 == 0x500) {
+    if (zcl_set_attr_user_cb == (code *)0x0) {
+      return;
+    }
+    (*zcl_set_attr_user_cb)(param_1,0x500,uVar3,param_3 + 2);
+    return;
+  }
+  if (uVar2 < 0xfc00) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC3,uVar5,"ESP_ZIGBEE_CORE",uVar2,uVar3);
+    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC4,uVar5,"ESP_ZIGBEE_CORE",uVar2,uVar3);
   }
   else {
     iVar4 = esp_zb_zcl_get_cluster(param_2,uVar2,1);
@@ -97,7 +121,7 @@ void zcl_device_attribute_update(undefined1 param_1,undefined4 param_2,ushort *p
             if (bStack_3a < 0x20) {
 _L0:
               uVar5 = esp_log_timestamp();
-              esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE");
+              esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC3,uVar5,"ESP_ZIGBEE_CORE");
               if (puVar8 == (ushort *)0x0) goto _L0;
             }
             else {
