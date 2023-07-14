@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
- * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
- * Upstream date: 2023-06-30 20:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
+ * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * Upstream date: 2023-07-14 11:30:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> send_get_scene_membership_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,30 +19,30 @@ void send_get_scene_membership_resp(undefined4 param_1)
   char *pcVar4;
   uint uVar5;
   
-  iVar1 = zb_aps_is_endpoint_in_group(DAT_0001294c,DAT_00012920);
+  iVar1 = zb_aps_is_endpoint_in_group(DAT_00012c90,DAT_00012c64);
   if (iVar1 == 0) {
     puVar2 = (undefined1 *)zb_buf_reuse_func(param_1);
     *puVar2 = 0x19;
-    puVar2[1] = DAT_00012928;
+    puVar2[1] = DAT_00012c6c;
     puVar2[2] = 6;
     puVar2[3] = 0x85;
     puVar2[4] = 0xff;
-    pcVar3 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_0001294c);
+    pcVar3 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_00012c90);
   }
   else {
     puVar2 = (undefined1 *)zb_buf_reuse_func(param_1);
     *puVar2 = 0x19;
-    puVar2[1] = DAT_00012928;
+    puVar2[1] = DAT_00012c6c;
     puVar2[2] = 6;
     puVar2[3] = 0;
     puVar2[4] = 0;
-    pcVar4 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_0001294c);
+    pcVar4 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_00012c90);
     *pcVar4 = '\0';
     pcVar3 = pcVar4 + 1;
     for (uVar5 = 0; uVar5 < 10; uVar5 = uVar5 + 1 & 0xff) {
-      if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == DAT_0001294c) {
+      if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == DAT_00012c90) {
         *pcVar4 = *pcVar4 + '\x01';
-        *pcVar3 = (&DAT_000128a0)[uVar5 * 0xc];
+        *pcVar3 = (&DAT_00012bd8)[uVar5 * 0xc];
         pcVar3 = pcVar3 + 1;
       }
       else if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == -1) {
@@ -51,7 +51,7 @@ void send_get_scene_membership_resp(undefined4 param_1)
     }
   }
   zb_zcl_finish_and_send_packet
-            (param_1,pcVar3,&scene_resp_info,2,DAT_0001291f,DAT_00012920,DAT_00012924,5);
+            (param_1,pcVar3,&scene_resp_info,2,DAT_00012c63,DAT_00012c64,DAT_00012c68,5);
   return;
 }
 

@@ -3,26 +3,18 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
  * Upstream date: 2023-07-14 11:30:10 +0800
  * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
- * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> ieee_addr_req_timeout
+ * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_add_ias_zone_enroll_request_cb
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void ieee_addr_req_timeout(undefined4 param_1)
+void esp_zb_add_ias_zone_enroll_request_cb(undefined4 param_1)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  
-  uVar1 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_LC5,uVar1,0x10000);
-  iVar2 = esp_zb_zdo_callback_find(param_1);
-  if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
-    (**(code **)(iVar2 + 4))(0x85,&ZDO_INVALID_IEEE_ADDR,*(undefined4 *)(iVar2 + 8));
-  }
-  esp_zb_zdo_callback_remove(param_1);
+  esp_zb_check_initialize_endpoint_handler();
+  zcl_ias_zone_enroll_req_cb = param_1;
   return;
 }
 

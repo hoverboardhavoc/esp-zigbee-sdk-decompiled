@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * Upstream date: 2023-07-14 11:30:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> simple_desc_req_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ void simple_desc_req_timeout(undefined4 param_1)
   int iVar2;
   
   uVar1 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_LC11,uVar1,0x10000);
+  esp_log_write(3,0x10000,&_LC10,uVar1,0x10000);
   iVar2 = esp_zb_zdo_callback_find(param_1);
   if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
     (**(code **)(iVar2 + 4))(0x85,0,*(undefined4 *)(iVar2 + 8));

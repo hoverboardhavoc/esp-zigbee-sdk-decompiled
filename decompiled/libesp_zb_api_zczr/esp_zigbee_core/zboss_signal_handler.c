@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * Upstream date: 2023-07-14 11:30:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zboss_signal_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,8 +19,8 @@ void zboss_signal_handler(int param_1)
   
   uStack_14 = 0;
   iVar1 = zb_buf_get_status_func();
-  zb_get_app_signal(param_1,&uStack_14);
   __ptr = (undefined4 *)malloc(8);
+  zb_get_app_signal(param_1,&uStack_14);
   *__ptr = uStack_14;
   if (iVar1 != 0) {
     iVar1 = -1;

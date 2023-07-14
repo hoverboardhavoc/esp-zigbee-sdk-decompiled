@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
- * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
- * Upstream date: 2023-06-30 20:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
+ * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * Upstream date: 2023-07-14 11:30:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_view_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,8 +25,8 @@ void esp_zb_zcl_scenes_view_scene_cb(undefined4 param_1)
   uVar3 = device_scenes_get_free_entry(*puVar1,*(undefined1 *)(puVar1 + 1));
   memcpy(&scene_resp_info,__src,0x1a);
   scene_resp_info = *(undefined1 *)puVar1;
-  DAT_00012915 = *(undefined1 *)((int)puVar1 + 1);
-  DAT_00012916 = *(undefined1 *)(puVar1 + 1);
+  DAT_00012c59 = *(undefined1 *)((int)puVar1 + 1);
+  DAT_00012c5a = *(undefined1 *)(puVar1 + 1);
   zb_buf_get_out_delayed_ext_func(send_view_scene_resp,uVar3,0);
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
+ * Upstream date: 2023-07-14 11:30:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> match_desc_req_device_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ void match_desc_req_device_timeout(undefined4 param_1)
   int iVar2;
   
   uVar1 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_L0,uVar1,0x10000);
+  esp_log_write(3,0x10000,&_LC4,uVar1,0x10000);
   iVar2 = esp_zb_zdo_callback_find(param_1);
   if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
     (**(code **)(iVar2 + 4))
