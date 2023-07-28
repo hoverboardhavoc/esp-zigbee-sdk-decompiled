@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * Upstream date: 2023-07-14 11:30:10 +0800
- * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
+ * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * Upstream date: 2023-07-28 17:48:58 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_add_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,78 +13,82 @@
 void esp_zb_zcl_scenes_add_scene_cb(undefined4 param_1)
 
 {
-  char cVar1;
-  byte bVar2;
-  undefined2 *puVar3;
-  int iVar4;
-  uint uVar5;
-  undefined2 *puVar6;
-  undefined2 *puVar7;
-  void *pvVar8;
+  byte bVar1;
+  int iVar2;
+  uint uVar3;
+  undefined2 *puVar4;
+  undefined2 *puVar5;
+  void *__dest;
+  undefined4 uVar6;
+  int iVar7;
+  undefined2 *puVar8;
   undefined2 *puVar9;
-  undefined4 uVar10;
-  int iVar11;
-  undefined2 *puVar12;
-  uint uVar13;
-  undefined1 *puVar14;
-  uint uVar15;
+  undefined1 *puVar10;
   
-  iVar4 = zb_buf_get_tail_func(0x38);
-  puVar12 = *(undefined2 **)(iVar4 + 0x10);
-  iVar4 = zb_buf_get_tail_func(param_1,0x38);
-  puVar14 = *(undefined1 **)(iVar4 + 0x14);
-  iVar4 = device_scenes_get_free_entry(*puVar12,*(undefined1 *)(puVar12 + 1));
-  if (iVar4 == 0xff) {
-    *puVar14 = 0x89;
-    uVar10 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar10,"ESP_ZIGBEE_CORE");
-  }
-  else {
-    uVar5 = zb_buf_len_func(param_1);
-    if (2 < uVar5) {
-      puVar6 = (undefined2 *)zb_buf_begin_func(param_1);
-      cVar1 = *(char *)(puVar6 + 1);
-      uVar13 = (uint)(byte)(cVar1 + 3U);
-      uVar5 = zb_buf_len_func(param_1);
-      if ((uVar13 <= uVar5) && (zb_buf_cut_left_func(param_1,uVar13), puVar6 != (undefined2 *)0x0))
-      {
-        if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] != -1) {
-          *puVar14 = 0xe5;
-          device_scene_free_fields((&DAT_00012bdc)[iVar4 * 3]);
-        }
-        iVar11 = iVar4 * 0xc;
-        (&esp_zb_zcl_scenes_table)[iVar4 * 6] = *puVar12;
-        (&DAT_00012bd8)[iVar11] = *(undefined1 *)(puVar12 + 1);
-        *(undefined2 *)(&DAT_00012bd6 + iVar11) = *(undefined2 *)((int)puVar12 + 3);
-        (&DAT_00012bd9)[iVar11] = cVar1 + 3U;
-        puVar7 = (undefined2 *)malloc(0xc);
-        *puVar7 = *puVar6;
-        bVar2 = *(byte *)(puVar6 + 1);
-        *(byte *)(puVar7 + 1) = bVar2;
-        pvVar8 = malloc((uint)bVar2);
-        *(void **)(puVar7 + 2) = pvVar8;
-        memcpy(pvVar8,(void *)((int)puVar6 + 3),(uint)*(byte *)(puVar6 + 1));
-        *(undefined4 *)(puVar7 + 4) = 0;
-        uVar5 = 1;
-        puVar12 = puVar7;
-        for (uVar15 = (uint)*(byte *)(puVar6 + 1); uVar15 < uVar13;
-            uVar15 = *(byte *)(puVar3 + 1) + uVar15 & 0xff) {
-          puVar9 = (undefined2 *)malloc(0xc);
-          puVar3 = (undefined2 *)(uVar5 * 3 + uVar15 + (int)puVar6);
-          *puVar9 = *puVar3;
-          bVar2 = *(byte *)(puVar3 + 1);
-          *(byte *)(puVar9 + 1) = bVar2;
-          pvVar8 = malloc((uint)bVar2);
-          *(void **)(puVar9 + 2) = pvVar8;
-          memcpy(pvVar8,(void *)((int)puVar3 + 3),(uint)*(byte *)(puVar3 + 1));
-          *(undefined4 *)(puVar9 + 4) = 0;
-          *(undefined2 **)(puVar12 + 4) = puVar9;
-          uVar5 = uVar5 + 1 & 0xff;
-          puVar12 = puVar9;
-        }
-        (&DAT_00012bdc)[iVar4 * 3] = puVar7;
-        *puVar14 = 0;
+  iVar2 = zb_buf_get_tail_func(0x38);
+  puVar8 = *(undefined2 **)(iVar2 + 0x10);
+  iVar2 = zb_buf_get_tail_func(param_1,0x38);
+  puVar10 = *(undefined1 **)(iVar2 + 0x14);
+  iVar2 = zb_buf_get_tail_func(param_1,0x38);
+  iVar2 = esp_zb_zcl_scenes_group_check(*puVar8,*(undefined1 *)(*(int *)(iVar2 + 0xc) + 0xc));
+  *puVar10 = (char)iVar2;
+  if (iVar2 == 0) {
+    iVar2 = device_scenes_get_free_entry(*puVar8,*(undefined1 *)(puVar8 + 1));
+    if (iVar2 == 0xff) {
+      *puVar10 = 0x89;
+      uVar6 = esp_log_timestamp();
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC11,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar8 + 1));
+    }
+    else {
+      if ((&esp_zb_zcl_scenes_table)[iVar2 * 6] != -1) {
+        *puVar10 = 0xe5;
+        device_scene_free_fields((&DAT_000136ec)[iVar2 * 3]);
       }
+      puVar9 = (undefined2 *)(&DAT_000136ec)[iVar2 * 3];
+      do {
+        uVar3 = zb_buf_len_func(param_1);
+        if (uVar3 < 3) {
+          puVar4 = (undefined2 *)0x0;
+        }
+        else {
+          puVar4 = (undefined2 *)zb_buf_begin_func(param_1);
+          bVar1 = *(char *)(puVar4 + 1) + 3;
+          uVar3 = zb_buf_len_func(param_1);
+          if (uVar3 < bVar1) {
+            puVar4 = (undefined2 *)0x0;
+          }
+          else {
+            zb_buf_cut_left_func(param_1,(uint)bVar1);
+            if (puVar4 != (undefined2 *)0x0) {
+              iVar7 = iVar2 * 0xc;
+              (&esp_zb_zcl_scenes_table)[iVar2 * 6] = *puVar8;
+              (&DAT_000136e8)[iVar7] = *(undefined1 *)(puVar8 + 1);
+              *(undefined2 *)(&DAT_000136e6 + iVar7) = *(undefined2 *)((int)puVar8 + 3);
+              (&DAT_000136e9)[iVar7] = (&DAT_000136e9)[iVar7] + bVar1;
+              puVar5 = (undefined2 *)malloc(0xc);
+              *puVar5 = *puVar4;
+              bVar1 = *(byte *)(puVar4 + 1);
+              *(byte *)(puVar5 + 1) = bVar1;
+              __dest = malloc((uint)bVar1);
+              *(void **)(puVar5 + 2) = __dest;
+              memcpy(__dest,(void *)((int)puVar4 + 3),(uint)*(byte *)(puVar4 + 1));
+              *(undefined4 *)(puVar5 + 4) = 0;
+              if (puVar9 == (undefined2 *)0x0) {
+                (&DAT_000136ec)[iVar2 * 3] = puVar5;
+                puVar9 = puVar5;
+              }
+              else {
+                *(undefined2 **)(puVar9 + 4) = puVar5;
+                puVar9 = puVar5;
+              }
+            }
+          }
+        }
+      } while (puVar4 != (undefined2 *)0x0);
+      *puVar10 = 0;
+      uVar6 = esp_log_timestamp();
+      esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar8 + 1),
+                    *puVar8);
     }
   }
   return;

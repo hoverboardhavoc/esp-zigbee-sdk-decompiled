@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
- * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
- * Upstream date: 2023-06-05 10:37:46 +0800
- * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
+ * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * Upstream date: 2023-07-28 17:48:58 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_groups_get_group_membership_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zcl_groups_get_group_membership_cmd_req(int param_1)
   uVar3 = zb_buf_get_out_func();
   if (10 < *(byte *)(param_1 + 0x10)) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC4,uVar5,0x10000);
+    esp_log_write(1,0x10000,&_L0,uVar5,0x10000);
   }
   pcVar4 = (char *)zb_zcl_start_command_header(uVar3,1,0,2,0);
   cVar1 = *(char *)(param_1 + 0x10);

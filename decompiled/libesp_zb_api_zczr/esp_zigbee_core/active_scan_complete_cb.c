@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
- * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
- * Upstream date: 2023-06-30 20:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
+ * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
+ * Upstream date: 2023-07-28 17:48:58 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> active_scan_complete_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,7 +57,7 @@ void active_scan_complete_cb(int param_1)
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar5,"ESP_ZIGBEE_CORE");
+    esp_log_write(2,"ESP_ZIGBEE_CORE",&_L0,uVar5,"ESP_ZIGBEE_CORE");
   }
   if (param_1 != 0) {
     zb_buf_free_func(param_1);

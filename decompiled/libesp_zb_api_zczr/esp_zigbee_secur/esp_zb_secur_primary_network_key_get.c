@@ -3,24 +3,27 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
  * Upstream date: 2023-07-28 17:48:58 +0800
  * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
- * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_remove_entries_by_group
+ * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_primary_network_key_get
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void device_scenes_remove_entries_by_group(uint param_1)
+undefined4 esp_zb_secur_primary_network_key_get(void *param_1)
 
 {
-  uint uVar1;
+  int iVar1;
+  undefined4 uVar2;
   
-  for (uVar1 = 0; uVar1 < 10; uVar1 = uVar1 + 1 & 0xff) {
-    if ((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == param_1) {
-      (&esp_zb_zcl_scenes_table)[uVar1 * 6] = 0xffff;
-      device_scene_free_fields((&DAT_000136ec)[uVar1 * 3]);
-    }
+  iVar1 = zb_zdo_joined();
+  if (iVar1 == 0) {
+    uVar2 = 0x103;
   }
-  return;
+  else {
+    memcpy(param_1,(void *)0x13edb,0x10);
+    uVar2 = 0;
+  }
+  return uVar2;
 }
 

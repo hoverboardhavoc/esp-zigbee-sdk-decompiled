@@ -3,24 +3,20 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
  * Upstream date: 2023-07-28 17:48:58 +0800
  * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
- * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_remove_entries_by_group
+ * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_color_color_loop_set_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void device_scenes_remove_entries_by_group(uint param_1)
+void esp_zb_zcl_color_color_loop_set_cmd_req(int param_1)
 
 {
-  uint uVar1;
-  
-  for (uVar1 = 0; uVar1 < 10; uVar1 = uVar1 + 1 & 0xff) {
-    if ((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == param_1) {
-      (&esp_zb_zcl_scenes_table)[uVar1 * 6] = 0xffff;
-      device_scene_free_fields((&DAT_000136ec)[uVar1 * 3]);
-    }
-  }
+  zb_buf_get_out_func();
+  zb_zcl_color_control_send_color_loop_set_req
+            (param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+             *(undefined1 *)(param_1 + 9),0x104,0,0);
   return;
 }
 
