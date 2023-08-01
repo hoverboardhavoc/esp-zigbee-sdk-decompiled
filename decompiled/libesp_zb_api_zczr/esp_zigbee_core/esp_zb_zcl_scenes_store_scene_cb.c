@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * Upstream date: 2023-07-28 17:48:58 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
+ * Last changed at upstream commit 1f6b611e278a00f885edde9cb38294c3c08373a5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/1f6b611e278a00f885edde9cb38294c3c08373a5
+ * Upstream date: 2023-08-01 20:17:41 +0800
+ * Upstream subject: esp-zigbee-sdk: fix zigbee zcl scenes extension field implementation
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_store_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,15 +32,15 @@ void esp_zb_zcl_scenes_store_scene_cb(undefined4 param_1)
     if (iVar3 == 0xff) {
       *puVar5 = 0x89;
       uVar4 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC17,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC18,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
     }
     else {
       if ((&esp_zb_zcl_scenes_table)[iVar3 * 6] == -1) {
         (&esp_zb_zcl_scenes_table)[iVar3 * 6] = uVar1;
-        (&DAT_000136e8)[iVar3 * 0xc] = *(undefined1 *)(puVar2 + 1);
-        *(undefined2 *)(&DAT_000136e6 + iVar3 * 0xc) = 0;
+        (&DAT_000137a8)[iVar3 * 0xc] = *(undefined1 *)(puVar2 + 1);
+        *(undefined2 *)(&DAT_000137a6 + iVar3 * 0xc) = 0;
         uVar4 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC16,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC17,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
                       ,*puVar2);
       }
       else {
