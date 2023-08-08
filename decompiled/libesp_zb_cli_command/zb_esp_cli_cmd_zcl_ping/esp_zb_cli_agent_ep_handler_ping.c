@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> esp_zb_cli_agent_ep_handler_ping
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,11 +22,11 @@ undefined4 esp_zb_cli_agent_ep_handler_ping(undefined4 param_1)
   undefined4 extraout_a1;
   uint uVar7;
   
-  pcVar2 = (char *)zb_buf_get_tail_func(0x1a);
-  if (*(short *)(pcVar2 + 0xe) == -0x4111) {
-    if (*(short *)(pcVar2 + 0x10) == 0x104) {
-      if (pcVar2[0x12] == '\x01') {
-        puVar5 = (uint *)find_request_by_sn(pcVar2[0x14]);
+  pcVar2 = (char *)zb_buf_get_tail_func(0x1b);
+  if (*(short *)(pcVar2 + 0xf) == -0x4111) {
+    if (*(short *)(pcVar2 + 0x11) == 0x104) {
+      if (pcVar2[0x13] == '\x01') {
+        puVar5 = (uint *)find_request_by_sn(pcVar2[0x15]);
         if (puVar5 == (uint *)0x0) {
           return 0;
         }
@@ -56,7 +56,7 @@ undefined4 esp_zb_cli_agent_ep_handler_ping(undefined4 param_1)
           zb_ping_release_request(puVar5);
         }
       }
-      else if (pcVar2[0x12] == '\0') {
+      else if (pcVar2[0x13] == '\0') {
         uVar1 = zb_buf_len_func(param_1);
         iVar3 = ping_aquire_reply();
         if (iVar3 == 0) {
@@ -65,7 +65,7 @@ undefined4 esp_zb_cli_agent_ep_handler_ping(undefined4 param_1)
           return 0;
         }
         *(undefined1 *)(iVar3 + 5) = uVar1;
-        *(char *)(iVar3 + 4) = pcVar2[0x14];
+        *(char *)(iVar3 + 4) = pcVar2[0x15];
         uVar4 = esp_log_timestamp();
         esp_log_write(3,&_LC0,&_LC14,uVar4,&_LC0);
         if (*pcVar2 != '\0') {
@@ -80,7 +80,7 @@ undefined4 esp_zb_cli_agent_ep_handler_ping(undefined4 param_1)
       }
       else {
         uVar4 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC16,uVar4,&_LC0,pcVar2[0x12]);
+        esp_log_write(1,&_LC0,&_LC16,uVar4,&_LC0,pcVar2[0x13]);
       }
       zb_buf_free_func(param_1);
       uVar4 = 1;

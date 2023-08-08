@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,13 +46,13 @@ undefined4 esp_zb_zcl_report_attr_cmd_req(undefined2 *param_1)
         if (**(byte **)(iVar3 + 4) <= uVar7) break;
         iVar3 = zb_zcl_get_ctx();
         iVar6 = uVar7 * 4;
-        if (*(int *)(*(int *)(*(int *)(*(int *)(iVar3 + 4) + 1) + iVar6) + 0x1a) != 0) {
+        if (*(int *)(*(int *)(*(int *)(*(int *)(iVar3 + 4) + 1) + iVar6) + 0x1b) != 0) {
           iVar3 = zb_zcl_get_ctx();
-          iVar3 = *(int *)(*(int *)(*(int *)(*(int *)(iVar3 + 4) + 1) + iVar6) + 0x1a);
+          iVar3 = *(int *)(*(int *)(*(int *)(*(int *)(iVar3 + 4) + 1) + iVar6) + 0x1b);
           bVar2 = 0;
           while( true ) {
             iVar4 = zb_zcl_get_ctx();
-            if (*(byte *)(*(int *)(*(int *)(*(int *)(iVar4 + 4) + 1) + iVar6) + 0x19) <= bVar2)
+            if (*(byte *)(*(int *)(*(int *)(*(int *)(iVar4 + 4) + 1) + iVar6) + 0x1a) <= bVar2)
             break;
             if ((*(short *)(iVar3 + 2) == param_1[8]) && (*(short *)(iVar3 + 6) == param_1[10])) {
               bVar1 = *(byte *)(iVar3 + 8);

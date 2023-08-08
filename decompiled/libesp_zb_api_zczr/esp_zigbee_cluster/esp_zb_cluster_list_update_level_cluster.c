@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_level_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -61,7 +61,7 @@ int esp_zb_cluster_list_update_level_cluster(int param_1,int param_2,int param_3
       param_1 = *(int *)(param_1 + 0x10);
     }
     uVar4 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_LC11,uVar4,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_L0,uVar4,"ESP_ZIGBEE_CLUSTER");
     iVar3 = 0x105;
   }
   else {

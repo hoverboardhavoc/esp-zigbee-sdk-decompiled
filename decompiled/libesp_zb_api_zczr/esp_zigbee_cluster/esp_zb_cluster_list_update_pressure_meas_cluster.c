@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_pressure_meas_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -61,7 +61,7 @@ int esp_zb_cluster_list_update_pressure_meas_cluster(int param_1,int param_2,int
       param_1 = *(int *)(param_1 + 0x10);
     }
     uVar4 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_LC11,uVar4,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_L0,uVar4,"ESP_ZIGBEE_CLUSTER");
     iVar3 = 0x105;
   }
   else {

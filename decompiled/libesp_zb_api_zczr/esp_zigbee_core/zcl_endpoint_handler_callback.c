@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * Upstream date: 2023-07-28 17:48:58 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -52,7 +52,7 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
   char cStack_23;
   char cStack_22;
   
-  pcVar6 = (char *)zb_buf_get_tail_func(0x1a);
+  pcVar6 = (char *)zb_buf_get_tail_func(0x1b);
   if (zcl_cli_resp_user_cb != (code *)0x0) {
     iVar7 = (*zcl_cli_resp_user_cb)(param_1);
     return (uint)(iVar7 != 0);
@@ -77,20 +77,20 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
   }
   cStack_23 = cVar1;
   cStack_22 = cVar2;
-  if (pcVar6[0x13] == '\x01') {
-    uVar8 = (uint)(byte)pcVar6[0x15];
+  if (pcVar6[0x14] == '\x01') {
+    uVar8 = (uint)(byte)pcVar6[0x16];
     if (uVar8 == 0) {
-      sVar4 = *(short *)(pcVar6 + 0xe);
+      sVar4 = *(short *)(pcVar6 + 0xf);
       if (sVar4 == 5) {
-        esp_zb_zcl_scene_resp_handler(param_1,pcVar6[0x12]);
+        esp_zb_zcl_scene_resp_handler(param_1,pcVar6[0x13]);
         return 0;
       }
       if (sVar4 == 0x500) {
-        if (pcVar6[0x12] == '\0') {
+        if (pcVar6[0x13] == '\0') {
           uVar8 = esp_zb_handle_ias_zone_status_change_notification(param_1);
         }
         else {
-          if (pcVar6[0x12] != '\x01') {
+          if (pcVar6[0x13] != '\x01') {
             return 0;
           }
           uVar8 = esp_zb_handle_ias_zone_enroll_request(param_1);
@@ -103,7 +103,7 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
         if (sVar4 != 4) {
           return 0;
         }
-        bVar3 = pcVar6[0x12];
+        bVar3 = pcVar6[0x13];
         if (bVar3 == 2) {
           if (zcl_get_group_membership_resp_user_cb == 0) {
             return 0;
@@ -143,7 +143,7 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
       }
     }
     else {
-      if (pcVar6[0x12] != '\x01') {
+      if (pcVar6[0x13] != '\x01') {
         return 0;
       }
       if (zcl_read_attr_user_cb == (code *)0x0) {
@@ -178,17 +178,17 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
         return 0;
       }
       (*zcl_read_attr_user_cb)
-                (*(undefined1 *)(puVar13 + 1),*(undefined2 *)(pcVar6 + 0xe),*puVar13,
+                (*(undefined1 *)(puVar13 + 1),*(undefined2 *)(pcVar6 + 0xf),*puVar13,
                  *(undefined1 *)((int)puVar13 + 3),puVar13 + 2,zcl_read_attr_user_cb);
     }
   }
   else {
-    if (pcVar6[0x13] != '\0') {
+    if (pcVar6[0x14] != '\0') {
       return 0;
     }
     uVar8 = esp_zb_get_global_custom_cluster_id();
-    if (uVar8 == *(ushort *)(pcVar6 + 0xe)) {
-      if (pcVar6[0x15] != '\0') {
+    if (uVar8 == *(ushort *)(pcVar6 + 0xf)) {
+      if (pcVar6[0x16] != '\0') {
         return 0;
       }
       if (zcl_custom_cluster_cmd_cb == (code *)0x0) {
@@ -201,10 +201,10 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
       uVar8 = 1;
     }
     else {
-      if (pcVar6[0x15] != '\0') {
+      if (pcVar6[0x16] != '\0') {
         return 0;
       }
-      pcVar11 = (code *)esp_zcl_privilege_command_list_find(cVar1,pcVar6[0x12]);
+      pcVar11 = (code *)esp_zcl_privilege_command_list_find(cVar1,pcVar6[0x13]);
       if (pcVar11 == (code *)0x0) {
         return 0;
       }
@@ -213,7 +213,7 @@ uint zcl_endpoint_handler_callback(undefined4 param_1)
                            CONCAT12(cStack_2b,CONCAT11(uStack_2c,puVar12 == (undefined4 *)0x0)));
       uStack_44 = CONCAT13(cStack_26,CONCAT12(cStack_27,CONCAT11(cStack_28,cStack_29)));
       uStack_40 = CONCAT13(cVar2,CONCAT12(cVar1,CONCAT11(cStack_24,cStack_25)));
-      uStack_3c = (uint)CONCAT12(pcVar6[0x12],*(undefined2 *)(pcVar6 + 0xe));
+      uStack_3c = (uint)CONCAT12(pcVar6[0x13],*(undefined2 *)(pcVar6 + 0xf));
       uStack_60 = *puVar12;
       uVar5 = *(undefined4 *)((int)puVar12 + 5);
       uStack_34 = CONCAT13((char)((uint)uVar5 >> 0x10),

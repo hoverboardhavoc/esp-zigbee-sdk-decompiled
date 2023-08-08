@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 1f6b611e278a00f885edde9cb38294c3c08373a5
- * https://github.com/espressif/esp-zigbee-sdk/commit/1f6b611e278a00f885edde9cb38294c3c08373a5
- * Upstream date: 2023-08-01 20:17:41 +0800
- * Upstream subject: esp-zigbee-sdk: fix zigbee zcl scenes extension field implementation
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_view_scene_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,9 +31,9 @@ void esp_zb_zcl_scenes_view_scene_cb(undefined4 param_1)
                   *puVar1);
   }
   else {
-    memcpy(&scene_resp_info,__src,0x1a);
-    _DAT_00013850 = *puVar1;
-    DAT_00013852 = *(undefined1 *)(puVar1 + 1);
+    memcpy(&scene_resp_info,__src,0x1b);
+    _DAT_000138da = *puVar1;
+    DAT_000138dc = *(undefined1 *)(puVar1 + 1);
     zb_buf_get_out_delayed_ext_func(send_view_scene_resp,iVar2,0);
   }
   return;

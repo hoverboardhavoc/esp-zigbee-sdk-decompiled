@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_endpoint.o -> esp_zb_ep_list_add_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,7 @@ esp_zb_ep_list_add_ep
   puVar4 = (undefined1 *)malloc(0x28);
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar5,0x10000);
+    esp_log_write(1,0x10000,&_LC4,uVar5,0x10000);
     uVar5 = 0x102;
   }
   else {
@@ -62,21 +62,20 @@ esp_zb_ep_list_add_ep
     puVar4[0x17] = (char)((uint)uVar5 >> 0x10);
     puVar4[0x18] = (char)((uint)uVar5 >> 0x18);
     bVar1 = puVar6[1];
-    puVar4[0x19] = bVar1;
+    puVar4[0x1a] = bVar1;
     if (bVar1 == 0) {
       pvVar7 = (void *)0x0;
     }
     else {
       pvVar7 = calloc((uint)bVar1,0x30);
     }
-    *(short *)(puVar4 + 0x1a) = (short)pvVar7;
-    *(short *)(puVar4 + 0x1c) = (short)((uint)pvVar7 >> 0x10);
-    puVar4[0x1e] = 1;
+    puVar4[0x1b] = (char)pvVar7;
+    puVar4[0x1c] = (char)((uint)pvVar7 >> 8);
+    puVar4[0x1d] = (char)((uint)pvVar7 >> 0x10);
+    puVar4[0x1e] = (char)((uint)pvVar7 >> 0x18);
+    puVar4[0x1f] = 1;
     pvVar7 = calloc(1,7);
-    puVar4[0x1f] = (char)pvVar7;
-    puVar4[0x20] = (char)((uint)pvVar7 >> 8);
-    puVar4[0x21] = (char)((uint)pvVar7 >> 0x10);
-    puVar4[0x22] = (char)((uint)pvVar7 >> 0x18);
+    *(void **)(puVar4 + 0x20) = pvVar7;
     *(undefined4 *)(puVar4 + 0x24) = 0;
     if (iVar3 == 0) {
       *(undefined1 **)(param_1 + 0x24) = puVar4;

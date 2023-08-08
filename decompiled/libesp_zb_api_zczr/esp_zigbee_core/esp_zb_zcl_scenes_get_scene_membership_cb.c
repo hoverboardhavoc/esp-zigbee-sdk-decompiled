@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 1f6b611e278a00f885edde9cb38294c3c08373a5
- * https://github.com/espressif/esp-zigbee-sdk/commit/1f6b611e278a00f885edde9cb38294c3c08373a5
- * Upstream date: 2023-08-01 20:17:41 +0800
- * Upstream subject: esp-zigbee-sdk: fix zigbee zcl scenes extension field implementation
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_get_scene_membership_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,9 +28,9 @@ void esp_zb_zcl_scenes_get_scene_membership_cb(undefined4 param_1)
   iVar3 = esp_zb_zcl_scenes_group_check(*puVar2,*(undefined1 *)((int)__src + 0xc));
   *puVar1 = (char)iVar3;
   if (iVar3 == 0) {
-    memcpy(&scene_resp_info,__src,0x1a);
+    memcpy(&scene_resp_info,__src,0x1b);
     scene_resp_info = *(undefined1 *)puVar2;
-    DAT_0001382d = *(undefined1 *)((int)puVar2 + 1);
+    DAT_000138b5 = *(undefined1 *)((int)puVar2 + 1);
     uVar4 = esp_log_timestamp();
     esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC22,uVar4,"ESP_ZIGBEE_CORE");
     zb_buf_get_out_delayed_func(send_get_scene_membership_resp);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_general_cmd.o -> esp_zb_cli_agent_ep_handler_general_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,15 +21,15 @@ int esp_zb_cli_agent_ep_handler_general_cmd(undefined4 param_1)
   undefined4 uVar6;
   uint uVar7;
   
-  iVar3 = zb_buf_get_tail_func(0x1a);
-  uVar4 = get_cmd_table_row_by_sn(*(undefined1 *)(iVar3 + 0x14));
+  iVar3 = zb_buf_get_tail_func(0x1b);
+  uVar4 = get_cmd_table_row_by_sn(*(undefined1 *)(iVar3 + 0x15));
   if (uVar4 == 0xffffffff) {
     iVar5 = 0;
   }
   else {
     iVar5 = is_response(iVar3,&m_cmd_data + uVar4 * 0x2e);
     if (iVar5 != 0) {
-      if (*(char *)(iVar3 + 0x12) == '\v') {
+      if (*(char *)(iVar3 + 0x13) == '\v') {
         uVar7 = zb_buf_len_func(param_1);
         if (uVar7 < 2) {
           puVar1 = (undefined1 *)0x0;

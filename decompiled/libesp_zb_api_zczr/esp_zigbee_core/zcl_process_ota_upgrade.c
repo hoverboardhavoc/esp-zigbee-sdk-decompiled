@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 1f6b611e278a00f885edde9cb38294c3c08373a5
- * https://github.com/espressif/esp-zigbee-sdk/commit/1f6b611e278a00f885edde9cb38294c3c08373a5
- * Upstream date: 2023-08-01 20:17:41 +0800
- * Upstream subject: esp-zigbee-sdk: fix zigbee zcl scenes extension field implementation
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_process_ota_upgrade
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,8 +58,8 @@ _L0:
       if ((uVar6 < 0x38) && (uVar5 = *(byte *)(param_1 + 0x14) + uVar6, 0x38 < uVar5)) {
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
-          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
-                        0x2ee,"zcl_process_ota_upgrade","update_partition != NULL");
+          __assert_func("//home/xiaqilin/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
+                        0x2ef,"zcl_process_ota_upgrade","update_partition != NULL");
         }
         else {
           iVar2 = esp_ota_begin(0xfffffffe,&update_handle);

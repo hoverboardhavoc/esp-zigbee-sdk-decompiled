@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/3ee1c52790580ff8c3ec33b61f57334e0f637dc8
- * Upstream date: 2023-05-26 18:12:14 +0800
- * Upstream subject: esp-zboss: Provide zboss APIs to fix github issues(70cea8e)
+ * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
+ * Upstream date: 2023-08-08 16:02:31 +0800
+ * Upstream subject: esp-zigbee-sdk: add touchlink example
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -71,11 +71,11 @@ void initialize_console(void)
   }
   else {
     _esp_error_check_failed
-              ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+              ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
                ,0x5c,"initialize_console",0x10000);
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
+            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
              0x66,"initialize_console","esp_console_init(&console_config)");
 _L0:
   puts(
