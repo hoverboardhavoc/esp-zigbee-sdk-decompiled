@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * Upstream date: 2023-08-11 14:15:41 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_role_check
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ undefined1 zb_role_check(char *param_1)
     if (3 < uVar1) {
       return 0xff;
     }
-    iVar2 = strcmp(param_1,(&PTR__LC95_00012178)[uVar1 * 2]);
+    iVar2 = strcmp(param_1,(&PTR__LC93_000120cc)[uVar1 * 2]);
     if (iVar2 == 0) break;
     uVar1 = uVar1 + 1 & 0xff;
   }

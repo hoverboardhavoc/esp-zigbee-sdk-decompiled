@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * Upstream date: 2023-08-11 14:15:41 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_bdb_cmd
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Control flow encountered bad instruction data */
 
 void zb_cli_register_bdb_cmd(void)
 
@@ -25,26 +23,26 @@ void zb_cli_register_bdb_cmd(void)
   bdb_args = arg_str0(&_LC54,&_LC53,"<role>",
                       "Set or get the Zigbee role of a device. [Setting only before bdb start. Reading only after bdb start.]"
                      );
-  DAT_0001219c = arg_str0(&_LC58,"extpanid","<extpanid>",
+  DAT_000120f0 = arg_str0(&_LC58,"extpanid","<extpanid>",
                           "Set or get the Zigbee Extended Pan ID value. [Setting only before bdb start. Reading only after bdb start.]"
                          );
-  DAT_000121a0 = arg_str0(&_LC62,"panid","<panid>",
+  DAT_000120f4 = arg_str0(&_LC62,"panid","<panid>",
                           "Set or get the Zigbee PAN ID value. [Setting only before bdb start. Reading only after bdb start.]"
                          );
-  DAT_000121a4 = arg_lit0(&_LC65,"start","Start the commissioning process");
-  DAT_000121a8 = arg_str0(&_LC69,"channel","<channel>","Set or get 802.15.4 channel");
-  DAT_000121ac = arg_str0(&_LC73,&_LC72,"<ic_operation>",
+  DAT_000120f8 = arg_lit0(&_LC65,"start","Start the commissioning process");
+  DAT_000120fc = arg_str0(&_LC69,"channel","<channel>","Set or get 802.15.4 channel");
+  DAT_00012100 = arg_str0(&_LC73,&_LC72,"<ic_operation>",
                           "Set install code on the device, add information about the install code on the trust center, set the trust center install code policy."
                          );
-  DAT_000121b0 = arg_strn(0,0,&_LC75,0,1,"Set install code on the device.");
-  DAT_000121b4 = arg_strn(0,0,&_LC75,0,1,"Set eui64 of the device install code on.");
-  DAT_000121b8 = arg_str0(&_LC80,"legacy","<enable/disable>",
+  DAT_00012104 = arg_strn(0,0,&_LC75,0,1,"Set install code on the device.");
+  DAT_00012108 = arg_strn(0,0,&_LC75,0,1,"Set eui64 of the device install code on.");
+  DAT_0001210c = arg_str0(&_LC80,"legacy","<enable/disable>",
                           "Enable or disable the legacy device support");
-  DAT_000121bc = arg_str0(&_LC84,"nwkkey","<key>","Set network key");
-  DAT_000121c0 = arg_lit0(&_LC87,"factory_reset","factory reset");
-  DAT_000121c4 = arg_str0(&_LC91,"childmax","<max_children>","Set max children");
-  DAT_000121c8 = arg_end(0xd);
-  puStack_24 = &_LC0;
+  DAT_00012110 = arg_str0(&_LC84,"nwkkey","<key>","Set network key");
+  DAT_00012114 = arg_lit0(&_LC87,"factory_reset","factory reset");
+  DAT_00012118 = arg_str0(&_LC91,"childmax","<max_children>","Set max children");
+  DAT_0001211c = arg_end(0xd);
+  puStack_24 = &_L0;
   pcStack_20 = "ZigBee bdb command";
   uStack_1c = 0;
   pcStack_18 = zb_cli_bdb_cmd_cb;
@@ -53,10 +51,7 @@ void zb_cli_register_bdb_cmd(void)
   if (iVar1 == 0) {
     return;
   }
-  _esp_error_check_failed
-            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x29c,
-             "zb_cli_register_bdb_cmd","esp_console_cmd_register(&bdb_cmd)");
-                    /* WARNING: Bad instruction - Truncating control flow here */
-  halt_baddata();
+                    /* WARNING: Subroutine does not return */
+  abort();
 }
 

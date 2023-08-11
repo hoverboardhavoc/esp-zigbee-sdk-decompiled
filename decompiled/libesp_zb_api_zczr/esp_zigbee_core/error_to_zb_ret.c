@@ -3,30 +3,39 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
  * Upstream date: 2023-08-11 14:15:41 +0800
  * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
- * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_factory_reset
+ * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> error_to_zb_ret
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_factory_reset(void)
+int error_to_zb_ret(int param_1)
 
 {
-  int iVar1;
-  
-  zb_zcl_init_reporting_info();
-  zb_zcl_reset_reporting_ctx();
-  zb_bdb_reset_via_local_action(0);
-  zb_nvram_erase();
-  DAT_00019365 = DAT_00019365 | 8;
-  iVar1 = esp_restart();
-  if (iVar1 == 0) {
-    esp_zb_start_no_autostart();
+  if (param_1 == 0x104) {
+    return -6;
+  }
+  if (param_1 < 0x105) {
+    if (param_1 != 0) {
+      if (param_1 == 0x101) {
+        return -0x16;
+      }
+      return -1;
+    }
   }
   else {
-    esp_zb_start_autostart();
+    if (param_1 == 0x107) {
+      return -0x1e;
+    }
+    if (param_1 == 0x10c) {
+      return -2;
+    }
+    if (param_1 == 0x105) {
+      return -0x1c;
+    }
+    param_1 = -1;
   }
-  return;
+  return param_1;
 }
 

@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * Upstream date: 2023-08-11 14:15:41 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd.o -> zb_cli_register_reset_cmd
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Control flow encountered bad instruction data */
 
 void zb_cli_register_reset_cmd(void)
 
@@ -31,10 +29,7 @@ void zb_cli_register_reset_cmd(void)
   if (iVar1 == 0) {
     return;
   }
-  _esp_error_check_failed
-            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd.c",0x10a,
-             "zb_cli_register_reset_cmd","esp_console_cmd_register(&reset_cmd)");
-                    /* WARNING: Bad instruction - Truncating control flow here */
-  halt_baddata();
+                    /* WARNING: Subroutine does not return */
+  abort();
 }
 

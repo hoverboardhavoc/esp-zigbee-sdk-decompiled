@@ -1,14 +1,16 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * Upstream date: 2023-08-11 14:15:41 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> send_get_scene_membership_resp
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void send_get_scene_membership_resp(undefined4 param_1)
 
@@ -19,30 +21,30 @@ void send_get_scene_membership_resp(undefined4 param_1)
   char *pcVar4;
   uint uVar5;
   
-  iVar1 = zb_aps_is_endpoint_in_group(DAT_000138f0,DAT_000138c0);
+  iVar1 = zb_aps_is_endpoint_in_group(_DAT_000145c0,DAT_00014590);
   if (iVar1 == 0) {
     puVar2 = (undefined1 *)zb_buf_reuse_func(param_1);
     *puVar2 = 0x19;
-    puVar2[1] = DAT_000138c9;
+    puVar2[1] = DAT_00014599;
     puVar2[2] = 6;
     puVar2[3] = 0x85;
     puVar2[4] = 0xff;
-    pcVar3 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_000138f0);
+    pcVar3 = (char *)zb_put_next_htole16(puVar2 + 5,_DAT_000145c0);
   }
   else {
     puVar2 = (undefined1 *)zb_buf_reuse_func(param_1);
     *puVar2 = 0x19;
-    puVar2[1] = DAT_000138c9;
+    puVar2[1] = DAT_00014599;
     puVar2[2] = 6;
     puVar2[3] = 0;
     puVar2[4] = 0;
-    pcVar4 = (char *)zb_put_next_htole16(puVar2 + 5,DAT_000138f0);
+    pcVar4 = (char *)zb_put_next_htole16(puVar2 + 5,_DAT_000145c0);
     *pcVar4 = '\0';
     pcVar3 = pcVar4 + 1;
     for (uVar5 = 0; uVar5 < 10; uVar5 = uVar5 + 1 & 0xff) {
-      if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == DAT_000138f0) {
+      if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == _DAT_000145c0) {
         *pcVar4 = *pcVar4 + '\x01';
-        *pcVar3 = (&DAT_00013830)[uVar5 * 0xc];
+        *pcVar3 = (&DAT_000145c8)[uVar5 * 0xc];
         pcVar3 = pcVar3 + 1;
       }
       else if ((&esp_zb_zcl_scenes_table)[uVar5 * 6] == -1) {
@@ -51,8 +53,8 @@ void send_get_scene_membership_resp(undefined4 param_1)
     }
   }
   zb_zcl_finish_and_send_packet
-            (param_1,pcVar3,&scene_resp_info,2,DAT_000138bf,DAT_000138c0,DAT_000138c4 >> 8 & 0xffff,
-             5);
+            (param_1,pcVar3,&scene_resp_info,2,DAT_0001458f,DAT_00014590,_DAT_00014594 >> 8 & 0xffff
+             ,5);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * Upstream date: 2023-07-14 11:30:10 +0800
- * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
+ * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
+ * Upstream date: 2023-08-11 14:15:41 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_handle_ias_zone_enroll_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,29 +15,42 @@ undefined4 esp_zb_handle_ias_zone_enroll_request(undefined4 param_1)
 {
   bool bVar1;
   undefined2 *puVar2;
-  uint uVar3;
-  undefined4 uVar4;
-  undefined1 *puVar5;
+  int iVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  undefined1 *puVar6;
   
   puVar2 = (undefined2 *)malloc(4);
-  uVar3 = zb_buf_len_func(param_1);
-  if (3 < uVar3) {
-    puVar5 = (undefined1 *)zb_buf_begin_func(param_1);
-    *(undefined1 *)puVar2 = *puVar5;
-    *(undefined1 *)((int)puVar2 + 1) = puVar5[1];
-    *(undefined1 *)(puVar2 + 1) = puVar5[2];
-    *(undefined1 *)((int)puVar2 + 3) = puVar5[3];
-  }
-  bVar1 = 3 >= uVar3;
-  if ((zcl_ias_zone_enroll_req_cb == (code *)0x0) || (bVar1)) {
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE",bVar1);
-    uVar4 = 0;
+  iVar3 = zb_buf_get_tail_func(param_1,0x1b);
+  if (puVar2 == (undefined2 *)0x0) {
+    uVar5 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC8,uVar5,"ESP_ZIGBEE_CORE",
+                  "esp_zb_handle_ias_zone_enroll_request",0x620);
+    uVar5 = 0;
   }
   else {
-    (*zcl_ias_zone_enroll_req_cb)(*puVar2,puVar2[1]);
-    uVar4 = 1;
+    uVar4 = zb_buf_len_func(param_1);
+    if (3 < uVar4) {
+      puVar6 = (undefined1 *)zb_buf_begin_func(param_1);
+      *(undefined1 *)puVar2 = *puVar6;
+      *(undefined1 *)((int)puVar2 + 1) = puVar6[1];
+      *(undefined1 *)(puVar2 + 1) = puVar6[2];
+      *(undefined1 *)((int)puVar2 + 3) = puVar6[3];
+    }
+    bVar1 = 3 >= uVar4;
+    if ((zcl_ias_zone_enroll_req_cb == (code *)0x0) || (bVar1)) {
+      uVar5 = esp_log_timestamp();
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC9,uVar5,"ESP_ZIGBEE_CORE",bVar1);
+      uVar5 = 0;
+    }
+    else {
+      (*zcl_ias_zone_enroll_req_cb)(*puVar2,puVar2[1]);
+      uVar5 = 1;
+    }
+    if (*(char *)(iVar3 + 0x17) == '\0') {
+      uVar5 = 0;
+    }
   }
-  return uVar4;
+  return uVar5;
 }
 
