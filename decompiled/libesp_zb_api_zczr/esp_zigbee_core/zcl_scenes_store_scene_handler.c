@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_store_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -50,23 +50,23 @@ undefined4 zcl_scenes_store_scene_handler(undefined4 param_1)
       *puVar3 = 0x89;
       uStack_30 = 1;
       uVar6 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC29,uVar6,"ESP_ZIGBEE_CORE",
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC31,uVar6,"ESP_ZIGBEE_CORE",
                     *(undefined1 *)((int)puVar2 + 2));
       uVar6 = 0;
     }
     else {
       if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] == -1) {
         (&esp_zb_zcl_scenes_table)[iVar4 * 6] = uVar1;
-        (&DAT_000145c8)[iVar4 * 0xc] = *(undefined1 *)((int)puVar2 + 2);
-        *(undefined2 *)(&DAT_000145c6 + iVar4 * 0xc) = 0;
+        (&DAT_0001467c)[iVar4 * 0xc] = *(undefined1 *)((int)puVar2 + 2);
+        *(undefined2 *)(&DAT_0001467a + iVar4 * 0xc) = 0;
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC28,uVar6,"ESP_ZIGBEE_CORE",
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC30,uVar6,"ESP_ZIGBEE_CORE",
                       *(undefined1 *)((int)puVar2 + 2),*(undefined2 *)puVar2);
         uVar6 = 0;
       }
       else {
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC27,uVar6,"ESP_ZIGBEE_CORE",
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC29,uVar6,"ESP_ZIGBEE_CORE",
                       *(undefined1 *)((int)puVar2 + 2),*(undefined2 *)puVar2);
         uVar6 = 0xffffffe5;
       }

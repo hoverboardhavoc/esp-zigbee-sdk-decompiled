@@ -1,14 +1,16 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
+
+/* WARNING: Control flow encountered bad instruction data */
 
 void zb_cli_register_zcl_cmd(void)
 
@@ -21,12 +23,12 @@ void zb_cli_register_zcl_cmd(void)
   undefined4 *puStack_14;
   
   zcl_args = arg_lit0(&_LC7,&_LC6,"Send a generic command to the remote node");
-  DAT_00010310 = arg_lit0(&_LC10,&_LC9,"Write/Read the attribute value to the remote node");
-  DAT_00010314 = arg_lit0(&_LC13,"subscribe",
+  DAT_000103bc = arg_lit0(&_LC10,&_LC9,"Write/Read the attribute value to the remote node");
+  DAT_000103c0 = arg_lit0(&_LC13,"subscribe",
                           "Subscribe/Unsubscribe to the attribute changes on the remote node");
-  DAT_00010318 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
-  DAT_0001031c = arg_end(4);
-  puStack_24 = &_L0;
+  DAT_000103c4 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
+  DAT_000103c8 = arg_end(4);
+  puStack_24 = &_LC0;
   pcStack_20 = "ZigBee zcl command";
   uStack_1c = 0;
   pcStack_18 = zb_cli_zcl_cmd_cb;
@@ -35,7 +37,10 @@ void zb_cli_register_zcl_cmd(void)
   if (iVar1 == 0) {
     return;
   }
-                    /* WARNING: Subroutine does not return */
-  abort();
+  _esp_error_check_failed
+            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",0x66,
+             "zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
 }
 

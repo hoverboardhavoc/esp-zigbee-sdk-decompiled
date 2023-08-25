@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -50,10 +50,10 @@ void zb_nvram_app1_read_cb(uint param_1)
         bVar5 = pbVar13[5];
         *(byte *)(&esp_zb_zcl_scenes_table + uVar12 * 6) = *pbVar13;
         *(byte *)((int)&esp_zb_zcl_scenes_table + iVar14 + 1) = bVar1;
-        (&DAT_000145c6)[iVar14] = bVar2;
-        (&DAT_000145c7)[iVar14] = bVar3;
-        (&DAT_000145c8)[iVar14] = bVar4;
-        (&DAT_000145c9)[iVar14] = bVar5;
+        (&DAT_0001467a)[iVar14] = bVar2;
+        (&DAT_0001467b)[iVar14] = bVar3;
+        (&DAT_0001467c)[iVar14] = bVar4;
+        (&DAT_0001467d)[iVar14] = bVar5;
         uVar7 = uVar7 + 6;
         uVar11 = (uint)pbVar13[5];
         pbVar13 = (byte *)0x0;
@@ -74,7 +74,7 @@ void zb_nvram_app1_read_cb(uint param_1)
           pbVar10[10] = 0;
           pbVar10[0xb] = 0;
           if (pbVar13 == (byte *)0x0) {
-            (&DAT_000145cc)[uVar12 * 3] = pbVar10;
+            (&DAT_00014680)[uVar12 * 3] = pbVar10;
             pbVar13 = pbVar10;
           }
           else {

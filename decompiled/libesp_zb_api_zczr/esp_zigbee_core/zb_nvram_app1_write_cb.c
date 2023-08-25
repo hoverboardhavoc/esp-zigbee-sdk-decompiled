@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_write_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,8 +32,8 @@ int zb_nvram_app1_write_cb(undefined4 param_1,int param_2)
     if ((psVar2 != (short *)0x0) && (*psVar2 != -1)) {
       iVar4 = zb_nvram_write_data(param_1,uVar1 + param_2,psVar2,6);
       uVar1 = uVar1 + 6;
-      uVar3 = (uint)(byte)(&DAT_000145c9)[iVar7 * 0xc];
-      for (iVar6 = (&DAT_000145cc)[iVar7 * 3]; uVar1 = uVar1 & 0xffff, iVar6 != 0;
+      uVar3 = (uint)(byte)(&DAT_0001467d)[iVar7 * 0xc];
+      for (iVar6 = (&DAT_00014680)[iVar7 * 3]; uVar1 = uVar1 & 0xffff, iVar6 != 0;
           iVar6 = *(int *)(iVar6 + 8)) {
         zb_nvram_write_data(param_1,uVar1 + param_2,iVar6,2);
         zb_nvram_write_data(param_1,(uVar1 + 2 & 0xffff) + param_2,iVar6 + 2,1);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ void initialize_console(void)
   iVar1 = __getreent();
   iVar1 = fileno(*(FILE **)(iVar1 + 8));
   fsync(iVar1);
-  uStack_38 = _abort;
+  uStack_38 = __esp_error_check_failed;
   uStack_34 = _linenoiseSetDumbMode;
   uStack_30 = _zb_cli_register_bdb_cmd;
   uStack_2c = _zb_cli_register_zdo_cmd;
@@ -48,36 +48,43 @@ void initialize_console(void)
   uStack_18 = _esp_console_register_help_command;
   uStack_14 = _linenoiseFree;
   iVar1 = zb_esp_uart_init(&uStack_38,0,1);
-  if (iVar1 != 0) {
-                    /* WARNING: Subroutine does not return */
-    abort();
-  }
-  uStack_44 = 0;
-  iStack_40 = 0;
-  uStack_3c = 0;
-  uStack_4c = 0x100;
-  uStack_48 = 100;
-  iStack_40 = atoi("36");
-  iVar1 = esp_console_init(&uStack_4c);
   if (iVar1 == 0) {
-    linenoiseSetMultiLine(1);
-    linenoiseSetCompletionCallback(&esp_console_get_completion);
-    linenoiseSetHintsCallback(&esp_console_get_hint);
-    linenoiseHistorySetMaxLen(10);
-    puts(
-        "\nType \'help\' to get the list of commands.\nUse UP/DOWN arrows to navigate through command history.\nPress TAB when typing command name to auto-complete."
-        );
-    iVar1 = linenoiseProbe();
-    if (iVar1 != 0) {
+    uStack_44 = 0;
+    iStack_40 = 0;
+    uStack_3c = 0;
+    uStack_4c = 0x100;
+    uStack_48 = 100;
+    iStack_40 = atoi("36");
+    iVar1 = esp_console_init(&uStack_4c);
+    if (iVar1 == 0) {
+      linenoiseSetMultiLine(1);
+      linenoiseSetCompletionCallback(&esp_console_get_completion);
+      linenoiseSetHintsCallback(&esp_console_get_hint);
+      linenoiseHistorySetMaxLen(10);
       puts(
-          "\nYour terminal application does not support escape sequences.\nLine editing and history features are disabled.\nOn Windows, try using Putty instead."
+          "\nType \'help\' to get the list of commands.\nUse UP/DOWN arrows to navigate through command history.\nPress TAB when typing command name to auto-complete."
           );
-      linenoiseSetDumbMode(1);
-      prompt = &_LC3;
+      iVar1 = linenoiseProbe();
+      if (iVar1 == 0) {
+        return;
+      }
+      goto _L0;
     }
-    return;
   }
-                    /* WARNING: Subroutine does not return */
-  abort();
+  else {
+    _esp_error_check_failed
+              ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+               ,0x5c,"initialize_console",0x10000);
+  }
+  _esp_error_check_failed
+            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
+             0x66,"initialize_console","esp_console_init(&console_config)");
+_L0:
+  puts(
+      "\nYour terminal application does not support escape sequences.\nLine editing and history features are disabled.\nOn Windows, try using Putty instead."
+      );
+  linenoiseSetDumbMode(1);
+  prompt = &_LC6;
+  return;
 }
 

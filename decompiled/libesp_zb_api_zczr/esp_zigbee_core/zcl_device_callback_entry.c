@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_callback_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,7 +41,7 @@ _L0:
     }
     piVar2 = (int *)zb_buf_get_tail_func(param_1,0x38);
     if (*piVar2 == (&s_device_cb_table)[uVar1 * 2]) {
-      pcVar6 = (code *)(&PTR_zcl_default_device_cb_handler_000144f8)[uVar1 * 2];
+      pcVar6 = (code *)(&PTR_zcl_default_device_cb_handler_000145ac)[uVar1 * 2];
       iVar3 = zb_buf_get_tail_func(param_1,0x38);
       uVar4 = (*pcVar6)(param_1);
       *(undefined4 *)(iVar3 + 8) = uVar4;

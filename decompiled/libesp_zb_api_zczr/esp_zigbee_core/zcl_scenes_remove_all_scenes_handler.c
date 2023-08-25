@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
+ * Upstream date: 2023-08-25 15:56:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_remove_all_scenes_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,12 +28,12 @@ int zcl_scenes_remove_all_scenes_handler(undefined4 param_1)
   if (iVar2 == 0) {
     device_scenes_remove_entries_by_group(*puVar1);
     uVar3 = esp_log_timestamp();
-    esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC30,uVar3,"ESP_ZIGBEE_CORE",*puVar1);
+    esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC32,uVar3,"ESP_ZIGBEE_CORE",*puVar1);
   }
   iVar2 = zb_nvram_write_dataset(9);
   if (iVar2 != 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC31,uVar3,"ESP_ZIGBEE_CORE",
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar3,"ESP_ZIGBEE_CORE",
                   "zcl_scenes_remove_all_scenes_handler",0x2d8);
     iVar2 = -1;
   }
