@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void zb_nvram_app1_read_cb(uint param_1)
   iVar6 = -(param_1 + 0x10 & 0xfffffff0);
   if (param_1 < 6) {
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC7,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8a);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC7,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8b);
   }
   else {
     iVar8 = zb_nvram_read_data(abStack_40 + iVar6,param_1);

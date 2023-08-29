@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_remove_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ int zcl_scenes_remove_scene_handler(undefined4 param_1)
   if (iVar2 != 0) {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar3,"ESP_ZIGBEE_CORE",
-                  "zcl_scenes_remove_scene_handler",0x2c7);
+                  "zcl_scenes_remove_scene_handler",0x2c8);
     iVar2 = -1;
   }
   return iVar2;

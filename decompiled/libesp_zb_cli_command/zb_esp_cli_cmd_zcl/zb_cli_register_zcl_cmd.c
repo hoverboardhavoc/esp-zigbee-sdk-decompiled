@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,7 +38,7 @@ void zb_cli_register_zcl_cmd(void)
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",0x66,
+            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",0x66,
              "zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -73,11 +73,11 @@ void initialize_console(void)
   }
   else {
     _esp_error_check_failed
-              ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+              ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
                ,0x5c,"initialize_console",0x10000);
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
+            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
              0x66,"initialize_console","esp_console_init(&console_config)");
 _L0:
   puts(

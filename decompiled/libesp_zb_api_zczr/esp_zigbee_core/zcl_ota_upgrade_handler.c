@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -76,8 +76,8 @@ _L0:
       if ((uVar7 < 0x38) && (uVar6 = *(byte *)(iVar2 + 0x14) + uVar7, 0x38 < uVar6)) {
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
-          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
-                        0x3cb,"zcl_ota_upgrade_handler","update_partition != NULL");
+          __assert_func("//home/xiaqilin/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
+                        0x3cc,"zcl_ota_upgrade_handler","update_partition != NULL");
         }
         else {
           iVar3 = esp_ota_begin(0xfffffffe,&update_handle);

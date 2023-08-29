@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * https://github.com/espressif/esp-zigbee-sdk/commit/fdd7b02c333322a6b0be71e313fe2aad2eac22c5
- * Upstream date: 2023-08-11 14:15:41 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.0(793f8578)
+ * Last changed at upstream commit 327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/327f0a5451f37830bdf6e6c5c0e1933fae07fcf0
+ * Upstream date: 2023-08-29 15:32:50 +0800
+ * Upstream subject: esp-zigbee-sdk: add support zigbee sleep
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zcl_privilege_command_list_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ esp_zcl_privilege_command_list_add(uint param_1,uint param_2,uint param_3,undefi
   if (pbVar2 == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC1,uVar3,"ESP_ZIGBEE_CORE",
-                  "esp_zcl_privilege_command_list_add",0xea);
+                  "esp_zcl_privilege_command_list_add",0xeb);
     uVar3 = 0xffffffff;
   }
   else {
