@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * Upstream date: 2023-08-30 15:00:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_table_record_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,18 +13,15 @@
 void device_scenes_table_record_free(uint param_1)
 
 {
-  int iVar1;
-  
   if (9 < param_1) {
     return;
   }
-  iVar1 = param_1 * 0xc;
-  device_scene_free_fields((&DAT_00014680)[param_1 * 3]);
-  (&DAT_00014680)[param_1 * 3] = 0;
+  device_scene_free_fields((&DAT_000156a8)[param_1 * 3]);
+  (&DAT_000156a8)[param_1 * 3] = 0;
   (&esp_zb_zcl_scenes_table)[param_1 * 6] = 0xffff;
-  (&DAT_0001467c)[iVar1] = 0;
-  *(undefined2 *)(&DAT_0001467a + iVar1) = 0;
-  (&DAT_0001467d)[iVar1] = 0;
+  (&DAT_000156a4)[param_1 * 0xc] = 0;
+  (&DAT_000156a2)[param_1 * 6] = 0;
+  (&DAT_000156a5)[param_1 * 0xc] = 0;
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * Upstream date: 2023-07-28 17:48:58 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
+ * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * Upstream date: 2023-08-30 15:00:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void active_ep_cb(int param_1)
     iVar5 = zb_schedule_alarm_cancel(active_ep_req_timeout,0xff,0);
     if (iVar5 != 0) {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"active_ep_cb",0x216);
+      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"active_ep_cb",0x248);
       return;
     }
   }

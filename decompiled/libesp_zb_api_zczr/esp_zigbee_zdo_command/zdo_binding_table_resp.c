@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * https://github.com/espressif/esp-zigbee-sdk/commit/992d2f5b99d09ff49d4d820bb9dc59b1d40be6d4
- * Upstream date: 2023-07-28 17:48:58 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.7.2(e1472baa)
+ * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * Upstream date: 2023-08-30 15:00:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,7 +49,7 @@ void zdo_binding_table_resp(int param_1)
   if ((pcVar3[1] == '\0') &&
      (iVar2 = zb_schedule_alarm_cancel(device_binding_table_req_timeout,0xff,0), iVar2 != 0)) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC19,uVar5,0x10000,"zdo_binding_table_resp",0x2e8);
+    esp_log_write(1,0x10000,&_LC20,uVar5,0x10000,"zdo_binding_table_resp",0x31a);
   }
   else {
     if (pcVar4 == (char *)0x0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * Upstream date: 2023-07-14 11:30:10 +0800
- * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
+ * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * Upstream date: 2023-08-30 15:00:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> simple_desc_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,7 +47,7 @@ void simple_desc_cb(int param_1)
     iVar5 = zb_schedule_alarm_cancel(simple_desc_req_timeout,0xff,0);
     if (iVar5 != 0) {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"simple_desc_cb",0x252);
+      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"simple_desc_cb",0x284);
       return;
     }
   }

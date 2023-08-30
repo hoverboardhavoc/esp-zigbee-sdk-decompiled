@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * https://github.com/espressif/esp-zigbee-sdk/commit/0de2da5bd0b050dcc5b1f7f4c5eba0b5eeccfd85
- * Upstream date: 2023-07-14 11:30:10 +0800
- * Upstream subject: esp-zigbee-sdk: release v0.7.1(5785a2c)
+ * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
+ * Upstream date: 2023-08-30 15:00:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_leave_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ void device_leave_cb(int param_1)
   if ((puVar2[1] == '\0') &&
      (iVar3 = zb_schedule_alarm_cancel(device_leave_req_timeout,0xff,0), iVar3 != 0)) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"device_leave_cb",0x2b2);
+    esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"device_leave_cb",0x2e4);
   }
   else {
     iVar3 = esp_zb_zdo_callback_find(uVar1);
