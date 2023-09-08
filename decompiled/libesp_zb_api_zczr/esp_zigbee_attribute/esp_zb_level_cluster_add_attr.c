@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
- * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
- * Upstream date: 2023-06-05 10:37:46 +0800
- * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
+ * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
+ * Upstream date: 2023-09-08 17:20:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_level_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,6 +17,7 @@ int esp_zb_level_cluster_add_attr(int param_1,uint param_2,undefined2 *param_3)
   int iVar1;
   undefined2 *puVar2;
   undefined1 *puVar3;
+  void *__dest;
   undefined4 uVar4;
   int aiStack_24 [2];
   
@@ -150,6 +151,10 @@ _L0:
   else if (param_2 == 0xefff) {
     *(undefined1 *)((int)__ptr + 3) = 0x40;
     *(undefined1 *)(__ptr + 1) = 0;
+    __dest = malloc(0x12);
+    memcpy(__dest,param_3,0x12);
+    __ptr[3] = (short)__dest;
+    __ptr[4] = (short)((uint)__dest >> 0x10);
   }
   else {
     if (param_2 != 0x14) goto _L0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * https://github.com/espressif/esp-zigbee-sdk/commit/6fb04b5b77a96f6ce5cb3daff360f54f13d8db16
- * Upstream date: 2023-06-09 17:12:37 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.6.2(2626797)
+ * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
+ * Upstream date: 2023-09-08 17:20:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_pressure_meas_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ undefined4 esp_zb_pressure_meas_cluster_create(undefined2 *param_1)
   undefined2 uStack_14;
   
   uStack_18 = 0x8000;
-  uStack_16 = 0x954d;
+  uStack_16 = 0x8001;
   uStack_14 = 0x7fff;
   uVar1 = esp_zb_zcl_attr_list_create(0x403);
   if (param_1 != (undefined2 *)0x0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
+ * Upstream date: 2023-09-08 17:20:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_panid
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,7 +31,7 @@ void cmd_zb_panid(char *param_1)
         esp_log_write(1,0x10000,&_LC16,uVar3,0x10000);
       }
       else {
-        _DAT_0001612e = auStack_12[0];
+        _DAT_00016136 = auStack_12[0];
         uVar3 = esp_log_timestamp();
         esp_log_write(3,0x10000,&_LC15,uVar3,0x10000,auStack_12[0]);
       }
@@ -43,7 +43,7 @@ void cmd_zb_panid(char *param_1)
     return;
   }
   uVar3 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_L0,uVar3,0x10000,_DAT_0001612e);
+  esp_log_write(3,0x10000,&_L0,uVar3,0x10000,_DAT_00016136);
   return;
 }
 

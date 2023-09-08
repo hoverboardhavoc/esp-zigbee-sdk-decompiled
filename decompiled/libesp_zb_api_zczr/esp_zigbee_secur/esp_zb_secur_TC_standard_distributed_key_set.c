@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 503c5e49627f84174ce142bf784c3f01532fb5c9
- * https://github.com/espressif/esp-zigbee-sdk/commit/503c5e49627f84174ce142bf784c3f01532fb5c9
- * Upstream date: 2023-06-05 10:37:46 +0800
- * Upstream subject: esp-zigbee-sdk: optimize the zigbee cluster implementation(0f0acd4)
+ * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
+ * Upstream date: 2023-09-08 17:20:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
  * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_TC_standard_distributed_key_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,7 +13,7 @@
 void esp_zb_secur_TC_standard_distributed_key_set(void *param_1)
 
 {
-  memcpy((void *)0x145ec,param_1,0x10);
+  memcpy((void *)0x145f8,param_1,0x10);
   return;
 }
 
