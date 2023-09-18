@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
- * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
- * Upstream date: 2023-09-08 17:20:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int zb_zcl_endpoint_handler_callback(int param_1)
+void zb_zcl_endpoint_handler_callback(int param_1)
 
 {
-  undefined2 uVar1;
-  undefined2 uVar2;
+  short sVar1;
+  short sVar2;
   int iVar3;
-  int iVar4;
+  undefined4 uVar4;
   uint uVar5;
   uint uVar6;
   
   uVar6 = param_1 - 1U & 0xff;
   iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
-  uVar1 = *(undefined2 *)(iVar3 + 4);
+  sVar1 = *(short *)(iVar3 + 4);
   iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
-  uVar2 = *(undefined2 *)(iVar3 + 6);
+  sVar2 = *(short *)(iVar3 + 6);
   if (zcl_cli_resp_user_cb == (code *)0x0) {
     iVar3 = zb_buf_get_tail_func(param_1,0x1b);
     if (*(char *)(iVar3 + 0x16) == '\0') {
@@ -32,17 +32,18 @@ int zb_zcl_endpoint_handler_callback(int param_1)
       if (*(ushort *)(iVar3 + 0xf) < 0xfc00) {
         for (uVar5 = 0; uVar5 < 3; uVar5 = uVar5 + 1) {
           if ((&s_endpoint_handler_table)[uVar5 * 4] == *(ushort *)(iVar3 + 0xf)) {
-            iVar3 = (*(code *)(&PTR_zb_zcl_group_cluster_resp_handler_000157fc)[uVar5 * 2])
-                              (param_1,(&PTR_zb_zcl_group_cluster_resp_handler_000157fc)[uVar5 * 2])
+            iVar3 = (*(code *)(&PTR_zb_zcl_group_cluster_resp_handler_0001585c)[uVar5 * 2])
+                              (param_1,(&PTR_zb_zcl_group_cluster_resp_handler_0001585c)[uVar5 * 2])
             ;
             goto _L0;
           }
         }
         iVar3 = 0;
 _L0:
-        if (iVar3 == 0) {
-          iVar3 = zb_zcl_privilege_command_handler(param_1);
+        if (iVar3 != 0) {
+          return;
         }
+        iVar3 = zb_zcl_privilege_command_handler(param_1);
       }
       else {
         iVar3 = zb_zcl_custom_cluster_handler(param_1);
@@ -51,25 +52,25 @@ _L0:
     else {
       iVar3 = zb_zcl_general_cmd_handler(param_1);
     }
-    iVar4 = zb_bufpool_storage_bufid_to_buf(uVar6);
-    *(char *)(iVar4 + 4) = (char)uVar1;
-    *(char *)(iVar4 + 5) = (char)((ushort)uVar1 >> 8);
-    iVar4 = zb_bufpool_storage_bufid_to_buf(uVar6);
-    *(char *)(iVar4 + 6) = (char)uVar2;
-    *(char *)(iVar4 + 7) = (char)((ushort)uVar2 >> 8);
-    if (iVar3 == 0) {
-      if (zcl_raw_command_cb != (code *)0x0) {
-        iVar3 = (*zcl_raw_command_cb)(param_1);
+    if ((iVar3 == 0) && (zcl_raw_command_cb != (code *)0x0)) {
+      iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
+      if ((*(short *)(iVar3 + 4) != sVar1) ||
+         (iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6), *(short *)(iVar3 + 6) != sVar2)) {
+        iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
+        *(char *)(iVar3 + 4) = (char)sVar1;
+        *(char *)(iVar3 + 5) = (char)((ushort)sVar1 >> 8);
+        iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
+        *(char *)(iVar3 + 6) = (char)sVar2;
+        *(char *)(iVar3 + 7) = (char)((ushort)sVar2 >> 8);
+        uVar4 = esp_log_timestamp();
+        esp_log_write(2,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE");
       }
-      if (iVar3 == 0) {
-        return 0;
-      }
+      (*zcl_raw_command_cb)(param_1,zcl_raw_command_cb);
     }
-    zb_buf_free_func(param_1);
   }
   else {
-    iVar3 = (*zcl_cli_resp_user_cb)(param_1);
+    (*zcl_cli_resp_user_cb)(param_1);
   }
-  return iVar3;
+  return;
 }
 

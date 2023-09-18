@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ void cmd_zb_active_ep_cb(undefined4 param_1)
   else {
     if (puVar3[1] == '\0') {
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC24,uVar5,&_LC3,*(undefined2 *)(puVar3 + 2));
+      esp_log_write(3,&_LC3,&_LC20,uVar5,&_LC3,*(undefined2 *)(puVar3 + 2));
       uStack_84 = 0x3d7065;
       uVar2 = 3;
       for (bVar1 = 0; bVar1 < (byte)puVar3[4]; bVar1 = bVar1 + 1) {
@@ -43,13 +43,13 @@ void cmd_zb_active_ep_cb(undefined4 param_1)
       }
       (&cStack_85)[uVar2] = '\0';
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC26,uVar5,&_LC3,&uStack_84);
+      esp_log_write(3,&_LC3,&_LC22,uVar5,&_LC3,&uStack_84);
       uVar5 = esp_log_timestamp();
       esp_log_write(3,&_LC3,&_LC7,uVar5,&_LC3);
     }
     else {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC27,uVar5,&_LC3);
+      esp_log_write(1,&_LC3,&_LC23,uVar5,&_LC3);
     }
     invalidate_ctx(iVar4);
     zb_buf_free_func(param_1);

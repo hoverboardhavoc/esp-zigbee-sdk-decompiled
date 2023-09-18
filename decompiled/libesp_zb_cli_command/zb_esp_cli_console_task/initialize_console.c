@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -73,11 +73,11 @@ void initialize_console(void)
   }
   else {
     _esp_error_check_failed
-              ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+              ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
                ,0x5c,"initialize_console",0x10000);
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
+            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
              0x66,"initialize_console","esp_console_init(&console_config)");
 _L0:
   puts(

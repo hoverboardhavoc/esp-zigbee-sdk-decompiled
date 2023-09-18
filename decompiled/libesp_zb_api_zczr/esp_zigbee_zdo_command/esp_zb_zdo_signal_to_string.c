@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_signal_to_string
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,6 +23,6 @@ char * esp_zb_zdo_signal_to_string(int param_1)
     if ((&s_zb_signal_table)[uVar1 * 2] == param_1) break;
     uVar1 = uVar1 + 1;
   }
-  return (&PTR__LC26_0001255c)[uVar1 * 2];
+  return (&PTR__LC17_00011f6c)[uVar1 * 2];
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,6 @@ void device_ieee_addr_req_cb(int param_1)
   undefined1 *puVar2;
   int iVar3;
   int iVar4;
-  undefined4 uVar5;
   undefined4 uStack_18;
   undefined4 uStack_14;
   
@@ -25,15 +24,10 @@ void device_ieee_addr_req_cb(int param_1)
   uVar1 = *puVar2;
   iVar3 = zb_buf_begin_func(param_1);
   uStack_18 = ZDO_INVALID_IEEE_ADDR;
-  uStack_14 = DAT_000126d0;
+  uStack_14 = DAT_000120e0;
   if (*(char *)(iVar3 + 1) == '\0') {
     zb_memcpy8(&uStack_18,iVar3 + 2);
-    iVar4 = zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);
-    if (iVar4 != 0) {
-      uVar5 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_L0,uVar5,0x10000,"device_ieee_addr_req_cb",0x187);
-      return;
-    }
+    zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);
   }
   iVar4 = esp_zb_zdo_callback_find(uVar1);
   if (((iVar4 != 0) && (*(char *)(iVar4 + 1) == '\x01')) && (*(code **)(iVar4 + 4) != (code *)0x0))

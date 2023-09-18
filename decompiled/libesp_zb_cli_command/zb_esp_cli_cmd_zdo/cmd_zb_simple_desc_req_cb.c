@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_simple_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,7 +40,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
   else {
     if (puVar4[1] == '\0') {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC32,uVar6,&_LC3,*(undefined2 *)(puVar4 + 2),puVar4[5],
+      esp_log_write(3,&_LC3,&_LC28,uVar6,&_LC3,*(undefined2 *)(puVar4 + 2),puVar4[5],
                     *(undefined2 *)(puVar4 + 6));
       uStack_94._0_1_ = 'i';
       uStack_94._1_1_ = 'n';
@@ -55,7 +55,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC26,uVar6,&_LC3,&uStack_94);
+      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
       memset(&uStack_94,0,100);
       uStack_94._0_1_ = 'o';
       uStack_94._1_1_ = 'u';
@@ -71,13 +71,13 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC26,uVar6,&_LC3,&uStack_94);
+      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
       uVar6 = esp_log_timestamp();
       esp_log_write(3,&_LC3,&_LC7,uVar6,&_LC3);
     }
     else {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC36,uVar6,&_LC3);
+      esp_log_write(3,&_LC3,&_LC32,uVar6,&_LC3);
     }
     invalidate_ctx(iVar5);
     zb_buf_free_func(param_1);

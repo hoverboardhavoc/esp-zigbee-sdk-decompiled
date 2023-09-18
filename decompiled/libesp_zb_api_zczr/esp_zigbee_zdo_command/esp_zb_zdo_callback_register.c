@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_callback_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,u
   __ptr = (byte *)malloc(0x10);
   if (__ptr == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,0x10000,&_LC17,uVar3,0x10000);
+    esp_log_write(2,0x10000,&_LC13,uVar3,0x10000);
     __ptr = zdo_resp_cb_list_head;
   }
   else {

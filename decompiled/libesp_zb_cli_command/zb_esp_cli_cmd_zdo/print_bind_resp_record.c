@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> print_bind_resp_record
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,7 +43,7 @@ void print_bind_resp_record(undefined4 param_1,int param_2)
   }
   uStack_4c = uStack_4c & 0xffffff;
   uVar3 = esp_log_timestamp();
-  esp_log_write(3,&_LC3,&_LC31,uVar3,&_LC3,param_1,acStack_34,*(undefined1 *)(param_2 + 8));
+  esp_log_write(3,&_LC3,&_LC27,uVar3,&_LC3,param_1,acStack_34,*(undefined1 *)(param_2 + 8));
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zb_zdo_node_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,6 @@ void zb_zdo_node_desc_req_cb(int param_1)
   undefined1 *puVar3;
   int iVar4;
   int iVar5;
-  undefined4 uVar6;
   
   uVar2 = ZDO_INVALID_SHORT_ADDR;
   __dest = malloc(0xd);
@@ -29,12 +28,7 @@ void zb_zdo_node_desc_req_cb(int param_1)
   if (*(char *)(iVar4 + 1) == '\0') {
     uVar2 = *(undefined2 *)(iVar4 + 2);
     memcpy(__dest,(void *)(iVar4 + 4),0xd);
-    iVar5 = zb_schedule_alarm_cancel(node_desc_req_timeout,0xff,0);
-    if (iVar5 != 0) {
-      uVar6 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC19,uVar6,0x10000,"zb_zdo_node_desc_req_cb",0x1bd);
-      return;
-    }
+    zb_schedule_alarm_cancel(node_desc_req_timeout,0xff,0);
   }
   iVar5 = esp_zb_zdo_callback_find(uVar1);
   if (((iVar5 != 0) && (*(char *)(iVar5 + 1) == '\x02')) && (*(code **)(iVar5 + 4) != (code *)0x0))

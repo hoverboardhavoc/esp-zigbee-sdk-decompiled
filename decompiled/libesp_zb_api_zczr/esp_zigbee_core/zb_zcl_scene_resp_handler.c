@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_scene_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,13 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-uint zb_zcl_scene_resp_handler(undefined4 param_1)
+undefined4 zb_zcl_scene_resp_handler(undefined4 param_1)
 
 {
   byte bVar1;
   int iVar2;
   int iVar3;
-  uint uVar4;
-  undefined4 uVar5;
+  undefined4 uVar4;
   
   iVar2 = zb_buf_get_tail_func(0x1b);
   if (iVar2 == 0) {
@@ -51,18 +50,15 @@ uint zb_zcl_scene_resp_handler(undefined4 param_1)
   else {
     if (bVar1 != 6) {
 _L0:
-      uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC20,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(iVar2 + 0x13)
+      uVar4 = esp_log_timestamp();
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC20,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(iVar2 + 0x13)
                    );
       return 0;
     }
     zcl_scenes_get_scene_membership_res(param_1);
     iVar3 = 0;
   }
-  uVar4 = (uint)*(byte *)(iVar2 + 0x17);
-  if (uVar4 == 0) {
-    uVar4 = zb_zcl_send_default_handler(param_1,iVar2,iVar3 != 0);
-  }
-  return uVar4;
+  zb_zcl_send_default_handler(param_1,iVar2,iVar3 != 0);
+  return 1;
 }
 

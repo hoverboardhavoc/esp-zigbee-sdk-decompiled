@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_match_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ undefined4 esp_zb_zdo_match_cluster(undefined2 *param_1,undefined4 param_2,undef
   puVar4 = (undefined1 *)zb_buf_initial_alloc_func((iVar2 + 5) * 2);
   if (puVar4 == (undefined1 *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC24,uVar3,0x10000,"esp_zb_zdo_match_cluster",0x15c);
+    esp_log_write(1,0x10000,&_LC15,uVar3,0x10000,"esp_zb_zdo_match_cluster",0x15b);
     uVar3 = 0x101;
   }
   else {
@@ -54,7 +54,7 @@ undefined4 esp_zb_zdo_match_cluster(undefined2 *param_1,undefined4 param_2,undef
     }
     else {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC25,uVar3,0x10000,"esp_zb_zdo_match_cluster",0x167);
+      esp_log_write(1,0x10000,&_LC16,uVar3,0x10000,"esp_zb_zdo_match_cluster",0x166);
       uVar3 = 0x104;
     }
   }

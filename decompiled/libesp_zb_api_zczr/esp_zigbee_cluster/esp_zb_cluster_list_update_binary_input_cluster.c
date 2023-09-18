@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_binary_input_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -69,7 +69,7 @@ undefined4 esp_zb_cluster_list_update_binary_input_cluster(int param_1,int param
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC9,uVar4,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC10,uVar4,"ESP_ZIGBEE_CLUSTER");
     uVar4 = 0x102;
   }
   return uVar4;

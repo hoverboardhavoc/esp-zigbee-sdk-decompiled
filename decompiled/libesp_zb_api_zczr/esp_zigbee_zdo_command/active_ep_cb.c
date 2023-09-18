@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,8 +17,7 @@ void active_ep_cb(int param_1)
   undefined1 uVar2;
   undefined1 *puVar3;
   void *__ptr;
-  undefined4 uVar4;
-  int iVar5;
+  int iVar4;
   
   puVar3 = (undefined1 *)zb_buf_begin_func();
   uVar1 = *puVar3;
@@ -27,20 +26,15 @@ void active_ep_cb(int param_1)
   if (puVar3[1] == '\0') {
     __ptr = realloc(__ptr,(uint)(byte)puVar3[4]);
     uVar2 = puVar3[4];
-    for (iVar5 = 0; iVar5 < (int)(uint)(byte)puVar3[4]; iVar5 = iVar5 + 1) {
-      *(undefined1 *)((int)__ptr + iVar5) = puVar3[iVar5 + 5];
+    for (iVar4 = 0; iVar4 < (int)(uint)(byte)puVar3[4]; iVar4 = iVar4 + 1) {
+      *(undefined1 *)((int)__ptr + iVar4) = puVar3[iVar4 + 5];
     }
-    iVar5 = zb_schedule_alarm_cancel(active_ep_req_timeout,0xff,0);
-    if (iVar5 != 0) {
-      uVar4 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"active_ep_cb",0x248);
-      return;
-    }
+    zb_schedule_alarm_cancel(active_ep_req_timeout,0xff,0);
   }
-  iVar5 = esp_zb_zdo_callback_find(uVar1);
-  if (((iVar5 != 0) && (*(char *)(iVar5 + 1) == '\x05')) && (*(code **)(iVar5 + 4) != (code *)0x0))
+  iVar4 = esp_zb_zdo_callback_find(uVar1);
+  if (((iVar4 != 0) && (*(char *)(iVar4 + 1) == '\x05')) && (*(code **)(iVar4 + 4) != (code *)0x0))
   {
-    (**(code **)(iVar5 + 4))(puVar3[1],uVar2,__ptr,*(undefined4 *)(iVar5 + 8));
+    (**(code **)(iVar4 + 4))(puVar3[1],uVar2,__ptr,*(undefined4 *)(iVar4 + 8));
   }
   esp_zb_zdo_callback_remove(uVar1);
   if (param_1 != 0) {

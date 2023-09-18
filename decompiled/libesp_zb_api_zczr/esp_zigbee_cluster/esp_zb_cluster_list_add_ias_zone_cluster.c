@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_ias_zone_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -73,7 +73,7 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC10,uVar5,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC11,uVar5,"ESP_ZIGBEE_CLUSTER");
     uVar5 = 0x102;
   }
   return uVar5;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
- * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
- * Upstream date: 2023-09-08 17:20:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
+ * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
+ * Upstream date: 2023-09-18 10:30:22 +0800
+ * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,21 +44,21 @@ int zcl_ota_upgrade_handler(void)
       if (iVar2 == 0x1503) goto _L0;
       uVar5 = esp_log_timestamp();
       uVar4 = esp_err_to_name(iVar2);
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC35,uVar5,"ESP_ZIGBEE_CORE",uVar4);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC36,uVar5,"ESP_ZIGBEE_CORE",uVar4);
     }
     do {
       iVar2 = esp_ota_set_boot_partition(update_partition);
       if (iVar2 != 0) {
         uVar5 = esp_log_timestamp();
         uVar4 = esp_err_to_name(iVar2);
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC36,uVar5,"ESP_ZIGBEE_CORE",uVar4);
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC37,uVar5,"ESP_ZIGBEE_CORE",uVar4);
       }
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC37,uVar5,"ESP_ZIGBEE_CORE");
+      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC38,uVar5,"ESP_ZIGBEE_CORE");
       esp_restart();
 _L0:
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC34,uVar5,"ESP_ZIGBEE_CORE",iVar2);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC35,uVar5,"ESP_ZIGBEE_CORE",iVar2);
     } while( true );
   }
   if (bVar1 < 4) {
@@ -71,7 +71,7 @@ _L0:
       if ((uVar7 < 0x38) && (uVar6 = *(byte *)(iVar2 + 0x14) + uVar7, 0x38 < uVar6)) {
         update_partition = esp_ota_get_next_update_partition(0);
         if (update_partition == 0) {
-          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
+          __assert_func("//home/xiaqilin/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
                         0x3d1,"zcl_ota_upgrade_handler","update_partition != NULL");
         }
         else {
@@ -79,7 +79,7 @@ _L0:
           if (iVar3 != 0) {
             uVar5 = esp_log_timestamp();
             uVar4 = esp_err_to_name(iVar3);
-            esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC32,uVar5,"ESP_ZIGBEE_CORE",uVar4);
+            esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar5,"ESP_ZIGBEE_CORE",uVar4);
             goto _L0;
           }
         }
@@ -89,7 +89,7 @@ _L0:
           return 0;
         }
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar5,"ESP_ZIGBEE_CORE",iVar3);
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC34,uVar5,"ESP_ZIGBEE_CORE",iVar3);
       }
       else if (uVar7 < 0x39) {
         *(undefined1 *)(iVar2 + 0xc) = 6;
@@ -101,7 +101,7 @@ _L0:
           return 0;
         }
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar5,"ESP_ZIGBEE_CORE",iVar3);
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC34,uVar5,"ESP_ZIGBEE_CORE",iVar3);
       }
     }
     else if (bVar1 == 0) {
@@ -110,11 +110,11 @@ _L0:
   }
   else if (bVar1 == 7) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC39,uVar5,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC40,uVar5,"ESP_ZIGBEE_CORE");
   }
   else if (bVar1 == 10) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC38,uVar5,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC39,uVar5,"ESP_ZIGBEE_CORE");
   }
   else if (bVar1 == 5) {
     *(undefined1 *)(iVar2 + 0xc) = 6;
