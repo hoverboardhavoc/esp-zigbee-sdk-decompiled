@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_get_free_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ uint device_scenes_get_free_entry(uint param_1,uint param_2)
   uVar2 = 0xff;
   for (uVar1 = 0; uVar1 < 10; uVar1 = uVar1 + 1 & 0xff) {
     if (((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == param_1) &&
-       ((byte)(&DAT_00015944)[uVar1 * 0xc] == param_2)) goto _L0;
+       ((byte)(&DAT_00015a54)[uVar1 * 0xc] == param_2)) goto _L0;
     if ((uVar2 == 0xff) && ((ushort)(&esp_zb_zcl_scenes_table)[uVar1 * 6] == 0xffff)) {
       uVar2 = uVar1;
     }

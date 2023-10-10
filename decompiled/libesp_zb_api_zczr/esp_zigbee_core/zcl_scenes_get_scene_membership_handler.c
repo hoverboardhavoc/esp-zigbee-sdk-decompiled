@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_get_scene_membership_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ undefined4 zcl_scenes_get_scene_membership_handler(undefined4 param_1)
   if (iVar3 == 0) {
     memcpy(&scene_resp_info,__src,0x1b);
     scene_resp_info = *(undefined1 *)puVar2;
-    DAT_00015901 = *(undefined1 *)((int)puVar2 + 1);
+    DAT_00015a11 = *(undefined1 *)((int)puVar2 + 1);
     uVar4 = esp_log_timestamp();
     esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE");
     zb_buf_get_out_delayed_func(send_get_scene_membership_resp);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * https://github.com/espressif/esp-zigbee-sdk/commit/6a9e3c6fdc96f7e7c0611d7b4a7e17141165ca31
- * Upstream date: 2023-04-06 16:02:34 +0800
- * Upstream subject: example: support single C6 gateway example and other API support(a1884f9)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_get_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ short * esp_zb_cluster_list_get_tail(short *param_1,int param_2,uint param_3,int
       }
       if ((*param_1 == sVar1) && (*(byte *)(param_1 + 4) == param_3)) {
         uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC5,uVar4,"ESP_ZIGBEE_CLUSTER",sVar1);
+        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC6,uVar4,"ESP_ZIGBEE_CLUSTER",sVar1);
         *param_4 = 0x102;
       }
       psVar2 = *(short **)(param_1 + 8);

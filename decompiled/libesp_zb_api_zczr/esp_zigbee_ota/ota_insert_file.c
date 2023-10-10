@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_ota.o -> ota_insert_file
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ int * ota_insert_file(int param_1)
     puVar2[8] = 1;
     piVar1 = (int *)zb_zcl_ota_upgrade_insert_file(param_1);
     if (piVar1 != (int *)0x0) {
-      iVar3 = zb_assert("/home/xiaqilin/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c",
+      iVar3 = zb_assert("/home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c",
                         0x82);
       piVar1 = (int *)malloc(0x10);
       pvVar4 = malloc(8);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_view_scene_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ int zcl_scenes_view_scene_res(undefined4 param_1)
   if (uVar3 < 4) {
 _L0:
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",0x5b3
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",0x5d2
                  );
     iVar5 = 0;
   }
@@ -104,7 +104,7 @@ _L0:
     else {
       uVar6 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC19,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",
-                    0x5b5);
+                    0x5d4);
     }
   }
   return iVar5;

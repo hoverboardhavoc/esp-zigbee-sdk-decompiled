@@ -1,0 +1,41 @@
+/*
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
+ * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_thermostat_value_cb_handler
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+undefined4 zcl_thermostat_value_cb_handler(void)
+
+{
+  int iVar1;
+  undefined4 uVar2;
+  undefined4 local_20;
+  undefined1 uStack_1c;
+  undefined2 uStack_1a;
+  undefined1 uStack_18;
+  undefined2 uStack_16;
+  undefined2 uStack_14;
+  
+  iVar1 = zb_buf_get_tail_func(0x38);
+  local_20 = 0;
+  uStack_1c = *(undefined1 *)(iVar1 + 4);
+  uStack_1a = 0x201;
+  uStack_18 = *(undefined1 *)(iVar1 + 0xc);
+  uStack_16 = *(undefined2 *)(iVar1 + 0xe);
+  uStack_14 = *(undefined2 *)(iVar1 + 0x10);
+  if (zb_core_action_cb == (code *)0x0) {
+    uVar2 = 0;
+  }
+  else {
+    (*zb_core_action_cb)(5,&local_20);
+    uVar2 = error_to_zb_ret();
+  }
+  return uVar2;
+}
+

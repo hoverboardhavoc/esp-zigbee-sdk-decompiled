@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
+ * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
+ * Upstream date: 2023-10-10 17:40:24 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_disc_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,7 +36,7 @@ void esp_zb_zcl_disc_attr_cmd_req(int param_1)
     zb_zcl_finish_and_send_packet
               (uVar2,puVar5 + 1,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
                *(undefined1 *)(param_1 + 9),0x104,*(undefined2 *)(param_1 + 0x10));
-    zb_assert("/home/xiaqilin/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zcl_command.c",0xf0
+    zb_assert("/home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zcl_command.c",0xfd
              );
 _L0:
     uVar6 = 0;
