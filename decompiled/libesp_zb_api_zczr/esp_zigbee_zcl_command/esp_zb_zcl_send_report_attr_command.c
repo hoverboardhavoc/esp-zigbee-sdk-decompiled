@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_send_report_attr_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,7 +36,7 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
   *pbVar5 = bVar3 << 2 | 8;
   iVar4 = param_1;
   if ((bVar1 & 0x20) == 0) {
-    pbVar8 = (byte *)zb_zcl_get_ctx();
+    pbVar8 = (byte *)zb_zcl_get_ctx(pbVar5 + 1);
     bVar1 = *pbVar8;
     *pbVar8 = bVar1 + 1;
     pbVar5[1] = bVar1;
@@ -44,7 +44,7 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
     pbVar5 = pbVar5 + 3;
   }
   else {
-    pcVar6 = (char *)zb_put_next_htole16(pbVar5 + 1,*(undefined2 *)(param_1 + 0x2e));
+    pcVar6 = (char *)zb_put_next_htole16(*(undefined2 *)(param_1 + 0x2e));
     pcVar7 = (char *)zb_zcl_get_ctx();
     cVar2 = *pcVar7;
     *pcVar7 = cVar2 + '\x01';

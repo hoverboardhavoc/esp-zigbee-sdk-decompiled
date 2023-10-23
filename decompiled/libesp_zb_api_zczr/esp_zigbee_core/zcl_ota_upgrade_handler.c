@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
- * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
- * Upstream date: 2023-10-10 17:40:24 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,113 +13,87 @@
 int zcl_ota_upgrade_handler(void)
 
 {
-  byte bVar1;
+  code *pcVar1;
   int iVar2;
   int iVar3;
   undefined4 uVar4;
-  undefined4 uVar5;
+  byte bVar5;
+  uint __n;
   uint uVar6;
-  uint uVar7;
-  int iVar8;
-  undefined4 uStack_2c;
-  undefined1 uStack_28;
-  undefined2 uStack_26;
-  uint uStack_24;
+  void *__src;
+  uint local_40;
+  ushort uStack_3c;
+  undefined2 uStack_3a;
+  uint uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  int iStack_2c;
+  uint uStack_28;
+  void *pvStack_24;
   
   iVar2 = zb_buf_get_tail_func(0x38);
-  uStack_2c = 0;
-  uStack_28 = *(undefined1 *)(iVar2 + 4);
-  uStack_26 = 0x19;
-  uStack_24 = (uint)*(byte *)(iVar2 + 0xc);
+  pcVar1 = zb_core_action_cb;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  iStack_2c = 0;
+  uStack_28 = 0;
+  pvStack_24 = (void *)0x0;
+  local_40 = (uint)(iVar2 == 0);
+  if (iVar2 == 0) {
+    bVar5 = 0xff;
+  }
+  else {
+    bVar5 = *(byte *)(iVar2 + 4);
+  }
+  _uStack_3c = CONCAT22(0x19,(ushort)bVar5);
+  uStack_38 = (uint)*(byte *)(iVar2 + 0xc);
   if (zb_core_action_cb == (code *)0x0) {
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC3,uVar4,"ESP_ZIGBEE_CORE","zcl_ota_upgrade_handler",0x3c4)
+    ;
+    return -1;
+  }
+  if (uStack_38 == 2) {
+    __n = (uint)*(byte *)(iVar2 + 0x14);
+    uVar6 = *(uint *)(iVar2 + 0x10);
+    __src = *(void **)(iVar2 + 0x18);
+    if (__n + uVar6 < 0x39) {
+      memcpy(ota_header_6,__src,__n);
+    }
+    else if (uVar6 < 0x38) {
+      memcpy(ota_header_6 + uVar6,__src,0x38 - uVar6);
+      uStack_28 = CONCAT22(uStack_28._2_2_,(short)((__n + uVar6) * 0x10000 >> 0x10) + -0x38);
+      pvStack_24 = (void *)((0x38 - uVar6) + (int)__src);
+    }
+    else {
+      uStack_28 = (uint)*(byte *)(iVar2 + 0x14);
+      pvStack_24 = __src;
+    }
+  }
+  uStack_34 = CONCAT22(ota_header_6._12_2_,ota_header_6._10_2_);
+  uStack_30 = ota_header_6._14_4_;
+  iStack_2c = ota_header_6._52_4_ + -0x38;
+  if (((*(char *)(iVar2 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) &&
+     ((uStack_28 & 0xffff) == 0)) {
+    *(undefined1 *)(iVar2 + 0xc) = 6;
     iVar3 = 0;
   }
   else {
-    iVar3 = (*zb_core_action_cb)(4,&uStack_2c);
-  }
-  bVar1 = *(byte *)(iVar2 + 0xc);
-  if (bVar1 == 3) {
-    iVar2 = esp_ota_end(update_handle);
-    if (iVar2 != 0) {
-      if (iVar2 == 0x1503) goto _L0;
-      uVar5 = esp_log_timestamp();
-      uVar4 = esp_err_to_name(iVar2);
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC36,uVar5,"ESP_ZIGBEE_CORE",uVar4);
-    }
-    do {
-      iVar2 = esp_ota_set_boot_partition(update_partition);
-      if (iVar2 != 0) {
-        uVar5 = esp_log_timestamp();
-        uVar4 = esp_err_to_name(iVar2);
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC37,uVar5,"ESP_ZIGBEE_CORE",uVar4);
-      }
-      uVar5 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC38,uVar5,"ESP_ZIGBEE_CORE");
-      esp_restart();
-_L0:
-      uVar5 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC35,uVar5,"ESP_ZIGBEE_CORE",iVar2);
-    } while( true );
-  }
-  if (bVar1 < 4) {
-    if (bVar1 == 1) {
+    iVar3 = (*pcVar1)(4,&local_40);
+    if (iVar3 == 0) {
       *(undefined1 *)(iVar2 + 0xc) = 6;
+      return 0;
     }
-    else if (bVar1 == 2) {
-      uVar7 = *(uint *)(iVar2 + 0x10);
-      iVar8 = *(int *)(iVar2 + 0x18);
-      if ((uVar7 < 0x38) && (uVar6 = *(byte *)(iVar2 + 0x14) + uVar7, 0x38 < uVar6)) {
-        update_partition = esp_ota_get_next_update_partition(0);
-        if (update_partition == 0) {
-          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
-                        0x3db,"zcl_ota_upgrade_handler","update_partition != NULL");
-        }
-        else {
-          iVar3 = esp_ota_begin(0xfffffffe,&update_handle);
-          if (iVar3 != 0) {
-            uVar5 = esp_log_timestamp();
-            uVar4 = esp_err_to_name(iVar3);
-            esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC33,uVar5,"ESP_ZIGBEE_CORE",uVar4);
-            goto _L0;
-          }
-        }
-        iVar3 = esp_ota_write(update_handle,iVar8 + (0x38 - uVar7),uVar6 - 0x38);
-        if (iVar3 == 0) {
-          *(undefined1 *)(iVar2 + 0xc) = 6;
-          return 0;
-        }
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC34,uVar5,"ESP_ZIGBEE_CORE",iVar3);
-      }
-      else if (uVar7 < 0x39) {
-        *(undefined1 *)(iVar2 + 0xc) = 6;
-      }
-      else {
-        iVar3 = esp_ota_write(update_handle,iVar8);
-        if (iVar3 == 0) {
-          *(undefined1 *)(iVar2 + 0xc) = 6;
-          return 0;
-        }
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC34,uVar5,"ESP_ZIGBEE_CORE",iVar3);
-      }
+    if (iVar3 == 0x105) {
+      *(undefined1 *)(iVar2 + 0xc) = 10;
+      return -1;
     }
-    else if (bVar1 == 0) {
-      *(undefined1 *)(iVar2 + 0xc) = 6;
+    if (iVar3 == 0x10c) {
+      *(undefined1 *)(iVar2 + 0xc) = 9;
+      return -1;
     }
+    *(undefined1 *)(iVar2 + 0xc) = 7;
   }
-  else if (bVar1 == 7) {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC40,uVar5,"ESP_ZIGBEE_CORE");
-  }
-  else if (bVar1 == 10) {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC39,uVar5,"ESP_ZIGBEE_CORE");
-  }
-  else if (bVar1 == 5) {
-    *(undefined1 *)(iVar2 + 0xc) = 6;
-  }
-_L0:
   if (iVar3 != 0) {
     iVar3 = -1;
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit baa2c0427a754013932b7b4a3bc21cee014ddd24
- * https://github.com/espressif/esp-zigbee-sdk/commit/baa2c0427a754013932b7b4a3bc21cee014ddd24
- * Upstream date: 2023-02-10 16:01:53 +0800
- * Upstream subject: examples: provide new API for channel set(5818e5d)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_set_primary_network_channel_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,15 @@
 undefined4 esp_zb_set_primary_network_channel_set(int param_1)
 
 {
+  undefined4 uVar1;
+  
   if (param_1 - 0x800U < 0x7fff001) {
     zb_set_bdb_primary_channel_set();
-    return 0;
+    uVar1 = 0;
   }
-  return 0x102;
+  else {
+    uVar1 = 0x102;
+  }
+  return uVar1;
 }
 

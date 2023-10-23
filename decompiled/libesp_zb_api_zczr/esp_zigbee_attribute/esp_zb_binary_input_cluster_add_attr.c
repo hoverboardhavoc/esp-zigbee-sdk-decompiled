@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d50acd5408f73d4459b46a949332bb6e32f97543
- * https://github.com/espressif/esp-zigbee-sdk/commit/d50acd5408f73d4459b46a949332bb6e32f97543
- * Upstream date: 2023-09-08 17:20:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.4(89250ad3)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_binary_input_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,9 +16,9 @@ undefined4 esp_zb_binary_input_cluster_add_attr(int param_1,uint param_2,char *p
   ushort *puVar1;
   ushort *puVar2;
   undefined2 *__ptr;
-  undefined4 *puVar3;
+  char *pcVar3;
   size_t sVar4;
-  char *pcVar5;
+  undefined4 *puVar5;
   undefined4 uVar6;
   
   __ptr = (undefined2 *)malloc(0x10);
@@ -30,7 +30,7 @@ undefined4 esp_zb_binary_input_cluster_add_attr(int param_1,uint param_2,char *p
   puVar1 = *(ushort **)(param_1 + 0xc);
   if ((*(ushort **)(param_1 + 0xc))[5] != 0xf) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
+    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC7,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
     return 0x102;
   }
   do {
@@ -47,77 +47,77 @@ undefined4 esp_zb_binary_input_cluster_add_attr(int param_1,uint param_2,char *p
   if (param_2 == 0x54) {
     *(undefined1 *)((int)__ptr + 3) = 1;
     *(undefined1 *)(__ptr + 1) = 0x18;
-    pcVar5 = (char *)malloc(1);
-    *pcVar5 = *param_3;
-    __ptr[3] = (short)pcVar5;
-    __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+    pcVar3 = (char *)malloc(1);
+    *pcVar3 = *param_3;
+    __ptr[3] = (short)pcVar3;
+    __ptr[4] = (short)((uint)pcVar3 >> 0x10);
   }
   else if (param_2 < 0x55) {
     if (param_2 == 0x2e) {
       *(undefined1 *)((int)__ptr + 3) = 1;
       *(undefined1 *)(__ptr + 1) = 0x42;
       sVar4 = strlen(param_3);
-      pcVar5 = (char *)malloc(sVar4 + 1);
-      strcpy(pcVar5,param_3);
-      __ptr[3] = (short)pcVar5;
-      __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+      pcVar3 = (char *)malloc(sVar4 + 1);
+      strcpy(pcVar3,param_3);
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
     }
     else if (param_2 < 0x2f) {
       if (param_2 == 4) {
         *(undefined1 *)((int)__ptr + 3) = 1;
         *(undefined1 *)(__ptr + 1) = 0x42;
         sVar4 = strlen(param_3);
-        pcVar5 = (char *)malloc(sVar4 + 1);
-        strcpy(pcVar5,param_3);
-        __ptr[3] = (short)pcVar5;
-        __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+        pcVar3 = (char *)malloc(sVar4 + 1);
+        strcpy(pcVar3,param_3);
+        __ptr[3] = (short)pcVar3;
+        __ptr[4] = (short)((uint)pcVar3 >> 0x10);
       }
       else {
         if (param_2 != 0x1c) goto _L0;
         *(undefined1 *)((int)__ptr + 3) = 1;
         *(undefined1 *)(__ptr + 1) = 0x42;
         sVar4 = strlen(param_3);
-        pcVar5 = (char *)malloc(sVar4 + 1);
-        strcpy(pcVar5,param_3);
-        __ptr[3] = (short)pcVar5;
-        __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+        pcVar3 = (char *)malloc(sVar4 + 1);
+        strcpy(pcVar3,param_3);
+        __ptr[3] = (short)pcVar3;
+        __ptr[4] = (short)((uint)pcVar3 >> 0x10);
       }
     }
     else {
       if (param_2 != 0x51) goto _L0;
       *(undefined1 *)((int)__ptr + 3) = 1;
       *(undefined1 *)(__ptr + 1) = 0x10;
-      pcVar5 = (char *)malloc(1);
-      *pcVar5 = *param_3;
-      __ptr[3] = (short)pcVar5;
-      __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+      pcVar3 = (char *)malloc(1);
+      *pcVar3 = *param_3;
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
     }
   }
   else if (param_2 == 0x6f) {
     *(undefined1 *)((int)__ptr + 3) = 5;
     *(undefined1 *)(__ptr + 1) = 0x18;
-    pcVar5 = (char *)malloc(1);
-    *pcVar5 = *param_3;
-    __ptr[3] = (short)pcVar5;
-    __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+    pcVar3 = (char *)malloc(1);
+    *pcVar3 = *param_3;
+    __ptr[3] = (short)pcVar3;
+    __ptr[4] = (short)((uint)pcVar3 >> 0x10);
   }
   else if (param_2 < 0x70) {
     if (param_2 == 0x55) {
       *(undefined1 *)((int)__ptr + 3) = 5;
       *(undefined1 *)(__ptr + 1) = 0x10;
-      pcVar5 = (char *)malloc(1);
-      *pcVar5 = *param_3;
-      __ptr[3] = (short)pcVar5;
-      __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+      pcVar3 = (char *)malloc(1);
+      *pcVar3 = *param_3;
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
     }
     else {
       if (param_2 != 0x67) goto _L0;
       *(undefined1 *)((int)__ptr + 3) = 1;
       *(undefined1 *)(__ptr + 1) = 0x18;
-      pcVar5 = (char *)malloc(1);
-      *pcVar5 = *param_3;
-      __ptr[3] = (short)pcVar5;
-      __ptr[4] = (short)((uint)pcVar5 >> 0x10);
+      pcVar3 = (char *)malloc(1);
+      *pcVar3 = *param_3;
+      __ptr[3] = (short)pcVar3;
+      __ptr[4] = (short)((uint)pcVar3 >> 0x10);
     }
   }
   else {
@@ -130,10 +130,10 @@ _L0:
     }
     *(undefined1 *)((int)__ptr + 3) = 1;
     *(undefined1 *)(__ptr + 1) = 0x23;
-    puVar3 = (undefined4 *)malloc(4);
-    *puVar3 = *(undefined4 *)param_3;
-    __ptr[3] = (short)puVar3;
-    __ptr[4] = (short)((uint)puVar3 >> 0x10);
+    puVar5 = (undefined4 *)malloc(4);
+    *puVar5 = *(undefined4 *)param_3;
+    __ptr[3] = (short)puVar5;
+    __ptr[4] = (short)((uint)puVar5 >> 0x10);
   }
   __ptr[2] = 0xffff;
   __ptr[5] = 0xf;

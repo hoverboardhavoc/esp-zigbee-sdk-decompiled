@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr.o -> invalidate_row
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,9 @@
 void invalidate_row(uint param_1)
 
 {
-  if (0x13 < param_1) {
-    return;
+  if (param_1 < 0x14) {
+    memset(&m_attr_table + param_1 * 0x3c,0,0x3c);
   }
-  memset(&m_attr_table + param_1 * 0x3c,0,0x3c);
   return;
 }
 

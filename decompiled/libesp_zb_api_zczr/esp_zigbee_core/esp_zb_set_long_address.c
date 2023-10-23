@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_set_long_address
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,15 @@
 undefined4 esp_zb_set_long_address(int param_1)
 
 {
-  if (param_1 != 0) {
-    zb_set_long_address();
-    return 0;
+  undefined4 uVar1;
+  
+  if (param_1 == 0) {
+    uVar1 = 0x102;
   }
-  return 0x102;
+  else {
+    zb_set_long_address();
+    uVar1 = 0;
+  }
+  return uVar1;
 }
 

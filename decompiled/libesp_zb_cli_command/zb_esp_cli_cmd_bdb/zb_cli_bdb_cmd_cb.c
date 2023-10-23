@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 62f83e9155a8a668183e90087b29cd6791297d4c
- * https://github.com/espressif/esp-zigbee-sdk/commit/62f83e9155a8a668183e90087b29cd6791297d4c
- * Upstream date: 2023-08-25 15:56:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.1(b4845e06)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_bdb_cmd_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,61 +20,61 @@ int zb_cli_bdb_cmd_cb(int param_1,undefined4 *param_2)
   iVar2 = arg_parse(&bdb_args);
   if (iVar2 != 0) {
     iVar2 = __getreent();
-    arg_print_errors(*(undefined4 *)(iVar2 + 0xc),DAT_000121c8,*param_2);
+    arg_print_errors(*(undefined4 *)(iVar2 + 0xc),DAT_000121c4,*param_2);
     return 1;
   }
   if (1 < param_1) {
     if (*(int *)(bdb_args + 0x34) != 0) {
       cmd_zb_role(**(undefined4 **)(bdb_args + 0x38));
     }
-    if (*(int *)(DAT_000121a4 + 0x34) != 0) {
+    if (*(int *)(DAT_000121a0 + 0x34) != 0) {
       cmd_zb_start();
     }
+    if (*(int *)(DAT_00012198 + 0x34) != 0) {
+      cmd_zb_extpanid(**(undefined4 **)(DAT_00012198 + 0x38));
+    }
     if (*(int *)(DAT_0001219c + 0x34) != 0) {
-      cmd_zb_extpanid(**(undefined4 **)(DAT_0001219c + 0x38));
+      cmd_zb_panid(**(undefined4 **)(DAT_0001219c + 0x38));
     }
-    if (*(int *)(DAT_000121a0 + 0x34) != 0) {
-      cmd_zb_panid(**(undefined4 **)(DAT_000121a0 + 0x38));
+    if (*(int *)(DAT_000121a4 + 0x34) != 0) {
+      cmd_zb_channel(**(undefined4 **)(DAT_000121a4 + 0x38));
     }
-    if (*(int *)(DAT_000121a8 + 0x34) != 0) {
-      cmd_zb_channel(**(undefined4 **)(DAT_000121a8 + 0x38));
-    }
-    if ((*(int *)(DAT_000121ac + 0x34) != 0) &&
-       (pcVar1 = (char *)**(undefined4 **)(DAT_000121ac + 0x38), pcVar1 != (char *)0x0)) {
+    if ((*(int *)(DAT_000121a8 + 0x34) != 0) &&
+       (pcVar1 = (char *)**(undefined4 **)(DAT_000121a8 + 0x38), pcVar1 != (char *)0x0)) {
       iVar2 = strcmp(pcVar1,"add");
       if (iVar2 == 0) {
-        if ((*(int *)(DAT_000121b0 + 0x34) == 0) || (*(int *)(DAT_000121b4 + 0x34) == 0)) {
+        if ((*(int *)(DAT_000121ac + 0x34) == 0) || (*(int *)(DAT_000121b0 + 0x34) == 0)) {
           uVar3 = esp_log_timestamp();
           esp_log_write(1,0x10000,&_LC50,uVar3,0x10000);
         }
         else {
-          cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121b0 + 0x38),
-                              **(undefined4 **)(DAT_000121b4 + 0x38));
+          cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121ac + 0x38),
+                              **(undefined4 **)(DAT_000121b0 + 0x38));
         }
       }
-      pcVar1 = (char *)**(undefined4 **)(DAT_000121ac + 0x38);
+      pcVar1 = (char *)**(undefined4 **)(DAT_000121a8 + 0x38);
       iVar2 = strcmp(pcVar1,"set");
-      if ((iVar2 == 0) && (*(int *)(DAT_000121b0 + 0x34) != 0)) {
-        cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121b0 + 0x38),0);
+      if ((iVar2 == 0) && (*(int *)(DAT_000121ac + 0x34) != 0)) {
+        cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121ac + 0x38),0);
       }
-      pcVar1 = (char *)**(undefined4 **)(DAT_000121ac + 0x38);
+      pcVar1 = (char *)**(undefined4 **)(DAT_000121a8 + 0x38);
       iVar2 = strcmp(pcVar1,"policy");
-      if ((iVar2 == 0) && (*(int *)(DAT_000121b0 + 0x34) != 0)) {
-        cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121b0 + 0x38),0);
+      if ((iVar2 == 0) && (*(int *)(DAT_000121ac + 0x34) != 0)) {
+        cmd_zb_install_code(pcVar1,**(undefined4 **)(DAT_000121ac + 0x38),0);
       }
+    }
+    if (*(int *)(DAT_000121b4 + 0x34) != 0) {
+      cmd_zb_legacy(**(undefined4 **)(DAT_000121b4 + 0x38));
     }
     if (*(int *)(DAT_000121b8 + 0x34) != 0) {
-      cmd_zb_legacy(**(undefined4 **)(DAT_000121b8 + 0x38));
+      cmd_zb_nwkkey(**(undefined4 **)(DAT_000121b8 + 0x38));
     }
     if (*(int *)(DAT_000121bc + 0x34) != 0) {
-      cmd_zb_nwkkey(**(undefined4 **)(DAT_000121bc + 0x38));
-    }
-    if (*(int *)(DAT_000121c0 + 0x34) != 0) {
       cmd_zb_factory_reset();
     }
-    iVar2 = *(int *)(DAT_000121c4 + 0x34);
+    iVar2 = *(int *)(DAT_000121c0 + 0x34);
     if (iVar2 != 0) {
-      cmd_zb_child_max(**(undefined4 **)(DAT_000121c4 + 0x38));
+      cmd_zb_child_max(**(undefined4 **)(DAT_000121c0 + 0x38));
       iVar2 = 0;
     }
     return iVar2;

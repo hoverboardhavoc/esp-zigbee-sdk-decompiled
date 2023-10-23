@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit b278a1511ed728943e19c371f88a01e9d130f19f
- * https://github.com/espressif/esp-zigbee-sdk/commit/b278a1511ed728943e19c371f88a01e9d130f19f
- * Upstream date: 2023-02-27 14:43:05 +0800
- * Upstream subject: zcl: add ZCL API for color and report attribute(af3fa1e)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_put_attribute_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -97,21 +97,21 @@ _L0:
       }
       if (bVar1 != 0x27) {
         if (bVar1 < 0x28) {
-          if (bVar1 == 0x21) goto _L0;
-          if (bVar1 == 0x23) goto _L0;
-          if (bVar1 == 0x20) goto _L0;
-        }
-        else {
-          if (bVar1 == 0x29) {
-_L0:
-            *param_1 = *param_3;
-            param_1[1] = param_3[1];
-            return param_1 + 2;
+          if (bVar1 != 0x21) {
+            if (bVar1 == 0x23) goto _L0;
+            if (bVar1 == 0x20) goto _L0;
+            goto _L0;
           }
+        }
+        else if (bVar1 != 0x29) {
           if (bVar1 == 0x2b) goto _L0;
           if (bVar1 == 0x28) goto _L0;
+          goto _L0;
         }
-        goto _L0;
+_L0:
+        *param_1 = *param_3;
+        param_1[1] = param_3[1];
+        return param_1 + 2;
       }
     }
   }

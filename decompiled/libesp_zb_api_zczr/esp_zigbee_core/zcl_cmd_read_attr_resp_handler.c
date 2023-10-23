@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
- * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
- * Upstream date: 2023-10-10 17:40:24 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_read_attr_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,7 @@ int zcl_cmd_read_attr_resp_handler(undefined4 param_1)
   int iVar5;
   uint uVar6;
   uint uVar7;
-  uint auStack_48 [4];
-  short sStack_36;
+  uint auStack_48 [7];
   undefined2 uStack_2c;
   ushort uStack_2a;
   undefined2 uStack_28;
@@ -39,9 +38,6 @@ int zcl_cmd_read_attr_resp_handler(undefined4 param_1)
         puVar1 = (undefined2 *)0x0;
 _L0:
         if (puVar1 != (undefined2 *)0x0) {
-          if (sStack_36 == 10) {
-            zb_zcl_time_server_read_attr_handle(param_1);
-          }
           auStack_48[0] = (uint)*(byte *)(puVar1 + 1);
           uStack_2c = *puVar1;
           uStack_2a = (ushort)*(byte *)((int)puVar1 + 3);
@@ -80,8 +76,8 @@ _L0:
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC25,uVar4,"ESP_ZIGBEE_CORE",
-                  "zcl_cmd_read_attr_resp_handler",0x48b);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC27,uVar4,"ESP_ZIGBEE_CORE",
+                  "zcl_cmd_read_attr_resp_handler",0x4a5);
   }
   return iVar3;
 }

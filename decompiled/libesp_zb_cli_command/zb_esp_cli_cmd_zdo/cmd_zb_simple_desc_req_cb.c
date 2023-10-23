@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_simple_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,11 +28,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
   puVar4 = (undefined1 *)zb_buf_begin_func();
   bVar2 = puVar4[0xb];
   bVar1 = puVar4[0xc];
-  uStack_94._0_1_ = '\0';
-  uStack_94._1_1_ = '\0';
-  uStack_94._2_1_ = '\0';
-  uStack_94._3_1_ = '\0';
-  memset(acStack_90,0,0x60);
+  memset(&uStack_94,0,100);
   iVar5 = get_ctx_by_tsn(*puVar4);
   if (iVar5 == 0) {
     zb_buf_free_func(param_1);

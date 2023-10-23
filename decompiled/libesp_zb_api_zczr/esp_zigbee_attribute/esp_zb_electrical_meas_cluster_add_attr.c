@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_electrical_meas_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,16 +18,16 @@ int esp_zb_electrical_meas_cluster_add_attr(int param_1,uint param_2,undefined1 
   undefined1 uVar1;
   undefined1 uVar2;
   undefined1 uVar3;
-  uint uVar4;
   undefined2 *__ptr;
-  int iVar5;
-  undefined1 *puVar6;
-  undefined4 uVar7;
+  int iVar4;
+  undefined1 *puVar5;
+  undefined4 uVar6;
+  uint uVar7;
   int aiStack_24 [2];
   
   __ptr = (undefined2 *)malloc(0x10);
   aiStack_24[0] = 0;
-  iVar5 = esp_zb_attr_list_get_tail(param_1,0xb04,param_2,aiStack_24);
+  iVar4 = esp_zb_attr_list_get_tail(param_1,0xb04,param_2,aiStack_24);
   if (aiStack_24[0] != 0) {
     free(__ptr);
     return aiStack_24[0];
@@ -36,10 +36,10 @@ int esp_zb_electrical_meas_cluster_add_attr(int param_1,uint param_2,undefined1 
   if (param_2 == 0x700) {
     *(undefined1 *)((int)__ptr + 3) = 3;
     *(undefined1 *)(__ptr + 1) = 0x18;
-    puVar6 = (undefined1 *)malloc(1);
-    __ptr[3] = (short)puVar6;
-    __ptr[4] = (short)((uint)puVar6 >> 0x10);
-    *puVar6 = *param_3;
+    puVar5 = (undefined1 *)malloc(1);
+    __ptr[3] = (short)puVar5;
+    __ptr[4] = (short)((uint)puVar5 >> 0x10);
+    *puVar5 = *param_3;
     goto _L0;
   }
   if (param_2 < 0x701) {
@@ -47,16 +47,16 @@ int esp_zb_electrical_meas_cluster_add_attr(int param_1,uint param_2,undefined1 
 _L0:
       *(undefined1 *)((int)__ptr + 3) = 5;
       *(undefined1 *)(__ptr + 1) = 0x23;
-      puVar6 = (undefined1 *)malloc(4);
-      __ptr[3] = (short)puVar6;
-      __ptr[4] = (short)((uint)puVar6 >> 0x10);
+      puVar5 = (undefined1 *)malloc(4);
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
       uVar1 = param_3[1];
       uVar2 = param_3[2];
       uVar3 = param_3[3];
-      *puVar6 = *param_3;
-      puVar6[1] = uVar1;
-      puVar6[2] = uVar2;
-      puVar6[3] = uVar3;
+      *puVar5 = *param_3;
+      puVar5[1] = uVar1;
+      puVar5[2] = uVar2;
+      puVar5[3] = uVar3;
       goto _L0;
     }
     if (param_2 < 0x307) {
@@ -65,39 +65,39 @@ _L0:
           if (param_2 == 0) {
             *(undefined1 *)((int)__ptr + 3) = 1;
             *(undefined1 *)(__ptr + 1) = 0x1b;
-            puVar6 = (undefined1 *)malloc(4);
-            __ptr[3] = (short)puVar6;
-            __ptr[4] = (short)((uint)puVar6 >> 0x10);
+            puVar5 = (undefined1 *)malloc(4);
+            __ptr[3] = (short)puVar5;
+            __ptr[4] = (short)((uint)puVar5 >> 0x10);
             uVar1 = param_3[1];
             uVar2 = param_3[2];
             uVar3 = param_3[3];
-            *puVar6 = *param_3;
-            puVar6[1] = uVar1;
-            puVar6[2] = uVar2;
-            puVar6[3] = uVar3;
+            *puVar5 = *param_3;
+            puVar5[1] = uVar1;
+            puVar5[2] = uVar2;
+            puVar5[3] = uVar3;
             goto _L0;
           }
           goto _L0;
         }
-        uVar4 = 1 << (param_2 - 0x100 & 0x1f);
-        if ((uVar4 & 0x1b6) != 0) goto _L0;
-        if ((uVar4 & 0x49) == 0) goto _L0;
+        uVar7 = 1 << (param_2 - 0x100 & 0x1f);
+        if ((uVar7 & 0x1b6) != 0) goto _L0;
+        if ((uVar7 & 0x49) == 0) goto _L0;
         goto _L0;
       }
       if (0x305 < param_2) goto _L0;
       if (0x303 < param_2) {
         *(undefined1 *)((int)__ptr + 3) = 5;
         *(undefined1 *)(__ptr + 1) = 0x2b;
-        puVar6 = (undefined1 *)malloc(4);
-        __ptr[3] = (short)puVar6;
-        __ptr[4] = (short)((uint)puVar6 >> 0x10);
+        puVar5 = (undefined1 *)malloc(4);
+        __ptr[3] = (short)puVar5;
+        __ptr[4] = (short)((uint)puVar5 >> 0x10);
         uVar1 = param_3[1];
         uVar2 = param_3[2];
         uVar3 = param_3[3];
-        *puVar6 = *param_3;
-        puVar6[1] = uVar1;
-        puVar6[2] = uVar2;
-        puVar6[3] = uVar3;
+        *puVar5 = *param_3;
+        puVar5[1] = uVar1;
+        puVar5[2] = uVar2;
+        puVar5[3] = uVar3;
         goto _L0;
       }
       if (param_2 < 0x303) {
@@ -113,10 +113,10 @@ _L0:
       if (0x403 < param_2) {
         *(undefined1 *)((int)__ptr + 3) = 5;
         *(undefined1 *)(__ptr + 1) = 0x28;
-        puVar6 = (undefined1 *)malloc(1);
-        __ptr[3] = (short)puVar6;
-        __ptr[4] = (short)((uint)puVar6 >> 0x10);
-        *puVar6 = *param_3;
+        puVar5 = (undefined1 *)malloc(1);
+        __ptr[3] = (short)puVar5;
+        __ptr[4] = (short)((uint)puVar5 >> 0x10);
+        *puVar5 = *param_3;
         goto _L0;
       }
       if (0x403 < param_2) goto _L0;
@@ -132,11 +132,11 @@ _L0:
 _L0:
         *(undefined1 *)((int)__ptr + 3) = 1;
         *(undefined1 *)(__ptr + 1) = 0x29;
-        puVar6 = (undefined1 *)malloc(2);
-        __ptr[3] = (short)puVar6;
-        __ptr[4] = (short)((uint)puVar6 >> 0x10);
-        *puVar6 = *param_3;
-        puVar6[1] = param_3[1];
+        puVar5 = (undefined1 *)malloc(2);
+        __ptr[3] = (short)puVar5;
+        __ptr[4] = (short)((uint)puVar5 >> 0x10);
+        *puVar5 = *param_3;
+        puVar5[1] = param_3[1];
         goto _L0;
       }
       if (param_2 < 0x508) {
@@ -178,7 +178,7 @@ _L0:
           if (param_2 == 0x90e) goto _L0;
           if (param_2 < 0x90f) {
             param_2 = param_2 - 0x90c;
-            goto joined_r0x00014770;
+            goto joined_r0x0001479a;
           }
           if (param_2 != 0x90f) goto _L0;
         }
@@ -202,36 +202,36 @@ _L0:
 _L0:
         *(undefined1 *)((int)__ptr + 3) = 3;
         *(undefined1 *)(__ptr + 1) = 0x21;
-        puVar6 = (undefined1 *)malloc(2);
-        __ptr[3] = (short)puVar6;
-        __ptr[4] = (short)((uint)puVar6 >> 0x10);
-        *puVar6 = *param_3;
-        puVar6[1] = param_3[1];
+        puVar5 = (undefined1 *)malloc(2);
+        __ptr[3] = (short)puVar5;
+        __ptr[4] = (short)((uint)puVar5 >> 0x10);
+        *puVar5 = *param_3;
+        puVar5[1] = param_3[1];
         goto _L0;
       }
       if (param_2 == 0xa0b) {
 _L0:
         *(undefined1 *)((int)__ptr + 3) = 5;
         *(undefined1 *)(__ptr + 1) = 0x29;
-        puVar6 = (undefined1 *)malloc(2);
-        __ptr[3] = (short)puVar6;
-        __ptr[4] = (short)((uint)puVar6 >> 0x10);
-        *puVar6 = *param_3;
-        puVar6[1] = param_3[1];
+        puVar5 = (undefined1 *)malloc(2);
+        __ptr[3] = (short)puVar5;
+        __ptr[4] = (short)((uint)puVar5 >> 0x10);
+        *puVar5 = *param_3;
+        puVar5[1] = param_3[1];
         goto _L0;
       }
       if (param_2 < 0xa0c) {
         if (param_2 != 0xa08) {
           if (param_2 < 0xa08) goto _L0;
           param_2 = param_2 - 0xa09;
-          goto joined_r0x00014610;
+          goto joined_r0x000146ea;
         }
       }
       else {
         if (param_2 == 0xa0e) goto _L0;
         if (param_2 < 0xa0f) {
           param_2 = param_2 - 0xa0c;
-          goto joined_r0x00014770;
+          goto joined_r0x0001479a;
         }
         if (param_2 != 0xa0f) goto _L0;
       }
@@ -239,30 +239,30 @@ _L0:
     }
     *(undefined1 *)((int)__ptr + 3) = 1;
     *(undefined1 *)(__ptr + 1) = 0x28;
-    puVar6 = (undefined1 *)malloc(1);
-    __ptr[3] = (short)puVar6;
-    __ptr[4] = (short)((uint)puVar6 >> 0x10);
-    *puVar6 = *param_3;
+    puVar5 = (undefined1 *)malloc(1);
+    __ptr[3] = (short)puVar5;
+    __ptr[4] = (short)((uint)puVar5 >> 0x10);
+    *puVar5 = *param_3;
     goto _L0;
   }
   if (param_2 < 0x80b) {
     if (0x806 < param_2) {
       *(undefined1 *)((int)__ptr + 3) = 3;
       *(undefined1 *)(__ptr + 1) = 0x29;
-      puVar6 = (undefined1 *)malloc(2);
-      __ptr[3] = (short)puVar6;
-      __ptr[4] = (short)((uint)puVar6 >> 0x10);
-      *puVar6 = *param_3;
-      puVar6[1] = param_3[1];
+      puVar5 = (undefined1 *)malloc(2);
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
+      *puVar5 = *param_3;
+      puVar5[1] = param_3[1];
       goto _L0;
     }
     if (param_2 == 0x800) {
       *(undefined1 *)((int)__ptr + 3) = 3;
       *(undefined1 *)(__ptr + 1) = 0x19;
-      puVar6 = (undefined1 *)malloc(1);
-      __ptr[3] = (short)puVar6;
-      __ptr[4] = (short)((uint)puVar6 >> 0x10);
-      *puVar6 = *param_3;
+      puVar5 = (undefined1 *)malloc(1);
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
+      *puVar5 = *param_3;
       goto _L0;
     }
     if (0x800 < param_2) {
@@ -270,11 +270,11 @@ _L0:
       goto _L0;
     }
     param_2 = param_2 - 0x701;
-joined_r0x00014770:
+joined_r0x0001479a:
     if (1 < (param_2 & 0xffff)) {
 _L0:
-      uVar7 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar7,"ESP_ZIGBEE_ATTRIBUTE");
+      uVar6 = esp_log_timestamp();
+      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
       free(__ptr);
       return 0x102;
     }
@@ -285,11 +285,11 @@ _L0:
 _L0:
       *(undefined1 *)((int)__ptr + 3) = 1;
       *(undefined1 *)(__ptr + 1) = 0x21;
-      puVar6 = (undefined1 *)malloc(2);
-      __ptr[3] = (short)puVar6;
-      __ptr[4] = (short)((uint)puVar6 >> 0x10);
-      *puVar6 = *param_3;
-      puVar6[1] = param_3[1];
+      puVar5 = (undefined1 *)malloc(2);
+      __ptr[3] = (short)puVar5;
+      __ptr[4] = (short)((uint)puVar5 >> 0x10);
+      *puVar5 = *param_3;
+      puVar5[1] = param_3[1];
       goto _L0;
     }
     if (param_2 < 0x904) {
@@ -301,27 +301,27 @@ _L0:
   else if (param_2 != 0x908) {
     if (param_2 < 0x908) goto _L0;
     param_2 = param_2 - 0x909;
-joined_r0x00014610:
+joined_r0x000146ea:
     if (1 < (param_2 & 0xffff)) goto _L0;
     goto _L0;
   }
 _L0:
   *(undefined1 *)((int)__ptr + 3) = 5;
   *(undefined1 *)(__ptr + 1) = 0x21;
-  puVar6 = (undefined1 *)malloc(2);
-  __ptr[3] = (short)puVar6;
-  __ptr[4] = (short)((uint)puVar6 >> 0x10);
-  *puVar6 = *param_3;
-  puVar6[1] = param_3[1];
+  puVar5 = (undefined1 *)malloc(2);
+  __ptr[3] = (short)puVar5;
+  __ptr[4] = (short)((uint)puVar5 >> 0x10);
+  *puVar5 = *param_3;
+  puVar5[1] = param_3[1];
 _L0:
   __ptr[2] = 0xffff;
   __ptr[5] = 0xb04;
   *(undefined4 *)(__ptr + 6) = 0;
-  if (iVar5 == 0) {
+  if (iVar4 == 0) {
     *(undefined2 **)(param_1 + 0xc) = __ptr;
   }
   else {
-    *(undefined2 **)(iVar5 + 0xc) = __ptr;
+    *(undefined2 **)(iVar4 + 0xc) = __ptr;
   }
   return 0;
 }

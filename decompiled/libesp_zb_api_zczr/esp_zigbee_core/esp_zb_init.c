@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 37b2129eea9960f95d70bf2e6607337834e2750d
- * https://github.com/espressif/esp-zigbee-sdk/commit/37b2129eea9960f95d70bf2e6607337834e2750d
- * Upstream date: 2023-10-10 17:40:24 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.0(8d71c0ae)
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,16 +14,16 @@ void esp_zb_init(char *param_1)
 
 {
   char cVar1;
-  undefined4 uVar2;
-  int iVar3;
+  int iVar2;
+  undefined4 uVar3;
   undefined2 auStack_14 [6];
   
   zb_init();
   esp_zb_zcl_scenes_table_init();
   cVar1 = *param_1;
   if (cVar1 == '\x01') {
-    iVar3 = zb_production_configuration_check_presence();
-    if (iVar3 == 0) {
+    iVar2 = zb_production_configuration_check_presence();
+    if (iVar2 == 0) {
       zb_set_network_router_role(0x7fff800);
       zb_set_installcode_policy(param_1[4]);
     }
@@ -36,8 +36,8 @@ void esp_zb_init(char *param_1)
     zb_zr_config_set(param_1 + 6);
   }
   else if (cVar1 == '\x02') {
-    iVar3 = zb_production_configuration_check_presence();
-    if (iVar3 == 0) {
+    iVar2 = zb_production_configuration_check_presence();
+    if (iVar2 == 0) {
       zb_set_network_ed_role(0x7fff800);
       zb_set_installcode_policy(param_1[4]);
     }
@@ -50,8 +50,8 @@ void esp_zb_init(char *param_1)
     zb_zed_config_set(param_1 + 6);
   }
   else if (cVar1 == '\0') {
-    iVar3 = zb_production_configuration_check_presence();
-    if (iVar3 == 0) {
+    iVar2 = zb_production_configuration_check_presence();
+    if (iVar2 == 0) {
       zb_set_network_coordinator_role(0x7fff800);
       zb_set_installcode_policy(param_1[4]);
     }
@@ -64,8 +64,8 @@ void esp_zb_init(char *param_1)
     zb_zc_config_set(param_1 + 6);
   }
   else {
-    uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC68,uVar2,"ESP_ZIGBEE_CORE");
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar3,"ESP_ZIGBEE_CORE");
   }
   return;
 }

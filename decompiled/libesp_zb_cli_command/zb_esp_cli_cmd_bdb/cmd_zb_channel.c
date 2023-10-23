@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
+ * Upstream date: 2023-10-23 12:06:56 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_channel
  *
  * (C) Espressif, Apache License 2.0.
@@ -63,7 +63,7 @@ void cmd_zb_channel(char *param_1)
       if (uVar1 - 0xb < 0x10) {
         uVar2 = 1 << (uVar1 & 0x1f);
       }
-      else if (((uVar1 & 0x7fff800) == 0) ||
+      else if (((uVar1 << 5) >> 0x10 == 0) ||
               (uVar3 = uVar1 & 0xf80007ff, uVar2 = uVar1, uVar1 = uVar3, uVar3 != 0)) {
         uVar6 = esp_log_timestamp();
         esp_log_write(1,0x10000,&_LC23,uVar6,0x10000);
