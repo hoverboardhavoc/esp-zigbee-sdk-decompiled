@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_read_report_config_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ int zcl_cmd_read_report_config_resp_handler(undefined4 param_1)
   uint uVar4;
   uint uVar5;
   int iVar6;
-  uint auStack_48 [7];
+  uint auStack_4c [8];
   byte bStack_2c;
   undefined2 uStack_2a;
   undefined2 uStack_28;
@@ -27,7 +27,7 @@ int zcl_cmd_read_report_config_resp_handler(undefined4 param_1)
   undefined2 uStack_24;
   byte bStack_22;
   
-  iVar2 = zb_zcl_basic_message_create(auStack_48);
+  iVar2 = zb_zcl_basic_message_create(auStack_4c);
   if (iVar2 == 0) {
     do {
       uVar5 = zb_buf_len_func(param_1);
@@ -78,7 +78,7 @@ _L0:
       else {
         zb_buf_cut_left_func(param_1,uVar5);
         if (pbVar1 != (byte *)0x0) {
-          auStack_48[0] = (uint)*pbVar1;
+          auStack_4c[0] = (uint)*pbVar1;
           if (*pbVar1 == 0) {
             uStack_2a = 0xffff;
           }
@@ -95,7 +95,7 @@ _L0:
           else {
             uStack_28 = *(undefined2 *)(pbVar1 + 4);
           }
-          iVar2 = (*zb_core_action_cb)(0x1003,auStack_48,zb_core_action_cb);
+          iVar2 = (*zb_core_action_cb)(0x1003,auStack_4c,zb_core_action_cb);
         }
       }
     } while (pbVar1 != (byte *)0x0);
@@ -103,7 +103,7 @@ _L0:
   else {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC28,uVar3,"ESP_ZIGBEE_CORE",
-                  "zcl_cmd_read_report_config_resp_handler",0x4e1);
+                  "zcl_cmd_read_report_config_resp_handler",0x6bb);
   }
   return iVar2;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_get_scene_membership_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,26 +16,26 @@ int zcl_scenes_get_scene_membership_res(undefined4 param_1)
   int iVar1;
   uint uVar2;
   undefined4 uVar3;
-  uint auStack_38 [7];
+  uint auStack_3c [8];
   byte bStack_1c;
   undefined2 uStack_1a;
   byte bStack_18;
   byte *pbStack_14;
   
-  iVar1 = zb_zcl_basic_message_create(auStack_38);
+  iVar1 = zb_zcl_basic_message_create(auStack_3c);
   if (iVar1 == 0) {
     uVar2 = zb_buf_len_func(param_1);
     if (uVar2 < 6) {
       pbStack_14 = (byte *)0x0;
-      auStack_38[0] = 1;
+      auStack_3c[0] = 1;
     }
     else {
       pbStack_14 = (byte *)zb_buf_begin_func(param_1);
       if (pbStack_14 == (byte *)0x0) {
-        auStack_38[0] = 1;
+        auStack_3c[0] = 1;
       }
       else {
-        auStack_38[0] = (uint)*pbStack_14;
+        auStack_3c[0] = (uint)*pbStack_14;
       }
     }
     if (pbStack_14 == (byte *)0x0) {
@@ -50,12 +50,12 @@ int zcl_scenes_get_scene_membership_res(undefined4 param_1)
       bStack_18 = pbStack_14[4];
       pbStack_14 = pbStack_14 + 5;
     }
-    iVar1 = (*zb_core_action_cb)(0x1022,auStack_38,zb_core_action_cb);
+    iVar1 = (*zb_core_action_cb)(0x1022,auStack_3c,zb_core_action_cb);
   }
   else {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar3,"ESP_ZIGBEE_CORE",
-                  "zcl_scenes_get_scene_membership_res",0x61f);
+                  "zcl_scenes_get_scene_membership_res",0x7ee);
   }
   return iVar1;
 }

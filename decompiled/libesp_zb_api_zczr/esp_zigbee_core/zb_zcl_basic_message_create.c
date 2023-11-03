@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_basic_message_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,10 +26,15 @@ undefined4 zb_zcl_basic_message_create(undefined4 *param_1)
   
   puVar9 = (undefined1 *)zb_buf_get_tail_func(0x1b);
   if (puVar9 == (undefined1 *)0x0) {
+    *param_1 = 1;
     uVar10 = 0xffffffff;
   }
   else {
     *param_1 = 0;
+    *(undefined1 *)(param_1 + 1) = puVar9[0xd];
+    *(undefined2 *)((int)param_1 + 6) = *(undefined2 *)(puVar9 + 0x19);
+    *(undefined1 *)(param_1 + 2) = puVar9[0x15];
+    *(undefined1 *)((int)param_1 + 9) = puVar9[0xe];
     uVar1 = puVar9[1];
     uVar2 = puVar9[2];
     uVar3 = puVar9[3];
@@ -38,23 +43,23 @@ undefined4 zb_zcl_basic_message_create(undefined4 *param_1)
     uVar6 = puVar9[6];
     uVar7 = puVar9[7];
     uVar8 = puVar9[8];
-    *(undefined1 *)(param_1 + 1) = *puVar9;
-    *(undefined1 *)((int)param_1 + 5) = uVar1;
-    *(undefined1 *)((int)param_1 + 6) = uVar2;
-    *(undefined1 *)((int)param_1 + 7) = uVar3;
-    *(undefined1 *)(param_1 + 2) = uVar4;
-    *(undefined1 *)((int)param_1 + 9) = uVar5;
-    *(undefined1 *)((int)param_1 + 10) = uVar6;
-    *(undefined1 *)((int)param_1 + 0xb) = uVar7;
-    *(undefined1 *)(param_1 + 3) = uVar8;
-    *(undefined2 *)((int)param_1 + 0xe) = *(undefined2 *)(puVar9 + 9);
-    *(undefined1 *)(param_1 + 4) = puVar9[0xb];
-    *(undefined1 *)((int)param_1 + 0x11) = puVar9[0xc];
-    *(undefined2 *)((int)param_1 + 0x12) = *(undefined2 *)(puVar9 + 0xf);
-    *(undefined2 *)(param_1 + 5) = *(undefined2 *)(puVar9 + 0x11);
-    *(undefined1 *)((int)param_1 + 0x17) = puVar9[0x14];
-    *(undefined1 *)(param_1 + 6) = puVar9[0x16];
-    *(undefined1 *)((int)param_1 + 0x16) = puVar9[0x13];
+    *(undefined1 *)((int)param_1 + 10) = *puVar9;
+    *(undefined1 *)((int)param_1 + 0xb) = uVar1;
+    *(undefined1 *)(param_1 + 3) = uVar2;
+    *(undefined1 *)((int)param_1 + 0xd) = uVar3;
+    *(undefined1 *)((int)param_1 + 0xe) = uVar4;
+    *(undefined1 *)((int)param_1 + 0xf) = uVar5;
+    *(undefined1 *)(param_1 + 4) = uVar6;
+    *(undefined1 *)((int)param_1 + 0x11) = uVar7;
+    *(undefined1 *)((int)param_1 + 0x12) = uVar8;
+    *(undefined2 *)(param_1 + 5) = *(undefined2 *)(puVar9 + 9);
+    *(undefined1 *)((int)param_1 + 0x16) = puVar9[0xb];
+    *(undefined1 *)((int)param_1 + 0x17) = puVar9[0xc];
+    *(undefined2 *)(param_1 + 6) = *(undefined2 *)(puVar9 + 0xf);
+    *(undefined2 *)((int)param_1 + 0x1a) = *(undefined2 *)(puVar9 + 0x11);
+    *(undefined1 *)((int)param_1 + 0x1d) = puVar9[0x14];
+    *(undefined1 *)((int)param_1 + 0x1e) = puVar9[0x16];
+    *(undefined1 *)(param_1 + 7) = puVar9[0x13];
     uVar10 = 0;
   }
   return uVar10;

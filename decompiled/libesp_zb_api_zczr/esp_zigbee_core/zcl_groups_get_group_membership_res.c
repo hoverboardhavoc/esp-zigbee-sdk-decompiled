@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_groups_get_group_membership_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,13 +18,13 @@ int zcl_groups_get_group_membership_res(undefined4 param_1)
   undefined1 *puVar3;
   undefined4 uVar4;
   byte bVar5;
-  uint auStack_44 [7];
+  uint auStack_48 [8];
   undefined1 uStack_28;
   undefined1 uStack_27;
   void *pvStack_24;
   
   zb_buf_begin_func();
-  iVar1 = zb_zcl_basic_message_create(param_1,auStack_44);
+  iVar1 = zb_zcl_basic_message_create(param_1,auStack_48);
   if (iVar1 == 0) {
     uVar2 = zb_buf_len_func(param_1);
     if (uVar2 < 2) {
@@ -44,7 +44,7 @@ int zcl_groups_get_group_membership_res(undefined4 param_1)
         }
       }
     }
-    auStack_44[0] = (uint)(puVar3 == (undefined1 *)0x0);
+    auStack_48[0] = (uint)(puVar3 == (undefined1 *)0x0);
     if (puVar3 == (undefined1 *)0x0) {
       uVar2 = 0;
     }
@@ -63,13 +63,13 @@ int zcl_groups_get_group_membership_res(undefined4 param_1)
         iVar1 = iVar1 + 1) {
       *(undefined2 *)((int)pvStack_24 + iVar1 * 2) = *(undefined2 *)(puVar3 + iVar1 * 2 + 2);
     }
-    iVar1 = (*zb_core_action_cb)(0x1012,auStack_44,zb_core_action_cb);
+    iVar1 = (*zb_core_action_cb)(0x1012,auStack_48,zb_core_action_cb);
     free(pvStack_24);
   }
   else {
     uVar4 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE",
-                  "zcl_groups_get_group_membership_res",0x57e);
+                  "zcl_groups_get_group_membership_res",0x74d);
   }
   return iVar1;
 }

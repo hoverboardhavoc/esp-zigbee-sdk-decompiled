@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_data_size_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ short zb_nvram_app1_data_size_cb(void)
   for (iVar1 = 0; iVar1 < 10; iVar1 = iVar1 + 1) {
     if (((short *)(&esp_zb_zcl_scenes_table + iVar1 * 0xc) != (short *)0x0) &&
        (*(short *)(&esp_zb_zcl_scenes_table + iVar1 * 0xc) != -1)) {
-      sVar2 = (ushort)(byte)(&DAT_00015ad1)[iVar1 * 0xc] + sVar2 + 6;
+      sVar2 = (ushort)(byte)(&DAT_00016cfd)[iVar1 * 0xc] + sVar2 + 6;
     }
   }
   return sVar2;

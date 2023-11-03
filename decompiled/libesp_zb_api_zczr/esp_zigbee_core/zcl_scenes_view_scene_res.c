@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_view_scene_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ int zcl_scenes_view_scene_res(undefined4 param_1)
   undefined2 *puVar8;
   void *__dest;
   undefined2 *puVar9;
-  uint auStack_48 [7];
+  uint auStack_4c [8];
   undefined2 uStack_2c;
   byte bStack_2a;
   undefined2 uStack_28;
@@ -33,8 +33,8 @@ int zcl_scenes_view_scene_res(undefined4 param_1)
   if (uVar3 < 4) {
 _L0:
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",0x5ee
-                 );
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC20,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",
+                  0x7bd);
     iVar5 = 0;
   }
   else {
@@ -47,9 +47,9 @@ _L0:
       zb_buf_cut_left_func(param_1,4);
       if (pbVar4 == (byte *)0x0) goto _L0;
     }
-    iVar5 = zb_zcl_basic_message_create(param_1,auStack_48);
+    iVar5 = zb_zcl_basic_message_create(param_1,auStack_4c);
     if (iVar5 == 0) {
-      auStack_48[0] = (uint)*pbVar4;
+      auStack_4c[0] = (uint)*pbVar4;
       uStack_2c = *(undefined2 *)(pbVar4 + 1);
       bStack_2a = pbVar4[3];
       uStack_28 = *(undefined2 *)(pbVar4 + 4);
@@ -93,7 +93,7 @@ _L0:
         puStack_24 = puVar2;
         puVar9 = puVar8;
       } while (puVar7 != (undefined2 *)0x0);
-      iVar5 = (*zb_core_action_cb)(0x1021,auStack_48,zb_core_action_cb);
+      iVar5 = (*zb_core_action_cb)(0x1021,auStack_4c,zb_core_action_cb);
       puVar9 = puStack_24;
       while (puVar9 != (undefined2 *)0x0) {
         puVar8 = *(undefined2 **)(puVar9 + 4);
@@ -104,7 +104,7 @@ _L0:
     else {
       uVar6 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC21,uVar6,"ESP_ZIGBEE_CORE","zcl_scenes_view_scene_res",
-                    0x5f0);
+                    0x7bf);
     }
   }
   return iVar5;

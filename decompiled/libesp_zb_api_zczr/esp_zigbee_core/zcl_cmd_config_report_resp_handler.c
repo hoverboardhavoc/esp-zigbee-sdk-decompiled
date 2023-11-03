@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
+ * Upstream date: 2023-11-03 16:33:23 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_config_report_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,63 +13,88 @@
 int zcl_cmd_config_report_resp_handler(undefined4 param_1)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  undefined4 uVar3;
-  uint uVar4;
-  int iVar5;
-  uint uVar6;
-  uint local_40 [7];
-  undefined2 uStack_24;
+  uint *puVar1;
+  byte *pbVar2;
+  int iVar3;
+  undefined4 uVar4;
+  uint uVar5;
+  uint *puVar6;
+  uint *puVar7;
+  undefined2 uVar8;
+  uint uVar9;
+  undefined1 auStack_44 [32];
+  uint *puStack_24;
   
-  iVar2 = zb_zcl_basic_message_create(local_40);
-  if (iVar2 == 0) {
+  puStack_24 = (uint *)0x0;
+  iVar3 = zb_zcl_basic_message_create(auStack_44);
+  if (iVar3 == 0) {
+    puVar7 = (uint *)0x0;
     do {
-      iVar5 = zb_buf_len_func(param_1);
-      if (iVar5 == 0) {
-        pbVar1 = (byte *)0x0;
+      iVar3 = zb_buf_len_func(param_1);
+      puVar6 = puVar7;
+      if (iVar3 == 0) {
+        pbVar2 = (byte *)0x0;
 _L0:
-        if (pbVar1 != (byte *)0x0) {
-          local_40[0] = (uint)*pbVar1;
-          if (*pbVar1 == 0) {
-            uStack_24 = 0xffff;
+        puVar1 = puStack_24;
+        if (pbVar2 != (byte *)0x0) {
+          puVar6 = (uint *)malloc(0xc);
+          *puVar6 = (uint)*pbVar2;
+          if (*pbVar2 == 0) {
+            uVar8 = 0xffff;
           }
           else {
-            uStack_24 = *(undefined2 *)(pbVar1 + 2);
+            uVar8 = *(undefined2 *)(pbVar2 + 2);
           }
-          iVar2 = (*zb_core_action_cb)(0x1002,local_40,zb_core_action_cb);
+          *(undefined2 *)((int)puVar6 + 6) = uVar8;
+          puVar6[2] = 0;
+          puVar1 = puVar6;
+          if (puVar7 != (uint *)0x0) {
+            puVar7[2] = (uint)puVar6;
+            puVar1 = puStack_24;
+          }
         }
       }
       else {
-        pbVar1 = (byte *)zb_buf_begin_func(param_1);
-        if (pbVar1 != (byte *)0x0) {
-          iVar5 = zb_zcl_zcl8_statuses_conversion(*pbVar1);
-          *pbVar1 = (byte)iVar5;
-          if (iVar5 == 0) {
-            uVar6 = 1;
+        pbVar2 = (byte *)zb_buf_begin_func(param_1);
+        puVar1 = puStack_24;
+        if (pbVar2 != (byte *)0x0) {
+          iVar3 = zb_zcl_zcl8_statuses_conversion(*pbVar2);
+          *pbVar2 = (byte)iVar3;
+          if (iVar3 == 0) {
+            uVar9 = 1;
           }
-          else if (iVar5 == 0x80) {
-            uVar6 = 1;
+          else if (iVar3 == 0x80) {
+            uVar9 = 1;
           }
           else {
             zb_buf_len_func(param_1);
-            uVar6 = 4;
+            uVar9 = 4;
           }
-          uVar4 = zb_buf_len_func(param_1);
-          if (uVar6 <= uVar4) {
-            zb_buf_cut_left_func(param_1,uVar6);
+          uVar5 = zb_buf_len_func(param_1);
+          if (uVar9 <= uVar5) {
+            zb_buf_cut_left_func(param_1,uVar9);
             goto _L0;
           }
-          pbVar1 = (byte *)0x0;
+          pbVar2 = (byte *)0x0;
+          puVar1 = puStack_24;
         }
       }
-    } while (pbVar1 != (byte *)0x0);
+      puStack_24 = puVar1;
+      puVar7 = puVar6;
+    } while (pbVar2 != (byte *)0x0);
+    iVar3 = (*zb_core_action_cb)(0x1002,auStack_44,zb_core_action_cb);
+    puVar7 = puStack_24;
+    while (puVar7 != (uint *)0x0) {
+      puVar6 = (uint *)puVar7[2];
+      free(puVar7);
+      puVar7 = puVar6;
+    }
   }
   else {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar3,"ESP_ZIGBEE_CORE",
-                  "zcl_cmd_config_report_resp_handler",0x4ce);
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE",
+                  "zcl_cmd_config_report_resp_handler",0x6a2);
   }
-  return iVar2;
+  return iVar3;
 }
 
