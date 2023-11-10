@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * Upstream date: 2023-11-03 16:33:23 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
+ * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * Upstream date: 2023-11-10 18:10:39 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_groups_get_view_group_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,7 +49,7 @@ int zcl_groups_get_view_group_res(undefined4 param_1)
   else {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar3,"ESP_ZIGBEE_CORE","zcl_groups_get_view_group_res",
-                  0x73e);
+                  0x789);
   }
   return iVar1;
 }

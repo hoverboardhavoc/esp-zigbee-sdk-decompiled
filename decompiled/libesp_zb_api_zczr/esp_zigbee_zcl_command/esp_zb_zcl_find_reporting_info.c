@@ -3,23 +3,19 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
  * Upstream date: 2023-11-10 18:10:39 +0800
  * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
- * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_table_init
+ * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_find_reporting_info
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zcl_scenes_table_init(void)
+void esp_zb_zcl_find_reporting_info(undefined1 *param_1)
 
 {
-  uint uVar1;
-  
-  zb_nvram_register_app1_read_cb(zb_nvram_app1_read_cb);
-  zb_nvram_register_app1_write_cb(zb_nvram_app1_write_cb,0x10000);
-  for (uVar1 = 0; uVar1 < 10; uVar1 = uVar1 + 1 & 0xff) {
-    (&esp_zb_zcl_scenes_table)[uVar1 * 6] = 0xffff;
-  }
+  zb_zcl_find_reporting_info_manuf
+            (*param_1,*(undefined2 *)(param_1 + 4),param_1[8],*(undefined2 *)(param_1 + 0xe),
+             *(undefined2 *)(param_1 + 0xc));
   return;
 }
 

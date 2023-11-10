@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * Upstream date: 2023-11-03 16:33:23 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
+ * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * Upstream date: 2023-11-10 18:10:39 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_custom_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   if (iVar4 == 0) {
     if ((uStack_24 < 0xfc00) || (zb_core_action_cb == (code *)0x0)) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC31,uVar6,"ESP_ZIGBEE_CORE",uStack_20,uStack_25,uStack_24
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC28,uVar6,"ESP_ZIGBEE_CORE",uStack_20,uStack_25,uStack_24
                    );
       uVar6 = 0;
     }
@@ -76,8 +76,8 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   }
   else {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC30,uVar6,"ESP_ZIGBEE_CORE","zb_zcl_custom_cluster_handler"
-                  ,0x885);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC27,uVar6,"ESP_ZIGBEE_CORE","zb_zcl_custom_cluster_handler"
+                  ,0x8d0);
     uVar6 = 1;
   }
   return uVar6;

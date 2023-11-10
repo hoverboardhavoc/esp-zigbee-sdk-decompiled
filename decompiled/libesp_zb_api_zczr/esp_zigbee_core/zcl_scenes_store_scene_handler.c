@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * Upstream date: 2023-11-03 16:33:23 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
+ * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
+ * Upstream date: 2023-11-10 18:10:39 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_store_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,17 +53,16 @@ undefined4 zcl_scenes_store_scene_handler(undefined4 param_1)
       *puVar3 = 0x89;
       local_30 = 1;
       uVar6 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC48,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC57,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
       uVar6 = 0;
     }
     else {
-      if (*(short *)(&esp_zb_zcl_scenes_table + iVar4 * 0xc) == -1) {
-        iVar4 = iVar4 * 0xc;
-        *(undefined2 *)(&esp_zb_zcl_scenes_table + iVar4) = uVar1;
-        (&DAT_00016cfc)[iVar4] = *(undefined1 *)(puVar2 + 1);
-        *(undefined2 *)(&DAT_00016cfa + iVar4) = 0;
+      if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] == -1) {
+        (&esp_zb_zcl_scenes_table)[iVar4 * 6] = uVar1;
+        (&DAT_00016f10)[iVar4 * 0xc] = *(undefined1 *)(puVar2 + 1);
+        *(undefined2 *)(&DAT_00016f0e + iVar4 * 0xc) = 0;
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC47,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC56,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
                       ,*puVar2);
         uVar6 = 0;
       }
@@ -81,7 +80,7 @@ undefined4 zcl_scenes_store_scene_handler(undefined4 param_1)
   }
   if (zb_core_action_cb != (code *)0x0) {
     (*zb_core_action_cb)(1,&local_30);
-    uVar6 = error_to_zb_ret();
+    uVar6 = esp_err_to_zb_ret();
   }
   return uVar6;
 }
