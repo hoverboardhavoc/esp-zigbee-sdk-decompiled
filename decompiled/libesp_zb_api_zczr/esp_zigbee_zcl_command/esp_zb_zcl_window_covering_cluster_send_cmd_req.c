@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * Upstream date: 2023-11-10 18:10:39 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
+ * Last changed at upstream commit 6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
+ * Upstream date: 2023-11-21 18:28:11 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.4(be3a8a97)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_window_covering_cluster_send_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zcl_window_covering_cluster_send_cmd_req(int param_1)
   if (param_1 == 0) {
     uVar2 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC4,uVar2,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_window_covering_cluster_send_cmd_req",0x3e4);
+                  "esp_zb_zcl_window_covering_cluster_send_cmd_req",0x3f3);
   }
   else {
     uVar2 = zb_buf_get_out_func();

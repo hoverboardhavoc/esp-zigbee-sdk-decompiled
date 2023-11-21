@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
+ * https://github.com/espressif/esp-zigbee-sdk/commit/6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
+ * Upstream date: 2023-11-21 18:28:11 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.4(be3a8a97)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_bdb_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,7 +54,7 @@ void zb_cli_register_bdb_cmd(void)
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x29c,
+            ("/home/xiaqilin/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x29c,
              "zb_cli_register_bdb_cmd","esp_console_cmd_register(&bdb_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();
