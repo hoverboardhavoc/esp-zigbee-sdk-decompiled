@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
+ * Upstream date: 2023-11-24 19:53:05 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,91 +13,109 @@
 void zdo_binding_table_resp(int param_1)
 
 {
-  byte bVar1;
-  int iVar2;
-  char *pcVar3;
-  char *pcVar4;
-  code *pcVar5;
-  undefined1 uStack_3c;
-  char cStack_3b;
-  char cStack_3a;
-  char cStack_39;
-  char cStack_38;
-  char cStack_37;
-  char cStack_36;
-  char cStack_35;
-  char cStack_34;
-  char cStack_33;
-  char cStack_32;
-  char cStack_31;
-  char cStack_30;
-  undefined2 uStack_2e;
-  char cStack_2c;
-  char cStack_2a;
-  char cStack_29;
-  char cStack_28;
+  char cVar1;
+  char cVar2;
+  char cVar3;
+  char cVar4;
+  char cVar5;
+  char cVar6;
+  char cVar7;
+  char *pcVar8;
+  int iVar9;
+  char *pcVar10;
+  char *pcVar11;
+  char *pcVar12;
+  uint uVar13;
+  code *pcVar14;
+  undefined1 uStack_28;
   char cStack_27;
   char cStack_26;
-  char cStack_25;
-  char cStack_24;
-  char cStack_23;
-  char cStack_22;
+  byte bStack_25;
+  char *pcStack_24;
   
-  pcVar3 = (char *)zb_buf_begin_func();
-  pcVar4 = (char *)esp_zb_zdo_callback_find(*pcVar3);
-  if (pcVar3[1] == '\0') {
+  pcVar10 = (char *)zb_buf_begin_func();
+  pcVar11 = (char *)esp_zb_zdo_callback_find(*pcVar10);
+  if (pcVar10[1] == '\0') {
     zb_schedule_alarm_cancel(device_binding_table_req_timeout,0xff,0);
   }
-  if (pcVar4 == (char *)0x0) {
-    pcVar5 = (code *)0x0;
+  if (pcVar11 == (char *)0x0) {
+    pcVar14 = (code *)0x0;
   }
-  else if (*pcVar4 == *pcVar3) {
-    if (pcVar4[1] == '3') {
-      pcVar5 = *(code **)(pcVar4 + 4);
+  else if (*pcVar11 == *pcVar10) {
+    if (pcVar11[1] == '3') {
+      pcVar14 = *(code **)(pcVar11 + 4);
     }
     else {
-      pcVar5 = (code *)0x0;
+      pcVar14 = (code *)0x0;
     }
   }
   else {
-    pcVar5 = (code *)0x0;
+    pcVar14 = (code *)0x0;
   }
-  if ((pcVar3[1] == '\0') && (pcVar5 != (code *)0x0)) {
-    bVar1 = pcVar3[4];
-    pcVar4 = pcVar3 + 5;
-    cStack_3a = counter_0;
-    cStack_3b = pcVar3[2];
-    cStack_39 = pcVar3[3];
-    uStack_3c = 0;
-    for (iVar2 = 0; iVar2 < (int)(uint)bVar1; iVar2 = iVar2 + 1) {
-      cStack_3a = cStack_3a + '\x01';
-      uStack_2e = *(undefined2 *)(pcVar4 + 9);
-      cStack_2c = pcVar4[0xb];
-      cStack_30 = pcVar4[8];
-      cStack_22 = pcVar4[0x14];
-      cStack_38 = *pcVar4;
-      cStack_37 = pcVar4[1];
-      cStack_36 = pcVar4[2];
-      cStack_35 = pcVar4[3];
-      cStack_34 = pcVar4[4];
-      cStack_33 = pcVar4[5];
-      cStack_32 = pcVar4[6];
-      cStack_31 = pcVar4[7];
-      cStack_2a = pcVar4[0xc];
-      cStack_29 = pcVar4[0xd];
-      cStack_28 = pcVar4[0xe];
-      cStack_27 = pcVar4[0xf];
-      cStack_26 = pcVar4[0x10];
-      cStack_25 = pcVar4[0x11];
-      cStack_24 = pcVar4[0x12];
-      cStack_23 = pcVar4[0x13];
-      (*pcVar5)(&uStack_3c,0);
-      pcVar4 = pcVar4 + 0x15;
+  if ((pcVar10[1] == '\0') && (pcVar14 != (code *)0x0)) {
+    bStack_25 = pcVar10[4];
+    uVar13 = (uint)bStack_25;
+    pcVar11 = pcVar10 + 5;
+    cStack_26 = pcVar10[2];
+    cStack_27 = pcVar10[3];
+    uStack_28 = 0;
+    pcVar10 = (char *)0x0;
+    for (iVar9 = 0; iVar9 < (int)uVar13; iVar9 = iVar9 + 1) {
+      pcVar12 = (char *)malloc(0x1c);
+      *(undefined2 *)(pcVar12 + 10) = *(undefined2 *)(pcVar11 + 9);
+      pcVar12[0xc] = pcVar11[0xb];
+      pcVar12[8] = pcVar11[8];
+      pcVar12[0x16] = pcVar11[0x14];
+      cVar1 = pcVar11[1];
+      cVar2 = pcVar11[2];
+      cVar3 = pcVar11[3];
+      cVar4 = pcVar11[4];
+      cVar5 = pcVar11[5];
+      cVar6 = pcVar11[6];
+      cVar7 = pcVar11[7];
+      *pcVar12 = *pcVar11;
+      pcVar12[1] = cVar1;
+      pcVar12[2] = cVar2;
+      pcVar12[3] = cVar3;
+      pcVar12[4] = cVar4;
+      pcVar12[5] = cVar5;
+      pcVar12[6] = cVar6;
+      pcVar12[7] = cVar7;
+      cVar1 = pcVar11[0xd];
+      cVar2 = pcVar11[0xe];
+      cVar3 = pcVar11[0xf];
+      cVar4 = pcVar11[0x10];
+      cVar5 = pcVar11[0x11];
+      cVar6 = pcVar11[0x12];
+      cVar7 = pcVar11[0x13];
+      pcVar12[0xe] = pcVar11[0xc];
+      pcVar12[0xf] = cVar1;
+      pcVar12[0x10] = cVar2;
+      pcVar12[0x11] = cVar3;
+      pcVar12[0x12] = cVar4;
+      pcVar12[0x13] = cVar5;
+      pcVar12[0x14] = cVar6;
+      pcVar12[0x15] = cVar7;
+      pcVar12[0x18] = '\0';
+      pcVar12[0x19] = '\0';
+      pcVar12[0x1a] = '\0';
+      pcVar12[0x1b] = '\0';
+      pcVar8 = pcVar12;
+      if (pcVar10 != (char *)0x0) {
+        *(char **)(pcVar10 + 0x18) = pcVar12;
+        pcVar8 = pcStack_24;
+      }
+      pcStack_24 = pcVar8;
+      pcVar11 = pcVar11 + 0x15;
+      pcVar10 = pcVar12;
     }
-    counter_0 = bVar1 + counter_0;
-  }
-  else {
-    counter_0 = '\0';
+    (*pcVar14)(&uStack_28,0);
+    pcVar10 = pcStack_24;
+    while (pcVar10 != (char *)0x0) {
+      pcVar11 = *(char **)(pcVar10 + 0x18);
+      free(pcVar10);
+      pcVar10 = pcVar11;
+    }
   }
   if (param_1 != 0) {
     zb_buf_free_func(param_1);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
- * https://github.com/espressif/esp-zigbee-sdk/commit/6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
- * Upstream date: 2023-11-21 18:28:11 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.4(be3a8a97)
+ * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
+ * Upstream date: 2023-11-24 19:53:05 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_get_scene_membership_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ undefined4 zcl_scenes_get_scene_membership_handler(undefined4 param_1)
   if (iVar3 == 0) {
     memcpy(&scene_resp_info,__src,0x1b);
     scene_resp_info = *(undefined1 *)puVar2;
-    DAT_00016ef5 = *(undefined1 *)((int)puVar2 + 1);
+    DAT_00016ef9 = *(undefined1 *)((int)puVar2 + 1);
     uVar4 = esp_log_timestamp();
     esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE");
     zb_buf_get_out_delayed_func(send_get_scene_membership_resp);
