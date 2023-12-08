@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
+ * Upstream date: 2023-12-08 17:14:31 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,94 +11,44 @@
  */
 
 int esp_zb_custom_cluster_add_custom_attr
-              (int param_1,undefined4 param_2,uint param_3,undefined1 param_4,char *param_5)
+              (int param_1,undefined4 param_2,undefined4 param_3,undefined1 param_4,
+              undefined4 param_5)
 
 {
-  undefined2 *__ptr;
   int iVar1;
-  char *pcVar2;
-  undefined2 *puVar3;
-  undefined4 *puVar4;
-  size_t sVar5;
-  undefined4 uVar6;
+  undefined2 *__ptr;
+  int iVar2;
+  size_t __size;
+  void *pvVar3;
   int aiStack_34 [4];
   
   __ptr = (undefined2 *)malloc(0x10);
   aiStack_34[0] = 0;
-  iVar1 = esp_zb_attr_list_get_tail(param_1,0xfc00,param_2,aiStack_34);
-  if (aiStack_34[0] != 0) {
+  iVar2 = esp_zb_attr_list_get_tail(param_1,0xfc00,param_2,aiStack_34);
+  iVar1 = aiStack_34[0];
+  if (aiStack_34[0] == 0) {
+    *__ptr = (short)param_2;
+    *(char *)(__ptr + 1) = (char)param_3;
+    *(undefined1 *)((int)__ptr + 3) = param_4;
+    __ptr[2] = 0xffff;
+    __size = zb_zcl_get_attribute_size(param_3,param_5);
+    pvVar3 = malloc(__size);
+    __ptr[3] = (short)pvVar3;
+    __ptr[4] = (short)((uint)pvVar3 >> 0x10);
+    esp_zb_zcl_put_attribute_value(param_3,param_5,__size);
+    __ptr[5] = *(undefined2 *)(iVar2 + 10);
+    *(undefined4 *)(__ptr + 6) = 0;
+    aiStack_34[0] = iVar1;
+    if (iVar2 == 0) {
+      *(undefined2 **)(param_1 + 0xc) = __ptr;
+    }
+    else {
+      *(undefined2 **)(iVar2 + 0xc) = __ptr;
+    }
+  }
+  else {
     free(__ptr);
-    return aiStack_34[0];
   }
-  *__ptr = (short)param_2;
-  *(char *)(__ptr + 1) = (char)param_3;
-  *(undefined1 *)((int)__ptr + 3) = param_4;
-  __ptr[2] = 0xffff;
-  if (param_3 == 0x28) {
-    pcVar2 = (char *)malloc(1);
-    *pcVar2 = *param_5;
-    __ptr[3] = (short)pcVar2;
-    __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-    goto _L0;
-  }
-  if (param_3 < 0x29) {
-    if (param_3 == 0x21) {
-      puVar3 = (undefined2 *)malloc(2);
-      *puVar3 = *(undefined2 *)param_5;
-      __ptr[3] = (short)puVar3;
-      __ptr[4] = (short)((uint)puVar3 >> 0x10);
-      goto _L0;
-    }
-    if (param_3 == 0x23) {
-      puVar4 = (undefined4 *)malloc(4);
-      *puVar4 = *(undefined4 *)param_5;
-      __ptr[3] = (short)puVar4;
-      __ptr[4] = (short)((uint)puVar4 >> 0x10);
-      goto _L0;
-    }
-    if (param_3 == 0x20) {
-      pcVar2 = (char *)malloc(1);
-      *pcVar2 = *param_5;
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-      goto _L0;
-    }
-  }
-  else {
-    if (param_3 == 0x2b) {
-      puVar4 = (undefined4 *)malloc(4);
-      *puVar4 = *(undefined4 *)param_5;
-      __ptr[3] = (short)puVar4;
-      __ptr[4] = (short)((uint)puVar4 >> 0x10);
-      goto _L0;
-    }
-    if (param_3 == 0x42) {
-      sVar5 = strlen(param_5);
-      pcVar2 = (char *)malloc(sVar5 + 1);
-      strcpy(pcVar2,param_5);
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-      goto _L0;
-    }
-    if (param_3 == 0x29) {
-      puVar3 = (undefined2 *)malloc(2);
-      *puVar3 = *(undefined2 *)param_5;
-      __ptr[3] = (short)puVar3;
-      __ptr[4] = (short)((uint)puVar3 >> 0x10);
-      goto _L0;
-    }
-  }
-  uVar6 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC10,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
-_L0:
-  __ptr[5] = *(undefined2 *)(iVar1 + 10);
-  *(undefined4 *)(__ptr + 6) = 0;
-  if (iVar1 == 0) {
-    *(undefined2 **)(param_1 + 0xc) = __ptr;
-  }
-  else {
-    *(undefined2 **)(iVar1 + 0xc) = __ptr;
-  }
-  return 0;
+  return aiStack_34[0];
 }
 

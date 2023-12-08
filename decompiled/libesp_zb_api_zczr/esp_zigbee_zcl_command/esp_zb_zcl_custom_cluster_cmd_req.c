@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
- * https://github.com/espressif/esp-zigbee-sdk/commit/6663e9a47e70aeb89bdde3d1385b4fa8af6242fa
- * Upstream date: 2023-11-21 18:28:11 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.4(be3a8a97)
+ * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
+ * Upstream date: 2023-12-08 17:14:31 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,20 +13,29 @@
 void esp_zb_zcl_custom_cluster_cmd_req(int param_1)
 
 {
-  undefined4 uVar1;
+  byte bVar1;
   undefined4 uVar2;
-  undefined4 uVar3;
+  byte *pbVar3;
+  byte *pbVar4;
+  undefined4 uVar5;
   
-  uVar1 = zb_buf_get_out_func();
-  uVar2 = zb_zcl_start_command_header(1,0,*(undefined1 *)(param_1 + 0x1c),0);
-  uVar3 = zb_zcl_get_attribute_size(*(undefined1 *)(param_1 + 0x14),*(undefined4 *)(param_1 + 0x10))
+  uVar2 = zb_buf_get_out_func();
+  pbVar3 = (byte *)zb_buf_reuse_func();
+  *pbVar3 = (byte)((*(uint *)(param_1 + 0x18) & 0x1f) << 3) | 1;
+  pbVar4 = (byte *)zb_zcl_get_ctx();
+  bVar1 = *pbVar4;
+  *pbVar4 = bVar1 + 1;
+  pbVar3[1] = bVar1;
+  pbVar3[2] = (byte)*(undefined2 *)(param_1 + 0x14);
+  uVar5 = zb_zcl_get_attribute_size(*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20))
   ;
-  uVar2 = esp_zb_zcl_put_attribute_value
-                    (uVar2,*(undefined1 *)(param_1 + 0x14),*(undefined4 *)(param_1 + 0x10),uVar3);
+  uVar5 = esp_zb_zcl_put_attribute_value
+                    (pbVar3 + 3,*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
+                     uVar5);
   zb_zcl_finish_and_send_packet
-            (uVar1,uVar2,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-             *(undefined1 *)(param_1 + 9),*(undefined2 *)(param_1 + 0x18),
-             *(undefined2 *)(param_1 + 0x1a));
+            (uVar2,uVar5,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+             *(undefined1 *)(param_1 + 9),*(undefined2 *)(param_1 + 0x10),
+             *(undefined2 *)(param_1 + 0x12));
   return;
 }
 

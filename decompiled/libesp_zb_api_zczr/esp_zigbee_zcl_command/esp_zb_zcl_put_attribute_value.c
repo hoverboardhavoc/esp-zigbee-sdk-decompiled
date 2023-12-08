@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * Upstream date: 2023-11-03 16:33:23 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
+ * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
+ * Upstream date: 2023-12-08 17:14:31 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_put_attribute_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,12 +27,7 @@ esp_zb_zcl_put_attribute_value(undefined1 *param_1,uint param_2,undefined1 *para
   if (param_2 < 0x24) {
     if (param_2 != 0xf) {
       if (param_2 < 0x10) {
-        if (param_2 == 9) {
-_L0:
-          *param_1 = *param_3;
-          param_1[1] = param_3[1];
-          return param_1 + 2;
-        }
+        if (param_2 == 9) goto _L0;
         if (param_2 < 10) {
           if (param_2 == 0) {
             return param_1;
@@ -156,44 +151,47 @@ _L0:
         }
       }
     }
-    else {
-      if (param_2 == 0x48) {
+    else if (param_2 < 0x45) {
+      if (0x40 < param_2) {
 _L0:
         memcpy(param_1,param_3,param_4);
         return param_1 + param_4;
       }
-      if (param_2 < 0x49) {
-        if (param_2 == 0x39) goto _L0;
-        if (param_2 < 0x3a) {
-          if ((param_2 == 0x31) || (param_2 == 0x38)) goto _L0;
-          if (param_2 == 0x30) goto _L0;
-        }
-        else {
-          if (param_2 == 0x3a) goto _L0;
-          if ((0x39 < param_2) && ((param_2 - 0x41 & 0xff) < 4)) goto _L0;
-        }
-      }
-      else if (param_2 < 0xe3) {
-        if (0xdf < param_2) {
+      if (param_2 == 0x38) {
 _L0:
-          uVar1 = param_3[1];
-          uVar2 = param_3[2];
-          uVar3 = param_3[3];
-          *param_1 = *param_3;
-          param_1[1] = uVar1;
-          param_1[2] = uVar2;
-          param_1[3] = uVar3;
-          return param_1 + 4;
-        }
-        if (param_2 == 0x4a) goto _L0;
+        *param_1 = *param_3;
+        param_1[1] = param_3[1];
+        return param_1 + 2;
+      }
+      if (param_2 < 0x39) {
+        if (param_2 == 0x30) goto _L0;
+        if (param_2 == 0x31) goto _L0;
       }
       else {
-        if (param_2 == 0xea) goto _L0;
-        if (param_2 < 0xeb) {
-          if ((param_2 + 0x18 & 0xff) < 2) goto _L0;
-        }
-        else if (param_2 == 0xf0) goto _L0;
+        if (param_2 == 0x39) goto _L0;
+        if (param_2 == 0x3a) goto _L0;
       }
+    }
+    else if (param_2 < 0xe3) {
+      if (0xdf < param_2) {
+_L0:
+        uVar1 = param_3[1];
+        uVar2 = param_3[2];
+        uVar3 = param_3[3];
+        *param_1 = *param_3;
+        param_1[1] = uVar1;
+        param_1[2] = uVar2;
+        param_1[3] = uVar3;
+        return param_1 + 4;
+      }
+      if ((param_2 - 0x48 & 0xff) < 3) goto _L0;
+    }
+    else {
+      if (param_2 == 0xea) goto _L0;
+      if (param_2 < 0xeb) {
+        if ((param_2 + 0x18 & 0xff) < 2) goto _L0;
+      }
+      else if (param_2 == 0xf0) goto _L0;
     }
 _L0:
     uVar8 = esp_log_timestamp();

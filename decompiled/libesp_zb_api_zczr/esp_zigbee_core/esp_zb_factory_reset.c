@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
+ * Upstream date: 2023-12-08 17:14:31 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_factory_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ void esp_zb_factory_reset(void)
   zb_zcl_reset_reporting_ctx();
   zb_bdb_reset_via_local_action(0);
   zb_nvram_erase();
-  DAT_0001bd79 = DAT_0001bd79 | 8;
+  DAT_0001cd85 = DAT_0001cd85 | 8;
   iVar1 = esp_restart();
   if (iVar1 == 0) {
     esp_zb_start_no_autostart();
