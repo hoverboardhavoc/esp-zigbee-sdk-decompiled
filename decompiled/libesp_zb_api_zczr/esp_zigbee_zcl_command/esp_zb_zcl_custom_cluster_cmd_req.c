@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,6 +36,7 @@ void esp_zb_zcl_custom_cluster_cmd_req(int param_1)
             (uVar2,uVar5,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
              *(undefined1 *)(param_1 + 9),*(undefined2 *)(param_1 + 0x10),
              *(undefined2 *)(param_1 + 0x12));
+  zb_zcl_frame_get_sequence_number(uVar2);
   return;
 }
 

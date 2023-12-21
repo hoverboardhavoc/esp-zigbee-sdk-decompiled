@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_bdb_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,40 +16,42 @@ void zb_cli_register_bdb_cmd(void)
 
 {
   int iVar1;
-  undefined *puStack_24;
-  char *pcStack_20;
-  undefined4 uStack_1c;
-  code *pcStack_18;
-  undefined4 *puStack_14;
+  undefined *puStack_28;
+  char *pcStack_24;
+  undefined4 uStack_20;
+  code *pcStack_1c;
+  undefined4 *puStack_18;
+  undefined4 uStack_14;
   
-  bdb_args = arg_str0(&_LC54,&_LC53,"<role>",
+  bdb_args = arg_str0(&_LC51,&_LC50,"<role>",
                       "Set or get the Zigbee role of a device. [Setting only before bdb start. Reading only after bdb start.]"
                      );
-  DAT_00012198 = arg_str0(&_LC58,"extpanid","<extpanid>",
+  DAT_000121a8 = arg_str0(&_LC55,"extpanid","<extpanid>",
                           "Set or get the Zigbee Extended Pan ID value. [Setting only before bdb start. Reading only after bdb start.]"
                          );
-  DAT_0001219c = arg_str0(&_LC62,"panid","<panid>",
+  DAT_000121ac = arg_str0(&_LC59,"panid","<panid>",
                           "Set or get the Zigbee PAN ID value. [Setting only before bdb start. Reading only after bdb start.]"
                          );
-  DAT_000121a0 = arg_lit0(&_LC65,"start","Start the commissioning process");
-  DAT_000121a4 = arg_str0(&_LC69,"channel","<channel>","Set or get 802.15.4 channel");
-  DAT_000121a8 = arg_str0(&_LC73,&_LC72,"<ic_operation>",
+  DAT_000121b0 = arg_lit0(&_LC62,"start","Start the commissioning process");
+  DAT_000121b4 = arg_str0(&_LC66,"channel","<channel>","Set or get 802.15.4 channel");
+  DAT_000121b8 = arg_str0(&_LC70,&_LC69,"<ic_operation>",
                           "Set install code on the device, add information about the install code on the trust center, set the trust center install code policy."
                          );
-  DAT_000121ac = arg_strn(0,0,&_LC75,0,1,"Set install code on the device.");
-  DAT_000121b0 = arg_strn(0,0,&_LC75,0,1,"Set eui64 of the device install code on.");
-  DAT_000121b4 = arg_str0(&_LC80,"legacy","<enable/disable>",
+  DAT_000121bc = arg_strn(0,0,&_LC72,0,1,"Set install code on the device.");
+  DAT_000121c0 = arg_strn(0,0,&_LC72,0,1,"Set eui64 of the device install code on.");
+  DAT_000121c4 = arg_str0(&_LC77,"legacy","<enable/disable>",
                           "Enable or disable the legacy device support");
-  DAT_000121b8 = arg_str0(&_LC84,"nwkkey","<key>","Set network key");
-  DAT_000121bc = arg_lit0(&_LC87,"factory_reset","factory reset");
-  DAT_000121c0 = arg_str0(&_LC91,"childmax","<max_children>","Set max children");
-  DAT_000121c4 = arg_end(0xd);
-  puStack_24 = &_LC0;
-  pcStack_20 = "ZigBee bdb command";
-  uStack_1c = 0;
-  pcStack_18 = zb_cli_bdb_cmd_cb;
-  puStack_14 = &bdb_args;
-  iVar1 = esp_console_cmd_register(&puStack_24);
+  DAT_000121c8 = arg_str0(&_LC81,"nwkkey","<key>","Set network key");
+  DAT_000121cc = arg_lit0(&_LC84,"factory_reset","factory reset");
+  DAT_000121d0 = arg_str0(&_LC88,"childmax","<max_children>","Set max children");
+  DAT_000121d4 = arg_end(0xd);
+  uStack_20 = 0;
+  uStack_14 = 0;
+  puStack_28 = &_LC89;
+  pcStack_24 = "ZigBee bdb command";
+  pcStack_1c = zb_cli_bdb_cmd_cb;
+  puStack_18 = &bdb_args;
+  iVar1 = esp_console_cmd_register(&puStack_28);
   if (iVar1 == 0) {
     return;
   }

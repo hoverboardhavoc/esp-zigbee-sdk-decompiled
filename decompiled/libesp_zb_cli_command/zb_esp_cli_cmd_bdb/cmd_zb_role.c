@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_role
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,23 +22,23 @@ void cmd_zb_role(void)
   if (iVar1 != 3) {
     if (m_stack_is_started != '\0') {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC22,uVar2,0x10000);
+      esp_log_write(1,0x10000,&_LC19,uVar2,0x10000);
       return;
     }
     if (iVar1 != 0) {
       if (iVar1 != 1) {
         uVar2 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC6,uVar2,0x10000);
+        esp_log_write(1,0x10000,&_LC3,uVar2,0x10000);
         return;
       }
       m_default_role = 1;
       uVar2 = esp_log_timestamp();
-      esp_log_write(3,0x10000,&_LC48,uVar2,0x10000);
+      esp_log_write(3,0x10000,&_LC45,uVar2,0x10000);
       return;
     }
     m_default_role = 0;
     uVar2 = esp_log_timestamp();
-    esp_log_write(3,0x10000,&_LC47,uVar2,0x10000);
+    esp_log_write(3,0x10000,&_LC44,uVar2,0x10000);
     return;
   }
   uVar3 = zb_get_network_role();
@@ -58,7 +58,7 @@ void cmd_zb_role(void)
 _L0:
   auStack_14[0] = auStack_14[0] & 0xffffff;
   uVar2 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_LC21,uVar2,0x10000,auStack_14);
+  esp_log_write(3,0x10000,&_LC18,uVar2,0x10000,auStack_14);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_scene_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -51,7 +51,7 @@ undefined4 zb_zcl_scene_resp_handler(undefined4 param_1)
     if (bVar1 != 6) {
 _L0:
       uVar4 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC19,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(iVar2 + 0x13)
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC20,uVar4,"ESP_ZIGBEE_CORE",*(undefined1 *)(iVar2 + 0x13)
                    );
       return 0;
     }

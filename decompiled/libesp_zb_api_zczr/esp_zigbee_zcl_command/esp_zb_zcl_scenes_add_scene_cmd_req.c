@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 1f6b611e278a00f885edde9cb38294c3c08373a5
- * https://github.com/espressif/esp-zigbee-sdk/commit/1f6b611e278a00f885edde9cb38294c3c08373a5
- * Upstream date: 2023-08-01 20:17:41 +0800
- * Upstream subject: esp-zigbee-sdk: fix zigbee zcl scenes extension field implementation
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_scenes_add_scene_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,6 +41,7 @@ void esp_zb_zcl_scenes_add_scene_cmd_req(int param_1)
   zb_zcl_finish_and_send_packet
             (uVar1,puVar2,param_1,2,*(undefined1 *)(param_1 + 8),*(undefined1 *)(param_1 + 9),0x104,
              5);
+  zb_zcl_frame_get_sequence_number(uVar1);
   return;
 }
 

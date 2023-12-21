@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void zb_nvram_app1_read_cb(uint param_1)
   iVar6 = -(param_1 + 0x10 & 0xfffffff0);
   if (param_1 < 6) {
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC43,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8d);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC44,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8d);
   }
   else {
     iVar8 = zb_nvram_read_data(abStack_40 + iVar6,param_1);
@@ -50,10 +50,10 @@ void zb_nvram_app1_read_cb(uint param_1)
         bVar5 = pbVar13[5];
         *(byte *)(&esp_zb_zcl_scenes_table + uVar12 * 6) = *pbVar13;
         *(byte *)((int)&esp_zb_zcl_scenes_table + iVar14 + 1) = bVar1;
-        *(byte *)(&DAT_00017012 + uVar12 * 6) = bVar2;
-        *(byte *)((int)&DAT_00017012 + iVar14 + 1) = bVar3;
-        (&DAT_00017014)[iVar14] = bVar4;
-        (&DAT_00017015)[iVar14] = bVar5;
+        *(byte *)(&DAT_00017166 + uVar12 * 6) = bVar2;
+        *(byte *)((int)&DAT_00017166 + iVar14 + 1) = bVar3;
+        (&DAT_00017168)[iVar14] = bVar4;
+        (&DAT_00017169)[iVar14] = bVar5;
         uVar7 = uVar7 + 6;
         uVar11 = (uint)pbVar13[5];
         pbVar13 = (byte *)0x0;
@@ -74,7 +74,7 @@ void zb_nvram_app1_read_cb(uint param_1)
           pbVar10[10] = 0;
           pbVar10[0xb] = 0;
           if (pbVar13 == (byte *)0x0) {
-            (&DAT_00017018)[uVar12 * 3] = pbVar10;
+            (&DAT_0001716c)[uVar12 * 3] = pbVar10;
             pbVar13 = pbVar10;
           }
           else {

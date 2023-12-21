@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_view_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,8 +30,8 @@ undefined4 zcl_scenes_view_scene_handler(undefined4 param_1)
   }
   else {
     memcpy(&scene_resp_info,__src,0x1b);
-    DAT_00016ff6 = *puVar1;
-    DAT_00016ff8 = *(undefined1 *)(puVar1 + 1);
+    DAT_0001714a = *puVar1;
+    DAT_0001714c = *(undefined1 *)(puVar1 + 1);
     zb_buf_get_out_delayed_ext_func(send_view_scene_resp,iVar2,0);
   }
   return 0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 55d58f0243c7dca5c0887a2b065178dacc2d00be
- * https://github.com/espressif/esp-zigbee-sdk/commit/55d58f0243c7dca5c0887a2b065178dacc2d00be
- * Upstream date: 2022-11-15 14:25:21 +0800
- * Upstream subject: cli: Add cli example
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_mgmt_leave_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,15 +26,15 @@ void cmd_zb_mgmt_leave_cb(undefined4 param_1)
     iVar4 = zb_schedule_alarm_cancel(cmd_zb_mgmt_leave_timeout_cb,uVar1,0);
     if (iVar4 != 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_L0,uVar5,&_LC3);
+      esp_log_write(1,&_LC0,&_L0,uVar5,&_LC0);
     }
     if (puVar2[1] == '\0') {
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC7,uVar5,&_LC3);
+      esp_log_write(3,&_LC0,&_LC4,uVar5,&_LC0);
     }
     else {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC11,uVar5,&_LC3);
+      esp_log_write(1,&_LC0,&_LC8,uVar5,&_LC0);
     }
     invalidate_ctx(iVar3);
   }

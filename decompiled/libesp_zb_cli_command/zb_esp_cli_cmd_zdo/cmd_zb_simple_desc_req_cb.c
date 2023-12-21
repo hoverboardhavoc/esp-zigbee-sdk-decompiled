@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_simple_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,7 +36,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
   else {
     if (puVar4[1] == '\0') {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC28,uVar6,&_LC3,*(undefined2 *)(puVar4 + 2),puVar4[5],
+      esp_log_write(3,&_LC0,&_LC25,uVar6,&_LC0,*(undefined2 *)(puVar4 + 2),puVar4[5],
                     *(undefined2 *)(puVar4 + 6));
       uStack_94._0_1_ = 'i';
       uStack_94._1_1_ = 'n';
@@ -51,7 +51,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
+      esp_log_write(3,&_LC0,&_LC19,uVar6,&_LC0,&uStack_94);
       memset(&uStack_94,0,100);
       uStack_94._0_1_ = 'o';
       uStack_94._1_1_ = 'u';
@@ -67,13 +67,13 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
+      esp_log_write(3,&_LC0,&_LC19,uVar6,&_LC0,&uStack_94);
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC7,uVar6,&_LC3);
+      esp_log_write(3,&_LC0,&_LC4,uVar6,&_LC0);
     }
     else {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC32,uVar6,&_LC3);
+      esp_log_write(3,&_LC0,&_LC29,uVar6,&_LC0);
     }
     invalidate_ctx(iVar5);
     zb_buf_free_func(param_1);

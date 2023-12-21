@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * https://github.com/espressif/esp-zigbee-sdk/commit/dfdf370f9265e944dde2de8bee7a248c7515f1ef
- * Upstream date: 2022-12-14 19:24:05 +0800
- * Upstream subject: examples:Add ota application example(986c075)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_scenes_view_scene_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,6 +23,7 @@ void esp_zb_zcl_scenes_view_scene_cmd_req(int param_1)
   zb_zcl_finish_and_send_packet
             (uVar1,puVar2 + 1,param_1,2,*(undefined1 *)(param_1 + 8),*(undefined1 *)(param_1 + 9),
              0x104,5);
+  zb_zcl_frame_get_sequence_number(uVar1);
   return;
 }
 

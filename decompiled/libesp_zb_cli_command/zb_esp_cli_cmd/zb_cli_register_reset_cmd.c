@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd.o -> zb_cli_register_reset_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,18 +16,20 @@ void zb_cli_register_reset_cmd(void)
 
 {
   int iVar1;
+  char *pcStack_28;
   char *pcStack_24;
-  char *pcStack_20;
-  undefined4 uStack_1c;
-  code *pcStack_18;
+  undefined4 uStack_20;
+  code *pcStack_1c;
+  undefined4 uStack_18;
   undefined4 uStack_14;
   
-  uStack_1c = 0;
+  uStack_20 = 0;
+  uStack_18 = 0;
   uStack_14 = 0;
-  pcStack_24 = "reset";
-  pcStack_20 = "ZigBee reset command";
-  pcStack_18 = reset_cmd_cb;
-  iVar1 = esp_console_cmd_register(&pcStack_24);
+  pcStack_28 = "reset";
+  pcStack_24 = "ZigBee reset command";
+  pcStack_1c = reset_cmd_cb;
+  iVar1 = esp_console_cmd_register(&pcStack_28);
   if (iVar1 == 0) {
     return;
   }

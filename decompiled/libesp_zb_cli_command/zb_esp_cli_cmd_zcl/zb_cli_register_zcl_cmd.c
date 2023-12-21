@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,24 +16,26 @@ void zb_cli_register_zcl_cmd(void)
 
 {
   int iVar1;
-  undefined *puStack_24;
-  char *pcStack_20;
-  undefined4 uStack_1c;
-  code *pcStack_18;
-  undefined4 *puStack_14;
+  undefined *puStack_28;
+  char *pcStack_24;
+  undefined4 uStack_20;
+  code *pcStack_1c;
+  undefined4 *puStack_18;
+  undefined4 uStack_14;
   
-  zcl_args = arg_lit0(&_LC7,&_LC6,"Send a generic command to the remote node");
-  DAT_000103bc = arg_lit0(&_LC10,&_LC9,"Write/Read the attribute value to the remote node");
-  DAT_000103c0 = arg_lit0(&_LC13,"subscribe",
+  zcl_args = arg_lit0(&_LC4,&_LC3,"Send a generic command to the remote node");
+  DAT_000103cc = arg_lit0(&_LC7,&_LC6,"Write/Read the attribute value to the remote node");
+  DAT_000103d0 = arg_lit0(&_LC10,"subscribe",
                           "Subscribe/Unsubscribe to the attribute changes on the remote node");
-  DAT_000103c4 = arg_lit0(&_LC16,&_LC15,"Start the commissioning process");
-  DAT_000103c8 = arg_end(4);
-  puStack_24 = &_LC0;
-  pcStack_20 = "ZigBee zcl command";
-  uStack_1c = 0;
-  pcStack_18 = zb_cli_zcl_cmd_cb;
-  puStack_14 = &zcl_args;
-  iVar1 = esp_console_cmd_register(&puStack_24);
+  DAT_000103d4 = arg_lit0(&_LC13,&_LC12,"Start the commissioning process");
+  DAT_000103d8 = arg_end(4);
+  uStack_20 = 0;
+  uStack_14 = 0;
+  puStack_28 = &_LC14;
+  pcStack_24 = "ZigBee zcl command";
+  pcStack_1c = zb_cli_zcl_cmd_cb;
+  puStack_18 = &zcl_args;
+  iVar1 = esp_console_cmd_register(&puStack_28);
   if (iVar1 == 0) {
     return;
   }

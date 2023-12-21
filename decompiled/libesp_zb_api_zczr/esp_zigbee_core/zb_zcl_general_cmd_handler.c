@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_general_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,12 +29,23 @@ int zb_zcl_general_cmd_handler(undefined4 param_1)
     }
     else {
       bVar1 = *(byte *)(iVar3 + 0x13);
-      if (bVar1 == 7) {
-        iVar4 = zcl_cmd_config_report_resp_handler(param_1);
+      if (bVar1 == 9) {
+        iVar4 = zcl_cmd_read_report_config_resp_handler(param_1);
         iVar2 = 1;
       }
-      else if (bVar1 < 8) {
-        if (bVar1 == 1) {
+      else if (bVar1 < 10) {
+        if (bVar1 == 4) {
+          iVar4 = zcl_cmd_write_attr_resp_handler(param_1);
+          iVar2 = 1;
+        }
+        else if (bVar1 == 7) {
+          iVar4 = zcl_cmd_config_report_resp_handler(param_1);
+          iVar2 = 1;
+        }
+        else {
+          if (bVar1 != 1) {
+            return 0;
+          }
           if ((*(short *)(iVar3 + 0xf) == 10) &&
              (iVar2 = zb_zcl_time_server_read_attr_handle(param_1), iVar2 != 0)) {
             iVar4 = 0;
@@ -43,13 +54,6 @@ int zb_zcl_general_cmd_handler(undefined4 param_1)
             iVar4 = zcl_cmd_read_attr_resp_handler(param_1);
             iVar2 = 1;
           }
-        }
-        else {
-          if (bVar1 != 4) {
-            return 0;
-          }
-          iVar4 = zcl_cmd_write_attr_resp_handler(param_1);
-          iVar2 = 1;
         }
       }
       else if (bVar1 == 0xd) {
@@ -62,14 +66,20 @@ int zb_zcl_general_cmd_handler(undefined4 param_1)
             return 0;
           }
           uVar5 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC26,uVar5,"ESP_ZIGBEE_CORE",
+          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC27,uVar5,"ESP_ZIGBEE_CORE",
                         *(undefined1 *)(iVar3 + 0x13));
           return 0;
         }
-        if (bVar1 != 9) {
+        if (bVar1 != 0xb) {
           return 0;
         }
-        iVar4 = zcl_cmd_read_report_config_resp_handler(param_1);
+        if (*(short *)(iVar3 + 0xf) == 0x19) {
+          return 0;
+        }
+        if (*(short *)(iVar3 + 0xf) == -0x400) {
+          return 0;
+        }
+        iVar4 = zcl_cmd_default_resp_handler(param_1);
         iVar2 = 1;
       }
       zb_zcl_send_default_handler(param_1,iVar3,iVar4 != 0);

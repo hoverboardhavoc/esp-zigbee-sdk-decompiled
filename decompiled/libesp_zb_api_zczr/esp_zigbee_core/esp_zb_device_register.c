@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,8 +28,8 @@ undefined4 esp_zb_device_register(void)
     if (((byte)(**(char **)(*(int *)(pbVar1 + 1) + iVar2 * 4) - 1U) < 0xef) &&
        (iVar3 = zb_af_get_endpoint_desc(), *(int *)(iVar3 + 3) == 0)) {
       iVar3 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar2 * 4));
-      *(undefined1 *)(iVar3 + 3) = 0x7a;
-      *(undefined1 *)(iVar3 + 4) = 0x28;
+      *(undefined1 *)(iVar3 + 3) = 0xae;
+      *(undefined1 *)(iVar3 + 4) = 0x29;
       *(undefined1 *)(iVar3 + 5) = 1;
       *(undefined1 *)(iVar3 + 6) = 0;
     }

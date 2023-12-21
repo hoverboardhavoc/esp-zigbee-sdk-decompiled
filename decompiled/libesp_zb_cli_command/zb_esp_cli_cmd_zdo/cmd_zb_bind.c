@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void cmd_zb_bind(int param_1,undefined4 *param_2)
   
   if (param_1 != 7) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_L0,uVar7,&_LC3);
+    esp_log_write(1,&_LC0,&_L0,uVar7,&_LC0);
     return;
   }
   __s1 = (char *)*param_2;
@@ -36,7 +36,7 @@ void cmd_zb_bind(int param_1,undefined4 *param_2)
     iVar4 = strcmp(__s1,"off");
     if (iVar4 != 0) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC90,uVar7,&_LC3);
+      esp_log_write(1,&_LC0,&_LC87,uVar7,&_LC0);
       iVar4 = 0;
       goto _L0;
     }
@@ -45,51 +45,51 @@ void cmd_zb_bind(int param_1,undefined4 *param_2)
   iVar4 = zb_buf_get_out_func();
   if (iVar4 == 0) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_LC34,uVar7,&_LC3);
+    esp_log_write(1,&_LC0,&_LC31,uVar7,&_LC0);
     return;
   }
   iVar5 = zb_buf_get_tail_func(0x18);
   iVar6 = parse_address(param_2[1],iVar5,3);
   if (iVar6 == 0) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_LC91,uVar7,&_LC3);
+    esp_log_write(1,&_LC0,&_LC88,uVar7,&_LC0);
   }
   else {
     iVar6 = sscan_uint8(param_2[2],iVar5 + 8);
     if (iVar6 == 0) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC92,uVar7,&_LC3);
+      esp_log_write(1,&_LC0,&_LC89,uVar7,&_LC0);
     }
     else {
       cVar2 = parse_address(param_2[3],iVar5 + 0xd,1);
       *(char *)(iVar5 + 0xc) = cVar2;
       if (cVar2 == '\0') {
         uVar7 = esp_log_timestamp();
-        esp_log_write(1,&_LC3,&_LC93,uVar7,&_LC3);
+        esp_log_write(1,&_LC0,&_LC90,uVar7,&_LC0);
       }
       else {
         iVar6 = sscan_uint8(param_2[4],iVar5 + 0x15);
         if (iVar6 == 0) {
           uVar7 = esp_log_timestamp();
-          esp_log_write(1,&_LC3,&_LC94,uVar7,&_LC3);
+          esp_log_write(1,&_LC0,&_LC91,uVar7,&_LC0);
         }
         else {
           iVar6 = parse_hex_u16(param_2[5],iVar5 + 10);
           if (iVar6 == 0) {
             uVar7 = esp_log_timestamp();
-            esp_log_write(1,&_LC3,&_LC95,uVar7,&_LC3);
+            esp_log_write(1,&_LC0,&_LC92,uVar7,&_LC0);
           }
           else {
             iVar5 = parse_address(param_2[6],iVar5 + 0x16,2);
             if (iVar5 == 0) {
               uVar7 = esp_log_timestamp();
-              esp_log_write(1,&_LC3,&_LC96,uVar7,&_LC3);
+              esp_log_write(1,&_LC0,&_LC93,uVar7,&_LC0);
             }
             else {
               iVar5 = get_free_ctx();
               if (iVar5 == 0) {
                 uVar7 = esp_log_timestamp();
-                esp_log_write(1,&_LC3,&_LC36,uVar7,&_LC3);
+                esp_log_write(1,&_LC0,&_LC33,uVar7,&_LC0);
               }
               else {
                 if (bVar1) {
@@ -106,12 +106,12 @@ void cmd_zb_bind(int param_1,undefined4 *param_2)
                     return;
                   }
                   uVar7 = esp_log_timestamp();
-                  esp_log_write(1,&_LC3,&_LC41,uVar7,&_LC3);
+                  esp_log_write(1,&_LC0,&_LC38,uVar7,&_LC0);
                   invalidate_ctx(iVar5);
                   return;
                 }
                 uVar7 = esp_log_timestamp();
-                esp_log_write(1,&_LC3,&_LC40,uVar7,&_LC3);
+                esp_log_write(1,&_LC0,&_LC37,uVar7,&_LC0);
               }
               if (iVar5 != 0) {
                 invalidate_ctx(iVar5);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 4d04940dfac4dc79b166836b46beea711ac71a6a
- * https://github.com/espressif/esp-zigbee-sdk/commit/4d04940dfac4dc79b166836b46beea711ac71a6a
- * Upstream date: 2023-12-08 17:14:31 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.6(654c5874)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_window_covering_cluster_send_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,34 +19,28 @@ void esp_zb_zcl_window_covering_cluster_send_cmd_req(int param_1)
   undefined4 uVar4;
   undefined1 *puVar5;
   
-  if (param_1 == 0) {
-    uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC4,uVar2,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_window_covering_cluster_send_cmd_req",0x3f4);
+  uVar2 = zb_buf_get_out_func();
+  puVar3 = (undefined1 *)zb_zcl_start_command_header(1,0,*(undefined1 *)(param_1 + 0x16),0);
+  bVar1 = *(byte *)(param_1 + 0x16);
+  if ((bVar1 == 4) || (bVar1 == 7)) {
+    puVar5 = *(undefined1 **)(param_1 + 0x10);
+    *puVar3 = *puVar5;
+    puVar3[1] = puVar5[1];
+    puVar3 = puVar3 + 2;
   }
-  else {
-    uVar2 = zb_buf_get_out_func();
-    puVar3 = (undefined1 *)zb_zcl_start_command_header(1,0,*(undefined1 *)(param_1 + 0x16),0);
-    bVar1 = *(byte *)(param_1 + 0x16);
-    if ((bVar1 == 4) || (bVar1 == 7)) {
-      puVar5 = *(undefined1 **)(param_1 + 0x10);
-      *puVar3 = *puVar5;
-      puVar3[1] = puVar5[1];
-      puVar3 = puVar3 + 2;
-    }
-    else if ((bVar1 == 5) || (bVar1 == 8)) {
-      *puVar3 = **(undefined1 **)(param_1 + 0x10);
-      puVar3 = puVar3 + 1;
-    }
-    else if (2 < bVar1) {
-      uVar4 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_COMMAND",&_LC5,uVar4,"ESP_ZIGBEE_COMMAND",
-                    *(undefined1 *)(param_1 + 0x16));
-    }
-    zb_zcl_finish_and_send_packet
-              (uVar2,puVar3,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-               *(undefined1 *)(param_1 + 9),0x104,*(undefined2 *)(param_1 + 0x14));
+  else if ((bVar1 == 5) || (bVar1 == 8)) {
+    *puVar3 = **(undefined1 **)(param_1 + 0x10);
+    puVar3 = puVar3 + 1;
   }
+  else if (2 < bVar1) {
+    uVar4 = esp_log_timestamp();
+    esp_log_write(3,"ESP_ZIGBEE_COMMAND",&_LC4,uVar4,"ESP_ZIGBEE_COMMAND",
+                  *(undefined1 *)(param_1 + 0x16));
+  }
+  zb_zcl_finish_and_send_packet
+            (uVar2,puVar3,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+             *(undefined1 *)(param_1 + 9),0x104,*(undefined2 *)(param_1 + 0x14));
+  zb_zcl_frame_get_sequence_number(uVar2);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_mgmt_lqi
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,13 +21,13 @@ void cmd_zb_mgmt_lqi(int param_1,undefined4 *param_2)
   
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_L0,uVar5,&_LC3);
+    esp_log_write(1,&_LC0,&_L0,uVar5,&_LC0);
     return;
   }
   iVar1 = zb_buf_get_out_func();
   if (iVar1 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_L0,uVar5,&_LC3);
+    esp_log_write(1,&_LC0,&_L0,uVar5,&_LC0);
     puVar4 = (undefined4 *)0x0;
   }
   else {
@@ -35,7 +35,7 @@ void cmd_zb_mgmt_lqi(int param_1,undefined4 *param_2)
     iVar3 = parse_address(*param_2,puVar2 + 2,2);
     if (iVar3 == 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC102,uVar5,&_LC3);
+      esp_log_write(1,&_LC0,&_LC99,uVar5,&_LC0);
       puVar4 = (undefined4 *)0x0;
     }
     else {
@@ -43,7 +43,7 @@ void cmd_zb_mgmt_lqi(int param_1,undefined4 *param_2)
         iVar3 = sscan_uint8(param_2[1],puVar2);
         if (iVar3 == 0) {
           uVar5 = esp_log_timestamp();
-          esp_log_write(1,&_LC3,&_LC103,uVar5,&_LC3);
+          esp_log_write(1,&_LC0,&_LC100,uVar5,&_LC0);
           puVar4 = (undefined4 *)0x0;
           goto _L0;
         }
@@ -54,7 +54,7 @@ void cmd_zb_mgmt_lqi(int param_1,undefined4 *param_2)
       puVar4 = (undefined4 *)get_free_ctx();
       if (puVar4 == (undefined4 *)0x0) {
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,&_LC3,&_LC36,uVar5,&_LC3);
+        esp_log_write(1,&_LC0,&_LC33,uVar5,&_LC0);
       }
       else {
         *puVar4 = zdo_mgmt_lqi_cb;
@@ -66,12 +66,12 @@ void cmd_zb_mgmt_lqi(int param_1,undefined4 *param_2)
             return;
           }
           uVar5 = esp_log_timestamp();
-          esp_log_write(1,&_LC3,&_LC60,uVar5,&_LC3);
+          esp_log_write(1,&_LC0,&_LC57,uVar5,&_LC0);
           invalidate_ctx(puVar4);
           return;
         }
         uVar5 = esp_log_timestamp(0xff);
-        esp_log_write(1,&_LC3,&_LC40,uVar5,&_LC3);
+        esp_log_write(1,&_LC0,&_LC37,uVar5,&_LC0);
       }
     }
   }

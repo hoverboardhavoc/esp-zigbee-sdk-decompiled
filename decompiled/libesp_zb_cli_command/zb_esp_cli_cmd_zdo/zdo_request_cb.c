@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> zdo_request_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ void zdo_request_cb(undefined4 param_1)
   puVar3 = (undefined4 *)get_ctx_by_tsn(uVar1);
   if (puVar3 == (undefined4 *)0x0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,&_LC3,&_L0,uVar5,&_LC3,*puVar2);
+    esp_log_write(1,&_LC0,&_L0,uVar5,&_LC0,*puVar2);
     zb_buf_free_func(param_1);
     return;
   }
@@ -37,7 +37,7 @@ void zdo_request_cb(undefined4 param_1)
     iVar6 = zb_schedule_app_alarm(ctx_timeout_cb,*(undefined1 *)(puVar3 + 1),0x14a);
     if (iVar6 != 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC60,uVar5,&_LC3);
+      esp_log_write(1,&_LC0,&_LC57,uVar5,&_LC0);
       goto _L0;
     }
   }
@@ -49,13 +49,13 @@ _L0:
 _L0:
     if (puVar2[1] == '\0') {
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC58,uVar5,&_LC3);
+      esp_log_write(3,&_LC0,&_LC55,uVar5,&_LC0);
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,&_LC3,&_LC7,uVar5,&_LC3);
+      esp_log_write(3,&_LC0,&_LC4,uVar5,&_LC0);
     }
     else {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,&_LC3,&_LC59,uVar5,&_LC3,*puVar2,puVar2[1]);
+      esp_log_write(1,&_LC0,&_LC56,uVar5,&_LC0,*puVar2,puVar2[1]);
     }
   }
   if (iVar4 == 0) {

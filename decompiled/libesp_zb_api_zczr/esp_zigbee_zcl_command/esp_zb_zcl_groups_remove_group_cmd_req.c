@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6f86421a4970072ce8039b9d5be911c385f38303
- * https://github.com/espressif/esp-zigbee-sdk/commit/6f86421a4970072ce8039b9d5be911c385f38303
- * Upstream date: 2022-11-10 11:13:02 +0800
- * Upstream subject: examples: apply new signal handler API function
+ * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
+ * Upstream date: 2023-12-21 19:52:25 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_groups_remove_group_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,6 +22,7 @@ void esp_zb_zcl_groups_remove_group_cmd_req(int param_1)
   zb_zcl_finish_and_send_packet
             (uVar1,uVar2,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
              *(undefined1 *)(param_1 + 9),0x104,4);
+  zb_zcl_frame_get_sequence_number(uVar1);
   return;
 }
 
