@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_custom_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   ushort uStack_30;
   undefined1 uStack_2c;
   char cStack_2b;
-  undefined1 uStack_28;
+  undefined2 uStack_28;
   undefined4 uStack_24;
   
   iVar1 = zb_buf_get_tail_func(0x1b);
@@ -31,7 +31,7 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   if (iVar2 == 0) {
     if ((uStack_30 < 0xfc00) || (zb_core_action_cb == (code *)0x0)) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC30,uVar5,"ESP_ZIGBEE_CORE",uStack_2c,uStack_31,uStack_30
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC31,uVar5,"ESP_ZIGBEE_CORE",uStack_2c,uStack_31,uStack_30
                    );
       uVar5 = 0;
     }
@@ -45,7 +45,7 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
       if (((iVar3 == 0) || (cStack_2b != '\x01')) && ((iVar4 == 0 || (cStack_2b != '\0')))) {
         if (((iVar3 == 0) || (cStack_2b != '\0')) && ((iVar4 == 0 || (cStack_2b != '\x01')))) {
           uVar5 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC29,uVar5,"ESP_ZIGBEE_CORE",uStack_30,uStack_31);
+          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC30,uVar5,"ESP_ZIGBEE_CORE",uStack_30,uStack_31);
           iVar2 = -0x1c;
         }
         else if (zb_core_action_cb != (code *)0x0) {
@@ -67,7 +67,7 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   else {
     uVar5 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar5,"ESP_ZIGBEE_CORE","zb_zcl_custom_cluster_handler",
-                  0x902);
+                  0x95e);
     uVar5 = 1;
   }
   return uVar5;

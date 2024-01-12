@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * https://github.com/espressif/esp-zigbee-sdk/commit/8ab0979f6a6f2e31f8d566b96a951f1d6ea3f7f3
- * Upstream date: 2023-11-03 16:33:23 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.2(a51c2f72)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_send_report_attr_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,10 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
   byte *pbVar8;
   undefined1 *puVar9;
   undefined2 *puVar10;
-  uint uVar11;
+  int iVar11;
   int iVar12;
+  undefined4 uVar13;
+  uint uVar14;
   
   iVar4 = zb_zcl_get_attr_desc_manuf_a
                     (*(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 2),
@@ -58,12 +60,29 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
                         (*(undefined1 *)(iVar4 + 1),*(undefined2 *)(iVar4 + 2),
                          *(undefined1 *)(iVar4 + 4),*(undefined2 *)(iVar4 + 6),
                          *(undefined2 *)(iVar4 + 0x2e));
-    uVar11 = zb_buf_get_ptr_off_func(param_2,pbVar5);
-    iVar12 = zb_zcl_get_attribute_size(*(undefined1 *)(puVar10 + 1),*(undefined4 *)(puVar10 + 3));
-    if ((0x52 - (uVar11 & 0xffff) & 0xffff) < iVar12 + 3U) break;
+    iVar11 = zb_zcl_can_cluster_be_fragmented
+                       (*(undefined2 *)(iVar4 + 0x2c),*(undefined2 *)(iVar4 + 2));
+    if (iVar11 == 0) {
+      uVar14 = zb_buf_get_ptr_off_func(param_2,pbVar5);
+      uVar14 = 0x52 - (uVar14 & 0xffff);
+    }
+    else {
+      iVar11 = zb_buf_get_max_size_func(param_2);
+      iVar12 = zb_buf_get_ptr_off_func(param_2,pbVar5);
+      uVar14 = (iVar11 - iVar12 & 0xffffU) - 0x2d;
+    }
+    iVar11 = esp_zb_zcl_get_attribute_size
+                       (*(undefined1 *)(puVar10 + 1),*(undefined4 *)(puVar10 + 3));
+    if (iVar11 == 0xffff) {
+      uVar13 = esp_log_timestamp();
+      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC5,uVar13,"ESP_ZIGBEE_COMMAND",
+                    "esp_zb_zcl_send_report_attr_command",0xf4);
+      return;
+    }
+    if ((uVar14 & 0xffff) < iVar11 + 3U) break;
     puVar9 = (undefined1 *)zb_put_next_htole16(pbVar5,*puVar10);
     *puVar9 = *(undefined1 *)(puVar10 + 1);
-    pbVar5 = (byte *)esp_zb_zcl_put_attribute_value(puVar9 + 1,*(undefined4 *)(puVar10 + 3),iVar12);
+    pbVar5 = (byte *)esp_zb_zcl_put_attribute_value(puVar9 + 1,*(undefined4 *)(puVar10 + 3),iVar11);
     zb_zcl_save_reported_value(iVar4,puVar10);
     bVar1 = *(byte *)(iVar4 + 8);
     *(byte *)(iVar4 + 8) = bVar1 & 0xfd;

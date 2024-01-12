@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_store_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,16 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 zcl_scenes_store_scene_handler(undefined4 param_1)
+int zcl_scenes_store_scene_handler(undefined4 param_1)
 
 {
-  undefined2 uVar1;
+  undefined1 uVar1;
   undefined2 *puVar2;
-  undefined1 *puVar3;
+  int iVar3;
   int iVar4;
-  int iVar5;
-  undefined4 uVar6;
-  int iVar7;
+  undefined4 uVar5;
+  int iVar6;
+  undefined1 *puVar7;
   undefined4 local_30;
   undefined1 uStack_2c;
   undefined2 uStack_2a;
@@ -29,59 +29,64 @@ undefined4 zcl_scenes_store_scene_handler(undefined4 param_1)
   undefined2 uStack_24;
   undefined1 uStack_22;
   
-  iVar4 = zb_buf_get_tail_func(0x38);
-  iVar5 = zb_buf_get_tail_func(param_1,0x38);
-  puVar2 = *(undefined2 **)(iVar5 + 0x10);
-  iVar5 = zb_buf_get_tail_func(param_1,0x38);
-  iVar7 = *(int *)(iVar5 + 0xc);
-  iVar5 = zb_buf_get_tail_func(param_1,0x38);
-  puVar3 = *(undefined1 **)(iVar5 + 0x14);
+  iVar3 = zb_buf_get_tail_func(0x38);
+  iVar4 = zb_buf_get_tail_func(param_1,0x38);
+  puVar2 = *(undefined2 **)(iVar4 + 0x10);
+  iVar4 = zb_buf_get_tail_func(param_1,0x38);
+  iVar6 = *(int *)(iVar4 + 0xc);
+  iVar4 = zb_buf_get_tail_func(param_1,0x38);
+  puVar7 = *(undefined1 **)(iVar4 + 0x14);
+  uVar1 = *(undefined1 *)(iVar6 + 0xc);
   local_30 = 0;
-  uStack_2c = *(undefined1 *)(iVar4 + 4);
+  uStack_2c = *(undefined1 *)(iVar3 + 4);
   uStack_2a = 5;
-  uStack_28 = *(undefined1 *)(iVar7 + 0x13);
-  uStack_27 = *(undefined1 *)(iVar7 + 0x14);
-  uStack_26 = *(undefined1 *)(iVar7 + 0x16);
+  uStack_28 = *(undefined1 *)(iVar6 + 0x13);
+  uStack_27 = *(undefined1 *)(iVar6 + 0x14);
+  uStack_26 = *(undefined1 *)(iVar6 + 0x16);
   uStack_24 = *puVar2;
   uStack_22 = *(undefined1 *)(puVar2 + 1);
-  iVar4 = esp_zb_zcl_scenes_group_check(*puVar2,*(undefined1 *)(iVar7 + 0xc));
-  *puVar3 = (char)iVar4;
-  if (iVar4 == 0) {
-    uVar1 = *puVar2;
-    iVar4 = device_scenes_get_free_entry(uVar1,*(undefined1 *)(puVar2 + 1));
-    if (iVar4 == 0xff) {
-      *puVar3 = 0x89;
+  iVar3 = esp_zb_zcl_scenes_group_check(uVar1,*puVar2);
+  *puVar7 = (char)iVar3;
+  if (iVar3 == 0) {
+    iVar3 = device_scenes_get_free_entry(uVar1,*puVar2,*(undefined1 *)(puVar2 + 1));
+    if (iVar3 == 0xff) {
+      *puVar7 = 0x89;
       local_30 = 1;
-      uVar6 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC59,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
-      uVar6 = 0;
+      uVar5 = esp_log_timestamp();
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC60,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1));
+      iVar3 = 0;
     }
     else {
-      if ((&esp_zb_zcl_scenes_table)[iVar4 * 6] == -1) {
-        (&esp_zb_zcl_scenes_table)[iVar4 * 6] = uVar1;
-        (&DAT_00017168)[iVar4 * 0xc] = *(undefined1 *)(puVar2 + 1);
-        (&DAT_00017166)[iVar4 * 6] = 0;
-        uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC58,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
+      if (*(short *)(&DAT_000176fa + iVar3 * 0xc) == -1) {
+        iVar3 = iVar3 * 0xc;
+        *(undefined2 *)(&DAT_000176fa + iVar3) = *puVar2;
+        (&DAT_000176fe)[iVar3] = *(undefined1 *)(puVar2 + 1);
+        *(undefined2 *)(&DAT_000176fc + iVar3) = 0;
+        uVar5 = esp_log_timestamp();
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC59,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
                       ,*puVar2);
-        uVar6 = 0;
+        iVar3 = 0;
       }
       else {
-        uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar6,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1),
-                      *puVar2);
-        uVar6 = 0xffffffe5;
+        uVar5 = esp_log_timestamp();
+        esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC58,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1)
+                      ,*puVar2);
+        iVar3 = -0x1b;
       }
-      *puVar3 = 0;
+      *puVar7 = 0;
     }
   }
   else {
-    uVar6 = 0;
+    iVar3 = 0;
   }
+  iVar4 = iVar3;
   if (zb_core_action_cb != (code *)0x0) {
     (*zb_core_action_cb)(1,&local_30);
-    uVar6 = esp_err_to_zb_ret();
+    iVar4 = esp_err_to_zb_ret();
+    if ((iVar4 == 0) && (iVar3 == -0x1b)) {
+      iVar4 = iVar3;
+    }
   }
-  return uVar6;
+  return iVar4;
 }
 

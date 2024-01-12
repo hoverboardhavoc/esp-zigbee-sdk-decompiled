@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zcl_custom_cluster_cmd_req(int param_1)
+undefined4 esp_zb_zcl_custom_cluster_cmd_req(int param_1)
 
 {
   byte bVar1;
-  undefined4 uVar2;
-  byte *pbVar3;
+  int iVar2;
+  int iVar3;
   byte *pbVar4;
-  undefined4 uVar5;
+  byte *pbVar5;
+  undefined4 uVar6;
   
-  uVar2 = zb_buf_get_out_func();
-  pbVar3 = (byte *)zb_buf_reuse_func();
-  *pbVar3 = (byte)((*(uint *)(param_1 + 0x18) & 0x1f) << 3) | 1;
-  pbVar4 = (byte *)zb_zcl_get_ctx();
-  bVar1 = *pbVar4;
-  *pbVar4 = bVar1 + 1;
-  pbVar3[1] = bVar1;
-  pbVar3[2] = (byte)*(undefined2 *)(param_1 + 0x14);
-  uVar5 = zb_zcl_get_attribute_size(*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20))
-  ;
-  uVar5 = esp_zb_zcl_put_attribute_value
-                    (pbVar3 + 3,*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
-                     uVar5);
-  zb_zcl_finish_and_send_packet
-            (uVar2,uVar5,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-             *(undefined1 *)(param_1 + 9),*(undefined2 *)(param_1 + 0x10),
-             *(undefined2 *)(param_1 + 0x12));
-  zb_zcl_frame_get_sequence_number(uVar2);
-  return;
+  iVar2 = esp_zb_zcl_get_attribute_size
+                    (*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20));
+  if (iVar2 == 0xffff) {
+    uVar6 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC5,uVar6,"ESP_ZIGBEE_COMMAND",
+                  "esp_zb_zcl_custom_cluster_cmd_req",0x591);
+    uVar6 = 0xff;
+  }
+  else {
+    iVar3 = zb_buf_get_func(0,iVar2 + 0x1a);
+    if (iVar3 == 0) {
+      uVar6 = esp_log_timestamp();
+      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar6,"ESP_ZIGBEE_COMMAND",
+                    "esp_zb_zcl_custom_cluster_cmd_req",0x593);
+      uVar6 = 0xff;
+    }
+    else {
+      pbVar4 = (byte *)zb_buf_reuse_func();
+      *pbVar4 = (byte)((*(uint *)(param_1 + 0x18) & 0x1f) << 3) | 1;
+      pbVar5 = (byte *)zb_zcl_get_ctx();
+      bVar1 = *pbVar5;
+      *pbVar5 = bVar1 + 1;
+      pbVar4[1] = bVar1;
+      pbVar4[2] = (byte)*(undefined2 *)(param_1 + 0x14);
+      uVar6 = esp_zb_zcl_put_attribute_value
+                        (pbVar4 + 3,*(undefined1 *)(param_1 + 0x1c),*(undefined4 *)(param_1 + 0x20),
+                         iVar2);
+      zb_zcl_finish_and_send_packet
+                (iVar3,uVar6,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+                 *(undefined1 *)(param_1 + 9),*(undefined2 *)(param_1 + 0x10),
+                 *(undefined2 *)(param_1 + 0x12));
+      uVar6 = zb_zcl_frame_get_sequence_number(iVar3);
+    }
+  }
+  return uVar6;
 }
 

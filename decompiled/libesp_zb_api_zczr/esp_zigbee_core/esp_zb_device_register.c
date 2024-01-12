@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,7 +15,9 @@ undefined4 esp_zb_device_register(void)
 {
   byte *pbVar1;
   int iVar2;
-  int iVar3;
+  undefined4 uVar3;
+  int iVar4;
+  int iVar5;
   
   esp_zb_device_ctx = (byte *)zcl_get_ep_lists();
   zb_af_register_device_ctx();
@@ -25,13 +27,21 @@ undefined4 esp_zb_device_register(void)
   *(code **)(iVar2 + 0x94) = zb_zcl_report_attr_callback;
   pbVar1 = esp_zb_device_ctx;
   for (iVar2 = 0; iVar2 < (int)(uint)*pbVar1; iVar2 = iVar2 + 1) {
-    if (((byte)(**(char **)(*(int *)(pbVar1 + 1) + iVar2 * 4) - 1U) < 0xef) &&
-       (iVar3 = zb_af_get_endpoint_desc(), *(int *)(iVar3 + 3) == 0)) {
-      iVar3 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar2 * 4));
-      *(undefined1 *)(iVar3 + 3) = 0xae;
-      *(undefined1 *)(iVar3 + 4) = 0x29;
-      *(undefined1 *)(iVar3 + 5) = 1;
-      *(undefined1 *)(iVar3 + 6) = 0;
+    iVar5 = iVar2 * 4;
+    if ((byte)(**(char **)(*(int *)(pbVar1 + 1) + iVar5) - 1U) < 0xef) {
+      iVar4 = zb_af_get_endpoint_desc();
+      if (*(int *)(iVar4 + 3) == 0) {
+        iVar5 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
+        *(undefined1 *)(iVar5 + 3) = 0x42;
+        *(undefined1 *)(iVar5 + 4) = 0x2b;
+        *(undefined1 *)(iVar5 + 5) = 1;
+        *(undefined1 *)(iVar5 + 6) = 0;
+      }
+    }
+    else {
+      uVar3 = esp_log_timestamp();
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC72,uVar3,"ESP_ZIGBEE_CORE",
+                    **(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
     }
   }
   return 0;

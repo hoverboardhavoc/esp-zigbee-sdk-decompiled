@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
+ * Upstream date: 2024-01-12 14:14:49 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_metering_get_sampled_data_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -71,7 +71,7 @@ undefined4 zcl_metering_get_sampled_data_cb_handler(undefined4 param_1)
   puVar1[0xe] = (char)((uint)uStack_14 >> 0x18);
   if (uStack_18._2_2_ == 0) {
     uVar5 = esp_log_timestamp(uVar5);
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC46,uVar5,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC47,uVar5,"ESP_ZIGBEE_CORE");
     uVar5 = 0xffffffe4;
   }
   return uVar5;
