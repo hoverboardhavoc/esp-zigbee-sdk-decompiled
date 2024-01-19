@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_add_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
       uVar11 = 0;
     }
     else {
-      if (*(short *)(&DAT_000176fa + iVar2 * 0xc) == -1) {
+      if ((&DAT_00017822)[iVar2 * 6] == -1) {
         uVar11 = 0;
       }
       else {
@@ -55,7 +55,7 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
                       *puVar9);
         uVar11 = 0xffffffe5;
       }
-      puVar12 = (undefined2 *)(&DAT_00017700)[iVar2 * 3];
+      puVar12 = (undefined2 *)(&DAT_00017828)[iVar2 * 3];
       do {
         uVar3 = zb_buf_len_func(param_1);
         if (uVar3 < 3) {
@@ -72,10 +72,10 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
             zb_buf_cut_left_func(param_1,(uint)bVar8);
             if (puVar4 != (undefined2 *)0x0) {
               iVar7 = iVar2 * 0xc;
-              *(undefined2 *)(&DAT_000176fa + iVar7) = *puVar9;
-              (&DAT_000176fe)[iVar7] = *(undefined1 *)(puVar9 + 1);
-              *(undefined2 *)(&DAT_000176fc + iVar7) = *(undefined2 *)((int)puVar9 + 3);
-              (&DAT_000176ff)[iVar7] = (&DAT_000176ff)[iVar7] + bVar8;
+              (&DAT_00017822)[iVar2 * 6] = *puVar9;
+              (&DAT_00017826)[iVar7] = *(undefined1 *)(puVar9 + 1);
+              *(undefined2 *)(&DAT_00017824 + iVar7) = *(undefined2 *)((int)puVar9 + 3);
+              (&DAT_00017827)[iVar7] = (&DAT_00017827)[iVar7] + bVar8;
               puVar5 = (undefined2 *)malloc(0xc);
               *puVar5 = *puVar4;
               bVar8 = *(byte *)(puVar4 + 1);
@@ -85,7 +85,7 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
               memcpy(__dest,(void *)((int)puVar4 + 3),(uint)*(byte *)(puVar4 + 1));
               *(undefined4 *)(puVar5 + 4) = 0;
               if (puVar12 == (undefined2 *)0x0) {
-                (&DAT_00017700)[iVar2 * 3] = puVar5;
+                (&DAT_00017828)[iVar2 * 3] = puVar5;
                 puVar12 = puVar5;
               }
               else {

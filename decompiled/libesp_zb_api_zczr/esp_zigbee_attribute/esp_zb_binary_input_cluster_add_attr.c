@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_binary_input_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ undefined4 esp_zb_binary_input_cluster_add_attr(int param_1,uint param_2,char *p
   puVar1 = *(ushort **)(param_1 + 0xc);
   if ((*(ushort **)(param_1 + 0xc))[5] != 0xf) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC7,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
+    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar6,"ESP_ZIGBEE_ATTRIBUTE");
     return 0x102;
   }
   do {

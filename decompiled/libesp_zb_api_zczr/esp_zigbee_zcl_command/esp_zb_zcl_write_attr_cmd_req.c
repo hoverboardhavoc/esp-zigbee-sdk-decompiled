@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_write_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,9 +37,7 @@ void esp_zb_zcl_write_attr_cmd_req(int param_1)
     iVar2 = *(int *)(param_1 + 0x14) + iVar2;
     puVar5 = (undefined1 *)
              zb_zcl_put_value_to_packet
-                       (puVar5 + 1,*(undefined1 *)(iVar2 + 2),
-                        (uint)*(byte *)(iVar2 + 10) << 0x18 |
-                        (uint)*(ushort *)(iVar2 + 8) << 8 | (uint)(*(ushort *)(iVar2 + 6) >> 8));
+                       (puVar5 + 1,*(undefined1 *)(iVar2 + 2),*(undefined4 *)(iVar2 + 8));
     iVar3 = iVar3 + 1;
   }
   zb_zcl_finish_and_send_packet

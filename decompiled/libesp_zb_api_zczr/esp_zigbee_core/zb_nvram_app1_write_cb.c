@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_write_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,16 +46,15 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
       return uVar9;
     }
     iVar10 = iVar14 * 0xc;
-    if ((&esp_zb_zcl_scenes_table + iVar10 != (byte *)0x0) &&
-       (*(short *)(&DAT_000176fa + iVar10) != -1)) {
+    if ((&esp_zb_zcl_scenes_table + iVar10 != (byte *)0x0) && ((&DAT_00017822)[iVar14 * 6] != -1)) {
       pbVar13 = abStack_40 + uVar12 + iVar8;
-      bVar1 = (&DAT_000176f9)[iVar10];
-      bVar2 = (&DAT_000176fa)[iVar10];
-      bVar3 = (&DAT_000176fb)[iVar10];
-      bVar4 = (&DAT_000176fc)[iVar10];
-      bVar5 = (&DAT_000176fd)[iVar10];
-      bVar6 = (&DAT_000176fe)[iVar10];
-      bVar7 = (&DAT_000176ff)[iVar10];
+      bVar1 = (&DAT_00017821)[iVar10];
+      bVar2 = *(byte *)(&DAT_00017822 + iVar14 * 6);
+      bVar3 = *(byte *)((int)&DAT_00017822 + iVar10 + 1);
+      bVar4 = (&DAT_00017824)[iVar10];
+      bVar5 = (&DAT_00017825)[iVar10];
+      bVar6 = (&DAT_00017826)[iVar10];
+      bVar7 = (&DAT_00017827)[iVar10];
       uVar11 = (uint)bVar7;
       *pbVar13 = (&esp_zb_zcl_scenes_table)[iVar10];
       pbVar13[1] = bVar1;
@@ -66,7 +65,7 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
       pbVar13[6] = bVar6;
       pbVar13[7] = bVar7;
       uVar12 = uVar12 + 8;
-      for (pbVar13 = (byte *)(&DAT_00017700)[iVar14 * 3]; uVar12 = uVar12 & 0xffff,
+      for (pbVar13 = (byte *)(&DAT_00017828)[iVar14 * 3]; uVar12 = uVar12 & 0xffff,
           pbVar13 != (byte *)0x0; pbVar13 = *(byte **)(pbVar13 + 8)) {
         abStack_40[uVar12 + iVar8] = *pbVar13;
         (abStack_40 + uVar12 + iVar8)[1] = pbVar13[1];

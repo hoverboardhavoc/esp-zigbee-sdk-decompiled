@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_color_control_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ int esp_zb_color_control_cluster_add_attr(int param_1,uint param_2,undefined2 *p
     __ptr[4] = (short)((uint)puVar2 >> 0x10);
   }
   else if (param_2 < 0x4002) {
-    if (param_2 == 7) {
+    if (param_2 == 4) {
       *(undefined1 *)((int)__ptr + 3) = 0x15;
       *(undefined1 *)(__ptr + 1) = 0x21;
       puVar3 = (undefined2 *)malloc(2);
@@ -45,16 +45,16 @@ int esp_zb_color_control_cluster_add_attr(int param_1,uint param_2,undefined2 *p
       __ptr[3] = (short)puVar3;
       __ptr[4] = (short)((uint)puVar3 >> 0x10);
     }
-    else if (param_2 < 8) {
-      if (param_2 == 3) {
-        *(undefined1 *)((int)__ptr + 3) = 0x15;
+    else if (param_2 < 5) {
+      if (param_2 == 2) {
+        *(undefined1 *)((int)__ptr + 3) = 1;
         *(undefined1 *)(__ptr + 1) = 0x21;
         puVar3 = (undefined2 *)malloc(2);
         *puVar3 = *param_3;
         __ptr[3] = (short)puVar3;
         __ptr[4] = (short)((uint)puVar3 >> 0x10);
       }
-      else if (param_2 < 4) {
+      else if (param_2 < 3) {
         if (param_2 == 0) {
           *(undefined1 *)((int)__ptr + 3) = 5;
           *(undefined1 *)(__ptr + 1) = 0x20;
@@ -74,7 +74,7 @@ int esp_zb_color_control_cluster_add_attr(int param_1,uint param_2,undefined2 *p
         }
       }
       else {
-        if (param_2 != 4) {
+        if (param_2 != 3) {
 _L0:
           uVar4 = esp_log_timestamp();
           esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
@@ -97,22 +97,33 @@ _L0:
       __ptr[3] = (short)puVar2;
       __ptr[4] = (short)((uint)puVar2 >> 0x10);
     }
-    else if (param_2 == 0x4000) {
+    else if (param_2 < 0x10) {
+      if (param_2 == 7) {
+        *(undefined1 *)((int)__ptr + 3) = 0x15;
+        *(undefined1 *)(__ptr + 1) = 0x21;
+        puVar3 = (undefined2 *)malloc(2);
+        *puVar3 = *param_3;
+        __ptr[3] = (short)puVar3;
+        __ptr[4] = (short)((uint)puVar3 >> 0x10);
+      }
+      else {
+        if (param_2 != 8) goto _L0;
+        *(undefined1 *)((int)__ptr + 3) = 1;
+        *(undefined1 *)(__ptr + 1) = 0x30;
+        puVar2 = (undefined1 *)malloc(1);
+        *puVar2 = *(undefined1 *)param_3;
+        __ptr[3] = (short)puVar2;
+        __ptr[4] = (short)((uint)puVar2 >> 0x10);
+      }
+    }
+    else {
+      if (param_2 != 0x4000) goto _L0;
       *(undefined1 *)((int)__ptr + 3) = 0x11;
       *(undefined1 *)(__ptr + 1) = 0x21;
       puVar3 = (undefined2 *)malloc(2);
       *puVar3 = *param_3;
       __ptr[3] = (short)puVar3;
       __ptr[4] = (short)((uint)puVar3 >> 0x10);
-    }
-    else {
-      if (param_2 != 8) goto _L0;
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x30;
-      puVar2 = (undefined1 *)malloc(1);
-      *puVar2 = *(undefined1 *)param_3;
-      __ptr[3] = (short)puVar2;
-      __ptr[4] = (short)((uint)puVar2 >> 0x10);
     }
   }
   else if (param_2 == 0x4006) {

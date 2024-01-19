@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_device_attribute_update_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,11 +23,8 @@ undefined4 zcl_device_attribute_update_handler(void)
   undefined2 uStack_1c;
   ushort uStack_1a;
   undefined2 uStack_18;
-  undefined1 uStack_16;
-  undefined1 uStack_15;
-  undefined1 uStack_14;
-  undefined1 uStack_13;
-  undefined1 uStack_12;
+  ushort uStack_16;
+  int iStack_14;
   
   iVar1 = zb_buf_get_tail_func(0x38);
   uStack_24 = 0;
@@ -37,10 +34,7 @@ undefined4 zcl_device_attribute_update_handler(void)
   uStack_1a = 0;
   uStack_18 = 0;
   uStack_16 = 0;
-  uStack_15 = 0;
-  uStack_14 = 0;
-  uStack_13 = 0;
-  uStack_12 = 0;
+  iStack_14 = 0;
   iVar2 = find_device_endpoint_cluster_attribute();
   if (iVar2 == 0) {
     uVar3 = esp_log_timestamp();
@@ -66,11 +60,7 @@ undefined4 zcl_device_attribute_update_handler(void)
               if (uVar4 == 0x30) {
 _L0:
                 uStack_16 = 1;
-                iVar1 = iVar1 + 0x10;
-                uStack_15 = (undefined1)iVar1;
-                uStack_14 = (undefined1)((uint)iVar1 >> 8);
-                uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-                uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+                iStack_14 = iVar1 + 0x10;
                 goto _L0;
               }
             }
@@ -80,22 +70,14 @@ _L0:
         else {
           uVar4 = 1 << (uVar4 - 0x31 & 0x1f);
           if ((uVar4 & 0x88f0000) != 0) {
-            uStack_16 = *(undefined1 *)(iVar1 + 0x10);
-            uVar3 = *(undefined4 *)(iVar1 + 0x14);
-            uStack_15 = (undefined1)uVar3;
-            uStack_14 = (undefined1)((uint)uVar3 >> 8);
-            uStack_13 = (undefined1)((uint)uVar3 >> 0x10);
-            uStack_12 = (undefined1)((uint)uVar3 >> 0x18);
+            uStack_16 = (ushort)*(byte *)(iVar1 + 0x10);
+            iStack_14 = *(int *)(iVar1 + 0x14);
             goto _L0;
           }
           if ((uVar4 & 0x81) != 0) {
 _L0:
             uStack_16 = 2;
-            iVar1 = iVar1 + 0x10;
-            uStack_15 = (undefined1)iVar1;
-            uStack_14 = (undefined1)((uint)iVar1 >> 8);
-            uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-            uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+            iStack_14 = iVar1 + 0x10;
             goto _L0;
           }
           if ((uVar4 & 0x100) == 0) goto _L0;
@@ -104,11 +86,7 @@ _L0:
       }
       if (uVar4 == 0xf0) {
         uStack_16 = 8;
-        iVar1 = iVar1 + 0x10;
-        uStack_15 = (undefined1)iVar1;
-        uStack_14 = (undefined1)((uint)iVar1 >> 8);
-        uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-        uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+        iStack_14 = iVar1 + 0x10;
         goto _L0;
       }
       if (uVar4 < 0xf1) {
@@ -119,11 +97,7 @@ _L0:
         else if (uVar4 != 0xea) goto _L0;
 _L0:
         uStack_16 = 4;
-        iVar1 = iVar1 + 0x10;
-        uStack_15 = (undefined1)iVar1;
-        uStack_14 = (undefined1)((uint)iVar1 >> 8);
-        uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-        uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+        iStack_14 = iVar1 + 0x10;
       }
       else {
 _L0:
@@ -147,11 +121,7 @@ _L0:
         }
 _L0:
         uStack_16 = 3;
-        iVar1 = iVar1 + 0x10;
-        uStack_15 = (undefined1)iVar1;
-        uStack_14 = (undefined1)((uint)iVar1 >> 8);
-        uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-        uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+        iStack_14 = iVar1 + 0x10;
         goto _L0;
       }
       if (uVar4 != 0x1d) {
@@ -179,11 +149,7 @@ _L0:
   }
 _L0:
   uStack_16 = 6;
-  iVar1 = iVar1 + 0x10;
-  uStack_15 = (undefined1)iVar1;
-  uStack_14 = (undefined1)((uint)iVar1 >> 8);
-  uStack_13 = (undefined1)((uint)iVar1 >> 0x10);
-  uStack_12 = (undefined1)((uint)iVar1 >> 0x18);
+  iStack_14 = iVar1 + 0x10;
 _L0:
   if (zb_core_action_cb == (code *)0x0) {
     uVar3 = 0;

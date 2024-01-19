@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_read_attr_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,14 +15,13 @@ int zcl_cmd_read_attr_resp_handler(undefined4 param_1)
 {
   uint *puVar1;
   undefined2 *puVar2;
-  undefined1 uVar3;
+  undefined2 uVar3;
   int iVar4;
   undefined4 uVar5;
   uint uVar6;
   uint uVar7;
   uint *puVar8;
   uint *puVar9;
-  undefined2 *puVar10;
   undefined1 auStack_44 [32];
   uint *puStack_24;
   
@@ -43,13 +42,9 @@ _L0:
           *(undefined2 *)(puVar8 + 1) = *puVar2;
           *(ushort *)((int)puVar8 + 6) = (ushort)*(byte *)((int)puVar2 + 3);
           *(undefined2 *)(puVar8 + 2) = 0;
-          puVar10 = puVar2 + 2;
-          uVar3 = esp_zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar2 + 3),puVar10);
-          *(undefined1 *)((int)puVar8 + 10) = uVar3;
-          *(char *)((int)puVar8 + 0xb) = (char)puVar10;
-          *(char *)(puVar8 + 3) = (char)((uint)puVar10 >> 8);
-          *(char *)((int)puVar8 + 0xd) = (char)((uint)puVar10 >> 0x10);
-          *(char *)((int)puVar8 + 0xe) = (char)((uint)puVar10 >> 0x18);
+          uVar3 = esp_zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar2 + 3),puVar2 + 2);
+          *(undefined2 *)((int)puVar8 + 10) = uVar3;
+          puVar8[3] = (uint)(puVar2 + 2);
           puVar8[4] = 0;
           puVar1 = puVar8;
           if (puVar9 != (uint *)0x0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -62,13 +62,13 @@ void zb_nvram_app1_read_cb(uint param_1)
         uVar6 = puVar18[6];
         uVar7 = puVar18[7];
         (&esp_zb_zcl_scenes_table)[iVar19] = *puVar18;
-        (&DAT_000176f9)[iVar19] = uVar1;
-        (&DAT_000176fa)[iVar19] = uVar2;
-        (&DAT_000176fb)[iVar19] = uVar3;
-        (&DAT_000176fc)[iVar19] = uVar4;
-        (&DAT_000176fd)[iVar19] = uVar5;
-        (&DAT_000176fe)[iVar19] = uVar6;
-        (&DAT_000176ff)[iVar19] = uVar7;
+        (&DAT_00017821)[iVar19] = uVar1;
+        *(undefined1 *)(&DAT_00017822 + uVar17 * 6) = uVar2;
+        *(undefined1 *)((int)&DAT_00017822 + iVar19 + 1) = uVar3;
+        (&DAT_00017824)[iVar19] = uVar4;
+        (&DAT_00017825)[iVar19] = uVar5;
+        (&DAT_00017826)[iVar19] = uVar6;
+        (&DAT_00017827)[iVar19] = uVar7;
         uVar10 = uVar10 + 8;
         uVar16 = (uint)(byte)puVar18[7];
         puVar18 = (undefined1 *)0x0;
@@ -87,7 +87,7 @@ void zb_nvram_app1_read_cb(uint param_1)
           uVar16 = (uVar16 - 3 & 0xffff) - (uint)(byte)puVar14[2] & 0xffff;
           *(undefined4 *)(puVar14 + 8) = 0;
           if (puVar18 == (undefined1 *)0x0) {
-            (&DAT_00017700)[uVar17 * 3] = puVar14;
+            (&DAT_00017828)[uVar17 * 3] = puVar14;
             puVar18 = puVar14;
           }
           else {
@@ -101,7 +101,7 @@ void zb_nvram_app1_read_cb(uint param_1)
     iVar11 = 0;
 _L0:
     for (; iVar11 < 0x10; iVar11 = iVar11 + 1) {
-      if (*(short *)(&DAT_000176fa + iVar11 * 0xc) != -1) {
+      if ((&DAT_00017822)[iVar11 * 6] != -1) {
         zb_zcl_scenes_set_scene_count((&esp_zb_zcl_scenes_table)[iVar11 * 0xc],1);
       }
     }

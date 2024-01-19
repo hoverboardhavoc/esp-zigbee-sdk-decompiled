@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e81a64f4a72a1b96e84882b938e8d601ccb424df
- * https://github.com/espressif/esp-zigbee-sdk/commit/e81a64f4a72a1b96e84882b938e8d601ccb424df
- * Upstream date: 2023-06-30 20:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release esp-zigbee-sdk v0.7.0(8b8bde0)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_ias_zone_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -48,10 +48,10 @@ undefined4 esp_zb_ias_zone_cluster_create(undefined1 *param_1)
   else {
     auStack_11[0] = *param_1;
     uStack_12 = (undefined1)*(undefined2 *)(param_1 + 2);
-    uStack_13 = param_1[4];
-    uStack_1c = *(undefined4 *)(param_1 + 5);
-    uStack_18 = *(undefined4 *)(param_1 + 9);
-    uStack_1d = param_1[0xd];
+    uStack_13 = (undefined1)*(undefined2 *)(param_1 + 4);
+    uStack_1c = *(undefined4 *)(param_1 + 6);
+    uStack_18 = *(undefined4 *)(param_1 + 10);
+    uStack_1d = param_1[0xe];
     uStack_2c = *(undefined4 *)(param_1 + 0x10);
     uStack_28 = *(undefined4 *)(param_1 + 0x14);
     uStack_24 = *(uint *)(param_1 + 0x18);

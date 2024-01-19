@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
+ * Upstream date: 2024-01-19 19:10:32 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,10 +57,10 @@ int zcl_ota_upgrade_handler(void)
     uVar6 = *(uint *)(iVar2 + 0x10);
     __src = *(void **)(iVar2 + 0x18);
     if (__n + uVar6 < 0x39) {
-      memcpy(ota_header_8,__src,__n);
+      memcpy(ota_header_9,__src,__n);
     }
     else if (uVar6 < 0x38) {
-      memcpy(ota_header_8 + uVar6,__src,0x38 - uVar6);
+      memcpy(ota_header_9 + uVar6,__src,0x38 - uVar6);
       uStack_28 = CONCAT22(uStack_28._2_2_,(short)((__n + uVar6) * 0x10000 >> 0x10) + -0x38);
       pvStack_24 = (void *)((0x38 - uVar6) + (int)__src);
     }
@@ -69,9 +69,9 @@ int zcl_ota_upgrade_handler(void)
       pvStack_24 = __src;
     }
   }
-  uStack_34 = CONCAT22(ota_header_8._12_2_,ota_header_8._10_2_);
-  uStack_30 = ota_header_8._14_4_;
-  iStack_2c = ota_header_8._52_4_ + -0x38;
+  uStack_34 = CONCAT22(ota_header_9._12_2_,ota_header_9._10_2_);
+  uStack_30 = ota_header_9._14_4_;
+  iStack_2c = ota_header_9._52_4_ + -0x38;
   if (((*(char *)(iVar2 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) &&
      ((uStack_28 & 0xffff) == 0)) {
     *(undefined1 *)(iVar2 + 0xc) = 6;
