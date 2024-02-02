@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,13 +40,13 @@ void initialize_console(void)
   uStack_38 = __esp_error_check_failed;
   uStack_34 = _linenoiseSetDumbMode;
   uStack_30 = _zb_cli_register_bdb_cmd;
-  uStack_2c = _zb_cli_register_zdo_cmd;
-  uStack_28 = _zb_cli_register_zcl_cmd;
-  uStack_24 = _zb_cli_register_reset_cmd;
-  uStack_20 = _esp_log_timestamp;
-  uStack_1c = _esp_log_write;
-  uStack_18 = _esp_console_register_help_command;
-  uStack_14 = _linenoiseFree;
+  uStack_2c = _zb_cli_register_tlk_cmd;
+  uStack_28 = _zb_cli_register_zdo_cmd;
+  uStack_24 = _zb_cli_register_zcl_cmd;
+  uStack_20 = _zb_cli_register_reset_cmd;
+  uStack_1c = _esp_log_timestamp;
+  uStack_18 = _esp_log_write;
+  uStack_14 = _esp_console_register_help_command;
   iVar1 = zb_esp_uart_init(&uStack_38,0,1);
   if (iVar1 == 0) {
     uStack_44 = 0;
@@ -73,11 +73,11 @@ void initialize_console(void)
   }
   else {
     _esp_error_check_failed
-              ("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
-               0x5c,"initialize_console",0x10000);
+              ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c"
+               ,0x5c,"initialize_console",0x10000);
   }
   _esp_error_check_failed
-            ("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
+            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_console_task.c",
              0x66,"initialize_console","esp_console_init(&console_config)");
 _L0:
   puts(

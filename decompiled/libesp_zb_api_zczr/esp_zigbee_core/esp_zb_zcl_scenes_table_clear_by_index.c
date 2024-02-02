@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_table_clear_by_index
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ int esp_zb_zcl_scenes_table_clear_by_index(uint param_1)
   undefined4 uVar2;
   
   if (param_1 < 0x10) {
-    if ((&DAT_0001781e)[param_1 * 6] != -1) {
+    if ((&DAT_00017f76)[param_1 * 6] != -1) {
       zb_zcl_scenes_set_scene_count((&esp_zb_zcl_scenes_table)[param_1 * 0xc],0xffffffff);
       device_scenes_table_record_free(param_1 & 0xff);
     }
@@ -25,14 +25,14 @@ int esp_zb_zcl_scenes_table_clear_by_index(uint param_1)
     if (iVar1 != 0) {
       uVar2 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC37,uVar2,"ESP_ZIGBEE_CORE",
-                    "esp_zb_zcl_scenes_table_clear_by_index",0x3fc);
+                    "esp_zb_zcl_scenes_table_clear_by_index",0x3fd);
       iVar1 = -1;
     }
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC71,uVar2,"ESP_ZIGBEE_CORE",
-                  "esp_zb_zcl_scenes_table_clear_by_index",0x3f7,param_1);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC73,uVar2,"ESP_ZIGBEE_CORE",
+                  "esp_zb_zcl_scenes_table_clear_by_index",0x3f8,param_1);
     iVar1 = 0x102;
   }
   return iVar1;

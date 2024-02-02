@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> device_scenes_table_record_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,16 +13,13 @@
 void device_scenes_table_record_free(uint param_1)
 
 {
-  int iVar1;
-  
   if (param_1 < 0x10) {
-    iVar1 = param_1 * 0xc;
-    device_scene_free_fields((&DAT_00017824)[param_1 * 3]);
-    (&DAT_00017824)[param_1 * 3] = 0;
-    (&DAT_0001781e)[param_1 * 6] = 0xffff;
-    (&DAT_00017822)[iVar1] = 0;
-    *(undefined2 *)(&DAT_00017820 + iVar1) = 0;
-    (&DAT_00017823)[iVar1] = 0;
+    device_scene_free_fields((&DAT_00017f7c)[param_1 * 3]);
+    (&DAT_00017f7c)[param_1 * 3] = 0;
+    (&DAT_00017f76)[param_1 * 6] = 0xffff;
+    (&DAT_00017f7a)[param_1 * 0xc] = 0;
+    (&DAT_00017f78)[param_1 * 6] = 0;
+    (&DAT_00017f7b)[param_1 * 0xc] = 0;
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void device_ieee_addr_req_cb(int param_1)
   uVar1 = *puVar2;
   iVar3 = zb_buf_begin_func(param_1);
   uStack_18 = ZDO_INVALID_IEEE_ADDR;
-  uStack_14 = DAT_00012074;
+  uStack_14 = DAT_00012130;
   if (*(char *)(iVar3 + 1) == '\0') {
     zb_memcpy8(&uStack_18,iVar3 + 2);
     zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);

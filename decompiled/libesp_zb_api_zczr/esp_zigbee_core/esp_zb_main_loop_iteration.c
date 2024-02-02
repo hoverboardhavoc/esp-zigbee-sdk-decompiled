@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_main_loop_iteration
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,8 +13,14 @@
 void esp_zb_main_loop_iteration(void)
 
 {
+  int iVar1;
+  
   do {
-    zboss_main_loop_iteration();
+    iVar1 = esp_zb_lock_acquire(0xffffffff);
+    if (iVar1 != 0) {
+      zboss_main_loop_iteration();
+    }
+    esp_zb_lock_release();
   } while( true );
 }
 

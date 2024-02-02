@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_mgmt_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ void cmd_zb_mgmt_bind(uint param_1,undefined4 *param_2)
   }
   else if (param_1 == 0) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC94,uVar4,&_LC0);
+    esp_log_write(1,&_LC0,&_LC95,uVar4,&_LC0);
   }
   else {
     iVar2 = parse_address(*param_2,iVar1 + 10,2);
@@ -44,14 +44,14 @@ void cmd_zb_mgmt_bind(uint param_1,undefined4 *param_2)
         iVar2 = sscan_uint8(param_2[1],iVar1 + 8);
         if (iVar2 == 0) {
           uVar4 = esp_log_timestamp();
-          esp_log_write(1,&_LC0,&_LC95,uVar4,&_LC0);
+          esp_log_write(1,&_LC0,&_LC96,uVar4,&_LC0);
           goto _L0;
         }
         uVar6 = 2;
       }
       if (uVar6 < param_1) {
         uVar4 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC96,uVar4,&_LC0);
+        esp_log_write(1,&_LC0,&_LC97,uVar4,&_LC0);
       }
       else {
         iVar2 = zb_buf_get_out_func();
@@ -68,7 +68,7 @@ void cmd_zb_mgmt_bind(uint param_1,undefined4 *param_2)
           *puVar3 = *(undefined1 *)(iVar1 + 8);
           *(undefined2 *)(puVar3 + 2) = *(undefined2 *)(iVar1 + 10);
           uVar4 = esp_log_timestamp();
-          esp_log_write(3,&_LC0,&_LC97,uVar4,&_LC0,*puVar3,*(undefined2 *)(puVar3 + 2));
+          esp_log_write(3,&_LC0,&_LC98,uVar4,&_LC0,*puVar3,*(undefined2 *)(puVar3 + 2));
           iVar5 = zb_zdo_mgmt_bind_req(iVar2,cmd_zb_mgmt_bind_cb);
           *(char *)(iVar1 + 4) = (char)iVar5;
           if (iVar5 != 0xff) {

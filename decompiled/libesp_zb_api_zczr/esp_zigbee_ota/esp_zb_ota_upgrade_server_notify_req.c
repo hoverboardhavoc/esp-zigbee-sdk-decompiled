@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_ota.o -> esp_zb_ota_upgrade_server_notify_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -76,7 +76,7 @@ undefined4 esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
         s_ota_next_data_cb = *(undefined4 *)(param_1 + 0x14);
         iVar2 = zb_buf_get_out_func();
         if (iVar2 == 0) {
-          __assert_func("//home/xusiyu/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c",
+          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c",
                         0x83,"esp_zb_ota_upgrade_server_notify_req","bufid");
         }
         else {

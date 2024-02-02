@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_get_scene_membership_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,7 @@ undefined4 zcl_scenes_get_scene_membership_handler(undefined4 param_1)
   if (iVar2 == 0) {
     memcpy(&scene_resp_info,__src,0x1b);
     scene_resp_info = *(undefined1 *)puVar1;
-    DAT_000177dd = *(undefined1 *)((int)puVar1 + 1);
+    DAT_00017f35 = *(undefined1 *)((int)puVar1 + 1);
     uVar3 = esp_log_timestamp();
     esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar3,"ESP_ZIGBEE_CORE");
     zb_buf_get_out_delayed_func(send_get_scene_membership_resp);

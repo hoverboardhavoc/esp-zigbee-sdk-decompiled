@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_role
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,23 +22,29 @@ void cmd_zb_role(void)
   if (iVar1 != 3) {
     if (m_stack_is_started != '\0') {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC19,uVar2,0x10000);
+      esp_log_write(1,0x10000,&_LC13,uVar2,0x10000);
       return;
     }
-    if (iVar1 != 0) {
-      if (iVar1 != 1) {
-        uVar2 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC3,uVar2,0x10000);
-        return;
-      }
+    if (iVar1 == 0) {
+      m_default_role = 0;
+      uVar2 = esp_log_timestamp();
+      esp_log_write(3,0x10000,&_L0,uVar2,0x10000);
+      return;
+    }
+    if (iVar1 == 1) {
       m_default_role = 1;
       uVar2 = esp_log_timestamp();
-      esp_log_write(3,0x10000,&_LC45,uVar2,0x10000);
+      esp_log_write(3,0x10000,&_LC106,uVar2,0x10000);
       return;
     }
-    m_default_role = 0;
+    if (iVar1 != 2) {
+      uVar2 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC24,uVar2,0x10000);
+      return;
+    }
+    m_default_role = 2;
     uVar2 = esp_log_timestamp();
-    esp_log_write(3,0x10000,&_LC44,uVar2,0x10000);
+    esp_log_write(3,0x10000,&_LC107,uVar2,0x10000);
     return;
   }
   uVar3 = zb_get_network_role();
@@ -58,7 +64,7 @@ void cmd_zb_role(void)
 _L0:
   auStack_14[0] = auStack_14[0] & 0xffffff;
   uVar2 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_LC18,uVar2,0x10000,auStack_14);
+  esp_log_write(3,0x10000,&_LC48,uVar2,0x10000,auStack_14);
   return;
 }
 

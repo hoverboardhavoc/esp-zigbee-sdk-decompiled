@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> zb_cli_zdo_cmd_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,43 +19,46 @@ int zb_cli_zdo_cmd_cb(int param_1,int param_2)
   arg_parse(&zdo_args);
   if (param_1 < 2) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_LC101,uVar2,&_LC0);
+    esp_log_write(1,&_LC0,&_LC102,uVar2,&_LC0);
     iVar1 = 1;
   }
   else {
     if (*(int *)(zdo_args + 0x34) != 0) {
       cmd_zb_match_desc(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_0001456c + 0x34) != 0) {
+    if (*(int *)(DAT_00014670 + 0x34) != 0) {
       cmd_zb_simple_desc(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_00014570 + 0x34) != 0) {
+    if (*(int *)(DAT_00014674 + 0x34) != 0) {
       cmd_zb_active_ep(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_00014574 + 0x34) != 0) {
+    if (*(int *)(DAT_00014678 + 0x34) != 0) {
       cmd_zb_nwk_addr(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_00014578 + 0x34) != 0) {
+    if (*(int *)(DAT_0001467c + 0x34) != 0) {
       cmd_zb_ieee_addr(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_0001457c + 0x34) != 0) {
+    if (*(int *)(DAT_00014680 + 0x34) != 0) {
       cmd_zb_eui64(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_00014580 + 0x34) != 0) {
+    if (*(int *)(DAT_00014684 + 0x34) != 0) {
       cmd_zb_short(param_1,param_2);
     }
-    if (*(int *)(DAT_00014584 + 0x34) != 0) {
+    if (*(int *)(DAT_00014688 + 0x34) != 0) {
       cmd_zb_bind(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_00014588 + 0x34) != 0) {
+    if (*(int *)(DAT_0001468c + 0x34) != 0) {
       cmd_zb_mgmt_bind(param_1 + -2,param_2 + 8);
     }
-    if (*(int *)(DAT_0001458c + 0x34) != 0) {
+    if (*(int *)(DAT_00014690 + 0x34) != 0) {
       cmd_zb_mgmt_leave(param_1 + -2,param_2 + 8);
     }
-    iVar1 = *(int *)(DAT_00014590 + 0x34);
-    if (iVar1 != 0) {
+    if (*(int *)(DAT_00014694 + 0x34) != 0) {
       cmd_zb_mgmt_lqi(param_1 + -2,param_2 + 8);
+    }
+    iVar1 = *(int *)(DAT_00014698 + 0x34);
+    if (iVar1 != 0) {
+      cmd_zb_zdo_annce(param_1 + -2,param_2 + 8);
       iVar1 = 0;
     }
   }

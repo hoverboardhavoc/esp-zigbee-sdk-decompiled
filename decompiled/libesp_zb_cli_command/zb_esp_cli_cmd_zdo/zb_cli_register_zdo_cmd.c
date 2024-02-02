@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> zb_cli_register_zdo_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,23 +24,24 @@ void zb_cli_register_zdo_cmd(void)
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  zdo_args = arg_lit0(&_LC104,"match_desc","Send match descriptor request.");
-  DAT_0001456c = arg_lit0(&_LC107,"simple_desc_req","send Simple Descriptor Request");
-  DAT_00014570 = arg_str0(&_LC111,"active_ep","<active_ep>","Send Active Endpoint Request");
-  DAT_00014574 = arg_str0(&_LC115,"nwk_addr","<nwk_addr>","get network address by EUI64");
-  DAT_00014578 = arg_str0(&_LC119,"ieee_addr","<ieee_addr>","get ieee_addr by nwk_addr");
-  DAT_0001457c = arg_lit0(&_LC122,"eui64","get EUI64 address of zigbee device");
-  DAT_00014580 = arg_lit0(&_LC125,"short","Get the short 16-bit address of the Zigbee device.");
-  DAT_00014584 = arg_lit0(&_LC128,"bind_on/bind_off",
+  zdo_args = arg_lit0(&_LC105,"match_desc","Send match descriptor request.");
+  DAT_00014670 = arg_lit0(&_LC108,"simple_desc_req","send Simple Descriptor Request");
+  DAT_00014674 = arg_str0(&_LC112,"active_ep","<active_ep>","Send Active Endpoint Request");
+  DAT_00014678 = arg_str0(&_LC116,"nwk_addr","<nwk_addr>","get network address by EUI64");
+  DAT_0001467c = arg_str0(&_LC120,"ieee_addr","<ieee_addr>","get ieee_addr by nwk_addr");
+  DAT_00014680 = arg_lit0(&_LC123,"eui64","get EUI64 address of zigbee device");
+  DAT_00014684 = arg_lit0(&_LC126,"short","Get the short 16-bit address of the Zigbee device.");
+  DAT_00014688 = arg_lit0(&_LC129,"bind_on/bind_off",
                           "Create/Remove a binding between two endpoints on two nodes");
-  DAT_00014588 = arg_str0(&_LC132,"mgmt_bind","<mgmt_bind>","get binding table");
-  DAT_0001458c = arg_lit0(&_LC135,"leave","ask device to leave the network");
-  DAT_00014590 = arg_lit0(&_LC138,&_LC137,"ask device to return its neighbor table");
-  DAT_00014594 = arg_end(2);
+  DAT_0001468c = arg_str0(&_LC133,"mgmt_bind","<mgmt_bind>","get binding table");
+  DAT_00014690 = arg_lit0(&_LC136,"leave","ask device to leave the network");
+  DAT_00014694 = arg_lit0(&_LC139,&_LC138,"ask device to return its neighbor table");
+  DAT_00014698 = arg_lit0(&_LC142,"announcement","ask device to send announcement");
+  DAT_0001469c = arg_end(2);
   uStack_24 = 0;
   uStack_18 = 0;
   uStack_14 = 0;
-  puStack_2c = &_LC139;
+  puStack_2c = &_LC143;
   pcStack_28 = "ZigBee zdo command";
   pcStack_20 = zb_cli_zdo_cmd_cb;
   puStack_1c = &zdo_args;
@@ -49,7 +50,7 @@ void zb_cli_register_zdo_cmd(void)
     return;
   }
   _esp_error_check_failed
-            ("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",0x6ef,
+            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",0x705,
              "zb_cli_register_zdo_cmd","esp_console_cmd_register(&zdo_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

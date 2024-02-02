@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_role_check
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ undefined1 zb_role_check(char *param_1)
     if (3 < uVar1) {
       return 0xff;
     }
-    iVar2 = strcmp(param_1,(&PTR__LC93_00012184)[uVar1 * 2]);
+    iVar2 = strcmp(param_1,(&PTR__LC6_00014830)[uVar1 * 2]);
     if (iVar2 == 0) break;
     uVar1 = uVar1 + 1 & 0xff;
   }

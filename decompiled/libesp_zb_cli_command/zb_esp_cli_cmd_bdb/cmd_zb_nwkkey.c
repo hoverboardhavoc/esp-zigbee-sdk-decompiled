@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_nwkkey
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,24 +26,24 @@ void cmd_zb_nwkkey(char *param_1)
       iVar3 = parse_hex_str(param_1,&uStack_20,0x10,0);
       if (iVar3 == 0) {
         uVar2 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC40,uVar2,0x10000);
+        esp_log_write(1,0x10000,&_LC82,uVar2,0x10000);
       }
       else {
         zb_secur_setup_nwk_key(&uStack_20,0);
         uVar2 = esp_log_timestamp();
-        esp_log_write(3,0x10000,&_LC39,uVar2,0x10000,uStack_20,uStack_1f,uStack_1e);
+        esp_log_write(3,0x10000,&_LC81,uVar2,0x10000,uStack_20,uStack_1f,uStack_1e);
         uVar2 = esp_log_timestamp();
-        esp_log_write(3,0x10000,&_LC4,uVar2,0x10000);
+        esp_log_write(3,0x10000,&_LC1,uVar2,0x10000);
       }
     }
     else {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC34,uVar2,0x10000);
+      esp_log_write(1,0x10000,&_LC76,uVar2,0x10000);
     }
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC19,uVar2,0x10000);
+    esp_log_write(1,0x10000,&_LC13,uVar2,0x10000);
   }
   return;
 }

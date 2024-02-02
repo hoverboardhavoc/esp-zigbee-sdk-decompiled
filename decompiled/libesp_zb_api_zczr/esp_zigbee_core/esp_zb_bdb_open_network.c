@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_bdb_open_network
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,15 +20,15 @@ undefined4 esp_zb_bdb_open_network(undefined1 param_1)
   iVar1 = zb_zdo_joined();
   if (iVar1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC78,uVar3,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC82,uVar3,"ESP_ZIGBEE_CORE");
     uVar3 = 0xffffffff;
   }
   else {
     iVar1 = zb_buf_get_out_func();
     if (iVar1 == 0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC77,uVar3,"ESP_ZIGBEE_CORE","esp_zb_bdb_open_network",
-                    0xb0c);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC81,uVar3,"ESP_ZIGBEE_CORE","esp_zb_bdb_open_network",
+                    0xb91);
       uVar3 = 0x101;
     }
     else {

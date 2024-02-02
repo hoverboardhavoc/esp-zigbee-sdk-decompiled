@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_factory_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
+/* WARNING: Control flow encountered bad instruction data */
+
 void esp_zb_factory_reset(void)
 
 {
-  int iVar1;
-  
   zb_zcl_init_reporting_info();
   zb_zcl_reset_reporting_ctx();
   zb_bdb_reset_via_local_action(0);
   zb_nvram_erase();
-  DAT_0001e699 = DAT_0001e699 | 8;
-  iVar1 = esp_restart();
-  if (iVar1 == 0) {
-    esp_zb_start_no_autostart();
-  }
-  else {
-    esp_zb_start_autostart();
-  }
-  return;
+  DAT_0001f6a1 = DAT_0001f6a1 | 8;
+  esp_restart();
+                    /* WARNING: Bad instruction - Truncating control flow here */
+  halt_baddata();
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,7 +49,7 @@ int zcl_ota_upgrade_handler(void)
   uStack_38 = (uint)*(byte *)(iVar2 + 0xc);
   if (zb_core_action_cb == (code *)0x0) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE","zcl_ota_upgrade_handler",0x422);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE","zcl_ota_upgrade_handler",0x423);
     return -1;
   }
   if (uStack_38 == 2) {
@@ -57,10 +57,10 @@ int zcl_ota_upgrade_handler(void)
     uVar6 = *(uint *)(iVar2 + 0x10);
     __src = *(void **)(iVar2 + 0x18);
     if (__n + uVar6 < 0x39) {
-      memcpy(ota_header_9,__src,__n);
+      memcpy(ota_header_12,__src,__n);
     }
     else if (uVar6 < 0x38) {
-      memcpy(ota_header_9 + uVar6,__src,0x38 - uVar6);
+      memcpy(ota_header_12 + uVar6,__src,0x38 - uVar6);
       uStack_28 = CONCAT22(uStack_28._2_2_,(short)((__n + uVar6) * 0x10000 >> 0x10) + -0x38);
       pvStack_24 = (void *)((0x38 - uVar6) + (int)__src);
     }
@@ -69,9 +69,9 @@ int zcl_ota_upgrade_handler(void)
       pvStack_24 = __src;
     }
   }
-  uStack_34 = CONCAT22(ota_header_9._12_2_,ota_header_9._10_2_);
-  uStack_30 = ota_header_9._14_4_;
-  iStack_2c = ota_header_9._52_4_ + -0x38;
+  uStack_34 = CONCAT22(ota_header_12._12_2_,ota_header_12._10_2_);
+  uStack_30 = ota_header_12._14_4_;
+  iStack_2c = ota_header_12._52_4_ + -0x38;
   if (((*(char *)(iVar2 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) &&
      ((uStack_28 & 0xffff) == 0)) {
     *(undefined1 *)(iVar2 + 0xc) = 6;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
- * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
- * Upstream date: 2024-02-02 22:15:44 +0800
- * Upstream subject: feat(spinel): support zigbee radio spinel
+ * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
+ * Upstream date: 2024-02-02 22:17:34 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,7 +39,7 @@ void zb_nvram_app1_read_cb(uint param_1)
   iVar11 = -(param_1 + 0x10 & 0xfffffff0);
   if (param_1 < 2) {
     uVar13 = esp_log_timestamp(param_1);
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC45,uVar13,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8d);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC47,uVar13,"ESP_ZIGBEE_CORE","zb_nvram_app1_read_cb",0x8e);
   }
   else {
     iVar12 = zb_nvram_read_data((int)&uStack_40 + iVar11);
@@ -62,13 +62,13 @@ void zb_nvram_app1_read_cb(uint param_1)
         uVar6 = puVar18[6];
         uVar7 = puVar18[7];
         (&esp_zb_zcl_scenes_table)[iVar19] = *puVar18;
-        (&DAT_0001781d)[iVar19] = uVar1;
-        *(undefined1 *)(&DAT_0001781e + uVar17 * 6) = uVar2;
-        *(undefined1 *)((int)&DAT_0001781e + iVar19 + 1) = uVar3;
-        (&DAT_00017820)[iVar19] = uVar4;
-        (&DAT_00017821)[iVar19] = uVar5;
-        (&DAT_00017822)[iVar19] = uVar6;
-        (&DAT_00017823)[iVar19] = uVar7;
+        (&DAT_00017f75)[iVar19] = uVar1;
+        *(undefined1 *)(&DAT_00017f76 + uVar17 * 6) = uVar2;
+        *(undefined1 *)((int)&DAT_00017f76 + iVar19 + 1) = uVar3;
+        *(undefined1 *)(&DAT_00017f78 + uVar17 * 6) = uVar4;
+        *(undefined1 *)((int)&DAT_00017f78 + iVar19 + 1) = uVar5;
+        (&DAT_00017f7a)[iVar19] = uVar6;
+        (&DAT_00017f7b)[iVar19] = uVar7;
         uVar10 = uVar10 + 8;
         uVar16 = (uint)(byte)puVar18[7];
         puVar18 = (undefined1 *)0x0;
@@ -87,7 +87,7 @@ void zb_nvram_app1_read_cb(uint param_1)
           uVar16 = (uVar16 - 3 & 0xffff) - (uint)(byte)puVar14[2] & 0xffff;
           *(undefined4 *)(puVar14 + 8) = 0;
           if (puVar18 == (undefined1 *)0x0) {
-            (&DAT_00017824)[uVar17 * 3] = puVar14;
+            (&DAT_00017f7c)[uVar17 * 3] = puVar14;
             puVar18 = puVar14;
           }
           else {
@@ -101,7 +101,7 @@ void zb_nvram_app1_read_cb(uint param_1)
     iVar11 = 0;
 _L0:
     for (; iVar11 < 0x10; iVar11 = iVar11 + 1) {
-      if ((&DAT_0001781e)[iVar11 * 6] != -1) {
+      if ((&DAT_00017f76)[iVar11 * 6] != -1) {
         zb_zcl_scenes_set_scene_count((&esp_zb_zcl_scenes_table)[iVar11 * 0xc],1);
       }
     }
