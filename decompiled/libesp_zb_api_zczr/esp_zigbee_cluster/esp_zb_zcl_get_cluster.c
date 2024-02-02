@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_zcl_get_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ void esp_zb_zcl_get_cluster(undefined4 param_1,undefined4 param_2)
     get_cluster_desc(param_1,param_2);
     return;
   }
-  zb_assert("/home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_cluster.c",0x34);
+  zb_assert("/home/xusiyu/esp/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_cluster.c",0x34);
   pvVar2 = malloc(0x14);
   *(undefined4 *)((int)pvVar2 + 0x10) = 0;
   return;

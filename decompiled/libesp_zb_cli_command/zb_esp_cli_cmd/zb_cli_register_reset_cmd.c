@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd.o -> zb_cli_register_reset_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,25 +16,27 @@ void zb_cli_register_reset_cmd(void)
 
 {
   int iVar1;
+  char *pcStack_2c;
   char *pcStack_28;
-  char *pcStack_24;
-  undefined4 uStack_20;
-  code *pcStack_1c;
+  undefined4 uStack_24;
+  code *pcStack_20;
+  undefined4 uStack_1c;
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  uStack_20 = 0;
+  uStack_24 = 0;
+  uStack_1c = 0;
   uStack_18 = 0;
   uStack_14 = 0;
-  pcStack_28 = "reset";
-  pcStack_24 = "ZigBee reset command";
-  pcStack_1c = reset_cmd_cb;
-  iVar1 = esp_console_cmd_register(&pcStack_28);
+  pcStack_2c = "reset";
+  pcStack_28 = "ZigBee reset command";
+  pcStack_20 = reset_cmd_cb;
+  iVar1 = esp_console_cmd_register(&pcStack_2c);
   if (iVar1 == 0) {
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd.c",0x10a,
+            ("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd.c",0x10a,
              "zb_cli_register_reset_cmd","esp_console_cmd_register(&reset_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

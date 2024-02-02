@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> zdo_request_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -42,8 +42,7 @@ void zdo_request_cb(undefined4 param_1)
     }
   }
   else {
-    zb_assert("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",0x5ea
-             );
+    zb_assert("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",0x5ea);
 _L0:
     iVar4 = 1;
 _L0:

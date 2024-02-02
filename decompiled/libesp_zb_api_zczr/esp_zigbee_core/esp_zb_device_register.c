@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ undefined4 esp_zb_device_register(void)
       iVar4 = zb_af_get_endpoint_desc();
       if (*(int *)(iVar4 + 3) == 0) {
         iVar5 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
-        *(undefined1 *)(iVar5 + 3) = 0x1a;
+        *(undefined1 *)(iVar5 + 3) = 0x16;
         *(undefined1 *)(iVar5 + 4) = 0x2b;
         *(undefined1 *)(iVar5 + 5) = 1;
         *(undefined1 *)(iVar5 + 6) = 0;

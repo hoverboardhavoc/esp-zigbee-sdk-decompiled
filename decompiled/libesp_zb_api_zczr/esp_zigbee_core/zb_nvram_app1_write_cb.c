@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_write_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,15 +46,15 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
       return uVar9;
     }
     iVar10 = iVar14 * 0xc;
-    if ((&esp_zb_zcl_scenes_table + iVar10 != (byte *)0x0) && ((&DAT_00017822)[iVar14 * 6] != -1)) {
+    if ((&esp_zb_zcl_scenes_table + iVar10 != (byte *)0x0) && ((&DAT_0001781e)[iVar14 * 6] != -1)) {
       pbVar13 = abStack_40 + uVar12 + iVar8;
-      bVar1 = (&DAT_00017821)[iVar10];
-      bVar2 = *(byte *)(&DAT_00017822 + iVar14 * 6);
-      bVar3 = *(byte *)((int)&DAT_00017822 + iVar10 + 1);
-      bVar4 = (&DAT_00017824)[iVar10];
-      bVar5 = (&DAT_00017825)[iVar10];
-      bVar6 = (&DAT_00017826)[iVar10];
-      bVar7 = (&DAT_00017827)[iVar10];
+      bVar1 = (&DAT_0001781d)[iVar10];
+      bVar2 = *(byte *)(&DAT_0001781e + iVar14 * 6);
+      bVar3 = *(byte *)((int)&DAT_0001781e + iVar10 + 1);
+      bVar4 = (&DAT_00017820)[iVar10];
+      bVar5 = (&DAT_00017821)[iVar10];
+      bVar6 = (&DAT_00017822)[iVar10];
+      bVar7 = (&DAT_00017823)[iVar10];
       uVar11 = (uint)bVar7;
       *pbVar13 = (&esp_zb_zcl_scenes_table)[iVar10];
       pbVar13[1] = bVar1;
@@ -65,7 +65,7 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
       pbVar13[6] = bVar6;
       pbVar13[7] = bVar7;
       uVar12 = uVar12 + 8;
-      for (pbVar13 = (byte *)(&DAT_00017828)[iVar14 * 3]; uVar12 = uVar12 & 0xffff,
+      for (pbVar13 = (byte *)(&DAT_00017824)[iVar14 * 3]; uVar12 = uVar12 & 0xffff,
           pbVar13 != (byte *)0x0; pbVar13 = *(byte **)(pbVar13 + 8)) {
         abStack_40[uVar12 + iVar8] = *pbVar13;
         (abStack_40 + uVar12 + iVar8)[1] = pbVar13[1];
@@ -79,7 +79,7 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
       if (uVar11 != 0) {
         uVar9 = esp_log_timestamp();
         esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC44,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_write_cb",
-                      0xf8);
+                      0xe6);
         return 0xffffffff;
       }
     }

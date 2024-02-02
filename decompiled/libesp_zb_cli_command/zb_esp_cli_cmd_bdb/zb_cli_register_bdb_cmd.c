@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_bdb_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,11 +16,12 @@ void zb_cli_register_bdb_cmd(void)
 
 {
   int iVar1;
-  undefined *puStack_28;
-  char *pcStack_24;
-  undefined4 uStack_20;
-  code *pcStack_1c;
-  undefined4 *puStack_18;
+  undefined *puStack_2c;
+  char *pcStack_28;
+  undefined4 uStack_24;
+  code *pcStack_20;
+  undefined4 *puStack_1c;
+  undefined4 uStack_18;
   undefined4 uStack_14;
   
   bdb_args = arg_str0(&_LC51,&_LC50,"<role>",
@@ -45,18 +46,19 @@ void zb_cli_register_bdb_cmd(void)
   DAT_000121cc = arg_lit0(&_LC84,"factory_reset","factory reset");
   DAT_000121d0 = arg_str0(&_LC88,"childmax","<max_children>","Set max children");
   DAT_000121d4 = arg_end(0xd);
-  uStack_20 = 0;
+  uStack_24 = 0;
+  uStack_18 = 0;
   uStack_14 = 0;
-  puStack_28 = &_LC89;
-  pcStack_24 = "ZigBee bdb command";
-  pcStack_1c = zb_cli_bdb_cmd_cb;
-  puStack_18 = &bdb_args;
-  iVar1 = esp_console_cmd_register(&puStack_28);
+  puStack_2c = &_LC89;
+  pcStack_28 = "ZigBee bdb command";
+  pcStack_20 = zb_cli_bdb_cmd_cb;
+  puStack_1c = &bdb_args;
+  iVar1 = esp_console_cmd_register(&puStack_2c);
   if (iVar1 == 0) {
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x29c,
+            ("/home/xusiyu/esp/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x29c,
              "zb_cli_register_bdb_cmd","esp_console_cmd_register(&bdb_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

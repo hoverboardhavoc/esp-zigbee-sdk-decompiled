@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2e2b779251f791b76c34cc582bf68595de9ac19b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2e2b779251f791b76c34cc582bf68595de9ac19b
+ * Upstream date: 2024-02-02 22:15:44 +0800
+ * Upstream subject: feat(spinel): support zigbee radio spinel
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_add_privilege_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,7 +31,7 @@ undefined4 esp_zb_zcl_add_privilege_command(uint param_1,uint param_2,uint param
   if (pbVar2 == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC46,uVar3,"ESP_ZIGBEE_CORE",
-                  "esp_zb_zcl_add_privilege_command",0x111);
+                  "esp_zb_zcl_add_privilege_command",0xff);
     uVar3 = 0xffffffff;
   }
   else {
