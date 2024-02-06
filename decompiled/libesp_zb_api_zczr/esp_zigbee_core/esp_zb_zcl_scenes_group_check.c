@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
+ * Upstream date: 2024-02-06 17:30:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_group_check
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ undefined4 esp_zb_zcl_scenes_group_check(undefined4 param_1,uint param_2)
     iVar1 = zb_aps_is_endpoint_in_group(param_2,param_1);
     if (iVar1 == 0) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC34,uVar2,"ESP_ZIGBEE_CORE",param_1,param_2);
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC43,uVar2,"ESP_ZIGBEE_CORE",param_1,param_2);
       uVar2 = 0x85;
     }
     else {

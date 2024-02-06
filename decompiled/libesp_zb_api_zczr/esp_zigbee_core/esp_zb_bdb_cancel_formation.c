@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
+ * Upstream date: 2024-02-06 17:30:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_bdb_cancel_formation
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,8 +19,8 @@ undefined4 esp_zb_bdb_cancel_formation(void)
   iVar1 = zb_buf_get_out_func();
   if (iVar1 == 0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC80,uVar2,"ESP_ZIGBEE_CORE","esp_zb_bdb_cancel_formation",
-                  0xb6e);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC89,uVar2,"ESP_ZIGBEE_CORE","esp_zb_bdb_cancel_formation",
+                  0xcb4);
     uVar2 = 0xffffffff;
   }
   else {

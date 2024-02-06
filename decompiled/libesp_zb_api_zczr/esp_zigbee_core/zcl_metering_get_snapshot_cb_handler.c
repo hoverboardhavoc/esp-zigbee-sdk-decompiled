@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
+ * Upstream date: 2024-02-06 17:30:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_metering_get_snapshot_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -114,7 +114,7 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
   iVar1 = iStack_94;
   if (cVar3 == '\0') {
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC50,uVar9,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC59,uVar9,"ESP_ZIGBEE_CORE");
     iVar7 = -0x1c;
   }
   else if (iVar7 == 0) {
@@ -291,7 +291,7 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
       return 0;
     }
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC51,uVar9,"ESP_ZIGBEE_CORE",uStack_a1);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC60,uVar9,"ESP_ZIGBEE_CORE",uStack_a1);
     iVar7 = -0x1c;
   }
   return iVar7;

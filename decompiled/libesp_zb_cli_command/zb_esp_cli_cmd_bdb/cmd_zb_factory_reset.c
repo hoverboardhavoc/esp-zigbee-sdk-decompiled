@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
+ * Upstream date: 2024-02-06 17:30:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_factory_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ void cmd_zb_factory_reset(char *param_1)
   
   if (param_1 == (char *)0x0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC8,uVar2,0x10000,"cmd_zb_factory_reset",0x36a);
+    esp_log_write(1,0x10000,&_LC8,uVar2,0x10000,"cmd_zb_factory_reset",0x36c);
   }
   else {
     iVar1 = strcmp(param_1,"help");

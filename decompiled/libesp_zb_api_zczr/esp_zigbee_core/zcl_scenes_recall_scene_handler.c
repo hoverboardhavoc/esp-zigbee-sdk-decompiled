@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
+ * Upstream date: 2024-02-06 17:30:29 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_recall_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,18 +53,18 @@ undefined4 zcl_scenes_recall_scene_handler(undefined4 param_1)
   *puVar7 = (char)iVar3;
   if (iVar3 == 0) {
     iVar3 = device_scenes_get_free_entry(uVar1,*puVar2,*(undefined1 *)(puVar2 + 1));
-    if ((iVar3 == 0xff) || ((&DAT_00017f76)[iVar3 * 6] == -1)) {
+    if ((iVar3 == 0xff) || ((&DAT_00018df6)[iVar3 * 6] == -1)) {
       *puVar7 = 0x8b;
       uStack_38 = 0x8b;
       uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC59,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1),
+      esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC68,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1),
                     *puVar2);
     }
     else {
-      uStack_24 = (&DAT_00017f7c)[iVar3 * 3];
+      uStack_24 = (&DAT_00018dfc)[iVar3 * 3];
       *puVar7 = 0;
       uVar5 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC58,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1),
+      esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC67,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(puVar2 + 1),
                     *puVar2);
     }
   }
