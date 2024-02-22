@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
+ * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
+ * Upstream date: 2024-02-22 20:57:09 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_table_store
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,16 +22,16 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
   
   uVar1 = device_scenes_get_free_entry();
   if (uVar1 < 0x10) {
-    (&DAT_00018df8)[uVar1 * 6] = param_2;
-    (&DAT_00018dfb)[uVar1 * 0xc] = 0;
-    if ((&DAT_00018dfc)[uVar1 * 3] != 0) {
+    (&DAT_00018e60)[uVar1 * 6] = param_2;
+    (&DAT_00018e63)[uVar1 * 0xc] = 0;
+    if ((&DAT_00018e64)[uVar1 * 3] != 0) {
       device_scene_free_fields();
-      (&DAT_00018dfc)[uVar1 * 3] = 0;
+      (&DAT_00018e64)[uVar1 * 3] = 0;
     }
-    puVar5 = (undefined2 *)(&DAT_00018dfc)[uVar1 * 3];
+    puVar5 = (undefined2 *)(&DAT_00018e64)[uVar1 * 3];
     for (; param_3 != (undefined2 *)0x0; param_3 = *(undefined2 **)(param_3 + 4)) {
       puVar2 = (undefined2 *)malloc(0xc);
-      (&DAT_00018dfb)[uVar1 * 0xc] = (&DAT_00018dfb)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
+      (&DAT_00018e63)[uVar1 * 0xc] = (&DAT_00018e63)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
       *puVar2 = *param_3;
       *(undefined1 *)(puVar2 + 1) = *(undefined1 *)(param_3 + 1);
       *(undefined4 *)(puVar2 + 4) = 0;
@@ -39,7 +39,7 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
       *(void **)(puVar2 + 2) = __dest;
       memcpy(__dest,*(void **)(param_3 + 2),(uint)*(byte *)(param_3 + 1));
       if (puVar5 == (undefined2 *)0x0) {
-        (&DAT_00018dfc)[uVar1 * 3] = puVar2;
+        (&DAT_00018e64)[uVar1 * 3] = puVar2;
       }
       else {
         *(undefined2 **)(puVar5 + 4) = puVar2;
@@ -50,14 +50,14 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
     if (iVar3 != 0) {
       uVar4 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC46,uVar4,"ESP_ZIGBEE_CORE",
-                    "esp_zb_zcl_scenes_table_store",0x3a0);
+                    "esp_zb_zcl_scenes_table_store",0x3a8);
       iVar3 = -1;
     }
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE","esp_zb_zcl_scenes_table_store",
-                  899,param_1);
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC74,uVar4,"ESP_ZIGBEE_CORE","esp_zb_zcl_scenes_table_store"
+                  ,0x38b,param_1);
     iVar3 = -1;
   }
   return iVar3;

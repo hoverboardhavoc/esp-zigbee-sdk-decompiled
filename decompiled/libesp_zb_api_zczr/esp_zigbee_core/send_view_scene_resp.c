@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
+ * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
+ * Upstream date: 2024-02-22 20:57:09 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> send_view_scene_resp
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void send_view_scene_resp(undefined4 param_1,int param_2)
 
@@ -21,8 +19,8 @@ void send_view_scene_resp(undefined4 param_1,int param_2)
   int iVar4;
   char cVar5;
   
-  if ((param_2 == 0xff) || ((&DAT_00018df6)[param_2 * 6] == -1)) {
-    iVar4 = zb_aps_is_endpoint_in_group(_DAT_00018dda,DAT_00018dc0);
+  if ((param_2 == 0xff) || ((&DAT_00018e5e)[param_2 * 6] == -1)) {
+    iVar4 = zb_aps_is_endpoint_in_group(DAT_00018e42,DAT_00018e28);
     if (iVar4 == 0) {
       cVar5 = -0x7b;
     }
@@ -35,18 +33,18 @@ void send_view_scene_resp(undefined4 param_1,int param_2)
   }
   puVar2 = (undefined1 *)zb_buf_reuse_func(param_1);
   *puVar2 = 0x19;
-  puVar2[1] = DAT_00018dc9;
+  puVar2[1] = DAT_00018e31;
   puVar2[2] = 1;
   puVar2[3] = cVar5;
-  puVar2 = (undefined1 *)zb_put_next_htole16(puVar2 + 4,_DAT_00018dda);
-  *puVar2 = DAT_00018ddc;
+  puVar2 = (undefined1 *)zb_put_next_htole16(puVar2 + 4,DAT_00018e42);
+  *puVar2 = DAT_00018e44;
   puVar3 = puVar2 + 1;
   if (cVar5 == '\0') {
-    puVar2[1] = *(undefined1 *)(&DAT_00018df8 + param_2 * 6);
-    puVar2[2] = *(undefined1 *)((int)&DAT_00018df8 + param_2 * 0xc + 1);
+    puVar2[1] = *(undefined1 *)(&DAT_00018e60 + param_2 * 6);
+    puVar2[2] = *(undefined1 *)((int)&DAT_00018e60 + param_2 * 0xc + 1);
     puVar2[3] = 0;
     puVar3 = puVar2 + 4;
-    for (puVar1 = (undefined2 *)(&DAT_00018dfc)[param_2 * 3]; puVar1 != (undefined2 *)0x0;
+    for (puVar1 = (undefined2 *)(&DAT_00018e64)[param_2 * 3]; puVar1 != (undefined2 *)0x0;
         puVar1 = *(undefined2 **)(puVar1 + 4)) {
       puVar3 = (undefined1 *)zb_put_next_htole16(*puVar1);
       *puVar3 = *(undefined1 *)(puVar1 + 1);
@@ -60,7 +58,7 @@ void send_view_scene_resp(undefined4 param_1,int param_2)
     }
   }
   zb_zcl_finish_and_send_packet
-            (param_1,puVar3,&scene_resp_info,2,DAT_00018dbf,DAT_00018dc0,DAT_00018dc4 >> 8 & 0xffff,
+            (param_1,puVar3,&scene_resp_info,2,DAT_00018e27,DAT_00018e28,DAT_00018e2c >> 8 & 0xffff,
              5);
   return;
 }

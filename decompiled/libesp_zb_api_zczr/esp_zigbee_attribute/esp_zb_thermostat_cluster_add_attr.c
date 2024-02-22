@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
+ * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
+ * Upstream date: 2024-02-22 20:57:09 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_thermostat_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -269,7 +269,7 @@ _L0:
         if (param_2 != 0x34) {
           if (param_2 < 0x34) goto _L0;
           param_2 = param_2 - 0x35;
-          goto joined_r0x0001501e;
+          goto joined_r0x0001501a;
         }
       }
       else if (param_2 != 0x3a) {
@@ -278,7 +278,7 @@ _L0:
           goto _L0;
         }
         param_2 = param_2 - 0x38;
-joined_r0x0001501e:
+joined_r0x0001501a:
         if (1 < (param_2 & 0xffff)) {
 _L0:
           uVar6 = esp_log_timestamp();

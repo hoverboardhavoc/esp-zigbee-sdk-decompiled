@@ -3,23 +3,17 @@
  * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
  * Upstream date: 2024-02-22 20:57:09 +0800
  * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
- * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_table_init
+ * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_network_min_join_lqi_get
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zcl_scenes_table_init(void)
+void esp_zb_secur_network_min_join_lqi_get(void)
 
 {
-  uint uVar1;
-  
-  zb_nvram_register_app1_read_cb(zb_nvram_app1_read_cb);
-  zb_nvram_register_app1_write_cb(zb_nvram_app1_write_cb,0x10000);
-  for (uVar1 = 0; uVar1 < 0x10; uVar1 = uVar1 + 1 & 0xff) {
-    (&DAT_00018e5e)[uVar1 * 6] = 0xffff;
-  }
+  zb_nwk_get_min_join_lqi();
   return;
 }
 

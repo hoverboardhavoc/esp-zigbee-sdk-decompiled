@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
+ * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
+ * Upstream date: 2024-02-22 20:57:09 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,11 +29,14 @@ void zb_zcl_endpoint_handler_callback(int param_1)
     iVar3 = zb_buf_get_tail_func(param_1,0x1b);
     if (*(char *)(iVar3 + 0x16) == '\0') {
       iVar3 = zb_buf_get_tail_func(param_1,0x1b);
-      if (*(ushort *)(iVar3 + 0xf) < 0xfc00) {
+      if (*(short *)(iVar3 + 0xf) < 0) {
+        iVar3 = zb_zcl_custom_cluster_handler(param_1);
+      }
+      else {
         for (uVar5 = 0; uVar5 < 4; uVar5 = uVar5 + 1) {
-          if ((&s_endpoint_handler_table)[uVar5 * 4] == *(ushort *)(iVar3 + 0xf)) {
-            iVar3 = (*(code *)(&PTR_zb_zcl_group_cluster_resp_handler_00018b80)[uVar5 * 2])
-                              (param_1,(&PTR_zb_zcl_group_cluster_resp_handler_00018b80)[uVar5 * 2])
+          if ((&s_endpoint_handler_table)[uVar5 * 4] == *(short *)(iVar3 + 0xf)) {
+            iVar3 = (*(code *)(&PTR_zb_zcl_group_cluster_resp_handler_00018bec)[uVar5 * 2])
+                              (param_1,(&PTR_zb_zcl_group_cluster_resp_handler_00018bec)[uVar5 * 2])
             ;
             goto _L0;
           }
@@ -44,9 +47,6 @@ _L0:
           return;
         }
         iVar3 = zb_zcl_privilege_command_handler(param_1);
-      }
-      else {
-        iVar3 = zb_zcl_custom_cluster_handler(param_1);
       }
     }
     else {
@@ -63,7 +63,7 @@ _L0:
         *(char *)(iVar3 + 6) = (char)sVar2;
         *(char *)(iVar3 + 7) = (char)((ushort)sVar2 >> 8);
         uVar4 = esp_log_timestamp();
-        esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC41,uVar4,"ESP_ZIGBEE_CORE");
+        esp_log_write(2,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE");
       }
       (*zcl_raw_command_cb)(param_1,zcl_raw_command_cb);
     }

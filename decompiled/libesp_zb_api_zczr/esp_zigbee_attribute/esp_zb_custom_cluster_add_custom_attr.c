@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
+ * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
+ * Upstream date: 2024-02-22 20:57:09 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ int esp_zb_custom_cluster_add_custom_attr
   
   __ptr = (undefined2 *)malloc(0x10);
   aiStack_34[0] = 0;
-  iVar2 = esp_zb_attr_list_get_tail(param_1,0xfc00,param_2,aiStack_34);
+  iVar2 = esp_zb_attr_list_get_tail(param_1,0x8000,param_2,aiStack_34);
   iVar1 = aiStack_34[0];
   if (aiStack_34[0] == 0) {
     *__ptr = (short)param_2;
