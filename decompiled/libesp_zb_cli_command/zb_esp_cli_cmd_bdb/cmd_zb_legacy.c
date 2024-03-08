@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_legacy
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,19 +21,19 @@ void cmd_zb_legacy(char *param_1)
   sVar1 = strlen(param_1);
   if (m_stack_is_started == '\0') {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC69,uVar3,0x10000);
+    esp_log_write(1,0x10000,&_LC75,uVar3,0x10000);
   }
   else {
     iVar2 = strcmp(param_1,"get");
     if (iVar2 == 0) {
       uVar3 = esp_log_timestamp();
       if (m_legacy_mode == '\0') {
-        puVar4 = &_LC78;
+        puVar4 = &_LC84;
       }
       else {
-        puVar4 = &_LC77;
+        puVar4 = &_LC83;
       }
-      esp_log_write(3,0x10000,&_LC48,uVar3,0x10000,puVar4);
+      esp_log_write(3,0x10000,&_LC54,uVar3,0x10000,puVar4);
     }
     else if (((sVar1 & 0xff) - 6 & 0xff) < 2) {
       iVar2 = strcmp(param_1,"enable");
@@ -41,7 +41,7 @@ void cmd_zb_legacy(char *param_1)
         zb_bdb_set_legacy_device_support(1);
         m_legacy_mode = '\x01';
         uVar3 = esp_log_timestamp();
-        esp_log_write(3,0x10000,&_LC1,uVar3,0x10000);
+        esp_log_write(3,0x10000,&_LC7,uVar3,0x10000);
       }
       else {
         iVar2 = strcmp(param_1,"disable");
@@ -49,17 +49,17 @@ void cmd_zb_legacy(char *param_1)
           zb_bdb_set_legacy_device_support();
           m_legacy_mode = '\0';
           uVar3 = esp_log_timestamp();
-          esp_log_write(3,0x10000,&_LC1,uVar3,0x10000);
+          esp_log_write(3,0x10000,&_LC7,uVar3,0x10000);
         }
         else {
           uVar3 = esp_log_timestamp();
-          esp_log_write(1,0x10000,&_LC79,uVar3,0x10000);
+          esp_log_write(1,0x10000,&_LC85,uVar3,0x10000);
         }
       }
     }
     else {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC80,uVar3,0x10000);
+      esp_log_write(1,0x10000,&_LC86,uVar3,0x10000);
     }
   }
   return;

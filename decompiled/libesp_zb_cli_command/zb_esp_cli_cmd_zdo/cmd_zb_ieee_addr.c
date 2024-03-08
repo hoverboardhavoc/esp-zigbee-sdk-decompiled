@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_ieee_addr
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void cmd_zb_ieee_addr(int param_1,undefined4 *param_2)
     iVar2 = zb_buf_get_out_func();
     if (iVar2 == 0) {
       uVar1 = esp_log_timestamp();
-      esp_log_write(1,&_LC0,&_LC31,uVar1,&_LC0);
+      esp_log_write(1,&_LC3,&_LC34,uVar1,&_LC3);
     }
     else {
       puVar3 = (undefined2 *)zb_buf_get_tail_func(6);
@@ -33,7 +33,7 @@ void cmd_zb_ieee_addr(int param_1,undefined4 *param_2)
       iVar4 = parse_hex_u16(*param_2,&uStack_12);
       if (iVar4 == 0) {
         uVar1 = esp_log_timestamp();
-        esp_log_write(1,&_LC0,&_LC32,uVar1,&_LC0);
+        esp_log_write(1,&_LC3,&_LC35,uVar1,&_LC3);
       }
       else {
         puVar3[1] = uStack_12;
@@ -41,23 +41,23 @@ void cmd_zb_ieee_addr(int param_1,undefined4 *param_2)
         iVar4 = get_free_ctx();
         if (iVar4 == 0) {
           uVar1 = esp_log_timestamp();
-          esp_log_write(1,&_LC0,&_LC33,uVar1,&_LC0);
+          esp_log_write(1,&_LC3,&_LC36,uVar1,&_LC3);
         }
         else {
           iVar5 = zb_zdo_ieee_addr_req(iVar2,cmd_zb_ieee_addr_cb);
           *(char *)(iVar4 + 4) = (char)iVar5;
           if (iVar5 != 0xff) {
-            iVar2 = zb_schedule_app_alarm(cmd_zb_ieee_addr_timeout,0x14a);
+            iVar2 = zb_schedule_app_alarm(cmd_zb_ieee_addr_timeout,0x14a,0);
             if (iVar2 == 0) {
               return;
             }
             uVar1 = esp_log_timestamp();
-            esp_log_write(1,&_LC0,&_LC38,uVar1,&_LC0);
+            esp_log_write(1,&_LC3,&_LC41,uVar1,&_LC3);
             invalidate_ctx(iVar4);
             return;
           }
           uVar1 = esp_log_timestamp(0xff);
-          esp_log_write(1,&_LC0,&_LC37,uVar1,&_LC0);
+          esp_log_write(1,&_LC3,&_LC40,uVar1,&_LC3);
         }
         if (iVar4 != 0) {
           invalidate_ctx(iVar4);
@@ -68,7 +68,7 @@ void cmd_zb_ieee_addr(int param_1,undefined4 *param_2)
   }
   else {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,&_LC0,&_L0,uVar1,&_LC0);
+    esp_log_write(1,&_LC3,&_L0,uVar1,&_LC3);
   }
   return;
 }

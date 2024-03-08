@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_nwk_commissioning
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,25 +19,25 @@ void cmd_zb_nwk_commissioning(char *param_1)
   
   if (param_1 == (char *)0x0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC8,uVar1,0x10000,"cmd_zb_nwk_commissioning",0x162);
+    esp_log_write(1,0x10000,&_LC14,uVar1,0x10000,"cmd_zb_nwk_commissioning",0x16e);
   }
   else {
     iVar3 = strcmp(param_1,"help");
     if (iVar3 == 0) {
       uVar1 = esp_log_timestamp();
-      esp_log_write(3,0x10000,&_LC28,uVar1,0x10000);
+      esp_log_write(3,0x10000,&_LC34,uVar1,0x10000);
       done_or_failed(0);
     }
     else if (m_stack_is_started == '\0') {
       uVar1 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC37,uVar1,0x10000);
+      esp_log_write(1,0x10000,&_LC43,uVar1,0x10000);
       done_or_failed(0);
     }
     else {
       iVar3 = strcmp(param_1,"get");
       if (iVar3 == 0) {
         uVar1 = esp_log_timestamp();
-        esp_log_write(3,0x10000,&_LC29,uVar1,0x10000,DAT_000150b7);
+        esp_log_write(3,0x10000,&_LC35,uVar1,0x10000,DAT_000150ba);
         uVar1 = 0;
       }
       else {
@@ -109,7 +109,7 @@ void cmd_zb_nwk_commissioning(char *param_1)
                   }
                   else {
                     uVar1 = esp_log_timestamp();
-                    esp_log_write(1,0x10000,&_LC36,uVar1,0x10000);
+                    esp_log_write(1,0x10000,&_LC42,uVar1,0x10000);
                     uVar1 = 0;
                   }
                 }

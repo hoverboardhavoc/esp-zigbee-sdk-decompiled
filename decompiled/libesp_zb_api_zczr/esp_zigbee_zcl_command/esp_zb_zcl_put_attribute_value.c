@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_put_attribute_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,17 +32,17 @@ esp_zb_zcl_put_attribute_value(undefined1 *param_1,uint param_2,undefined1 *para
   }
   if (param_2 == 0x25) {
 _L0:
-    uVar1 = param_3[1];
-    uVar2 = param_3[2];
-    uVar3 = param_3[3];
-    uVar4 = param_3[4];
-    uVar5 = param_3[5];
+    uVar2 = param_3[1];
+    uVar3 = param_3[2];
+    uVar4 = param_3[3];
+    uVar5 = param_3[4];
+    uVar6 = param_3[5];
     *param_1 = *param_3;
-    param_1[1] = uVar1;
-    param_1[2] = uVar2;
-    param_1[3] = uVar3;
-    param_1[4] = uVar4;
-    param_1[5] = uVar5;
+    param_1[1] = uVar2;
+    param_1[2] = uVar3;
+    param_1[3] = uVar4;
+    param_1[4] = uVar5;
+    param_1[5] = uVar6;
     return param_1 + 6;
   }
   if (param_2 < 0x26) {
@@ -81,19 +81,19 @@ _L0:
     else {
       if (param_2 == 0x1e) {
 _L0:
-        uVar1 = param_3[1];
-        uVar2 = param_3[2];
-        uVar3 = param_3[3];
-        uVar4 = param_3[4];
-        uVar5 = param_3[5];
-        uVar6 = param_3[6];
+        uVar2 = param_3[1];
+        uVar3 = param_3[2];
+        uVar4 = param_3[3];
+        uVar5 = param_3[4];
+        uVar6 = param_3[5];
+        uVar7 = param_3[6];
         *param_1 = *param_3;
-        param_1[1] = uVar1;
-        param_1[2] = uVar2;
-        param_1[3] = uVar3;
-        param_1[4] = uVar4;
-        param_1[5] = uVar5;
-        param_1[6] = uVar6;
+        param_1[1] = uVar2;
+        param_1[2] = uVar3;
+        param_1[3] = uVar4;
+        param_1[4] = uVar5;
+        param_1[5] = uVar6;
+        param_1[6] = uVar7;
         return param_1 + 7;
       }
       if (param_2 < 0x1f) {
@@ -111,15 +111,15 @@ _L0:
         else {
           if (param_2 == 0x1c) {
 _L0:
-            uVar1 = param_3[1];
-            uVar2 = param_3[2];
-            uVar3 = param_3[3];
-            uVar4 = param_3[4];
+            uVar2 = param_3[1];
+            uVar3 = param_3[2];
+            uVar4 = param_3[3];
+            uVar5 = param_3[4];
             *param_1 = *param_3;
-            param_1[1] = uVar1;
-            param_1[2] = uVar2;
-            param_1[3] = uVar3;
-            param_1[4] = uVar4;
+            param_1[1] = uVar2;
+            param_1[2] = uVar3;
+            param_1[3] = uVar4;
+            param_1[4] = uVar5;
             return param_1 + 5;
           }
           if (param_2 == 0x1d) goto _L0;
@@ -174,21 +174,21 @@ _L0:
       }
       if ((uVar9 & 2) != 0) {
 _L0:
-        uVar1 = param_3[1];
-        uVar2 = param_3[2];
-        uVar3 = param_3[3];
-        uVar4 = param_3[4];
-        uVar5 = param_3[5];
-        uVar6 = param_3[6];
-        uVar7 = param_3[7];
+        uVar2 = param_3[1];
+        uVar3 = param_3[2];
+        uVar4 = param_3[3];
+        uVar5 = param_3[4];
+        uVar6 = param_3[5];
+        uVar7 = param_3[6];
+        uVar1 = param_3[7];
         *param_1 = *param_3;
-        param_1[1] = uVar1;
-        param_1[2] = uVar2;
-        param_1[3] = uVar3;
-        param_1[4] = uVar4;
-        param_1[5] = uVar5;
-        param_1[6] = uVar6;
-        param_1[7] = uVar7;
+        param_1[1] = uVar2;
+        param_1[2] = uVar3;
+        param_1[3] = uVar4;
+        param_1[4] = uVar5;
+        param_1[5] = uVar6;
+        param_1[6] = uVar7;
+        param_1[7] = uVar1;
         return param_1 + 8;
       }
       if ((uVar9 & 1) != 0) goto _L0;
@@ -202,13 +202,13 @@ _L0:
     if (param_2 < 0xf2) {
       if (param_2 == 0xea) {
 _L0:
-        uVar1 = param_3[1];
-        uVar2 = param_3[2];
-        uVar3 = param_3[3];
+        uVar2 = param_3[1];
+        uVar3 = param_3[2];
+        uVar4 = param_3[3];
         *param_1 = *param_3;
-        param_1[1] = uVar1;
-        param_1[2] = uVar2;
-        param_1[3] = uVar3;
+        param_1[1] = uVar2;
+        param_1[2] = uVar3;
+        param_1[3] = uVar4;
         return param_1 + 4;
       }
       if (param_2 < 0xeb) {

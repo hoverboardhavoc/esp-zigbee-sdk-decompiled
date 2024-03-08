@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_simple_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,11 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
   puVar4 = (undefined1 *)zb_buf_begin_func();
   bVar2 = puVar4[0xb];
   bVar1 = puVar4[0xc];
-  memset(&uStack_94,0,100);
+  uStack_94._0_1_ = '\0';
+  uStack_94._1_1_ = '\0';
+  uStack_94._2_1_ = '\0';
+  uStack_94._3_1_ = '\0';
+  memset(acStack_90,0,0x60);
   iVar5 = get_ctx_by_tsn(*puVar4);
   if (iVar5 == 0) {
     zb_buf_free_func(param_1);
@@ -36,7 +40,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
   else {
     if (puVar4[1] == '\0') {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC0,&_LC25,uVar6,&_LC0,*(undefined2 *)(puVar4 + 2),puVar4[5],
+      esp_log_write(3,&_LC3,&_LC28,uVar6,&_LC3,*(undefined2 *)(puVar4 + 2),puVar4[5],
                     *(undefined2 *)(puVar4 + 6));
       uStack_94._0_1_ = 'i';
       uStack_94._1_1_ = 'n';
@@ -51,7 +55,7 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC0,&_LC19,uVar6,&_LC0,&uStack_94);
+      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
       memset(&uStack_94,0,100);
       uStack_94._0_1_ = 'o';
       uStack_94._1_1_ = 'u';
@@ -67,13 +71,13 @@ void cmd_zb_simple_desc_req_cb(undefined4 param_1)
       }
       (&cStack_95)[uVar7] = '\0';
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC0,&_LC19,uVar6,&_LC0,&uStack_94);
+      esp_log_write(3,&_LC3,&_LC22,uVar6,&_LC3,&uStack_94);
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC0,&_LC4,uVar6,&_LC0);
+      esp_log_write(3,&_LC3,&_LC7,uVar6,&_LC3);
     }
     else {
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,&_LC0,&_LC29,uVar6,&_LC0);
+      esp_log_write(3,&_LC3,&_LC32,uVar6,&_LC3);
     }
     invalidate_ctx(iVar5);
     zb_buf_free_func(param_1);

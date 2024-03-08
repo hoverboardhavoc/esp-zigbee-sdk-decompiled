@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_endpoint.o -> esp_zb_ep_list_add_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,8 +11,7 @@
  */
 
 undefined4
-esp_zb_ep_list_add_ep
-          (int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,undefined4 param_5)
+esp_zb_ep_list_add_ep(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   byte bVar1;
@@ -22,6 +21,7 @@ esp_zb_ep_list_add_ep
   undefined4 uVar5;
   undefined1 *puVar6;
   void *pvVar7;
+  undefined1 uStack_28;
   
   puVar4 = (undefined1 *)malloc(0x28);
   if (param_1 == 0) {
@@ -38,9 +38,10 @@ esp_zb_ep_list_add_ep
     } while (*(int *)(iVar3 + 0x24) != 0);
     uVar5 = zcl_get_cluster_lists(param_2);
     puVar6 = (undefined1 *)zcl_get_cluster_info(param_2);
-    *puVar4 = (char)param_3;
-    puVar4[1] = (char)param_4;
-    puVar4[2] = (char)((uint)param_4 >> 8);
+    uStack_28 = (undefined1)param_3;
+    *puVar4 = uStack_28;
+    puVar4[1] = (char)((uint)param_3 >> 8);
+    puVar4[2] = (char)((uint)param_3 >> 0x10);
     puVar4[3] = 0;
     puVar4[4] = 0;
     puVar4[5] = 0;
@@ -56,7 +57,7 @@ esp_zb_ep_list_add_ep
     puVar4[0x12] = (char)((uint)uVar5 >> 8);
     puVar4[0x13] = (char)((uint)uVar5 >> 0x10);
     puVar4[0x14] = (char)((uint)uVar5 >> 0x18);
-    uVar5 = zcl_get_simple_desc(param_2,puVar6,param_3,param_4,param_5);
+    uVar5 = zcl_get_simple_desc(param_2,puVar6,param_4);
     puVar4[0x15] = (char)uVar5;
     puVar4[0x16] = (char)((uint)uVar5 >> 8);
     puVar4[0x17] = (char)((uint)uVar5 >> 0x10);
@@ -67,7 +68,7 @@ esp_zb_ep_list_add_ep
       pvVar7 = (void *)0x0;
     }
     else {
-      pvVar7 = calloc((uint)bVar1,0x30);
+      pvVar7 = calloc((uint)bVar1,0x38);
     }
     puVar4[0x1b] = (char)pvVar7;
     puVar4[0x1c] = (char)((uint)pvVar7 >> 8);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_touchlink.o -> esp_zb_touchlink_send_ep_info_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,14 +45,14 @@ void esp_zb_touchlink_send_ep_info_cmd_req(int param_1)
     *pcVar12 = cVar1 + '\x01';
     puVar11[1] = cVar1;
     puVar11[2] = 0x40;
-    uVar9 = DAT_00014f7f;
-    uVar8 = DAT_00014f7e;
-    uVar7 = DAT_00014f7d;
-    uVar6 = DAT_00014f7c;
-    uVar5 = DAT_00014f7b;
-    uVar4 = DAT_00014f7a;
-    uVar3 = DAT_00014f79;
-    puVar11[3] = DAT_00014f78;
+    uVar9 = DAT_000150c7;
+    uVar8 = DAT_000150c6;
+    uVar7 = DAT_000150c5;
+    uVar6 = DAT_000150c4;
+    uVar5 = DAT_000150c3;
+    uVar4 = DAT_000150c2;
+    uVar3 = DAT_000150c1;
+    puVar11[3] = DAT_000150c0;
     puVar11[4] = uVar3;
     puVar11[5] = uVar4;
     puVar11[6] = uVar5;
@@ -60,8 +60,8 @@ void esp_zb_touchlink_send_ep_info_cmd_req(int param_1)
     puVar11[8] = uVar7;
     puVar11[9] = uVar8;
     puVar11[10] = uVar9;
-    uVar2 = _DAT_00014f74;
-    uStack_12 = (undefined1)_DAT_00014f74;
+    uVar2 = _DAT_000150bc;
+    uStack_12 = (undefined1)_DAT_000150bc;
     puVar11[0xb] = uStack_12;
     uStack_11 = (undefined1)((ushort)uVar2 >> 8);
     puVar11[0xc] = uStack_11;

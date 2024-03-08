@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_report_attr_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,6 +54,7 @@ void zb_zcl_report_attr_callback
     uStack_16 = (undefined2)param_7;
     uStack_14 = (undefined2)((uint)param_7 >> 0x10);
     (*zb_core_action_cb)(0x2000,&local_30,zb_core_action_cb);
+    return;
   }
   return;
 }

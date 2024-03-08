@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_tlk_set_master_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,7 @@ void cmd_zb_tlk_set_master_key(int param_1,undefined4 *param_2)
   
   if ((param_1 == 0) || (param_2 == (undefined4 *)0x0)) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC8,uVar6,0x10000,"cmd_zb_tlk_set_master_key",0x48e);
+    esp_log_write(1,0x10000,&_LC14,uVar6,0x10000,"cmd_zb_tlk_set_master_key",0x49a);
   }
   else {
     __s1 = (char *)*param_2;
@@ -59,13 +59,13 @@ void cmd_zb_tlk_set_master_key(int param_1,undefined4 *param_2)
         zb_zll_get_device_info();
         zb_zll_get_device_info();
         zb_zll_get_device_info();
-        esp_log_write(3,0x10000,&_LC102,uVar6,0x10000,uVar1,uVar2,uVar3);
+        esp_log_write(3,0x10000,&_LC108,uVar6,0x10000,uVar1,uVar2,uVar3);
         uVar6 = 0;
       }
       else {
         if (m_stack_is_started != '\0') {
           uVar6 = esp_log_timestamp();
-          esp_log_write(1,0x10000,&_LC13,uVar6,0x10000);
+          esp_log_write(1,0x10000,&_LC19,uVar6,0x10000);
           done_or_failed(0xffffffff);
           return;
         }
@@ -74,21 +74,21 @@ void cmd_zb_tlk_set_master_key(int param_1,undefined4 *param_2)
           iVar4 = parse_hex_str(__s1,0x20,&uStack_50,0x10,0);
           if (iVar4 == 0) {
             uVar6 = esp_log_timestamp();
-            esp_log_write(1,0x10000,&_LC82,uVar6,0x10000);
+            esp_log_write(1,0x10000,&_LC88,uVar6,0x10000);
             uVar6 = 0xffffffff;
           }
           else {
             zb_zdo_touchlink_set_master_key(&uStack_50);
             uVar6 = esp_log_timestamp();
-            esp_log_write(3,0x10000,&_LC103,uVar6,0x10000,uStack_50,uStack_4f,uStack_4e);
+            esp_log_write(3,0x10000,&_LC109,uVar6,0x10000,uStack_50,uStack_4f,uStack_4e);
             uVar6 = esp_log_timestamp();
-            esp_log_write(3,0x10000,&_LC1,uVar6,0x10000);
+            esp_log_write(3,0x10000,&_LC7,uVar6,0x10000);
             uVar6 = 0;
           }
         }
         else {
           uVar6 = esp_log_timestamp();
-          esp_log_write(1,0x10000,&_LC76,uVar6,0x10000);
+          esp_log_write(1,0x10000,&_LC82,uVar6,0x10000);
           uVar6 = 0xffffffff;
         }
       }

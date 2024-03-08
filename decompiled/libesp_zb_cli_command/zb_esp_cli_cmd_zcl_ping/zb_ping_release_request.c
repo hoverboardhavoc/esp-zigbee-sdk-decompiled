@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> zb_ping_release_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,6 +15,7 @@ void zb_ping_release_request(void *param_1)
 {
   if (param_1 != (void *)0x0) {
     memset(param_1,0,0x20);
+    return;
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d7e241034cb0adc2116988a320badb285c391de3
- * https://github.com/espressif/esp-zigbee-sdk/commit/d7e241034cb0adc2116988a320badb285c391de3
- * Upstream date: 2024-02-06 17:30:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.1(0cd72dc5)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_reset_nvram_to_factory_default
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,7 +14,7 @@ void esp_zb_zcl_reset_nvram_to_factory_default(void)
 
 {
   zb_nvram_erase();
-  DAT_0001f635 = DAT_0001f635 | 8;
+  DAT_0001f845 = DAT_0001f845 | 8;
   return;
 }
 

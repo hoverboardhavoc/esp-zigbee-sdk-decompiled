@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> ping_request_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,6 +21,9 @@ void ping_request_send(int param_1)
   undefined1 *puVar6;
   undefined4 uVar7;
   undefined4 extraout_a1;
+  uint uVar8;
+  uint uVar9;
+  uint uVar10;
   
   uVar4 = zb_cli_get_endpoint();
   if (*(ushort *)(param_1 + 0xc) < 0x50) {
@@ -47,9 +50,16 @@ void ping_request_send(int param_1)
                 (iVar5,puVar6 + 3 + uVar1,param_1 + 1,*(undefined1 *)(param_1 + 9),uVar4,uVar4,0x104
                  ,0xbeef);
       uVar3 = get_request_row(param_1);
+      uVar9 = (uint)*(ushort *)(param_1 + 0xe) * 1000;
+      uVar8 = uVar9 + 0x3bff;
+      uVar10 = (uint)(uVar8 < uVar9);
+      uVar9 = uVar8 + uVar10;
+      uVar9 = uVar8 - (uVar9 + (uVar9 < uVar8)) % 0xf;
+      uVar8 = (uVar10 - (uVar8 < uVar9)) * -0x11111111 + uVar9 * -0x11111112 +
+              (int)((ulonglong)uVar9 * 0xeeeeeeef >> 0x20);
       iVar5 = zb_schedule_app_alarm
-                        (invalidate_row_cb,uVar3,
-                         ((uint)*(ushort *)(param_1 + 0xe) * 1000 + 0x3bff) / 0x3c00);
+                        (invalidate_row_cb,uVar3,uVar8 * 0x400000 | uVar9 * -0x11111111 >> 10,
+                         uVar8 >> 10);
       if (iVar5 != 0) {
         uVar4 = esp_log_timestamp();
         esp_log_write(3,&_LC0,&_L0,uVar4,&_LC0,iVar5);

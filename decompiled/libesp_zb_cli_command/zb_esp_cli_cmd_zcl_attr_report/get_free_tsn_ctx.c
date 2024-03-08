@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr_report.o -> get_free_tsn_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ undefined1 * get_free_tsn_ctx(void)
     if (2 < uVar1) {
       return (undefined1 *)0x0;
     }
-    if ((&DAT_00011231)[uVar1 * 3] == '\0') break;
+    if ((&DAT_0001122d)[uVar1 * 3] == '\0') break;
     uVar1 = uVar1 + 1 & 0xff;
   }
   return &m_tsn_ctx + uVar1 * 3;

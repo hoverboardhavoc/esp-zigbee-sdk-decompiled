@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * https://github.com/espressif/esp-zigbee-sdk/commit/f9cc2dccd1062ffdf8f9e034d227fe83c0a1712e
- * Upstream date: 2024-02-02 22:17:34 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.0(5362d771)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> cmd_zb_channel
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,7 +40,7 @@ void cmd_zb_channel(char *param_1)
         }
       }
       uVar6 = esp_log_timestamp();
-      esp_log_write(3,0x10000,&_LC48,uVar6,0x10000,acStack_84);
+      esp_log_write(3,0x10000,&_LC54,uVar6,0x10000,acStack_84);
     }
     return;
   }
@@ -63,21 +63,21 @@ void cmd_zb_channel(char *param_1)
       if (uVar1 - 0xb < 0x10) {
         uVar2 = 1 << (uVar1 & 0x1f);
       }
-      else if (((uVar1 << 5) >> 0x10 == 0) ||
+      else if (((uVar1 & 0x7fff800) == 0) ||
               (uVar3 = uVar1 & 0xf80007ff, uVar2 = uVar1, uVar1 = uVar3, uVar3 != 0)) {
         uVar6 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC57,uVar6,0x10000);
+        esp_log_write(1,0x10000,&_LC63,uVar6,0x10000);
         return;
       }
       uVar3 = zb_get_bdb_primary_channel_set();
       if (uVar3 != uVar2) {
         if (uVar1 == 0) {
           uVar6 = esp_log_timestamp();
-          esp_log_write(3,0x10000,&_LC59,uVar6,0x10000,uVar2);
+          esp_log_write(3,0x10000,&_LC65,uVar6,0x10000,uVar2);
         }
         else {
           uVar6 = esp_log_timestamp();
-          esp_log_write(3,0x10000,&_LC58,uVar6,0x10000,uVar1);
+          esp_log_write(3,0x10000,&_LC64,uVar6,0x10000,uVar1);
         }
         zb_set_bdb_primary_channel_set(uVar2);
         zb_set_bdb_secondary_channel_set(uVar2);
@@ -86,12 +86,12 @@ void cmd_zb_channel(char *param_1)
     }
     else {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC13,uVar6,0x10000);
+      esp_log_write(1,0x10000,&_LC19,uVar6,0x10000);
     }
   }
   else {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC41,uVar6,0x10000);
+    esp_log_write(1,0x10000,&_LC47,uVar6,0x10000);
   }
   return;
 }

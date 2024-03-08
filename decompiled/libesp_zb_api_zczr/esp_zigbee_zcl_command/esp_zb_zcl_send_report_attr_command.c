@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_send_report_attr_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,14 +31,14 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
   iVar4 = zb_zcl_get_attr_desc_manuf_a
                     (*(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 2),
                      *(undefined1 *)(param_1 + 4),*(undefined2 *)(param_1 + 6),
-                     *(undefined2 *)(param_1 + 0x2e));
+                     *(undefined2 *)(param_1 + 0x36));
   pbVar5 = (byte *)zb_buf_reuse_func(param_2);
   bVar1 = *(byte *)(iVar4 + 3);
   bVar3 = (bVar1 & 0x20) != 0;
   *pbVar5 = bVar3 << 2 | 8;
   iVar4 = param_1;
   if ((bVar1 & 0x20) == 0) {
-    pbVar8 = (byte *)zb_zcl_get_ctx(pbVar5 + 1);
+    pbVar8 = (byte *)zb_zcl_get_ctx();
     bVar1 = *pbVar8;
     *pbVar8 = bVar1 + 1;
     pbVar5[1] = bVar1;
@@ -46,7 +46,7 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
     pbVar5 = pbVar5 + 3;
   }
   else {
-    pcVar6 = (char *)zb_put_next_htole16(*(undefined2 *)(param_1 + 0x2e));
+    pcVar6 = (char *)zb_put_next_htole16(pbVar5 + 1,*(undefined2 *)(param_1 + 0x36));
     pcVar7 = (char *)zb_zcl_get_ctx();
     cVar2 = *pcVar7;
     *pcVar7 = cVar2 + '\x01';
@@ -59,9 +59,9 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
               zb_zcl_get_attr_desc_manuf_a
                         (*(undefined1 *)(iVar4 + 1),*(undefined2 *)(iVar4 + 2),
                          *(undefined1 *)(iVar4 + 4),*(undefined2 *)(iVar4 + 6),
-                         *(undefined2 *)(iVar4 + 0x2e));
+                         *(undefined2 *)(iVar4 + 0x36));
     iVar11 = zb_zcl_can_cluster_be_fragmented
-                       (*(undefined2 *)(iVar4 + 0x2c),*(undefined2 *)(iVar4 + 2));
+                       (*(undefined2 *)(iVar4 + 0x34),*(undefined2 *)(iVar4 + 2));
     if (iVar11 == 0) {
       uVar14 = zb_buf_get_ptr_off_func(param_2,pbVar5);
       uVar14 = 0x52 - (uVar14 & 0xffff);
@@ -92,8 +92,8 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
     iVar4 = zb_zcl_get_next_reporting_info(param_1,bVar3);
   }
   zb_zcl_finish_and_send_packet
-            (param_2,pbVar5,param_1 + 0x28,param_3,*(undefined1 *)(param_1 + 0x2a),
-             *(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 0x2c),
+            (param_2,pbVar5,param_1 + 0x30,param_3,*(undefined1 *)(param_1 + 0x32),
+             *(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 0x34),
              *(undefined2 *)(param_1 + 2));
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -61,10 +61,10 @@ undefined4 esp_zb_zcl_report_attr_cmd_req(undefined2 *param_1)
               *(byte *)(iVar3 + 8) = bVar1 | 2;
               *(byte *)(iVar3 + 8) = bVar1 | 6;
               *(byte *)(iVar3 + 8) = bVar1 & 0xf7 | 6;
-              *(undefined2 *)(iVar3 + 0x28) = *param_1;
-              *(undefined1 *)(iVar3 + 0x2a) = *(undefined1 *)(param_1 + 4);
+              *(undefined2 *)(iVar3 + 0x30) = *param_1;
+              *(undefined1 *)(iVar3 + 0x32) = *(undefined1 *)(param_1 + 4);
               *(undefined1 *)(iVar3 + 1) = *(undefined1 *)((int)param_1 + 9);
-              *(undefined2 *)(iVar3 + 0x2c) = 0x104;
+              *(undefined2 *)(iVar3 + 0x34) = 0x104;
               iVar4 = zb_zcl_get_ctx();
               if (*(char *)(iVar4 + 0xaa) != '\0') {
                 uVar5 = zb_buf_get_out_func();
@@ -72,7 +72,7 @@ undefined4 esp_zb_zcl_report_attr_cmd_req(undefined2 *param_1)
                 break;
               }
             }
-            iVar3 = iVar3 + 0x30;
+            iVar3 = iVar3 + 0x38;
             bVar2 = bVar2 + 1;
           }
         }

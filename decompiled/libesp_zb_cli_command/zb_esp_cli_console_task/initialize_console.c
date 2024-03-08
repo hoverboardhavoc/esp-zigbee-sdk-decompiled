@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,7 +16,6 @@ void initialize_console(void)
 
 {
   int iVar1;
-  undefined4 uStack_4c;
   undefined4 uStack_48;
   undefined4 uStack_44;
   int iStack_40;
@@ -49,13 +48,12 @@ void initialize_console(void)
   uStack_14 = _esp_console_register_help_command;
   iVar1 = zb_esp_uart_init(&uStack_38,0,1);
   if (iVar1 == 0) {
-    uStack_44 = 0;
     iStack_40 = 0;
     uStack_3c = 0;
-    uStack_4c = 0x100;
-    uStack_48 = 100;
+    uStack_48 = 0x100;
+    uStack_44 = 100;
     iStack_40 = atoi("36");
-    iVar1 = esp_console_init(&uStack_4c);
+    iVar1 = esp_console_init(&uStack_48);
     if (iVar1 == 0) {
       linenoiseSetMultiLine(1);
       linenoiseSetCompletionCallback(&esp_console_get_completion);

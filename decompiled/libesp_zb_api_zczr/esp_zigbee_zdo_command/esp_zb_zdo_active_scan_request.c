@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * https://github.com/espressif/esp-zigbee-sdk/commit/c1113e88ee047f0eb31a91352a6fd0fc5318b6fd
- * Upstream date: 2023-08-30 15:00:29 +0800
- * Upstream subject: esp-zigbee-sdk: release/v0.9.3(6da46788)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_active_scan_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zdo_active_scan_request(undefined4 param_1,undefined1 param_2,undefi
   *puVar2 = param_1;
   *(undefined1 *)(puVar2 + 1) = param_2;
   zdo_active_scan_user_cb = param_3;
-  zb_schedule_app_alarm(&zb_zdo_active_scan_request,uVar1,0);
+  zb_schedule_app_alarm(&zb_zdo_active_scan_request,uVar1,0,0);
   return;
 }
 

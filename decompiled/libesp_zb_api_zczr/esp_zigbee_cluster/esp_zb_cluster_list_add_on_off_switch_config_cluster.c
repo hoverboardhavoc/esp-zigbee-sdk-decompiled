@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_on_off_switch_config_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -74,7 +74,7 @@ esp_zb_cluster_list_add_on_off_switch_config_cluster(int param_1,int param_2,uin
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC10,uVar5,"ESP_ZIGBEE_CLUSTER");
     uVar5 = 0x102;
   }
   return uVar5;

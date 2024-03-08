@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_tlk_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,32 +16,33 @@ void zb_cli_register_tlk_cmd(void)
 
 {
   int iVar1;
-  undefined *puStack_2c;
-  char *pcStack_28;
-  undefined4 uStack_24;
-  code *pcStack_20;
-  undefined4 *puStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
+  uint unaff_s6;
+  undefined *puStack_24;
+  char *pcStack_20;
+  undefined4 uStack_1c;
+  code *pcStack_18;
+  undefined4 *puStack_14;
   
-  tlk_args = arg_lit0(&_LC127,"timeout","Configure Touchlink target timeout");
-  DAT_00014854 = arg_lit0(&_LC115,"RSSI threshold","Configure RSSI threshold");
-  DAT_00014858 = arg_lit0(&_LC158,"master key","Configure Touchlink target master key");
-  DAT_0001485c = arg_end(0);
-  uStack_24 = 0;
-  uStack_18 = 0;
-  uStack_14 = 0;
-  puStack_2c = &_LC177;
-  pcStack_28 = "ZigBee touchlink command";
-  pcStack_20 = zb_cli_tlk_cmd_cb;
-  puStack_1c = &tlk_args;
-  iVar1 = esp_console_cmd_register(&puStack_2c);
+  tlk_args = arg_lit0(&_LC133,"timeout","Configure Touchlink target timeout");
+  DAT_00014830 = arg_lit0(&_LC121,"RSSI threshold","Configure RSSI threshold");
+  DAT_00014834 = arg_lit0(&_LC164,"master key","Configure Touchlink target master key");
+  DAT_00014838 = arg_end(0);
+  puStack_24 = &_LC3;
+  pcStack_20 = "ZigBee touchlink command";
+  uStack_1c = 0;
+  pcStack_18 = zb_cli_tlk_cmd_cb;
+  puStack_14 = &tlk_args;
+  iVar1 = esp_console_cmd_register(&puStack_24);
   if (iVar1 == 0) {
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x4f7,
+            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x57a,
              "zb_cli_register_tlk_cmd","esp_console_cmd_register(&tlk_cmd)");
+  if (unaff_s6 < 0x1482d) {
+                    /* WARNING: Bad instruction - Truncating control flow here */
+    halt_baddata();
+  }
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();
 }

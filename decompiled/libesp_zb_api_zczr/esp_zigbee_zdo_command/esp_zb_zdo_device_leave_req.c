@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * https://github.com/espressif/esp-zigbee-sdk/commit/2defb30a96c2ca2505573e1ca35f3ee56a3c9daf
- * Upstream date: 2023-01-31 10:56:39 +0800
- * Upstream subject: example: Support new zdo API(0d9da4e)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_device_leave_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,7 +47,7 @@ void esp_zb_zdo_device_leave_req(undefined1 *param_1,undefined4 param_2,undefine
   puVar10[10] = (byte)((*(uint *)(param_1 + 8) >> 0x17 & 1) << 7) | puVar10[10] & 0x7f;
   puVar10[10] = (byte)((*(uint *)(param_1 + 8) >> 0x16 & 1) << 6) | puVar10[10] & 0xbf;
   uVar9 = zdo_mgmt_leave_req(uVar9,device_leave_cb);
-  zb_schedule_app_alarm(device_leave_req_timeout,uVar9,0x14a);
+  zb_schedule_app_alarm(device_leave_req_timeout,uVar9,0x14a,0);
   esp_zb_zdo_callback_register(uVar9,0x34,param_2,param_3);
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr_report.o -> cmd_zb_subscribe
  *
  * (C) Espressif, Apache License 2.0.
@@ -133,7 +133,7 @@ void cmd_zb_subscribe(uint param_1,undefined4 *param_2)
                               (iVar3,uVar8,auStack_30,uVar2 & 0xff,auStack_24[0],uVar9,uStack_3c,
                                uStack_3a);
                     iVar3 = zb_schedule_app_alarm
-                                      (cmd_zb_subscribe_unsubscribe_timeout,*puVar5,0x14a);
+                                      (cmd_zb_subscribe_unsubscribe_timeout,*puVar5,0x14a,0);
                     if (iVar3 != 0) {
                       uVar8 = esp_log_timestamp();
                       esp_log_write(1,&_L0,&_LC29,uVar8,&_L0);

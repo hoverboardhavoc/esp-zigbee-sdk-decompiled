@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit f1369f27c0afa51d13986c066b316e6812865b18
- * https://github.com/espressif/esp-zigbee-sdk/commit/f1369f27c0afa51d13986c066b316e6812865b18
- * Upstream date: 2023-10-23 12:06:56 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.1(00d5cde0)
+ * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
+ * Upstream date: 2024-03-08 17:10:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_window_covering_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,13 +39,7 @@ int esp_zb_window_covering_cluster_add_attr(int param_1,uint param_2,char *param
       *pcVar2 = *param_3;
     }
     else if (param_2 < 0x18) {
-      if (2 < (param_2 - 0x14 & 0xffff)) {
-_L0:
-        uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
-        free(__ptr);
-        return 0x102;
-      }
+      if (2 < (param_2 - 0x14 & 0xffff)) goto _L0;
       *(undefined1 *)((int)__ptr + 3) = 3;
       *(undefined1 *)(__ptr + 1) = 0x21;
       pcVar2 = (char *)malloc(2);
@@ -55,7 +49,13 @@ _L0:
       pcVar2[1] = param_3[1];
     }
     else {
-      if (1 < (param_2 - 0x18 & 0xffff)) goto _L0;
+      if (1 < (param_2 - 0x18 & 0xffff)) {
+_L0:
+        uVar4 = esp_log_timestamp();
+        esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_L0,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
+        free(__ptr);
+        return 0x102;
+      }
       *(undefined1 *)((int)__ptr + 3) = 3;
       *(undefined1 *)(__ptr + 1) = 0x41;
       sVar3 = strlen(param_3);
