@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_read_report_config_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,10 +22,8 @@ int zcl_cmd_read_report_config_resp_handler(undefined4 param_1)
   uint auStack_4c [8];
   byte bStack_2c;
   undefined2 uStack_2a;
-  undefined2 uStack_28;
-  undefined2 uStack_26;
-  undefined2 uStack_24;
-  byte bStack_22;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
   
   iVar2 = zb_zcl_basic_message_create(auStack_4c);
   if (iVar2 == 0) {
@@ -85,15 +83,20 @@ _L0:
           else {
             uStack_2a = *(undefined2 *)(pbVar1 + 2);
           }
-          bStack_2c = pbVar1[1];
-          if (bStack_2c == 0) {
-            uStack_28 = CONCAT11(uStack_28._1_1_,pbVar1[4]);
-            uStack_26 = *(undefined2 *)(pbVar1 + 5);
-            uStack_24 = *(undefined2 *)(pbVar1 + 7);
-            bStack_22 = pbVar1[9];
+          if (*pbVar1 == 0) {
+            bStack_2c = pbVar1[1];
+            if (bStack_2c == 0) {
+              uStack_28 = CONCAT31(uStack_28._1_3_,pbVar1[4]);
+              uStack_28 = CONCAT22(*(undefined2 *)(pbVar1 + 5),(undefined2)uStack_28);
+              uStack_24 = CONCAT13(uStack_24._3_1_,*(undefined3 *)(pbVar1 + 7));
+            }
+            else {
+              uStack_28 = CONCAT22(uStack_28._2_2_,*(undefined2 *)(pbVar1 + 4));
+            }
           }
           else {
-            uStack_28 = *(undefined2 *)(pbVar1 + 4);
+            uStack_28 = 0;
+            uStack_24 = 0;
           }
           iVar2 = (*zb_core_action_cb)(0x1003,auStack_4c,zb_core_action_cb);
         }

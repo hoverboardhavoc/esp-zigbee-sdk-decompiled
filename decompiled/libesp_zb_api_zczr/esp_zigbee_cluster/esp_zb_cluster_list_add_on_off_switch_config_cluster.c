@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_on_off_switch_config_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,20 +16,20 @@ esp_zb_cluster_list_add_on_off_switch_config_cluster(int param_1,int param_2,uin
 {
   short *psVar1;
   short *psVar2;
-  undefined2 uVar3;
-  undefined4 *puVar4;
-  undefined4 uVar5;
-  undefined *puVar6;
-  undefined4 local_30;
-  uint3 uStack_28;
-  undefined1 uStack_25;
-  undefined2 uStack_24;
+  undefined2 extraout_a0;
+  undefined4 *puVar3;
+  undefined4 uVar4;
+  undefined *puVar5;
+  undefined4 uStack_38;
+  uint3 uStack_30;
+  undefined1 uStack_2d;
+  undefined2 uStack_2c;
   
-  puVar4 = (undefined4 *)malloc(0x14);
+  puVar3 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC2,uVar5,"ESP_ZIGBEE_CLUSTER");
-    uVar5 = 0x102;
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC2,uVar4,"ESP_ZIGBEE_CLUSTER");
+    uVar4 = 0x102;
   }
   else if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 7) {
     psVar1 = *(short **)(param_1 + 0x10);
@@ -37,46 +37,45 @@ esp_zb_cluster_list_add_on_off_switch_config_cluster(int param_1,int param_2,uin
       psVar2 = psVar1;
       if (psVar2 == (short *)0x0) break;
       if (*psVar2 == 7 && *(byte *)(psVar2 + 4) == param_3) {
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER",7);
+        uVar4 = esp_log_timestamp();
+        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar4,"ESP_ZIGBEE_CLUSTER",7);
         return 0x102;
       }
       psVar1 = *(short **)(psVar2 + 8);
     } while (*(short **)(psVar2 + 8) != (short *)0x0);
-    uVar5 = zcl_get_attr_lists(param_2);
-    uVar3 = zcl_get_attr_count(param_2);
-    local_30 = CONCAT22(uVar3,7);
+    uVar4 = zcl_convert_attr_list_to_array(param_2);
+    uStack_38 = CONCAT22(extraout_a0,7);
     if (param_3 == 1) {
-      puVar6 = &zb_zcl_on_off_switch_config_init_server;
+      puVar5 = &zb_zcl_on_off_switch_config_init_server;
     }
     else if (param_3 == 2) {
-      puVar6 = &zb_zcl_on_off_switch_config_init_client;
+      puVar5 = &zb_zcl_on_off_switch_config_init_client;
     }
     else {
-      puVar6 = (undefined *)0x0;
+      puVar5 = (undefined *)0x0;
     }
-    _uStack_28 = CONCAT13((char)puVar6,(uint3)(byte)param_3);
-    uStack_24 = (undefined2)((uint)puVar6 >> 8);
-    *puVar4 = local_30;
-    puVar4[1] = uVar5;
-    puVar4[2] = _uStack_28;
-    *(undefined2 *)(puVar4 + 3) = uStack_24;
-    *(undefined1 *)((int)puVar4 + 0xe) = 0;
-    puVar4[4] = 0;
+    _uStack_30 = CONCAT13((char)puVar5,(uint3)(byte)param_3);
+    uStack_2c = (undefined2)((uint)puVar5 >> 8);
+    *puVar3 = uStack_38;
+    puVar3[1] = uVar4;
+    puVar3[2] = _uStack_30;
+    *(undefined2 *)(puVar3 + 3) = uStack_2c;
+    *(undefined1 *)((int)puVar3 + 0xe) = 0;
+    puVar3[4] = 0;
     if (psVar2 == (short *)0x0) {
-      *(undefined4 **)(param_1 + 0x10) = puVar4;
-      uVar5 = 0;
+      *(undefined4 **)(param_1 + 0x10) = puVar3;
+      uVar4 = 0;
     }
     else {
-      *(undefined4 **)(psVar2 + 8) = puVar4;
-      uVar5 = 0;
+      *(undefined4 **)(psVar2 + 8) = puVar3;
+      uVar4 = 0;
     }
   }
   else {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC10,uVar5,"ESP_ZIGBEE_CLUSTER");
-    uVar5 = 0x102;
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC10,uVar4,"ESP_ZIGBEE_CLUSTER");
+    uVar4 = 0x102;
   }
-  return uVar5;
+  return uVar4;
 }
 

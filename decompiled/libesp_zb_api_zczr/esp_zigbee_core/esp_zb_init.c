@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,6 @@ void esp_zb_init(char *param_1)
   zb_init();
   esp_zb_zcl_scenes_table_init();
   zb_set_installcode_policy(param_1[4]);
-  esp_zb_set_manufacturer_code();
   cVar1 = *param_1;
   if (cVar1 == '\x01') {
     zb_set_network_router_role(0x7fff800);

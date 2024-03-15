@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_config_report_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,9 @@ int zcl_cmd_config_report_resp_handler(undefined4 param_1)
   uint uVar5;
   uint *puVar6;
   uint *puVar7;
-  undefined2 uVar8;
-  uint uVar9;
+  byte bVar8;
+  undefined2 uVar9;
+  uint uVar10;
   undefined1 auStack_44 [32];
   uint *puStack_24;
   
@@ -40,13 +41,19 @@ _L0:
           puVar6 = (uint *)malloc(0xc);
           *puVar6 = (uint)*pbVar2;
           if (*pbVar2 == 0) {
-            uVar8 = 0xffff;
+            uVar9 = 0xffff;
           }
           else {
-            uVar8 = *(undefined2 *)(pbVar2 + 2);
+            uVar9 = *(undefined2 *)(pbVar2 + 2);
           }
-          *(undefined2 *)((int)puVar6 + 6) = uVar8;
-          *(byte *)(puVar6 + 1) = pbVar2[1];
+          *(undefined2 *)((int)puVar6 + 6) = uVar9;
+          if (*pbVar2 == 0) {
+            bVar8 = 0xff;
+          }
+          else {
+            bVar8 = pbVar2[1];
+          }
+          *(byte *)(puVar6 + 1) = bVar8;
           puVar6[2] = 0;
           puVar1 = puVar6;
           if (puVar7 != (uint *)0x0) {
@@ -62,18 +69,18 @@ _L0:
           iVar3 = zb_zcl_zcl8_statuses_conversion(*pbVar2);
           *pbVar2 = (byte)iVar3;
           if (iVar3 == 0) {
-            uVar9 = 1;
+            uVar10 = 1;
           }
           else if (iVar3 == 0x80) {
-            uVar9 = 1;
+            uVar10 = 1;
           }
           else {
             zb_buf_len_func(param_1);
-            uVar9 = 4;
+            uVar10 = 4;
           }
           uVar5 = zb_buf_len_func(param_1);
-          if (uVar9 <= uVar5) {
-            zb_buf_cut_left_func(param_1,uVar9);
+          if (uVar10 <= uVar5) {
+            zb_buf_cut_left_func(param_1,uVar10);
             goto _L0;
           }
           pbVar2 = (byte *)0x0;

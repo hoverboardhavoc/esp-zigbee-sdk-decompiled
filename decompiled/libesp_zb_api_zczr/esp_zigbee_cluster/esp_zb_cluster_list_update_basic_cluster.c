@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_basic_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,24 +16,24 @@ int esp_zb_cluster_list_update_basic_cluster(int param_1,int param_2,int param_3
   short sVar1;
   int *__ptr;
   int iVar2;
-  undefined4 uVar3;
-  undefined *puVar4;
   short *__ptr_00;
-  int local_30;
-  uint3 uStack_28;
-  undefined1 uStack_25;
-  undefined2 uStack_24;
+  undefined4 uVar3;
+  int extraout_a1;
+  undefined *puVar4;
+  int iStack_38;
+  uint3 uStack_30;
+  undefined1 uStack_2d;
+  undefined2 uStack_2c;
   
   __ptr = (int *)malloc(0x14);
   iVar2 = esp_zb_cluster_list_check(param_1,param_2,0);
   if (iVar2 == 0) {
     sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 10);
-    iVar2 = zcl_get_attr_lists(param_2);
-    local_30 = zcl_get_attr_count(param_2);
+    iStack_38 = zcl_convert_attr_list_to_array(param_2);
     __ptr_00 = *(short **)(param_1 + 0x10);
     while (__ptr_00 != (short *)0x0) {
       if (*__ptr_00 == sVar1) {
-        local_30 = local_30 << 0x10;
+        iStack_38 = iStack_38 << 0x10;
         if (param_3 == 1) {
           puVar4 = &zb_zcl_basic_init_server;
         }
@@ -43,12 +43,12 @@ int esp_zb_cluster_list_update_basic_cluster(int param_1,int param_2,int param_3
         else {
           puVar4 = (undefined *)0x0;
         }
-        _uStack_28 = CONCAT13((char)puVar4,(uint3)(byte)param_3);
-        uStack_24 = (undefined2)((uint)puVar4 >> 8);
-        *__ptr = local_30;
-        __ptr[1] = iVar2;
-        __ptr[2] = _uStack_28;
-        *(undefined2 *)(__ptr + 3) = uStack_24;
+        _uStack_30 = CONCAT13((char)puVar4,(uint3)(byte)param_3);
+        uStack_2c = (undefined2)((uint)puVar4 >> 8);
+        *__ptr = iStack_38;
+        __ptr[1] = extraout_a1;
+        __ptr[2] = _uStack_30;
+        *(undefined2 *)(__ptr + 3) = uStack_2c;
         *(undefined1 *)((int)__ptr + 0xe) = 0;
         __ptr[4] = *(int *)(__ptr_00 + 8);
         free(__ptr_00);
@@ -60,7 +60,7 @@ int esp_zb_cluster_list_update_basic_cluster(int param_1,int param_2,int param_3
       param_1 = *(int *)(param_1 + 0x10);
     }
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_L0,uVar3,"ESP_ZIGBEE_CLUSTER");
+    esp_log_write(2,"ESP_ZIGBEE_CLUSTER",&_LC13,uVar3,"ESP_ZIGBEE_CLUSTER");
     iVar2 = 0x105;
   }
   else {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_send_report_attr_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -76,7 +76,7 @@ void esp_zb_zcl_send_report_attr_command(int param_1,undefined4 param_2,undefine
     if (iVar11 == 0xffff) {
       uVar13 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar13,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_send_report_attr_command",0xf4);
+                    "esp_zb_zcl_send_report_attr_command",0xfa);
       return;
     }
     if ((uVar14 & 0xffff) < iVar11 + 3U) break;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,7 +41,7 @@ _L0:
     }
     piVar2 = (int *)zb_buf_get_tail_func(param_1,0x38);
     if (*piVar2 == (&s_device_cb_table)[uVar1 * 2]) {
-      pcVar6 = (code *)(&PTR_zcl_basic_reset_factory_reset_cb_handler_00018ca4)[uVar1 * 2];
+      pcVar6 = (code *)(&PTR_zcl_basic_reset_factory_reset_cb_handler_00018cbc)[uVar1 * 2];
       iVar3 = zb_buf_get_tail_func(param_1,0x38);
       uVar4 = (*pcVar6)(param_1);
       *(undefined4 *)(iVar3 + 8) = uVar4;

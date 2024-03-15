@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_cmd_read_attr_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,6 +22,8 @@ int zcl_cmd_read_attr_resp_handler(undefined4 param_1)
   uint uVar7;
   uint *puVar8;
   uint *puVar9;
+  ushort uVar10;
+  undefined2 *puVar11;
   undefined1 auStack_44 [32];
   uint *puStack_24;
   
@@ -40,11 +42,28 @@ _L0:
           puVar8 = (uint *)malloc(0x14);
           *puVar8 = (uint)*(byte *)(puVar2 + 1);
           *(undefined2 *)(puVar8 + 1) = *puVar2;
-          *(ushort *)((int)puVar8 + 6) = (ushort)*(byte *)((int)puVar2 + 3);
+          if (*(char *)(puVar2 + 1) == '\0') {
+            uVar10 = (ushort)*(byte *)((int)puVar2 + 3);
+          }
+          else {
+            uVar10 = 0;
+          }
+          *(ushort *)((int)puVar8 + 6) = uVar10;
           *(undefined2 *)(puVar8 + 2) = 0;
-          uVar3 = esp_zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar2 + 3),puVar2 + 2);
+          if (*(char *)(puVar2 + 1) == '\0') {
+            uVar3 = esp_zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar2 + 3),puVar2 + 2);
+          }
+          else {
+            uVar3 = 0;
+          }
           *(undefined2 *)((int)puVar8 + 10) = uVar3;
-          puVar8[3] = (uint)(puVar2 + 2);
+          if (*(char *)(puVar2 + 1) == '\0') {
+            puVar11 = puVar2 + 2;
+          }
+          else {
+            puVar11 = (undefined2 *)0x0;
+          }
+          puVar8[3] = (uint)puVar11;
           puVar8[4] = 0;
           puVar1 = puVar8;
           if (puVar9 != (uint *)0x0) {
@@ -61,7 +80,7 @@ _L0:
           *(char *)(puVar2 + 1) = (char)iVar4;
           if (iVar4 == 0) {
             iVar4 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar2 + 3),puVar2 + 2);
-            uVar7 = iVar4 + 4U & 0xff;
+            uVar7 = iVar4 + 4U & 0xffff;
             zb_buf_len_func(param_1);
           }
           else {

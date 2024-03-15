@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_attr.o -> print_read_attr_response
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,7 +31,7 @@ void print_read_attr_response(undefined4 param_1)
       *(char *)(puVar1 + 1) = (char)iVar3;
       if (iVar3 == 0) {
         iVar3 = zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar1 + 3),puVar1 + 2);
-        uVar2 = iVar3 + 4U & 0xff;
+        uVar2 = iVar3 + 4U & 0xffff;
         zb_buf_len_func(param_1);
       }
       else {

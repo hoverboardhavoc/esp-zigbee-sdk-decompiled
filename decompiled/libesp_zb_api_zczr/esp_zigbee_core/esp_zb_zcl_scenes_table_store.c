@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
+ * Upstream date: 2024-03-15 18:43:30 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_zcl_scenes_table_store
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,16 +22,16 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
   
   uVar1 = device_scenes_get_free_entry();
   if (uVar1 < 0x10) {
-    (&DAT_00018ef8)[uVar1 * 6] = param_2;
-    (&DAT_00018efb)[uVar1 * 0xc] = 0;
-    if ((&DAT_00018efc)[uVar1 * 3] != 0) {
+    (&DAT_00018f10)[uVar1 * 6] = param_2;
+    (&DAT_00018f13)[uVar1 * 0xc] = 0;
+    if ((&DAT_00018f14)[uVar1 * 3] != 0) {
       device_scene_free_fields();
-      (&DAT_00018efc)[uVar1 * 3] = 0;
+      (&DAT_00018f14)[uVar1 * 3] = 0;
     }
-    puVar5 = (undefined2 *)(&DAT_00018efc)[uVar1 * 3];
+    puVar5 = (undefined2 *)(&DAT_00018f14)[uVar1 * 3];
     for (; param_3 != (undefined2 *)0x0; param_3 = *(undefined2 **)(param_3 + 4)) {
       puVar2 = (undefined2 *)malloc(0xc);
-      (&DAT_00018efb)[uVar1 * 0xc] = (&DAT_00018efb)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
+      (&DAT_00018f13)[uVar1 * 0xc] = (&DAT_00018f13)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
       *puVar2 = *param_3;
       *(undefined1 *)(puVar2 + 1) = *(undefined1 *)(param_3 + 1);
       *(undefined4 *)(puVar2 + 4) = 0;
@@ -39,7 +39,7 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
       *(void **)(puVar2 + 2) = __dest;
       memcpy(__dest,*(void **)(param_3 + 2),(uint)*(byte *)(param_3 + 1));
       if (puVar5 == (undefined2 *)0x0) {
-        (&DAT_00018efc)[uVar1 * 3] = puVar2;
+        (&DAT_00018f14)[uVar1 * 3] = puVar2;
       }
       else {
         *(undefined2 **)(puVar5 + 4) = puVar2;
