@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> simple_desc_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ void simple_desc_cb(int param_1)
   undefined1 uVar2;
   undefined1 *puVar3;
   undefined1 *__ptr;
-  int iVar4;
+  undefined2 *puVar4;
   int iVar5;
   uint uVar6;
   
@@ -37,23 +37,23 @@ void simple_desc_cb(int param_1)
     __ptr[1] = puVar3[6];
     __ptr[2] = uVar2;
     *__ptr = puVar3[5];
-    for (iVar4 = 0; iVar4 < (int)uVar6; iVar4 = iVar4 + 1) {
-      iVar5 = iVar4 * 2;
-      uVar2 = puVar3[iVar5 + 0xe];
-      __ptr[iVar5 + 8] = puVar3[iVar5 + 0xd];
-      __ptr[iVar5 + 9] = uVar2;
+    puVar4 = (undefined2 *)(__ptr + 8);
+    for (iVar5 = 0; iVar5 < (int)uVar6; iVar5 = iVar5 + 1) {
+      *puVar4 = *(undefined2 *)(puVar3 + iVar5 * 2 + 0xd);
+      puVar4 = puVar4 + 1;
     }
     zb_schedule_alarm_cancel(simple_desc_req_timeout,0xff,0);
   }
-  iVar4 = esp_zb_zdo_callback_find(uVar1);
-  if (((iVar4 != 0) && (*(char *)(iVar4 + 1) == '\x04')) && (*(code **)(iVar4 + 4) != (code *)0x0))
+  iVar5 = esp_zb_zdo_callback_find(uVar1);
+  if (((iVar5 != 0) && (*(char *)(iVar5 + 1) == '\x04')) && (*(code **)(iVar5 + 4) != (code *)0x0))
   {
-    (**(code **)(iVar4 + 4))(puVar3[1],__ptr,*(undefined4 *)(iVar4 + 8));
+    (**(code **)(iVar5 + 4))(puVar3[1],__ptr,*(undefined4 *)(iVar5 + 8));
   }
   esp_zb_zdo_callback_remove(uVar1);
   free(__ptr);
   if (param_1 != 0) {
     zb_buf_free_func(param_1);
+    return;
   }
   return;
 }

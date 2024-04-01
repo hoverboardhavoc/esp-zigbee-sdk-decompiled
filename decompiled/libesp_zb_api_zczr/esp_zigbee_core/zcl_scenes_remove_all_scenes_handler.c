@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_scenes_remove_all_scenes_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,33 +13,39 @@
 int zcl_scenes_remove_all_scenes_handler(undefined4 param_1)
 
 {
-  undefined2 *puVar1;
-  undefined1 uVar2;
-  int iVar3;
-  undefined4 uVar4;
-  undefined1 *puVar5;
+  char cVar1;
+  short sVar2;
+  char cVar3;
+  char cVar4;
+  short *psVar5;
+  int iVar6;
+  char *pcVar7;
+  undefined1 *puVar8;
   
-  iVar3 = zb_buf_get_tail_func(0x38);
-  puVar1 = *(undefined2 **)(iVar3 + 0x10);
-  iVar3 = zb_buf_get_tail_func(param_1,0x38);
-  puVar5 = *(undefined1 **)(iVar3 + 0x14);
-  iVar3 = zb_buf_get_tail_func(param_1,0x38);
-  uVar2 = *(undefined1 *)(*(int *)(iVar3 + 0xc) + 0xc);
-  iVar3 = esp_zb_zcl_scenes_group_check(uVar2,*puVar1);
-  *puVar5 = (char)iVar3;
-  if (iVar3 == 0) {
-    uVar2 = device_scenes_remove_entries_by_group(uVar2,*puVar1);
-    puVar5[1] = uVar2;
-    uVar4 = esp_log_timestamp();
-    esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE",*puVar1);
+  iVar6 = zb_buf_get_tail_func(0x38);
+  psVar5 = *(short **)(iVar6 + 0x10);
+  iVar6 = zb_buf_get_tail_func(param_1,0x38);
+  puVar8 = *(undefined1 **)(iVar6 + 0x14);
+  iVar6 = zb_buf_get_tail_func(param_1,0x38);
+  cVar1 = *(char *)(*(int *)(iVar6 + 0xc) + 0xc);
+  iVar6 = esp_zb_zcl_scenes_group_check(cVar1,*psVar5);
+  *puVar8 = (char)iVar6;
+  if (iVar6 == 0) {
+    sVar2 = *psVar5;
+    pcVar7 = &esp_zb_zcl_scenes_table;
+    cVar4 = '\0';
+    cVar3 = '\0';
+    do {
+      if ((*pcVar7 == cVar1) && (*(short *)(pcVar7 + 2) == sVar2)) {
+        cVar3 = cVar3 + '\x01';
+        device_scenes_table_record_free(cVar4);
+      }
+      cVar4 = cVar4 + '\x01';
+      pcVar7 = pcVar7 + 0xc;
+    } while (cVar4 != '\x10');
+    puVar8[1] = cVar3;
   }
-  iVar3 = zb_nvram_write_dataset(9);
-  if (iVar3 != 0) {
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC46,uVar4,"ESP_ZIGBEE_CORE",
-                  "zcl_scenes_remove_all_scenes_handler",0x341);
-    iVar3 = -1;
-  }
-  return iVar3;
+  iVar6 = zb_nvram_write_dataset(9);
+  return -(uint)(iVar6 != 0);
 }
 

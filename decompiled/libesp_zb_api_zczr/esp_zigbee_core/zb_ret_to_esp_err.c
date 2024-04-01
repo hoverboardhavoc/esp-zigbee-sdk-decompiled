@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * Upstream date: 2023-11-10 18:10:39 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_ret_to_esp_err
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,16 +20,7 @@ int zb_ret_to_esp_err(int param_1)
     if (param_1 == -0x16) {
       return 0x101;
     }
-    if (param_1 + 0xbU < 2) {
-      return 0x102;
-    }
-    if (param_1 == -0xc) {
-      return 0x102;
-    }
-    if (param_1 == -0xd) {
-      return 0x102;
-    }
-    if (param_1 == -0xf) {
+    if ((param_1 + 0xdU < 4) || (param_1 == -0xf)) {
       return 0x102;
     }
     if (param_1 == -6) {

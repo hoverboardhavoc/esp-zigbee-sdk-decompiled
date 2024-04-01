@@ -1,0 +1,33 @@
+/*
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_zcl_add_attr_list_to_set
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+undefined4 esp_zb_internal_zcl_add_attr_list_to_set(undefined4 param_1)
+
+{
+  undefined4 *puVar1;
+  undefined4 uVar2;
+  
+  puVar1 = (undefined4 *)malloc(8);
+  if (puVar1 == (undefined4 *)0x0) {
+    uVar2 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC1,uVar2,0x10000,"esp_zb_internal_zcl_add_attr_list_to_set",0x39);
+    uVar2 = 0x101;
+  }
+  else {
+    *puVar1 = param_1;
+    puVar1[1] = s_attr_list_set;
+    uVar2 = 0;
+    s_attr_list_set = puVar1;
+  }
+  return uVar2;
+}
+

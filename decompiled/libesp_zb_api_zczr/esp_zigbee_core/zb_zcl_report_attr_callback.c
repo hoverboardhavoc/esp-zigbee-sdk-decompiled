@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_report_attr_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,50 +11,33 @@
  */
 
 void zb_zcl_report_attr_callback
-               (undefined1 *param_1,undefined1 param_2,undefined1 param_3,undefined2 param_4,
+               (void *param_1,undefined1 param_2,undefined1 param_3,undefined2 param_4,
                undefined2 param_5,undefined4 param_6,undefined4 param_7)
 
 {
-  undefined4 local_30;
-  undefined1 uStack_2c;
-  undefined1 uStack_2b;
-  undefined1 uStack_2a;
-  undefined1 uStack_29;
-  undefined1 uStack_28;
-  undefined1 uStack_27;
-  undefined1 uStack_26;
-  undefined1 uStack_25;
-  undefined1 uStack_24;
-  undefined1 uStack_23;
-  undefined1 uStack_22;
-  undefined2 uStack_20;
-  undefined2 uStack_1e;
-  undefined4 uStack_1c;
-  undefined2 uStack_18;
-  undefined2 uStack_16;
-  undefined2 uStack_14;
+  undefined4 local_40;
+  undefined1 auStack_3c [9];
+  undefined1 uStack_33;
+  undefined1 uStack_32;
+  undefined2 uStack_30;
+  undefined2 uStack_2e;
+  undefined4 uStack_2c;
+  undefined2 uStack_28;
+  undefined2 uStack_26;
+  undefined2 uStack_24;
   
   if (zb_core_action_cb != (code *)0x0) {
-    local_30 = 0;
-    uStack_2c = *param_1;
-    uStack_2b = param_1[1];
-    uStack_2a = param_1[2];
-    uStack_29 = param_1[3];
-    uStack_28 = param_1[4];
-    uStack_27 = param_1[5];
-    uStack_26 = param_1[6];
-    uStack_25 = param_1[7];
-    uStack_24 = param_1[8];
-    uStack_23 = param_2;
-    uStack_22 = param_3;
-    uStack_20 = param_4;
-    uStack_1e = param_5;
-    uStack_1c = param_6;
-    uStack_18 = esp_zb_zcl_get_attribute_size(param_7);
-    uStack_16 = (undefined2)param_7;
-    uStack_14 = (undefined2)((uint)param_7 >> 0x10);
-    (*zb_core_action_cb)(0x2000,&local_30,zb_core_action_cb);
-    return;
+    local_40 = 0;
+    memcpy(auStack_3c,param_1,9);
+    uStack_33 = param_2;
+    uStack_32 = param_3;
+    uStack_30 = param_4;
+    uStack_2e = param_5;
+    uStack_2c = param_6;
+    uStack_28 = esp_zb_zcl_get_attribute_size(param_6,param_7);
+    uStack_26 = (undefined2)param_7;
+    uStack_24 = (undefined2)((uint)param_7 >> 0x10);
+    (*zb_core_action_cb)(0x2000,&local_40,zb_core_action_cb);
   }
   return;
 }

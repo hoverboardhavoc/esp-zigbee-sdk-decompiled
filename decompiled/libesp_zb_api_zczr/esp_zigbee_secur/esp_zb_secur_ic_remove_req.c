@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_ic_remove_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 esp_zb_secur_ic_remove_req(undefined1 *param_1)
+undefined4 esp_zb_secur_ic_remove_req(void *param_1)
 
 {
-  undefined1 uVar1;
-  undefined1 uVar2;
-  undefined1 uVar3;
-  undefined1 uVar4;
-  undefined1 uVar5;
-  undefined1 uVar6;
-  undefined1 uVar7;
-  undefined4 uVar8;
-  undefined1 *puVar9;
+  undefined4 uVar1;
+  void *__dest;
   
-  uVar8 = zb_buf_get_out_func();
-  puVar9 = (undefined1 *)zb_buf_get_tail_func(0xc);
-  uVar1 = param_1[1];
-  uVar2 = param_1[2];
-  uVar3 = param_1[3];
-  uVar4 = param_1[4];
-  uVar5 = param_1[5];
-  uVar6 = param_1[6];
-  uVar7 = param_1[7];
-  *puVar9 = *param_1;
-  puVar9[1] = uVar1;
-  puVar9[2] = uVar2;
-  puVar9[3] = uVar3;
-  puVar9[4] = uVar4;
-  puVar9[5] = uVar5;
-  puVar9[6] = uVar6;
-  puVar9[7] = uVar7;
-  puVar9[8] = 0x2c;
-  puVar9[9] = 0;
-  puVar9[10] = 1;
-  puVar9[0xb] = 0;
-  zb_secur_ic_remove_req(uVar8);
+  uVar1 = zb_buf_get_out_func();
+  __dest = (void *)zb_buf_get_tail_func(0xc);
+  memcpy(__dest,param_1,8);
+  *(undefined1 *)((int)__dest + 8) = 0;
+  *(undefined1 *)((int)__dest + 9) = 0;
+  *(undefined1 *)((int)__dest + 0xb) = 0;
+  *(undefined1 *)((int)__dest + 10) = 1;
+  zb_secur_ic_remove_req(uVar1);
   return ic_remove_cb_ret;
 }
 

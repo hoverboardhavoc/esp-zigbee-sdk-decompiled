@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_attr_list_get_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,45 +15,42 @@ ushort * esp_zb_attr_list_get_tail(ushort *param_1,uint param_2,uint param_3,und
 {
   ushort uVar1;
   ushort *puVar2;
-  ushort *puVar3;
-  undefined4 uVar4;
+  undefined4 uVar3;
+  undefined *puVar4;
+  ushort *puVar5;
   
   if (param_1 == (ushort *)0x0) {
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC1,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
-    *param_4 = 0x102;
-    puVar3 = (ushort *)0x0;
+    uVar3 = esp_log_timestamp();
+    puVar4 = &_LC1;
   }
   else {
-    puVar2 = *(ushort **)(param_1 + 6);
-    uVar1 = puVar2[5];
-    if ((short)param_2 < 0) {
-      if ((param_2 == 0x8000) && (-1 < (short)uVar1)) {
-        uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC3,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
-        *param_4 = 0x102;
-        return param_1;
+    puVar5 = *(ushort **)(param_1 + 6);
+    uVar1 = puVar5[5];
+    if (-1 < (short)param_2) {
+      if (uVar1 == param_2) {
+_L0:
+        do {
+          puVar2 = puVar5;
+          if (*puVar2 == param_3) {
+            uVar3 = esp_log_timestamp();
+            esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC4,uVar3,"ESP_ZIGBEE_ATTRIBUTE",param_3);
+            *param_4 = 0x102;
+          }
+          puVar5 = *(ushort **)(puVar2 + 6);
+        } while (*(ushort **)(puVar2 + 6) != (ushort *)0x0);
+        return puVar2;
       }
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC2,uVar3,"ESP_ZIGBEE_ATTRIBUTE",(uint)uVar1);
+      goto _L0;
     }
-    else if (uVar1 != param_2) {
-      uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC2,uVar4,"ESP_ZIGBEE_ATTRIBUTE",(uint)uVar1);
-      *param_4 = 0x102;
-      return param_1;
-    }
-    do {
-      puVar3 = puVar2;
-      if (puVar3 == (ushort *)0x0) {
-        return (ushort *)0x0;
-      }
-      if (param_3 == *puVar3) {
-        uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC4,uVar4,"ESP_ZIGBEE_ATTRIBUTE",param_3);
-        *param_4 = 0x102;
-      }
-      puVar2 = *(ushort **)(puVar3 + 6);
-    } while (*(ushort **)(puVar3 + 6) != (ushort *)0x0);
+    if ((param_2 != 0x8000) || ((short)uVar1 < 0)) goto _L0;
+    uVar3 = esp_log_timestamp();
+    puVar4 = &_LC3;
   }
-  return puVar3;
+  esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",puVar4,uVar3,"ESP_ZIGBEE_ATTRIBUTE");
+_L0:
+  *param_4 = 0x102;
+  return param_1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_err_to_zb_ret
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,29 +13,23 @@
 int esp_err_to_zb_ret(int param_1)
 
 {
-  if (param_1 == 0x104) {
-    return -6;
+  int iVar1;
+  
+  if (param_1 == 0x105) {
+    iVar1 = -0x1c;
   }
-  if (param_1 < 0x105) {
-    if (param_1 != 0) {
-      if (param_1 == 0x101) {
-        return -0x16;
-      }
-      return -1;
+  else if (param_1 < 0x106) {
+    iVar1 = -0x16;
+    if ((param_1 != 0x101) && (iVar1 = -6, param_1 != 0x104)) {
+      return -(uint)(param_1 != 0);
     }
   }
   else {
-    if (param_1 == 0x107) {
-      return -0x1e;
+    iVar1 = -0x1e;
+    if ((param_1 != 0x107) && (iVar1 = -2, param_1 != 0x10c)) {
+      return -1;
     }
-    if (param_1 == 0x10c) {
-      return -2;
-    }
-    if (param_1 == 0x105) {
-      return -0x1c;
-    }
-    param_1 = -1;
   }
-  return param_1;
+  return iVar1;
 }
 

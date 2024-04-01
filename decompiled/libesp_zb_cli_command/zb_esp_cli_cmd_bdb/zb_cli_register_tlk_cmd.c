@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_register_tlk_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,9 +24,9 @@ void zb_cli_register_tlk_cmd(void)
   undefined4 *puStack_14;
   
   tlk_args = arg_lit0(&_LC133,"timeout","Configure Touchlink target timeout");
-  DAT_00014830 = arg_lit0(&_LC121,"RSSI threshold","Configure RSSI threshold");
-  DAT_00014834 = arg_lit0(&_LC164,"master key","Configure Touchlink target master key");
-  DAT_00014838 = arg_end(0);
+  DAT_00014820 = arg_lit0(&_LC121,"RSSI threshold","Configure RSSI threshold");
+  DAT_00014824 = arg_lit0(&_LC164,"master key","Configure Touchlink target master key");
+  DAT_00014828 = arg_end(0);
   puStack_24 = &_LC3;
   pcStack_20 = "ZigBee touchlink command";
   uStack_1c = 0;
@@ -39,7 +39,7 @@ void zb_cli_register_tlk_cmd(void)
   _esp_error_check_failed
             ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_bdb.c",0x57a,
              "zb_cli_register_tlk_cmd","esp_console_cmd_register(&tlk_cmd)");
-  if (unaff_s6 < 0x1482d) {
+  if (unaff_s6 < 0x1481d) {
                     /* WARNING: Bad instruction - Truncating control flow here */
     halt_baddata();
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * Upstream date: 2023-11-10 18:10:39 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_srv_query_image_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,13 +10,12 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 zcl_ota_upgrade_srv_query_image_handler(void)
+int zcl_ota_upgrade_srv_query_image_handler(void)
 
 {
-  undefined4 *puVar1;
+  int iVar1;
   int iVar2;
-  undefined4 uVar3;
-  byte bVar4;
+  byte bVar3;
   uint local_30;
   ushort uStack_2c;
   undefined2 uStack_2a;
@@ -29,28 +28,37 @@ undefined4 zcl_ota_upgrade_srv_query_image_handler(void)
   
   iVar2 = zb_buf_get_tail_func(0x38);
   local_30 = (uint)(iVar2 == 0);
-  if (iVar2 == 0) {
-    bVar4 = 0xff;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  bVar3 = 0xff;
+  if (iVar2 != 0) {
+    bVar3 = *(byte *)(iVar2 + 4);
   }
-  else {
-    bVar4 = *(byte *)(iVar2 + 4);
-  }
-  _uStack_2c = CONCAT22(0x19,(ushort)bVar4);
+  _uStack_2c = CONCAT22(0x19,(ushort)bVar3);
   iStack_20 = (uint)*(ushort *)(iVar2 + 0x2b) << 0x10;
   uStack_1c = (uint)*(ushort *)(iVar2 + 0x2d);
   uStack_18 = *(undefined4 *)(iVar2 + 0x2f);
   uStack_14 = *(undefined4 *)(iVar2 + 0x33);
-  puVar1 = *(undefined4 **)(iVar2 + 0x27);
-  uStack_28 = *puVar1;
-  uStack_24 = puVar1[1];
-  iStack_20 = CONCAT31(iStack_20._1_3_,*(undefined1 *)(puVar1 + 2));
+  memcpy(&uStack_28,*(void **)(iVar2 + 0x27),9);
   if (zb_core_action_cb == (code *)0x0) {
-    uVar3 = 0;
+    return 0;
+  }
+  iVar2 = (*zb_core_action_cb)(6,&local_30);
+  if (iVar2 == 0x105) {
+    iVar1 = -0x1c;
+  }
+  else if (iVar2 < 0x106) {
+    iVar1 = -0x16;
+    if ((iVar2 != 0x101) && (iVar1 = -6, iVar2 != 0x104)) {
+      return -(uint)(iVar2 != 0);
+    }
   }
   else {
-    (*zb_core_action_cb)(6,&local_30);
-    uVar3 = esp_err_to_zb_ret();
+    iVar1 = -0x1e;
+    if ((iVar2 != 0x107) && (iVar1 = -2, iVar2 != 0x10c)) {
+      return -1;
+    }
   }
-  return uVar3;
+  return iVar1;
 }
 

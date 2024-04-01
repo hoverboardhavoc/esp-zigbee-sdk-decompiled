@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> zb_zcl_cmd_send_status_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,35 +13,25 @@
 void zb_zcl_cmd_send_status_handler(undefined4 param_1)
 
 {
-  undefined1 uVar1;
+  code *pcVar1;
   undefined4 *puVar2;
-  undefined4 local_30;
-  undefined4 uStack_2c;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
+  undefined1 auStack_30 [16];
   undefined4 uStack_20;
-  undefined4 uStack_1c;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
+  undefined1 uStack_1c;
+  undefined1 uStack_1b;
+  undefined1 uStack_1a;
+  undefined1 auStack_19 [13];
   
   puVar2 = (undefined4 *)zb_buf_get_tail_func(0x10);
-  uStack_20 = 0;
-  uStack_1c = 0;
-  uStack_18 = 0;
-  uStack_14 = 0;
   uStack_20 = zb_ret_to_esp_err(*puVar2);
-  uVar1 = zb_zcl_frame_get_sequence_number(param_1);
-  uStack_18 = *(undefined4 *)((int)puVar2 + 6);
-  uStack_14 = *(undefined4 *)((int)puVar2 + 10);
-  uStack_1c = CONCAT13(*(undefined1 *)((int)puVar2 + 5),
-                       CONCAT12(*(undefined1 *)((int)puVar2 + 0xe),
-                                CONCAT11(*(undefined1 *)(puVar2 + 1),uVar1)));
+  uStack_1c = zb_zcl_frame_get_sequence_number(param_1);
+  uStack_1b = *(undefined1 *)(puVar2 + 1);
+  uStack_1a = *(undefined1 *)((int)puVar2 + 0xe);
+  memcpy(auStack_19,(void *)((int)puVar2 + 5),9);
+  pcVar1 = zb_zcl_cmd_send_status_cb;
   if (zb_zcl_cmd_send_status_cb != (code *)0x0) {
-    local_30 = uStack_20;
-    uStack_2c = uStack_1c;
-    uStack_28 = uStack_18;
-    uStack_24 = uStack_14;
-    (*zb_zcl_cmd_send_status_cb)(&local_30);
+    memcpy(auStack_30,&uStack_20,0x10);
+    (*pcVar1)(auStack_30);
   }
   zb_buf_free_func(param_1);
   return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_aps.o -> esp_zb_aps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,6 @@ undefined4 esp_zb_aps_data_request(undefined1 *param_1)
   
   iVar1 = zb_buf_get_func(0,*(int *)(param_1 + 0xc) + 0x1a);
   if (iVar1 == 0) {
-    uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_APS",&_LC1,uVar2,"ESP_ZIGBEE_APS","esp_zb_aps_data_request",0x5c);
     uVar2 = 0x101;
   }
   else {

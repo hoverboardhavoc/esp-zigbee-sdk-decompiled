@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * Upstream date: 2024-03-15 18:43:30 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_nvram_app1_write_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,76 +14,52 @@ undefined4 zb_nvram_app1_write_cb(undefined4 param_1,undefined4 param_2)
 
 {
   byte bVar1;
-  byte bVar2;
-  byte bVar3;
-  byte bVar4;
-  byte bVar5;
-  byte bVar6;
-  byte bVar7;
-  int iVar8;
+  int iVar2;
+  uint uVar3;
+  int iVar4;
   size_t __n;
-  undefined4 uVar9;
-  int iVar10;
-  uint uVar11;
-  uint uVar12;
-  byte *pbVar13;
-  int iVar14;
-  byte abStack_40 [14];
-  undefined2 local_32;
+  undefined4 uVar5;
+  undefined4 *__src;
+  byte *pbVar6;
+  uint uVar7;
+  byte abStack_50 [14];
+  undefined2 local_42;
   
   __n = zb_nvram_app1_data_size_cb();
-  local_32 = 0;
-  iVar8 = -(__n + 0xf & 0xfffffff0);
-  memset(abStack_40 + iVar8,0,__n);
-  iVar14 = 0;
-  uVar12 = 2;
+  iVar2 = -(__n + 0xf & 0xfffffff0);
+  __src = (undefined4 *)&esp_zb_zcl_scenes_table;
+  local_42 = 0;
+  memset(abStack_50 + iVar2,0,__n);
+  uVar3 = 2;
   do {
-    if (0xf < iVar14) {
-      local_32 = (short)uVar12 + -2;
-      abStack_40[iVar8] = (undefined1)local_32;
-      abStack_40[iVar8 + 1] = local_32._1_1_;
-      uVar9 = zb_nvram_write_data(param_1,param_2,abStack_40 + iVar8,__n);
-      return uVar9;
-    }
-    iVar10 = iVar14 * 0xc;
-    if ((&esp_zb_zcl_scenes_table + iVar10 != (byte *)0x0) && ((&DAT_00018f0e)[iVar14 * 6] != -1)) {
-      pbVar13 = abStack_40 + uVar12 + iVar8;
-      bVar1 = (&DAT_00018f0d)[iVar10];
-      bVar2 = *(byte *)(&DAT_00018f0e + iVar14 * 6);
-      bVar3 = *(byte *)((int)&DAT_00018f0e + iVar10 + 1);
-      bVar4 = *(byte *)(&DAT_00018f10 + iVar14 * 6);
-      bVar5 = *(byte *)((int)&DAT_00018f10 + iVar10 + 1);
-      bVar6 = (&DAT_00018f12)[iVar10];
-      bVar7 = (&DAT_00018f13)[iVar10];
-      uVar11 = (uint)bVar7;
-      *pbVar13 = (&esp_zb_zcl_scenes_table)[iVar10];
-      pbVar13[1] = bVar1;
-      pbVar13[2] = bVar2;
-      pbVar13[3] = bVar3;
-      pbVar13[4] = bVar4;
-      pbVar13[5] = bVar5;
-      pbVar13[6] = bVar6;
-      pbVar13[7] = bVar7;
-      uVar12 = uVar12 + 8;
-      for (pbVar13 = (byte *)(&DAT_00018f14)[iVar14 * 3]; uVar12 = uVar12 & 0xffff,
-          pbVar13 != (byte *)0x0; pbVar13 = *(byte **)(pbVar13 + 8)) {
-        abStack_40[uVar12 + iVar8] = *pbVar13;
-        (abStack_40 + uVar12 + iVar8)[1] = pbVar13[1];
-        bVar1 = pbVar13[2];
-        abStack_40[(uVar12 + 2 & 0xffff) + iVar8] = bVar1;
-        uVar12 = uVar12 + 3 & 0xffff;
-        memcpy(abStack_40 + uVar12 + iVar8,*(void **)(pbVar13 + 4),(uint)bVar1);
-        uVar12 = pbVar13[2] + uVar12;
-        uVar11 = (uVar11 - 3 & 0xffff) - (uint)pbVar13[2] & 0xffff;
+    if (*(short *)((int)__src + 2) != -1) {
+      memcpy(abStack_50 + uVar3 + iVar2,__src,8);
+      uVar3 = uVar3 + 8;
+      uVar7 = (uint)*(byte *)((int)__src + 7);
+      for (pbVar6 = (byte *)__src[2]; uVar3 = uVar3 & 0xffff, pbVar6 != (byte *)0x0;
+          pbVar6 = *(byte **)(pbVar6 + 8)) {
+        abStack_50[uVar3 + iVar2] = *pbVar6;
+        (abStack_50 + uVar3 + iVar2)[1] = pbVar6[1];
+        bVar1 = pbVar6[2];
+        abStack_50[(uVar3 + 2 & 0xffff) + iVar2] = bVar1;
+        uVar3 = uVar3 + 3 & 0xffff;
+        memcpy(abStack_50 + uVar3 + iVar2,*(void **)(pbVar6 + 4),(uint)bVar1);
+        uVar3 = uVar3 + pbVar6[2];
+        uVar7 = uVar7 + (-3 - (uint)pbVar6[2]) & 0xffff;
       }
-      if (uVar11 != 0) {
-        uVar9 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar9,"ESP_ZIGBEE_CORE","zb_nvram_app1_write_cb",0xea
-                     );
+      if (uVar7 != 0) {
         return 0xffffffff;
       }
     }
-    iVar14 = iVar14 + 1;
+    __src = __src + 3;
+    if (__src == &zcl_cli_resp_user_cb) {
+      iVar4 = uVar3 - 2;
+      abStack_50[iVar2] = (char)iVar4;
+      abStack_50[iVar2 + 1] = (byte)((uint)iVar4 >> 8);
+      local_42 = (undefined2)iVar4;
+      uVar5 = zb_nvram_write_data(param_1,param_2,abStack_50 + iVar2,__n);
+      return uVar5;
+    }
   } while( true );
 }
 

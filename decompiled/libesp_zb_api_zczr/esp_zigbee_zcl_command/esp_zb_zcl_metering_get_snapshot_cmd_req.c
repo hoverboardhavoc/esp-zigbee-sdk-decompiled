@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_metering_get_snapshot_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,11 @@
 void esp_zb_zcl_metering_get_snapshot_cmd_req(int param_1)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  code *pcVar3;
-  undefined4 local_20;
+  int iVar1;
+  char *pcVar2;
+  undefined4 uVar3;
+  code *pcVar4;
+  undefined4 uStack_20;
   undefined4 uStack_1c;
   undefined1 uStack_18;
   undefined1 uStack_17;
@@ -24,23 +25,29 @@ void esp_zb_zcl_metering_get_snapshot_cmd_req(int param_1)
   undefined1 uStack_15;
   undefined1 uStack_14;
   
-  uVar1 = zb_buf_get_out_func();
-  local_20 = *(undefined4 *)(param_1 + 0x10);
-  uStack_1c = *(undefined4 *)(param_1 + 0x14);
-  uStack_18 = *(undefined1 *)(param_1 + 0x18);
-  uVar2 = *(undefined4 *)(param_1 + 0x1c);
-  uStack_17 = (undefined1)uVar2;
-  uStack_16 = (undefined1)((uint)uVar2 >> 8);
-  uStack_15 = (undefined1)((uint)uVar2 >> 0x10);
-  uStack_14 = (undefined1)((uint)uVar2 >> 0x18);
-  pcVar3 = zb_zcl_cmd_send_status_cb;
-  if (zb_zcl_cmd_send_status_cb != (code *)0x0) {
-    pcVar3 = zb_zcl_cmd_send_status_handler;
+  iVar1 = zb_buf_get_out_func();
+  if (iVar1 == 0) {
+    pcVar2 = (char *)zb_zcl_get_ctx();
+    *pcVar2 = *pcVar2 + '\x01';
   }
-  zb_zcl_metering_send_cmd_get_snapshot
-            (uVar1,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-             *(undefined1 *)(param_1 + 9),&local_20,pcVar3);
-  zb_zcl_frame_get_sequence_number(uVar1);
+  else {
+    uStack_20 = *(undefined4 *)(param_1 + 0x10);
+    uStack_1c = *(undefined4 *)(param_1 + 0x14);
+    uStack_18 = *(undefined1 *)(param_1 + 0x18);
+    uVar3 = *(undefined4 *)(param_1 + 0x1c);
+    uStack_17 = (undefined1)uVar3;
+    uStack_16 = (undefined1)((uint)uVar3 >> 8);
+    uStack_14 = (undefined1)((uint)uVar3 >> 0x18);
+    uStack_15 = (undefined1)((uint)uVar3 >> 0x10);
+    pcVar4 = zb_zcl_cmd_send_status_cb;
+    if (zb_zcl_cmd_send_status_cb != (code *)0x0) {
+      pcVar4 = zb_zcl_cmd_send_status_handler;
+    }
+    zb_zcl_metering_send_cmd_get_snapshot
+              (*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+               *(undefined1 *)(param_1 + 9),&uStack_20,pcVar4);
+    zb_zcl_frame_get_sequence_number(iVar1);
+  }
   return;
 }
 

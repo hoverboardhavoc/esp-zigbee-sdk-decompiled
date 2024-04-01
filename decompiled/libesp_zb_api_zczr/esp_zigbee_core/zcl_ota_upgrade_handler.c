@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit a67793c7af0a02d983345915fecc5d8fce7a0945
- * https://github.com/espressif/esp-zigbee-sdk/commit/a67793c7af0a02d983345915fecc5d8fce7a0945
- * Upstream date: 2024-02-22 20:57:09 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.1.2(af7a8c4d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,92 +10,77 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int zcl_ota_upgrade_handler(void)
+undefined4 zcl_ota_upgrade_handler(void)
 
 {
-  code *pcVar1;
-  int iVar2;
+  byte bVar1;
+  code *pcVar2;
   int iVar3;
-  undefined4 uVar4;
-  byte bVar5;
-  uint __n;
-  uint uVar6;
+  int iVar4;
   void *__src;
-  uint local_40;
-  ushort uStack_3c;
+  undefined1 uVar5;
+  uint uVar6;
+  uint uVar7;
+  uint uStack_40;
+  undefined1 auStack_3c [2];
   undefined2 uStack_3a;
   uint uStack_38;
-  undefined4 uStack_34;
+  undefined2 uStack_34;
+  undefined2 uStack_32;
   undefined4 uStack_30;
   int iStack_2c;
-  uint uStack_28;
+  ushort uStack_28;
   void *pvStack_24;
   
-  iVar2 = zb_buf_get_tail_func(0x38);
-  pcVar1 = zb_core_action_cb;
-  uStack_34 = 0;
-  uStack_30 = 0;
-  iStack_2c = 0;
-  uStack_28 = 0;
-  pvStack_24 = (void *)0x0;
-  local_40 = (uint)(iVar2 == 0);
-  if (iVar2 == 0) {
-    bVar5 = 0xff;
+  iVar3 = zb_buf_get_tail_func(0x38);
+  memset(auStack_3c,0,0x1c);
+  pcVar2 = zb_core_action_cb;
+  uStack_40 = (uint)(iVar3 == 0);
+  auStack_3c[0] = 0xff;
+  if (iVar3 != 0) {
+    auStack_3c[0] = *(undefined1 *)(iVar3 + 4);
   }
-  else {
-    bVar5 = *(byte *)(iVar2 + 4);
-  }
-  _uStack_3c = CONCAT22(0x19,(ushort)bVar5);
-  uStack_38 = (uint)*(byte *)(iVar2 + 0xc);
-  if (zb_core_action_cb == (code *)0x0) {
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE","zcl_ota_upgrade_handler",0x42e);
-    return -1;
-  }
-  if (uStack_38 == 2) {
-    __n = (uint)*(byte *)(iVar2 + 0x14);
-    uVar6 = *(uint *)(iVar2 + 0x10);
-    __src = *(void **)(iVar2 + 0x18);
-    if (__n + uVar6 < 0x39) {
-      memcpy(ota_header_12,__src,__n);
+  uStack_3a = 0x19;
+  uStack_38 = (uint)*(byte *)(iVar3 + 0xc);
+  if (zb_core_action_cb != (code *)0x0) {
+    if (uStack_38 == 2) {
+      bVar1 = *(byte *)(iVar3 + 0x14);
+      uVar6 = *(uint *)(iVar3 + 0x10);
+      __src = *(void **)(iVar3 + 0x18);
+      uVar7 = bVar1 + uVar6;
+      if (uVar7 < 0x39) {
+        memcpy(ota_header_0,__src,(uint)bVar1);
+      }
+      else if (uVar6 < 0x38) {
+        memcpy(ota_header_0 + uVar6,__src,0x38 - uVar6);
+        uStack_28 = (short)uVar7 - 0x38;
+        pvStack_24 = (void *)((int)__src + (0x38 - uVar6));
+      }
+      else {
+        uStack_28 = (ushort)bVar1;
+        pvStack_24 = __src;
+      }
     }
-    else if (uVar6 < 0x38) {
-      memcpy(ota_header_12 + uVar6,__src,0x38 - uVar6);
-      uStack_28 = CONCAT22(uStack_28._2_2_,(short)((__n + uVar6) * 0x10000 >> 0x10) + -0x38);
-      pvStack_24 = (void *)((0x38 - uVar6) + (int)__src);
-    }
-    else {
-      uStack_28 = (uint)*(byte *)(iVar2 + 0x14);
-      pvStack_24 = __src;
-    }
-  }
-  uStack_34 = CONCAT22(ota_header_12._12_2_,ota_header_12._10_2_);
-  uStack_30 = ota_header_12._14_4_;
-  iStack_2c = ota_header_12._52_4_ + -0x38;
-  if (((*(char *)(iVar2 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) &&
-     ((uStack_28 & 0xffff) == 0)) {
-    *(undefined1 *)(iVar2 + 0xc) = 6;
-    iVar3 = 0;
-  }
-  else {
-    iVar3 = (*pcVar1)(4,&local_40);
-    if (iVar3 == 0) {
-      *(undefined1 *)(iVar2 + 0xc) = 6;
+    uStack_34 = ota_header_0._10_2_;
+    uStack_32 = ota_header_0._12_2_;
+    uStack_30 = ota_header_0._14_4_;
+    iStack_2c = ota_header_0._52_4_ + -0x38;
+    if ((((*(char *)(iVar3 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) && (uStack_28 == 0)) ||
+       (iVar4 = (*pcVar2)(4,&uStack_40), iVar4 == 0)) {
+      *(undefined1 *)(iVar3 + 0xc) = 6;
       return 0;
     }
-    if (iVar3 == 0x105) {
-      *(undefined1 *)(iVar2 + 0xc) = 10;
-      return -1;
+    if (iVar4 == 0x105) {
+      uVar5 = 10;
     }
-    if (iVar3 == 0x10c) {
-      *(undefined1 *)(iVar2 + 0xc) = 9;
-      return -1;
+    else if (iVar4 == 0x10c) {
+      uVar5 = 9;
     }
-    *(undefined1 *)(iVar2 + 0xc) = 7;
+    else {
+      uVar5 = 7;
+    }
+    *(undefined1 *)(iVar3 + 0xc) = uVar5;
   }
-  if (iVar3 != 0) {
-    iVar3 = -1;
-  }
-  return iVar3;
+  return 0xffffffff;
 }
 

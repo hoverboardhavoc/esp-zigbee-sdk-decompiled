@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * Upstream date: 2024-03-15 18:43:30 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,42 +13,30 @@
 void zb_zcl_device_callback(undefined4 param_1)
 
 {
-  uint uVar1;
+  int iVar1;
   int *piVar2;
-  int iVar3;
-  undefined4 uVar4;
-  undefined4 *puVar5;
-  code *pcVar6;
+  undefined4 uVar3;
+  code *pcVar4;
+  int *piVar5;
   
-  uVar1 = 0;
+  piVar5 = &s_device_cb_table;
+  iVar1 = 0;
   do {
-    if (0x1d < uVar1) {
-      if (zcl_device_id_cb == (code *)0x0) {
-        iVar3 = 0;
-      }
-      else {
-        iVar3 = (*zcl_device_id_cb)(param_1);
-      }
-_L0:
-      if (iVar3 == 0) {
-        iVar3 = zb_buf_get_tail_func(param_1,0x38);
-        *(undefined4 *)(iVar3 + 8) = 0xffffffff;
-        uVar4 = esp_log_timestamp();
-        puVar5 = (undefined4 *)zb_buf_get_tail_func(param_1,0x38);
-        esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC2,uVar4,"ESP_ZIGBEE_CORE",*puVar5);
-      }
+    piVar2 = (int *)zb_buf_get_tail_func(param_1,0x38);
+    if (*piVar2 == *piVar5) {
+      pcVar4 = (code *)(&PTR_zcl_basic_reset_factory_reset_cb_handler_00015920)[iVar1 * 2];
+      iVar1 = zb_buf_get_tail_func(param_1,0x38);
+      uVar3 = (*pcVar4)(param_1);
+      *(undefined4 *)(iVar1 + 8) = uVar3;
       return;
     }
-    piVar2 = (int *)zb_buf_get_tail_func(param_1,0x38);
-    if (*piVar2 == (&s_device_cb_table)[uVar1 * 2]) {
-      pcVar6 = (code *)(&PTR_zcl_basic_reset_factory_reset_cb_handler_00018cbc)[uVar1 * 2];
-      iVar3 = zb_buf_get_tail_func(param_1,0x38);
-      uVar4 = (*pcVar6)(param_1);
-      *(undefined4 *)(iVar3 + 8) = uVar4;
-      iVar3 = 1;
-      goto _L0;
-    }
-    uVar1 = uVar1 + 1;
-  } while( true );
+    iVar1 = iVar1 + 1;
+    piVar5 = piVar5 + 2;
+  } while (iVar1 != 0x24);
+  if ((zcl_device_id_cb == (code *)0x0) || (iVar1 = (*zcl_device_id_cb)(param_1), iVar1 == 0)) {
+    iVar1 = zb_buf_get_tail_func(param_1,0x38);
+    *(undefined4 *)(iVar1 + 8) = 0xffffffff;
+  }
+  return;
 }
 

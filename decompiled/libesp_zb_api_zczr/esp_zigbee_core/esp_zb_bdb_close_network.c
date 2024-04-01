@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * https://github.com/espressif/esp-zigbee-sdk/commit/9c5b13dc736bb98a07bff27683b0a2fc347e4448
- * Upstream date: 2023-11-10 18:10:39 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.3(ba5a889a)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> esp_zb_bdb_close_network
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,9 +16,6 @@ int esp_zb_bdb_close_network(void)
   int iVar1;
   
   iVar1 = zb_bdb_close_network(0);
-  if (iVar1 != 0) {
-    iVar1 = -1;
-  }
-  return iVar1;
+  return -(uint)(iVar1 != 0);
 }
 

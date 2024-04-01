@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * https://github.com/espressif/esp-zigbee-sdk/commit/ba8582df6bc62b9e5e69a4c6f3ae02f0e1da194a
- * Upstream date: 2024-03-15 18:43:30 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.1(aaf0078d)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_read_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,51 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zcl_read_attr_cmd_req(int param_1)
+byte esp_zb_zcl_read_attr_cmd_req(int param_1)
 
 {
-  char cVar1;
-  int iVar2;
+  byte bVar1;
+  char cVar2;
   int iVar3;
-  undefined1 *puVar4;
-  char *pcVar5;
-  undefined4 uVar6;
+  int iVar4;
+  byte *pbVar5;
+  int iVar6;
+  undefined1 *puVar7;
+  char *pcVar8;
+  int iVar9;
   
-  iVar3 = zb_buf_get_out_func();
-  if (iVar3 == 0) {
-    uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar6,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_read_attr_cmd_req",0xbe);
-    pcVar5 = (char *)zb_zcl_get_ctx();
-    *pcVar5 = *pcVar5 + '\x01';
-  }
-  else {
-    puVar4 = (undefined1 *)zb_buf_reuse_func();
-    *puVar4 = 0;
-    pcVar5 = (char *)zb_zcl_get_ctx();
-    cVar1 = *pcVar5;
-    *pcVar5 = cVar1 + '\x01';
-    puVar4[1] = cVar1;
-    puVar4[2] = 0;
-    puVar4 = puVar4 + 3;
-    iVar2 = 0;
-    while ((iVar2 < (int)(uint)*(byte *)(param_1 + 0x12) && (*(int *)(param_1 + 0x14) != 0))) {
-      puVar4 = (undefined1 *)
-               zb_put_next_htole16(*(undefined2 *)(*(int *)(param_1 + 0x14) + iVar2 * 2));
-      iVar2 = iVar2 + 1;
+  iVar4 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
+  if ((iVar4 != 0) && (iVar6 = zb_buf_get_out_func(), iVar6 != 0)) {
+    puVar7 = (undefined1 *)zb_buf_reuse_func();
+    *puVar7 = 0;
+    pcVar8 = (char *)zb_zcl_get_ctx();
+    cVar2 = *pcVar8;
+    *pcVar8 = cVar2 + '\x01';
+    puVar7[1] = cVar2;
+    puVar7[2] = 0;
+    puVar7 = puVar7 + 3;
+    iVar3 = 0;
+    while ((iVar3 < (int)(uint)*(byte *)(param_1 + 0x12) && (*(int *)(param_1 + 0x14) != 0))) {
+      iVar9 = iVar3 * 2;
+      iVar3 = iVar3 + 1;
+      puVar7 = (undefined1 *)zb_put_next_htole16(*(undefined2 *)(*(int *)(param_1 + 0x14) + iVar9));
     }
     zb_zcl_finish_and_send_packet
-              (iVar3,puVar4,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-               *(undefined1 *)(param_1 + 9),0x104,*(undefined2 *)(param_1 + 0x10));
-    zb_zcl_frame_get_sequence_number(iVar3);
+              (iVar6,puVar7,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+               *(undefined1 *)(param_1 + 9),*(undefined2 *)(iVar4 + 1),
+               *(undefined2 *)(param_1 + 0x10));
+    pbVar5 = (byte *)zb_buf_begin_func(iVar6);
+    if ((*pbVar5 >> 2 & 1) == 0) {
+      iVar4 = 1;
+    }
+    else {
+      iVar4 = 3;
+    }
+    return pbVar5[iVar4];
   }
-  return;
+  pbVar5 = (byte *)zb_zcl_get_ctx();
+  bVar1 = *pbVar5;
+  *pbVar5 = bVar1 + 1;
+  return bVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * https://github.com/espressif/esp-zigbee-sdk/commit/9e7fde9a71fb6810604eb3f5a1a644975d98cdc9
- * Upstream date: 2024-01-12 14:14:49 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.8(0e41638c)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> find_device_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,8 +27,8 @@ void find_device_cb(int param_1)
   puVar4 = (undefined1 *)zb_buf_begin_func(param_1);
   uVar1 = *puVar4;
   if ((*(char *)(iVar2 + 1) == '\0') && (*(char *)(iVar2 + 4) != '\0')) {
-    uVar6 = *(undefined1 *)(iVar2 + 5);
     uVar5 = *(undefined2 *)(iVar3 + 1);
+    uVar6 = *(undefined1 *)(iVar2 + 5);
     zb_schedule_alarm_cancel(match_desc_req_device_timeout,0xff,0);
   }
   iVar3 = esp_zb_zdo_callback_find(uVar1);
@@ -39,6 +39,7 @@ void find_device_cb(int param_1)
   esp_zb_zdo_callback_remove(uVar1);
   if (param_1 != 0) {
     zb_buf_free_func(param_1);
+    return;
   }
   return;
 }

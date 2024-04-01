@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * https://github.com/espressif/esp-zigbee-sdk/commit/3a2e620f73272cd71b1255d9566d72d6c662dd1c
- * Upstream date: 2023-11-24 19:53:05 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.5(909d273b)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,108 +13,58 @@
 void zdo_binding_table_resp(int param_1)
 
 {
-  char cVar1;
-  char cVar2;
-  char cVar3;
-  char cVar4;
-  char cVar5;
-  char cVar6;
-  char cVar7;
-  char *pcVar8;
-  int iVar9;
-  char *pcVar10;
-  char *pcVar11;
-  char *pcVar12;
-  uint uVar13;
-  code *pcVar14;
+  void *pvVar1;
+  char *pcVar2;
+  char *pcVar3;
+  void *pvVar4;
+  void *__dest;
+  int iVar5;
+  code *pcVar6;
+  uint uVar7;
   undefined1 uStack_28;
   char cStack_27;
   char cStack_26;
   byte bStack_25;
-  char *pcStack_24;
+  void *pvStack_24;
   
-  pcVar10 = (char *)zb_buf_begin_func();
-  pcVar11 = (char *)esp_zb_zdo_callback_find(*pcVar10);
-  if (pcVar10[1] == '\0') {
+  pcVar2 = (char *)zb_buf_begin_func();
+  pcVar3 = (char *)esp_zb_zdo_callback_find(*pcVar2);
+  if (pcVar2[1] == '\0') {
     zb_schedule_alarm_cancel(device_binding_table_req_timeout,0xff,0);
   }
-  if (pcVar11 == (char *)0x0) {
-    pcVar14 = (code *)0x0;
-  }
-  else if (*pcVar11 == *pcVar10) {
-    if (pcVar11[1] == '3') {
-      pcVar14 = *(code **)(pcVar11 + 4);
-    }
-    else {
-      pcVar14 = (code *)0x0;
-    }
-  }
-  else {
-    pcVar14 = (code *)0x0;
-  }
-  if ((pcVar10[1] == '\0') && (pcVar14 != (code *)0x0)) {
-    bStack_25 = pcVar10[4];
-    uVar13 = (uint)bStack_25;
-    pcVar11 = pcVar10 + 5;
-    cStack_26 = pcVar10[2];
-    cStack_27 = pcVar10[3];
+  if ((((pcVar3 != (char *)0x0) && (*pcVar3 == *pcVar2)) && (pcVar3[1] == '3')) &&
+     ((pcVar2[1] == '\0' && (pcVar6 = *(code **)(pcVar3 + 4), pcVar6 != (code *)0x0)))) {
+    cStack_26 = pcVar2[2];
+    bStack_25 = pcVar2[4];
+    uVar7 = (uint)bStack_25;
+    pcVar3 = pcVar2 + 5;
+    cStack_27 = pcVar2[3];
     uStack_28 = 0;
-    pcVar10 = (char *)0x0;
-    for (iVar9 = 0; iVar9 < (int)uVar13; iVar9 = iVar9 + 1) {
-      pcVar12 = (char *)malloc(0x1c);
-      *(undefined2 *)(pcVar12 + 10) = *(undefined2 *)(pcVar11 + 9);
-      pcVar12[0xc] = pcVar11[0xb];
-      pcVar12[8] = pcVar11[8];
-      pcVar12[0x16] = pcVar11[0x14];
-      cVar1 = pcVar11[1];
-      cVar2 = pcVar11[2];
-      cVar3 = pcVar11[3];
-      cVar4 = pcVar11[4];
-      cVar5 = pcVar11[5];
-      cVar6 = pcVar11[6];
-      cVar7 = pcVar11[7];
-      *pcVar12 = *pcVar11;
-      pcVar12[1] = cVar1;
-      pcVar12[2] = cVar2;
-      pcVar12[3] = cVar3;
-      pcVar12[4] = cVar4;
-      pcVar12[5] = cVar5;
-      pcVar12[6] = cVar6;
-      pcVar12[7] = cVar7;
-      cVar1 = pcVar11[0xd];
-      cVar2 = pcVar11[0xe];
-      cVar3 = pcVar11[0xf];
-      cVar4 = pcVar11[0x10];
-      cVar5 = pcVar11[0x11];
-      cVar6 = pcVar11[0x12];
-      cVar7 = pcVar11[0x13];
-      pcVar12[0xe] = pcVar11[0xc];
-      pcVar12[0xf] = cVar1;
-      pcVar12[0x10] = cVar2;
-      pcVar12[0x11] = cVar3;
-      pcVar12[0x12] = cVar4;
-      pcVar12[0x13] = cVar5;
-      pcVar12[0x14] = cVar6;
-      pcVar12[0x15] = cVar7;
-      pcVar12[0x18] = '\0';
-      pcVar12[0x19] = '\0';
-      pcVar12[0x1a] = '\0';
-      pcVar12[0x1b] = '\0';
-      pcVar8 = pcVar12;
-      if (pcVar10 != (char *)0x0) {
-        *(char **)(pcVar10 + 0x18) = pcVar12;
-        pcVar8 = pcStack_24;
+    pvVar4 = (void *)0x0;
+    for (iVar5 = 0; iVar5 < (int)uVar7; iVar5 = iVar5 + 1) {
+      __dest = malloc(0x1c);
+      *(undefined2 *)((int)__dest + 10) = *(undefined2 *)(pcVar3 + 9);
+      *(char *)((int)__dest + 0xc) = pcVar3[0xb];
+      *(char *)((int)__dest + 8) = pcVar3[8];
+      *(char *)((int)__dest + 0x16) = pcVar3[0x14];
+      memcpy(__dest,pcVar3,8);
+      memcpy((void *)((int)__dest + 0xe),pcVar3 + 0xc,8);
+      *(undefined4 *)((int)__dest + 0x18) = 0;
+      pvVar1 = __dest;
+      if (pvVar4 != (void *)0x0) {
+        *(void **)((int)pvVar4 + 0x18) = __dest;
+        pvVar1 = pvStack_24;
       }
-      pcStack_24 = pcVar8;
-      pcVar11 = pcVar11 + 0x15;
-      pcVar10 = pcVar12;
+      pvStack_24 = pvVar1;
+      pcVar3 = pcVar3 + 0x15;
+      pvVar4 = __dest;
     }
-    (*pcVar14)(&uStack_28,0);
-    pcVar10 = pcStack_24;
-    while (pcVar10 != (char *)0x0) {
-      pcVar11 = *(char **)(pcVar10 + 0x18);
-      free(pcVar10);
-      pcVar10 = pcVar11;
+    (*pcVar6)(&uStack_28,0);
+    pvVar4 = pvStack_24;
+    while (pvVar4 != (void *)0x0) {
+      pvVar1 = *(void **)((int)pvVar4 + 0x18);
+      free(pvVar4);
+      pvVar4 = pvVar1;
     }
   }
   if (param_1 != 0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 790bc8d6ece1bf5f739debaa4aa4af508982070a
- * https://github.com/espressif/esp-zigbee-sdk/commit/790bc8d6ece1bf5f739debaa4aa4af508982070a
- * Upstream date: 2023-12-21 19:52:25 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.7(bdde218a)
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_thermostat_set_weekly_schedule_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,53 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zcl_thermostat_set_weekly_schedule_cmd_req(int param_1)
+byte esp_zb_zcl_thermostat_set_weekly_schedule_cmd_req(int param_1)
 
 {
-  char cVar1;
-  undefined4 uVar2;
-  undefined1 *puVar3;
-  undefined4 uVar4;
+  byte bVar1;
+  char cVar2;
+  undefined2 uVar3;
+  int iVar4;
+  byte *pbVar5;
+  int iVar6;
+  undefined1 *puVar7;
+  undefined4 uVar8;
   
-  uVar2 = zb_buf_get_out_func();
-  puVar3 = (undefined1 *)zb_zcl_start_command_header(1,0,1,0);
-  *puVar3 = *(undefined1 *)(param_1 + 0x10);
-  puVar3[1] = *(undefined1 *)(param_1 + 0x11);
-  puVar3[2] = *(undefined1 *)(param_1 + 0x12);
-  uVar4 = zb_put_next_htole16(puVar3 + 3,*(undefined2 *)(param_1 + 0x14));
-  cVar1 = *(char *)(param_1 + 0x12);
-  if (cVar1 == '\x01') {
-    uVar4 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x16));
+  iVar4 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
+  if ((iVar4 == 0) || (iVar6 = zb_buf_get_out_func(), iVar6 == 0)) {
+    pbVar5 = (byte *)zb_zcl_get_ctx();
+    bVar1 = *pbVar5;
+    *pbVar5 = bVar1 + 1;
+    return bVar1;
   }
-  else if (cVar1 == '\x02') {
-    uVar4 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x18));
+  puVar7 = (undefined1 *)zb_zcl_start_command_header(1,0,1,0);
+  *puVar7 = *(undefined1 *)(param_1 + 0x10);
+  puVar7[1] = *(undefined1 *)(param_1 + 0x11);
+  puVar7[2] = *(undefined1 *)(param_1 + 0x12);
+  uVar8 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x14));
+  cVar2 = *(char *)(param_1 + 0x12);
+  if (cVar2 == '\x01') {
+    uVar3 = *(undefined2 *)(param_1 + 0x16);
   }
-  else if (cVar1 == '\x03') {
-    zb_put_next_htole16(*(undefined2 *)(param_1 + 0x16));
-    uVar4 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x18));
+  else {
+    if (cVar2 != '\x02') {
+      if (cVar2 != '\x03') goto _L0;
+      zb_put_next_htole16(*(undefined2 *)(param_1 + 0x16));
+    }
+    uVar3 = *(undefined2 *)(param_1 + 0x18);
   }
+  uVar8 = zb_put_next_htole16(uVar3);
+_L0:
   zb_zcl_finish_and_send_packet
-            (uVar2,uVar4,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-             *(undefined1 *)(param_1 + 9),0x104,0x201);
-  zb_zcl_frame_get_sequence_number(uVar2);
-  return;
+            (iVar6,uVar8,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+             *(undefined1 *)(param_1 + 9),*(undefined2 *)(iVar4 + 1),0x201);
+  pbVar5 = (byte *)zb_buf_begin_func(iVar6);
+  if ((*pbVar5 >> 2 & 1) == 0) {
+    iVar4 = 1;
+  }
+  else {
+    iVar4 = 3;
+  }
+  return pbVar5[iVar4];
 }
 

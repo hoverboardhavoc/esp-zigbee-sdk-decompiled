@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit edae603135f5169e47a3eae722f314ece18018a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/edae603135f5169e47a3eae722f314ece18018a0
- * Upstream date: 2022-09-28 15:45:52 +0800
- * Upstream subject: Components: Update sdk_lib for support more devices/cluster
+ * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
+ * Upstream date: 2024-04-01 17:59:07 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
  * Source: libesp_zb_api_zczr -> esp_zigbee_secur.o -> esp_zb_secur_ic_str_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,9 +16,6 @@ int esp_zb_secur_ic_str_set(void)
   int iVar1;
   
   iVar1 = zb_secur_ic_str_set();
-  if (iVar1 != 0) {
-    iVar1 = -1;
-  }
-  return iVar1;
+  return -(uint)(iVar1 != 0);
 }
 
