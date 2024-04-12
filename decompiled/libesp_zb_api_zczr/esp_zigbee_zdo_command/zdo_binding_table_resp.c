@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,6 +40,7 @@ void zdo_binding_table_resp(int param_1)
     pcVar3 = pcVar2 + 5;
     cStack_27 = pcVar2[3];
     uStack_28 = 0;
+    pvStack_24 = (void *)0x0;
     pvVar4 = (void *)0x0;
     for (iVar5 = 0; iVar5 < (int)uVar7; iVar5 = iVar5 + 1) {
       __dest = malloc(0x1c);

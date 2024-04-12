@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_electrical_meas_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -178,7 +178,7 @@ _L0:
           if (param_2 == 0x90e) goto _L0;
           if (param_2 < 0x90f) {
             param_2 = param_2 - 0x90c;
-            goto joined_r0x00014c1a;
+            goto joined_r0x00014d76;
           }
           if (param_2 != 0x90f) goto _L0;
         }
@@ -224,14 +224,14 @@ _L0:
         if (param_2 != 0xa08) {
           if (param_2 < 0xa08) goto _L0;
           param_2 = param_2 - 0xa09;
-          goto joined_r0x00014aba;
+          goto joined_r0x00014c16;
         }
       }
       else {
         if (param_2 == 0xa0e) goto _L0;
         if (param_2 < 0xa0f) {
           param_2 = param_2 - 0xa0c;
-          goto joined_r0x00014c1a;
+          goto joined_r0x00014d76;
         }
         if (param_2 != 0xa0f) goto _L0;
       }
@@ -270,7 +270,7 @@ _L0:
       goto _L0;
     }
     param_2 = param_2 - 0x701;
-joined_r0x00014c1a:
+joined_r0x00014d76:
     if (1 < (param_2 & 0xffff)) {
 _L0:
       uVar7 = esp_log_timestamp();
@@ -301,7 +301,7 @@ _L0:
   else if (param_2 != 0x908) {
     if (param_2 < 0x908) goto _L0;
     param_2 = param_2 - 0x909;
-joined_r0x00014aba:
+joined_r0x00014c16:
     if (1 < (param_2 & 0xffff)) goto _L0;
     goto _L0;
   }

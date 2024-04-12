@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d04ab25a7353bae74042267d24c5fef5f02d0726
- * https://github.com/espressif/esp-zigbee-sdk/commit/d04ab25a7353bae74042267d24c5fef5f02d0726
- * Upstream date: 2023-08-08 16:02:31 +0800
- * Upstream subject: esp-zigbee-sdk: add touchlink example
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_general_cmd.o -> esp_zb_cli_agent_ep_handler_general_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -60,7 +60,7 @@ int esp_zb_cli_agent_ep_handler_general_cmd(undefined4 param_1)
         uVar6 = esp_log_timestamp();
         esp_log_write(1,&_L0,&_LC22,uVar6,&_L0);
       }
-      if (((&DAT_00010da4)[uVar4 * 0x2e] == '\0') &&
+      if (((&DAT_00010da8)[uVar4 * 0x2e] == '\0') &&
          (iVar3 = zb_schedule_alarm_cancel(invalidate_row_cb,uVar4 & 0xff,0), iVar3 != 0)) {
         uVar6 = esp_log_timestamp();
         esp_log_write(1,&_L0,&_LC23,uVar6,&_L0,iVar3);

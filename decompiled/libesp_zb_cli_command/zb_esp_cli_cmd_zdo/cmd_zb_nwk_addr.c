@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> cmd_zb_nwk_addr
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ void cmd_zb_nwk_addr(int param_1,undefined4 *param_2)
           iVar5 = zb_zdo_nwk_addr_req(iVar2,cmd_zb_nwk_addr_cb);
           *(char *)(iVar4 + 4) = (char)iVar5;
           if (iVar5 != 0xff) {
-            iVar2 = zb_schedule_app_alarm(cmd_zb_nwk_addr_timeout,0x14a,0);
+            iVar2 = zb_schedule_app_alarm(cmd_zb_nwk_addr_timeout,5000000,0);
             if (iVar2 == 0) {
               return;
             }

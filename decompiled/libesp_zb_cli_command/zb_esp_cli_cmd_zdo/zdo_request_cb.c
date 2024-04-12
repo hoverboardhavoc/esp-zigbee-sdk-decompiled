@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zdo.o -> zdo_request_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ void zdo_request_cb(undefined4 param_1)
     if ((code *)*puVar3 == (code *)0x0) goto _L0;
     iVar4 = (*(code *)*puVar3)(puVar3,param_1);
     if (iVar4 != 0) goto _L0;
-    iVar6 = zb_schedule_app_alarm(ctx_timeout_cb,*(undefined1 *)(puVar3 + 1),0x14a,0);
+    iVar6 = zb_schedule_app_alarm(ctx_timeout_cb,*(undefined1 *)(puVar3 + 1),5000000,0);
     if (iVar6 != 0) {
       uVar5 = esp_log_timestamp();
       esp_log_write(1,&_LC3,&_LC60,uVar5,&_LC3);
@@ -42,8 +42,8 @@ void zdo_request_cb(undefined4 param_1)
     }
   }
   else {
-    zb_assert("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",0x5ec
-             );
+    zb_assert("/builds/thread_zigbee/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zdo.c",
+              0x5ec);
 _L0:
     iVar4 = 1;
 _L0:

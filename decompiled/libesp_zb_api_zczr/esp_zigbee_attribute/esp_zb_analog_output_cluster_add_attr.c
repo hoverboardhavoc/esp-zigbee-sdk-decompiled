@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_analog_output_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -68,7 +68,7 @@ _L0:
         if (param_2 < 0x1c) goto _L0;
         param_2 = param_2 & 0xfffffffb;
         uVar8 = 0x41;
-_L763:
+_L778:
         if (param_2 != uVar8) {
 _L0:
           uVar4 = esp_log_timestamp();
@@ -99,7 +99,7 @@ _L0:
           if (0x6f < param_2) goto _L0;
           param_2 = param_2 & 0xfffffffd;
           uVar8 = 0x68;
-          goto _L763;
+          goto _L778;
         }
         uVar7 = 0x518;
         goto _L0;

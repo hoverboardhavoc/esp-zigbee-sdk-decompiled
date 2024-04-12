@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl.o -> zb_cli_register_zcl_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,8 +38,8 @@ void zb_cli_register_zcl_cmd(void)
     return;
   }
   _esp_error_check_failed
-            ("/home/xieqinan/ESP/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",0x66,
-             "zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
+            ("/builds/thread_zigbee/esp-zboss/components/zboss_cli_command/zb_esp_cli_cmd_zcl.c",
+             0x66,"zb_cli_register_zcl_cmd","esp_console_cmd_register(&zcl_cmd)");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_ota.o -> esp_zb_ota_upgrade_server_notify_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -76,8 +76,8 @@ undefined4 esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
         s_ota_next_data_cb = *(undefined4 *)(param_1 + 0x14);
         iVar2 = zb_buf_get_out_func();
         if (iVar2 == 0) {
-          __assert_func("//home/xieqinan/ESP/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c",
-                        0x83,"esp_zb_ota_upgrade_server_notify_req","bufid");
+          __assert_func("//builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c"
+                        ,0x83,"esp_zb_ota_upgrade_server_notify_req","bufid");
         }
         else {
           puVar4 = (undefined1 *)zb_buf_get_tail_func(0x10);

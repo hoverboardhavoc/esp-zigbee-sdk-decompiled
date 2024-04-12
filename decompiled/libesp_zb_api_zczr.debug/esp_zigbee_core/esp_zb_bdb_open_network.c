@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> esp_zb_bdb_open_network
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,15 +20,15 @@ undefined4 esp_zb_bdb_open_network(undefined1 param_1)
   iVar1 = zb_zdo_joined();
   if (iVar1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC99,uVar3,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC27,uVar3,"ESP_ZIGBEE_CORE");
     uVar3 = 0xffffffff;
   }
   else {
     iVar1 = zb_buf_get_out_func();
     if (iVar1 == 0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC98,uVar3,"ESP_ZIGBEE_CORE","esp_zb_bdb_open_network",
-                    0xdea);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC26,uVar3,"ESP_ZIGBEE_CORE","esp_zb_bdb_open_network",
+                    0x51c);
       uVar3 = 0x101;
     }
     else {

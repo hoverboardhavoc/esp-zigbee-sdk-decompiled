@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_custom_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,undefined1 param_3)
+int esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,int param_3)
 
 {
   short sVar1;
@@ -19,7 +19,7 @@ int esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,undefined1
   int iVar3;
   short *psVar4;
   undefined4 uVar5;
-  undefined4 uVar6;
+  undefined *puVar6;
   
   sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 10);
   iVar3 = esp_zb_cluster_list_check(0x8000);
@@ -37,18 +37,27 @@ int esp_zb_cluster_list_update_custom_cluster(int param_1,int param_2,undefined1
     }
     else {
       uVar5 = zcl_convert_attr_list_to_array(param_2);
-      *(undefined1 *)(psVar4 + 4) = param_3;
-      uVar6 = *(undefined4 *)(psVar2 + 8);
+      if (param_3 == 1) {
+        puVar6 = &esp_zb_zcl_custom_cluster_init_server;
+      }
+      else if (param_3 == 2) {
+        puVar6 = &esp_zb_zcl_custom_cluster_init_client;
+      }
+      else {
+        puVar6 = (undefined *)0x0;
+      }
+      *(undefined4 *)(psVar4 + 2) = uVar5;
+      *(char *)(psVar4 + 4) = (char)param_3;
+      *(char *)((int)psVar4 + 0xb) = (char)puVar6;
+      *(char *)(psVar4 + 6) = (char)((uint)puVar6 >> 8);
+      *(undefined1 *)(psVar4 + 7) = 0;
+      uVar5 = *(undefined4 *)(psVar2 + 8);
       psVar4[1] = extraout_a0;
       *psVar4 = sVar1;
-      *(undefined4 *)(psVar4 + 2) = uVar5;
       *(undefined1 *)((int)psVar4 + 9) = 0;
       *(undefined1 *)(psVar4 + 5) = 0;
-      *(undefined1 *)((int)psVar4 + 0xb) = 0;
-      *(undefined1 *)(psVar4 + 6) = 0;
-      *(undefined1 *)((int)psVar4 + 0xd) = 0;
-      *(undefined1 *)(psVar4 + 7) = 0;
-      *(undefined4 *)(psVar4 + 8) = uVar6;
+      *(char *)((int)psVar4 + 0xd) = (char)((uint)puVar6 >> 0x10);
+      *(undefined4 *)(psVar4 + 8) = uVar5;
       *(short **)(param_1 + 0x10) = psVar4;
       zb_cluster_node_free(psVar2);
     }

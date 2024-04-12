@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_find_on_off_light
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ void esp_zb_zdo_find_on_off_light(undefined2 *param_1,undefined4 param_2,undefin
   puVar3[8] = 6;
   puVar3[9] = 0;
   uVar2 = zb_zdo_match_desc_req(uVar2,find_device_cb);
-  zb_schedule_app_alarm(match_desc_req_device_timeout,uVar2,0x14a,0);
+  zb_schedule_app_alarm(match_desc_req_device_timeout,uVar2,5000000,0);
   esp_zb_zdo_callback_register(uVar2,6,param_2,param_3);
   return;
 }

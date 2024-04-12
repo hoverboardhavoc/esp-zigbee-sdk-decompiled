@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_binary_input_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ undefined4 esp_zb_cluster_list_add_binary_input_cluster(int param_1,int param_2,
   puVar4 = (undefined2 *)malloc(0x14);
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    puVar6 = &_LC6;
+    puVar6 = &_LC7;
   }
   else {
     if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 0xf) {
@@ -71,7 +71,7 @@ undefined4 esp_zb_cluster_list_add_binary_input_cluster(int param_1,int param_2,
       return 0x102;
     }
     uVar5 = esp_log_timestamp();
-    puVar6 = &_LC14;
+    puVar6 = &_LC15;
   }
   esp_log_write(1,"ESP_ZIGBEE_CLUSTER",puVar6,uVar5,"ESP_ZIGBEE_CLUSTER");
   return 0x102;

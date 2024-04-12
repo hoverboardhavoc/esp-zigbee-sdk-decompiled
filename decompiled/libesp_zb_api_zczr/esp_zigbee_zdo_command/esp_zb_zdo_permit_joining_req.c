@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_permit_joining_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ void esp_zb_zdo_permit_joining_req(undefined2 *param_1,undefined4 param_2,undefi
   puVar4[2] = *(undefined1 *)(param_1 + 1);
   puVar4[3] = *(undefined1 *)((int)param_1 + 3);
   uVar5 = zb_zdo_mgmt_permit_joining_req(uVar3,permit_joining_cb);
-  zb_schedule_app_alarm(permit_join_req_timeout,uVar5,0x14a,0);
+  zb_schedule_app_alarm(permit_join_req_timeout,uVar5,5000000,0);
   pbVar1 = zdo_resp_cb_list_head;
   __ptr = (byte *)malloc(0x10);
   if (__ptr != (byte *)0x0) {

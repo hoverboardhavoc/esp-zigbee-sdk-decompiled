@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_occupancy_sensing_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,7 +57,7 @@ _L0:
         if (param_2 == 0x31) goto _L0;
         uVar7 = 0x32;
       }
-_L662:
+_L677:
       if (param_2 != uVar7) {
 _L0:
         uVar4 = esp_log_timestamp();
@@ -66,7 +66,7 @@ _L0:
         return 0x102;
       }
       uVar6 = 800;
-_L657:
+_L672:
       __ptr[1] = uVar6;
       puVar5 = (undefined1 *)malloc(1);
       __ptr[4] = (short)((uint)puVar5 >> 0x10);
@@ -87,11 +87,11 @@ _L657:
         uVar6 = 0x518;
         if (param_2 != 0) goto _L0;
       }
-      goto _L657;
+      goto _L672;
     }
     if (param_2 != 0x11) {
       uVar7 = 0x12;
-      goto _L662;
+      goto _L677;
     }
     uVar6 = 0x329;
   }

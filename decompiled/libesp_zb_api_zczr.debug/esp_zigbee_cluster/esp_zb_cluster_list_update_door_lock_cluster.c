@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_door_lock_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,10 +36,10 @@ int esp_zb_cluster_list_update_door_lock_cluster(int param_1,int param_2,int par
           uVar5 = zcl_convert_attr_list_to_array(param_2);
           uStack_38 = CONCAT22(extraout_a0,0x101);
           if (param_3 == 1) {
-            puVar6 = &zb_zcl_door_lock_init_server;
+            puVar6 = &esp_zb_zcl_door_lock_init_server;
           }
           else if (param_3 == 2) {
-            puVar6 = &zb_zcl_door_lock_init_client;
+            puVar6 = &esp_zb_zcl_door_lock_init_client;
           }
           else {
             puVar6 = (undefined *)0x0;
@@ -58,7 +58,7 @@ int esp_zb_cluster_list_update_door_lock_cluster(int param_1,int param_2,int par
         }
         uVar5 = esp_log_timestamp();
         esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC21,uVar5,"ESP_ZIGBEE_CLUSTER",
-                      "esp_zb_cluster_list_update_door_lock_cluster",0xa8f,sVar1);
+                      "esp_zb_cluster_list_update_door_lock_cluster",0xac1,sVar1);
         return 0x101;
       }
       psVar2 = *(short **)(psVar2 + 8);
@@ -71,13 +71,13 @@ int esp_zb_cluster_list_update_door_lock_cluster(int param_1,int param_2,int par
     if (iVar3 != 0) {
       uVar5 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC22,uVar5,"ESP_ZIGBEE_CLUSTER",
-                    "esp_zb_cluster_list_update_door_lock_cluster",0xaa9,sVar1);
+                    "esp_zb_cluster_list_update_door_lock_cluster",0xadb,sVar1);
     }
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC20,uVar5,"ESP_ZIGBEE_CLUSTER",
-                  "esp_zb_cluster_list_update_door_lock_cluster",0xa89);
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER",
+                  "esp_zb_cluster_list_update_door_lock_cluster",0xabb);
   }
   return iVar3;
 }

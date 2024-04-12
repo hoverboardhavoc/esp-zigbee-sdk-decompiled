@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_price_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,10 +33,10 @@ int esp_zb_cluster_list_add_price_cluster(int param_1,undefined4 param_2,int par
     uVar3 = zcl_convert_attr_list_to_array(param_2);
     uStack_3c = CONCAT22(extraout_a0,0x700);
     if (param_3 == 1) {
-      puVar4 = &zb_zcl_price_init_server;
+      puVar4 = &esp_zb_zcl_price_init_server;
     }
     else if (param_3 == 2) {
-      puVar4 = &zb_zcl_price_init_client;
+      puVar4 = &esp_zb_zcl_price_init_client;
     }
     else {
       puVar4 = (undefined *)0x0;

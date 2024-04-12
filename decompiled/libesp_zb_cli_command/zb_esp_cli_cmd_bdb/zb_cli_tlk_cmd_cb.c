@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_bdb.o -> zb_cli_tlk_cmd_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,10 +27,10 @@ int zb_cli_tlk_cmd_cb(int param_1,undefined4 *param_2)
       if (*(int *)(tlk_args + 0x34) != 0) {
         cmd_zb_tlk_set_timeout(param_1 + -2,param_2 + 2);
       }
-      if (*(int *)(DAT_00014820 + 0x34) != 0) {
+      if (*(int *)(DAT_00014824 + 0x34) != 0) {
         cmd_zb_tlk_set_rssi(param_1 + -2,param_2 + 2);
       }
-      iVar1 = *(int *)(DAT_00014824 + 0x34);
+      iVar1 = *(int *)(DAT_00014828 + 0x34);
       if (iVar1 != 0) {
         cmd_zb_tlk_set_master_key(param_1 + -2,param_2 + 2);
         iVar1 = 0;
@@ -39,7 +39,7 @@ int zb_cli_tlk_cmd_cb(int param_1,undefined4 *param_2)
   }
   else {
     iVar1 = __getreent();
-    arg_print_errors(*(undefined4 *)(iVar1 + 0xc),DAT_00014828,*param_2);
+    arg_print_errors(*(undefined4 *)(iVar1 + 0xc),DAT_0001482c,*param_2);
     iVar1 = 1;
   }
   return iVar1;

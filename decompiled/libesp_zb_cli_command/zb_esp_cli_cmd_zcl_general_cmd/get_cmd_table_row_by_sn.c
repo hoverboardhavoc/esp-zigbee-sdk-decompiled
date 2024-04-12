@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_general_cmd.o -> get_cmd_table_row_by_sn
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ int get_cmd_table_row_by_sn(uint param_1)
     if (0x13 < iVar1) {
       return -1;
     }
-    if (((&m_cmd_data)[iVar1 * 0x2e] != '\0') && ((byte)(&DAT_00010d79)[iVar1 * 0x2e] == param_1))
+    if (((&m_cmd_data)[iVar1 * 0x2e] != '\0') && ((byte)(&DAT_00010d7d)[iVar1 * 0x2e] == param_1))
     break;
     iVar1 = iVar1 + 1;
   }

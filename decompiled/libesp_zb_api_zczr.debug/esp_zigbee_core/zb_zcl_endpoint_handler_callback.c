@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> zb_zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,8 +17,9 @@ void zb_zcl_endpoint_handler_callback(int param_1)
   short sVar2;
   int iVar3;
   undefined4 uVar4;
-  uint uVar5;
+  int *piVar5;
   uint uVar6;
+  short sVar7;
   
   uVar6 = param_1 - 1U & 0xff;
   iVar3 = zb_bufpool_storage_bufid_to_buf(uVar6);
@@ -29,24 +30,26 @@ void zb_zcl_endpoint_handler_callback(int param_1)
     iVar3 = zb_buf_get_tail_func(param_1,0x1b);
     if (*(char *)(iVar3 + 0x16) == '\0') {
       iVar3 = zb_buf_get_tail_func(param_1,0x1b);
-      if (*(short *)(iVar3 + 0xf) < 0) {
-        iVar3 = zb_zcl_custom_cluster_handler(param_1);
+      sVar7 = *(short *)(iVar3 + 0xf);
+      piVar5 = s_endpoint_handler_list;
+      if (sVar7 < 0) {
+        sVar7 = -0x8000;
       }
-      else {
-        for (uVar5 = 0; uVar5 < 4; uVar5 = uVar5 + 1) {
-          if ((&s_endpoint_handler_table)[uVar5 * 4] == *(short *)(iVar3 + 0xf)) {
-            iVar3 = (*(code *)(&PTR_zb_zcl_group_cluster_resp_handler_00019844)[uVar5 * 2])
-                              (param_1,(&PTR_zb_zcl_group_cluster_resp_handler_00019844)[uVar5 * 2])
-            ;
-            goto _L0;
-          }
+      for (; piVar5 + -2 != (int *)0xfffffff8; piVar5 = (int *)*piVar5) {
+        if (*(short *)(piVar5 + -2) == sVar7) {
+          iVar3 = (*(code *)piVar5[-1])(param_1,(code *)piVar5[-1]);
+          goto _L0;
         }
-        iVar3 = 0;
+      }
+      iVar3 = 0;
 _L0:
+      if (-1 < sVar7) {
         if (iVar3 != 0) {
           return;
         }
-        iVar3 = zb_zcl_privilege_command_handler(param_1);
+        if (s_privilege_command_handler != (code *)0x0) {
+          iVar3 = (*s_privilege_command_handler)(param_1);
+        }
       }
     }
     else {

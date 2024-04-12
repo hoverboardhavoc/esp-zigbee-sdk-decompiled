@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * https://github.com/espressif/esp-zigbee-sdk/commit/2fe15bae2e4382ac99f249a0934066f5d5a5c684
- * Upstream date: 2024-03-08 17:10:04 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.0(9d7e9ff2)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_cli_command -> zb_esp_cli_cmd_zcl_ping.o -> find_request_by_short
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,13 +22,13 @@ undefined1 * find_request_by_short(uint param_1)
       return (undefined1 *)0x0;
     }
     if ((&m_ping_request_table)[iVar1 * 0x20] != '\0') {
-      if ((&DAT_000110d1)[iVar1 * 0x20] == '\x02') {
+      if ((&DAT_00011079)[iVar1 * 0x20] == '\x02') {
         if ((*(uint *)(&m_ping_request_table + iVar1 * 0x20) >> 8 & 0xffff) == param_1) {
           return &m_ping_request_table + iVar1 * 0x20;
         }
       }
       else {
-        uVar2 = zb_address_short_by_ieee(&DAT_000110c9 + iVar1 * 0x20);
+        uVar2 = zb_address_short_by_ieee(&DAT_00011071 + iVar1 * 0x20);
         if (uVar2 == param_1) {
           return &m_ping_request_table + iVar1 * 0x20;
         }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_temperature_meas_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,7 +58,7 @@ int esp_zb_cluster_list_update_temperature_meas_cluster(int param_1,int param_2,
         }
         uVar5 = esp_log_timestamp();
         esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC21,uVar5,"ESP_ZIGBEE_CLUSTER",
-                      "esp_zb_cluster_list_update_temperature_meas_cluster",0xabd,sVar1);
+                      "esp_zb_cluster_list_update_temperature_meas_cluster",0xaef,sVar1);
         return 0x101;
       }
       psVar2 = *(short **)(psVar2 + 8);
@@ -71,13 +71,13 @@ int esp_zb_cluster_list_update_temperature_meas_cluster(int param_1,int param_2,
     if (iVar3 != 0) {
       uVar5 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC22,uVar5,"ESP_ZIGBEE_CLUSTER",
-                    "esp_zb_cluster_list_update_temperature_meas_cluster",0xad7,sVar1);
+                    "esp_zb_cluster_list_update_temperature_meas_cluster",0xb09,sVar1);
     }
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC20,uVar5,"ESP_ZIGBEE_CLUSTER",
-                  "esp_zb_cluster_list_update_temperature_meas_cluster",0xab7);
+    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER",
+                  "esp_zb_cluster_list_update_temperature_meas_cluster",0xae9);
   }
   return iVar3;
 }

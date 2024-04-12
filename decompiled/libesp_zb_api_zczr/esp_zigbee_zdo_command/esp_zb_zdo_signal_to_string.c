@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
+ * Upstream date: 2024-04-12 14:44:19 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_signal_to_string
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ char * esp_zb_zdo_signal_to_string(int param_1)
   iVar2 = 0;
   do {
     if (*piVar1 == param_1) {
-      return (&PTR__LC1_000116e8)[iVar2 * 2];
+      return (&PTR__LC1_0001171c)[iVar2 * 2];
     }
     iVar2 = iVar2 + 1;
     piVar1 = piVar1 + 2;
