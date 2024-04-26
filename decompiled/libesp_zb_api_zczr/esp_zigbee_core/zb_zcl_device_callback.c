@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr -> esp_zigbee_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -134,16 +134,16 @@ _L0:
             if (uVar14 < 0x2b) {
               if (uVar14 != 0x28) {
                 uVar11 = 0x29;
-                goto _L129;
+                goto _L139;
               }
               goto _L0;
             }
             uVar11 = 0x2b;
-            goto _L123;
+            goto _L133;
           }
           if ((uVar14 != 0x31) && (uVar14 != 0x38)) {
             uVar11 = 0x30;
-_L121:
+_L131:
             if (uVar14 == uVar11) goto _L0;
             goto _L0;
           }
@@ -155,7 +155,7 @@ _L0:
             if (uVar14 < 0xf1) {
               if (0xe9 < uVar14) {
                 uVar11 = 0xea;
-                goto _L123;
+                goto _L133;
               }
               if (0xe7 < uVar14) goto _L0;
               if ((uVar14 + 0x20 & 0xff) < 3) goto _L0;
@@ -180,7 +180,7 @@ _L0:
         if (uVar14 < 0xb) {
           if (uVar14 != 8) {
             uVar11 = 9;
-_L129:
+_L139:
             if (uVar14 == uVar11) goto _L0;
             goto _L0;
           }
@@ -196,7 +196,7 @@ _L0:
           if (uVar14 < 0x1a) {
             uVar14 = uVar14 & 0xf7;
             uVar11 = 0x10;
-            goto _L121;
+            goto _L131;
           }
           if (uVar14 == 0x1a) goto _L0;
           uVar11 = 0x1b;
@@ -210,14 +210,14 @@ _L0:
           if (uVar14 < 0x23) {
             if (uVar14 != 0x20) {
               uVar11 = 0x21;
-              goto _L129;
+              goto _L139;
             }
             goto _L0;
           }
           uVar11 = 0x23;
         }
       }
-_L123:
+_L133:
       if (uVar14 == uVar11) {
 _L0:
         uStack_26 = 4;
@@ -226,7 +226,7 @@ _L0:
 _L0:
       uStack_34 = 1;
       uVar9 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC1,uVar9,"ESP_ZIGBEE_CORE",(char)psVar16[1]);
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC2,uVar9,"ESP_ZIGBEE_CORE",(char)psVar16[1]);
     }
 _L0:
     uVar9 = 0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> reset_endpoint_to_factory_default
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,11 +17,11 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
   undefined2 *puVar2;
   undefined2 *puVar3;
   undefined4 uVar4;
-  size_t sVar5;
   void *__src;
+  int iVar5;
   int iVar6;
   int iVar7;
-  int iVar8;
+  size_t sVar8;
   uint local_90;
   int iStack_8c;
   void *pvStack_88;
@@ -46,30 +46,35 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
   if (param_1 == (undefined1 *)0x0) {
     uVar4 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar4,"ESP_ZIGBEE_CORE",
-                  "reset_endpoint_to_factory_default",0x3c7);
+                  "reset_endpoint_to_factory_default",0x3cd);
     uVar4 = 0xffffffff;
   }
   else {
-    for (iVar8 = 0; iVar8 < (int)(uint)(byte)param_1[0x10]; iVar8 = iVar8 + 1) {
-      puVar3 = (undefined2 *)(*(int *)(param_1 + 0x11) + iVar8 * 0xf);
+    for (iVar7 = 0; iVar7 < (int)(uint)(byte)param_1[0x10]; iVar7 = iVar7 + 1) {
+      puVar3 = (undefined2 *)(*(int *)(param_1 + 0x11) + iVar7 * 0xf);
       if (puVar3 == (undefined2 *)0x0) {
         uVar4 = esp_log_timestamp();
         esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC5,uVar4,"ESP_ZIGBEE_CORE",
-                      "reset_endpoint_to_factory_default",0x3ca);
+                      "reset_endpoint_to_factory_default",0x3d0);
         return 0xffffffff;
       }
       if (*(code **)((int)puVar3 + 0xb) != (code *)0x0) {
         (**(code **)((int)puVar3 + 0xb))();
       }
-      for (iVar7 = 0; iVar7 < (int)(uint)(ushort)puVar3[1]; iVar7 = iVar7 + 1) {
-        puVar1 = (uint3 *)(*(int *)(puVar3 + 2) + iVar7 * 10);
-        sVar5 = esp_zb_zcl_get_attribute_size
-                          (*(undefined1 *)((int)puVar1 + 2),*(undefined4 *)((int)puVar1 + 6));
+      for (iVar6 = 0; iVar6 < (int)(uint)(ushort)puVar3[1]; iVar6 = iVar6 + 1) {
+        puVar1 = (uint3 *)(*(int *)(puVar3 + 2) + iVar6 * 10);
+        if ((*(byte *)((int)puVar1 + 3) & 0x40) == 0) {
+          sVar8 = esp_zb_zcl_get_attribute_size
+                            (*(undefined1 *)((int)puVar1 + 2),*(undefined4 *)((int)puVar1 + 6));
+        }
+        else {
+          sVar8 = (size_t)*(byte *)((int)puVar1 + 2);
+        }
         uStack_74 = (uint)*puVar1;
-        iStack_70 = sVar5 << 0x10;
+        iStack_70 = sVar8 << 0x10;
         pvStack_6c = *(void **)((int)puVar1 + 6);
         if (param_3 == (code *)0x0) {
-          memset(pvStack_6c,0,sVar5);
+          memset(pvStack_6c,0,sVar8);
         }
         else {
           local_90 = uStack_74;
@@ -77,10 +82,10 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
           pvStack_88 = pvStack_6c;
           __src = (void *)(*param_3)(*param_1,*puVar3,&local_90);
           if (__src == (void *)0x0) {
-            memset(*(void **)((int)puVar1 + 6),0,sVar5);
+            memset(*(void **)((int)puVar1 + 6),0,sVar8);
           }
           else {
-            memcpy(*(void **)((int)puVar1 + 6),__src,sVar5);
+            memcpy(*(void **)((int)puVar1 + 6),__src,sVar8);
           }
         }
       }
@@ -99,15 +104,15 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
         uStack_64 = (uint)*(byte *)(puVar3 + 4);
         uStack_34 = (uint)*(ushort *)(param_1 + 1);
         uStack_3c = 5;
-        for (iVar7 = 0; iVar7 < (int)(uint)(ushort)puVar3[1]; iVar7 = iVar7 + 1) {
-          puVar2 = (undefined2 *)(*(int *)(puVar3 + 2) + iVar7 * 10);
+        for (iVar6 = 0; iVar6 < (int)(uint)(ushort)puVar3[1]; iVar6 = iVar6 + 1) {
+          puVar2 = (undefined2 *)(*(int *)(puVar3 + 2) + iVar6 * 10);
           if ((*(byte *)((int)puVar2 + 3) & 4) != 0) {
             uStack_64 = CONCAT22(*puVar2,(undefined2)uStack_64);
             uStack_34 = CONCAT22(puVar2[2],(undefined2)uStack_34);
-            iVar6 = zb_zcl_is_analog_data_type(*(undefined1 *)(puVar2 + 1));
-            if (iVar6 != 0) {
-              sVar5 = zb_zcl_get_analog_attribute_size(*(undefined1 *)(puVar2 + 1));
-              memset(&uStack_4c,0,sVar5);
+            iVar5 = zb_zcl_is_analog_data_type(*(undefined1 *)(puVar2 + 1));
+            if (iVar5 != 0) {
+              sVar8 = zb_zcl_get_analog_attribute_size(*(undefined1 *)(puVar2 + 1));
+              memset(&uStack_4c,0,sVar8);
             }
             zb_zcl_put_reporting_info(&iStack_68,1);
           }

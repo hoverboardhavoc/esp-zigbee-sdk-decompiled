@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_on_off_switch_config_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,7 +40,7 @@ undefined4 esp_zb_on_off_switch_config_cluster_add_attr(int param_1,uint param_2
       *__ptr = (short)param_2;
       if (param_2 == 0) {
         *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x18;
+        *(undefined1 *)(__ptr + 1) = 0x30;
       }
       else {
         if (param_2 != 0x10) {
@@ -50,7 +50,7 @@ undefined4 esp_zb_on_off_switch_config_cluster_add_attr(int param_1,uint param_2
           return 0x102;
         }
         *(undefined1 *)((int)__ptr + 3) = 3;
-        *(undefined1 *)(__ptr + 1) = 0x18;
+        *(undefined1 *)(__ptr + 1) = 0x30;
       }
       __ptr[2] = 0xffff;
       __ptr[3] = (short)param_3;

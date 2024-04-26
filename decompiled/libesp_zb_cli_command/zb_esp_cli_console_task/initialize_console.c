@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> initialize_console
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 void initialize_console(void)
 
@@ -36,16 +34,17 @@ void initialize_console(void)
   iVar1 = __getreent();
   iVar1 = fileno(*(FILE **)(iVar1 + 8));
   fsync(iVar1);
-  uStack_38 = __esp_error_check_failed;
-  uStack_34 = _linenoiseSetDumbMode;
-  uStack_30 = _zb_cli_register_bdb_cmd;
-  uStack_2c = _zb_cli_register_tlk_cmd;
-  uStack_28 = _zb_cli_register_zdo_cmd;
-  uStack_24 = _zb_cli_register_zcl_cmd;
-  uStack_20 = _zb_cli_register_reset_cmd;
-  uStack_1c = _esp_log_timestamp;
-  uStack_18 = _esp_log_write;
-  uStack_14 = _esp_console_register_help_command;
+  iVar1 = esp_zb_platform_config_get();
+  uStack_38 = *(undefined4 *)(iVar1 + 0x30);
+  uStack_34 = *(undefined4 *)(iVar1 + 0x34);
+  uStack_30 = *(undefined4 *)(iVar1 + 0x38);
+  uStack_2c = *(undefined4 *)(iVar1 + 0x3c);
+  uStack_28 = *(undefined4 *)(iVar1 + 0x40);
+  uStack_24 = *(undefined4 *)(iVar1 + 0x44);
+  uStack_20 = *(undefined4 *)(iVar1 + 0x48);
+  uStack_1c = *(undefined4 *)(iVar1 + 0x4c);
+  uStack_18 = *(undefined4 *)(iVar1 + 0x50);
+  uStack_14 = *(undefined4 *)(iVar1 + 0x54);
   iVar1 = zb_esp_uart_init(&uStack_38,0,1);
   if (iVar1 == 0) {
     iStack_40 = 0;

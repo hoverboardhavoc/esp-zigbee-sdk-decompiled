@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_cluster_update_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,18 +30,18 @@ undefined4 esp_zb_cluster_update_attr(int param_1,uint param_2,void *param_3)
       if (*puVar1 == param_2) {
         free((void *)((uint)puVar1[3] | *(int *)(puVar1 + 4) << 0x10));
         __size_00 = (uint)(byte)puVar1[1];
-        if (*(char *)((int)puVar1 + 3) == '@') {
-          pvVar3 = malloc(__size_00);
-          puVar1[3] = (ushort)pvVar3;
-          puVar1[4] = (ushort)((uint)pvVar3 >> 0x10);
-          memcpy(pvVar3,param_3,__size_00);
-        }
-        else {
+        if ((*(byte *)((int)puVar1 + 3) & 0x40) == 0) {
           __size = esp_zb_zcl_get_attribute_size(__size_00,param_3);
           pvVar3 = malloc(__size);
           puVar1[3] = (ushort)pvVar3;
           puVar1[4] = (ushort)((uint)pvVar3 >> 0x10);
           esp_zb_zcl_put_attribute_value((char)puVar1[1],param_3,__size);
+        }
+        else {
+          pvVar3 = malloc(__size_00);
+          puVar1[3] = (ushort)pvVar3;
+          puVar1[4] = (ushort)((uint)pvVar3 >> 0x10);
+          memcpy(pvVar3,param_3,__size_00);
         }
         return 0;
       }

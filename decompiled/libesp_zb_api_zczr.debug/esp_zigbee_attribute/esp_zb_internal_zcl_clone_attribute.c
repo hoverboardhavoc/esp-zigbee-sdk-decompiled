@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_zcl_clone_attribute
  *
  * (C) Espressif, Apache License 2.0.
@@ -52,11 +52,11 @@ undefined4 esp_zb_internal_zcl_clone_attribute(undefined1 *param_1,undefined1 *p
     param_1[7] = uVar7;
     param_1[8] = uVar8;
     param_1[9] = uVar9;
-    if (param_2[3] == '@') {
-      __size = (size_t)(byte)param_2[2];
+    if ((param_2[3] & 0x40) == 0) {
+      __size = esp_zb_zcl_get_attribute_size(param_2[2],*(undefined4 *)(param_2 + 6));
     }
     else {
-      __size = esp_zb_zcl_get_attribute_size(param_2[2],*(undefined4 *)(param_2 + 6));
+      __size = (size_t)(byte)param_2[2];
     }
     if (__size == 0) {
       param_1[6] = 0;
@@ -76,12 +76,12 @@ undefined4 esp_zb_internal_zcl_clone_attribute(undefined1 *param_1,undefined1 *p
         esp_log_write(1,0x10000,&_LC3,uVar10,0x10000,"esp_zb_internal_zcl_clone_attribute",99);
         uVar10 = 0x101;
       }
-      else if (param_2[3] == '@') {
-        memcpy(__dest,*(void **)(param_2 + 6),__size);
+      else if ((param_2[3] & 0x40) == 0) {
+        esp_zb_zcl_put_attribute_value(param_2[2],*(undefined4 *)(param_2 + 6),__size);
         uVar10 = 0;
       }
       else {
-        esp_zb_zcl_put_attribute_value(param_2[2],*(undefined4 *)(param_2 + 6),__size);
+        memcpy(__dest,*(void **)(param_2 + 6),__size);
         uVar10 = 0;
       }
     }

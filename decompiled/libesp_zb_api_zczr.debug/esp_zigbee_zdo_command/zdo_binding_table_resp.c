@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,101 +21,102 @@ void zdo_binding_table_resp(int param_1)
   char cVar6;
   char cVar7;
   char *pcVar8;
-  int iVar9;
-  char *pcVar10;
+  char *pcVar9;
+  int iVar10;
   char *pcVar11;
   char *pcVar12;
-  uint uVar13;
-  code *pcVar14;
+  char *pcVar13;
+  uint uVar14;
+  code *pcVar15;
   undefined1 uStack_28;
   char cStack_27;
   char cStack_26;
   byte bStack_25;
   char *pcStack_24;
   
-  pcVar10 = (char *)zb_buf_begin_func();
-  pcVar11 = (char *)esp_zb_zdo_callback_find(*pcVar10);
-  if (pcVar10[1] == '\0') {
+  pcVar11 = (char *)zb_buf_begin_func();
+  pcVar12 = (char *)esp_zb_zdo_callback_find(*pcVar11);
+  if (pcVar11[1] == '\0') {
     zb_schedule_alarm_cancel(device_binding_table_req_timeout,0xff,0);
   }
-  if (pcVar11 == (char *)0x0) {
-    pcVar14 = (code *)0x0;
+  if (pcVar12 == (char *)0x0) {
+    pcVar15 = (code *)0x0;
   }
-  else if (*pcVar11 == *pcVar10) {
-    if (pcVar11[1] == '3') {
-      pcVar14 = *(code **)(pcVar11 + 4);
+  else if (*pcVar12 == *pcVar11) {
+    if (pcVar12[1] == '3') {
+      pcVar15 = *(code **)(pcVar12 + 4);
     }
     else {
-      pcVar14 = (code *)0x0;
+      pcVar15 = (code *)0x0;
     }
   }
   else {
-    pcVar14 = (code *)0x0;
+    pcVar15 = (code *)0x0;
   }
-  if ((pcVar10[1] == '\0') && (pcVar14 != (code *)0x0)) {
-    bStack_25 = pcVar10[4];
-    uVar13 = (uint)bStack_25;
-    pcVar11 = pcVar10 + 5;
-    cStack_26 = pcVar10[2];
-    cStack_27 = pcVar10[3];
+  if ((pcVar11[1] == '\0') && (pcVar15 != (code *)0x0)) {
+    bStack_25 = pcVar11[4];
+    uVar14 = (uint)bStack_25;
+    pcVar9 = pcVar11 + 5;
+    cStack_26 = pcVar11[2];
+    cStack_27 = pcVar11[3];
     pcStack_24 = (char *)0x0;
     uStack_28 = 0;
-    pcVar10 = (char *)0x0;
-    for (iVar9 = 0; iVar9 < (int)uVar13; iVar9 = iVar9 + 1) {
-      pcVar12 = (char *)malloc(0x1c);
-      *(undefined2 *)(pcVar12 + 10) = *(undefined2 *)(pcVar11 + 9);
-      pcVar12[0xc] = pcVar11[0xb];
-      pcVar12[8] = pcVar11[8];
-      pcVar12[0x16] = pcVar11[0x14];
-      cVar1 = pcVar11[1];
-      cVar2 = pcVar11[2];
-      cVar3 = pcVar11[3];
-      cVar4 = pcVar11[4];
-      cVar5 = pcVar11[5];
-      cVar6 = pcVar11[6];
-      cVar7 = pcVar11[7];
-      *pcVar12 = *pcVar11;
-      pcVar12[1] = cVar1;
-      pcVar12[2] = cVar2;
-      pcVar12[3] = cVar3;
-      pcVar12[4] = cVar4;
-      pcVar12[5] = cVar5;
-      pcVar12[6] = cVar6;
-      pcVar12[7] = cVar7;
-      cVar1 = pcVar11[0xd];
-      cVar2 = pcVar11[0xe];
-      cVar3 = pcVar11[0xf];
-      cVar4 = pcVar11[0x10];
-      cVar5 = pcVar11[0x11];
-      cVar6 = pcVar11[0x12];
-      cVar7 = pcVar11[0x13];
-      pcVar12[0xe] = pcVar11[0xc];
-      pcVar12[0xf] = cVar1;
-      pcVar12[0x10] = cVar2;
-      pcVar12[0x11] = cVar3;
-      pcVar12[0x12] = cVar4;
-      pcVar12[0x13] = cVar5;
-      pcVar12[0x14] = cVar6;
-      pcVar12[0x15] = cVar7;
-      pcVar12[0x18] = '\0';
-      pcVar12[0x19] = '\0';
-      pcVar12[0x1a] = '\0';
-      pcVar12[0x1b] = '\0';
-      pcVar8 = pcVar12;
-      if (pcVar10 != (char *)0x0) {
-        *(char **)(pcVar10 + 0x18) = pcVar12;
+    pcVar11 = (char *)0x0;
+    for (iVar10 = 0; iVar10 < (int)uVar14; iVar10 = iVar10 + 1) {
+      pcVar13 = (char *)malloc(0x1c);
+      *(undefined2 *)(pcVar13 + 10) = *(undefined2 *)(pcVar9 + 9);
+      pcVar13[0xc] = pcVar9[0xb];
+      pcVar13[8] = pcVar9[8];
+      pcVar13[0x16] = pcVar9[0x14];
+      cVar1 = pcVar9[1];
+      cVar2 = pcVar9[2];
+      cVar3 = pcVar9[3];
+      cVar4 = pcVar9[4];
+      cVar5 = pcVar9[5];
+      cVar6 = pcVar9[6];
+      cVar7 = pcVar9[7];
+      *pcVar13 = *pcVar9;
+      pcVar13[1] = cVar1;
+      pcVar13[2] = cVar2;
+      pcVar13[3] = cVar3;
+      pcVar13[4] = cVar4;
+      pcVar13[5] = cVar5;
+      pcVar13[6] = cVar6;
+      pcVar13[7] = cVar7;
+      cVar1 = pcVar9[0xd];
+      cVar2 = pcVar9[0xe];
+      cVar3 = pcVar9[0xf];
+      cVar4 = pcVar9[0x10];
+      cVar5 = pcVar9[0x11];
+      cVar6 = pcVar9[0x12];
+      cVar7 = pcVar9[0x13];
+      pcVar13[0xe] = pcVar9[0xc];
+      pcVar13[0xf] = cVar1;
+      pcVar13[0x10] = cVar2;
+      pcVar13[0x11] = cVar3;
+      pcVar13[0x12] = cVar4;
+      pcVar13[0x13] = cVar5;
+      pcVar13[0x14] = cVar6;
+      pcVar13[0x15] = cVar7;
+      pcVar13[0x18] = '\0';
+      pcVar13[0x19] = '\0';
+      pcVar13[0x1a] = '\0';
+      pcVar13[0x1b] = '\0';
+      pcVar8 = pcVar13;
+      if (pcVar11 != (char *)0x0) {
+        *(char **)(pcVar11 + 0x18) = pcVar13;
         pcVar8 = pcStack_24;
       }
       pcStack_24 = pcVar8;
-      pcVar11 = pcVar11 + 0x15;
-      pcVar10 = pcVar12;
+      pcVar9 = pcVar9 + 0x15;
+      pcVar11 = pcVar13;
     }
-    (*pcVar14)(&uStack_28,0);
-    pcVar10 = pcStack_24;
-    while (pcVar10 != (char *)0x0) {
-      pcVar11 = *(char **)(pcVar10 + 0x18);
-      free(pcVar10);
-      pcVar10 = pcVar11;
+    (*pcVar15)(&uStack_28,*(undefined4 *)(pcVar12 + 8));
+    pcVar11 = pcStack_24;
+    while (pcVar11 != (char *)0x0) {
+      pcVar12 = *(char **)(pcVar11 + 0x18);
+      free(pcVar11);
+      pcVar11 = pcVar12;
     }
   }
   if (param_1 != 0) {

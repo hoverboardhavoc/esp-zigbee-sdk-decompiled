@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_table_store
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,16 +22,16 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
   
   uVar1 = device_scenes_get_free_entry();
   if (uVar1 < 0x10) {
-    *(undefined2 *)(&DAT_00012bf8 + uVar1 * 0xc) = param_2;
-    (&DAT_00012bfb)[uVar1 * 0xc] = 0;
-    if ((&DAT_00012bfc)[uVar1 * 3] != 0) {
+    (&DAT_00012bfc)[uVar1 * 6] = param_2;
+    (&DAT_00012bff)[uVar1 * 0xc] = 0;
+    if ((&DAT_00012c00)[uVar1 * 3] != 0) {
       device_scene_free_fields();
-      (&DAT_00012bfc)[uVar1 * 3] = 0;
+      (&DAT_00012c00)[uVar1 * 3] = 0;
     }
-    puVar5 = (undefined2 *)(&DAT_00012bfc)[uVar1 * 3];
+    puVar5 = (undefined2 *)(&DAT_00012c00)[uVar1 * 3];
     for (; param_3 != (undefined2 *)0x0; param_3 = *(undefined2 **)(param_3 + 4)) {
       puVar2 = (undefined2 *)malloc(0xc);
-      (&DAT_00012bfb)[uVar1 * 0xc] = (&DAT_00012bfb)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
+      (&DAT_00012bff)[uVar1 * 0xc] = (&DAT_00012bff)[uVar1 * 0xc] + *(char *)(param_3 + 1) + '\x03';
       *puVar2 = *param_3;
       *(undefined1 *)(puVar2 + 1) = *(undefined1 *)(param_3 + 1);
       *(undefined4 *)(puVar2 + 4) = 0;
@@ -39,7 +39,7 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
       *(void **)(puVar2 + 2) = __dest;
       memcpy(__dest,*(void **)(param_3 + 2),(uint)*(byte *)(param_3 + 1));
       if (puVar5 == (undefined2 *)0x0) {
-        (&DAT_00012bfc)[uVar1 * 3] = puVar2;
+        (&DAT_00012c00)[uVar1 * 3] = puVar2;
       }
       else {
         *(undefined2 **)(puVar5 + 4) = puVar2;
@@ -56,7 +56,7 @@ int esp_zb_zcl_scenes_table_store(undefined4 param_1,undefined2 param_2,undefine
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar4,"ESP_ZIGBEE_ZCL_SCENES",
+    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC28,uVar4,"ESP_ZIGBEE_ZCL_SCENES",
                   "esp_zb_zcl_scenes_table_store",0x22e,param_1);
     iVar3 = -1;
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_scenes.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -63,13 +63,13 @@ void zb_nvram_app1_read_cb(uint param_1)
         uVar6 = puVar18[6];
         uVar7 = puVar18[7];
         (&esp_zb_zcl_scenes_table)[iVar19] = *puVar18;
-        (&DAT_00012bf5)[iVar19] = uVar1;
-        *(undefined1 *)(&DAT_00012bf6 + uVar17 * 6) = uVar2;
-        *(undefined1 *)((int)&DAT_00012bf6 + iVar19 + 1) = uVar3;
-        (&DAT_00012bf8)[iVar19] = uVar4;
-        (&DAT_00012bf9)[iVar19] = uVar5;
-        (&DAT_00012bfa)[iVar19] = uVar6;
-        (&DAT_00012bfb)[iVar19] = uVar7;
+        (&DAT_00012bf9)[iVar19] = uVar1;
+        *(undefined1 *)(&DAT_00012bfa + uVar17 * 6) = uVar2;
+        *(undefined1 *)((int)&DAT_00012bfa + iVar19 + 1) = uVar3;
+        *(undefined1 *)(&DAT_00012bfc + uVar17 * 6) = uVar4;
+        *(undefined1 *)((int)&DAT_00012bfc + iVar19 + 1) = uVar5;
+        (&DAT_00012bfe)[iVar19] = uVar6;
+        (&DAT_00012bff)[iVar19] = uVar7;
         uVar10 = uVar10 + 8;
         uVar16 = (uint)(byte)puVar18[7];
         puVar18 = (undefined1 *)0x0;
@@ -88,7 +88,7 @@ void zb_nvram_app1_read_cb(uint param_1)
           uVar16 = (uVar16 - 3 & 0xffff) - (uint)(byte)puVar14[2] & 0xffff;
           *(undefined4 *)(puVar14 + 8) = 0;
           if (puVar18 == (undefined1 *)0x0) {
-            (&DAT_00012bfc)[uVar17 * 3] = puVar14;
+            (&DAT_00012c00)[uVar17 * 3] = puVar14;
             puVar18 = puVar14;
           }
           else {
@@ -102,7 +102,7 @@ void zb_nvram_app1_read_cb(uint param_1)
     iVar11 = 0;
 _L0:
     for (; iVar11 < 0x10; iVar11 = iVar11 + 1) {
-      if ((&DAT_00012bf6)[iVar11 * 6] != -1) {
+      if ((&DAT_00012bfa)[iVar11 * 6] != -1) {
         zb_zcl_scenes_set_scene_count((&esp_zb_zcl_scenes_table)[iVar11 * 0xc],1);
       }
     }

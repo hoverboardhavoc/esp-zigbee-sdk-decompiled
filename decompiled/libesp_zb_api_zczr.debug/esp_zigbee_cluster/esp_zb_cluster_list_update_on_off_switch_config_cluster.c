@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_on_off_switch_config_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,8 +57,8 @@ int esp_zb_cluster_list_update_on_off_switch_config_cluster(int param_1,int para
           return 0;
         }
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC21,uVar5,"ESP_ZIGBEE_CLUSTER",
-                      "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x97f,sVar1);
+        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC24,uVar5,"ESP_ZIGBEE_CLUSTER",
+                      "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x9c4,sVar1);
         return 0x101;
       }
       psVar2 = *(short **)(psVar2 + 8);
@@ -70,14 +70,14 @@ int esp_zb_cluster_list_update_on_off_switch_config_cluster(int param_1,int para
     }
     if (iVar3 != 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC22,uVar5,"ESP_ZIGBEE_CLUSTER",
-                    "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x999,sVar1);
+      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC25,uVar5,"ESP_ZIGBEE_CLUSTER",
+                    "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x9de,sVar1);
     }
   }
   else {
     uVar5 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER",
-                  "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x979);
+                  "esp_zb_cluster_list_update_on_off_switch_config_cluster",0x9be);
   }
   return iVar3;
 }

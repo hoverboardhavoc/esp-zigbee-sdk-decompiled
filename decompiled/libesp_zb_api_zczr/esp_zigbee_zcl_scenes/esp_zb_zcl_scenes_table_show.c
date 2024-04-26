@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_table_show
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ void esp_zb_zcl_scenes_table_show(uint param_1)
   int iVar4;
   
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
-  puts("| Index | Group ID | Scene ID | Transition Time |   [Cluster ID | Extendsion Field]   |");
+  puts("| Index | Group ID | Scene ID | Transition Time |   [Cluster ID | Extension Field]   |");
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
   pbVar1 = &esp_zb_zcl_scenes_table;
   iVar3 = 0;

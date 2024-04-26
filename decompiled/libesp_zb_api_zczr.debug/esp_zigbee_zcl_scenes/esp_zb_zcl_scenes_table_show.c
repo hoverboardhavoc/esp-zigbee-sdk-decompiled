@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
+ * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
+ * Upstream date: 2024-04-26 19:22:10 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_table_show
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,13 +18,13 @@ void esp_zb_zcl_scenes_table_show(uint param_1)
   int iVar3;
   
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
-  puts("| Index | Group ID | Scene ID | Transition Time |   [Cluster ID | Extendsion Field]   |");
+  puts("| Index | Group ID | Scene ID | Transition Time |   [Cluster ID | Extension Field]   |");
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
   for (iVar2 = 0; iVar2 < 0x10; iVar2 = iVar2 + 1) {
     if (((byte)(&esp_zb_zcl_scenes_table)[iVar2 * 0xc] == param_1) &&
-       ((&DAT_00012bf6)[iVar2 * 6] != -1)) {
+       ((&DAT_00012bfa)[iVar2 * 6] != -1)) {
       printf("|   %02d  |  0x%04x  |   0x%02x   |      %04d       |");
-      for (iVar1 = (&DAT_00012bfc)[iVar2 * 3]; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
+      for (iVar1 = (&DAT_00012c00)[iVar2 * 3]; iVar1 != 0; iVar1 = *(int *)(iVar1 + 8)) {
         printf(" [ 0x%04x |");
         if ((*(char *)(iVar1 + 2) != '\0') && (*(int *)(iVar1 + 4) != 0)) {
           for (iVar3 = 0; iVar3 < (int)(uint)*(byte *)(iVar1 + 2); iVar3 = iVar3 + 1) {
