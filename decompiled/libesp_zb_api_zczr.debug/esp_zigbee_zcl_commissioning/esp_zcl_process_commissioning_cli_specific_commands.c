@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit f681c92f221e08b8a4008d1df363fb1f9960ae64
+ * https://github.com/espressif/esp-zigbee-sdk/commit/f681c92f221e08b8a4008d1df363fb1f9960ae64
+ * Upstream date: 2024-04-30 13:18:04 +0800
+ * Upstream subject: esp-zigbee-sdk: release/v1.3.1(ce7ce7c1)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_process_commissioning_cli_specific_commands
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,14 +34,14 @@ undefined4 esp_zcl_process_commissioning_cli_specific_commands(int param_1)
       }
       else {
         zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/zcl/esp_zigbee_zcl_commissioning.c"
-                  ,0x2a6);
+                  ,0x2a4);
       }
       uVar2 = esp_zcl_process_commissioning_cli_commands(param_1,auStack_30);
     }
     else {
       uVar2 = esp_log_timestamp();
       esp_log_write(1,"ESP_ZIGBEE_ZCL_COMMISSIONING",&_L0,uVar2,"ESP_ZIGBEE_ZCL_COMMISSIONING",
-                    "esp_zcl_process_commissioning_cli_specific_commands",0x2a4);
+                    "esp_zcl_process_commissioning_cli_specific_commands",0x2a2);
       uVar2 = 1;
     }
   }
