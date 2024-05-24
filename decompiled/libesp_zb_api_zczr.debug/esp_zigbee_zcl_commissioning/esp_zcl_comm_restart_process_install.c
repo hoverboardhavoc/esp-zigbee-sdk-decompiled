@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_comm_restart_process_install
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,14 +18,14 @@ void esp_zcl_comm_restart_process_install(undefined4 param_1,code *param_2)
   int iVar1;
   void *__dest;
   
-  if (DAT_000117e8 == '\0') {
+  if (DAT_00011800 == '\0') {
     _DAT_000122e0 = g_comm_ctx;
     iVar1 = memcmp(&g_comm_ctx,&g_unknown_ieee_addr,8);
     if (iVar1 != 0) {
-      esp_zb_set_extended_pan_id(&g_comm_ctx);
+      zb_set_extended_pan_id(&g_comm_ctx);
     }
-    _DAT_000122e2 = DAT_0001178a;
-    esp_zb_set_channel_mask(DAT_0001178c);
+    _DAT_000122e2 = DAT_000117a2;
+    zb_set_channel_mask(DAT_000117a4);
     iVar1 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar1 == 0) || (iVar1 = memcmp(&g_comm_ctx,&g_unknown_ieee_addr,8), iVar1 == 0)) {
       zb_aib_set_trust_center_address(&g_comm_ctx);
@@ -38,16 +38,22 @@ void esp_zcl_comm_restart_process_install(undefined4 param_1,code *param_2)
                                     ,0x134);
         goto _L0;
       }
-      memcpy(__dest,&DAT_000117ab,0x10);
+      memcpy(__dest,&DAT_000117c3,0x10);
     }
-    DAT_00012619 = DAT_00012619 & 0xfd | (byte)((DAT_000117bb & 1) << 1);
+    DAT_00012619 = DAT_00012619 & 0xfd | (byte)((DAT_000117d3 & 1) << 1);
     iVar1 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar1 != 0) || (iVar1 = memcmp(&g_comm_ctx,&g_zero_addr,8), iVar1 != 0)) {
-      esp_zb_secur_TC_standard_preconfigure_key_set(&g_comm_ctx);
-      esp_zb_secur_TC_standard_distributed_key_set(&g_comm_ctx);
+      _DAT_00012634 = DAT_000117d4;
+      _DAT_00012638 = DAT_000117d8;
+      _DAT_0001263c = DAT_000117dc;
+      _DAT_00012640 = DAT_000117e0;
+      _DAT_00012648 = DAT_000117d4;
+      _DAT_0001264c = DAT_000117d8;
+      _DAT_00012650 = DAT_000117dc;
+      _DAT_00012654 = DAT_000117e0;
     }
-    DAT_00012280 = DAT_000117cc;
-    _DAT_0001228c = DAT_000117ce;
+    DAT_00012280 = DAT_000117e4;
+    _DAT_0001228c = DAT_000117e6;
     zb_nwk_sync_pibcache_with_mac(param_1,param_2);
   }
   else {

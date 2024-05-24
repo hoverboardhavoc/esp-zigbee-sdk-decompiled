@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_scenes_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,8 +57,8 @@ int esp_zb_cluster_list_update_scenes_cluster(int param_1,int param_2,int param_
           return 0;
         }
         uVar5 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC24,uVar5,"ESP_ZIGBEE_CLUSTER",
-                      "esp_zb_cluster_list_update_scenes_cluster",0x968,sVar1);
+        esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC25,uVar5,"ESP_ZIGBEE_CLUSTER",
+                      "esp_zb_cluster_list_update_scenes_cluster",0x999,sVar1);
         return 0x101;
       }
       psVar2 = *(short **)(psVar2 + 8);
@@ -70,14 +70,14 @@ int esp_zb_cluster_list_update_scenes_cluster(int param_1,int param_2,int param_
     }
     if (iVar3 != 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC25,uVar5,"ESP_ZIGBEE_CLUSTER",
-                    "esp_zb_cluster_list_update_scenes_cluster",0x982,sVar1);
+      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC26,uVar5,"ESP_ZIGBEE_CLUSTER",
+                    "esp_zb_cluster_list_update_scenes_cluster",0x9b3,sVar1);
     }
   }
   else {
     uVar5 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar5,"ESP_ZIGBEE_CLUSTER",
-                  "esp_zb_cluster_list_update_scenes_cluster",0x962);
+                  "esp_zb_cluster_list_update_scenes_cluster",0x993);
   }
   return iVar3;
 }

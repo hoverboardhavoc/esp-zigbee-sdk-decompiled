@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_electrical_meas_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -60,7 +60,7 @@ _L0:
           if (param_2 < 0x313) goto _L0;
           param_2 = param_2 - 0x400;
           uVar3 = 1;
-_L636:
+_L644:
           if (uVar3 < (param_2 & 0xffff)) {
 _L0:
             uVar5 = esp_log_timestamp();
@@ -76,13 +76,13 @@ _L0:
               if (param_2 < 0x506) {
                 if (param_2 < 0x504) {
                   uVar3 = 0x501;
-_L648:
+_L656:
                   if (uVar3 < param_2) goto _L0;
                 }
                 else {
                   uVar3 = 0x505;
                 }
-_L639:
+_L647:
                 if (param_2 != uVar3) goto _L0;
                 goto _L0;
               }
@@ -90,7 +90,7 @@ _L639:
             else {
               if (param_2 == 0x50b) goto _L0;
               uVar3 = 0x508;
-_L637:
+_L645:
               if (param_2 == uVar3) goto _L0;
             }
             goto _L0;
@@ -100,7 +100,7 @@ _L637:
           if (0x517 < param_2) {
             param_2 = param_2 - 0x600;
             uVar3 = 5;
-            goto _L636;
+            goto _L644;
           }
           if (0x510 < param_2) goto _L0;
           if (param_2 == 0x50f) goto _L0;
@@ -126,7 +126,7 @@ _L0:
             if (0x300 < param_2) goto _L0;
             if (0x205 < param_2) {
               uVar3 = 0x300;
-              goto _L639;
+              goto _L647;
             }
             if (param_2 < 0x200) goto _L0;
           }
@@ -163,7 +163,7 @@ _L0:
             uVar7 = 0x121;
             goto _L0;
           }
-          if (0x903 < param_2) goto _L639;
+          if (0x903 < param_2) goto _L647;
           if (0x901 < param_2) goto _L0;
           if (param_2 != 0x901) goto _L0;
         }
@@ -179,16 +179,16 @@ _L0:
           if (0x917 < param_2) {
             if (param_2 < 0xa04) {
               uVar3 = 0xa01;
-              goto _L648;
+              goto _L656;
             }
             uVar3 = 0xa05;
-            goto _L639;
+            goto _L647;
           }
           goto _L0;
         }
         if (param_2 != 0x90e) {
           uVar3 = 0x90f;
-_L635:
+_L643:
           if (param_2 != uVar3) goto _L0;
           goto _L0;
         }
@@ -208,11 +208,11 @@ _L0:
         if (param_2 != 0xa0b) {
           if (param_2 < 0xa0c) {
             uVar3 = 0xa08;
-            goto _L637;
+            goto _L645;
           }
           if (param_2 != 0xa0e) {
             uVar3 = 0xa0f;
-            goto _L635;
+            goto _L643;
           }
         }
       }

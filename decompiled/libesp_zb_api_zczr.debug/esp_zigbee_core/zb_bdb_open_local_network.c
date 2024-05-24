@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> zb_bdb_open_local_network
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,9 +32,9 @@ void zb_bdb_open_local_network(undefined4 param_1)
     puVar5[2] = 0;
     puVar5[3] = 0;
     iVar4 = zb_is_device_zc_or_zr();
-    uVar2 = _DAT_00014334;
+    uVar2 = _DAT_00013334;
     if (iVar4 != 0) {
-      *puVar5 = (char)_DAT_00014334;
+      *puVar5 = (char)_DAT_00013334;
       puVar5[1] = (char)((ushort)uVar2 >> 8);
       puVar5[2] = uVar1;
       puVar5[3] = 0;

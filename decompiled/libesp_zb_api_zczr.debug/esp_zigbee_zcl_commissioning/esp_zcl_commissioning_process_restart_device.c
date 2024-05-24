@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_commissioning_process_restart_device
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,14 +33,14 @@ undefined4 esp_zcl_commissioning_process_restart_device(undefined4 param_1,int p
   }
   iVar2 = esp_zcl_commissioning_check_startup_parameters();
   if (iVar2 == 0) {
-    DAT_000117e0 = (uStack_14 >> 8 & 0xff) * 1000;
-    DAT_000117e4 = 0;
+    DAT_000117f8 = (uStack_14 >> 8 & 0xff) * 1000;
+    DAT_000117fc = 0;
     uVar4 = zb_random_jitter();
-    uVar4 = uVar4 / (0xffffffff / ((uStack_14 >> 0x10 & 0xff) * 0x50)) + DAT_000117e0;
-    DAT_000117e4 = (uint)(uVar4 < DAT_000117e0) + DAT_000117e4;
-    DAT_000117e8 = (byte)uStack_14 & 7;
-    DAT_000117e9 = (byte)(uStack_14 >> 3) & 1;
-    DAT_000117e0 = uVar4;
+    uVar4 = uVar4 / (0xffffffff / ((uStack_14 >> 0x10 & 0xff) * 0x50)) + DAT_000117f8;
+    DAT_000117fc = (uint)(uVar4 < DAT_000117f8) + DAT_000117fc;
+    DAT_00011800 = (byte)uStack_14 & 7;
+    DAT_00011801 = (byte)(uStack_14 >> 3) & 1;
+    DAT_000117f8 = uVar4;
     esp_zcl_commissioning_srv_send_response
               (param_1,param_2,0,esp_zcl_commissioning_process_restart_device_continue);
   }

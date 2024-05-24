@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,51 +13,55 @@
 byte esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp(int param_1)
 
 {
-  byte bVar1;
-  char cVar2;
+  char cVar1;
+  byte bVar2;
   int iVar3;
-  byte *pbVar4;
-  int iVar5;
-  undefined1 *puVar6;
-  char *pcVar7;
-  undefined1 *puVar8;
-  int iVar9;
+  int iVar4;
+  undefined1 *puVar5;
+  char *pcVar6;
+  undefined1 *puVar7;
+  byte *pbVar8;
+  undefined2 uVar9;
   
-  iVar3 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
-  if ((iVar3 != 0) && (iVar5 = zb_buf_get_out_func(), iVar5 != 0)) {
-    puVar6 = (undefined1 *)zb_buf_reuse_func();
-    *puVar6 = 0x19;
-    pcVar7 = (char *)zb_zcl_get_ctx();
-    cVar2 = *pcVar7;
-    *pcVar7 = cVar2 + '\x01';
-    puVar6[1] = cVar2;
-    puVar6[2] = 0;
-    puVar8 = puVar6 + 6;
-    puVar6[3] = *(undefined1 *)(param_1 + 0x10);
-    puVar6[4] = (char)*(undefined4 *)(param_1 + 0x14);
-    puVar6[5] = *(undefined1 *)(param_1 + 0x18);
-    if ((*(short *)(param_1 + 0x1a) != 0) && (iVar9 = 0, *(int *)(param_1 + 0x1c) != 0)) {
-      for (; iVar9 < (int)(uint)*(ushort *)(param_1 + 0x1a); iVar9 = iVar9 + 1) {
-        puVar8 = (undefined1 *)
-                 zb_put_next_htole16(*(undefined2 *)(*(int *)(param_1 + 0x1c) + iVar9 * 2));
-      }
-    }
-    zb_zcl_finish_and_send_packet
-              (iVar5,puVar8,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-               *(undefined1 *)(param_1 + 9),*(undefined2 *)(iVar3 + 1),
-               *(undefined2 *)(param_1 + 0x20));
-    pbVar4 = (byte *)zb_buf_begin_func(iVar5);
-    if ((*pbVar4 >> 2 & 1) == 0) {
-      iVar3 = 1;
-    }
-    else {
-      iVar3 = 3;
-    }
-    return pbVar4[iVar3];
+  uVar9 = 0x104;
+  iVar4 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
+  if (iVar4 != 0) {
+    uVar9 = *(undefined2 *)(iVar4 + 1);
   }
-  pbVar4 = (byte *)zb_zcl_get_ctx();
-  bVar1 = *pbVar4;
-  *pbVar4 = bVar1 + 1;
-  return bVar1;
+  iVar4 = zb_buf_get_out_func();
+  if (iVar4 == 0) {
+    pbVar8 = (byte *)zb_zcl_get_ctx();
+    bVar2 = *pbVar8;
+    *pbVar8 = bVar2 + 1;
+    return bVar2;
+  }
+  puVar5 = (undefined1 *)zb_buf_reuse_func();
+  *puVar5 = 0x19;
+  pcVar6 = (char *)zb_zcl_get_ctx();
+  cVar1 = *pcVar6;
+  *pcVar6 = cVar1 + '\x01';
+  puVar5[1] = cVar1;
+  puVar5[2] = 0;
+  puVar7 = puVar5 + 6;
+  puVar5[3] = *(undefined1 *)(param_1 + 0x10);
+  puVar5[4] = (char)*(undefined4 *)(param_1 + 0x14);
+  puVar5[5] = *(undefined1 *)(param_1 + 0x18);
+  if ((*(short *)(param_1 + 0x1a) != 0) && (iVar3 = 0, *(int *)(param_1 + 0x1c) != 0)) {
+    for (; iVar3 < (int)(uint)*(ushort *)(param_1 + 0x1a); iVar3 = iVar3 + 1) {
+      puVar7 = (undefined1 *)
+               zb_put_next_htole16(*(undefined2 *)(*(int *)(param_1 + 0x1c) + iVar3 * 2));
+    }
+  }
+  zb_zcl_finish_and_send_packet
+            (iVar4,puVar7,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+             *(undefined1 *)(param_1 + 9),uVar9,*(undefined2 *)(param_1 + 0x20));
+  pbVar8 = (byte *)zb_buf_begin_func(iVar4);
+  if ((*pbVar8 >> 2 & 1) == 0) {
+    iVar4 = 1;
+  }
+  else {
+    iVar4 = 3;
+  }
+  return pbVar8[iVar4];
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_scenes_get_scene_membership_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,37 +14,33 @@ void esp_zb_zcl_scenes_get_scene_membership_cmd_req(int param_1)
 
 {
   int iVar1;
-  int iVar2;
-  undefined4 uVar3;
-  char *pcVar4;
+  undefined4 uVar2;
+  char *pcVar3;
+  undefined2 uVar4;
   
   iVar1 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
   if (iVar1 == 0) {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar3,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_scenes_get_scene_membership_cmd_req",0x58d,
-                  *(undefined1 *)(param_1 + 9));
-    pcVar4 = (char *)zb_zcl_get_ctx();
-    *pcVar4 = *pcVar4 + '\x01';
+    uVar4 = 0x104;
   }
   else {
-    iVar2 = zb_buf_get_out_func();
-    if (iVar2 == 0) {
-      uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar3,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_scenes_get_scene_membership_cmd_req",0x58e,
-                    "esp_zb_zcl_scenes_get_scene_membership_cmd_req");
-      pcVar4 = (char *)zb_zcl_get_ctx();
-      *pcVar4 = *pcVar4 + '\x01';
-    }
-    else {
-      zb_zcl_start_command_header(1,0,6,0);
-      uVar3 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x10));
-      zb_zcl_finish_and_send_packet
-                (iVar2,uVar3,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-                 *(undefined1 *)(param_1 + 9),*(undefined2 *)(iVar1 + 1),5);
-      zb_zcl_frame_get_sequence_number(iVar2);
-    }
+    uVar4 = *(undefined2 *)(iVar1 + 1);
+  }
+  iVar1 = zb_buf_get_out_func();
+  if (iVar1 == 0) {
+    uVar2 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar2,"ESP_ZIGBEE_COMMAND",
+                  "esp_zb_zcl_scenes_get_scene_membership_cmd_req",0x58c,
+                  "esp_zb_zcl_scenes_get_scene_membership_cmd_req");
+    pcVar3 = (char *)zb_zcl_get_ctx();
+    *pcVar3 = *pcVar3 + '\x01';
+  }
+  else {
+    zb_zcl_start_command_header(1,0,6,0);
+    uVar2 = zb_put_next_htole16(*(undefined2 *)(param_1 + 0x10));
+    zb_zcl_finish_and_send_packet
+              (iVar1,uVar2,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
+               *(undefined1 *)(param_1 + 9),uVar4,5);
+    zb_zcl_frame_get_sequence_number(iVar1);
   }
   return;
 }

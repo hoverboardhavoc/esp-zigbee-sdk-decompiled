@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * https://github.com/espressif/esp-zigbee-sdk/commit/0c62d9f04d6c4a739fd0a010d54749e3cd6ae209
- * Upstream date: 2024-01-19 19:10:32 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.0.9(b7135493)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr -> esp_zigbee_aps.o -> esp_zb_aps_data_indication_handler_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,7 +13,7 @@
 void esp_zb_aps_data_indication_handler_register(undefined4 param_1)
 
 {
-  zb_aps_set_indication_data_rx_cb(zb_aps_data_indication_handler);
+  zb_aps_set_indication_data_rx_cb(0x10000);
   s_zb_apsde_data_ind_handler = param_1;
   return;
 }

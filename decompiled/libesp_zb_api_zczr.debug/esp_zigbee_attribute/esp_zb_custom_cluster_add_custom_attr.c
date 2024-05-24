@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
+ * Upstream date: 2024-05-24 08:27:18 +0000
+ * Upstream subject: esp-zigbee-lib:(73447d7e)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ int esp_zb_custom_cluster_add_custom_attr
     __size = esp_zb_zcl_get_attribute_size(param_3,param_5);
     if (__size == 0xffff) {
       uVar4 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC13,uVar4,0x10000,"esp_zb_custom_cluster_add_custom_attr",0xec0);
+      esp_log_write(1,0x10000,&_L0,uVar4,0x10000,"esp_zb_custom_cluster_add_custom_attr",0xede);
       aiStack_34[0] = 0xff;
     }
     else {
