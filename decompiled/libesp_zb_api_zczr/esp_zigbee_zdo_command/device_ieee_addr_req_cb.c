@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void device_ieee_addr_req_cb(int param_1)
   uVar1 = *puVar2;
   iVar3 = zb_buf_begin_func(param_1);
   uStack_18 = ZDO_INVALID_IEEE_ADDR;
-  uStack_14 = DAT_00011884;
+  uStack_14 = DAT_000119f4;
   if (*(char *)(iVar3 + 1) == '\0') {
     zb_memcpy8(&uStack_18,iVar3 + 2);
     zb_schedule_alarm_cancel(ieee_addr_req_timeout,0xff,0);

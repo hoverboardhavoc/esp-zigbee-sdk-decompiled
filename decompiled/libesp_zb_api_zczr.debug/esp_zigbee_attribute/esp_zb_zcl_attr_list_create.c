@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_zcl_attr_list_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,6 @@ void * esp_zb_zcl_attr_list_create(int param_1)
   
   __s = malloc(0x10);
   memset(__s,0,0x10);
-  esp_zb_internal_zcl_add_attr_list_to_set(__s);
   puVar1 = (undefined2 *)malloc(0x10);
   puVar1[5] = (short)param_1;
   *puVar1 = 0xfffd;

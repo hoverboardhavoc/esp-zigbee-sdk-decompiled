@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_humidity_meas_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,90 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int esp_zb_humidity_meas_cluster_add_attr(int param_1,uint param_2,undefined2 *param_3)
+/* WARNING: Removing unreachable block (ram,0x0001024e) */
+/* WARNING: Removing unreachable block (ram,0x00010254) */
+/* WARNING: Removing unreachable block (ram,0x00010268) */
+/* WARNING: Removing unreachable block (ram,0x00010270) */
+/* WARNING: Removing unreachable block (ram,0x00010278) */
+
+undefined4 esp_zb_humidity_meas_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
 {
-  int iVar1;
+  short sVar1;
+  undefined2 uVar2;
   undefined2 *__ptr;
-  int iVar2;
-  undefined2 *puVar3;
-  undefined4 uVar4;
-  undefined2 uVar5;
-  int aiStack_24 [2];
+  size_t __size;
+  undefined4 uVar3;
+  undefined1 uVar4;
+  ushort *puVar5;
+  ushort *puVar6;
+  int iVar7;
+  void *__dest;
+  int iVar8;
   
-  __ptr = (undefined2 *)malloc(0x10);
-  aiStack_24[0] = 0;
-  iVar2 = esp_zb_attr_list_get_tail(param_1,0x405,param_2,aiStack_24);
-  iVar1 = aiStack_24[0];
-  if (aiStack_24[0] != 0) {
-    free(__ptr);
-    return iVar1;
+  if (param_2 == 0) {
+    uVar4 = 5;
   }
-  *__ptr = (short)param_2;
-  if (param_2 != 2) {
-    if (param_2 < 3) {
-      if (param_2 == 0) {
-        uVar5 = 0x521;
-        goto _L0;
-      }
-    }
-    else if (param_2 != 3) {
-      uVar4 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ATTRIBUTE",&_LC5,uVar4,"ESP_ZIGBEE_ATTRIBUTE");
-      free(__ptr);
+  else {
+    uVar4 = 1;
+    if (2 < (param_2 - 1 & 0xffff)) {
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC6,uVar3,0x10000);
       return 0x102;
     }
   }
-  uVar5 = 0x121;
-_L0:
-  __ptr[1] = uVar5;
-  puVar3 = (undefined2 *)malloc(2);
-  *puVar3 = *param_3;
-  __ptr[4] = (short)((uint)puVar3 >> 0x10);
-  __ptr[2] = 0xffff;
-  __ptr[3] = (short)puVar3;
-  __ptr[5] = 0x405;
-  *(undefined4 *)(__ptr + 6) = 0;
-  if (iVar2 == 0) {
-    *(undefined2 **)(param_1 + 0xc) = __ptr;
+  if (param_1 == (ushort *)0x0) {
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC1,uVar3,0x10000);
+    return 0x102;
+  }
+  sVar1 = *(short *)(*(int *)(param_1 + 6) + 10);
+  puVar5 = param_1;
+  if (sVar1 == 0x405) {
+    while (puVar6 = *(ushort **)(puVar5 + 6), puVar6 != (ushort *)0x0) {
+      puVar5 = puVar6;
+      if (*puVar6 == param_2) {
+        uVar3 = esp_log_timestamp();
+        esp_log_write(1,0x10000,&_LC4,uVar3,0x10000,param_2);
+        return 0x102;
+      }
+    }
+    iVar8 = 0;
   }
   else {
-    *(undefined2 **)(iVar2 + 0xc) = __ptr;
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC2,uVar3,0x10000,sVar1);
+    iVar8 = 0x102;
   }
-  return 0;
+  __ptr = (undefined2 *)malloc(0x10);
+  if (__ptr == (undefined2 *)0x0) {
+    return 0x102;
+  }
+  __size = esp_zb_zcl_get_attribute_size(0x21,param_3);
+  if (__size != 0xffff) {
+    __dest = (void *)0x0;
+    if (__size != 0) {
+      __dest = malloc(__size);
+      if (__dest == (void *)0x0) goto _L0;
+      memcpy(__dest,param_3,__size);
+    }
+    __ptr[2] = 0xffff;
+    iVar7 = *(int *)(param_1 + 6);
+    *(undefined1 *)((int)__ptr + 3) = uVar4;
+    *(undefined1 *)(__ptr + 1) = 0x21;
+    uVar2 = *(undefined2 *)(iVar7 + 10);
+    __ptr[3] = (short)__dest;
+    *__ptr = (short)param_2;
+    __ptr[4] = (short)((uint)__dest >> 0x10);
+    __ptr[5] = uVar2;
+    *(undefined4 *)(__ptr + 6) = 0;
+    *(undefined2 **)(puVar5 + 6) = __ptr;
+    if (iVar8 == 0) {
+      return 0;
+    }
+  }
+_L0:
+  free(__ptr);
+  return 0x102;
 }
 

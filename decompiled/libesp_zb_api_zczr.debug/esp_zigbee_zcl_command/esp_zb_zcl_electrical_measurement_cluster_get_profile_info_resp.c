@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,8 +31,8 @@ void esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp(int param_1
   iVar3 = zb_buf_get_out_func();
   if (iVar3 == 0) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar6,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp",0x6e5,
+    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar6,"ESP_ZIGBEE_COMMAND",
+                  "esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp",0x716,
                   "esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp");
     pcVar5 = (char *)zb_zcl_get_ctx();
     *pcVar5 = *pcVar5 + '\x01';
@@ -57,7 +57,7 @@ void esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp(int param_1
     }
     zb_zcl_finish_and_send_packet
               (iVar3,puVar4,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-               *(undefined1 *)(param_1 + 9),uVar7,*(undefined2 *)(param_1 + 0x20));
+               *(undefined1 *)(param_1 + 9),uVar7,0xb04);
     zb_zcl_frame_get_sequence_number(iVar3);
   }
   return;

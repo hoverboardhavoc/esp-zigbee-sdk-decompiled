@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_on_off_switch_config_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,68 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 esp_zb_on_off_switch_config_cluster_add_attr(int param_1,uint param_2,undefined4 param_3)
+undefined4 esp_zb_on_off_switch_config_cluster_add_attr(int param_1,undefined4 param_2)
 
 {
-  ushort *puVar1;
-  undefined2 *__ptr;
-  undefined4 uVar2;
-  ushort *puVar3;
+  undefined4 uVar1;
   
-  __ptr = (undefined2 *)malloc(0x10);
   if (param_1 == 0) {
-    uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar2,0x10000);
-    uVar2 = 0x102;
+    uVar1 = 1;
   }
   else {
-    puVar1 = *(ushort **)(param_1 + 0xc);
-    if ((*(ushort **)(param_1 + 0xc))[5] == 7) {
-      do {
-        puVar3 = puVar1;
-        if (puVar3 == (ushort *)0x0) break;
-        if (*puVar3 == param_2) {
-          uVar2 = esp_log_timestamp();
-          esp_log_write(1,0x10000,&_LC7,uVar2,0x10000,param_2);
-          return 0x102;
-        }
-        puVar1 = *(ushort **)(puVar3 + 6);
-      } while (*(ushort **)(puVar3 + 6) != (ushort *)0x0);
-      *__ptr = (short)param_2;
-      if (param_2 == 0) {
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x30;
-      }
-      else {
-        if (param_2 != 0x10) {
-          uVar2 = esp_log_timestamp();
-          esp_log_write(1,0x10000,&_L0,uVar2,0x10000);
-          free(__ptr);
-          return 0x102;
-        }
-        *(undefined1 *)((int)__ptr + 3) = 3;
-        *(undefined1 *)(__ptr + 1) = 0x30;
-      }
-      __ptr[2] = 0xffff;
-      __ptr[3] = (short)param_3;
-      __ptr[4] = (short)((uint)param_3 >> 0x10);
-      __ptr[5] = 7;
-      *(undefined4 *)(__ptr + 6) = 0;
-      if (puVar3 == (ushort *)0x0) {
-        *(undefined2 **)(param_1 + 0xc) = __ptr;
-        uVar2 = 0;
-      }
-      else {
-        *(undefined2 **)(puVar3 + 6) = __ptr;
-        uVar2 = 0;
-      }
+    if (param_1 != 0x10) {
+      uVar1 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC11,uVar1,0x10000);
+      return 0x102;
     }
-    else {
-      uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC9,uVar2,0x10000);
-      uVar2 = 0x102;
-    }
+    uVar1 = 3;
   }
-  return uVar2;
+  uVar1 = esp_zb_internal_cluster_add_attr(7,param_1,0x30,uVar1,param_2,0xffff);
+  return uVar1;
 }
 

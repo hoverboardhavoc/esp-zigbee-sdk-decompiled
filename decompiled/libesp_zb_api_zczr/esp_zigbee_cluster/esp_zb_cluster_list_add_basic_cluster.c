@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_basic_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,47 +13,43 @@
 int esp_zb_cluster_list_add_basic_cluster(int param_1,undefined4 param_2,int param_3)
 
 {
-  undefined2 extraout_a0;
-  undefined2 *__ptr;
+  undefined4 *__ptr;
   int iVar1;
-  undefined4 uVar2;
-  undefined *puVar3;
-  int aiStack_2c [4];
+  undefined *puVar2;
+  int aiStack_24 [3];
   
-  __ptr = (undefined2 *)malloc(0x14);
-  iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0,param_3,aiStack_2c);
-  if (aiStack_2c[0] == 0) {
-    uVar2 = zcl_convert_attr_list_to_array(param_2);
+  __ptr = (undefined4 *)malloc(0x14);
+  iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0,param_3,aiStack_24);
+  if (aiStack_24[0] == 0) {
     if (param_3 == 1) {
-      puVar3 = &esp_zb_zcl_basic_init_server;
+      puVar2 = &esp_zb_zcl_basic_init_server;
     }
     else if (param_3 == 2) {
-      puVar3 = &zb_zcl_basic_init_client;
+      puVar2 = &zb_zcl_basic_init_client;
     }
     else {
-      puVar3 = (undefined *)0x0;
+      puVar2 = (undefined *)0x0;
     }
-    *(char *)((int)__ptr + 0xb) = (char)puVar3;
-    *(char *)(__ptr + 6) = (char)((uint)puVar3 >> 8);
+    *(char *)((int)__ptr + 0xb) = (char)puVar2;
+    *(char *)(__ptr + 3) = (char)((uint)puVar2 >> 8);
     *__ptr = 0;
-    __ptr[1] = extraout_a0;
-    *(undefined4 *)(__ptr + 2) = uVar2;
-    *(char *)(__ptr + 4) = (char)param_3;
+    __ptr[1] = param_2;
+    *(char *)(__ptr + 2) = (char)param_3;
     *(undefined1 *)((int)__ptr + 9) = 0;
-    *(undefined1 *)(__ptr + 5) = 0;
-    *(char *)((int)__ptr + 0xd) = (char)((uint)puVar3 >> 0x10);
-    *(undefined1 *)(__ptr + 7) = 0;
-    *(undefined4 *)(__ptr + 8) = 0;
+    *(undefined1 *)((int)__ptr + 10) = 0;
+    *(char *)((int)__ptr + 0xd) = (char)((uint)puVar2 >> 0x10);
+    *(undefined1 *)((int)__ptr + 0xe) = 0;
+    __ptr[4] = 0;
     if (iVar1 == 0) {
-      *(undefined2 **)(param_1 + 0x10) = __ptr;
+      *(undefined4 **)(param_1 + 0x10) = __ptr;
     }
     else {
-      *(undefined2 **)(iVar1 + 0x10) = __ptr;
+      *(undefined4 **)(iVar1 + 0x10) = __ptr;
     }
   }
   else {
     free(__ptr);
   }
-  return aiStack_2c[0];
+  return aiStack_24[0];
 }
 

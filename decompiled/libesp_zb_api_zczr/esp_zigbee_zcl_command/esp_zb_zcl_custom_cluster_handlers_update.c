@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_custom_cluster_handlers_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,10 +34,10 @@ int esp_zb_zcl_custom_cluster_handlers_update(short *param_1)
       iVar5 = zb_zcl_get_ctx(0x102);
       iVar4 = 0x101;
       uVar3 = 0;
-      if (*(byte *)(iVar5 + 0x23c) < 0x14) {
+      if (*(byte *)(iVar5 + 0x2dc) < 0x1e) {
         while( true ) {
           iVar4 = zb_zcl_get_ctx(iVar4);
-          if (*(byte *)(iVar4 + 0x23c) <= uVar3) break;
+          if (*(byte *)(iVar4 + 0x2dc) <= uVar3) break;
           iVar4 = zb_zcl_get_ctx();
           iVar5 = (uVar3 + 0xf) * 0x10;
           iVar4 = iVar4 + iVar5;
@@ -55,7 +55,7 @@ int esp_zb_zcl_custom_cluster_handlers_update(short *param_1)
           uVar3 = uVar3 + 1 & 0xff;
         }
         iVar4 = zb_zcl_get_ctx();
-        if (*(byte *)(iVar4 + 0x23c) == uVar3) {
+        if (*(byte *)(iVar4 + 0x2dc) == uVar3) {
           iVar4 = (uVar3 + 0xf) * 0x10;
           iVar5 = zb_zcl_get_ctx();
           *(short *)(iVar5 + iVar4 + 0xc) = sVar1;
@@ -68,7 +68,7 @@ int esp_zb_zcl_custom_cluster_handlers_update(short *param_1)
           iVar7 = zb_zcl_get_ctx();
           *(int *)(iVar7 + iVar4 + 0x18) = iVar6;
           iVar6 = zb_zcl_get_ctx();
-          *(char *)(iVar6 + 0x23c) = *(char *)(iVar6 + 0x23c) + '\x01';
+          *(char *)(iVar6 + 0x2dc) = *(char *)(iVar6 + 0x2dc) + '\x01';
         }
         iVar4 = 0;
       }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_touchlink_commissioning_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ int esp_zb_cluster_list_add_touchlink_commissioning_cluster
   undefined4 *__ptr;
   int iVar1;
   undefined *puVar2;
-  int aiStack_24 [4];
+  int aiStack_24 [3];
   
   __ptr = (undefined4 *)malloc(0x14);
   iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x1000,param_3,aiStack_24);
@@ -34,7 +34,7 @@ int esp_zb_cluster_list_add_touchlink_commissioning_cluster
     *__ptr = 0x1000;
     *(char *)((int)__ptr + 0xb) = (char)puVar2;
     *(char *)(__ptr + 3) = (char)((uint)puVar2 >> 8);
-    __ptr[1] = 0;
+    __ptr[1] = param_2;
     *(char *)(__ptr + 2) = (char)param_3;
     *(undefined1 *)((int)__ptr + 9) = 0;
     *(undefined1 *)((int)__ptr + 10) = 0;

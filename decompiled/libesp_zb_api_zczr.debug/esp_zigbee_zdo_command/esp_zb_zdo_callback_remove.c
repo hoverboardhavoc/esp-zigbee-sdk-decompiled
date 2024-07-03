@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_callback_remove
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ void esp_zb_zdo_callback_remove(uint param_1)
     }
     if (__ptr == (byte *)0x0) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(2,0x10000,&_LC3,uVar2,0x10000);
+      esp_log_write(2,0x10000,&_LC2,uVar2,0x10000);
     }
     else {
       *(undefined4 *)(pbVar3 + 0xc) = *(undefined4 *)(__ptr + 0xc);

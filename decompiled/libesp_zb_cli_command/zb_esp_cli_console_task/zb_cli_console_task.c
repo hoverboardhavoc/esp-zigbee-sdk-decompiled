@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 8f416d47159477fb2dfe72f817700bc25debb587
- * https://github.com/espressif/esp-zigbee-sdk/commit/8f416d47159477fb2dfe72f817700bc25debb587
- * Upstream date: 2023-03-20 14:23:27 +0800
- * Upstream subject: zcl: support more ZCL cluster(caef391)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_cli_command -> zb_esp_cli_console_task.o -> zb_cli_console_task
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,7 +39,7 @@ void zb_cli_console_task(void)
       }
     }
     linenoiseFree(iVar1);
-    vTaskDelay(1);
+    vTaskDelay(10);
   } while( true );
 }
 

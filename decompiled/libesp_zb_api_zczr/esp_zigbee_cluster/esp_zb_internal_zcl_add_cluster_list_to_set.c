@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_internal_zcl_add_cluster_list_to_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,9 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 esp_zb_internal_zcl_add_cluster_list_to_set(undefined4 param_1)
+undefined4 esp_zb_internal_zcl_add_cluster_list_to_set(void)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  
-  puVar1 = (undefined4 *)malloc(8);
-  if (puVar1 == (undefined4 *)0x0) {
-    uVar2 = 0x101;
-  }
-  else {
-    *puVar1 = param_1;
-    puVar1[1] = s_cluster_list_set;
-    s_cluster_list_set = puVar1;
-    uVar2 = 0;
-  }
-  return uVar2;
+  return 0;
 }
 

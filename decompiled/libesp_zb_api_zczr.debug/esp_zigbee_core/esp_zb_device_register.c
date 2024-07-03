@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,10 +19,10 @@ undefined4 esp_zb_device_register(void)
   int iVar4;
   int iVar5;
   
-  pbVar1 = (byte *)zb_zcl_convert_ep_list_to_device_ctx();
+  pbVar1 = (byte *)esp_zb_internal_ep_list_to_device_ctx();
   if (pbVar1 == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC19,uVar3,"ESP_ZIGBEE_CORE","esp_zb_device_register",0x34f)
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC16,uVar3,"ESP_ZIGBEE_CORE","esp_zb_device_register",0x315)
     ;
     uVar3 = 0xffffffff;
   }
@@ -38,15 +38,15 @@ undefined4 esp_zb_device_register(void)
         iVar4 = zb_af_get_endpoint_desc();
         if (*(int *)(iVar4 + 3) == 0) {
           iVar5 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
-          *(undefined1 *)(iVar5 + 3) = 0x52;
-          *(undefined1 *)(iVar5 + 4) = 0x1d;
+          *(undefined1 *)(iVar5 + 3) = 2;
+          *(undefined1 *)(iVar5 + 4) = 0x1a;
           *(undefined1 *)(iVar5 + 5) = 1;
           *(undefined1 *)(iVar5 + 6) = 0;
         }
       }
       else {
         uVar3 = esp_log_timestamp();
-        esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC20,uVar3,"ESP_ZIGBEE_CORE",
+        esp_log_write(2,"ESP_ZIGBEE_CORE",&_LC17,uVar3,"ESP_ZIGBEE_CORE",
                       **(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
       }
     }

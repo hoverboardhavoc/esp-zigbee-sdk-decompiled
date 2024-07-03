@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_custom_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int esp_zb_cluster_list_add_custom_cluster(int param_1,int param_2,int param_3)
+int esp_zb_cluster_list_add_custom_cluster(int param_1,uint param_2,int param_3)
 
 {
-  undefined2 uVar1;
-  int iVar2;
-  undefined2 extraout_a0;
-  undefined4 *__ptr;
-  int iVar3;
-  undefined4 uVar4;
-  undefined *puVar5;
-  uint3 uStack_34;
-  undefined1 uStack_31;
-  undefined2 uStack_30;
-  int iStack_24;
+  uint *__ptr;
+  int iVar1;
+  undefined *puVar2;
+  uint uStack_34;
+  undefined4 uStack_2c;
+  undefined2 uStack_28;
+  int aiStack_24 [4];
   
-  __ptr = (undefined4 *)malloc(0x14);
-  iStack_24 = 0;
-  iVar3 = esp_zb_cluster_list_get_tail(param_1,param_2,0x8000,param_3,&iStack_24);
-  iVar2 = iStack_24;
-  uVar1 = *(undefined2 *)(*(int *)(param_2 + 0xc) + 10);
-  if (iStack_24 == 0) {
-    uVar4 = zcl_convert_attr_list_to_array(param_2);
+  __ptr = (uint *)malloc(0x14);
+  aiStack_24[0] = 0;
+  iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x8000,param_3,aiStack_24);
+  if (aiStack_24[0] == 0) {
     if (param_3 == 1) {
-      puVar5 = &esp_zb_zcl_custom_cluster_init_server;
+      puVar2 = &esp_zb_zcl_custom_cluster_init_server;
     }
     else if (param_3 == 2) {
-      puVar5 = &esp_zb_zcl_custom_cluster_init_client;
+      puVar2 = &esp_zb_zcl_custom_cluster_init_client;
     }
     else {
-      puVar5 = (undefined *)0x0;
+      puVar2 = (undefined *)0x0;
     }
-    _uStack_34 = CONCAT13((char)puVar5,(uint3)(byte)param_3);
-    uStack_30 = (undefined2)((uint)puVar5 >> 8);
-    *__ptr = CONCAT22(extraout_a0,uVar1);
-    __ptr[1] = uVar4;
-    __ptr[2] = _uStack_34;
-    *(undefined2 *)(__ptr + 3) = uStack_30;
+    uStack_2c = CONCAT13((char)puVar2,(uint3)(byte)param_3);
+    uStack_28 = (undefined2)((uint)puVar2 >> 8);
+    uStack_34 = (uint)*(ushort *)(*(int *)(param_2 + 0xc) + 10);
+    *__ptr = uStack_34;
+    __ptr[1] = param_2;
+    __ptr[2] = uStack_2c;
+    *(undefined2 *)(__ptr + 3) = uStack_28;
     *(undefined1 *)((int)__ptr + 0xe) = 0;
     __ptr[4] = 0;
-    iStack_24 = iVar2;
-    if (iVar3 == 0) {
-      *(undefined4 **)(param_1 + 0x10) = __ptr;
+    if (iVar1 == 0) {
+      *(uint **)(param_1 + 0x10) = __ptr;
     }
     else {
-      *(undefined4 **)(iVar3 + 0x10) = __ptr;
+      *(uint **)(iVar1 + 0x10) = __ptr;
     }
   }
   else {
     free(__ptr);
   }
-  return iStack_24;
+  return aiStack_24[0];
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,7 +54,7 @@ byte esp_zb_zcl_electrical_measurement_cluster_get_profile_info_resp(int param_1
   }
   zb_zcl_finish_and_send_packet
             (iVar4,puVar7,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
-             *(undefined1 *)(param_1 + 9),uVar9,*(undefined2 *)(param_1 + 0x20));
+             *(undefined1 *)(param_1 + 9),uVar9,0xb04);
   pbVar8 = (byte *)zb_buf_begin_func(iVar4);
   if ((*pbVar8 >> 2 & 1) == 0) {
     iVar4 = 1;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_ias_ace.o -> zcl_ias_ace_device_cb_handler_cli
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,7 +39,7 @@ _L0:
   __ptr[2] = uVar3;
   *(char *)(__ptr + 1) = (char)puVar1[1];
   *(undefined2 *)((int)__ptr + 6) = 0x501;
-  esp_zb_core_action_handler_schedule(uVar4 + 0x15d,__ptr);
+  esp_zb_core_action_handler_schedule(uVar4 + 0x14,__ptr);
   uVar2 = esp_err_to_zb_ret();
   free(__ptr);
   return uVar2;

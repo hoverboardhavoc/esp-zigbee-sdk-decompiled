@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_basic_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,239 +10,109 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int esp_zb_basic_cluster_add_attr(int param_1,uint param_2,char *param_3)
+undefined4 esp_zb_basic_cluster_add_attr(uint param_1,undefined4 param_2)
 
 {
-  undefined2 *__ptr;
-  int iVar1;
-  char *pcVar2;
-  size_t sVar3;
-  undefined4 uVar4;
-  int aiStack_24 [2];
+  undefined4 uVar1;
+  undefined4 uVar2;
   
-  __ptr = (undefined2 *)malloc(0x10);
-  aiStack_24[0] = 0;
-  iVar1 = esp_zb_attr_list_get_tail(param_1,0,param_2,aiStack_24);
-  if (aiStack_24[0] != 0) {
-    free(__ptr);
-    return aiStack_24[0];
+  if (param_1 == 0xc) {
+    uVar2 = 1;
+    uVar1 = 0x42;
   }
-  *__ptr = (short)param_2;
-  if (param_2 == 10) {
-    *(undefined1 *)((int)__ptr + 3) = 1;
-    *(undefined1 *)(__ptr + 1) = 0x41;
-    sVar3 = strlen(param_3);
-    pcVar2 = (char *)malloc(sVar3 + 1);
-    strcpy(pcVar2,param_3);
-    __ptr[3] = (short)pcVar2;
-    __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-  }
-  else if (param_2 < 0xb) {
-    if (param_2 == 5) {
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x42;
-      sVar3 = strlen(param_3);
-      pcVar2 = (char *)malloc(sVar3 + 1);
-      strcpy(pcVar2,param_3);
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+  else if (param_1 < 0xd) {
+    if (param_1 == 7) {
+      uVar2 = 1;
+      uVar1 = 0x30;
     }
-    else if (param_2 < 6) {
-      if (param_2 == 2) {
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x20;
-        pcVar2 = (char *)malloc(1);
-        *pcVar2 = *param_3;
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+    else if (param_1 < 8) {
+      if (param_1 == 5) {
+        uVar2 = 1;
+        uVar1 = 0x42;
       }
-      else if (param_2 < 3) {
-        if (param_2 == 0) {
-          *(undefined1 *)((int)__ptr + 3) = 1;
-          *(undefined1 *)(__ptr + 1) = 0x20;
-          pcVar2 = (char *)malloc(1);
-          *pcVar2 = *param_3;
-          __ptr[3] = (short)pcVar2;
-          __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+      else if (param_1 < 6) {
+        if (param_1 < 4) {
+          uVar2 = 1;
+          uVar1 = 0x20;
         }
         else {
-          if (param_2 != 1) goto _L0;
-          *(undefined1 *)((int)__ptr + 3) = 1;
-          *(undefined1 *)(__ptr + 1) = 0x20;
-          pcVar2 = (char *)malloc(1);
-          *pcVar2 = *param_3;
-          __ptr[3] = (short)pcVar2;
-          __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+          if (param_1 != 4) goto _L0;
+          uVar2 = 1;
+          uVar1 = 0x42;
         }
       }
-      else if (param_2 == 3) {
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x20;
-        pcVar2 = (char *)malloc(1);
-        *pcVar2 = *param_3;
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-      }
       else {
-        if (param_2 != 4) goto _L0;
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x42;
-        sVar3 = strlen(param_3);
-        pcVar2 = (char *)malloc(sVar3 + 1);
-        strcpy(pcVar2,param_3);
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+        if (param_1 != 6) goto _L0;
+        uVar2 = 1;
+        uVar1 = 0x42;
       }
     }
-    else if (param_2 == 8) {
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x30;
-      pcVar2 = (char *)malloc(1);
-      *pcVar2 = *param_3;
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+    else if (param_1 == 10) {
+      uVar2 = 1;
+      uVar1 = 0x41;
     }
-    else if (param_2 < 9) {
-      if (param_2 == 6) {
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x42;
-        sVar3 = strlen(param_3);
-        pcVar2 = (char *)malloc(sVar3 + 1);
-        strcpy(pcVar2,param_3);
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+    else if (param_1 < 0xb) {
+      if (param_1 == 8) {
+        uVar2 = 1;
+        uVar1 = 0x30;
       }
       else {
-        if (param_2 != 7) goto _L0;
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x30;
-        pcVar2 = (char *)malloc(1);
-        *pcVar2 = *param_3;
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+        if (param_1 != 9) goto _L0;
+        uVar2 = 1;
+        uVar1 = 0x30;
       }
     }
     else {
-      if (param_2 != 9) {
+      if (param_1 != 0xb) {
 _L0:
-        uVar4 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_L0,uVar4,0x10000);
-        free(__ptr);
+        uVar1 = esp_log_timestamp(param_2);
+        esp_log_write(1,0x10000,&_LC11,uVar1,0x10000);
         return 0x102;
       }
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x30;
-      pcVar2 = (char *)malloc(1);
-      *pcVar2 = *param_3;
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+      uVar2 = 1;
+      uVar1 = 0x42;
     }
   }
-  else if (param_2 == 0x11) {
-    *(undefined1 *)((int)__ptr + 3) = 3;
-    *(undefined1 *)(__ptr + 1) = 0x30;
-    pcVar2 = (char *)malloc(1);
-    *pcVar2 = *param_3;
-    __ptr[3] = (short)pcVar2;
-    __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+  else if (param_1 == 0x12) {
+    uVar2 = 3;
+    uVar1 = 0x10;
   }
-  else if (param_2 < 0x12) {
-    if (param_2 == 0xd) {
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x42;
-      sVar3 = strlen(param_3);
-      pcVar2 = (char *)malloc(sVar3 + 1);
-      strcpy(pcVar2,param_3);
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+  else if (param_1 < 0x13) {
+    if (param_1 == 0x10) {
+      uVar2 = 3;
+      uVar1 = 0x42;
     }
-    else if (param_2 < 0xe) {
-      if (param_2 == 0xb) {
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x42;
-        sVar3 = strlen(param_3);
-        pcVar2 = (char *)malloc(sVar3 + 1);
-        strcpy(pcVar2,param_3);
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+    else if (param_1 < 0x11) {
+      if (param_1 == 0xd) {
+        uVar2 = 1;
+        uVar1 = 0x42;
       }
       else {
-        if (param_2 != 0xc) goto _L0;
-        *(undefined1 *)((int)__ptr + 3) = 1;
-        *(undefined1 *)(__ptr + 1) = 0x42;
-        sVar3 = strlen(param_3);
-        pcVar2 = (char *)malloc(sVar3 + 1);
-        strcpy(pcVar2,param_3);
-        __ptr[3] = (short)pcVar2;
-        __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+        if (param_1 != 0xe) goto _L0;
+        uVar2 = 1;
+        uVar1 = 0x42;
       }
     }
-    else if (param_2 == 0xe) {
-      *(undefined1 *)((int)__ptr + 3) = 1;
-      *(undefined1 *)(__ptr + 1) = 0x42;
-      sVar3 = strlen(param_3);
-      pcVar2 = (char *)malloc(sVar3 + 1);
-      strcpy(pcVar2,param_3);
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-    }
     else {
-      if (param_2 != 0x10) goto _L0;
-      *(undefined1 *)((int)__ptr + 3) = 3;
-      *(undefined1 *)(__ptr + 1) = 0x42;
-      sVar3 = strlen(param_3);
-      pcVar2 = (char *)malloc(sVar3 + 1);
-      strcpy(pcVar2,param_3);
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+      if (param_1 != 0x11) goto _L0;
+      uVar2 = 3;
+      uVar1 = 0x30;
     }
   }
-  else if (param_2 == 0x14) {
-    *(undefined1 *)((int)__ptr + 3) = 3;
-    *(undefined1 *)(__ptr + 1) = 0x18;
-    pcVar2 = (char *)malloc(1);
-    *pcVar2 = *param_3;
-    __ptr[3] = (short)pcVar2;
-    __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+  else if (param_1 == 0x14) {
+    uVar2 = 3;
+    uVar1 = 0x18;
   }
-  else if (param_2 < 0x15) {
-    if (param_2 == 0x12) {
-      *(undefined1 *)((int)__ptr + 3) = 3;
-      *(undefined1 *)(__ptr + 1) = 0x10;
-      pcVar2 = (char *)malloc(1);
-      *pcVar2 = *param_3;
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-    }
-    else {
-      if (param_2 != 0x13) goto _L0;
-      *(undefined1 *)((int)__ptr + 3) = 3;
-      *(undefined1 *)(__ptr + 1) = 0x18;
-      pcVar2 = (char *)malloc(1);
-      *pcVar2 = *param_3;
-      __ptr[3] = (short)pcVar2;
-      __ptr[4] = (short)((uint)pcVar2 >> 0x10);
-    }
+  else if (param_1 == 0x4000) {
+    uVar2 = 1;
+    uVar1 = 0x42;
   }
   else {
-    if (param_2 != 0x4000) goto _L0;
-    *(undefined1 *)((int)__ptr + 3) = 1;
-    *(undefined1 *)(__ptr + 1) = 0x42;
-    sVar3 = strlen(param_3);
-    pcVar2 = (char *)malloc(sVar3 + 1);
-    strcpy(pcVar2,param_3);
-    __ptr[3] = (short)pcVar2;
-    __ptr[4] = (short)((uint)pcVar2 >> 0x10);
+    if (param_1 != 0x13) goto _L0;
+    uVar2 = 3;
+    uVar1 = 0x18;
   }
-  __ptr[2] = 0xffff;
-  __ptr[5] = 0;
-  *(undefined4 *)(__ptr + 6) = 0;
-  if (iVar1 == 0) {
-    *(undefined2 **)(param_1 + 0xc) = __ptr;
-  }
-  else {
-    *(undefined2 **)(iVar1 + 0xc) = __ptr;
-  }
-  return 0;
+  uVar1 = esp_zb_internal_cluster_add_attr(0,param_1,uVar1,uVar2,0xffff);
+  return uVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> active_scan_complete_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,51 +13,47 @@
 void active_scan_complete_cb(int param_1)
 
 {
-  undefined1 *puVar1;
-  byte *pbVar2;
+  byte *pbVar1;
+  void *pvVar2;
   int *piVar3;
-  undefined1 *puVar4;
-  undefined4 uVar5;
+  undefined4 uVar4;
+  uint uVar5;
+  void *__ptr;
   uint uVar6;
-  undefined1 auStack_2a [2];
-  undefined1 uStack_28;
-  undefined1 uStack_27;
-  undefined1 uStack_26;
-  undefined1 uStack_25;
-  undefined1 uStack_24;
-  undefined1 uStack_23;
-  undefined1 uStack_22;
-  undefined1 uStack_21;
   
   piVar3 = (int *)zb_buf_begin_func();
-  if (*piVar3 == 0) {
-    pbVar2 = (byte *)((int)piVar3 + 5);
-    puVar4 = (undefined1 *)malloc((uint)*(byte *)(piVar3 + 1) * 0xb);
-    puVar1 = puVar4;
-    for (uVar6 = 0; uVar6 < *(byte *)(piVar3 + 1); uVar6 = uVar6 + 1) {
-      zb_address_get_pan_id(*pbVar2 & 0x7f,&uStack_28);
-      zb_address_get_short_pan_id(*pbVar2 & 0x7f,auStack_2a);
-      *puVar1 = auStack_2a[0];
-      puVar1[1] = auStack_2a[1];
-      puVar1[2] = pbVar2[2] >> 4 & 1;
-      puVar1[3] = uStack_28;
-      puVar1[4] = uStack_27;
-      puVar1[5] = uStack_26;
-      puVar1[6] = uStack_25;
-      puVar1[7] = uStack_24;
-      puVar1[8] = uStack_23;
-      puVar1[9] = uStack_22;
-      puVar1[10] = uStack_21;
-      puVar1 = puVar1 + 0xb;
-      pbVar2 = pbVar2 + 4;
+  if (zdo_active_scan_user_cb != (code *)0x0) {
+    if (*piVar3 == 0) {
+      pbVar1 = (byte *)((int)piVar3 + 5);
+      uVar6 = (uint)*(byte *)(piVar3 + 1);
+      __ptr = malloc(uVar6 * 0xe);
+      if (__ptr == (void *)0x0) {
+        uVar4 = 0x8a;
+      }
+      else {
+        pvVar2 = __ptr;
+        for (uVar5 = 0; uVar5 < *(byte *)(piVar3 + 1); uVar5 = uVar5 + 1) {
+          zb_address_get_pan_id(*pbVar1 & 0x7f,(int)pvVar2 + 3);
+          zb_address_get_short_pan_id(*pbVar1 & 0x7f,pvVar2);
+          *(byte *)((int)pvVar2 + 2) = pbVar1[2] >> 4 & 1;
+          *(byte *)((int)pvVar2 + 0xb) = (byte)((pbVar1[2] & 3) << 4) | pbVar1[1] >> 4;
+          *(byte *)((int)pvVar2 + 0xc) = pbVar1[2] >> 5 & 1;
+          *(byte *)((int)pvVar2 + 0xd) = pbVar1[2] >> 6 & 1;
+          pvVar2 = (void *)((int)pvVar2 + 0xe);
+          pbVar1 = pbVar1 + 4;
+        }
+        uVar4 = 0;
+      }
     }
-    if (zdo_active_scan_user_cb != (code *)0x0) {
-      (*zdo_active_scan_user_cb)(*piVar3,puVar4);
+    else {
+      __ptr = (void *)0x0;
+      uVar6 = 0;
+      uVar4 = 0;
     }
-  }
-  else {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(2,0x10000,&_LC2,uVar5,0x10000);
+    (*zdo_active_scan_user_cb)(uVar4,uVar6,__ptr,zdo_active_scan_user_cb);
+    if (__ptr != (void *)0x0) {
+      free(__ptr);
+    }
   }
   if (param_1 != 0) {
     zb_buf_free_func(param_1);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_illuminance_meas_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ undefined4 esp_zb_illuminance_meas_cluster_create(void *param_1)
   undefined4 uStack_18;
   undefined2 auStack_14 [6];
   
-  uStack_18 = &DAT_000100ff;
+  uStack_18 = 0x100ff;
   auStack_14[0] = 0xfffe;
   uVar1 = esp_zb_zcl_attr_list_create(0x400);
   if (param_1 != (void *)0x0) {

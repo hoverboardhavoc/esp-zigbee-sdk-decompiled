@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
+ * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
+ * Upstream date: 2024-07-03 12:16:21 +0000
+ * Upstream subject: esp-zigbee-lib:(290e291c)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_commissioning.o -> esp_zcl_process_commissioning_srv_specific_commands
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,7 +38,7 @@ undefined4 esp_zcl_process_commissioning_srv_specific_commands(int param_1)
   
   if (param_1 == 0xff) {
     iVar4 = zb_zcl_get_ctx();
-    *(undefined1 **)(iVar4 + 0x240) = s_commissioning_server_cmd_list;
+    *(undefined1 **)(iVar4 + 0x2e0) = s_commissioning_server_cmd_list;
     return 1;
   }
   iVar4 = zb_zcl_basic_message_create(auStack_40);
