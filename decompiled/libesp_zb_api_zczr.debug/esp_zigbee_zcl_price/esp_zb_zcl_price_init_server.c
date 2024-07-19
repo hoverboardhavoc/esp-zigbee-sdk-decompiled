@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
+ * Upstream date: 2024-07-19 11:49:15 +0800
+ * Upstream subject: esp-zigbee-lib:(94bd7a1a)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_price.o -> esp_zb_zcl_price_init_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,10 +14,10 @@ void esp_zb_zcl_price_init_server(void)
 
 {
   zb_zcl_price_init_server();
-  zb_zcl_device_cb_register(0x28,zcl_price_get_current_price_handler);
-  zb_zcl_device_cb_register(0x29,zcl_price_get_scheduled_prices_handler);
-  zb_zcl_device_cb_register(0x2a,zcl_price_get_tier_labels_handler);
-  zb_zcl_device_cb_register(0x2d,0x10000);
+  zb_zcl_device_cb_register(0x29,zcl_price_get_current_price_handler);
+  zb_zcl_device_cb_register(0x2a,zcl_price_get_scheduled_prices_handler);
+  zb_zcl_device_cb_register(0x2b,zcl_price_get_tier_labels_handler);
+  zb_zcl_device_cb_register(0x2e,0x10000);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
+ * Upstream date: 2024-07-19 11:49:15 +0800
+ * Upstream subject: esp-zigbee-lib:(94bd7a1a)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_door_lock.o -> esp_zb_zcl_door_lock_init_client
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,8 +14,8 @@ void esp_zb_zcl_door_lock_init_client(void)
 
 {
   zb_zcl_door_lock_init_client();
-  zb_zcl_device_cb_register(99,zcl_door_lock_lock_unlock_resp_handler);
   zb_zcl_device_cb_register(100,zcl_door_lock_lock_unlock_resp_handler);
+  zb_zcl_device_cb_register(0x65,zcl_door_lock_lock_unlock_resp_handler);
   return;
 }
 

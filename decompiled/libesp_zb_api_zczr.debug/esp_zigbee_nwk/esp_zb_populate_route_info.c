@@ -1,16 +1,16 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
- * Source: libesp_zb_api_zczr.debug -> esp_zigbee_nwk.o -> esp_zb_set_route_info
+ * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
+ * Upstream date: 2024-07-19 11:49:15 +0800
+ * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Source: libesp_zb_api_zczr.debug -> esp_zigbee_nwk.o -> esp_zb_populate_route_info
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_set_route_info(undefined2 *param_1,byte *param_2)
+void esp_zb_populate_route_info(undefined2 *param_1,byte *param_2)
 
 {
   *param_1 = *(undefined2 *)(param_2 + 3);
