@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,88 +13,113 @@
 int zcl_ota_upgrade_handler(void)
 
 {
-  uint __n;
-  int iVar1;
-  int iVar2;
-  undefined4 uVar3;
-  byte bVar4;
-  uint uVar5;
+  void *pvVar1;
+  uint *puVar2;
+  uint uVar3;
+  uint uVar4;
+  int iVar5;
+  int iVar6;
+  undefined4 uVar7;
+  undefined1 uVar8;
+  uint uVar9;
+  uint uVar10;
   void *__src;
-  uint local_40;
-  ushort uStack_3c;
-  undefined2 uStack_3a;
-  uint uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  int iStack_2c;
-  uint uStack_28;
-  void *pvStack_24;
   
-  iVar1 = zb_buf_get_tail_func(0x38);
-  uStack_34 = 0;
-  uStack_30 = 0;
-  iStack_2c = 0;
-  uStack_28 = 0;
-  pvStack_24 = (void *)0x0;
-  local_40 = (uint)(iVar1 == 0);
-  if (iVar1 == 0) {
-    bVar4 = 0xff;
-  }
-  else {
-    bVar4 = *(byte *)(iVar1 + 4);
-  }
-  _uStack_3c = CONCAT22(0x19,(ushort)bVar4);
-  uStack_38 = (uint)*(byte *)(iVar1 + 0xc);
-  iVar2 = esp_zb_has_core_action_handler();
-  if (iVar2 == 0) {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar3,0x10000,"zcl_ota_upgrade_handler",0x42);
+  iVar5 = zb_buf_get_tail_func(0x38);
+  iVar6 = esp_zb_has_core_action_handler();
+  if (iVar6 == 0) {
+    uVar7 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_L0,uVar7,0x10000,"zcl_ota_upgrade_handler",0x5c);
     return -1;
   }
-  if (*(char *)(iVar1 + 0xc) == '\x02') {
-    __n = (uint)*(byte *)(iVar1 + 0x14);
-    uVar5 = *(uint *)(iVar1 + 0x10);
-    __src = *(void **)(iVar1 + 0x18);
-    if (__n + uVar5 < 0x39) {
-      memcpy(ota_header_0,__src,__n);
+  if (message_2 == (uint *)0x0) {
+    message_2 = (uint *)malloc(0x30);
+    if (message_2 == (uint *)0x0) {
+      uVar7 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC3,uVar7,0x10000,"zcl_ota_upgrade_handler",0x5f);
+      return -0x16;
     }
-    else if (uVar5 < 0x38) {
-      memcpy(ota_header_0 + uVar5,__src,0x38 - uVar5);
-      uStack_28 = CONCAT22(uStack_28._2_2_,(short)((__n + uVar5) * 0x10000 >> 0x10) + -0x38);
-      pvStack_24 = (void *)((0x38 - uVar5) + (int)__src);
-    }
-    else {
-      uStack_28 = CONCAT22(uStack_28._2_2_,(ushort)*(byte *)(iVar1 + 0x14));
-      pvStack_24 = __src;
-    }
+    memset(message_2,0,0x30);
   }
-  uStack_34 = CONCAT22(ota_header_0._12_2_,ota_header_0._10_2_);
-  uStack_30 = ota_header_0._14_4_;
-  iStack_2c = ota_header_0._52_4_ + -0x38;
-  if (((*(char *)(iVar1 + 0xc) == '\x02') && (pvStack_24 == (void *)0x0)) &&
-     ((uStack_28 & 0xffff) == 0)) {
-    *(undefined1 *)(iVar1 + 0xc) = 6;
-    iVar2 = 0;
+  puVar2 = message_2;
+  *message_2 = (uint)(iVar5 == 0);
+  if (iVar5 == 0) {
+    uVar8 = 0;
   }
   else {
-    iVar2 = esp_zb_core_action_handler_schedule(4,&local_40);
-    if (iVar2 == 0) {
-      *(undefined1 *)(iVar1 + 0xc) = 6;
-      return 0;
-    }
-    if (iVar2 == 0x105) {
-      *(undefined1 *)(iVar1 + 0xc) = 10;
-      return -1;
-    }
-    if (iVar2 == 0x10c) {
-      *(undefined1 *)(iVar1 + 0xc) = 9;
-      return -1;
-    }
-    *(undefined1 *)(iVar1 + 0xc) = 7;
+    uVar8 = *(undefined1 *)(iVar5 + 4);
   }
-  if (iVar2 != 0) {
-    iVar2 = -1;
+  *(undefined1 *)(puVar2 + 1) = uVar8;
+  *(undefined2 *)((int)puVar2 + 6) = 0x19;
+  puVar2[2] = (uint)*(byte *)(iVar5 + 0xc);
+  *(undefined2 *)(puVar2 + 10) = 0;
+  puVar2[0xb] = 0;
+  if (*(char *)(iVar5 + 0xc) == '\x02') {
+    uVar10 = (uint)*(byte *)(iVar5 + 0x14);
+    uVar4 = *(uint *)(iVar5 + 0x10);
+    __src = *(void **)(iVar5 + 0x18);
+    if (s_ota_header_1 == (void *)0x0) {
+      s_ota_header_1 = malloc(0x45);
+    }
+    while ((puVar2 = message_2, pvVar1 = s_ota_header_1, uVar10 != 0 &&
+           (uVar4 < s_ota_header_length_0))) {
+      uVar9 = s_ota_header_length_0 - uVar4;
+      uVar3 = uVar10;
+      if (uVar9 < uVar10) {
+        uVar3 = uVar9;
+      }
+      uVar9 = uVar3 & 0xff;
+      memcpy((void *)((int)s_ota_header_1 + uVar4),__src,uVar9);
+      uVar10 = uVar10 - (uVar3 & 0xff) & 0xff;
+      uVar4 = uVar4 + uVar9;
+      __src = (void *)((int)__src + uVar9);
+      if (0x37 < uVar4) {
+        s_ota_header_length_0 = *(ushort *)((int)pvVar1 + 6);
+      }
+      if (s_ota_header_length_0 <= uVar4) {
+        zb_populate_ota_file_header(message_2 + 3,pvVar1);
+      }
+    }
+    if (uVar10 == 0) {
+      *(undefined1 *)(iVar5 + 0xc) = 6;
+      iVar6 = 0;
+      goto _L0;
+    }
+    *(short *)(message_2 + 10) = (short)uVar10;
+    puVar2[0xb] = (uint)__src;
+    iVar6 = esp_zb_core_action_handler_schedule(4);
   }
-  return iVar2;
+  else {
+    iVar6 = esp_zb_core_action_handler_schedule(4);
+    if ((byte)(*(char *)(iVar5 + 0xc) - 3U) < 2) {
+      s_ota_header_length_0 = 0x38;
+      if (s_ota_header_1 != (void *)0x0) {
+        free(s_ota_header_1);
+        s_ota_header_1 = (void *)0x0;
+      }
+      if (message_2 != (uint *)0x0) {
+        free(message_2);
+        message_2 = (uint *)0x0;
+      }
+    }
+  }
+  if (iVar6 == 0) {
+    *(undefined1 *)(iVar5 + 0xc) = 6;
+    return 0;
+  }
+  if (iVar6 == 0x105) {
+    *(undefined1 *)(iVar5 + 0xc) = 10;
+    return -1;
+  }
+  if (iVar6 == 0x10c) {
+    *(undefined1 *)(iVar5 + 0xc) = 9;
+    return -1;
+  }
+  *(undefined1 *)(iVar5 + 0xc) = 7;
+_L0:
+  if (iVar6 != 0) {
+    iVar6 = -1;
+  }
+  return iVar6;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> esp_zb_schedule_user_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ int esp_zb_schedule_user_cb(int param_1)
     return iVar2;
   }
   iVar2 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
-                    0x4ff);
+                    0x520);
   if (iVar2 == 0x104) {
     return -6;
   }

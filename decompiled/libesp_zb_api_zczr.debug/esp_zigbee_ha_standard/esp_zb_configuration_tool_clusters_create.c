@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_ha_standard.o -> esp_zb_configuration_tool_clusters_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,18 +13,25 @@
 undefined4 esp_zb_configuration_tool_clusters_create(int param_1)
 
 {
-  undefined4 uVar1;
+  int iVar1;
   undefined4 uVar2;
+  undefined4 uVar3;
   
-  uVar1 = esp_zb_zcl_cluster_list_create();
-  uVar2 = esp_zb_basic_cluster_create(param_1);
-  esp_zb_cluster_list_add_basic_cluster(uVar1,uVar2,1);
-  uVar2 = esp_zb_identify_cluster_create(param_1 + 2);
-  esp_zb_cluster_list_add_identify_cluster(uVar1,uVar2,1);
-  uVar2 = esp_zb_zcl_attr_list_create(3);
-  esp_zb_cluster_list_add_identify_cluster(uVar1,uVar2,2);
-  uVar2 = esp_zb_zcl_attr_list_create(4);
-  esp_zb_cluster_list_add_groups_cluster(uVar1,uVar2,2);
-  return uVar1;
+  if (param_1 == 0) {
+    iVar1 = 0;
+  }
+  else {
+    iVar1 = param_1 + 2;
+  }
+  uVar2 = esp_zb_zcl_cluster_list_create();
+  uVar3 = esp_zb_basic_cluster_create(param_1);
+  esp_zb_cluster_list_add_basic_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_identify_cluster_create(iVar1);
+  esp_zb_cluster_list_add_identify_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_zcl_attr_list_create(3);
+  esp_zb_cluster_list_add_identify_cluster(uVar2,uVar3,2);
+  uVar3 = esp_zb_zcl_attr_list_create(4);
+  esp_zb_cluster_list_add_groups_cluster(uVar2,uVar3,2);
+  return uVar2;
 }
 

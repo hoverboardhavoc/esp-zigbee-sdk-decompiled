@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr -> esp_zigbee_ha_standard.o -> esp_zb_window_covering_controller_ep_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ undefined4 esp_zb_window_covering_controller_ep_create(undefined1 param_1,undefi
   uVar1 = esp_zb_ep_list_create();
   uStack_18 = CONCAT31(0x30104,param_1);
   uStack_14 = CONCAT11((byte)((uint)_uStack_14 >> 8) & 0xf0,2);
-  uVar2 = esp_zb_window_covering_controller_cluster_create(param_2);
+  uVar2 = esp_zb_window_covering_controller_clusters_create(param_2);
   esp_zb_ep_list_add_ep(uVar1,uVar2,uStack_18,uStack_14);
   return uVar1;
 }

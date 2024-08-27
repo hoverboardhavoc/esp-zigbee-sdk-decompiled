@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
- * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
- * Upstream date: 2024-07-19 11:49:15 +0800
- * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_ota_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -133,7 +133,7 @@ _L0:
       return 0x102;
     }
     puVar2 = (undefined4 *)malloc(0x10);
-    pvVar3 = malloc((uint)*(byte *)(param_3 + 2) << 3);
+    pvVar3 = calloc((uint)*(byte *)(param_3 + 2),8);
     puVar4 = (undefined1 *)malloc(1);
     *puVar2 = puVar4;
     *puVar4 = *(undefined1 *)param_3;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> device_binding_table_req_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,10 +17,14 @@ void device_binding_table_req_timeout(uint param_1)
   byte *__ptr;
   int iVar2;
   byte *pbVar3;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   iVar2 = esp_zb_zdo_callback_find();
   if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
-    (**(code **)(iVar2 + 4))(0,*(undefined4 *)(iVar2 + 8));
+    uStack_14 = 0;
+    uStack_18 = 0x85;
+    (**(code **)(iVar2 + 4))(&uStack_18,*(undefined4 *)(iVar2 + 8));
   }
   pbVar1 = zdo_resp_cb_list_head;
   __ptr = zdo_resp_cb_list_head;

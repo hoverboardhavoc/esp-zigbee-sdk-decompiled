@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_humidity_meas_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,10 +22,7 @@ int esp_zb_cluster_list_add_humidity_meas_cluster(int param_1,undefined4 param_2
   iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x405,param_3,aiStack_24);
   if (aiStack_24[0] == 0) {
     if (param_3 == 1) {
-      puVar2 = &zb_zcl_rel_humidity_init_server;
-    }
-    else if (param_3 == 2) {
-      puVar2 = &zb_zcl_rel_humidity_init_client;
+      puVar2 = &esp_zb_zcl_rel_humidity_measurement_init_server;
     }
     else {
       puVar2 = (undefined *)0x0;

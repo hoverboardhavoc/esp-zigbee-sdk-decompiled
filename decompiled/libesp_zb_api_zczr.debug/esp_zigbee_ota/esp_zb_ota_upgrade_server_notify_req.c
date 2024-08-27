@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_ota.o -> esp_zb_ota_upgrade_server_notify_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,100 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
+int esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
 
 {
-  undefined2 uVar1;
-  int iVar2;
-  undefined1 *puVar3;
-  undefined1 *puVar4;
-  undefined4 uVar5;
+  int iVar1;
+  void *__ptr;
+  undefined1 *puVar2;
+  undefined4 uVar3;
+  void *__ptr_00;
   
-  iVar2 = zb_zcl_get_ctx();
-  if (*(int *)(iVar2 + 0xb8) == 0) {
-    zb_zcl_ota_upgrade_init_server(*param_1,next_data_req_cb);
+  iVar1 = get_ota_upgrade_server_variables(*param_1);
+  if ((iVar1 == 0) || ((uint)*(byte *)(iVar1 + 8) <= (uint)(byte)param_1[1])) {
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,0x100c4,&_LC8,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xb7,
+                  *(byte *)(iVar1 + 8) - 1);
+    iVar1 = 0x102;
   }
-  iVar2 = zb_zcl_get_attr_desc_a(*param_1,0x19,1,0xfff0);
-  if (iVar2 == 0) {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar5,0x10000,"esp_zb_ota_upgrade_server_notify_req",0x6d);
-    uVar5 = 0xffffffff;
+  else if (*(int *)(param_1 + 0x24) == 0) {
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,0x100c4,&_LC9,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xb9);
+    iVar1 = 0x102;
   }
   else {
-    s_ota_server_variable = *(int *)(iVar2 + 6);
-    if (s_ota_server_variable == 0) {
-      uVar5 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC1,uVar5,0x10000,"esp_zb_ota_upgrade_server_notify_req",0x6f);
-      uVar5 = 0x105;
-    }
-    else if ((byte)param_1[1] < *(byte *)(s_ota_server_variable + 8)) {
-      puVar3 = (undefined1 *)malloc(0x38);
-      if (*(int *)(param_1 + 0x14) == 0) {
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC7,uVar5,0x10000,"esp_zb_ota_upgrade_server_notify_req",0x74);
-        uVar5 = 0x102;
-      }
-      else {
-        *puVar3 = 0x1e;
-        puVar3[1] = 0xf1;
-        puVar3[2] = 0xee;
-        puVar3[3] = 0xb;
-        puVar3[4] = 0;
-        puVar3[5] = 1;
-        puVar3[6] = 0x38;
-        puVar3[7] = 0;
-        puVar3[8] = 0x10;
-        puVar3[9] = 0;
-        uVar1 = *(undefined2 *)(param_1 + 8);
-        puVar3[10] = (char)uVar1;
-        puVar3[0xb] = (char)((ushort)uVar1 >> 8);
-        uVar1 = *(undefined2 *)(param_1 + 10);
-        puVar3[0xc] = (char)uVar1;
-        puVar3[0xd] = (char)((ushort)uVar1 >> 8);
-        uVar5 = *(undefined4 *)(param_1 + 0xc);
-        puVar3[0xe] = (char)uVar5;
-        puVar3[0xf] = (char)((uint)uVar5 >> 8);
-        puVar3[0x10] = (char)((uint)uVar5 >> 0x10);
-        puVar3[0x11] = (char)((uint)uVar5 >> 0x18);
-        puVar3[0x12] = 2;
-        puVar3[0x13] = 0;
-        memset(puVar3 + 0x14,0,0x20);
-        iVar2 = *(int *)(param_1 + 0x10) + 0x38;
-        puVar3[0x34] = (char)iVar2;
-        puVar3[0x35] = (char)((uint)iVar2 >> 8);
-        puVar3[0x36] = (char)((uint)iVar2 >> 0x10);
-        puVar3[0x37] = (char)((uint)iVar2 >> 0x18);
-        s_ota_next_data_cb = *(undefined4 *)(param_1 + 0x14);
-        iVar2 = zb_buf_get_out_func();
-        if (iVar2 == 0) {
-          __assert_func("//builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_ota.c"
-                        ,0x83,"esp_zb_ota_upgrade_server_notify_req","bufid");
-        }
-        else {
-          puVar4 = (undefined1 *)zb_buf_get_tail_func(0x10);
-          *puVar4 = *param_1;
-          puVar4[1] = param_1[1];
-          *(undefined1 **)(puVar4 + 4) = puVar3;
-          *(undefined4 *)(puVar4 + 0xc) = *(undefined4 *)(param_1 + 4);
-          puVar4[8] = param_1[2];
-          iVar2 = zb_zcl_ota_upgrade_insert_file(iVar2);
-          if (iVar2 == 0) {
-            return 0;
-          }
-        }
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC10,uVar5,0x10000,"esp_zb_ota_upgrade_server_notify_req",0x85,
-                      param_1[1]);
-        uVar5 = 0x102;
-      }
+    __ptr_00 = *(void **)((uint)(byte)param_1[1] * 8 + *(int *)(iVar1 + 0xc));
+    __ptr = (void *)zb_zcl_create_ota_upgrade_header(param_1 + 8);
+    s_ota_next_data_cb = *(undefined4 *)(param_1 + 0x24);
+    iVar1 = zb_zcl_get_ctx();
+    *(code **)(iVar1 + 0xb8) = next_data_req_cb;
+    iVar1 = zb_buf_get_out_func();
+    if (iVar1 == 0) {
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,0x100c4,&_LC10,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc1);
+      iVar1 = 0x102;
     }
     else {
-      uVar5 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC6,uVar5,0x10000,"esp_zb_ota_upgrade_server_notify_req",0x70,
-                    *(byte *)(s_ota_server_variable + 8) - 1);
-      uVar5 = 0x102;
+      puVar2 = (undefined1 *)zb_buf_get_tail_func(0x10);
+      *puVar2 = *param_1;
+      puVar2[1] = param_1[1];
+      *(void **)(puVar2 + 4) = __ptr;
+      *(undefined4 *)(puVar2 + 0xc) = *(undefined4 *)(param_1 + 4);
+      puVar2[8] = param_1[2];
+      iVar1 = zb_zcl_ota_upgrade_insert_file(iVar1);
+      if (iVar1 != 0) {
+        uVar3 = esp_log_timestamp();
+        esp_log_write(1,0x100c4,&_LC11,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc4,
+                      param_1[1]);
+        iVar1 = 0x102;
+      }
+    }
+    if ((__ptr != (void *)0x0) && (iVar1 != 0)) {
+      free(__ptr);
+    }
+    if ((__ptr_00 != (void *)0x0) && (__ptr_00 != __ptr)) {
+      free(__ptr_00);
     }
   }
-  return uVar5;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> esp_zb_bdb_cancel_steering
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ undefined4 esp_zb_bdb_cancel_steering(void)
   if (iVar1 == 0) {
     uVar2 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC23,uVar2,"ESP_ZIGBEE_CORE","esp_zb_bdb_cancel_steering",
-                  0x494);
+                  0x4b5);
     uVar2 = 0xffffffff;
   }
   else {

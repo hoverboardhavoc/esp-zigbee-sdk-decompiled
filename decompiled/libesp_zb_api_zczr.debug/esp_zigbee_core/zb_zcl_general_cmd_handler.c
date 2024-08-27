@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> zb_zcl_general_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,59 +40,88 @@ int zb_zcl_general_cmd_handler(undefined4 param_1)
         }
         else if (bVar1 < 5) {
           if (bVar1 == 0) {
-            if (*(short *)(iVar3 + 0xf) != 0x15) {
-              return 0;
+            if (*(short *)(iVar3 + 0xf) == 0x15) {
+              esp_zcl_commissioning_sync_with_attributes();
+              iVar4 = 0;
+              iVar2 = 0;
             }
-            esp_zcl_commissioning_sync_with_attributes();
-            return 0;
+            else {
+              iVar4 = 0;
+              iVar2 = 0;
+            }
           }
-          if (bVar1 != 1) {
-            return 0;
-          }
-          if ((*(short *)(iVar3 + 0xf) == 10) &&
-             (iVar2 = zb_zcl_time_server_read_attr_handle(param_1), iVar2 != 0)) {
-            iVar4 = 0;
+          else if (bVar1 == 1) {
+            if ((*(short *)(iVar3 + 0xf) == 10) &&
+               (iVar2 = zb_zcl_time_server_read_attr_handle(param_1), iVar2 != 0)) {
+              iVar4 = 0;
+            }
+            else {
+              iVar4 = zcl_cmd_read_attr_resp_handler(param_1);
+              iVar2 = 1;
+            }
           }
           else {
-            iVar4 = zcl_cmd_read_attr_resp_handler(param_1);
-            iVar2 = 1;
+            iVar4 = 0;
+            iVar2 = 0;
           }
         }
-        else {
-          if (bVar1 != 7) {
-            return 0;
-          }
+        else if (bVar1 == 7) {
           iVar4 = zcl_cmd_config_report_resp_handler(param_1);
           iVar2 = 1;
+        }
+        else {
+          iVar4 = 0;
+          iVar2 = 0;
+        }
+      }
+      else if (bVar1 == 0xb) {
+        if (*(short *)(iVar3 + 0xf) == 0x19) {
+          iVar4 = 0;
+          iVar2 = 0;
+        }
+        else if (*(short *)(iVar3 + 0xf) == -0x400) {
+          iVar4 = 0;
+          iVar2 = 0;
+        }
+        else {
+          iVar4 = zcl_cmd_default_resp_handler(param_1);
+          iVar2 = 1;
+        }
+      }
+      else if (bVar1 < 0xc) {
+        if (bVar1 == 10) {
+          zb_zcl_report_attr_cmd_handler(param_1);
+          iVar3 = 0;
+          iVar4 = 0;
+          iVar2 = 1;
+        }
+        else {
+          iVar4 = 0;
+          iVar2 = 0;
         }
       }
       else if (bVar1 == 0xd) {
         iVar4 = zcl_cmd_disc_attr_resp_handler(param_1);
         iVar2 = 1;
       }
-      else {
-        if (0xd < bVar1) {
-          if (((bVar1 != 0x14) && (bVar1 != 0x16)) && (bVar1 != 0x12)) {
-            return 0;
-          }
-          uVar5 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar5,"ESP_ZIGBEE_CORE",
-                        *(undefined1 *)(iVar3 + 0x13));
-          return 0;
-        }
-        if (bVar1 != 0xb) {
-          return 0;
-        }
-        if (*(short *)(iVar3 + 0xf) == 0x19) {
-          return 0;
-        }
-        if (*(short *)(iVar3 + 0xf) == -0x400) {
-          return 0;
-        }
-        iVar4 = zcl_cmd_default_resp_handler(param_1);
-        iVar2 = 1;
+      else if (bVar1 < 0xd) {
+        iVar4 = 0;
+        iVar2 = 0;
       }
-      zb_zcl_send_default_handler(param_1,iVar3,iVar4 != 0);
+      else if (((bVar1 == 0x14) || (bVar1 == 0x16)) || (bVar1 == 0x12)) {
+        uVar5 = esp_log_timestamp();
+        esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar5,"ESP_ZIGBEE_CORE",*(undefined1 *)(iVar3 + 0x13)
+                     );
+        iVar4 = 0;
+        iVar2 = 0;
+      }
+      else {
+        iVar4 = 0;
+        iVar2 = 0;
+      }
+      if ((iVar2 != 0) && (iVar3 != 0)) {
+        zb_zcl_send_default_handler(param_1,iVar3,iVar4 != 0);
+      }
     }
   }
   else {

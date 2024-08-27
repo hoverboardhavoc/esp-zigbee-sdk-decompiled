@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
- * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
- * Upstream date: 2024-07-19 11:49:15 +0800
- * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
+ * Upstream date: 2024-08-27 08:46:30 +0000
+ * Upstream subject: esp-zigbee-lib:(6bd34178)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_srv_status_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
   puVar2 = (uint *)zb_buf_get_tail_func(param_1,0x38);
   if (*puVar2 < 0x26) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,"zcl_ota_upgrade_srv_status_handler",0x9f);
+    esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,"zcl_ota_upgrade_srv_status_handler",0xd9);
     uVar4 = 0xffffffff;
   }
   else {
