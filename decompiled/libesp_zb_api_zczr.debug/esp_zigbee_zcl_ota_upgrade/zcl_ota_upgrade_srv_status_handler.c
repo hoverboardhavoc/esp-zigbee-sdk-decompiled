@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_srv_status_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
   
   iVar1 = zb_buf_get_tail_func(0x38);
   puVar2 = (uint *)zb_buf_get_tail_func(param_1,0x38);
-  if (*puVar2 < 0x26) {
+  if (*puVar2 < 0x27) {
     uVar4 = esp_log_timestamp();
     esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,"zcl_ota_upgrade_srv_status_handler",0xd9);
     uVar4 = 0xffffffff;
@@ -55,10 +55,10 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
     }
     _uStack_30 = CONCAT22(0x19,(ushort)bVar5);
     piVar3 = (int *)zb_buf_get_tail_func(param_1,0x38);
-    iStack_20 = *piVar3 + -0x26;
+    iStack_20 = *piVar3 + -0x27;
     piVar3 = (int *)zb_buf_get_tail_func(param_1,0x38);
     iVar6 = *piVar3;
-    if (iVar6 == 0x27) {
+    if (iVar6 == 0x28) {
       uStack_1c = CONCAT22(uStack_1c._2_2_,*(undefined2 *)(iVar1 + 0x10));
       uStack_18 = *(uint *)(iVar1 + 0x12);
       puVar7 = *(undefined4 **)(iVar1 + 0xc);
@@ -66,7 +66,7 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
       uStack_28 = puVar7[1];
       uStack_24 = CONCAT31(uStack_24._1_3_,*(undefined1 *)(puVar7 + 2));
     }
-    else if (iVar6 == 0x28) {
+    else if (iVar6 == 0x29) {
       uStack_34 = (uint)*(byte *)(iVar1 + 0x14);
       uStack_1c = CONCAT22(uStack_1c._2_2_,(short)((uint)*(undefined4 *)(iVar1 + 0x14) >> 8));
       uStack_18 = *(int *)(iVar1 + 0x18) << 8 | (uint)*(byte *)(iVar1 + 0x17);
@@ -76,7 +76,7 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
       uStack_28 = puVar7[1];
       uStack_24 = CONCAT31(uStack_24._1_3_,*(undefined1 *)(puVar7 + 2));
     }
-    else if (iVar6 == 0x26) {
+    else if (iVar6 == 0x27) {
       uStack_1c = CONCAT22(uStack_1c._2_2_,*(undefined2 *)(iVar1 + 0x10));
       uStack_18 = *(uint *)(iVar1 + 0x12);
       puVar7 = *(undefined4 **)(iVar1 + 0xc);

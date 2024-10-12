@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_callback_find
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,14 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-byte * esp_zb_zdo_callback_find(uint param_1)
+void esp_zb_zdo_callback_find(uint param_1)
 
 {
   byte *pbVar1;
-  undefined4 uVar2;
   
-  pbVar1 = zdo_resp_cb_list_head;
-  while( true ) {
-    if (pbVar1 == (byte *)0x0) {
-      uVar2 = esp_log_timestamp();
-      esp_log_write(2,0x10000,&_LC1,uVar2,0x10000);
-      return (byte *)0x0;
-    }
-    if (*pbVar1 == param_1) break;
-    pbVar1 = *(byte **)(pbVar1 + 0xc);
+  for (pbVar1 = zdo_resp_cb_list_head; (pbVar1 != (byte *)0x0 && (*pbVar1 != param_1));
+      pbVar1 = *(byte **)(pbVar1 + 0xc)) {
   }
-  return pbVar1;
+  return;
 }
 

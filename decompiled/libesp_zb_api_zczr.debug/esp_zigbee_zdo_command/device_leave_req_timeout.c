@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> device_leave_req_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ void device_leave_req_timeout(undefined4 param_1)
   int iVar2;
   
   uVar1 = esp_log_timestamp();
-  esp_log_write(3,0x10000,&_L0,uVar1,0x10000);
+  esp_log_write(3,"ESP_ZIGBEE_API_ZDO",&_L0,uVar1,"ESP_ZIGBEE_API_ZDO");
   iVar2 = esp_zb_zdo_callback_find(param_1);
   if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
     (**(code **)(iVar2 + 4))(0x85,*(undefined4 *)(iVar2 + 8));

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_ota_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -122,11 +122,11 @@ undefined4 esp_zb_ota_cluster_add_attr(undefined4 param_1,uint param_2,undefined
         goto _L0;
       }
       zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c",
-                0x616);
+                0x617);
     }
     if (puVar2 == (undefined4 *)0x0) {
       zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c",
-                0x62d);
+                0x62e);
 _L0:
       uVar6 = esp_log_timestamp();
       esp_log_write(1,0x10000,&_LC11,uVar6,0x10000);

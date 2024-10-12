@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_aps.o -> zb_aps_data_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void zb_aps_data_confirm_handler(int param_1)
   
   if (param_1 == 0) {
     param_1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/aps/esp_zigbee_aps.c"
-                        ,0x82);
+                        ,0x83);
   }
   zb_buf_begin_func();
   uVar1 = zb_aps_full_hdr_size();

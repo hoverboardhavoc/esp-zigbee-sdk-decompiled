@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_find_color_dimmable_light
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,66 +14,29 @@ void esp_zb_zdo_find_color_dimmable_light(undefined1 *param_1,undefined4 param_2
 
 {
   undefined2 uVar1;
-  byte *pbVar2;
-  byte *pbVar3;
-  byte *__ptr;
-  undefined4 uVar4;
-  undefined1 *puVar5;
-  uint uVar6;
+  undefined4 uVar2;
+  undefined1 *puVar3;
   
-  uVar4 = zb_buf_get_out_func();
-  puVar5 = (undefined1 *)zb_buf_initial_alloc_func(0x10);
-  *puVar5 = *param_1;
-  puVar5[1] = param_1[1];
-  puVar5[2] = param_1[2];
+  uVar2 = zb_buf_get_out_func();
+  puVar3 = (undefined1 *)zb_buf_initial_alloc_func(0x10);
+  *puVar3 = *param_1;
+  puVar3[1] = param_1[1];
+  puVar3[2] = param_1[2];
   uVar1 = *(undefined2 *)(param_1 + 2);
-  puVar5[8] = 6;
-  puVar5[3] = (char)((ushort)uVar1 >> 8);
-  puVar5[4] = 4;
-  puVar5[5] = 1;
-  puVar5[6] = 3;
-  puVar5[10] = 8;
-  puVar5[0xd] = 3;
-  puVar5[7] = 0;
-  puVar5[9] = 0;
-  puVar5[0xb] = 0;
-  puVar5[0xc] = 0;
-  uVar6 = zb_zdo_match_desc_req(uVar4,find_device_cb);
-  zb_schedule_app_alarm(match_desc_req_device_timeout,uVar6,5000000,0);
-  pbVar2 = zdo_resp_cb_list_head;
-  __ptr = (byte *)malloc(0x10);
-  if (__ptr != (byte *)0x0) {
-    if (pbVar2 == (byte *)0x0) {
-      *__ptr = (byte)uVar6;
-      __ptr[1] = 6;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      zdo_resp_cb_list_head = __ptr;
-    }
-    else {
-      do {
-        pbVar3 = pbVar2;
-        if (*pbVar3 == uVar6) {
-          free(__ptr);
-          return;
-        }
-        pbVar2 = *(byte **)(pbVar3 + 0xc);
-      } while (*(byte **)(pbVar3 + 0xc) != (byte *)0x0);
-      *__ptr = (byte)uVar6;
-      __ptr[1] = 6;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      *(byte **)(pbVar3 + 0xc) = __ptr;
-    }
-  }
+  puVar3[8] = 6;
+  puVar3[3] = (char)((ushort)uVar1 >> 8);
+  puVar3[4] = 4;
+  puVar3[5] = 1;
+  puVar3[6] = 3;
+  puVar3[10] = 8;
+  puVar3[0xd] = 3;
+  puVar3[7] = 0;
+  puVar3[9] = 0;
+  puVar3[0xb] = 0;
+  puVar3[0xc] = 0;
+  uVar2 = zb_zdo_match_desc_req(uVar2,find_device_cb);
+  zb_schedule_app_alarm(match_desc_req_device_timeout,uVar2,5000000,0);
+  esp_zb_zdo_callback_register(uVar2,6,param_2,param_3);
   return;
 }
 

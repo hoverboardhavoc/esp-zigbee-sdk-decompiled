@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_device_leave_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,14 +15,10 @@ void esp_zb_zdo_device_leave_req(void *param_1,undefined4 param_2,undefined4 par
 {
   undefined2 uVar1;
   undefined2 uVar2;
-  byte *pbVar3;
-  byte *pbVar4;
-  byte *__ptr;
-  undefined4 uVar5;
+  undefined4 uVar3;
   void *__dest;
-  uint uVar6;
   
-  uVar5 = zb_buf_get_out_func();
+  uVar3 = zb_buf_get_out_func();
   __dest = (void *)zb_buf_get_tail_func(0xb);
   memcpy(__dest,param_1,8);
   uVar1 = *(undefined2 *)((int)param_1 + 10);
@@ -31,42 +27,9 @@ void esp_zb_zdo_device_leave_req(void *param_1,undefined4 param_2,undefined4 par
   *(undefined1 *)((int)__dest + 9) = *(undefined1 *)((int)param_1 + 9);
   *(byte *)((int)__dest + 10) =
        *(byte *)((int)__dest + 10) & 0x3f | (byte)uVar1 & 0x80 | (byte)uVar2 & 0x40;
-  uVar6 = zdo_mgmt_leave_req(uVar5,device_leave_cb);
-  zb_schedule_app_alarm(device_leave_req_timeout,uVar6,5000000,0);
-  pbVar3 = zdo_resp_cb_list_head;
-  __ptr = (byte *)malloc(0x10);
-  if (__ptr != (byte *)0x0) {
-    if (pbVar3 == (byte *)0x0) {
-      *__ptr = (byte)uVar6;
-      __ptr[1] = 0x34;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      zdo_resp_cb_list_head = __ptr;
-    }
-    else {
-      do {
-        pbVar4 = pbVar3;
-        if (*pbVar4 == uVar6) {
-          free(__ptr);
-          return;
-        }
-        pbVar3 = *(byte **)(pbVar4 + 0xc);
-      } while (*(byte **)(pbVar4 + 0xc) != (byte *)0x0);
-      *__ptr = (byte)uVar6;
-      __ptr[1] = 0x34;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      *(byte **)(pbVar4 + 0xc) = __ptr;
-    }
-  }
+  uVar3 = zdo_mgmt_leave_req(uVar3,device_leave_cb);
+  zb_schedule_app_alarm(device_leave_req_timeout,uVar3,5000000,0);
+  esp_zb_zdo_callback_register(uVar3,0x34,param_2,param_3);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> zb_zdo_node_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ void zb_zdo_node_desc_req_cb(int param_1)
   if (*(char *)(iVar4 + 1) == '\0') {
     uVar2 = *(undefined2 *)(iVar4 + 2);
     memcpy(__dest,(void *)(iVar4 + 4),0xd);
-    zb_schedule_alarm_cancel(node_desc_req_timeout,0xff,0);
+    zb_schedule_alarm_cancel(node_desc_req_timeout,uVar1,0);
   }
   iVar5 = esp_zb_zdo_callback_find(uVar1);
   if (((iVar5 != 0) && (*(char *)(iVar5 + 1) == '\x02')) && (*(code **)(iVar5 + 4) != (code *)0x0))

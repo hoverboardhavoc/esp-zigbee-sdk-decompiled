@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_identify_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,83 +10,85 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x0001024e) */
-/* WARNING: Removing unreachable block (ram,0x00010254) */
-/* WARNING: Removing unreachable block (ram,0x00010268) */
-/* WARNING: Removing unreachable block (ram,0x00010270) */
-/* WARNING: Removing unreachable block (ram,0x00010278) */
+/* WARNING: Removing unreachable block (ram,0x00010238) */
+/* WARNING: Removing unreachable block (ram,0x00010240) */
+/* WARNING: Removing unreachable block (ram,0x00010230) */
+/* WARNING: Removing unreachable block (ram,0x0001029c) */
+/* WARNING: Removing unreachable block (ram,0x000102a2) */
 
 undefined4 esp_zb_identify_cluster_add_attr(short *param_1,int param_2,void *param_3)
 
 {
   short sVar1;
   undefined2 uVar2;
+  short *psVar3;
+  short *psVar4;
   undefined2 *__ptr;
   size_t __size;
-  undefined4 uVar3;
-  short *psVar4;
-  short *psVar5;
-  int iVar6;
   void *__dest;
-  int iVar7;
+  undefined4 uVar5;
+  undefined *puVar6;
+  short sVar7;
+  int iVar8;
   
   if (param_2 != 0) {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC6,uVar3,0x10000);
+    uVar5 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC6,uVar5,0x10000);
     return 0x102;
   }
   if (param_1 == (short *)0x0) {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar3,0x10000);
-    return 0x102;
-  }
-  sVar1 = *(short *)(*(int *)(param_1 + 6) + 10);
-  psVar4 = param_1;
-  if (sVar1 == 3) {
-    while (psVar5 = *(short **)(psVar4 + 6), psVar5 != (short *)0x0) {
-      psVar4 = psVar5;
-      if (*psVar5 == 0) {
-        uVar3 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC4,uVar3,0x10000,0);
-        return 0x102;
-      }
-    }
-    iVar7 = 0;
+    uVar5 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC1,uVar5,0x10000);
   }
   else {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC2,uVar3,0x10000,sVar1);
-    iVar7 = 0x102;
-  }
-  __ptr = (undefined2 *)malloc(0x10);
-  if (__ptr == (undefined2 *)0x0) {
-    return 0x102;
-  }
-  __size = esp_zb_zcl_get_attribute_size(0x21,param_3);
-  if (__size != 0xffff) {
-    __dest = (void *)0x0;
-    if (__size != 0) {
-      __dest = malloc(__size);
-      if (__dest == (void *)0x0) goto _L0;
-      memcpy(__dest,param_3,__size);
-    }
-    __ptr[2] = 0xffff;
-    iVar6 = *(int *)(param_1 + 6);
-    *(undefined1 *)((int)__ptr + 3) = 3;
-    *(undefined1 *)(__ptr + 1) = 0x21;
-    uVar2 = *(undefined2 *)(iVar6 + 10);
-    __ptr[3] = (short)__dest;
-    *__ptr = 0;
-    __ptr[4] = (short)((uint)__dest >> 0x10);
-    __ptr[5] = uVar2;
-    *(undefined4 *)(__ptr + 6) = 0;
-    *(undefined2 **)(psVar4 + 6) = __ptr;
-    if (iVar7 == 0) {
-      return 0;
-    }
-  }
+    sVar1 = *(short *)(*(int *)(param_1 + 6) + 10);
+    sVar7 = 0;
+    psVar3 = param_1;
+    if (sVar1 == 3) {
+      do {
+        psVar4 = *(short **)(psVar3 + 6);
+        if (psVar4 == (short *)0x0) {
+          __ptr = (undefined2 *)malloc(0x10);
+          if (__ptr == (undefined2 *)0x0) {
+            return 0x102;
+          }
+          __size = esp_zb_zcl_get_attribute_size(0x21,param_3);
+          if (__size == 0xffff) {
 _L0:
-  free(__ptr);
+            free(__ptr);
+            return 0x102;
+          }
+          __dest = (void *)0x0;
+          if (__size != 0) {
+            __dest = malloc(__size);
+            if (__dest == (void *)0x0) goto _L0;
+            memcpy(__dest,param_3,__size);
+          }
+          __ptr[2] = 0xffff;
+          iVar8 = *(int *)(param_1 + 6);
+          *(undefined1 *)((int)__ptr + 3) = 3;
+          *(undefined1 *)(__ptr + 1) = 0x21;
+          uVar2 = *(undefined2 *)(iVar8 + 10);
+          __ptr[3] = (short)__dest;
+          *__ptr = 0;
+          __ptr[4] = (short)((uint)__dest >> 0x10);
+          __ptr[5] = uVar2;
+          *(undefined4 *)(__ptr + 6) = 0;
+          *(undefined2 **)(psVar3 + 6) = __ptr;
+          return 0;
+        }
+        psVar3 = psVar4;
+      } while (*psVar4 != 0);
+      uVar5 = esp_log_timestamp();
+      puVar6 = &_LC4;
+    }
+    else {
+      uVar5 = esp_log_timestamp();
+      puVar6 = &_LC2;
+      sVar7 = sVar1;
+    }
+    esp_log_write(1,0x10000,puVar6,uVar5,0x10000,sVar7);
+  }
   return 0x102;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
- * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
- * Upstream date: 2024-07-19 11:49:15 +0800
- * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_srv_status_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
   
   iVar1 = zb_buf_get_tail_func(0x38);
   puVar2 = (uint *)zb_buf_get_tail_func(param_1,0x38);
-  if (*puVar2 < 0x26) {
+  if (*puVar2 < 0x27) {
     return 0xffffffff;
   }
   memset(auStack_30,0,0x20);
@@ -40,17 +40,17 @@ undefined4 zcl_ota_upgrade_srv_status_handler(undefined4 param_1)
   }
   uStack_2e = 0x19;
   piVar3 = (int *)zb_buf_get_tail_func(param_1,0x38);
-  iStack_20 = *piVar3 + -0x26;
+  iStack_20 = *piVar3 + -0x27;
   piVar3 = (int *)zb_buf_get_tail_func(param_1,0x38);
   iVar5 = *piVar3;
-  if (iVar5 == 0x27) {
+  if (iVar5 == 0x28) {
 _L0:
     uStack_1c = *(undefined2 *)(iVar1 + 0x10);
     uStack_18 = *(uint *)(iVar1 + 0x12);
   }
   else {
-    if (iVar5 != 0x28) {
-      if (iVar5 != 0x26) goto _L0;
+    if (iVar5 != 0x29) {
+      if (iVar5 != 0x27) goto _L0;
       goto _L0;
     }
     uStack_34 = (uint)*(byte *)(iVar1 + 0x14);

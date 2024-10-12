@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_comm_restart_process_install
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ void esp_zcl_comm_restart_process_install(undefined4 param_1,code *param_2)
     }
     iVar1 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar1 != 0) || (iVar1 = memcmp(&g_comm_ctx,&g_zero_addr,8), iVar1 != 0)) {
-      __dest = (void *)secur_nwk_key_by_seq(DAT_00012280);
+      __dest = (void *)secur_nwk_key_by_seq(DAT_00012281);
       if (__dest == (void *)0x0) {
         param_2 = (code *)zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/zcl/esp_zigbee_zcl_commissioning.c"
                                     ,0x134);
@@ -52,7 +52,7 @@ void esp_zcl_comm_restart_process_install(undefined4 param_1,code *param_2)
       _DAT_00012650 = DAT_000117dc;
       _DAT_00012654 = DAT_000117e0;
     }
-    DAT_00012280 = DAT_000117e4;
+    DAT_00012281 = DAT_000117e4;
     _DAT_0001228c = DAT_000117e6;
     zb_nwk_sync_pibcache_with_mac(param_1,param_2);
   }

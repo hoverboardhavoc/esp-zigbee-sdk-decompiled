@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
- * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
- * Upstream date: 2024-07-19 11:49:15 +0800
- * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_init_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,13 +23,13 @@ void esp_zb_zcl_scenes_init_server(void)
     *(undefined2 *)(puVar1 + 2) = 0xffff;
     puVar1 = puVar1 + 0xc;
   } while (puVar1 != (undefined1 *)0x11650);
-  zb_zcl_device_cb_register(0x56,zcl_scenes_add_scene_handler);
-  zb_zcl_device_cb_register(0x59,zcl_scenes_remove_scene_handler);
-  zb_zcl_device_cb_register(0x5a,zcl_scenes_remove_all_scenes_handler);
-  zb_zcl_device_cb_register(0x58,zcl_scenes_view_scene_handler);
-  zb_zcl_device_cb_register(0x57,zcl_scenes_store_scene_handler);
-  zb_zcl_device_cb_register(0x5b,zcl_scenes_recall_scene_handler);
-  zb_zcl_device_cb_register(0x5c,zcl_scenes_get_scene_membership_handler);
+  zb_zcl_device_cb_register(0x57,zcl_scenes_add_scene_handler);
+  zb_zcl_device_cb_register(0x5a,zcl_scenes_remove_scene_handler);
+  zb_zcl_device_cb_register(0x5b,zcl_scenes_remove_all_scenes_handler);
+  zb_zcl_device_cb_register(0x59,zcl_scenes_view_scene_handler);
+  zb_zcl_device_cb_register(0x58,zcl_scenes_store_scene_handler);
+  zb_zcl_device_cb_register(0x5c,zcl_scenes_recall_scene_handler);
+  zb_zcl_device_cb_register(0x5d,zcl_scenes_get_scene_membership_handler);
   return;
 }
 

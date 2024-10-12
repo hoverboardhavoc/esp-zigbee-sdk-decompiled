@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_ieee_addr_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,55 +13,18 @@
 void esp_zb_zdo_ieee_addr_req(undefined2 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  byte *pbVar1;
-  byte *pbVar2;
-  byte *__ptr;
-  undefined4 uVar3;
-  undefined2 *puVar4;
-  uint uVar5;
+  undefined4 uVar1;
+  undefined2 *puVar2;
   
-  uVar3 = zb_buf_get_out_func();
-  puVar4 = (undefined2 *)zb_buf_get_tail_func(6);
-  *puVar4 = *param_1;
-  puVar4[1] = param_1[1];
-  *(undefined1 *)(puVar4 + 2) = *(undefined1 *)(param_1 + 2);
-  *(undefined1 *)((int)puVar4 + 5) = *(undefined1 *)((int)param_1 + 5);
-  uVar5 = zb_zdo_ieee_addr_req(uVar3,device_ieee_addr_req_cb);
-  zb_schedule_app_alarm(ieee_addr_req_timeout,uVar5,5000000,0);
-  pbVar1 = zdo_resp_cb_list_head;
-  __ptr = (byte *)malloc(0x10);
-  if (__ptr != (byte *)0x0) {
-    if (pbVar1 == (byte *)0x0) {
-      *__ptr = (byte)uVar5;
-      __ptr[1] = 1;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      zdo_resp_cb_list_head = __ptr;
-    }
-    else {
-      do {
-        pbVar2 = pbVar1;
-        if (*pbVar2 == uVar5) {
-          free(__ptr);
-          return;
-        }
-        pbVar1 = *(byte **)(pbVar2 + 0xc);
-      } while (*(byte **)(pbVar2 + 0xc) != (byte *)0x0);
-      *__ptr = (byte)uVar5;
-      __ptr[1] = 1;
-      *(undefined4 *)(__ptr + 4) = param_2;
-      *(undefined4 *)(__ptr + 8) = param_3;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      *(byte **)(pbVar2 + 0xc) = __ptr;
-    }
-  }
+  uVar1 = zb_buf_get_out_func();
+  puVar2 = (undefined2 *)zb_buf_get_tail_func(6);
+  *puVar2 = *param_1;
+  puVar2[1] = param_1[1];
+  *(undefined1 *)(puVar2 + 2) = *(undefined1 *)(param_1 + 2);
+  *(undefined1 *)((int)puVar2 + 5) = *(undefined1 *)((int)param_1 + 5);
+  uVar1 = zb_zdo_ieee_addr_req(uVar1,device_ieee_addr_req_cb);
+  zb_schedule_app_alarm(ieee_addr_req_timeout,uVar1,5000000,0);
+  esp_zb_zdo_callback_register(uVar1,1,param_2,param_3);
   return;
 }
 

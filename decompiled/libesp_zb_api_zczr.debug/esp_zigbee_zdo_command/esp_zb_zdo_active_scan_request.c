@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_active_scan_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,8 @@ void esp_zb_zdo_active_scan_request(undefined4 param_1,undefined1 param_2,undefi
   iVar1 = zb_buf_get_out_func();
   if (iVar1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC14,uVar3,0x10000,"esp_zb_zdo_active_scan_request",0x105);
+    esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC17,uVar3,"ESP_ZIGBEE_API_ZDO",
+                  "esp_zb_zdo_active_scan_request",0x105);
   }
   else {
     puVar2 = (undefined4 *)zb_buf_get_tail_func(0xc);

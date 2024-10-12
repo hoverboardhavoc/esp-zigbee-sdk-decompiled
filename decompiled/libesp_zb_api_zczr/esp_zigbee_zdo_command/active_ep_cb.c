@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * https://github.com/espressif/esp-zigbee-sdk/commit/6ae0a43e13050e8f86079b96ed5a30faf92bdf3c
- * Upstream date: 2023-09-18 10:30:22 +0800
- * Upstream subject: esp-zigbee-sdk: add zigbee trace support and assert support(8c01f3c7)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> active_ep_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void active_ep_cb(int param_1)
     for (iVar4 = 0; iVar4 < (int)(uint)(byte)puVar3[4]; iVar4 = iVar4 + 1) {
       *(undefined1 *)((int)__ptr + iVar4) = puVar3[iVar4 + 5];
     }
-    zb_schedule_alarm_cancel(active_ep_req_timeout,0xff,0);
+    zb_schedule_alarm_cancel(active_ep_req_timeout,uVar1,0);
   }
   iVar4 = esp_zb_zdo_callback_find(uVar1);
   if (((iVar4 != 0) && (*(char *)(iVar4 + 1) == '\x05')) && (*(code **)(iVar4 + 4) != (code *)0x0))

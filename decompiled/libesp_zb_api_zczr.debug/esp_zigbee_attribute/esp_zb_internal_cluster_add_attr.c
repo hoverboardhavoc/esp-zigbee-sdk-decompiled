@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,13 +24,13 @@ int esp_zb_internal_cluster_add_attr
   
   aiStack_34[0] = 0;
   iVar1 = esp_zb_attr_list_get_tail(aiStack_34);
-  if (iVar1 == 0) {
+  if (aiStack_34[0] != 0) {
     return aiStack_34[0];
   }
   __ptr = (undefined2 *)malloc(0x10);
   if (__ptr == (undefined2 *)0x0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC5,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x66);
+    esp_log_write(1,0x10000,&_L0,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x67);
     return 0x102;
   }
   if ((param_4 & 0x40) == 0) {
@@ -38,7 +38,7 @@ _L0:
     __size = esp_zb_zcl_get_attribute_size(param_3,param_5);
     if (__size == 0xffff) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC7,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x70);
+      esp_log_write(1,0x10000,&_LC7,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x71);
       aiStack_34[0] = 0x102;
       goto _L0;
     }
@@ -47,7 +47,7 @@ _L0:
     __size = param_3;
     if (param_5 == (void *)0x0) {
       zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c",
-                0x6b);
+                0x6c);
       goto _L0;
     }
   }
@@ -58,7 +58,7 @@ _L0:
     __dest = malloc(__size);
     if (__dest == (void *)0x0) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC8,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x73);
+      esp_log_write(1,0x10000,&_LC8,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x74);
       aiStack_34[0] = 0x102;
       goto _L0;
     }

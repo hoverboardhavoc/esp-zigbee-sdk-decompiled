@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
+ * Upstream date: 2024-10-12 11:34:09 +0800
+ * Upstream subject: esp-zigbee-lib:(a9edc7b2)
  * Source: libesp_zb_api_zczr -> esp_zigbee_endpoint.o -> esp_zb_ep_list_add_gateway_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,7 +36,7 @@ int esp_zb_ep_list_add_gateway_ep(undefined4 param_1,int param_2,uint param_3,un
       esp_zb_zcl_commissioning_init_client();
       esp_zb_zcl_door_lock_init_client();
       zb_zcl_window_covering_init_client();
-      zb_zcl_thermostat_init_client();
+      esp_zb_zcl_thermostat_init_client();
       zb_zcl_color_control_init_client();
       esp_zb_zcl_ias_zone_init_client();
       esp_zb_zcl_ias_ace_init_client();
