@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_callback_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,21 +17,12 @@ void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,u
   byte *pbVar2;
   byte *__ptr;
   
-  pbVar1 = zdo_resp_cb_list_head;
+  pbVar2 = zdo_resp_cb_list_head;
   __ptr = (byte *)malloc(0x10);
+  pbVar1 = zdo_resp_cb_list_head;
   if (__ptr != (byte *)0x0) {
-    if (pbVar1 == (byte *)0x0) {
-      *__ptr = (byte)param_1;
-      __ptr[1] = param_2;
-      *(undefined4 *)(__ptr + 4) = param_3;
-      *(undefined4 *)(__ptr + 8) = param_4;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
-      zdo_resp_cb_list_head = __ptr;
-    }
-    else {
+    pbVar1 = pbVar2;
+    if (pbVar2 != (byte *)0x0) {
       do {
         pbVar2 = pbVar1;
         if (*pbVar2 == param_1) {
@@ -40,17 +31,22 @@ void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,u
         }
         pbVar1 = *(byte **)(pbVar2 + 0xc);
       } while (*(byte **)(pbVar2 + 0xc) != (byte *)0x0);
-      *__ptr = (byte)param_1;
-      __ptr[1] = param_2;
-      *(undefined4 *)(__ptr + 4) = param_3;
-      *(undefined4 *)(__ptr + 8) = param_4;
-      __ptr[0xc] = 0;
-      __ptr[0xd] = 0;
-      __ptr[0xe] = 0;
-      __ptr[0xf] = 0;
+    }
+    *__ptr = (byte)param_1;
+    __ptr[1] = param_2;
+    *(undefined4 *)(__ptr + 4) = param_3;
+    *(undefined4 *)(__ptr + 8) = param_4;
+    __ptr[0xc] = 0;
+    __ptr[0xd] = 0;
+    __ptr[0xe] = 0;
+    __ptr[0xf] = 0;
+    pbVar1 = __ptr;
+    if (pbVar2 != (byte *)0x0) {
       *(byte **)(pbVar2 + 0xc) = __ptr;
+      pbVar1 = zdo_resp_cb_list_head;
     }
   }
+  zdo_resp_cb_list_head = pbVar1;
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> zdo_binding_table_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,8 @@ void zdo_binding_table_resp(int param_1)
   char *pcVar4;
   void *pvVar5;
   void *__dest;
-  int iVar6;
-  code *pcVar7;
+  code *pcVar6;
+  int iVar7;
   uint uVar8;
   undefined1 uStack_38;
   char cStack_37;
@@ -35,8 +35,11 @@ void zdo_binding_table_resp(int param_1)
   if (pcVar3[1] == '\0') {
     zb_schedule_alarm_cancel(device_binding_table_req_timeout,cVar1,0);
   }
-  if ((((pcVar4 != (char *)0x0) && (*pcVar4 == *pcVar3)) && (pcVar4[1] == '3')) &&
-     ((pcVar3[1] == '\0' && (pcVar7 = *(code **)(pcVar4 + 4), pcVar7 != (code *)0x0)))) {
+  pcVar6 = (code *)0x0;
+  if (((pcVar4 != (char *)0x0) && (*pcVar4 == *pcVar3)) && (pcVar4[1] == '3')) {
+    pcVar6 = *(code **)(pcVar4 + 4);
+  }
+  if ((pcVar3[1] == '\0') && (pcVar6 != (code *)0x0)) {
     cStack_36 = pcVar3[2];
     bStack_35 = pcVar3[4];
     uVar8 = (uint)bStack_35;
@@ -45,7 +48,7 @@ void zdo_binding_table_resp(int param_1)
     uStack_38 = 0;
     pvStack_34 = (void *)0x0;
     pvVar5 = (void *)0x0;
-    for (iVar6 = 0; iVar6 < (int)uVar8; iVar6 = iVar6 + 1) {
+    for (iVar7 = 0; iVar7 < (int)uVar8; iVar7 = iVar7 + 1) {
       __dest = malloc(0x1c);
       *(undefined2 *)((int)__dest + 10) = *(undefined2 *)(__src + 9);
       *(char *)((int)__dest + 0xc) = __src[0xb];
@@ -63,7 +66,7 @@ void zdo_binding_table_resp(int param_1)
       __src = __src + 0x15;
       pvVar5 = __dest;
     }
-    (*pcVar7)(&uStack_38,*(undefined4 *)(pcVar4 + 8));
+    (*pcVar6)(&uStack_38,*(undefined4 *)(pcVar4 + 8));
     pvVar5 = pvStack_34;
     while (pvVar5 != (void *)0x0) {
       pvVar2 = *(void **)((int)pvVar5 + 0x18);

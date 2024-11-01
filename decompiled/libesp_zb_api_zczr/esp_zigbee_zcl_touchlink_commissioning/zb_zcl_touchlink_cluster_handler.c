@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_touchlink_commissioning.o -> zb_zcl_touchlink_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -66,50 +66,51 @@ undefined4 zb_zcl_touchlink_cluster_handler(undefined4 param_1)
       __dest = (undefined2 *)malloc(3);
       zb_buf_get_tail_func(param_1,0x1b);
       iVar13 = zb_buf_len_func(param_1);
-      if (iVar13 != 3) {
+      if (iVar13 == 3) {
+        pvVar14 = (void *)zb_buf_begin_func(param_1);
+        memcpy(__dest,pvVar14,3);
+        zb_buf_cut_left_func(param_1,3);
+        iVar13 = zb_zcl_basic_message_create(param_1,&local_70);
+        if (iVar13 != 0) goto _L0;
+        cStack_4e = *(char *)(__dest + 1);
+        uStack_50 = *__dest;
+        local_70 = 0;
+        puStack_4c = (undefined2 *)0x0;
+        puVar11 = (undefined2 *)0x0;
+        for (cVar7 = cStack_4e; cVar7 != '\0'; cVar7 = cVar7 + -1) {
+          iVar13 = zb_buf_len_func(param_1);
+          if (iVar13 == 3) {
+            puVar20 = (undefined2 *)zb_buf_begin_func(param_1);
+            uStack_8c._0_2_ = *puVar20;
+            uStack_8c._2_1_ = *(undefined1 *)(puVar20 + 1);
+            zb_buf_cut_left_func(param_1,3);
+          }
+          puVar12 = (undefined2 *)malloc(8);
+          *(undefined4 *)(puVar12 + 2) = 0;
+          *puVar12 = (undefined2)uStack_8c;
+          *(char *)(puVar12 + 1) = (char)(undefined2)uStack_8c;
+          puVar20 = puVar12;
+          if (puVar11 != (undefined2 *)0x0) {
+            *(undefined2 **)(puVar11 + 2) = puVar12;
+            puVar20 = puStack_4c;
+          }
+          puStack_4c = puVar20;
+          puVar11 = puVar12;
+        }
+        iVar13 = esp_zb_core_action_handler_schedule(0x1060,&local_70);
+        puVar11 = puStack_4c;
+        while (puVar11 != (undefined2 *)0x0) {
+          puVar20 = *(undefined2 **)(puVar11 + 2);
+          free(puVar11);
+          puVar11 = puVar20;
+        }
+      }
+      else {
         uVar10 = esp_log_timestamp();
         puVar18 = &_LC1;
 _L0:
         esp_log_write(1,0x10000,puVar18,uVar10,0x10000);
-        free(__dest);
-        goto _L0;
-      }
-      pvVar14 = (void *)zb_buf_begin_func(param_1);
-      memcpy(__dest,pvVar14,3);
-      zb_buf_cut_left_func(param_1,3);
-      iVar13 = zb_zcl_basic_message_create(param_1,&local_70);
-      if (iVar13 != 0) goto _L0;
-      cStack_4e = *(char *)(__dest + 1);
-      uStack_50 = *__dest;
-      local_70 = 0;
-      puStack_4c = (undefined2 *)0x0;
-      puVar11 = (undefined2 *)0x0;
-      for (cVar7 = cStack_4e; cVar7 != '\0'; cVar7 = cVar7 + -1) {
-        iVar13 = zb_buf_len_func(param_1);
-        if (iVar13 == 3) {
-          puVar20 = (undefined2 *)zb_buf_begin_func(param_1);
-          uStack_8c._0_2_ = *puVar20;
-          uStack_8c._2_1_ = *(undefined1 *)(puVar20 + 1);
-          zb_buf_cut_left_func(param_1,3);
-        }
-        puVar12 = (undefined2 *)malloc(8);
-        *(undefined4 *)(puVar12 + 2) = 0;
-        *puVar12 = (undefined2)uStack_8c;
-        *(char *)(puVar12 + 1) = (char)(undefined2)uStack_8c;
-        puVar20 = puVar12;
-        if (puVar11 != (undefined2 *)0x0) {
-          *(undefined2 **)(puVar11 + 2) = puVar12;
-          puVar20 = puStack_4c;
-        }
-        puStack_4c = puVar20;
-        puVar11 = puVar12;
-      }
-      iVar13 = esp_zb_core_action_handler_schedule(0x1060,&local_70);
-      puVar11 = puStack_4c;
-      while (puVar11 != (undefined2 *)0x0) {
-        puVar20 = *(undefined2 **)(puVar11 + 2);
-        free(puVar11);
-        puVar11 = puVar20;
+        iVar13 = -1;
       }
     }
     else {

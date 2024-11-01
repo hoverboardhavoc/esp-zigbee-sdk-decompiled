@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_carbon_dioxide_measurement_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,11 +22,9 @@ int esp_zb_cluster_list_add_carbon_dioxide_measurement_cluster
   __ptr = (undefined4 *)malloc(0x14);
   iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x40d,param_3,aiStack_24);
   if (aiStack_24[0] == 0) {
+    puVar2 = (undefined *)0x0;
     if (param_3 == 1) {
       puVar2 = &esp_zb_zcl_carbon_dioxide_measurement_init_server;
-    }
-    else {
-      puVar2 = (undefined *)0x0;
     }
     *__ptr = 0x40d;
     *(char *)((int)__ptr + 0xb) = (char)puVar2;

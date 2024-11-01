@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_metering.o -> zcl_metering_get_snapshot_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -109,9 +109,9 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
         uStack_b6 = (undefined1)uVar2;
         for (uVar12 = 0; (uVar12 & 0xff) < uVar2; uVar12 = uVar12 + 1) {
           uStack_b7 = (undefined1)uVar12;
-          bStack_aa = 6;
-          if (uVar2 - 1 == uVar12) {
-            bStack_aa = (byte)uVar15;
+          bStack_aa = (byte)uVar15;
+          if (uVar12 != uVar2 - 1) {
+            bStack_aa = 6;
           }
           iVar5 = uVar12 * 0x24 + (uVar3 | uVar14);
           bStack_a9 = (byte)iVar5;
@@ -194,9 +194,9 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
       uStack_b6 = (undefined1)uVar2;
       for (uVar15 = 0; (uVar15 & 0xff) < uVar2; uVar15 = uVar15 + 1) {
         uStack_b7 = (undefined1)uVar15;
-        bStack_99 = 3;
-        if (uVar2 - 1 == uVar15) {
-          bStack_99 = (byte)uVar14;
+        bStack_99 = (byte)uVar14;
+        if (uVar2 - 1 != uVar15) {
+          bStack_99 = 3;
         }
         iStack_98 = uVar15 * 0x12 + iVar6;
         zb_buf_get_out_func();

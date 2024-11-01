@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9b2a25d84666d8bc8515f84abcf92271524d2896
- * https://github.com/espressif/esp-zigbee-sdk/commit/9b2a25d84666d8bc8515f84abcf92271524d2896
- * Upstream date: 2024-05-24 08:27:18 +0000
- * Upstream subject: esp-zigbee-lib:(73447d7e)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_on_off_off_with_effect_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,7 +38,7 @@ byte esp_zb_zcl_on_off_off_with_effect_cmd_req(int param_1)
             (iVar3,puVar4 + 2,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
              *(undefined1 *)(param_1 + 9),uVar2,6);
   pbVar5 = (byte *)zb_buf_begin_func(iVar3);
-  if ((*pbVar5 >> 2 & 1) == 0) {
+  if ((*pbVar5 & 4) == 0) {
     iVar3 = 1;
   }
   else {

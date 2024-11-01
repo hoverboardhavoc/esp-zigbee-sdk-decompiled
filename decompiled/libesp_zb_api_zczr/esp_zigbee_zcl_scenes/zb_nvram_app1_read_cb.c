@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_scenes.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,10 +23,10 @@ void zb_nvram_app1_read_cb(uint param_1)
   undefined1 *puVar8;
   undefined1 *puVar9;
   uint uVar10;
-  uint __size;
+  uint uVar11;
   undefined1 *__dest;
-  undefined1 *puVar11;
-  uint uVar12;
+  undefined1 *puVar12;
+  uint __size;
   undefined2 uStack_50;
   byte abStack_49 [5];
   undefined1 *local_44;
@@ -37,27 +37,27 @@ void zb_nvram_app1_read_cb(uint param_1)
   }
   iVar6 = zb_nvram_read_data((int)&uStack_50 + iVar4,param_1);
   uVar3 = *(ushort *)((int)&uStack_50 + iVar4);
-  puVar11 = &esp_zb_zcl_scenes_table;
+  puVar12 = &esp_zb_zcl_scenes_table;
   __dest = &esp_zb_zcl_scenes_table;
   uVar5 = 2;
   do {
     uVar10 = uVar5 + 8;
     do {
-      if (((uVar3 + 2 & 0xffff) < uVar10) || (__dest == (undefined1 *)0x11650)) {
+      if (((uVar3 + 2 & 0xffff) < uVar10) || (__dest == (undefined1 *)0x11668)) {
         do {
-          if (*(short *)(puVar11 + 2) != -1) {
-            zb_zcl_scenes_set_scene_count(*puVar11,1);
+          if (*(short *)(puVar12 + 2) != -1) {
+            zb_zcl_scenes_set_scene_count(*puVar12,1);
           }
-          puVar11 = puVar11 + 0xc;
-        } while (puVar11 != (undefined1 *)0x11650);
+          puVar12 = puVar12 + 0xc;
+        } while (puVar12 != (undefined1 *)0x11668);
         return;
       }
     } while (iVar6 != 0);
     pvVar7 = (void *)((int)&uStack_50 + uVar5 + iVar4);
     memcpy(__dest,pvVar7,8);
-    uVar12 = (uint)*(byte *)((int)pvVar7 + 7);
+    uVar11 = (uint)*(byte *)((int)pvVar7 + 7);
     puVar8 = (undefined1 *)0x0;
-    while (uVar5 = uVar10 & 0xffff, uVar12 != 0) {
+    while (uVar5 = uVar10 & 0xffff, uVar11 != 0) {
       local_44 = puVar8;
       puVar8 = (undefined1 *)malloc(0xc);
       puVar9 = (undefined1 *)((int)&uStack_50 + uVar5 + iVar4);
@@ -73,7 +73,7 @@ void zb_nvram_app1_read_cb(uint param_1)
       memcpy(pvVar7,(void *)((int)&uStack_50 + uVar10 + iVar4),__size);
       uVar10 = uVar10 + __size;
       *(undefined4 *)(puVar8 + 8) = 0;
-      uVar12 = (-3 - __size) + uVar12 & 0xffff;
+      uVar11 = (uVar11 - 3 & 0xffff) - __size & 0xffff;
       if (local_44 == (undefined1 *)0x0) {
         *(undefined1 **)(__dest + 8) = puVar8;
       }

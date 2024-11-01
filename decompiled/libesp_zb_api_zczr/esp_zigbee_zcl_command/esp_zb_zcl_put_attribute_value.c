@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_put_attribute_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -65,7 +65,7 @@ _L0:
         goto _L0;
       }
       uVar1 = 0xe;
-_L46:
+_L52:
       if (param_2 == uVar1) {
 _L0:
         memcpy(param_1,param_3,7);
@@ -83,7 +83,7 @@ _L0:
     if (param_2 < 0xb) {
       if (param_2 == 8) goto _L0;
       uVar1 = 9;
-_L48:
+_L54:
       if (param_2 != uVar1) {
         return param_1;
       }
@@ -140,10 +140,10 @@ _L0:
       if (0x30 < param_2) {
         if (param_2 == 0x31) goto _L0;
         uVar1 = 0x38;
-        goto _L48;
+        goto _L54;
       }
       uVar1 = 0x2e;
-      goto _L46;
+      goto _L52;
     }
     if (param_2 == 0x2a) goto _L0;
     if (param_2 < 0x2b) {

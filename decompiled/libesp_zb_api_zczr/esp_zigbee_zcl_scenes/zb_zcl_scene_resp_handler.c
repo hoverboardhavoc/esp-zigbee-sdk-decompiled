@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_scenes.o -> zb_zcl_scene_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,9 +18,9 @@ int zb_zcl_scene_resp_handler(undefined4 param_1)
   int iVar3;
   int iVar4;
   uint uVar5;
-  undefined2 *puVar6;
+  byte *pbVar6;
+  undefined2 *puVar7;
   void *__dest;
-  byte *pbVar7;
   byte bVar8;
   byte *pbVar9;
   byte *pbVar10;
@@ -41,13 +41,22 @@ int zb_zcl_scene_resp_handler(undefined4 param_1)
     iVar4 = zb_zcl_basic_message_create(param_1,auStack_4c);
     if (iVar4 != 0) goto _L0;
     uVar5 = zb_buf_len_func(param_1);
-    if ((uVar5 < 3) || (pbVar7 = (byte *)zb_buf_begin_func(param_1), pbVar7 == (byte *)0x0)) {
+    if (uVar5 < 3) {
+      pbVar6 = (byte *)0x0;
       auStack_4c[0] = 1;
-      uStack_2c = -1;
     }
     else {
-      auStack_4c[0] = (uint)*pbVar7;
-      uStack_2c = *(short *)(pbVar7 + 1);
+      pbVar6 = (byte *)zb_buf_begin_func(param_1);
+      auStack_4c[0] = 1;
+      if (pbVar6 != (byte *)0x0) {
+        auStack_4c[0] = (uint)*pbVar6;
+      }
+    }
+    if (pbVar6 == (byte *)0x0) {
+      uStack_2c = 0xffff;
+    }
+    else {
+      uStack_2c = *(undefined2 *)(pbVar6 + 1);
     }
     bVar8 = 0xff;
 _L0:
@@ -63,21 +72,36 @@ _L0:
         iVar4 = zb_zcl_basic_message_create(param_1,auStack_4c);
         if (iVar4 == 0) {
           uVar5 = zb_buf_len_func(param_1);
-          if ((uVar5 < 6) || (pbVar7 = (byte *)zb_buf_begin_func(param_1), pbVar7 == (byte *)0x0)) {
-            auStack_4c[0] = 1;
-            uStack_2a = 0xffff;
-            uStack_2c = (ushort)uStack_2c._1_1_ << 8;
-            bVar8 = 0;
+          if (uVar5 < 6) {
             pbStack_24 = (byte *)0x0;
+            auStack_4c[0] = 1;
           }
           else {
-            auStack_4c[0] = (uint)*pbVar7;
-            pbStack_24 = pbVar7 + 5;
-            uStack_2c = CONCAT11(uStack_2c._1_1_,pbVar7[1]);
-            uStack_2a = *(undefined2 *)(pbVar7 + 2);
-            bVar8 = pbVar7[4];
+            pbStack_24 = (byte *)zb_buf_begin_func(param_1);
+            auStack_4c[0] = 1;
+            if (pbStack_24 != (byte *)0x0) {
+              auStack_4c[0] = (uint)*pbStack_24;
+            }
+          }
+          bVar8 = 0;
+          if (pbStack_24 != (byte *)0x0) {
+            bVar8 = pbStack_24[1];
+          }
+          uStack_2c = CONCAT11(uStack_2c._1_1_,bVar8);
+          if (pbStack_24 == (byte *)0x0) {
+            uStack_2a = 0xffff;
+          }
+          else {
+            uStack_2a = *(undefined2 *)(pbStack_24 + 2);
+          }
+          bVar8 = 0;
+          if (pbStack_24 != (byte *)0x0) {
+            bVar8 = pbStack_24[4];
           }
           uStack_28 = CONCAT11(uStack_28._1_1_,bVar8);
+          if (pbStack_24 != (byte *)0x0) {
+            pbStack_24 = pbStack_24 + 5;
+          }
           esp_zb_core_action_handler_schedule(0x1022,auStack_4c);
         }
 _L0:
@@ -88,67 +112,78 @@ _L0:
       iVar4 = zb_zcl_basic_message_create(param_1,auStack_4c);
       if (iVar4 != 0) goto _L0;
       uVar5 = zb_buf_len_func(param_1);
-      if ((uVar5 < 4) || (pbVar7 = (byte *)zb_buf_begin_func(param_1), pbVar7 == (byte *)0x0)) {
+      if (uVar5 < 4) {
+        pbVar6 = (byte *)0x0;
         auStack_4c[0] = 1;
-        uStack_2c = -1;
-        bVar8 = 0xff;
       }
       else {
-        auStack_4c[0] = (uint)*pbVar7;
-        uStack_2c = *(short *)(pbVar7 + 1);
-        bVar8 = pbVar7[3];
+        pbVar6 = (byte *)zb_buf_begin_func(param_1);
+        auStack_4c[0] = 1;
+        if (pbVar6 != (byte *)0x0) {
+          auStack_4c[0] = (uint)*pbVar6;
+        }
+      }
+      if (pbVar6 == (byte *)0x0) {
+        uStack_2c = 0xffff;
+      }
+      else {
+        uStack_2c = *(undefined2 *)(pbVar6 + 1);
+      }
+      bVar8 = 0xff;
+      if (pbVar6 != (byte *)0x0) {
+        bVar8 = pbVar6[3];
       }
       goto _L0;
     }
     if (bVar8 != 1) goto _L0;
     uVar5 = zb_buf_len_func(param_1);
     if (uVar5 < 4) goto _L0;
-    pbVar7 = (byte *)zb_buf_begin_func(param_1);
-    if (*pbVar7 == 0) {
-      zb_buf_cut_left_func(param_1,pbVar7[6] + 7);
-      pbVar7[6] = 0;
+    pbVar6 = (byte *)zb_buf_begin_func(param_1);
+    if (*pbVar6 == 0) {
+      zb_buf_cut_left_func(param_1,pbVar6[6] + 7);
+      pbVar6[6] = 0;
     }
     else {
       zb_buf_cut_left_func(param_1,4);
     }
     iVar4 = zb_zcl_basic_message_create(param_1,auStack_4c);
     if (iVar4 != 0) goto _L0;
-    auStack_4c[0] = (uint)*pbVar7;
-    uStack_2c = *(short *)(pbVar7 + 1);
-    uStack_2a = CONCAT11(uStack_2a._1_1_,pbVar7[3]);
-    uStack_28 = *(undefined2 *)(pbVar7 + 4);
+    auStack_4c[0] = (uint)*pbVar6;
+    uStack_2c = *(undefined2 *)(pbVar6 + 1);
+    uStack_2a = CONCAT11(uStack_2a._1_1_,pbVar6[3]);
+    uStack_28 = *(undefined2 *)(pbVar6 + 4);
     pbStack_24 = (byte *)0x0;
-    pbVar7 = (byte *)0x0;
+    pbVar6 = (byte *)0x0;
     pbVar9 = pbStack_24;
-    while (pbStack_24 = pbVar9, pbVar10 = pbVar7, uVar5 = zb_buf_len_func(param_1), 2 < uVar5) {
-      puVar6 = (undefined2 *)zb_buf_begin_func(param_1);
-      bVar8 = *(byte *)(puVar6 + 1);
+    while (pbStack_24 = pbVar9, pbVar10 = pbVar6, uVar5 = zb_buf_len_func(param_1), 2 < uVar5) {
+      puVar7 = (undefined2 *)zb_buf_begin_func(param_1);
+      bVar8 = *(byte *)(puVar7 + 1);
       uVar5 = zb_buf_len_func(param_1);
       if (uVar5 < bVar8 + 3) break;
       zb_buf_cut_left_func(param_1);
-      pbVar7 = (byte *)malloc(0xc);
-      *(undefined2 *)pbVar7 = *puVar6;
-      bVar8 = *(byte *)(puVar6 + 1);
-      pbVar7[2] = bVar8;
+      pbVar6 = (byte *)malloc(0xc);
+      *(undefined2 *)pbVar6 = *puVar7;
+      bVar8 = *(byte *)(puVar7 + 1);
+      pbVar6[2] = bVar8;
       __dest = malloc((uint)bVar8);
-      *(void **)(pbVar7 + 4) = __dest;
-      memcpy(__dest,(void *)((int)puVar6 + 3),(uint)bVar8);
-      pbVar7[8] = 0;
-      pbVar7[9] = 0;
-      pbVar7[10] = 0;
-      pbVar7[0xb] = 0;
-      pbVar9 = pbVar7;
+      *(void **)(pbVar6 + 4) = __dest;
+      memcpy(__dest,(void *)((int)puVar7 + 3),(uint)bVar8);
+      pbVar6[8] = 0;
+      pbVar6[9] = 0;
+      pbVar6[10] = 0;
+      pbVar6[0xb] = 0;
+      pbVar9 = pbVar6;
       if (pbVar10 != (byte *)0x0) {
-        *(byte **)(pbVar10 + 8) = pbVar7;
+        *(byte **)(pbVar10 + 8) = pbVar6;
         pbVar9 = pbStack_24;
       }
     }
     iVar4 = esp_zb_core_action_handler_schedule(0x1021,auStack_4c);
-    pbVar7 = pbStack_24;
-    while (pbVar7 != (byte *)0x0) {
-      pbVar9 = *(byte **)(pbVar7 + 8);
-      free(pbVar7);
-      pbVar7 = pbVar9;
+    pbVar6 = pbStack_24;
+    while (pbVar6 != (byte *)0x0) {
+      pbVar9 = *(byte **)(pbVar6 + 8);
+      free(pbVar6);
+      pbVar6 = pbVar9;
     }
   }
   bVar1 = iVar4 != 0;

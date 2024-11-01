@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_custom_cluster.o -> zb_zcl_custom_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,6 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   int iVar2;
   int iVar3;
   undefined4 uVar4;
-  bool bVar5;
   uint auStack_38 [5];
   undefined1 uStack_21;
   short sStack_20;
@@ -40,39 +39,31 @@ undefined4 zb_zcl_custom_cluster_handler(undefined4 param_1)
   iVar3 = esp_zb_zcl_get_cluster(uStack_21,sStack_20,1);
   if (iVar2 == 0) {
     if (iVar3 != 0) {
-      if (cStack_1b == '\0') goto _L0;
-      if (cStack_1b == '\x01') {
 _L0:
-        iVar2 = 0x41;
-        goto _L0;
-      }
+      if (cStack_1b == '\0') goto _L0;
+      if (cStack_1b == '\x01') goto _L0;
     }
+_L0:
+    uVar4 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,sStack_20,uStack_21);
+    iVar2 = -0x1c;
   }
   else {
     if (cStack_1b == '\x01') {
 _L0:
-      iVar2 = 0x40;
-_L0:
-      iVar2 = esp_zb_core_action_handler_schedule(iVar2 + 0x1000,auStack_38);
-      if (iVar1 == 0) {
-        return 1;
-      }
-      bVar5 = iVar2 != 0;
-      goto _L0;
+      uVar4 = 0x1040;
     }
-    if (iVar3 == 0) {
-      if (cStack_1b == '\0') goto _L0;
-    }
-    else if (cStack_1b == '\0') goto _L0;
-  }
-  uVar4 = esp_log_timestamp();
-  esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,sStack_20,uStack_21);
-  bVar5 = true;
-  if (iVar1 == 0) {
-    return 1;
-  }
+    else {
+      if (iVar3 != 0) goto _L0;
+      if (cStack_1b != '\0') goto _L0;
 _L0:
-  zb_zcl_send_default_handler(param_1,iVar1,bVar5);
+      uVar4 = 0x1041;
+    }
+    iVar2 = esp_zb_core_action_handler_schedule(uVar4,auStack_38);
+  }
+  if (iVar1 != 0) {
+    zb_zcl_send_default_handler(param_1,iVar1,iVar2 != 0);
+  }
   return 1;
 }
 

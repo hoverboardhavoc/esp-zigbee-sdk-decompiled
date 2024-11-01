@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_window_covering.o -> zcl_window_covering_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,7 +53,7 @@ _L0:
         zb_zcl_device_cb_register(0x56,zcl_window_covering_cmd_handler);
         return;
       }
-      uStack_14 = (uint)uStack_14._2_2_ << 0x10;
+      uStack_14 = uStack_14 & 0xffff0000;
     }
   }
   else if (uVar3 == 0x55) {

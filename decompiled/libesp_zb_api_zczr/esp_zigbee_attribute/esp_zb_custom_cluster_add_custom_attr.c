@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,8 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x000101fc) */
-/* WARNING: Removing unreachable block (ram,0x00010202) */
+/* WARNING: Removing unreachable block (ram,0x0001028a) */
 
 undefined4
 esp_zb_custom_cluster_add_custom_attr
@@ -19,74 +18,80 @@ esp_zb_custom_cluster_add_custom_attr
 
 {
   undefined2 uVar1;
-  ushort *puVar2;
+  short sVar2;
   ushort *puVar3;
   undefined4 uVar4;
   undefined2 *__ptr;
   size_t __size;
   void *__dest;
-  undefined *puVar5;
-  int iVar6;
+  int iVar5;
+  ushort *puVar6;
   
   if (param_1 == (ushort *)0x0) {
-    uVar4 = esp_log_timestamp();
-    puVar5 = &_LC1;
-_L28:
-    esp_log_write(1,0x10000,puVar5,uVar4,0x10000);
     return 0x102;
   }
-  puVar2 = param_1;
-  if (-1 < *(short *)(*(int *)(param_1 + 6) + 10)) {
+  sVar2 = *(short *)(*(int *)(param_1 + 6) + 10);
+  if ((param_1 == (ushort *)0x0) || (*(int *)(param_1 + 6) == 0)) {
     uVar4 = esp_log_timestamp();
-    puVar5 = &_LC3;
-    goto _L28;
-  }
-  while (puVar3 = *(ushort **)(puVar2 + 6), puVar3 != (ushort *)0x0) {
-    puVar2 = puVar3;
-    if (*puVar3 == param_2) {
-      uVar4 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC4,uVar4,0x10000,param_2);
-      return 0x102;
-    }
-  }
-  __ptr = (undefined2 *)malloc(0x10);
-  if (__ptr == (undefined2 *)0x0) {
-    return 0x102;
-  }
-  if ((param_4 & 0x40) == 0) {
-_L0:
-    __size = esp_zb_zcl_get_attribute_size(param_3,param_5);
-    if (__size == 0xffff) goto _L0;
+    esp_log_write(1,0x10000,&_LC1,uVar4,0x10000);
   }
   else {
-    __size = param_3;
-    if (param_5 == (void *)0x0) {
-      zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c",
-                0x6c);
-      goto _L0;
-    }
-  }
-  __dest = (void *)0x0;
-  if (__size != 0) {
-    __dest = malloc(__size);
-    if (__dest == (void *)0x0) {
+    puVar6 = param_1;
+    if (*(short *)(*(int *)(param_1 + 6) + 10) == sVar2) {
+      do {
+        puVar3 = *(ushort **)(puVar6 + 6);
+        if (puVar3 == (ushort *)0x0) {
+          __ptr = (undefined2 *)malloc(0x10);
+          if (__ptr == (undefined2 *)0x0) {
+            return 0x102;
+          }
+          if ((param_4 & 0x40) == 0) {
 _L0:
-      free(__ptr);
-      return 0x102;
+            __size = esp_zb_zcl_get_attribute_size(param_3,param_5);
+          }
+          else {
+            __size = param_3;
+            if (param_5 == (void *)0x0) {
+              zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c"
+                        ,0x67);
+              goto _L0;
+            }
+          }
+          if (__size == 0xffff) {
+_L0:
+            free(__ptr);
+            return 0x102;
+          }
+          __dest = (void *)0x0;
+          if (__size != 0) {
+            __dest = malloc(__size);
+            if (__dest == (void *)0x0) goto _L0;
+            memcpy(__dest,param_5,__size);
+          }
+          iVar5 = *(int *)(param_1 + 6);
+          *(byte *)((int)__ptr + 3) = param_4 & 0xdf;
+          *(char *)(__ptr + 1) = (char)param_3;
+          uVar1 = *(undefined2 *)(iVar5 + 10);
+          __ptr[3] = (short)__dest;
+          *__ptr = (short)param_2;
+          __ptr[4] = (short)((uint)__dest >> 0x10);
+          __ptr[2] = 0xffff;
+          __ptr[5] = uVar1;
+          *(undefined4 *)(__ptr + 6) = 0;
+          *(undefined2 **)(puVar6 + 6) = __ptr;
+          return 0;
+        }
+        puVar6 = puVar3;
+      } while ((*puVar3 != param_2) || (puVar3[2] != 0xffff));
+      uVar4 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC3,uVar4,0x10000,param_2);
     }
-    memcpy(__dest,param_5,__size);
+    else {
+      uVar4 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC2,uVar4,0x10000,*(undefined2 *)(*(int *)(param_1 + 6) + 10),sVar2)
+      ;
+    }
   }
-  __ptr[2] = 0xffff;
-  iVar6 = *(int *)(param_1 + 6);
-  *(byte *)((int)__ptr + 3) = param_4;
-  *(char *)(__ptr + 1) = (char)param_3;
-  uVar1 = *(undefined2 *)(iVar6 + 10);
-  __ptr[3] = (short)__dest;
-  *__ptr = (short)param_2;
-  __ptr[4] = (short)((uint)__dest >> 0x10);
-  __ptr[5] = uVar1;
-  *(undefined4 *)(__ptr + 6) = 0;
-  *(undefined2 **)(puVar2 + 6) = __ptr;
-  return 0;
+  return 0x102;
 }
 

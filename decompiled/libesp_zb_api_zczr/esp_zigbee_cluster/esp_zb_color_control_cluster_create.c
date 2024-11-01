@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 3128a1de3a8a176dac99e12775a60287e9d10fd7
- * https://github.com/espressif/esp-zigbee-sdk/commit/3128a1de3a8a176dac99e12775a60287e9d10fd7
- * Upstream date: 2024-04-01 17:59:07 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.2(4a0e02cc)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_cluster.o -> esp_zb_color_control_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,10 +23,10 @@ undefined4 esp_zb_color_control_cluster_create(undefined2 *param_1)
   
   uVar1 = esp_zb_zcl_attr_list_create(0x300);
   if (param_1 == (undefined2 *)0x0) {
+    uStack_16 = 0x616b;
     uStack_14 = 0x607d;
     uStack_19 = 1;
     uStack_17 = 1;
-    uStack_16 = 0x616b;
     uStack_18 = 0;
     auStack_12[0] = 8;
   }

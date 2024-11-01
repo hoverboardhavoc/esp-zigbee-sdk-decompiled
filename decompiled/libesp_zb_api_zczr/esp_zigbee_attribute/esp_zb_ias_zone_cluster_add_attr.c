@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_attribute.o -> esp_zb_ias_zone_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,137 +10,131 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010230) */
-/* WARNING: Removing unreachable block (ram,0x00010238) */
-/* WARNING: Removing unreachable block (ram,0x00010240) */
+/* WARNING: Removing unreachable block (ram,0x0001028a) */
 
 undefined4 esp_zb_ias_zone_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
 {
-  ushort uVar1;
-  undefined2 uVar2;
-  ushort *puVar3;
-  ushort *puVar4;
+  undefined2 uVar1;
+  ushort *puVar2;
   undefined2 *__ptr;
   size_t __size;
   void *__dest;
-  undefined4 uVar5;
-  undefined *puVar6;
-  size_t sVar7;
-  byte bVar8;
-  int iVar9;
+  undefined4 uVar3;
+  size_t sVar4;
+  byte bVar5;
+  int iVar6;
+  ushort *puVar7;
   
   if (param_2 < 0x13) {
     if (param_2 < 0x11) {
       if (param_2 == 2) {
-        bVar8 = 1;
-        sVar7 = 0x19;
+        bVar5 = 1;
+        sVar4 = 0x19;
       }
       else if (param_2 < 3) {
-        bVar8 = 1;
-        sVar7 = 0x31;
+        bVar5 = 1;
+        sVar4 = 0x31;
         if (param_2 == 0) {
-          sVar7 = 0x30;
+          sVar4 = 0x30;
         }
       }
       else {
         if (param_2 != 0x10) goto _L0;
-        bVar8 = 3;
-        sVar7 = 0xf0;
+        bVar5 = 3;
+        sVar4 = 0xf0;
       }
       goto _L0;
     }
-    bVar8 = 1;
+    bVar5 = 1;
   }
   else {
     if (param_2 == 0xe002) {
-      bVar8 = 0x40;
-      sVar7 = 2;
+      bVar5 = 0x40;
+      sVar4 = 2;
       goto _L0;
     }
     if (0xe002 < param_2) {
       if (param_2 != 0xeffe) {
 _L0:
-        uVar5 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC6,uVar5,0x10000);
+        uVar3 = esp_log_timestamp();
+        esp_log_write(1,0x10000,&_LC5,uVar3,0x10000);
         return 0x102;
       }
-      bVar8 = 0x40;
-      sVar7 = 0xc;
+      bVar5 = 0x40;
+      sVar4 = 0xc;
       goto _L0;
     }
     if (param_2 != 0x13) {
-      sVar7 = 1;
+      sVar4 = 1;
       if (1 < (param_2 + 0x2000 & 0xffff)) goto _L0;
-      bVar8 = 0x40;
+      bVar5 = 0x40;
       goto _L0;
     }
-    bVar8 = 3;
+    bVar5 = 3;
   }
-  sVar7 = 0x20;
+  sVar4 = 0x20;
 _L0:
-  if (param_1 == (ushort *)0x0) {
-    uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar5,0x10000);
+  if ((param_1 == (ushort *)0x0) || (*(int *)(param_1 + 6) == 0)) {
+    uVar3 = esp_log_timestamp();
+    esp_log_write(1,0x10000,&_LC1,uVar3,0x10000);
   }
   else {
-    uVar1 = *(ushort *)(*(int *)(param_1 + 6) + 10);
-    puVar3 = param_1;
-    if (uVar1 == 0x500) {
+    puVar7 = param_1;
+    if (*(short *)(*(int *)(param_1 + 6) + 10) == 0x500) {
       do {
-        puVar4 = *(ushort **)(puVar3 + 6);
-        if (puVar4 == (ushort *)0x0) {
+        puVar2 = *(ushort **)(puVar7 + 6);
+        if (puVar2 == (ushort *)0x0) {
           __ptr = (undefined2 *)malloc(0x10);
           if (__ptr == (undefined2 *)0x0) {
             return 0x102;
           }
-          if ((bVar8 & 0x40) == 0) {
+          if ((bVar5 & 0x40) == 0) {
 _L0:
-            __size = esp_zb_zcl_get_attribute_size(sVar7,param_3);
-            if (__size == 0xffff) goto _L0;
+            __size = esp_zb_zcl_get_attribute_size(sVar4,param_3);
           }
           else {
-            __size = sVar7;
+            __size = sVar4;
             if (param_3 == (void *)0x0) {
               zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_attribute.c"
-                        ,0x6c);
+                        ,0x67);
               goto _L0;
             }
+          }
+          if (__size == 0xffff) {
+_L0:
+            free(__ptr);
+            return 0x102;
           }
           __dest = (void *)0x0;
           if (__size != 0) {
             __dest = malloc(__size);
-            if (__dest == (void *)0x0) {
-_L0:
-              free(__ptr);
-              return 0x102;
-            }
+            if (__dest == (void *)0x0) goto _L0;
             memcpy(__dest,param_3,__size);
           }
-          __ptr[2] = 0xffff;
-          iVar9 = *(int *)(param_1 + 6);
-          *(byte *)((int)__ptr + 3) = bVar8;
-          *(char *)(__ptr + 1) = (char)sVar7;
-          uVar2 = *(undefined2 *)(iVar9 + 10);
+          iVar6 = *(int *)(param_1 + 6);
+          *(byte *)((int)__ptr + 3) = bVar5;
+          *(char *)(__ptr + 1) = (char)sVar4;
+          uVar1 = *(undefined2 *)(iVar6 + 10);
           __ptr[3] = (short)__dest;
           *__ptr = (short)param_2;
           __ptr[4] = (short)((uint)__dest >> 0x10);
-          __ptr[5] = uVar2;
+          __ptr[2] = 0xffff;
+          __ptr[5] = uVar1;
           *(undefined4 *)(__ptr + 6) = 0;
-          *(undefined2 **)(puVar3 + 6) = __ptr;
+          *(undefined2 **)(puVar7 + 6) = __ptr;
           return 0;
         }
-        puVar3 = puVar4;
-      } while (*puVar4 != param_2);
-      uVar5 = esp_log_timestamp();
-      puVar6 = &_LC4;
+        puVar7 = puVar2;
+      } while ((*puVar2 != param_2) || (puVar2[2] != 0xffff));
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC3,uVar3,0x10000,param_2);
     }
     else {
-      uVar5 = esp_log_timestamp();
-      puVar6 = &_LC2;
-      param_2 = (uint)uVar1;
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC2,uVar3,0x10000,*(undefined2 *)(*(int *)(param_1 + 6) + 10),0x500)
+      ;
     }
-    esp_log_write(1,0x10000,puVar6,uVar5,0x10000,param_2);
   }
   return 0x102;
 }

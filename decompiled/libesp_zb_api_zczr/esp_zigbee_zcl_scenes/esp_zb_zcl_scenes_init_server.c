@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_init_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void esp_zb_zcl_scenes_init_server(void)
   do {
     *(undefined2 *)(puVar1 + 2) = 0xffff;
     puVar1 = puVar1 + 0xc;
-  } while (puVar1 != (undefined1 *)0x11650);
+  } while (puVar1 != (undefined1 *)0x11668);
   zb_zcl_device_cb_register(0x57,zcl_scenes_add_scene_handler);
   zb_zcl_device_cb_register(0x5a,zcl_scenes_remove_scene_handler);
   zb_zcl_device_cb_register(0x5b,zcl_scenes_remove_all_scenes_handler);

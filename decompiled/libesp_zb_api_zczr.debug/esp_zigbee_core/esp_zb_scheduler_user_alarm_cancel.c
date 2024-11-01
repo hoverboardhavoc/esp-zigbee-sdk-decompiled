@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> esp_zb_scheduler_user_alarm_cancel
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,8 +18,10 @@ undefined4 esp_zb_scheduler_user_alarm_cancel(uint param_1)
   if (param_1 < 0xfe) {
     zb_schedule_alarm_cancel(esp_zb_schedule_user_cb,param_1,0);
     uVar1 = zb_ret_to_esp_err();
-    return uVar1;
   }
-  return 0x102;
+  else {
+    uVar1 = 0x102;
+  }
+  return uVar1;
 }
 

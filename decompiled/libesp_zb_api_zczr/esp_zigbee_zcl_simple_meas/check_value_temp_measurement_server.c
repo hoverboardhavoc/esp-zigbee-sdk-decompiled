@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_simple_meas.o -> check_value_temp_measurement_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,37 +26,34 @@ int check_value_temp_measurement_server(uint param_1,undefined4 param_2,undefine
     if (iVar2 == 0xffff) {
       return 0;
     }
-    if (-1 < iVar1) {
-      return (iVar1 < 0x801) - 1;
+    if (iVar1 < 0) {
+      return -1;
     }
-_L45:
-    iVar1 = -1;
+    return -(uint)(0x800 < iVar1);
+  }
+  if (iVar1 == -0x8000) {
+    return 0;
+  }
+  iVar2 = -0x6ab3;
+  if ((param_1 & 0xfffffffd) == 0) {
+    iVar2 = zb_zcl_get_attr_desc_a(param_2,0x402,1,1);
+    iVar2 = (int)**(short **)(iVar2 + 6);
+    if (iVar2 == -0x8000) {
+      iVar2 = -0x6ab3;
+    }
+    if (param_1 != 2) goto _L0;
   }
   else {
-    if (iVar1 == -0x8000) {
-      return 0;
-    }
-    if ((param_1 & 0xfffffffd) == 0) {
-      iVar2 = zb_zcl_get_attr_desc_a(param_2,0x402,1,1);
-      iVar2 = (int)**(short **)(iVar2 + 6);
-      if (iVar2 == -0x8000) {
-        iVar2 = -0x6ab3;
-      }
-      if (param_1 != 2) goto _L0;
-    }
-    else {
-      iVar2 = -0x6ab3;
 _L0:
-      iVar3 = zb_zcl_get_attr_desc_a(param_2,0x402,1,2);
-      if (**(short **)(iVar3 + 6) != -0x8000) {
-        if (iVar2 <= iVar1) {
-          return -(uint)(**(short **)(iVar3 + 6) < iVar1);
-        }
-        goto _L45;
-      }
-    }
-    iVar1 = -(uint)(iVar1 < iVar2);
+    iVar3 = zb_zcl_get_attr_desc_a(param_2,0x402,1,2);
+    iVar3 = (int)**(short **)(iVar3 + 6);
+    if (iVar3 != -0x8000) goto _L0;
   }
-  return iVar1;
+  iVar3 = 0x7fff;
+_L0:
+  if (iVar1 < iVar2) {
+    return -1;
+  }
+  return -(uint)(iVar3 < iVar1);
 }
 

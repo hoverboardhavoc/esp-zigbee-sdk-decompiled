@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_ieee_addr_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,18 +13,22 @@
 void esp_zb_zdo_ieee_addr_req(undefined2 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  undefined4 uVar1;
+  int iVar1;
   undefined2 *puVar2;
+  undefined4 uVar3;
   
-  uVar1 = zb_buf_get_out_func();
-  puVar2 = (undefined2 *)zb_buf_get_tail_func(6);
-  *puVar2 = *param_1;
-  puVar2[1] = param_1[1];
-  *(undefined1 *)(puVar2 + 2) = *(undefined1 *)(param_1 + 2);
-  *(undefined1 *)((int)puVar2 + 5) = *(undefined1 *)((int)param_1 + 5);
-  uVar1 = zb_zdo_ieee_addr_req(uVar1,device_ieee_addr_req_cb);
-  zb_schedule_app_alarm(ieee_addr_req_timeout,uVar1,5000000,0);
-  esp_zb_zdo_callback_register(uVar1,1,param_2,param_3);
+  iVar1 = zb_buf_get_out_func();
+  if ((param_1 != (undefined2 *)0x0) && (iVar1 != 0)) {
+    puVar2 = (undefined2 *)zb_buf_get_tail_func(6);
+    *puVar2 = *param_1;
+    puVar2[1] = param_1[1];
+    *(undefined1 *)(puVar2 + 2) = *(undefined1 *)(param_1 + 2);
+    *(undefined1 *)((int)puVar2 + 5) = *(undefined1 *)((int)param_1 + 5);
+    uVar3 = zb_zdo_ieee_addr_req(iVar1,device_ieee_addr_req_cb);
+    zb_schedule_app_alarm(ieee_addr_req_timeout,uVar3,5000000,0);
+    esp_zb_zdo_callback_register(uVar3,1,param_2,param_3);
+    return;
+  }
   return;
 }
 

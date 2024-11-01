@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,16 +21,20 @@ undefined4 zcl_ota_upgrade_handler(void)
   int iVar6;
   int iVar7;
   void *pvVar8;
-  undefined1 uVar9;
+  undefined4 uVar9;
+  undefined1 uVar10;
   uint __n;
-  uint uVar10;
   uint uVar11;
   void *__src;
   uint uVar12;
   
   iVar6 = zb_buf_get_tail_func(0x38);
   iVar7 = esp_zb_has_core_action_handler();
-  if (iVar7 != 0) {
+  if (iVar7 == 0) {
+_L0:
+    uVar9 = 0xffffffff;
+  }
+  else {
     if (message_2 == (uint *)0x0) {
       message_2 = (uint *)malloc(0x30);
       if (message_2 == (uint *)0x0) {
@@ -40,11 +44,11 @@ undefined4 zcl_ota_upgrade_handler(void)
     }
     puVar4 = message_2;
     *message_2 = (uint)(iVar6 == 0);
-    uVar9 = 0;
+    uVar10 = 0;
     if (iVar6 != 0) {
-      uVar9 = *(undefined1 *)(iVar6 + 4);
+      uVar10 = *(undefined1 *)(iVar6 + 4);
     }
-    *(undefined1 *)(puVar4 + 1) = uVar9;
+    *(undefined1 *)(puVar4 + 1) = uVar10;
     *(undefined2 *)((int)puVar4 + 6) = 0x19;
     bVar1 = *(byte *)(iVar6 + 0xc);
     *(undefined2 *)(puVar4 + 10) = 0;
@@ -57,17 +61,15 @@ undefined4 zcl_ota_upgrade_handler(void)
       if (s_ota_header_1 == (void *)0x0) {
         s_ota_header_1 = malloc(0x45);
       }
-_L0:
       while (puVar4 = message_2, pvVar3 = s_ota_header_1, uVar11 != 0) {
-        uVar10 = (uint)s_ota_header_length_0;
-        if (uVar10 <= uVar12) {
+        if (s_ota_header_length_0 <= uVar12) {
           *(short *)(message_2 + 10) = (short)uVar11;
           puVar4[0xb] = (uint)__src;
           iVar7 = esp_zb_core_action_handler_schedule(4);
           goto _L0;
         }
-        __n = uVar10 - uVar12;
-        if (uVar11 < uVar10 - uVar12) {
+        __n = s_ota_header_length_0 - uVar12;
+        if (uVar11 < __n) {
           __n = uVar11;
         }
         pvVar8 = (void *)((int)s_ota_header_1 + uVar12);
@@ -76,71 +78,69 @@ _L0:
         puVar4 = message_2;
         uVar11 = uVar11 - __n & 0xff;
         __src = (void *)((int)__src + __n);
-        if (uVar12 < 0x38) goto _L0;
-        s_ota_header_length_0 = *(ushort *)((int)pvVar3 + 6);
-        if (s_ota_header_length_0 <= uVar12) goto _L0;
+        if (0x37 < uVar12) {
+          s_ota_header_length_0 = *(ushort *)((int)pvVar3 + 6);
+        }
+        if ((s_ota_header_length_0 <= uVar12) && (pvVar3 != (void *)0x0)) {
+          pvVar8 = (void *)((int)message_2 + 0x1a);
+          message_2[4] = *(uint *)((int)pvVar3 + 0xe);
+          puVar4[5] = *(int *)((int)pvVar3 + 0x34) - (uint)*(ushort *)((int)pvVar3 + 6);
+          *(undefined2 *)((int)puVar4 + 0xe) = *(undefined2 *)((int)pvVar3 + 0xc);
+          uVar2 = *(ushort *)((int)pvVar3 + 8);
+          *(ushort *)(puVar4 + 6) = uVar2;
+          *(undefined2 *)(puVar4 + 3) = *(undefined2 *)((int)pvVar3 + 10);
+          memset(pvVar8,0,0xe);
+          if ((uVar2 & 1) == 0) {
+            puVar5 = (undefined1 *)((int)pvVar3 + 0x38);
+          }
+          else {
+            puVar5 = (undefined1 *)((int)pvVar3 + 0x39);
+            *(undefined1 *)((int)puVar4 + 0x1a) = *(undefined1 *)((int)pvVar3 + 0x38);
+          }
+          if ((uVar2 & 2) != 0) {
+            zb_memcpy8((int)puVar4 + 0x1b,puVar5);
+            puVar5 = puVar5 + 8;
+          }
+          if ((puVar4[6] & 4) != 0) {
+            *(undefined1 *)(puVar4 + 9) = *puVar5;
+            *(undefined1 *)((int)puVar4 + 0x25) = puVar5[1];
+            *(undefined1 *)((int)puVar4 + 0x26) = puVar5[2];
+            *(undefined1 *)((int)puVar4 + 0x27) = puVar5[3];
+          }
+        }
       }
-      goto _L0;
-    }
-    iVar7 = esp_zb_core_action_handler_schedule(4);
-    if ((byte)(*(char *)(iVar6 + 0xc) - 3U) < 2) {
-      s_ota_header_length_0 = 0x38;
-      if (s_ota_header_1 != (void *)0x0) {
-        free(s_ota_header_1);
-        s_ota_header_1 = (void *)0x0;
-      }
-      if (message_2 != (uint *)0x0) {
-        free(message_2);
-        message_2 = (uint *)0x0;
-      }
-    }
-_L0:
-    if (iVar7 == 0) {
-_L0:
-      *(undefined1 *)(iVar6 + 0xc) = 6;
-      return 0;
-    }
-    if (iVar7 == 0x105) {
-      uVar9 = 10;
-    }
-    else if (iVar7 == 0x10c) {
-      uVar9 = 9;
     }
     else {
-      uVar9 = 7;
-    }
-    *(undefined1 *)(iVar6 + 0xc) = uVar9;
-  }
-  return 0xffffffff;
+      iVar7 = esp_zb_core_action_handler_schedule(4);
+      if ((byte)(*(char *)(iVar6 + 0xc) - 3U) < 2) {
+        s_ota_header_length_0 = 0x38;
+        if (s_ota_header_1 != (void *)0x0) {
+          free(s_ota_header_1);
+          s_ota_header_1 = (void *)0x0;
+        }
+        if (message_2 != (uint *)0x0) {
+          free(message_2);
+          message_2 = (uint *)0x0;
+        }
+      }
 _L0:
-  if ((uVar10 <= uVar12) && (pvVar3 != (void *)0x0)) {
-_L0:
-    pvVar8 = (void *)((int)message_2 + 0x1a);
-    message_2[4] = *(uint *)((int)pvVar3 + 0xe);
-    puVar4[5] = *(int *)((int)pvVar3 + 0x34) - (uint)*(ushort *)((int)pvVar3 + 6);
-    *(undefined2 *)((int)puVar4 + 0xe) = *(undefined2 *)((int)pvVar3 + 0xc);
-    uVar2 = *(ushort *)((int)pvVar3 + 8);
-    *(ushort *)(puVar4 + 6) = uVar2;
-    *(undefined2 *)(puVar4 + 3) = *(undefined2 *)((int)pvVar3 + 10);
-    memset(pvVar8,0,0xe);
-    if ((uVar2 & 1) == 0) {
-      puVar5 = (undefined1 *)((int)pvVar3 + 0x38);
+      if (iVar7 != 0) {
+        if (iVar7 == 0x105) {
+          uVar10 = 10;
+        }
+        else if (iVar7 == 0x10c) {
+          uVar10 = 9;
+        }
+        else {
+          uVar10 = 7;
+        }
+        *(undefined1 *)(iVar6 + 0xc) = uVar10;
+        goto _L0;
+      }
     }
-    else {
-      puVar5 = (undefined1 *)((int)pvVar3 + 0x39);
-      *(undefined1 *)((int)puVar4 + 0x1a) = *(undefined1 *)((int)pvVar3 + 0x38);
-    }
-    if ((uVar2 & 2) != 0) {
-      zb_memcpy8((int)puVar4 + 0x1b,puVar5);
-      puVar5 = puVar5 + 8;
-    }
-    if ((puVar4[6] & 4) != 0) {
-      *(undefined1 *)(puVar4 + 9) = *puVar5;
-      *(undefined1 *)((int)puVar4 + 0x25) = puVar5[1];
-      *(undefined1 *)((int)puVar4 + 0x26) = puVar5[2];
-      *(undefined1 *)((int)puVar4 + 0x27) = puVar5[3];
-    }
+    *(undefined1 *)(iVar6 + 0xc) = 6;
+    uVar9 = 0;
   }
-  goto _L0;
+  return uVar9;
 }
 

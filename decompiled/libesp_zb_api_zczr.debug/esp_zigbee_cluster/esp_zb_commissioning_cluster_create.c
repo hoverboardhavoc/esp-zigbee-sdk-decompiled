@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_cluster.o -> esp_zb_commissioning_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,22 +32,7 @@ undefined4 esp_zb_commissioning_cluster_create(void *param_1)
   undefined1 uStack_38;
   undefined1 uStack_37;
   undefined1 uStack_36;
-  undefined1 uStack_35;
-  undefined1 uStack_34;
-  undefined1 uStack_33;
-  undefined1 uStack_32;
-  undefined1 uStack_31;
-  undefined1 uStack_30;
-  undefined1 uStack_2f;
-  undefined1 uStack_2e;
-  undefined1 uStack_2d;
-  undefined1 uStack_2c;
-  undefined1 uStack_2b;
-  undefined1 uStack_2a;
-  undefined1 uStack_29;
-  undefined1 uStack_28;
-  undefined1 uStack_27;
-  undefined1 uStack_26;
+  undefined1 auStack_35 [16];
   undefined1 uStack_25;
   undefined4 uStack_24;
   undefined4 uStack_20;
@@ -75,22 +60,7 @@ undefined4 esp_zb_commissioning_cluster_create(void *param_1)
   uStack_38 = 0;
   uStack_37 = 0;
   uStack_36 = 0;
-  uStack_35 = 0;
-  uStack_34 = 0;
-  uStack_33 = 0;
-  uStack_32 = 0;
-  uStack_31 = 0;
-  uStack_30 = 0;
-  uStack_2f = 0;
-  uStack_2e = 0;
-  uStack_2d = 0;
-  uStack_2c = 0;
-  uStack_2b = 0;
-  uStack_2a = 0;
-  uStack_29 = 0;
-  uStack_28 = 0;
-  uStack_27 = 0;
-  uStack_26 = 0;
+  memset(auStack_35,0,0x10);
   uStack_25 = 1;
   uStack_24 = 0;
   uStack_20 = 0;
@@ -111,7 +81,7 @@ undefined4 esp_zb_commissioning_cluster_create(void *param_1)
   esp_zb_commissioning_cluster_add_attr(uVar1,5,&uStack_3f);
   esp_zb_commissioning_cluster_add_attr(uVar1,6,&uStack_3e);
   esp_zb_commissioning_cluster_add_attr(uVar1,0x10,&uStack_3d);
-  esp_zb_commissioning_cluster_add_attr(uVar1,0x12,&uStack_35);
+  esp_zb_commissioning_cluster_add_attr(uVar1,0x12,auStack_35);
   esp_zb_commissioning_cluster_add_attr(uVar1,0x13,&uStack_25);
   esp_zb_commissioning_cluster_add_attr(uVar1,0x14,&uStack_24);
   esp_zb_commissioning_cluster_add_attr(uVar1,0x15,&uStack_14);

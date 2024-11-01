@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_mgmt_lqi_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,14 +20,14 @@ void esp_zb_zdo_mgmt_lqi_req(undefined1 *param_1,undefined4 param_2,undefined4 p
   if (param_1 == (undefined1 *)0x0) {
     uVar3 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC20,uVar3,"ESP_ZIGBEE_API_ZDO","esp_zb_zdo_mgmt_lqi_req"
-                  ,0x41f);
+                  ,0x447);
   }
   else {
     iVar1 = zb_buf_get_out_func();
     if (iVar1 == 0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC23,uVar3,"ESP_ZIGBEE_API_ZDO",
-                    "esp_zb_zdo_mgmt_lqi_req",0x420);
+      esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC24,uVar3,"ESP_ZIGBEE_API_ZDO",
+                    "esp_zb_zdo_mgmt_lqi_req",0x448);
     }
     else {
       puVar2 = (undefined1 *)zb_buf_get_tail_func(4);

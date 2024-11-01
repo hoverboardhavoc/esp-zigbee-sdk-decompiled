@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 438301125bdfa70150622d905094f79315456774
- * https://github.com/espressif/esp-zigbee-sdk/commit/438301125bdfa70150622d905094f79315456774
- * Upstream date: 2024-04-26 19:22:10 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.3.0(a824e1a1)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_scenes.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,12 +38,12 @@ void zb_nvram_app1_read_cb(uint param_1)
   
   iVar11 = -(param_1 + 0x10 & 0xfffffff0);
   if (param_1 < 2) {
-    uVar13 = esp_log_timestamp();
+    uVar13 = esp_log_timestamp(param_1);
     esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC19,uVar13,"ESP_ZIGBEE_ZCL_SCENES",
                   "zb_nvram_app1_read_cb",0x53);
   }
   else {
-    iVar12 = zb_nvram_read_data((int)&uStack_40 + iVar11,param_1);
+    iVar12 = zb_nvram_read_data((int)&uStack_40 + iVar11);
     uVar9 = *(ushort *)((int)&uStack_40 + iVar11);
     uVar10 = 2;
     uVar17 = 0;

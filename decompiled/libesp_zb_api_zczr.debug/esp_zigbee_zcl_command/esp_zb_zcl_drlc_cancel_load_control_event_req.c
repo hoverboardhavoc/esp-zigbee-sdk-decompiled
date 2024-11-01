@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_drlc_cancel_load_control_event_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void esp_zb_zcl_drlc_cancel_load_control_event_req(int param_1)
   if (iVar1 == 0) {
     uVar2 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar2,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_drlc_cancel_load_control_event_req",0x847,
+                  "esp_zb_zcl_drlc_cancel_load_control_event_req",0x862,
                   "esp_zb_zcl_drlc_cancel_load_control_event_req");
     pcVar3 = (char *)zb_zcl_get_ctx();
     *pcVar3 = *pcVar3 + '\x01';

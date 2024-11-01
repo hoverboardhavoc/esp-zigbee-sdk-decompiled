@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zdo_command.o -> node_desc_req_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,7 +17,7 @@ void node_desc_req_timeout(undefined4 param_1)
   int iVar2;
   
   uVar1 = esp_log_timestamp();
-  esp_log_write(3,"ESP_ZIGBEE_API_ZDO",&_L0,uVar1,"ESP_ZIGBEE_API_ZDO");
+  esp_log_write(3,"ESP_ZIGBEE_API_ZDO",&_LC4,uVar1,"ESP_ZIGBEE_API_ZDO");
   iVar2 = esp_zb_zdo_callback_find(param_1);
   if ((iVar2 != 0) && (*(code **)(iVar2 + 4) != (code *)0x0)) {
     (**(code **)(iVar2 + 4))(0x85,ZDO_INVALID_SHORT_ADDR,0,*(undefined4 *)(iVar2 + 8));

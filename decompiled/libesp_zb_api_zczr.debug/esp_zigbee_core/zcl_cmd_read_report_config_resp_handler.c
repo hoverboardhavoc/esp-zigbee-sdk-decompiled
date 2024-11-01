@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_core.o -> zcl_cmd_read_report_config_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,96 +13,113 @@
 int zcl_cmd_read_report_config_resp_handler(undefined4 param_1)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  undefined4 uVar3;
-  uint uVar4;
-  uint uVar5;
-  int iVar6;
-  uint auStack_4c [8];
-  byte bStack_2c;
-  undefined2 uStack_2a;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
+  byte bVar1;
+  uint *puVar2;
+  byte *pbVar3;
+  int iVar4;
+  undefined4 uVar5;
+  uint uVar6;
+  uint uVar7;
+  uint *puVar8;
+  uint *puVar9;
+  undefined1 auStack_44 [32];
+  uint *puStack_24;
   
-  iVar2 = zb_zcl_basic_message_create(auStack_4c);
-  if (iVar2 == 0) {
+  puStack_24 = (uint *)0x0;
+  iVar4 = zb_zcl_basic_message_create(auStack_44);
+  if (iVar4 == 0) {
+    puVar9 = (uint *)0x0;
     do {
-      uVar5 = zb_buf_len_func(param_1);
-      if (uVar5 < 5) {
-        uVar5 = 4;
-        pbVar1 = (byte *)0x0;
-_L0:
-        if (pbVar1 == (byte *)0x0) {
-          uVar5 = 0;
-        }
-        else {
-          iVar6 = zb_zcl_zcl8_statuses_conversion(*pbVar1);
-          *pbVar1 = (byte)iVar6;
-          if ((iVar6 != 0) && (iVar6 != 0x80)) {
-            zb_buf_len_func(param_1);
-            uVar5 = 4;
-          }
-        }
+      uVar6 = zb_buf_len_func(param_1);
+      if (uVar6 < 4) {
+        pbVar3 = (byte *)0x0;
+        uVar6 = 0;
       }
       else {
-        pbVar1 = (byte *)zb_buf_begin_func(param_1);
-        if (pbVar1 == (byte *)0x0) {
-          uVar5 = 0;
+        pbVar3 = (byte *)zb_buf_begin_func(param_1);
+        if (pbVar3 == (byte *)0x0) {
+          uVar6 = 0;
         }
         else {
-          if (pbVar1[1] == 0) {
-            iVar6 = zb_zcl_is_analog_data_type(pbVar1[4]);
-            if (iVar6 == 0) {
-              uVar5 = 9;
+          if (pbVar3[1] == 0) {
+            iVar4 = zb_zcl_is_analog_data_type(pbVar3[4]);
+            if (iVar4 == 0) {
+              uVar6 = 9;
             }
             else {
-              uVar5 = 10;
+              uVar6 = 10;
             }
           }
           else {
-            uVar5 = 6;
+            uVar6 = 6;
           }
-          uVar4 = zb_buf_len_func(param_1);
-          if (uVar5 <= uVar4) goto _L0;
-          pbVar1 = (byte *)0x0;
-          uVar5 = 0;
+          iVar4 = zb_zcl_zcl8_statuses_conversion(*pbVar3);
+          *pbVar3 = (byte)iVar4;
+          if ((iVar4 != 0) && (iVar4 != 0x80)) {
+            uVar6 = 4;
+          }
         }
       }
-      uVar4 = zb_buf_len_func(param_1);
-      if (uVar4 < uVar5) {
-        pbVar1 = (byte *)0x0;
+      uVar7 = zb_buf_len_func(param_1);
+      puVar8 = puVar9;
+      if (uVar7 < uVar6) {
+        pbVar3 = (byte *)0x0;
+        puVar2 = puStack_24;
       }
       else {
-        zb_buf_cut_left_func(param_1,uVar5);
-        if (pbVar1 != (byte *)0x0) {
-          auStack_4c[0] = (uint)*pbVar1;
-          uStack_2a = *(undefined2 *)(pbVar1 + 2);
-          bStack_2c = pbVar1[1];
-          if (*pbVar1 == 0) {
-            if (bStack_2c == 0) {
-              uStack_28 = CONCAT31(uStack_28._1_3_,pbVar1[4]);
-              uStack_28 = CONCAT22(*(undefined2 *)(pbVar1 + 5),(undefined2)uStack_28);
-              uStack_24 = CONCAT13(uStack_24._3_1_,*(undefined3 *)(pbVar1 + 7));
+        zb_buf_cut_left_func(param_1,uVar6);
+        puVar2 = puStack_24;
+        if (pbVar3 != (byte *)0x0) {
+          puVar8 = (uint *)malloc(0x14);
+          *puVar8 = (uint)*pbVar3;
+          *(undefined2 *)((int)puVar8 + 6) = *(undefined2 *)(pbVar3 + 2);
+          bVar1 = pbVar3[1];
+          *(byte *)(puVar8 + 1) = bVar1;
+          if (*pbVar3 == 0) {
+            if (bVar1 == 0) {
+              *(byte *)(puVar8 + 2) = pbVar3[4];
+              *(undefined2 *)((int)puVar8 + 10) = *(undefined2 *)(pbVar3 + 5);
+              *(undefined2 *)(puVar8 + 3) = *(undefined2 *)(pbVar3 + 7);
+              *(byte *)((int)puVar8 + 0xe) = pbVar3[9];
             }
             else {
-              uStack_28 = CONCAT22(uStack_28._2_2_,*(undefined2 *)(pbVar1 + 4));
+              *(undefined2 *)(puVar8 + 2) = *(undefined2 *)(pbVar3 + 4);
             }
           }
           else {
-            uStack_28 = 0;
-            uStack_24 = 0;
+            *(undefined1 *)(puVar8 + 2) = 0;
+            *(undefined1 *)((int)puVar8 + 9) = 0;
+            *(undefined1 *)((int)puVar8 + 10) = 0;
+            *(undefined1 *)((int)puVar8 + 0xb) = 0;
+            *(undefined1 *)(puVar8 + 3) = 0;
+            *(undefined1 *)((int)puVar8 + 0xd) = 0;
+            *(undefined1 *)((int)puVar8 + 0xe) = 0;
+            *(undefined1 *)((int)puVar8 + 0xf) = 0;
           }
-          iVar2 = (*zb_core_action_cb)(0x1003,auStack_4c,zb_core_action_cb);
+          puVar8[4] = 0;
+          puVar2 = puVar8;
+          if (puVar9 != (uint *)0x0) {
+            puVar9[4] = (uint)puVar8;
+            puVar2 = puStack_24;
+          }
         }
       }
-    } while (pbVar1 != (byte *)0x0);
+      puStack_24 = puVar2;
+      puVar9 = puVar8;
+    } while (pbVar3 != (byte *)0x0);
+    iVar4 = (*zb_core_action_cb)(0x1003,auStack_44,zb_core_action_cb);
+    puVar9 = puStack_24;
+    while (puVar9 != (uint *)0x0) {
+      puVar8 = (uint *)puVar9[4];
+      free(puVar9);
+      puVar9 = puVar8;
+    }
   }
   else {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC10,uVar3,"ESP_ZIGBEE_CORE",
-                  "zcl_cmd_read_report_config_resp_handler",0x214);
+    uVar5 = esp_log_timestamp();
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC10,uVar5,"ESP_ZIGBEE_CORE",
+                  "zcl_cmd_read_report_config_resp_handler",0x216);
   }
-  return iVar2;
+  return iVar4;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_color_enhanced_move_to_hue_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ void esp_zb_zcl_color_enhanced_move_to_hue_cmd_req(int param_1)
   if (iVar1 == 0) {
     uVar2 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar2,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_color_enhanced_move_to_hue_cmd_req",0x3fa,
+                  "esp_zb_zcl_color_enhanced_move_to_hue_cmd_req",0x415,
                   "esp_zb_zcl_color_enhanced_move_to_hue_cmd_req");
     pcVar3 = (char *)zb_zcl_get_ctx();
     *pcVar3 = *pcVar3 + '\x01';

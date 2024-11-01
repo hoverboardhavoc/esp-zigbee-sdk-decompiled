@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e28462af08968da8dbda59a317df742f0109ee5f
- * https://github.com/espressif/esp-zigbee-sdk/commit/e28462af08968da8dbda59a317df742f0109ee5f
- * Upstream date: 2024-04-12 14:44:19 +0800
- * Upstream subject: esp-zigbee-sdk: release/v1.2.3(042315bf)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_match_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ undefined4 esp_zb_zdo_match_cluster(undefined1 *param_1,undefined4 param_2,undef
       *(undefined2 **)(param_1 + 8) = puVar6 + 1;
     }
     uVar5 = 0x104;
-    if (iVar2 == iVar7) {
+    if (iVar7 == iVar2) {
       uVar3 = zb_zdo_match_desc_req(uVar3,find_device_cb);
       zb_schedule_app_alarm(match_desc_req_device_timeout,uVar3,5000000,0);
       esp_zb_zdo_callback_register(uVar3,6,param_2,param_3);

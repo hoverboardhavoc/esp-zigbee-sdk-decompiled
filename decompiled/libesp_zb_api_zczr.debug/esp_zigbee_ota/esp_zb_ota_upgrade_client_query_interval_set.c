@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 280ac146dc8285567eab4df113b3f6356493fe0b
- * https://github.com/espressif/esp-zigbee-sdk/commit/280ac146dc8285567eab4df113b3f6356493fe0b
- * Upstream date: 2024-07-19 11:49:15 +0800
- * Upstream subject: esp-zigbee-lib:(94bd7a1a)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_ota.o -> esp_zb_ota_upgrade_client_query_interval_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,15 @@
 undefined4 esp_zb_ota_upgrade_client_query_interval_set(int param_1)
 
 {
+  undefined4 uVar1;
+  
   if (param_1 == 0) {
-    return 0x102;
+    uVar1 = 0x102;
   }
-  zb_zcl_ota_upgrade_set_query_interval();
-  return 0;
+  else {
+    zb_zcl_ota_upgrade_set_query_interval();
+    uVar1 = 0;
+  }
+  return uVar1;
 }
 

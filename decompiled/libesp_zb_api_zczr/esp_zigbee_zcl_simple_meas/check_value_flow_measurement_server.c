@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit eec5098a388a0960da2662a0145e34c21f0838a0
- * https://github.com/espressif/esp-zigbee-sdk/commit/eec5098a388a0960da2662a0145e34c21f0838a0
- * Upstream date: 2024-08-27 08:46:30 +0000
- * Upstream subject: esp-zigbee-lib:(6bd34178)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_simple_meas.o -> check_value_flow_measurement_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,9 +34,8 @@ int check_value_flow_measurement_server(uint param_1,undefined4 param_2,undefine
     uVar1 = 0xffff;
     if ((param_1 & 0xfffffffd) == 0) {
       iVar3 = zb_zcl_get_attr_desc_a(param_2,0x404,1,1);
-      uVar4 = (uint)**(ushort **)(iVar3 + 6);
-      if (**(ushort **)(iVar3 + 6) == 0xffff) {
-        uVar4 = 0;
+      if (**(ushort **)(iVar3 + 6) != 0xffff) {
+        uVar4 = (uint)**(ushort **)(iVar3 + 6);
       }
       if (param_1 == 2) goto _L0;
     }

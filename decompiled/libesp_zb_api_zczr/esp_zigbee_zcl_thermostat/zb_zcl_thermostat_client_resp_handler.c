@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr -> esp_zigbee_zcl_thermostat.o -> zb_zcl_thermostat_client_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,7 +46,7 @@ int zb_zcl_thermostat_client_resp_handler(int param_1)
   uVar9 = 0x7b;
   bVar10 = true;
   if (param_1 == 0) {
-_L52:
+_L53:
     zb_assert(0x10000,uVar9);
 _L0:
     aiStack_58[0] = 0;
@@ -97,7 +97,7 @@ _L0:
       unaff_s7 = (uint)pbVar5[2];
       if (10 < unaff_s3) {
         uVar9 = 0x82;
-        goto _L52;
+        goto _L53;
       }
       goto _L0;
     }

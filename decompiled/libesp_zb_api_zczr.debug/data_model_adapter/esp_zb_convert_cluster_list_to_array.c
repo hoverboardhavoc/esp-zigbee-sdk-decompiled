@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 144e7499ed4e1cce68f5de0341b465c0d192496c
- * https://github.com/espressif/esp-zigbee-sdk/commit/144e7499ed4e1cce68f5de0341b465c0d192496c
- * Upstream date: 2024-07-03 12:16:21 +0000
- * Upstream subject: esp-zigbee-lib:(290e291c)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> data_model_adapter.o -> esp_zb_convert_cluster_list_to_array
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ undefined4 esp_zb_convert_cluster_list_to_array(int param_1)
   pvStack_2c = (void *)0x0;
   if (param_1 == 0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC5,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
+    esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_L0,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
                   "esp_zb_convert_cluster_list_to_array",0x9b);
     uStack_28 = uStack_30;
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * https://github.com/espressif/esp-zigbee-sdk/commit/d9ff37b72907da6c3761d958aa9b6c92bf55c912
- * Upstream date: 2024-10-12 11:34:09 +0800
- * Upstream subject: esp-zigbee-lib:(a9edc7b2)
+ * Last changed at upstream commit b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/b16fd900dd0b442e8e677ff001b10a2e9e95729b
+ * Upstream date: 2024-11-01 15:37:53 +0800
+ * Upstream subject: esp-zigbee-lib:(4f5d21fb)
  * Source: libesp_zb_api_zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_zcl_attr_clone
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ undefined4 esp_zb_internal_zcl_attr_clone(undefined1 *param_1,undefined1 *param_
   
   if ((param_1 == (undefined1 *)0x0) || (param_2 == (undefined1 *)0x0)) {
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC9,uVar10,0x10000,"esp_zb_internal_zcl_attr_clone",0x91,
+    esp_log_write(1,0x10000,&_L0,uVar10,0x10000,"esp_zb_internal_zcl_attr_clone",0x91,
                   "esp_zb_internal_zcl_attr_clone");
     uVar10 = 0x102;
   }
