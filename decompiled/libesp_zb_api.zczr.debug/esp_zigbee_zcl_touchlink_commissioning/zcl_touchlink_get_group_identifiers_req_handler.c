@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
+ * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
+ * Upstream date: 2025-01-14 03:03:09 +0000
+ * Upstream subject: esp-zigbee-sdk: (acad93d1)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_touchlink_commissioning.o -> zcl_touchlink_get_group_identifiers_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ undefined4 zcl_touchlink_get_group_identifiers_req_handler(undefined4 param_1)
     puVar5 = (undefined1 *)zb_buf_begin_func(param_1);
     uVar1 = *puVar5;
     zb_apsme_get_groups_by_ep(0x20,local_70,&uStack_30,uStack_20);
-    uVar2 = DAT_00012150;
+    uVar2 = DAT_00012148;
     puVar5 = (undefined1 *)zb_buf_reuse_func(uVar3);
     *puVar5 = 0x19;
     puVar5[1] = uStack_17;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
+ * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
+ * Upstream date: 2025-01-14 03:03:09 +0000
+ * Upstream subject: esp-zigbee-sdk: (acad93d1)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_commissioning.o -> esp_zcl_comm_restart_process_leave_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,12 +29,12 @@ void esp_zcl_comm_restart_process_leave_done(int param_1)
     return;
   }
   if (DAT_00010e18 == '\0') {
-    _DAT_000112e0 = g_comm_ctx;
+    _DAT_000112d8 = g_comm_ctx;
     iVar2 = memcmp(&g_comm_ctx,&g_unknown_ieee_addr,8);
     if (iVar2 != 0) {
       zb_set_extended_pan_id(&g_comm_ctx);
     }
-    _DAT_000112e2 = DAT_00010dba;
+    _DAT_000112da = DAT_00010dba;
     zb_set_channel_mask(DAT_00010dbc);
     iVar2 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar2 == 0) || (iVar2 = memcmp(&g_comm_ctx,&g_unknown_ieee_addr,8), iVar2 == 0)) {
@@ -42,21 +42,21 @@ void esp_zcl_comm_restart_process_leave_done(int param_1)
     }
     iVar2 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar2 != 0) || (iVar2 = memcmp(&g_comm_ctx,&g_zero_addr,8), iVar2 != 0)) {
-      __dest = (void *)secur_nwk_key_by_seq(DAT_00011281);
+      __dest = (void *)secur_nwk_key_by_seq(DAT_0001127f);
       if (__dest == (void *)0x0) {
         __dest = (void *)zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/zcl/esp_zigbee_zcl_commissioning.c"
                                    ,0x134);
       }
       memcpy(__dest,&DAT_00010ddb,0x10);
     }
-    DAT_00011619 = DAT_00011619 & 0xfd | (byte)((DAT_00010deb & 1) << 1);
+    DAT_00011611 = DAT_00011611 & 0xfd | (byte)((DAT_00010deb & 1) << 1);
     iVar2 = memcmp(&g_comm_ctx,&g_zero_addr,8);
     if ((iVar2 != 0) || (iVar2 = memcmp(&g_comm_ctx,&g_zero_addr,8), iVar2 != 0)) {
-      memcpy((void *)0x11634,&DAT_00010dec,0x10);
-      memcpy((void *)0x11648,&g_comm_ctx,0x10);
+      memcpy((void *)0x1162c,&DAT_00010dec,0x10);
+      memcpy((void *)0x11640,&g_comm_ctx,0x10);
     }
-    DAT_00011281 = DAT_00010dfc;
-    _DAT_0001128c = DAT_00010dfe;
+    DAT_0001127f = DAT_00010dfc;
+    _DAT_00011288 = DAT_00010dfe;
     zb_nwk_sync_pibcache_with_mac(param_1,esp_zcl_commissioning_restart_process_rejoin);
     return;
   }
