@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr -> esp_zigbee_cluster.o -> esp_zb_commissioning_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ undefined4 esp_zb_commissioning_cluster_create(void *param_1)
   undefined1 auStack_12 [6];
   
   local_50 = esp_zb_get_short_address();
-  memcpy(auStack_4e,&_L0,8);
+  memcpy(auStack_4e,&_LC13,8);
   uStack_46 = esp_zb_get_pan_id();
   uStack_44 = zb_get_channel_mask();
   memcpy(&uStack_40,&_L0,0x30);

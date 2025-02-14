@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> reset_endpoint_to_factory_default
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,7 +46,7 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
   if (param_1 == (undefined1 *)0x0) {
     uVar4 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC1,uVar4,"ESP_ZIGBEE_CORE",
-                  "reset_endpoint_to_factory_default",0x3ac);
+                  "reset_endpoint_to_factory_default",0x3b0);
     uVar4 = 0xffffffff;
   }
   else {
@@ -55,7 +55,7 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
       if (puVar3 == (undefined2 *)0x0) {
         uVar4 = esp_log_timestamp();
         esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC2,uVar4,"ESP_ZIGBEE_CORE",
-                      "reset_endpoint_to_factory_default",0x3af);
+                      "reset_endpoint_to_factory_default",0x3b3);
         return 0xffffffff;
       }
       if (*(code **)((int)puVar3 + 0xb) != (code *)0x0) {

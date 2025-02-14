@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr -> esp_zigbee_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -133,16 +133,16 @@ _L0:
             if (uVar14 < 0x2b) {
               if (uVar14 != 0x28) {
                 uVar11 = 0x29;
-                goto _L136;
+                goto _L137;
               }
               goto _L0;
             }
             uVar11 = 0x2b;
-            goto _L130;
+            goto _L131;
           }
           if ((uVar14 != 0x31) && (uVar14 != 0x38)) {
             uVar11 = 0x30;
-_L128:
+_L129:
             if (uVar14 == uVar11) goto _L0;
             goto _L0;
           }
@@ -154,7 +154,7 @@ _L0:
             if (uVar14 < 0xf1) {
               if (0xe9 < uVar14) {
                 uVar11 = 0xea;
-                goto _L130;
+                goto _L131;
               }
               if (0xe7 < uVar14) goto _L0;
               if ((uVar14 + 0x20 & 0xff) < 3) goto _L0;
@@ -178,7 +178,7 @@ _L0:
         if (uVar14 < 0xb) {
           if (uVar14 != 8) {
             uVar11 = 9;
-_L136:
+_L137:
             if (uVar14 == uVar11) goto _L0;
             goto _L0;
           }
@@ -195,7 +195,7 @@ _L0:
           if (uVar14 < 0x1a) {
             uVar14 = uVar14 & 0xf7;
             uVar11 = 0x10;
-            goto _L128;
+            goto _L129;
           }
           if (uVar14 == 0x1a) goto _L0;
           uVar11 = 0x1b;
@@ -209,14 +209,14 @@ _L0:
           if (uVar14 < 0x23) {
             if (uVar14 != 0x20) {
               uVar11 = 0x21;
-              goto _L136;
+              goto _L137;
             }
             goto _L0;
           }
           uVar11 = 0x23;
         }
       }
-_L130:
+_L131:
       if (uVar14 == uVar11) {
 _L0:
         uStack_26 = 4;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> esp_zb_schedule_user_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,16 +25,25 @@ int esp_zb_schedule_user_cb(int param_1)
     return iVar2;
   }
   iVar2 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_core.c",
-                    0x52a);
+                    0x52e);
   if (iVar2 == 0x104) {
     return -6;
   }
   if (iVar2 < 0x105) {
-    if (iVar2 != 0) {
-      if (iVar2 != 0x101) {
-        return -1;
-      }
+    if (iVar2 == 0x101) {
       return -0x16;
+    }
+    if (0x101 < iVar2) {
+      if (iVar2 == 0x103) {
+        return -0x23;
+      }
+      return -1;
+    }
+    if (iVar2 != -1) {
+      if (iVar2 == 0) {
+        return 0;
+      }
+      return -1;
     }
   }
   else {

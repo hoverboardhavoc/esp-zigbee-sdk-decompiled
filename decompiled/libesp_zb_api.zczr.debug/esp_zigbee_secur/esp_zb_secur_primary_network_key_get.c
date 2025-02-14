@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_secur.o -> esp_zb_secur_primary_network_key_get
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
 undefined4 esp_zb_secur_primary_network_key_get(void *param_1)
 
 {
   int iVar1;
-  undefined4 uVar2;
   
   iVar1 = zb_zdo_joined();
-  if (iVar1 == 0) {
-    uVar2 = 0x103;
+  if (iVar1 != 0) {
+    if (param_1 == (void *)0x0) {
+      return 0x103;
+    }
+    if ((_DAT_000112c4 & 0x600) != 0x600) {
+      memcpy(param_1,(void *)((_DAT_000112c4 >> 9 & 3) * 0x11 + 0x11274),0x10);
+      return 0;
+    }
+    zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_secur.c",0xe9);
   }
-  else if (param_1 == (void *)0x0) {
-    uVar2 = 0x103;
-  }
-  else {
-    memcpy(param_1,(void *)0x11274,0x10);
-    uVar2 = 0;
-  }
-  return uVar2;
+  return 0x103;
 }
 

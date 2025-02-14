@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_touchlink.o -> esp_zb_touchlink_send_ep_info_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ void esp_zb_touchlink_send_ep_info_cmd_req(int param_1)
   if (iVar10 == 0) {
     uVar13 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_TOUCHLINK",&_LC1,uVar13,"ESP_ZIGBEE_TOUCHLINK",
-                  "esp_zb_touchlink_send_ep_info_cmd_req",0x7e);
+                  "esp_zb_touchlink_send_ep_info_cmd_req",0x83);
   }
   else {
     puVar11 = (undefined1 *)zb_buf_reuse_func();

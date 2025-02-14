@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_aps.o -> zb_aps_data_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,11 @@
 void zb_aps_data_confirm_handler(int param_1)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   undefined1 *puVar2;
   void *__dest;
   void *__src;
+  undefined4 uVar3;
   undefined4 local_50;
   undefined4 uStack_4c;
   undefined4 uStack_48;
@@ -30,37 +31,40 @@ void zb_aps_data_confirm_handler(int param_1)
   size_t sStack_18;
   void *pvStack_14;
   
-  if (param_1 != 0) {
-    zb_buf_begin_func();
-    uVar1 = zb_aps_full_hdr_size();
-    zb_buf_cut_left_func(param_1,uVar1);
-    puVar2 = (undefined1 *)zb_buf_get_tail_func(param_1,0x19);
-    if ((puVar2 != (undefined1 *)0x0) && (s_zb_apsde_data_confirm_handler != (code *)0x0)) {
-      uStack_24 = *(undefined4 *)(puVar2 + 2);
-      uStack_28 = CONCAT13(puVar2[1],CONCAT12(*puVar2,CONCAT11(puVar2[0x12],puVar2[0x13])));
-      uStack_20 = *(undefined4 *)(puVar2 + 6);
-      uStack_1c = *(undefined4 *)(puVar2 + 10);
-      sStack_18 = zb_buf_len_func(param_1);
-      __dest = malloc(sStack_18);
-      pvStack_14 = __dest;
-      __src = (void *)zb_buf_begin_func(param_1);
-      memcpy(__dest,__src,sStack_18);
-      local_50 = uStack_28;
-      uStack_4c = uStack_24;
-      uStack_48 = uStack_20;
-      uStack_44 = uStack_1c;
-      sStack_40 = sStack_18;
-      pvStack_3c = pvStack_14;
-      (*s_zb_apsde_data_confirm_handler)(&local_50,s_zb_apsde_data_confirm_handler);
-      free(pvStack_14);
-    }
-    zb_buf_free_func(param_1);
-    return;
+  if (param_1 == 0) {
+    zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/aps/esp_zigbee_aps.c",0x89)
+    ;
   }
-  uVar1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/aps/esp_zigbee_aps.c"
-                    ,0x83);
-  zb_aps_set_indication_data_rx_cb(0x10000);
-  s_zb_apsde_data_ind_handler = uVar1;
+  else {
+    uVar1 = zb_buf_layer_get_func();
+    if ((uVar1 & 8) == 0) goto _L0;
+  }
+  zb_buf_begin_func(param_1);
+  uVar3 = zb_aps_full_hdr_size();
+  zb_buf_cut_left_func(param_1,uVar3);
+  zb_buf_layer_clr_func(param_1,8);
+_L0:
+  puVar2 = (undefined1 *)zb_buf_get_tail_func(param_1,0x19);
+  if ((puVar2 != (undefined1 *)0x0) && (s_zb_apsde_data_confirm_handler != (code *)0x0)) {
+    uStack_24 = *(undefined4 *)(puVar2 + 2);
+    uStack_28 = CONCAT13(puVar2[1],CONCAT12(*puVar2,CONCAT11(puVar2[0x12],puVar2[0x13])));
+    uStack_20 = *(undefined4 *)(puVar2 + 6);
+    uStack_1c = *(undefined4 *)(puVar2 + 10);
+    sStack_18 = zb_buf_len_func(param_1);
+    __dest = malloc(sStack_18);
+    pvStack_14 = __dest;
+    __src = (void *)zb_buf_begin_func(param_1);
+    memcpy(__dest,__src,sStack_18);
+    local_50 = uStack_28;
+    uStack_4c = uStack_24;
+    uStack_48 = uStack_20;
+    uStack_44 = uStack_1c;
+    sStack_40 = sStack_18;
+    pvStack_3c = pvStack_14;
+    (*s_zb_apsde_data_confirm_handler)(&local_50,s_zb_apsde_data_confirm_handler);
+    free(pvStack_14);
+  }
+  zb_buf_free_func(param_1);
   return;
 }
 

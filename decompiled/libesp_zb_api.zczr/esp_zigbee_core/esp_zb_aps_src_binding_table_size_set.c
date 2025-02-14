@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr -> esp_zigbee_core.o -> esp_zb_aps_src_binding_table_size_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,6 +32,9 @@ int esp_zb_aps_src_binding_table_size_set(void)
     if (iVar1 != -0x1e) {
       if (iVar1 == -2) {
         return 0x10c;
+      }
+      if (iVar1 == -0x23) {
+        return 0x103;
       }
       iVar1 = -1;
     }

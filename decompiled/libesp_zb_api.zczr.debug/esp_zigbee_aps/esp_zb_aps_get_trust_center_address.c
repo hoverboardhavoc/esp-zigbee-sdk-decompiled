@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_aps.o -> esp_zb_aps_get_trust_center_address
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,14 +21,14 @@ void esp_zb_aps_get_trust_center_address(undefined1 *param_1)
   undefined1 uVar6;
   undefined1 uVar7;
   
-  uVar7 = DAT_0001167f;
-  uVar6 = DAT_0001167e;
-  uVar5 = DAT_0001167d;
-  uVar4 = DAT_0001167c;
-  uVar3 = DAT_0001167b;
-  uVar2 = DAT_0001167a;
-  uVar1 = DAT_00011679;
-  *param_1 = DAT_00011678;
+  uVar7 = DAT_00011687;
+  uVar6 = DAT_00011686;
+  uVar5 = DAT_00011685;
+  uVar4 = DAT_00011684;
+  uVar3 = DAT_00011683;
+  uVar2 = DAT_00011682;
+  uVar1 = DAT_00011681;
+  *param_1 = DAT_00011680;
   param_1[1] = uVar1;
   param_1[2] = uVar2;
   param_1[3] = uVar3;

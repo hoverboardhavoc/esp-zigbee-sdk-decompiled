@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr -> esp_zigbee_core.o -> zb_zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -390,7 +390,7 @@ _L0:
         }
         if ((bVar5 != 0xc) && ((bVar5 == 0x14 || ((bVar5 & 0xfb) == 0x12)))) {
           uVar8 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar8,"ESP_ZIGBEE_CORE",
+          esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC3,uVar8,"ESP_ZIGBEE_CORE",
                         *(undefined1 *)(iVar7 + 0x13));
         }
       }
@@ -413,7 +413,7 @@ _L0:
     UNRECOVERED_JUMPTABLE = zcl_raw_command_cb;
   }
 _L0:
-                    /* WARNING: Could not recover jumptable at 0x00010b1c. Too many branches */
+                    /* WARNING: Could not recover jumptable at 0x00010b38. Too many branches */
                     /* WARNING: Treating indirect jump as call */
   uVar8 = (*UNRECOVERED_JUMPTABLE)(param_1,UNRECOVERED_JUMPTABLE);
   return uVar8;

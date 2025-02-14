@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
+ * Upstream date: 2025-02-14 17:01:07 +0800
+ * Upstream subject: esp-zigbee-sdk: (f9a23626)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> zb_ret_to_esp_err
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,6 +38,9 @@ int zb_ret_to_esp_err(int param_1)
     if (param_1 != -0x1e) {
       if (param_1 == -2) {
         return 0x10c;
+      }
+      if (param_1 == -0x23) {
+        return 0x103;
       }
       param_1 = -1;
     }
