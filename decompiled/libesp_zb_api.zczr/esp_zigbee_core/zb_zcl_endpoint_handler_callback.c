@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit 2472f337c160837a43a3b2545ff1f91e67f9b446
+ * https://github.com/espressif/esp-zigbee-sdk/commit/2472f337c160837a43a3b2545ff1f91e67f9b446
+ * Upstream date: 2025-02-21 02:56:04 +0000
+ * Upstream subject: esp-zigbee-sdk: (fd3e0871)
  * Source: libesp_zb_api.zczr -> esp_zigbee_core.o -> zb_zcl_endpoint_handler_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -76,8 +76,7 @@ _L0:
   }
   else {
     iVar7 = zb_buf_get_tail_func();
-    if (((iVar7 != 0) && (*(char *)(iVar7 + 0x14) == '\x01')) && (zb_core_action_cb != (code *)0x0))
-    {
+    if ((iVar7 != 0) && (zb_core_action_cb != (code *)0x0)) {
       bVar5 = *(byte *)(iVar7 + 0x13);
       if (bVar5 == 9) {
         puStack_38 = (uint *)0x0;
