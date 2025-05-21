@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr -> esp_zigbee_aps.o -> esp_zb_aps_data_confirm_handler_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,7 +13,6 @@
 void esp_zb_aps_data_confirm_handler_register(undefined4 param_1)
 
 {
-  zb_aps_set_user_data_tx_cb(zb_aps_data_confirm_handler);
   s_zb_apsde_data_confirm_handler = param_1;
   return;
 }

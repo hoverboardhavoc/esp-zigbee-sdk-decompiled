@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 2472f337c160837a43a3b2545ff1f91e67f9b446
- * https://github.com/espressif/esp-zigbee-sdk/commit/2472f337c160837a43a3b2545ff1f91e67f9b446
- * Upstream date: 2025-02-21 02:56:04 +0000
- * Upstream subject: esp-zigbee-sdk: (fd3e0871)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr -> esp_zigbee_core.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,7 @@ void esp_zb_init(char *param_1)
     }
     if (cVar1 != '\0') {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC4,uVar2,"ESP_ZIGBEE_CORE");
+      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC2,uVar2,"ESP_ZIGBEE_CORE");
       return;
     }
     zb_set_network_coordinator_role(0x7fff800);

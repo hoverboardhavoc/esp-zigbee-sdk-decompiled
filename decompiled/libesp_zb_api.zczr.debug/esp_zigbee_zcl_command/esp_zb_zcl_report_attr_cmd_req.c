@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,8 +35,8 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
   iVar2 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
   if (iVar2 == 0) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC8,uVar6,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_report_attr_cmd_req",0x143,*(undefined1 *)(param_1 + 9));
+    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC5,uVar6,"ESP_ZIGBEE_COMMAND",
+                  "esp_zb_zcl_report_attr_cmd_req",0xe2,*(undefined1 *)(param_1 + 9));
     uVar4 = 0x105;
   }
   else {
@@ -48,20 +48,20 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
                        *(undefined2 *)(param_1 + 0x16),*(undefined2 *)(param_1 + 0x14));
     if (iVar3 == 0) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC9,uVar6,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0x14a,*(undefined2 *)(param_1 + 0x16));
+      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar6,"ESP_ZIGBEE_COMMAND",
+                    "esp_zb_zcl_report_attr_cmd_req",0xe9,*(undefined2 *)(param_1 + 0x16));
       uVar4 = 0x105;
     }
     else if ((*(byte *)(iVar3 + 3) & 4) == 0) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC10,uVar6,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0x14b,*(undefined2 *)(param_1 + 0x16));
+      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC7,uVar6,"ESP_ZIGBEE_COMMAND",
+                    "esp_zb_zcl_report_attr_cmd_req",0xea,*(undefined2 *)(param_1 + 0x16));
       uVar4 = 0x106;
     }
     else if ((byte)(*(char *)(iVar3 + 2) + 0xb8U) < 10) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC11,uVar6,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0x14e,*(undefined2 *)(param_1 + 0x16));
+      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC8,uVar6,"ESP_ZIGBEE_COMMAND",
+                    "esp_zb_zcl_report_attr_cmd_req",0xed,*(undefined2 *)(param_1 + 0x16));
       uVar4 = 0x106;
     }
     else {
@@ -78,7 +78,7 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
       }
       if (*(int *)(iVar2 + 0x1b) + (uint)*(byte *)(iVar2 + 0x1a) * 0x38 <= uVar4) {
         iVar2 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zcl_command.c"
-                          ,0x15d);
+                          ,0xfc);
         iVar3 = zb_af_get_endpoint_desc(*(undefined1 *)(iVar2 + 9));
         if (iVar3 == 0) {
           uVar12 = 0x104;
@@ -89,8 +89,8 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
         iVar3 = zb_buf_get_out_func();
         if (iVar3 == 0) {
           uVar6 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar6,"ESP_ZIGBEE_COMMAND",
-                        "esp_zb_zcl_config_report_cmd_req",0x169,"esp_zb_zcl_config_report_cmd_req")
+          esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar6,"ESP_ZIGBEE_COMMAND",
+                        "esp_zb_zcl_config_report_cmd_req",0x108,"esp_zb_zcl_config_report_cmd_req")
           ;
           pbVar7 = (byte *)zb_zcl_get_ctx();
           uVar4 = (uint)*pbVar7;

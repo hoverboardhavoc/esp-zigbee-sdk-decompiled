@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_ias_wd_start_warning_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,8 +33,8 @@ void esp_zb_zcl_ias_wd_start_warning_cmd_req(int param_1)
   iVar4 = zb_buf_get_out_func();
   if (iVar4 == 0) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC6,uVar7,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_ias_wd_start_warning_cmd_req",0x6e9,
+    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar7,"ESP_ZIGBEE_COMMAND",
+                  "esp_zb_zcl_ias_wd_start_warning_cmd_req",0x688,
                   "esp_zb_zcl_ias_wd_start_warning_cmd_req");
     pcVar8 = (char *)zb_zcl_get_ctx();
     *pcVar8 = *pcVar8 + '\x01';

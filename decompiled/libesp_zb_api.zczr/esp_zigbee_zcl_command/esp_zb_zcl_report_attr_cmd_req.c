@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -106,7 +106,7 @@ _L0:
           return 0;
         }
         zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zcl_command.c"
-                  ,0x15d);
+                  ,0xfc);
 _L0:
         iVar4 = zb_buf_get_ptr_off_func(unaff_s3,unaff_s4);
         uVar8 = unaff_s7 - iVar4;

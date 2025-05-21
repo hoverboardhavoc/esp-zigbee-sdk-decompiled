@@ -1,0 +1,60 @@
+/*
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_core.o -> zb_zcl_report_attr_callback
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+void zb_zcl_report_attr_callback
+               (undefined1 *param_1,undefined1 param_2,undefined1 param_3,undefined2 param_4,
+               undefined2 param_5,undefined4 param_6,undefined4 param_7)
+
+{
+  undefined4 local_30;
+  undefined1 uStack_2c;
+  undefined1 uStack_2b;
+  undefined1 uStack_2a;
+  undefined1 uStack_29;
+  undefined1 uStack_28;
+  undefined1 uStack_27;
+  undefined1 uStack_26;
+  undefined1 uStack_25;
+  undefined1 uStack_24;
+  undefined1 uStack_23;
+  undefined1 uStack_22;
+  undefined2 uStack_20;
+  undefined2 uStack_1e;
+  undefined4 uStack_1c;
+  undefined2 uStack_18;
+  undefined2 uStack_16;
+  undefined2 uStack_14;
+  
+  if (zb_core_action_cb != (code *)0x0) {
+    local_30 = 0;
+    uStack_2c = *param_1;
+    uStack_2b = param_1[1];
+    uStack_2a = param_1[2];
+    uStack_29 = param_1[3];
+    uStack_28 = param_1[4];
+    uStack_27 = param_1[5];
+    uStack_26 = param_1[6];
+    uStack_25 = param_1[7];
+    uStack_24 = param_1[8];
+    uStack_23 = param_2;
+    uStack_22 = param_3;
+    uStack_20 = param_4;
+    uStack_1e = param_5;
+    uStack_1c = param_6;
+    uStack_18 = esp_zb_zcl_get_attribute_size(param_7);
+    uStack_16 = (undefined2)param_7;
+    uStack_14 = (undefined2)((uint)param_7 >> 0x10);
+    (*zb_core_action_cb)(0x2000,&local_30,zb_core_action_cb);
+  }
+  return;
+}
+

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr -> esp_zigbee_aps.o -> zb_aps_data_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ void zb_aps_data_confirm_handler(int param_1)
   
   if (param_1 == 0) {
     param_1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/aps/esp_zigbee_aps.c"
-                        ,0x89);
+                        ,0x92);
   }
   uVar1 = zb_buf_layer_get_func();
   if ((uVar1 & 8) != 0) {

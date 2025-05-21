@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> esp_zb_get_bdb_commissioning_mode
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,6 +13,6 @@
 undefined1 esp_zb_get_bdb_commissioning_mode(void)
 
 {
-  return DAT_0001317e;
+  return DAT_00011126;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ void esp_zb_init(char *param_1)
   
   uVar2 = esp_log_timestamp();
   uVar3 = esp_zb_get_version_string();
-  esp_log_write(3,"ESP_ZIGBEE_CORE",&_LC26,uVar2,"ESP_ZIGBEE_CORE",uVar3);
+  esp_log_write(3,"ESP_ZIGBEE_CORE",&_L0,uVar2,"ESP_ZIGBEE_CORE",uVar3);
   zb_init();
   zb_set_installcode_policy(param_1[4]);
   cVar1 = *param_1;
@@ -37,7 +37,7 @@ void esp_zb_init(char *param_1)
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC27,uVar2,"ESP_ZIGBEE_CORE");
+    esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC9,uVar2,"ESP_ZIGBEE_CORE");
   }
   return;
 }

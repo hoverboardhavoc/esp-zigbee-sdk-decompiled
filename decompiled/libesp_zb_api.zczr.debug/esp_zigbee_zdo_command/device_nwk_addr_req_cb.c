@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> device_nwk_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void device_nwk_addr_req_cb(int param_1)
               0x211);
 _L0:
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_LC14,uVar3,"ESP_ZIGBEE_API_ZDO",
+    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_LC16,uVar3,"ESP_ZIGBEE_API_ZDO",
                   *(undefined1 *)(unaff_s0 + 1),unaff_s2);
     uVar3 = 0;
     uVar1 = 0;

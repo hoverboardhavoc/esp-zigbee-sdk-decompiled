@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
+ * Upstream date: 2025-05-21 11:16:30 +0000
+ * Upstream subject: esp-zigbee-sdk: (5d895722)
  * Source: libesp_zb_api.zczr -> esp_zigbee_aps.o -> esp_zb_aps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,6 +39,7 @@ undefined4 esp_zb_aps_data_request(byte *param_1)
           *(char *)((int)pvVar2 + 0x14) = (char)*(undefined4 *)(param_1 + 0x20);
           *(byte *)((int)pvVar2 + 0x10) = param_1[0x1c];
           *(byte *)((int)pvVar2 + 0xe) = param_1[0x24];
+          zb_aps_set_user_data_tx_cb(zb_aps_data_confirm_handler);
           zb_buf_flags_or_func(iVar1,0x80);
           zb_schedule_callback(&zb_apsde_data_request,iVar1);
           uVar3 = 0;
