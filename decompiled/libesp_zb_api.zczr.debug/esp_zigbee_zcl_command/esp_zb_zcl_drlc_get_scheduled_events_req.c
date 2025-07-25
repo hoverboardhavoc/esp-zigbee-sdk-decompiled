@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_drlc_get_scheduled_events_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ void esp_zb_zcl_drlc_get_scheduled_events_req(int param_1)
   if (iVar1 == 0) {
     uVar2 = esp_log_timestamp();
     esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_L0,uVar2,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_drlc_get_scheduled_events_req",0x852,
+                  "esp_zb_zcl_drlc_get_scheduled_events_req",0x853,
                   "esp_zb_zcl_drlc_get_scheduled_events_req");
     pcVar3 = (char *)zb_zcl_get_ctx();
     *pcVar3 = *pcVar3 + '\x01';

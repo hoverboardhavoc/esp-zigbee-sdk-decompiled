@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ void device_ieee_addr_req_cb(int param_1)
   zb_schedule_alarm_cancel(ieee_addr_req_timeout,uVar1,0);
   iVar3 = esp_zb_zdo_callback_find(uVar1);
   if (iVar3 != 0) {
-    if (*(char *)(iVar3 + 1) == '\x01') {
+    if (*(short *)(iVar3 + 2) == 1) {
       iVar4 = *(int *)(iVar3 + 4);
       uVar5 = *(undefined4 *)(iVar3 + 8);
     }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_on_off_switch_config_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ esp_zb_cluster_list_add_on_off_switch_config_cluster(int param_1,int param_2,uin
   puVar4 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
     uVar5 = esp_log_timestamp();
-    puVar6 = &_L0;
+    puVar6 = &_LC17;
   }
   else {
     if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 7) {
@@ -65,11 +65,11 @@ esp_zb_cluster_list_add_on_off_switch_config_cluster(int param_1,int param_2,uin
         psVar2 = psVar1;
       }
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC11,uVar5,"ESP_ZIGBEE_CLUSTER",7);
+      esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_LC12,uVar5,"ESP_ZIGBEE_CLUSTER",7);
       return 0x102;
     }
     uVar5 = esp_log_timestamp();
-    puVar6 = &_LC17;
+    puVar6 = &_LC18;
   }
   esp_log_write(1,"ESP_ZIGBEE_CLUSTER",puVar6,uVar5,"ESP_ZIGBEE_CLUSTER");
   return 0x102;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_callback_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,8 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,undefined4 param_4)
+void esp_zb_zdo_callback_register
+               (uint param_1,undefined2 param_2,undefined4 param_3,undefined4 param_4)
 
 {
   byte *pbVar1;
@@ -22,7 +23,7 @@ void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,u
   __ptr = (byte *)malloc(0x10);
   if (__ptr == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_LC13,uVar3,"ESP_ZIGBEE_API_ZDO");
+    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_L0,uVar3,"ESP_ZIGBEE_API_ZDO");
     __ptr = zdo_resp_cb_list_head;
   }
   else {
@@ -36,7 +37,7 @@ void esp_zb_zdo_callback_register(uint param_1,byte param_2,undefined4 param_3,u
       pbVar1 = *(byte **)(pbVar2 + 0xc);
     } while (*(byte **)(pbVar2 + 0xc) != (byte *)0x0);
     *__ptr = (byte)param_1;
-    __ptr[1] = param_2;
+    *(undefined2 *)(__ptr + 2) = param_2;
     *(undefined4 *)(__ptr + 4) = param_3;
     *(undefined4 *)(__ptr + 8) = param_4;
     __ptr[0xc] = 0;

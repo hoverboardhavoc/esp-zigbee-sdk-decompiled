@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> permit_joining_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ void permit_joining_cb(int param_1)
     zb_schedule_alarm_cancel(permit_join_req_timeout,uVar1,0);
   }
   iVar3 = esp_zb_zdo_callback_find(uVar1);
-  if (((iVar3 != 0) && (*(char *)(iVar3 + 1) == '6')) && (*(code **)(iVar3 + 4) != (code *)0x0)) {
+  if (((iVar3 != 0) && (*(short *)(iVar3 + 2) == 0x36)) && (*(code **)(iVar3 + 4) != (code *)0x0)) {
     (**(code **)(iVar3 + 4))(puVar2[1],*(undefined4 *)(iVar3 + 8));
   }
   esp_zb_zdo_callback_remove(uVar1);

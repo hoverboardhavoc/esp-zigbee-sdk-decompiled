@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_ph_measurement_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,24 +15,24 @@ int esp_zb_cluster_list_add_ph_measurement_cluster(int param_1,undefined4 param_
 {
   undefined4 *__ptr;
   int iVar1;
-  undefined *puVar2;
+  undefined2 uVar2;
   int aiStack_24 [3];
   
   __ptr = (undefined4 *)malloc(0x14);
   iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x409,param_3,aiStack_24);
   if (aiStack_24[0] == 0) {
-    puVar2 = (undefined *)0x0;
+    uVar2 = 0;
     if (param_3 == 1) {
-      puVar2 = &esp_zb_zcl_ph_measurement_init_server;
+      uVar2 = 0x152;
     }
     *__ptr = 0x409;
-    *(char *)((int)__ptr + 0xb) = (char)puVar2;
-    *(char *)(__ptr + 3) = (char)((uint)puVar2 >> 8);
+    *(undefined1 *)((int)__ptr + 0xb) = 0;
+    *(char *)(__ptr + 3) = (char)uVar2;
     __ptr[1] = param_2;
     *(char *)(__ptr + 2) = (char)param_3;
     *(undefined1 *)((int)__ptr + 9) = 0;
     *(undefined1 *)((int)__ptr + 10) = 0;
-    *(char *)((int)__ptr + 0xd) = (char)((uint)puVar2 >> 0x10);
+    *(char *)((int)__ptr + 0xd) = (char)((ushort)uVar2 >> 8);
     *(undefined1 *)((int)__ptr + 0xe) = 0;
     __ptr[4] = 0;
     if (iVar1 == 0) {

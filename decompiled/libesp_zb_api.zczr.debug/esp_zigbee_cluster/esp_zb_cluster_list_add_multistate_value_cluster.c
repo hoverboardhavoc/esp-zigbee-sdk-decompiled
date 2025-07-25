@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_multistate_value_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,10 +26,10 @@ int esp_zb_cluster_list_add_multistate_value_cluster(int param_1,undefined4 para
   iVar1 = esp_zb_cluster_list_get_tail(param_1,param_2,0x14,param_3,aiStack_24);
   if (aiStack_24[0] == 0) {
     if (param_3 == 1) {
-      puVar2 = &zb_zcl_multi_value_init_server;
+      puVar2 = &esp_zb_zcl_multi_value_init_server;
     }
     else if (param_3 == 2) {
-      puVar2 = &zb_zcl_multi_value_init_client;
+      puVar2 = &esp_zb_zcl_multi_value_init_client;
     }
     else {
       puVar2 = (undefined *)0x0;

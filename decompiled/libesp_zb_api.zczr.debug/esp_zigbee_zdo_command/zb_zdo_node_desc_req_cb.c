@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> zb_zdo_node_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,8 +31,7 @@ void zb_zdo_node_desc_req_cb(int param_1)
     zb_schedule_alarm_cancel(node_desc_req_timeout,uVar1,0);
   }
   iVar5 = esp_zb_zdo_callback_find(uVar1);
-  if (((iVar5 != 0) && (*(char *)(iVar5 + 1) == '\x02')) && (*(code **)(iVar5 + 4) != (code *)0x0))
-  {
+  if (((iVar5 != 0) && (*(short *)(iVar5 + 2) == 2)) && (*(code **)(iVar5 + 4) != (code *)0x0)) {
     (**(code **)(iVar5 + 4))(*(undefined1 *)(iVar4 + 1),uVar2,__dest,*(undefined4 *)(iVar5 + 8));
   }
   esp_zb_zdo_callback_remove(uVar1);

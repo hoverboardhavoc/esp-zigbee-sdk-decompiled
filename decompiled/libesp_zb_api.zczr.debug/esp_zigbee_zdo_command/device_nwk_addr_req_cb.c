@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> device_nwk_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,8 +24,8 @@ void device_nwk_addr_req_cb(int param_1)
               0x211);
 _L0:
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_LC16,uVar3,"ESP_ZIGBEE_API_ZDO",
-                  *(undefined1 *)(unaff_s0 + 1),unaff_s2);
+    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_L0,uVar3,"ESP_ZIGBEE_API_ZDO",
+                  *(undefined2 *)(unaff_s0 + 2),unaff_s2);
     uVar3 = 0;
     uVar1 = 0;
   }
@@ -39,7 +39,7 @@ _L0:
       uVar1 = 0;
       goto _L0;
     }
-    if (*(char *)(unaff_s0 + 1) != '\0') goto _L0;
+    if (*(short *)(unaff_s0 + 2) != 0) goto _L0;
     uVar3 = *(undefined4 *)(unaff_s0 + 4);
     uVar1 = *(undefined4 *)(unaff_s0 + 8);
   }

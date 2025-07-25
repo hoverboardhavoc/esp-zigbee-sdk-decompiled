@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> zdo_mgmt_lqi_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ void zdo_mgmt_lqi_cb(int param_1)
     unaff_s0 = (byte *)esp_zb_zdo_callback_find(unaff_s3);
     if ((unaff_s0 == (byte *)0x0) || (pbVar9 = unaff_s0, *unaff_s0 != unaff_s3)) goto _L0;
   }
-  if (pbVar9[1] == 0x31) {
+  if (*(short *)(pbVar9 + 2) == 0x31) {
     zb_schedule_alarm_cancel(zdo_mgmt_lqi_req_timeout,unaff_s3,0);
     pcVar12 = *(code **)(unaff_s0 + 4);
     uVar8 = *(undefined4 *)(unaff_s0 + 8);

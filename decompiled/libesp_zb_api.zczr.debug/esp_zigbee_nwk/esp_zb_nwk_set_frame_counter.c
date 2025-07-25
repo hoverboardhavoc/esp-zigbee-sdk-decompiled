@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_nwk.o -> esp_zb_nwk_set_frame_counter
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,17 +15,7 @@
 undefined4 esp_zb_nwk_set_frame_counter(undefined4 param_1)
 
 {
-  int iVar1;
-  undefined4 uVar2;
-  
-  iVar1 = zb_zdo_joined();
-  if (iVar1 == 0) {
-    uVar2 = 0;
-    _DAT_0001129c = param_1;
-  }
-  else {
-    uVar2 = 0x103;
-  }
-  return uVar2;
+  _DAT_0001129c = param_1;
+  return 0;
 }
 

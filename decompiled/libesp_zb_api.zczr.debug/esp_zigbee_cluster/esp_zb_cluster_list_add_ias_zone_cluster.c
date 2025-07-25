@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
+ * Upstream date: 2025-07-25 14:23:12 +0800
+ * Upstream subject: esp-zigbee-sdk: (5de57b2b)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_ias_zone_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
   puVar2 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC12,uVar3,0x10000);
+    esp_log_write(1,0x10000,&_LC13,uVar3,0x10000);
     uVar3 = 0x102;
   }
   else if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 0x500) {
@@ -68,7 +68,7 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC15,uVar3,0x10000);
+    esp_log_write(1,0x10000,&_LC16,uVar3,0x10000);
     uVar3 = 0x102;
   }
   return uVar3;
