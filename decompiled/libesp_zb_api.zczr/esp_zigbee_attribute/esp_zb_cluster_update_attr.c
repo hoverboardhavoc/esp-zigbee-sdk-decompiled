@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_cluster_update_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,7 +47,7 @@ undefined4 esp_zb_cluster_update_attr(int param_1,uint param_2,void *param_3)
       }
     }
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC6,uVar2,0x10000,param_2);
+    esp_log_write(1,0x10000,&_L0,uVar2,0x10000,param_2);
     uVar2 = 0x105;
   }
   return uVar2;

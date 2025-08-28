@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_multistate_output_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,7 +12,8 @@
 
 /* WARNING: Removing unreachable block (ram,0x00010256) */
 /* WARNING: Removing unreachable block (ram,0x0001025c) */
-/* WARNING: Removing unreachable block (ram,0x0001028a) */
+/* WARNING: Removing unreachable block (ram,0x00010260) */
+/* WARNING: Removing unreachable block (ram,0x0001028e) */
 
 undefined4 esp_zb_multistate_output_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
@@ -32,54 +33,54 @@ undefined4 esp_zb_multistate_output_cluster_add_attr(ushort *param_1,uint param_
     uVar5 = 7;
   }
   else {
-    if (0x55 < param_2) {
-      if (param_2 == 0x6f) {
-        uVar5 = 5;
-      }
-      else {
-        if (0x6f < param_2) {
-          if (param_2 != 0x100) {
-            return 0x102;
+    if (param_2 < 0x56) {
+      if (param_2 != 0x4a) {
+        if (param_2 < 0x4b) {
+          if (param_2 == 0xe) {
+            uVar5 = 3;
+            uVar4 = 0x48;
           }
-          uVar5 = 1;
-          uVar4 = 0x23;
-          goto _L0;
-        }
-        if (param_2 != 0x67) {
-          if (param_2 != 0x68) {
-            return 0x102;
+          else {
+            if (param_2 != 0x1c) {
+              return 0x102;
+            }
+            uVar5 = 3;
+            uVar4 = 0x42;
           }
-          goto _L0;
-        }
-        uVar5 = 3;
-      }
-      uVar4 = 0x20;
-      goto _L0;
-    }
-    if (param_2 != 0x4a) {
-      if (param_2 < 0x4b) {
-        if (param_2 == 0xe) {
-          uVar5 = 3;
-          uVar4 = 0x48;
         }
         else {
-          if (param_2 != 0x1c) {
+          if (param_2 != 0x51) {
             return 0x102;
           }
           uVar5 = 3;
-          uVar4 = 0x42;
+          uVar4 = 0x10;
         }
+        goto _L0;
       }
-      else {
-        if (param_2 != 0x51) {
+    }
+    else {
+      if (param_2 == 0x6f) {
+        uVar5 = 5;
+        uVar4 = 0x18;
+        goto _L0;
+      }
+      if (0x6f < param_2) {
+        if (param_2 != 0x100) {
           return 0x102;
         }
-        uVar5 = 3;
-        uVar4 = 0x10;
+        uVar5 = 1;
+        uVar4 = 0x23;
+        goto _L0;
       }
-      goto _L0;
+      if (param_2 == 0x67) {
+        uVar5 = 3;
+        uVar4 = 0x30;
+        goto _L0;
+      }
+      if (param_2 != 0x68) {
+        return 0x102;
+      }
     }
-_L0:
     uVar5 = 3;
   }
   uVar4 = 0x21;

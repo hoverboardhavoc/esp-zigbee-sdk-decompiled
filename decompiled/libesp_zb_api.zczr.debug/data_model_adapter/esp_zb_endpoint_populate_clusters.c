@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> data_model_adapter.o -> esp_zb_endpoint_populate_clusters
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ undefined4 esp_zb_endpoint_populate_clusters(int param_1)
   uStack_14 = extraout_a1;
   if (iVar1 == 0) {
     __nmemb = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/utility/data_model_adapter.c"
-                        ,0xeb);
+                        ,0xed);
   }
   else {
     *(undefined1 *)(param_1 + 0x10) = (undefined1)uStack_18;

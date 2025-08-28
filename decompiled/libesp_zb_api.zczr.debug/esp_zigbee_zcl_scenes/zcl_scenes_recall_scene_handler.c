@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_recall_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,21 +53,24 @@ void zcl_scenes_recall_scene_handler(undefined4 param_1)
   *puVar7 = (char)iVar3;
   if (iVar3 == 0) {
     iVar3 = device_scenes_get_free_entry(uVar1,*puVar2,*(undefined1 *)(puVar2 + 1));
-    if ((iVar3 == 0xff) || ((&DAT_00012c7e)[iVar3 * 6] == -1)) {
-      *puVar7 = 0x8b;
-      uStack_38 = 0x8b;
-      uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_LC14,uVar5,"ESP_ZIGBEE_ZCL_SCENES",
-                    *(undefined1 *)(puVar2 + 1),*puVar2);
+    if (iVar3 != 0xff) {
+      iVar3 = iVar3 * 0xc + esp_zb_zcl_scenes_table;
+      if (*(short *)(iVar3 + 2) != -1) {
+        uStack_24 = *(undefined4 *)(iVar3 + 8);
+        *puVar7 = 0;
+        uVar5 = esp_log_timestamp();
+        esp_log_write(3,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar5,"ESP_ZIGBEE_ZCL_SCENES",
+                      *(undefined1 *)(puVar2 + 1),*puVar2);
+        goto _L0;
+      }
     }
-    else {
-      uStack_24 = (&DAT_00012c84)[iVar3 * 3];
-      *puVar7 = 0;
-      uVar5 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar5,"ESP_ZIGBEE_ZCL_SCENES",
-                    *(undefined1 *)(puVar2 + 1),*puVar2);
-    }
+    *puVar7 = 0x8b;
+    uStack_38 = 0x8b;
+    uVar5 = esp_log_timestamp();
+    esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_LC13,uVar5,"ESP_ZIGBEE_ZCL_SCENES",
+                  *(undefined1 *)(puVar2 + 1),*puVar2);
   }
+_L0:
   esp_zb_core_action_handler_schedule(2,&uStack_38);
   esp_err_to_zb_ret();
   return;

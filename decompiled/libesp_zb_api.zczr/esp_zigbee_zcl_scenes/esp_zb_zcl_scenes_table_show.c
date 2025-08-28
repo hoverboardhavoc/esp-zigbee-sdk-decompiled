@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_scenes.o -> esp_zb_zcl_scenes_table_show
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,23 +13,23 @@
 void esp_zb_zcl_scenes_table_show(uint param_1)
 
 {
-  byte *pbVar1;
+  int iVar1;
   int iVar2;
-  int iVar3;
+  byte *pbVar3;
   int iVar4;
   
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
   puts("| Index | Group ID | Scene ID | Transition Time |   [Cluster ID | Extension Field]   |");
   puts("+-------+----------+----------+-----------------+-------------------------------------+");
-  pbVar1 = &esp_zb_zcl_scenes_table;
-  iVar3 = 0;
-  do {
-    if ((*pbVar1 == param_1) && (*(short *)(pbVar1 + 2) != -1)) {
+  for (iVar2 = 0; iVar2 < (int)(uint)esp_zb_zcl_scenes_table_capacity; iVar2 = iVar2 + 1) {
+    pbVar3 = (byte *)(esp_zb_zcl_scenes_table + iVar2 * 0xc);
+    if ((*pbVar3 == param_1) && (*(short *)(pbVar3 + 2) != -1)) {
       printf("|   %02d  |  0x%04x  |   0x%02x   |      %04d       |");
-      for (iVar2 = *(int *)(pbVar1 + 8); iVar2 != 0; iVar2 = *(int *)(iVar2 + 8)) {
+      for (iVar1 = *(int *)(esp_zb_zcl_scenes_table + iVar2 * 0xc + 8); iVar1 != 0;
+          iVar1 = *(int *)(iVar1 + 8)) {
         printf(" [ 0x%04x |");
-        if ((*(char *)(iVar2 + 2) != '\0') && (*(int *)(iVar2 + 4) != 0)) {
-          for (iVar4 = 0; iVar4 < (int)(uint)*(byte *)(iVar2 + 2); iVar4 = iVar4 + 1) {
+        if ((*(char *)(iVar1 + 2) != '\0') && (*(int *)(iVar1 + 4) != 0)) {
+          for (iVar4 = 0; iVar4 < (int)(uint)*(byte *)(iVar1 + 2); iVar4 = iVar4 + 1) {
             printf(" 0x%x ");
           }
         }
@@ -39,9 +39,7 @@ void esp_zb_zcl_scenes_table_show(uint param_1)
           "\n+-------+----------+----------+-----------------+-------------------------------------+"
           );
     }
-    iVar3 = iVar3 + 1;
-    pbVar1 = pbVar1 + 0xc;
-  } while (iVar3 != 0x10);
+  }
   return;
 }
 

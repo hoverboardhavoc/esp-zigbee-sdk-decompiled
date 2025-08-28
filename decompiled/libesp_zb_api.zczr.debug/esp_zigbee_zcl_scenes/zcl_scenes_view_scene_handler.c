@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_view_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,16 +31,16 @@ undefined4 zcl_scenes_view_scene_handler(undefined4 param_1)
   iVar4 = *(int *)(iVar4 + 0xc);
   if ((puVar10 == (undefined2 *)0x0) || (iVar4 == 0)) {
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC7,uVar9,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zcl_scenes_view_scene_handler",0x18d);
+    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar9,"ESP_ZIGBEE_ZCL_SCENES",
+                  "zcl_scenes_view_scene_handler",0x1b9);
     uVar9 = 0xffffffff;
   }
   else {
     iVar5 = zb_buf_get_out_func();
     if (iVar5 == 0) {
       uVar9 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC8,uVar9,"ESP_ZIGBEE_ZCL_SCENES",
-                    "zcl_scenes_view_scene_handler",0x18e);
+      esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC7,uVar9,"ESP_ZIGBEE_ZCL_SCENES",
+                    "zcl_scenes_view_scene_handler",0x1ba);
       uVar9 = 0xffffffff;
     }
     else {
@@ -53,7 +53,7 @@ undefined4 zcl_scenes_view_scene_handler(undefined4 param_1)
         if (iVar11 == 0xff) {
           iVar6 = 0x8b;
         }
-        else if ((&DAT_00012c7e)[iVar11 * 6] == -1) {
+        else if (*(short *)(iVar11 * 0xc + esp_zb_zcl_scenes_table + 2) == -1) {
           iVar6 = 0x8b;
         }
       }
@@ -69,11 +69,12 @@ undefined4 zcl_scenes_view_scene_handler(undefined4 param_1)
       *puVar7 = uVar2;
       puVar8 = puVar7 + 1;
       if (iVar6 == 0) {
-        puVar7[1] = (&DAT_00012c80)[iVar11 * 0xc];
-        puVar7[2] = (&DAT_00012c81)[iVar11 * 0xc];
+        iVar6 = esp_zb_zcl_scenes_table + iVar11 * 0xc;
+        puVar7[1] = *(undefined1 *)(iVar6 + 4);
+        puVar7[2] = *(undefined1 *)(iVar6 + 5);
         puVar7[3] = 0;
         puVar8 = puVar7 + 4;
-        for (puVar10 = (undefined2 *)(&DAT_00012c84)[iVar11 * 3]; puVar10 != (undefined2 *)0x0;
+        for (puVar10 = *(undefined2 **)(iVar6 + 8); puVar10 != (undefined2 *)0x0;
             puVar10 = *(undefined2 **)(puVar10 + 4)) {
           puVar8 = (undefined1 *)zb_put_next_htole16(*puVar10);
           *puVar8 = *(undefined1 *)(puVar10 + 1);

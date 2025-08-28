@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_occupancy_sensing_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,7 +12,8 @@
 
 /* WARNING: Removing unreachable block (ram,0x00010256) */
 /* WARNING: Removing unreachable block (ram,0x0001025c) */
-/* WARNING: Removing unreachable block (ram,0x0001028a) */
+/* WARNING: Removing unreachable block (ram,0x00010260) */
+/* WARNING: Removing unreachable block (ram,0x0001028e) */
 
 undefined4 esp_zb_occupancy_sensing_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
@@ -34,40 +35,32 @@ undefined4 esp_zb_occupancy_sensing_cluster_add_attr(ushort *param_1,uint param_
   }
   else {
     if (2 < param_2) {
-      if (param_2 == 0x12) {
+      if (param_2 == 0x22) {
 _L0:
         uVar5 = 3;
         uVar4 = 0x20;
       }
       else {
-        if (param_2 < 0x13) {
-          if (param_2 != 0x10) {
-            if (param_2 == 0x11) {
-              uVar5 = 3;
-              uVar4 = 0x29;
-              goto _L0;
-            }
-            goto _L0;
+        if (param_2 < 0x23) {
+          if (param_2 == 0x12) goto _L0;
+          if (param_2 < 0x13) {
+            uVar6 = param_2 - 0x10;
           }
+          else {
+            uVar6 = param_2 - 0x20;
+          }
+          if (1 < (uVar6 & 0xffff)) goto _L0;
         }
         else {
           if (0x31 < param_2) {
-            uVar6 = 0x32;
-_L572:
-            if (param_2 != uVar6) {
-_L0:
-              uVar3 = esp_log_timestamp();
-              esp_log_write(1,0x10000,&_LC5,uVar3,0x10000);
-              return 0x102;
-            }
+            if (param_2 != 0x32) goto _L0;
             goto _L0;
           }
           if (param_2 < 0x30) {
-            if (0x21 < param_2) {
-              uVar6 = 0x22;
-              goto _L572;
-            }
-            if (param_2 < 0x20) goto _L0;
+_L0:
+            uVar3 = esp_log_timestamp();
+            esp_log_write(1,0x10000,&_LC5,uVar3,0x10000);
+            return 0x102;
           }
         }
         uVar5 = 3;

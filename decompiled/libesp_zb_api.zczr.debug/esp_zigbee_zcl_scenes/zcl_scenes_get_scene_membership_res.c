@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_get_scene_membership_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,8 +54,8 @@ int zcl_scenes_get_scene_membership_res(undefined4 param_1)
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC29,uVar3,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zcl_scenes_get_scene_membership_res",0x30e);
+    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC33,uVar3,"ESP_ZIGBEE_ZCL_SCENES",
+                  "zcl_scenes_get_scene_membership_res",0x33f);
   }
   return iVar1;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> data_model_adapter.o -> esp_zb_convert_attr_list_to_array
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010318) */
+/* WARNING: Removing unreachable block (ram,0x00010560) */
 
 uint esp_zb_convert_attr_list_to_array(int param_1)
 
@@ -28,7 +28,7 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
   iVar4 = param_1;
   if (param_1 == 0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC1,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
+    esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_L0,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
     uStack_18 = local_20;
   }
   else {
@@ -39,7 +39,7 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
     }
     if ((local_20 & 0xffff) == 0) {
       uVar1 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_DM_ADAPTER",&_LC4,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
+      esp_log_write(3,"ESP_ZIGBEE_DM_ADAPTER",&_LC7,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
     }
     else {
       esp_zb_finish_attr_lists();
@@ -49,7 +49,7 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
       pvStack_1c = calloc(uVar2 & 0xffff,10);
       if (pvStack_1c == (void *)0x0) {
         uVar1 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC2,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
+        esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC5,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
                       "esp_zb_convert_attr_list_to_array",0x70);
 _L0:
         esp_zb_attr_array_cleanup(&local_20);
@@ -59,7 +59,7 @@ _L0:
           iVar3 = esp_zb_internal_zcl_attr_clone((void *)((int)pvStack_1c + uVar2 * 10),iVar4);
           if (iVar3 != 0) {
             uVar1 = esp_log_timestamp();
-            esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC3,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
+            esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC6,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
                           "esp_zb_convert_attr_list_to_array",0x73);
             goto _L0;
           }

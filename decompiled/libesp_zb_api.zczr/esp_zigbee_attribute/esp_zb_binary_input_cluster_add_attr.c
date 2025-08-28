@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_binary_input_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,7 +12,8 @@
 
 /* WARNING: Removing unreachable block (ram,0x00010256) */
 /* WARNING: Removing unreachable block (ram,0x0001025c) */
-/* WARNING: Removing unreachable block (ram,0x0001028a) */
+/* WARNING: Removing unreachable block (ram,0x00010260) */
+/* WARNING: Removing unreachable block (ram,0x0001028e) */
 
 undefined4 esp_zb_binary_input_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
@@ -33,23 +34,36 @@ undefined4 esp_zb_binary_input_cluster_add_attr(ushort *param_1,uint param_2,voi
     uVar5 = 5;
 _L0:
     uVar4 = 0x10;
-    goto _L0;
   }
-  if (param_2 < 0x56) {
-    if (param_2 == 0x51) {
-      uVar5 = 1;
-      goto _L0;
-    }
-    if (param_2 < 0x52) {
-      if (((param_2 == 0x1c) || (param_2 == 0x2e)) || (param_2 == 4)) {
+  else {
+    if (param_2 < 0x56) {
+      if (param_2 == 0x51) {
         uVar5 = 1;
-        uVar4 = 0x42;
         goto _L0;
       }
-      goto _L0;
+      if (param_2 < 0x52) {
+        if (((param_2 == 0x1c) || (param_2 == 0x2e)) || (param_2 == 4)) {
+          uVar5 = 1;
+          uVar4 = 0x42;
+          goto _L0;
+        }
+        goto _L0;
+      }
+      uVar6 = 0x54;
     }
-    uVar6 = 0x54;
-_L249:
+    else {
+      if (param_2 == 0x6f) {
+        uVar5 = 5;
+        uVar4 = 0x18;
+        goto _L0;
+      }
+      if (param_2 == 0x100) {
+        uVar5 = 1;
+        uVar4 = 0x23;
+        goto _L0;
+      }
+      uVar6 = 0x67;
+    }
     if (param_2 != uVar6) {
 _L0:
       uVar3 = esp_log_timestamp();
@@ -57,20 +71,8 @@ _L0:
       return 0x102;
     }
     uVar5 = 1;
+    uVar4 = 0x30;
   }
-  else {
-    if (param_2 != 0x6f) {
-      if (param_2 == 0x100) {
-        uVar5 = 1;
-        uVar4 = 0x23;
-        goto _L0;
-      }
-      uVar6 = 0x67;
-      goto _L249;
-    }
-    uVar5 = 5;
-  }
-  uVar4 = 0x18;
 _L0:
   if ((param_1 == (ushort *)0x0) || (*(int *)(param_1 + 6) == 0)) {
     uVar3 = esp_log_timestamp();

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> data_model_adapter.o -> esp_zb_convert_cluster_list_to_array
  *
  * (C) Espressif, Apache License 2.0.
@@ -52,13 +52,13 @@ undefined4 esp_zb_convert_cluster_list_to_array(int param_1)
     }
     if (__nmemb == 0) {
       uVar1 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_DM_ADAPTER",&_LC8,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
+      esp_log_write(3,"ESP_ZIGBEE_DM_ADAPTER",&_LC11,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
     }
     else {
       pvStack_2c = calloc(__nmemb,0xf);
       if (pvStack_2c == (void *)0x0) {
         uVar1 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC6,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
+        esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC9,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
                       "esp_zb_convert_cluster_list_to_array",0xad);
 _L0:
         esp_zb_cluster_array_cleanup(&uStack_30);
@@ -76,7 +76,7 @@ _L0:
           *(char *)((int)pvVar2 + 3) = (char)((ushort)extraout_a0 >> 8);
           if (pvStack_2c == (void *)0x0) {
             uVar1 = esp_log_timestamp();
-            esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC7,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
+            esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC10,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
                           "esp_zb_convert_cluster_list_to_array",0xb4);
             goto _L0;
           }

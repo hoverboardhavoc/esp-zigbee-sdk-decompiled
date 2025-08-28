@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_thermostat_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,7 +12,8 @@
 
 /* WARNING: Removing unreachable block (ram,0x00010256) */
 /* WARNING: Removing unreachable block (ram,0x0001025c) */
-/* WARNING: Removing unreachable block (ram,0x0001028a) */
+/* WARNING: Removing unreachable block (ram,0x00010260) */
+/* WARNING: Removing unreachable block (ram,0x0001028e) */
 
 undefined4 esp_zb_thermostat_cluster_add_attr(ushort *param_1,uint param_2,void *param_3)
 
@@ -62,7 +63,7 @@ _L0:
         }
         if (param_2 != 0x30) {
           if (param_2 != 0x31) goto _L0;
-          goto _L590;
+          goto _L578;
         }
       }
       uVar5 = 1;
@@ -84,7 +85,7 @@ _L0:
       }
       if (0x44 < param_2) {
         if (param_2 == 0x46) {
-_L590:
+_L578:
           uVar5 = 1;
           goto _L0;
         }
@@ -131,7 +132,7 @@ _L0:
       }
       uVar5 = 5;
       if (param_2 == 0) goto _L0;
-      if (param_2 != 2) goto _L590;
+      if (param_2 != 2) goto _L578;
     }
     else if (param_2 != 9) {
       uVar5 = 3;

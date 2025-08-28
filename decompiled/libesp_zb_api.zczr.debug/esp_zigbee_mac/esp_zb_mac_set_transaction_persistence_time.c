@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
+ * Upstream date: 2025-08-28 11:19:03 +0000
+ * Upstream subject: esp-zigbee-sdk: (0166821f)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_mac.o -> esp_zb_mac_set_transaction_persistence_time
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,19 +27,27 @@ undefined4 esp_zb_mac_set_transaction_persistence_time(uint param_1)
   }
   else {
     puVar2 = (undefined1 *)zb_buf_begin_func();
-    *puVar2 = 0x55;
-    puVar2[1] = 0;
-    puVar2[2] = 2;
-    puVar2[3] = 0;
-    puVar2[4] = 0;
-    puVar2[5] = 0;
-    puVar2[6] = 0;
-    uStack_12 = (undefined1)(param_1 / 0x3c00);
-    puVar2[0xb] = uStack_12;
-    uStack_11 = (undefined1)(param_1 / 0x3c00 >> 8);
-    puVar2[0xc] = uStack_11;
-    zb_mlme_set_request(iVar1);
-    uVar3 = 0;
+    if (param_1 < 0x3c000000) {
+      *puVar2 = 0x55;
+      puVar2[1] = 0;
+      puVar2[2] = 2;
+      puVar2[3] = 0;
+      puVar2[4] = 0;
+      puVar2[5] = 0;
+      puVar2[6] = 0;
+      uStack_12 = (undefined1)(param_1 / 0x3c00);
+      puVar2[0xb] = uStack_12;
+      uStack_11 = (undefined1)(param_1 / 0x3c00 >> 8);
+      puVar2[0xc] = uStack_11;
+      zb_mlme_set_request(iVar1);
+      uVar3 = 0;
+    }
+    else {
+      uVar3 = esp_log_timestamp();
+      esp_log_write(1,0x10000,&_LC2,uVar3,0x10000,"esp_zb_mac_set_transaction_persistence_time",0x3b
+                    ,param_1);
+      uVar3 = 0x102;
+    }
   }
   return uVar3;
 }
