@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> device_ieee_addr_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,11 +21,11 @@ void device_ieee_addr_req_cb(int param_1)
   
   if (param_1 == 0) {
     zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c",
-              0x1cd);
+              0x1ce);
 _L0:
     uVar3 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_L0,uVar3,"ESP_ZIGBEE_API_ZDO",
-                  *(undefined2 *)(unaff_s0 + 2),unaff_s2);
+    esp_log(2,"ESP_ZIGBEE_API_ZDO","W (%lu) %s: Unmatched ZDO rsp (0x%04x) and tsn (%d)\n",uVar3,
+            "ESP_ZIGBEE_API_ZDO",*(undefined2 *)(unaff_s0 + 2),unaff_s2);
     uVar3 = 0;
     uVar1 = 0;
   }

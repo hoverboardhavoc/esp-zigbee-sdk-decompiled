@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_core.o -> reset_endpoint_to_factory_default
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,8 +45,8 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
   
   if (param_1 == (undefined1 *)0x0) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_CORE",&_LC1,uVar4,"ESP_ZIGBEE_ZCL_CORE",
-                  "reset_endpoint_to_factory_default",0xa2);
+    esp_log(1,"ESP_ZIGBEE_ZCL_CORE","E (%lu) %s: %s(%d): Failed to find endpoint desc\n",uVar4,
+            "ESP_ZIGBEE_ZCL_CORE","reset_endpoint_to_factory_default",0xa2);
     uVar4 = 0xffffffff;
   }
   else {
@@ -54,8 +54,8 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
       puVar3 = (undefined2 *)(*(int *)(param_1 + 0x11) + iVar7 * 0xf);
       if (puVar3 == (undefined2 *)0x0) {
         uVar4 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ZCL_CORE",&_LC2,uVar4,"ESP_ZIGBEE_ZCL_CORE",
-                      "reset_endpoint_to_factory_default",0xa5);
+        esp_log(1,"ESP_ZIGBEE_ZCL_CORE","E (%lu) %s: %s(%d): Failed to find cluster desc\n",uVar4,
+                "ESP_ZIGBEE_ZCL_CORE","reset_endpoint_to_factory_default",0xa5);
         return 0xffffffff;
       }
       if (*(code **)((int)puVar3 + 0xb) != (code *)0x0) {
@@ -95,8 +95,6 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
         uStack_58 = 0;
         uStack_54 = 0;
         uStack_50 = 0;
-        uStack_4c = 0;
-        uStack_48 = 0;
         uStack_44 = 0;
         uStack_40 = 0;
         uStack_38 = 0;
@@ -104,6 +102,8 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
         uStack_64 = (uint)*(byte *)(puVar3 + 4);
         uStack_34 = (uint)*(ushort *)(param_1 + 1);
         uStack_3c = 5;
+        uStack_4c = 0;
+        uStack_48 = 0;
         for (iVar6 = 0; iVar6 < (int)(uint)(ushort)puVar3[1]; iVar6 = iVar6 + 1) {
           puVar2 = (undefined2 *)(*(int *)(puVar3 + 2) + iVar6 * 10);
           if ((*(byte *)((int)puVar2 + 3) & 4) != 0) {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_ota.o -> esp_zb_ota_upgrade_server_notify_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,13 +22,14 @@ int esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
   iVar1 = get_ota_upgrade_server_variables(*param_1);
   if ((iVar1 == 0) || ((uint)*(byte *)(iVar1 + 8) <= (uint)(byte)param_1[1])) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x100c4,&_LC8,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xb7,
-                  *(byte *)(iVar1 + 8) - 1);
+    esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Index out of range [0:%d]\n",uVar3,0x100c4,
+            "esp_zb_ota_upgrade_server_notify_req",0xb7,*(byte *)(iVar1 + 8) - 1);
     iVar1 = 0x102;
   }
   else if (*(int *)(param_1 + 0x24) == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x100c4,&_LC9,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xb9);
+    esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Invalid argument: `next_data_cb` MUST be specified.\n",
+            uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xb9);
     iVar1 = 0x102;
   }
   else {
@@ -40,7 +41,8 @@ int esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
     iVar1 = zb_buf_get_out_func();
     if (iVar1 == 0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,0x100c4,&_LC10,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc1);
+      esp_log(1,0x100c4,"E (%lu) %s: %s(%d): No buffer for OTA upgrade server notify request\n",
+              uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc1);
       iVar1 = 0x102;
     }
     else {
@@ -53,8 +55,8 @@ int esp_zb_ota_upgrade_server_notify_req(undefined1 *param_1)
       iVar1 = zb_zcl_ota_upgrade_insert_file(iVar1);
       if (iVar1 != 0) {
         uVar3 = esp_log_timestamp();
-        esp_log_write(1,0x100c4,&_LC11,uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc4,
-                      param_1[1]);
+        esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Failed to insert OTA index[%d] file to OTA list\n",
+                uVar3,0x100c4,"esp_zb_ota_upgrade_server_notify_req",0xc4,param_1[1]);
         iVar1 = 0x102;
       }
     }

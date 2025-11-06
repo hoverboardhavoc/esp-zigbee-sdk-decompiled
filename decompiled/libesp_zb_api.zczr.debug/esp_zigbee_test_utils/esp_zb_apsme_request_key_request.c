@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_test_utils.o -> esp_zb_apsme_request_key_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,14 +26,16 @@ undefined4 esp_zb_apsme_request_key_request(undefined1 *param_1)
   
   if (param_1 == (undefined1 *)0x0) {
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC2,uVar10,0x10000,"esp_zb_apsme_request_key_request",0x46);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid request pointer\n",uVar10,0x10000,
+            "esp_zb_apsme_request_key_request",0x46);
     uVar10 = 0x102;
   }
   else {
     iVar8 = zb_buf_get_out_func();
     if (iVar8 == 0) {
       uVar10 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC3,uVar10,0x10000,"esp_zb_apsme_request_key_request",0x4a);
+      esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory for key request\n",uVar10,0x10000,
+              "esp_zb_apsme_request_key_request",0x4a);
       uVar10 = 0x101;
     }
     else {

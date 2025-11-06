@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_ias_zone.o -> zcl_ias_zone_enroll_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,8 +41,9 @@ int zcl_ias_zone_enroll_req(undefined4 param_1)
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_IAS_ZONE",&_LC1,uVar4,"ESP_ZIGBEE_ZCL_IAS_ZONE",
-                  "zcl_ias_zone_enroll_req",0x4c);
+    esp_log(1,"ESP_ZIGBEE_ZCL_IAS_ZONE",
+            "E (%lu) %s: %s(%d): Failed to create ias_zone_enroll_request message\n",uVar4,
+            "ESP_ZIGBEE_ZCL_IAS_ZONE","zcl_ias_zone_enroll_req",0x4c);
   }
   return iVar2;
 }

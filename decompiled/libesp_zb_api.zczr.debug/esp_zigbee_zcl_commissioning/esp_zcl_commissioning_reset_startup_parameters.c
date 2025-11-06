@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_commissioning_reset_startup_parameters
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,21 +22,21 @@ void esp_zcl_commissioning_reset_startup_parameters(void)
   uVar3 = zb_get_channel_mask();
   memset(&g_comm_ctx,0,0x50);
   g_comm_ctx = uVar1;
-  DAT_0001179a = 0xff;
-  DAT_0001179b = 0xff;
-  DAT_0001179c = 0xff;
-  DAT_0001179d = 0xff;
-  DAT_0001179e = 0xff;
-  DAT_0001179f = 0xff;
-  DAT_000117a0 = 0xff;
-  DAT_000117a1 = 0xff;
-  DAT_000117a2 = uVar2;
-  DAT_000117a4 = uVar3;
-  DAT_000117a8 = 2;
-  DAT_000117a9 = 2;
-  DAT_000117aa = 3;
-  DAT_000117d3 = 1;
-  DAT_000117e5 = 1;
+  DAT_0001171a = 0xff;
+  DAT_0001171b = 0xff;
+  DAT_0001171c = 0xff;
+  DAT_0001171d = 0xff;
+  DAT_0001171e = 0xff;
+  DAT_0001171f = 0xff;
+  DAT_00011720 = 0xff;
+  DAT_00011721 = 0xff;
+  DAT_00011722 = uVar2;
+  DAT_00011724 = uVar3;
+  DAT_00011728 = 2;
+  DAT_00011729 = 2;
+  DAT_0001172a = 3;
+  DAT_00011753 = 1;
+  DAT_00011765 = 1;
   return;
 }
 

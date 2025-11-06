@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote.debug -> zb_esp_radio_spinel.o -> zb_radio_spinel_receive_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,11 +25,12 @@ void zb_radio_spinel_receive_done(byte *param_1,undefined1 *param_2)
   
   if ((param_1 == (byte *)0x0) || (param_2 == (undefined1 *)0x0)) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(2,"ZB_ESP_SPINEL",&_L0,uVar4,"ZB_ESP_SPINEL");
+    esp_log(2,"ZB_ESP_SPINEL","W (%lu) %s: Unexpected IEEE802154 frame\n",uVar4,"ZB_ESP_SPINEL");
   }
   else if ((char)*param_1 < '\0') {
     uVar4 = esp_log_timestamp();
-    esp_log_write(2,"ZB_ESP_SPINEL",&_LC3,uVar4,"ZB_ESP_SPINEL");
+    esp_log(2,"ZB_ESP_SPINEL","W (%lu) %s: Dropped the malformed IEEE802154 frame\n",uVar4,
+            "ZB_ESP_SPINEL");
   }
   else if ((s_mac_raw_frame_handler == (code *)0x0) ||
           (iVar3 = (*s_mac_raw_frame_handler)(), iVar3 == 0)) {
@@ -54,7 +55,8 @@ void zb_radio_spinel_receive_done(byte *param_1,undefined1 *param_2)
       return;
     }
     uVar4 = esp_log_timestamp();
-    esp_log_write(2,"ZB_ESP_SPINEL",&_LC4,uVar4,"ZB_ESP_SPINEL");
+    esp_log(2,"ZB_ESP_SPINEL","W (%lu) %s: No buffer, handle it in the next iteration\n",uVar4,
+            "ZB_ESP_SPINEL");
   }
   return;
 }

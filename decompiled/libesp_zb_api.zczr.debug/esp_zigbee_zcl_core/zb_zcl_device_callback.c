@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -42,7 +42,9 @@ _L0:
             *(undefined4 *)(iVar4 + 8) = 0xffffffff;
             uVar5 = esp_log_timestamp();
             puVar6 = (undefined4 *)zb_buf_get_tail_func(param_1,0x38);
-            esp_log_write(2,"ESP_ZIGBEE_ZCL_CORE",&_L0,uVar5,"ESP_ZIGBEE_ZCL_CORE",*puVar6);
+            esp_log(2,"ESP_ZIGBEE_ZCL_CORE",
+                    "W (%lu) %s: Device callback id(0x%x) has not been handled\n",uVar5,
+                    "ESP_ZIGBEE_ZCL_CORE",*puVar6);
           }
         }
       }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zdo_command.o -> esp_zb_zdo_find_color_dimmable_light
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,11 +24,11 @@ void esp_zb_zdo_find_color_dimmable_light(undefined1 *param_1,undefined4 param_2
   puVar3[2] = param_1[2];
   uVar1 = *(undefined2 *)(param_1 + 2);
   puVar3[8] = 6;
+  puVar3[10] = 8;
   puVar3[3] = (char)((ushort)uVar1 >> 8);
   puVar3[4] = 4;
   puVar3[5] = 1;
   puVar3[6] = 3;
-  puVar3[10] = 8;
   puVar3[0xd] = 3;
   puVar3[7] = 0;
   puVar3[9] = 0;

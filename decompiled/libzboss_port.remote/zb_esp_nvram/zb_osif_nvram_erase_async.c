@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote -> zb_esp_nvram.o -> zb_osif_nvram_erase_async
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,19 +13,15 @@
 undefined4 zb_osif_nvram_erase_async(int param_1)
 
 {
-  undefined4 uVar1;
+  uint uVar1;
   int iVar2;
-  int iVar3;
-  undefined4 uVar4;
+  undefined4 uVar3;
+  int iVar4;
   
   uVar1 = zb_get_nvram_page_length();
-  uVar4 = uVar1;
-  if (param_1 == 0) {
-    uVar4 = 0;
-  }
-  iVar3 = 3;
+  iVar4 = 3;
   do {
-    iVar2 = esp_partition_erase_range(zb_partition,uVar4,uVar1);
+    iVar2 = esp_partition_erase_range(zb_partition,-(uint)(param_1 != 0) & uVar1,uVar1);
     if (iVar2 != 0x107) {
       if (iVar2 == 0) {
         zb_nvram_erase_finished(param_1);
@@ -33,10 +29,11 @@ undefined4 zb_osif_nvram_erase_async(int param_1)
       }
       break;
     }
-    iVar3 = iVar3 + -1;
-  } while (iVar3 != 0);
-  uVar4 = esp_log_timestamp();
-  esp_log_write(1,0x10000,&_LC1,uVar4,0x10000,iVar2,3);
+    iVar4 = iVar4 + -1;
+  } while (iVar4 != 0);
+  uVar3 = esp_log_timestamp();
+  esp_log(1,0x10000,"E (%lu) %s: NVRAM op failed (error = %d) after %d retries\n",uVar3,0x10000,
+          iVar2,3);
   return 0xffffffff;
 }
 

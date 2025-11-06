@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote -> zb_esp_osif.o -> zb_osif_sleep_iteration
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ _L0:
   zb_esp_osif_lock_acquire(0xffffffff);
   if (iVar1 < 0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ZB OSIF",&_L0,uVar2,"ZB OSIF");
+    esp_log(1,"ZB OSIF","E (%lu) %s: ZB system polling failed\n",uVar2,"ZB OSIF");
   }
   else {
     zb_esp_workflow_process(auStack_40);

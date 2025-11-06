@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_ota.o -> next_data_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,12 +44,14 @@ int next_data_req_cb(uint param_1,undefined4 *param_2,uint param_3,size_t param_
   pcVar2 = s_ota_next_data_cb;
   if ((iVar4 == 0) || (*(byte *)(iVar4 + 8) <= param_1)) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x100c4,&_LC2,uVar5,0x100c4,"next_data_req_cb",0x51,param_1);
+    esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Failed to find index[%d] OTA file\n",uVar5,0x100c4,
+            "next_data_req_cb",0x51,param_1);
     return -0x1c;
   }
   if (s_ota_next_data_cb == (code *)0x0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x100c4,&_LC3,uVar5,0x100c4,"next_data_req_cb",0x53);
+    esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Failed to find OTA next data callback\n",uVar5,0x100c4,
+            "next_data_req_cb",0x53);
     return -1;
   }
   iVar4 = *(int *)(*(int *)(iVar4 + 0xc) + param_1 * 8);
@@ -63,7 +65,8 @@ int next_data_req_cb(uint param_1,undefined4 *param_2,uint param_3,size_t param_
     s_ota_header_payload_1 = malloc(param_4);
     if (s_ota_header_payload_1 == (void *)0x0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,0x100c4,&_LC4,uVar5,0x100c4,"next_data_req_cb",0x5d);
+      esp_log(1,0x100c4,"E (%lu) %s: %s(%d): No memory for OTA image block\n",uVar5,0x100c4,
+              "next_data_req_cb",0x5d);
       return -1;
     }
     memcpy(s_ota_header_payload_1,(void *)(iVar4 + param_3),uVar3 - param_3);
@@ -82,7 +85,8 @@ int next_data_req_cb(uint param_1,undefined4 *param_2,uint param_3,size_t param_
       goto _L0;
     }
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x100c4,&_LC5,uVar5,0x100c4,"next_data_req_cb",0x61);
+    esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Invalid OTA data\n",uVar5,0x100c4,"next_data_req_cb",0x61
+           );
     iVar4 = 0x101;
   }
   else {
@@ -99,7 +103,8 @@ int next_data_req_cb(uint param_1,undefined4 *param_2,uint param_3,size_t param_
     iVar4 = (*pcVar2)(&local_70,param_1,param_4,param_5);
     if (*param_5 == 0) {
       uVar5 = esp_log_timestamp();
-      esp_log_write(1,0x100c4,&_LC5,uVar5,0x100c4,"next_data_req_cb",0x6b);
+      esp_log(1,0x100c4,"E (%lu) %s: %s(%d): Invalid OTA data\n",uVar5,0x100c4,"next_data_req_cb",
+              0x6b);
       iVar4 = 0x101;
     }
     else {

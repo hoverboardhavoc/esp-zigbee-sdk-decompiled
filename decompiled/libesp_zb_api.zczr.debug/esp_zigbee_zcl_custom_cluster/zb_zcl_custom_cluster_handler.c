@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_custom_cluster.o -> zb_zcl_custom_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,8 +47,9 @@ int zb_zcl_custom_cluster_handler(undefined4 param_1)
           pcVar6 = "TO_SRV";
           pcVar7 = "server";
         }
-        esp_log_write(1,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",&_LC6,uVar3,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
-                      pcVar6,pcVar7,sStack_30);
+        esp_log(1,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
+                "E (%lu) %s: Received %s custom command, but cannot find the custom %s cluster (0x%x) on endpoint (%d)\n"
+                ,uVar3,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",pcVar6,pcVar7,sStack_30);
         iVar4 = -0x1c;
       }
       else {
@@ -60,16 +61,18 @@ int zb_zcl_custom_cluster_handler(undefined4 param_1)
     }
     else {
       uVar3 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",&_LC7,uVar3,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
-                    uStack_2c,uStack_31,sStack_30);
+      esp_log(2,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
+              "W (%lu) %s: Failed to find custom command(0x%x) callback for endpoint(%d) cluster(0x%x)\n"
+              ,uVar3,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",uStack_2c,uStack_31,sStack_30);
       iVar2 = 0;
     }
   }
   else {
-    uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",&_LC5,uVar3,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
-                  "zb_zcl_custom_cluster_handler",0x37);
     iVar2 = 1;
+    uVar3 = esp_log_timestamp();
+    esp_log(1,"ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER",
+            "E (%lu) %s: %s(%d): Failed to create custom_cluster message\n",uVar3,
+            "ESP_ZIGBEE_ZCL_CUSTOM_CLUSTER","zb_zcl_custom_cluster_handler",0x37);
   }
   return iVar2;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zb_zcl_scene_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,8 +53,9 @@ int zb_zcl_scene_resp_handler(undefined4 param_1)
     if (bVar1 != 6) {
 _L0:
       uVar5 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_LC34,uVar5,"ESP_ZIGBEE_ZCL_SCENES",
-                    *(undefined1 *)(iVar2 + 0x13));
+      esp_log(2,"ESP_ZIGBEE_ZCL_SCENES",
+              "W (%lu) %s: Unsupported scenes cluster response command(0x%x)\n",uVar5,
+              "ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(iVar2 + 0x13));
       return 0;
     }
     zcl_scenes_get_scene_membership_res(param_1);

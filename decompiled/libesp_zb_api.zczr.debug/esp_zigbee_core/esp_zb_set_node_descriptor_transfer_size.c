@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> esp_zb_set_node_descriptor_transfer_size
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,15 +25,17 @@ undefined4 esp_zb_set_node_descriptor_transfer_size(uint param_1,uint param_2)
     }
     else {
       uVar1 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_CORE",&_LC8,uVar1,"ESP_ZIGBEE_CORE",
-                    "esp_zb_set_node_descriptor_transfer_size",0x287,0x64d);
+      esp_log(1,"ESP_ZIGBEE_CORE",
+              "E (%lu) %s: %s(%d): The max outgoing transfer ranges from 0 to %d\n",uVar1,
+              "ESP_ZIGBEE_CORE","esp_zb_set_node_descriptor_transfer_size",0x287,0x64d);
       uVar1 = 0x102;
     }
   }
   else {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CORE",&_L0,uVar1,"ESP_ZIGBEE_CORE",
-                  "esp_zb_set_node_descriptor_transfer_size",0x285,0x64d);
+    esp_log(1,"ESP_ZIGBEE_CORE",
+            "E (%lu) %s: %s(%d): The max incoming transfer ranges from 0 to %d\n",uVar1,
+            "ESP_ZIGBEE_CORE","esp_zb_set_node_descriptor_transfer_size",0x285,0x64d);
     uVar1 = 0x102;
   }
   return uVar1;

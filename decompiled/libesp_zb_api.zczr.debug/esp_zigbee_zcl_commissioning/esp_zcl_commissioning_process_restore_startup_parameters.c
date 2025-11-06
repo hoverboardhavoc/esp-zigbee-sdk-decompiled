@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_commissioning_process_restore_startup_parameters
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,8 +33,8 @@ undefined4 esp_zcl_commissioning_process_restore_startup_parameters(undefined4 p
   esp_zb_core_action_handler_schedule(0x1b,&uStack_24);
   if (uStack_14 == 0x81) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_ZCL_COMMISSIONING",&_L0,uVar2,"ESP_ZIGBEE_ZCL_COMMISSIONING",
-                  *(undefined1 *)(param_2 + 0x1c));
+    esp_log(2,"ESP_ZIGBEE_ZCL_COMMISSIONING","W (%lu) %s: Unsupported commissioning command(0x%x)\n"
+            ,uVar2,"ESP_ZIGBEE_ZCL_COMMISSIONING",*(undefined1 *)(param_2 + 0x1c));
   }
   esp_zcl_commissioning_srv_send_response(param_1,param_2,uStack_14 & 0xff,0);
   return 1;

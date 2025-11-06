@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> zb_zdo_power_desc_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ void zb_zdo_power_desc_req_cb(int param_1)
   
   if (param_1 == 0) {
     iVar1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                      ,0x289);
+                      ,0x28a);
   }
   else {
     uStack_28 = 0;
@@ -35,7 +35,8 @@ void zb_zdo_power_desc_req_cb(int param_1)
     if (iVar1 == 0) goto _L0;
     if (*(short *)(iVar1 + 2) != 3) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_API_ZDO",&_LC16,uVar2,"ESP_ZIGBEE_API_ZDO",unaff_s2);
+      esp_log(2,"ESP_ZIGBEE_API_ZDO","W (%lu) %s: No Power Desc Request event found for TSN: %d\n",
+              uVar2,"ESP_ZIGBEE_API_ZDO",unaff_s2);
       goto _L0;
     }
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_zcl_attr_clone
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,8 +28,8 @@ undefined4 esp_zb_internal_zcl_attr_clone(undefined1 *param_1,undefined1 *param_
   
   if ((param_1 == (undefined1 *)0x0) || (param_2 == (undefined1 *)0x0)) {
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar10,0x10000,"esp_zb_internal_zcl_attr_clone",0x91,
-                  "esp_zb_internal_zcl_attr_clone");
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid argument in %s\n",uVar10,0x10000,
+            "esp_zb_internal_zcl_attr_clone",0x91,"esp_zb_internal_zcl_attr_clone");
     uVar10 = 0x102;
   }
   else {
@@ -73,7 +73,8 @@ undefined4 esp_zb_internal_zcl_attr_clone(undefined1 *param_1,undefined1 *param_
       param_1[9] = (char)((uint)__dest >> 0x18);
       if (__dest == (void *)0x0) {
         uVar10 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC10,uVar10,0x10000,"esp_zb_internal_zcl_attr_clone",0x9d);
+        esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory for attribute value\n",uVar10,0x10000,
+                "esp_zb_internal_zcl_attr_clone",0x9d);
         uVar10 = 0x101;
       }
       else if ((param_2[3] & 0x40) == 0) {

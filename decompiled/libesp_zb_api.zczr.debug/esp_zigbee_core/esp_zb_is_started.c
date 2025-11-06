@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_core.o -> esp_zb_is_started
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,9 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-byte esp_zb_is_started(void)
+bool esp_zb_is_started(void)
 
 {
-  return DAT_00012cd1 >> 3 & 1;
+  return (DAT_00012cd1 & 8) != 0;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_test_utils.o -> esp_zb_secur_aps_security_is_enabled
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,9 +12,9 @@
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-uint esp_zb_secur_aps_security_is_enabled(void)
+bool esp_zb_secur_aps_security_is_enabled(void)
 
 {
-  return (_DAT_00012df4 >> 8 ^ 1) & 1;
+  return (_DAT_00012df4 & 0x100) == 0;
 }
 

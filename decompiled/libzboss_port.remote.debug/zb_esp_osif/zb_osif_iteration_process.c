@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote.debug -> zb_esp_osif.o -> zb_osif_iteration_process
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,8 +38,9 @@ void zb_osif_iteration_process(undefined4 param_1,undefined4 param_2)
   iVar2 = __umoddi3(param_1,param_2,1000,0);
   iStack_18 = iVar2 * 1000;
   if (s_zb_sched_fd < 0x40) {
-    iVar2 = (int)(((int)s_zb_sched_fd >> 0x1f & 0x1fU) + s_zb_sched_fd) >> 5;
-    auStack_40[iVar2] = auStack_40[iVar2] | 1 << (s_zb_sched_fd & 0x1f);
+    auStack_40[(int)(((int)s_zb_sched_fd >> 0x1f & 0x1fU) + s_zb_sched_fd) >> 5] =
+         auStack_40[(int)(((int)s_zb_sched_fd >> 0x1f & 0x1fU) + s_zb_sched_fd) >> 5] |
+         1 << (s_zb_sched_fd & 0x1f);
   }
   if (-1 < (int)s_zb_sched_fd) {
     uStack_28 = s_zb_sched_fd;
@@ -51,7 +52,7 @@ void zb_osif_iteration_process(undefined4 param_1,undefined4 param_2)
   zb_esp_osif_lock_acquire(0xffffffff);
   if (iVar2 < 0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,0x1010c,&_L0,uVar1,0x1010c);
+    esp_log(1,"ZB OSIF","E (%lu) %s: ZB system polling failed\n",uVar1,"ZB OSIF");
   }
   else {
     zb_esp_workflow_process(auStack_40);

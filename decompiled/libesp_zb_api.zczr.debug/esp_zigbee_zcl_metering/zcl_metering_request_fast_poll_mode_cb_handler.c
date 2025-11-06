@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_metering.o -> zcl_metering_request_fast_poll_mode_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,7 +44,9 @@ undefined4 zcl_metering_request_fast_poll_mode_cb_handler(undefined4 param_1)
   iVar2 = zb_zcl_get_attr_desc_a(*(undefined1 *)(iVar3 + 0xc),0x702,1,0xb);
   if (iVar2 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_ZCL_METERING",&_L0,uVar5,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(2,"ESP_ZIGBEE_ZCL_METERING",
+            "W (%lu) %s: FastPollUpdatePeriod attribute is not set, assuming that it is Ox05\n",
+            uVar5,"ESP_ZIGBEE_ZCL_METERING");
     uVar6 = 5;
   }
   else {
@@ -52,12 +54,16 @@ undefined4 zcl_metering_request_fast_poll_mode_cb_handler(undefined4 param_1)
   }
   if ((iStack_24 == 0) && ((uStack_28 & 0xff) == 0)) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_LC5,uVar4,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(1,"ESP_ZIGBEE_ZCL_METERING",
+            "E (%lu) %s: The response info is not set correctly, RequestFastPollModeResponse command has no sense\n"
+            ,uVar4,"ESP_ZIGBEE_ZCL_METERING");
     uVar4 = 0xffffffe4;
   }
   else if (((uStack_28 & 0xff) < uVar6) || ((uint)(byte)*puVar7 < (uStack_28 & 0xff))) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_ZCL_METERING",&_LC6,uVar5,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(2,"ESP_ZIGBEE_ZCL_METERING",
+            "W (%lu) %s: AppliedUpdatePeriod shall be greater than or equal to FastPollUpdatePeriod Attribute                                         and less than or equal to the FastPollUpdatePeriod in RequestFastPollMode command\n"
+            ,uVar5,"ESP_ZIGBEE_ZCL_METERING");
   }
   *puVar1 = (undefined1)uStack_28;
   puVar1[1] = (char)iStack_24;

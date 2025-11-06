@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_endpoint.o -> esp_zb_ep_list_add_gateway_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,14 +44,15 @@ int esp_zb_ep_list_add_gateway_ep(undefined4 param_1,int param_2,uint param_3,un
     }
     else {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC6,uVar2,"ESP_ZIGBEE_ENDPOINT",
-                    "esp_zb_ep_list_add_gateway_ep",0x7d);
+      esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: %s(%d): Failed to add cluster list to endpoint\n"
+              ,uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_gateway_ep",0x7d);
     }
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC5,uVar2,"ESP_ZIGBEE_ENDPOINT",
-                  "esp_zb_ep_list_add_gateway_ep",0x74);
+    esp_log(1,"ESP_ZIGBEE_ENDPOINT",
+            "E (%lu) %s: %s(%d): Gateway endpoints have reached its limit or invalid endpoint value\n"
+            ,uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_gateway_ep",0x74);
     iVar1 = 0x101;
   }
   return iVar1;

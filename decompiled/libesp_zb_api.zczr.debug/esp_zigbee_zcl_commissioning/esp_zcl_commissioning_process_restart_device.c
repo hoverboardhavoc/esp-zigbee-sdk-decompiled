@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_commissioning.o -> esp_zcl_commissioning_process_restart_device
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,20 +33,21 @@ undefined4 esp_zcl_commissioning_process_restart_device(undefined4 param_1,int p
   }
   iVar2 = esp_zcl_commissioning_check_startup_parameters();
   if (iVar2 == 0) {
-    DAT_000117f8 = (uStack_14 >> 8 & 0xff) * 1000;
-    DAT_000117fc = 0;
+    DAT_00011778 = (uStack_14 >> 8 & 0xff) * 1000;
+    DAT_0001177c = 0;
     uVar4 = zb_random_jitter();
-    uVar4 = uVar4 / (0xffffffff / ((uStack_14 >> 0x10 & 0xff) * 0x50)) + DAT_000117f8;
-    DAT_000117fc = (uint)(uVar4 < DAT_000117f8) + DAT_000117fc;
-    DAT_00011800 = (byte)uStack_14 & 7;
-    DAT_00011801 = (byte)(uStack_14 >> 3) & 1;
-    DAT_000117f8 = uVar4;
+    uVar4 = uVar4 / (0xffffffff / ((uStack_14 >> 0x10 & 0xff) * 0x50)) + DAT_00011778;
+    DAT_0001177c = (uint)(uVar4 < DAT_00011778) + DAT_0001177c;
+    DAT_00011780 = (byte)uStack_14 & 7;
+    DAT_00011781 = (byte)(uStack_14 >> 3) & 1;
+    DAT_00011778 = uVar4;
     esp_zcl_commissioning_srv_send_response
               (param_1,param_2,0,esp_zcl_commissioning_process_restart_device_continue);
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_COMMISSIONING",&_L0,uVar3,"ESP_ZIGBEE_ZCL_COMMISSIONING");
+    esp_log(1,"ESP_ZIGBEE_ZCL_COMMISSIONING","E (%lu) %s: Invalid Startup Parameter Set\n",uVar3,
+            "ESP_ZIGBEE_ZCL_COMMISSIONING");
     esp_zcl_commissioning_srv_send_response(param_1,param_2,1,0);
   }
   return 1;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_endpoint.o -> esp_zb_ep_list_get_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,8 +19,8 @@ uint esp_zb_ep_list_get_ep(int param_1,uint param_2)
   
   if (param_1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_L0,uVar3,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_get_ep",
-                  0x9d);
+    esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: %s(%d): Invalid endpoint list\n",uVar3,
+            "ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_get_ep",0x9d);
     uVar2 = 0;
   }
   else {
@@ -29,7 +29,8 @@ uint esp_zb_ep_list_get_ep(int param_1,uint param_2)
     }
     if (pbVar1 == (byte *)0x0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC8,uVar3,"ESP_ZIGBEE_ENDPOINT",param_2);
+      esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: The requested endpoint ID (%d) is not found\n",
+              uVar3,"ESP_ZIGBEE_ENDPOINT",param_2);
       uVar2 = 0;
     }
     else {

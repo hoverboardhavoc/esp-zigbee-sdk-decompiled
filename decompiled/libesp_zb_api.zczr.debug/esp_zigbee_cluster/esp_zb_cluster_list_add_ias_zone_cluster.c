@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_add_ias_zone_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
   puVar2 = (undefined4 *)malloc(0x14);
   if (param_1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar3,0x10000);
+    esp_log(1,0x10000,"E (%lu) %s: Uninitialized cluster linked list!\n",uVar3,0x10000);
     uVar3 = 0x102;
   }
   else if (*(short *)(*(int *)(param_2 + 0xc) + 10) == 0x500) {
@@ -35,7 +35,8 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
       if (psVar4 == (short *)0x0) break;
       if (*psVar4 == 0x500 && *(byte *)(psVar4 + 4) == param_3) {
         uVar3 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_L0,uVar3,0x10000,0x500);
+        esp_log(1,0x10000,"E (%lu) %s: The requested add cluster ID:0x%x is already existed\n",uVar3
+                ,0x10000,0x500);
         return 0x102;
       }
       psVar1 = *(short **)(psVar4 + 8);
@@ -68,7 +69,7 @@ undefined4 esp_zb_cluster_list_add_ias_zone_cluster(int param_1,int param_2,uint
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC16,uVar3,0x10000);
+    esp_log(1,0x10000,"E (%lu) %s: Not a IAS zone cluster!\n",uVar3,0x10000);
     uVar3 = 0x102;
   }
   return uVar3;

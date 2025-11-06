@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_aps.o -> esp_zb_apsme_switch_key_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,8 +27,8 @@ undefined4 esp_zb_apsme_switch_key_request(undefined1 *param_1)
   iVar8 = zb_buf_get_out_func();
   if (iVar8 == 0) {
     uVar10 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_APS",&_L0,uVar10,"ESP_ZIGBEE_APS","esp_zb_apsme_switch_key_request",
-                  0xe6);
+    esp_log(1,"ESP_ZIGBEE_APS","E (%lu) %s: %s(%d): No memory for APSME-Switch-Key Request\n",uVar10
+            ,"ESP_ZIGBEE_APS","esp_zb_apsme_switch_key_request",0xe6);
     uVar10 = 0x101;
   }
   else {

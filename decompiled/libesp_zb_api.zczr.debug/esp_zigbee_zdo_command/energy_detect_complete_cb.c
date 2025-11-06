@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> energy_detect_complete_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,7 +38,7 @@ void energy_detect_complete_cb(int param_1)
         for (iVar4 = 0; iVar4 < (int)uVar6; iVar4 = iVar4 + 1) {
           iVar5 = iVar4 * 2;
           *(byte *)((int)__ptr + iVar5) = pbVar3[iVar5 + 1] >> 3;
-          ((byte *)((int)__ptr + iVar5))[1] = pbVar3[iVar5 + 2];
+          ((byte *)((int)__ptr + iVar5))[1] = pbVar3[iVar5 + 2] + 0x80;
         }
       }
     }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> zdo_mgmt_lqi_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ void zdo_mgmt_lqi_cb(int param_1)
   
   if (param_1 == 0) {
     pbVar9 = (byte *)zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                               ,0x45b);
+                               ,0x45c);
   }
   else {
     unaff_s1 = (byte *)zb_buf_begin_func();

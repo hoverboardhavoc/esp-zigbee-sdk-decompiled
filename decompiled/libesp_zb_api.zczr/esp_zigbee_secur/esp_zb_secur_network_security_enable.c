@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_secur.o -> esp_zb_secur_network_security_enable
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,10 +18,7 @@ undefined4 esp_zb_secur_network_security_enable(int param_1)
   
   iVar1 = zb_zdo_joined();
   if (iVar1 == 0) {
-    g_zb = 0;
-    if (param_1 != 0) {
-      g_zb = 5;
-    }
+    g_zb = (-(param_1 == 0) & 0xfbU) + 5;
     uVar2 = 0;
   }
   else {

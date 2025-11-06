@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_get_scene_membership_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,26 +25,16 @@ int zcl_scenes_get_scene_membership_res(undefined4 param_1)
   iVar1 = zb_zcl_basic_message_create(auStack_3c);
   if (iVar1 == 0) {
     uVar2 = zb_buf_len_func(param_1);
-    if (uVar2 < 6) {
-      pbStack_14 = (byte *)0x0;
+    if ((uVar2 < 6) || (pbStack_14 = (byte *)zb_buf_begin_func(param_1), pbStack_14 == (byte *)0x0))
+    {
       auStack_3c[0] = 1;
-    }
-    else {
-      pbStack_14 = (byte *)zb_buf_begin_func(param_1);
-      if (pbStack_14 == (byte *)0x0) {
-        auStack_3c[0] = 1;
-      }
-      else {
-        auStack_3c[0] = (uint)*pbStack_14;
-      }
-    }
-    if (pbStack_14 == (byte *)0x0) {
       bStack_1c = 0;
       uStack_1a = 0xffff;
       bStack_18 = 0;
       pbStack_14 = (byte *)0x0;
     }
     else {
+      auStack_3c[0] = (uint)*pbStack_14;
       bStack_1c = pbStack_14[1];
       uStack_1a = *(undefined2 *)(pbStack_14 + 2);
       bStack_18 = pbStack_14[4];
@@ -54,8 +44,9 @@ int zcl_scenes_get_scene_membership_res(undefined4 param_1)
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC33,uVar3,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zcl_scenes_get_scene_membership_res",0x33f);
+    esp_log(1,"ESP_ZIGBEE_ZCL_SCENES",
+            "E (%lu) %s: %s(%d): Failed to create get_scene_membership_response message\n",uVar3,
+            "ESP_ZIGBEE_ZCL_SCENES","zcl_scenes_get_scene_membership_res",0x33f);
   }
   return iVar1;
 }

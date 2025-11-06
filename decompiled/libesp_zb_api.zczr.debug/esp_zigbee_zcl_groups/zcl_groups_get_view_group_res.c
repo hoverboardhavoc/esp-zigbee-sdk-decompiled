@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_groups.o -> zcl_groups_get_view_group_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,24 +23,14 @@ int zcl_groups_get_view_group_res(undefined4 param_1)
   iVar1 = zb_zcl_basic_message_create(auStack_38);
   if (iVar1 == 0) {
     uVar2 = zb_buf_len_func(param_1);
-    if (uVar2 < 4) {
-      pbStack_14 = (byte *)0x0;
+    if ((uVar2 < 4) || (pbStack_14 = (byte *)zb_buf_begin_func(param_1), pbStack_14 == (byte *)0x0))
+    {
       auStack_38[0] = 1;
-    }
-    else {
-      pbStack_14 = (byte *)zb_buf_begin_func(param_1);
-      if (pbStack_14 == (byte *)0x0) {
-        auStack_38[0] = 1;
-      }
-      else {
-        auStack_38[0] = (uint)*pbStack_14;
-      }
-    }
-    if (pbStack_14 == (byte *)0x0) {
       uStack_18 = 0xffff;
       pbStack_14 = (byte *)0x0;
     }
     else {
+      auStack_38[0] = (uint)*pbStack_14;
       uStack_18 = *(undefined2 *)(pbStack_14 + 1);
       pbStack_14 = pbStack_14 + 3;
     }
@@ -48,7 +38,8 @@ int zcl_groups_get_view_group_res(undefined4 param_1)
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC3,uVar3,0x10000,"zcl_groups_get_view_group_res",0x51);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to create view_group_response message\n",uVar3,
+            0x10000,"zcl_groups_get_view_group_res",0x51);
   }
   return iVar1;
 }

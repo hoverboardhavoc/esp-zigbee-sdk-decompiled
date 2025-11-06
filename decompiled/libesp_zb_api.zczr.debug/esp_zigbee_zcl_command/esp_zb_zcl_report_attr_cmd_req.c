@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_report_attr_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,8 +36,9 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
   iVar3 = zb_af_get_endpoint_desc(*(undefined1 *)(param_1 + 9));
   if (iVar3 == 0) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC7,uVar7,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_report_attr_cmd_req",0xed,*(undefined1 *)(param_1 + 9));
+    esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): Unregistered endpoint id(%d)\n",uVar7,
+            "ESP_ZIGBEE_COMMAND","esp_zb_zcl_report_attr_cmd_req",0xed,*(undefined1 *)(param_1 + 9))
+    ;
     uVar5 = 0x105;
   }
   else {
@@ -49,20 +50,24 @@ uint esp_zb_zcl_report_attr_cmd_req(int param_1)
                        *(undefined2 *)(param_1 + 0x16),*(undefined2 *)(param_1 + 0x14));
     if (iVar4 == 0) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC8,uVar7,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0xf4,*(undefined2 *)(param_1 + 0x16));
+      esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): This attribute: 0x%x is not existed!\n",
+              uVar7,"ESP_ZIGBEE_COMMAND","esp_zb_zcl_report_attr_cmd_req",0xf4,
+              *(undefined2 *)(param_1 + 0x16));
       uVar5 = 0x105;
     }
     else if ((*(byte *)(iVar4 + 3) & 4) == 0) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC9,uVar7,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0xf5,*(undefined2 *)(param_1 + 0x16));
+      esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): This attribute: 0x%x is not reportable!\n"
+              ,uVar7,"ESP_ZIGBEE_COMMAND","esp_zb_zcl_report_attr_cmd_req",0xf5,
+              *(undefined2 *)(param_1 + 0x16));
       uVar5 = 0x106;
     }
     else if ((byte)(*(char *)(iVar4 + 2) + 0xb8U) < 10) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC10,uVar7,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_report_attr_cmd_req",0xf8,*(undefined2 *)(param_1 + 0x16));
+      esp_log(1,"ESP_ZIGBEE_COMMAND",
+              "E (%lu) %s: %s(%d): This attribute: 0x%x is of non-reportable type!\n",uVar7,
+              "ESP_ZIGBEE_COMMAND","esp_zb_zcl_report_attr_cmd_req",0xf8,
+              *(undefined2 *)(param_1 + 0x16));
       uVar5 = 0x106;
     }
     else {
@@ -92,9 +97,9 @@ _L0:
         iVar4 = zb_buf_get_out_func();
         if (iVar4 == 0) {
           uVar7 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC5,uVar7,"ESP_ZIGBEE_COMMAND",
-                        "esp_zb_zcl_config_report_cmd_req",0x113,"esp_zb_zcl_config_report_cmd_req")
-          ;
+          esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): No I/O buffer for %s\n",uVar7,
+                  "ESP_ZIGBEE_COMMAND","esp_zb_zcl_config_report_cmd_req",0x113,
+                  "esp_zb_zcl_config_report_cmd_req");
           pbVar8 = (byte *)zb_zcl_get_ctx();
           uVar5 = (uint)*pbVar8;
           *pbVar8 = *pbVar8 + 1;

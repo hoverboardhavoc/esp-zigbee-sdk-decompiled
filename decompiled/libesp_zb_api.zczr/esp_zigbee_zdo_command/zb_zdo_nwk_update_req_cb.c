@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zdo_command.o -> zb_zdo_nwk_update_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void zb_zdo_nwk_update_req_cb(int param_1)
   
   if (param_1 == 0) {
     param_1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                        ,0x4b4);
+                        ,0x4b5);
   }
   memset(auStack_38,0,0x28);
   puVar3 = (undefined1 *)zb_buf_begin_func(param_1);

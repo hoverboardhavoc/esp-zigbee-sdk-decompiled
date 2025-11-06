@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote -> zb_esp_radio_spinel.o -> zb_radio_spinel_receive_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,8 @@ void zb_radio_spinel_receive_done(byte *param_1,char *param_2)
   void *__dest;
   undefined4 *puVar4;
   int iVar5;
-  undefined4 uVar6;
+  byte bVar6;
+  undefined4 uVar7;
   uint __n;
   undefined1 auStack_38 [20];
   byte bStack_24;
@@ -40,16 +41,16 @@ void zb_radio_spinel_receive_done(byte *param_1,char *param_2)
     *(undefined1 *)(__n + (int)__dest) = uVar3;
     ((undefined1 *)(__n + (int)__dest))[1] = param_2[3];
     puVar4 = (undefined4 *)zb_buf_get_tail_func(cVar1,8);
-    uVar6 = *(undefined4 *)(param_2 + 0xc);
+    uVar7 = *(undefined4 *)(param_2 + 0xc);
     *puVar4 = *(undefined4 *)(param_2 + 8);
-    puVar4[1] = uVar6;
+    puVar4[1] = uVar7;
     cVar2 = *param_2;
     iVar5 = zb_parse_mhr_ptr(auStack_38,param_1);
-    uVar6 = 0;
-    if (((bStack_24 & 7) == 3) && ((param_1[iVar5] == 4 && (cVar2 == '\0')))) {
-      uVar6 = 0xeb;
+    bVar6 = 0;
+    if (((bStack_24 & 7) == 3) && (param_1[iVar5] == 4)) {
+      bVar6 = -(cVar2 == '\0') & 0xeb;
     }
-    zb_buf_set_status_func(cVar1,uVar6);
+    zb_buf_set_status_func(cVar1,bVar6);
     _esp_radio_spinel_add_extended_entry = _esp_radio_spinel_add_extended_entry + 1;
     _esp_radio_spinel_clear_extended_entries = (_esp_radio_spinel_clear_extended_entries + 1) % 0x14
     ;

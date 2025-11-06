@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_metering.o -> zcl_metering_get_snapshot_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -109,29 +109,30 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
   iVar6 = iStack_94;
   if (cVar1 == '\0') {
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_LC2,uVar9,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(1,"ESP_ZIGBEE_ZCL_METERING","E (%lu) %s: No appropriate snapshot!\n",uVar9,
+            "ESP_ZIGBEE_ZCL_METERING");
     iVar8 = -0x1c;
   }
   else if (iVar8 == 0) {
     if (uVar4 < 6) {
       if (3 < uVar4) {
         uVar4 = (uint)bStack_99;
-        uVar13 = uStack_98 << 8;
-        uVar12 = bStack_9a / 6;
+        uVar12 = uStack_98 << 8;
+        uVar13 = bStack_9a / 6;
         uVar14 = (uint)bStack_9a % 6;
         if (uVar14 != 0) {
-          uVar12 = uVar12 + 1;
+          uVar13 = uVar13 + 1;
         }
-        uStack_a6 = (undefined1)uVar12;
-        for (uVar5 = 0; uVar5 < uVar12; uVar5 = uVar5 + 1 & 0xff) {
+        uStack_a6 = (undefined1)uVar13;
+        for (uVar5 = 0; uVar5 < uVar13; uVar5 = uVar5 + 1 & 0xff) {
           uStack_a7 = (undefined1)uVar5;
-          if (uVar5 == uVar12 - 1) {
+          if (uVar5 == uVar13 - 1) {
             bStack_9a = (byte)uVar14;
           }
           else {
             bStack_9a = 6;
           }
-          iVar6 = uVar5 * 0x24 + (uVar13 | uVar4);
+          iVar6 = uVar5 * 0x24 + (uVar12 | uVar4);
           bStack_99 = (byte)iVar6;
           uStack_98._0_3_ = (undefined3)((uint)iVar6 >> 8);
           zb_buf_get_out_func();
@@ -142,21 +143,22 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
         return 0;
       }
       if (uVar4 < 2) {
-        uVar4 = bStack_89 / 3;
-        uVar12 = (uint)bStack_89 % 3;
-        if (uVar12 != 0) {
+        uVar13 = (uint)bStack_89;
+        uVar4 = uVar13 / 3;
+        uVar13 = uVar13 - (((uint)((ulonglong)uVar13 * 0xaaaaaaab >> 0x20) & 0xfe) + uVar4);
+        if ((uVar13 & 0xff) != 0) {
           uVar4 = uVar4 + 1;
         }
         uStack_a6 = (undefined1)uVar4;
-        for (uVar13 = 0; uVar13 < uVar4; uVar13 = uVar13 + 1 & 0xff) {
-          uStack_a7 = (undefined1)uVar13;
-          if (uVar13 == uVar4 - 1) {
-            bStack_89 = (byte)uVar12;
+        for (uVar12 = 0; uVar12 < uVar4; uVar12 = uVar12 + 1 & 0xff) {
+          uStack_a7 = (undefined1)uVar12;
+          if (uVar12 == uVar4 - 1) {
+            bStack_89 = (byte)uVar13;
           }
           else {
             bStack_89 = 3;
           }
-          iStack_88 = uVar13 * 0x12 + iVar7;
+          iStack_88 = uVar12 * 0x12 + iVar7;
           zb_buf_get_out_func();
           zb_zcl_metering_send_cmd_publish_snapshot
                     (iVar2 + 1,2,*(undefined1 *)(iVar2 + 0xb),*(undefined1 *)(iVar2 + 0xc),&local_b0
@@ -169,7 +171,7 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
         uVar12 = uStack_84 & 0xff;
         uVar14 = (uint)bStack_80 << 0x18 | uStack_84 >> 8;
         uVar13 = (uVar4 + uVar12) / 3;
-        if ((uVar4 + uVar12) % 3 != 0) {
+        if (uVar4 + uVar12 != uVar13 * 3) {
           uVar13 = uVar13 + 1 & 0xff;
         }
         uStack_a6 = (undefined1)uVar13;
@@ -232,7 +234,7 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
       uVar14 = uStack_98 << 8 | (uint)bStack_99;
       uVar12 = uStack_98 >> 0x18;
       uVar13 = (uVar4 + uVar12) / 6;
-      if ((uVar4 + uVar12) % 6 != 0) {
+      if (uVar4 + uVar12 != uVar13 * 6) {
         uVar13 = uVar13 + 1;
       }
       uStack_a6 = (undefined1)uVar13;
@@ -286,7 +288,8 @@ int zcl_metering_get_snapshot_cb_handler(undefined4 param_1)
       return 0;
     }
     uVar9 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_LC3,uVar9,"ESP_ZIGBEE_ZCL_METERING",uStack_a1);
+    esp_log(1,"ESP_ZIGBEE_ZCL_METERING","E (%lu) %s: Unsupported sub-payload type(0x%x)!\n",uVar9,
+            "ESP_ZIGBEE_ZCL_METERING",uStack_a1);
     iVar8 = -0x1c;
   }
   return iVar8;

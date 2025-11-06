@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_core.o -> reset_endpoint_to_factory_default
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
   undefined2 uStack_66;
   undefined1 uStack_64;
   undefined2 uStack_62;
-  undefined4 uStack_4c;
+  undefined4 local_4c;
   undefined4 uStack_48;
   undefined2 uStack_3c;
   undefined2 uStack_34;
@@ -66,15 +66,15 @@ undefined4 reset_endpoint_to_factory_default(undefined1 *param_1,int param_2,cod
       __s = *(void **)(puVar2 + 3);
       pvStack_6c = __s;
       if (param_3 == (code *)0x0) {
-_L0:
+_L42:
         memset(__s,0,sVar4);
       }
       else {
         memcpy(auStack_90,&uStack_74,0xc);
         __src = (void *)(*param_3)(*param_1,*puVar1,auStack_90);
         __s = *(void **)(puVar2 + 3);
-        if (__src == (void *)0x0) goto _L0;
-        memcpy(*(void **)(puVar2 + 3),__src,sVar4);
+        if (__src == (void *)0x0) goto _L42;
+        memcpy(__s,__src,sVar4);
       }
     }
     if ((*(int *)(puVar1 + 2) != 0) && (param_2 != 0)) {
@@ -83,7 +83,7 @@ _L0:
       uStack_66 = *puVar1;
       uStack_64 = *(undefined1 *)(puVar1 + 4);
       uStack_34 = *(undefined2 *)(param_1 + 1);
-      uStack_4c = 0;
+      local_4c = 0;
       uStack_48 = 0;
       uStack_3c = 5;
       for (iVar6 = 0; iVar6 < (int)(uint)(ushort)puVar1[1]; iVar6 = iVar6 + 1) {
@@ -94,7 +94,7 @@ _L0:
           iVar3 = zb_zcl_is_analog_data_type(*(undefined1 *)(puVar2 + 1));
           if (iVar3 != 0) {
             sVar4 = zb_zcl_get_analog_attribute_size(*(undefined1 *)(puVar2 + 1));
-            memset(&uStack_4c,0,sVar4);
+            memset(&local_4c,0,sVar4);
           }
           zb_zcl_put_reporting_info(&uStack_68,1);
         }

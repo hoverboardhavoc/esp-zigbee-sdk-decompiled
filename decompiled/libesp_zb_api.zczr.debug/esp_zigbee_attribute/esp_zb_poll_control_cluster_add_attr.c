@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_attribute.o -> esp_zb_poll_control_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -61,7 +61,7 @@ undefined4 esp_zb_poll_control_cluster_add_attr(uint param_1,undefined4 param_2)
     if (param_1 != 0xefff) {
 _L0:
       uVar1 = esp_log_timestamp(param_2);
-      esp_log_write(1,0x10000,&_LC11,uVar1,0x10000);
+      esp_log(1,0x10000,"E (%lu) %s: incorrect/unsupported attribute_id!\n",uVar1,0x10000);
       return 0x102;
     }
     uVar2 = 0x40;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_general.o -> zcl_cmd_disc_attr_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -50,7 +50,9 @@ _L0:
           puVar7 = (undefined2 *)malloc(0xc);
           if (puVar7 == (undefined2 *)0x0) {
             uVar5 = esp_log_timestamp();
-            esp_log_write(1,0x10000,&_LC6,uVar5,0x10000,"zcl_cmd_disc_attr_resp_handler",0xbc);
+            esp_log(1,0x10000,
+                    "E (%lu) %s: %s(%d): Not enough memory for discovering attribute response\n",
+                    uVar5,0x10000,"zcl_cmd_disc_attr_resp_handler",0xbc);
             return 0x101;
           }
           *puVar7 = *puVar2;
@@ -85,7 +87,8 @@ _L0:
   }
   else {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar5,0x10000,"zcl_cmd_disc_attr_resp_handler",0xb5);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to create discover_attribute_response message\n",
+            uVar5,0x10000,"zcl_cmd_disc_attr_resp_handler",0xb5);
   }
   return iVar3;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_scenes.o -> device_scenes_get_free_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,8 +19,8 @@ char device_scenes_get_free_entry(uint param_1,uint param_2,uint param_3)
   char cVar4;
   
   cVar1 = esp_zb_zcl_scenes_table_capacity;
-  cVar4 = '\0';
   cVar2 = -1;
+  cVar4 = '\0';
   pbVar3 = esp_zb_zcl_scenes_table;
   while( true ) {
     if (cVar1 == cVar4) {

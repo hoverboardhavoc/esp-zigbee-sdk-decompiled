@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote -> zb_esp_radio_spinel.o -> zb_mac_transport_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,7 +40,8 @@ void zb_mac_transport_init(void)
   iVar1 = zb_esp_workflow_register(zb_esp_radio_update,zb_esp_radio_process,"radio");
   if (iVar1 != 0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ZB_ESP_SPINEL",&_LC3,uVar2,"ZB_ESP_SPINEL");
+    esp_log(1,"ZB_ESP_SPINEL","E (%lu) %s: Radio spinel workflow register failed\n",uVar2,
+            "ZB_ESP_SPINEL");
   }
   return;
 }

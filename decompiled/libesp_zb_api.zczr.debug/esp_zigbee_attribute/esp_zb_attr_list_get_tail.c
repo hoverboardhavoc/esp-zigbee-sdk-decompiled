@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_attribute.o -> esp_zb_attr_list_get_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,13 +19,14 @@ ushort * esp_zb_attr_list_get_tail
   
   if ((param_1 == (ushort *)0x0) || (*(int *)(param_1 + 6) == 0)) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar2,0x10000);
+    esp_log(1,0x10000,"E (%lu) %s: Uninitialized attribute linked list!\n",uVar2,0x10000);
     *param_5 = 0x102;
   }
   else if (*(ushort *)(*(int *)(param_1 + 6) + 10) == param_2) {
     if (((short)param_2 < 0) && (param_4 == 0xffff)) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(2,0x10000,&_LC3,uVar2,0x10000);
+      esp_log(2,0x10000,"W (%lu) %s: Add attribute in custom cluster without manufacture code\n",
+              uVar2,0x10000);
     }
     do {
       puVar1 = param_1;
@@ -34,15 +35,16 @@ ushort * esp_zb_attr_list_get_tail
         *param_5 = 0;
         return puVar1;
       }
-    } while ((*param_1 != param_3) || (param_1[2] != param_4));
+    } while ((param_3 != *param_1) || (param_1[2] != param_4));
     uVar2 = esp_log_timestamp(puVar1);
-    esp_log_write(1,0x10000,&_LC4,uVar2,0x10000,param_3);
+    esp_log(1,0x10000,"E (%lu) %s: The requested add attribute ID:0x%x is already existed\n",uVar2,
+            0x10000,param_3);
     *param_5 = 0x102;
   }
   else {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC2,uVar2,0x10000,*(undefined2 *)(*(int *)(param_1 + 6) + 10),param_2)
-    ;
+    esp_log(1,0x10000,"E (%lu) %s: Wrong cluster(0x%04x) to add attribute, expect 0x%04x\n",uVar2,
+            0x10000,*(undefined2 *)(*(int *)(param_1 + 6) + 10),param_2);
     *param_5 = 0x102;
   }
   return (ushort *)0x0;

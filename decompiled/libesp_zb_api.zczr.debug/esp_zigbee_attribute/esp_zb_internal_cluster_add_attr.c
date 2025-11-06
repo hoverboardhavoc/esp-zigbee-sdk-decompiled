@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_attribute.o -> esp_zb_internal_cluster_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,8 @@ int esp_zb_internal_cluster_add_attr
   __ptr = (undefined2 *)malloc(0x10);
   if (__ptr == (undefined2 *)0x0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x62);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory for attribute\n",uVar2,0x10000,
+            "esp_zb_internal_cluster_add_attr",0x62);
     return 0x102;
   }
   if ((param_4 & 0x40) == 0) {
@@ -52,7 +53,8 @@ _L0:
   }
   if (__size == 0xffff) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC7,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x71);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to get attribute size\n",uVar2,0x10000,
+            "esp_zb_internal_cluster_add_attr",0x71);
     aiStack_34[0] = 0x102;
   }
   else {
@@ -63,7 +65,8 @@ _L0:
       __dest = malloc(__size);
       if (__dest == (void *)0x0) {
         uVar2 = esp_log_timestamp();
-        esp_log_write(1,0x10000,&_LC8,uVar2,0x10000,"esp_zb_internal_cluster_add_attr",0x74);
+        esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory for attribute data\n",uVar2,0x10000,
+                "esp_zb_internal_cluster_add_attr",0x74);
         aiStack_34[0] = 0x102;
         goto _L0;
       }

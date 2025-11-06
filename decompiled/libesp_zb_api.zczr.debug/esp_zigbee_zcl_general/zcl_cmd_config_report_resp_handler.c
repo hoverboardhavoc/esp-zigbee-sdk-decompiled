@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_general.o -> zcl_cmd_config_report_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -101,7 +101,8 @@ _L0:
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC4,uVar4,0x10000,"zcl_cmd_config_report_resp_handler",0x70);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to create configure_report_response message\n",
+            uVar4,0x10000,"zcl_cmd_config_report_resp_handler",0x70);
   }
   return iVar3;
 }

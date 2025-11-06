@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_metering.o -> zcl_metering_get_sampled_data_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,14 +39,14 @@ undefined4 zcl_metering_get_sampled_data_cb_handler(undefined4 param_1)
   uStack_3c = 0;
   uStack_24 = 0;
   uStack_20 = 0;
-  uStack_1c = 0;
-  uStack_18 = 0;
-  uStack_14 = 0;
   _uStack_38 = CONCAT22(0x702,(ushort)*(byte *)(iVar3 + 4));
   uStack_34 = (uint)*puVar2;
   uStack_30 = *(undefined4 *)(puVar2 + 1);
   uStack_2c = (uint)(byte)puVar2[3];
   uStack_28 = (uint)*(ushort *)((int)puVar2 + 7);
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
   esp_zb_core_action_handler_schedule(0xe,&uStack_3c);
   uVar5 = esp_err_to_zb_ret();
   *puVar1 = (char)uStack_24;
@@ -66,7 +66,8 @@ undefined4 zcl_metering_get_sampled_data_cb_handler(undefined4 param_1)
   puVar1[0xe] = (char)((uint)uStack_14 >> 0x18);
   if (uStack_18._2_2_ == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_LC1,uVar5,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(1,"ESP_ZIGBEE_ZCL_METERING","E (%lu) %s: No appropriate sampled data!\n",uVar5,
+            "ESP_ZIGBEE_ZCL_METERING");
     uVar5 = 0xffffffe4;
   }
   return uVar5;

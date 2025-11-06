@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_touchlink_commissioning.o -> zcl_touchlink_get_group_identifiers_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,7 +57,9 @@ undefined4 zcl_touchlink_get_group_identifiers_req_handler(undefined4 param_1)
   }
   else {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC6,uVar3,0x10000);
+    esp_log(1,0x10000,
+            "E (%lu) %s: touchlink get group_identifiers request command wrong packet size\n",uVar3,
+            0x10000);
     uVar3 = 0xffffffff;
   }
   return uVar3;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,12 +33,14 @@ int esp_zb_cluster_list_update_cluster(int param_1,int param_2,uint param_3)
       }
     }
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC20,uVar4,0x10000,sVar1);
+    esp_log(1,0x10000,"E (%lu) %s: The requested update cluster ID (0x%4hx) is not found\n",uVar4,
+            0x10000,sVar1);
     iVar3 = 0x105;
   }
   else {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC19,uVar4,0x10000,"esp_zb_cluster_list_update_cluster",0xb45);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid cluster list or attribute list\n",uVar4,0x10000,
+            "esp_zb_cluster_list_update_cluster",0xb45);
   }
   return iVar3;
 }

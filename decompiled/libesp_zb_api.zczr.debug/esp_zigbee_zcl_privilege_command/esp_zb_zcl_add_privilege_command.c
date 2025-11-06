@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_privilege_command.o -> esp_zb_zcl_add_privilege_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,9 @@ esp_zb_zcl_add_privilege_command(undefined1 param_1,undefined2 param_2,undefined
     puVar3 = (undefined1 *)malloc(0xc);
     if (puVar3 == (undefined1 *)0x0) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ZCL_PRIVILEGE_COMMAND",&_LC2,uVar2,
-                    "ESP_ZIGBEE_ZCL_PRIVILEGE_COMMAND","esp_zb_zcl_add_privilege_command",0x6c);
+      esp_log(1,"ESP_ZIGBEE_ZCL_PRIVILEGE_COMMAND",
+              "E (%lu) %s: %s(%d): Failed to malloc memory for privilege command\n",uVar2,
+              "ESP_ZIGBEE_ZCL_PRIVILEGE_COMMAND","esp_zb_zcl_add_privilege_command",0x6c);
       uVar2 = 0xffffffff;
     }
     else {

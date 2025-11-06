@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote -> zb_esp_radio_spinel.o -> zb_radio_spinel_transmit_failed
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,30 +15,25 @@
 void zb_radio_spinel_transmit_failed(int param_1)
 
 {
-  int iVar1;
-  undefined4 uVar2;
+  undefined4 uVar1;
   
-  if (param_1 == 2) {
-    param_1 = 1;
-    iVar1 = param_1;
-  }
-  else if (param_1 == 3) {
-    _zb_buf_begin_func = 4;
-    param_1 = 1;
-    iVar1 = _zb_buf_begin_func;
-  }
-  else {
-    iVar1 = param_1;
-    if (param_1 != 1) {
-      uVar2 = esp_log_timestamp();
-      esp_log_write(1,"ZB_ESP_SPINEL",&_LC1,uVar2,"ZB_ESP_SPINEL",param_1);
+  if (param_1 != 2) {
+    if (param_1 == 3) {
+      DAT_00011001 = 1;
+      _zb_buf_begin_func = 4;
+      return;
+    }
+    if (param_1 == 1) {
       DAT_00011001 = 1;
       _zb_buf_begin_func = 1;
       return;
     }
+    uVar1 = esp_log_timestamp();
+    esp_log(1,"ZB_ESP_SPINEL","E (%lu) %s: unsupported tx error: %d\n",uVar1,"ZB_ESP_SPINEL",param_1
+           );
   }
-  _zb_buf_begin_func = iVar1;
-  DAT_00011001 = (char)param_1;
+  _zb_buf_begin_func = 1;
+  DAT_00011001 = 1;
   return;
 }
 

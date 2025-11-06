@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> data_model_adapter.o -> esp_zb_convert_attr_list_to_array
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010560) */
+/* WARNING: Removing unreachable block (ram,0x00010510) */
 
 uint esp_zb_convert_attr_list_to_array(int param_1)
 
@@ -28,7 +28,8 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
   iVar4 = param_1;
   if (param_1 == 0) {
     uVar1 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_L0,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
+    esp_log(1,"ESP_ZIGBEE_DM_ADAPTER","E (%lu) %s: Uninitialized attribute linked list!\n",uVar1,
+            "ESP_ZIGBEE_DM_ADAPTER");
     uStack_18 = local_20;
   }
   else {
@@ -39,7 +40,8 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
     }
     if ((local_20 & 0xffff) == 0) {
       uVar1 = esp_log_timestamp();
-      esp_log_write(3,"ESP_ZIGBEE_DM_ADAPTER",&_LC7,uVar1,"ESP_ZIGBEE_DM_ADAPTER");
+      esp_log(3,"ESP_ZIGBEE_DM_ADAPTER","I (%lu) %s: No attributes in this list\n",uVar1,
+              "ESP_ZIGBEE_DM_ADAPTER");
     }
     else {
       esp_zb_finish_attr_lists();
@@ -49,8 +51,8 @@ uint esp_zb_convert_attr_list_to_array(int param_1)
       pvStack_1c = calloc(uVar2 & 0xffff,10);
       if (pvStack_1c == (void *)0x0) {
         uVar1 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC5,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
-                      "esp_zb_convert_attr_list_to_array",0x70);
+        esp_log(1,"ESP_ZIGBEE_DM_ADAPTER","E (%lu) %s: %s(%d): No memory for attribute array\n",
+                uVar1,"ESP_ZIGBEE_DM_ADAPTER","esp_zb_convert_attr_list_to_array",0x70);
 _L0:
         esp_zb_attr_array_cleanup(&local_20);
       }
@@ -59,8 +61,8 @@ _L0:
           iVar3 = esp_zb_internal_zcl_attr_clone((void *)((int)pvStack_1c + uVar2 * 10),iVar4);
           if (iVar3 != 0) {
             uVar1 = esp_log_timestamp();
-            esp_log_write(1,"ESP_ZIGBEE_DM_ADAPTER",&_LC6,uVar1,"ESP_ZIGBEE_DM_ADAPTER",
-                          "esp_zb_convert_attr_list_to_array",0x73);
+            esp_log(1,"ESP_ZIGBEE_DM_ADAPTER","E (%lu) %s: %s(%d): No memory for attribute\n",uVar1,
+                    "ESP_ZIGBEE_DM_ADAPTER","esp_zb_convert_attr_list_to_array",0x73);
             goto _L0;
           }
           iVar4 = *(int *)(iVar4 + 0xc);

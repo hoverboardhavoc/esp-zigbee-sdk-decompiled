@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_attribute.o -> esp_zb_custom_cluster_add_custom_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,8 @@ esp_zb_custom_cluster_add_custom_attr
   
   if (param_1 == 0) {
     uVar1 = esp_log_timestamp(param_5);
-    esp_log_write(1,0x10000,&_L0,uVar1,0x10000,"esp_zb_custom_cluster_add_custom_attr",0xc15);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Uninitialized attribute linked list!\n",uVar1,0x10000,
+            "esp_zb_custom_cluster_add_custom_attr",0xc15);
     uVar1 = 0x102;
   }
   else {

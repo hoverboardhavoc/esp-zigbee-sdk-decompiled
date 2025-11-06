@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_core.o -> zb_zcl_endpoint_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,8 @@ int zb_zcl_endpoint_handler(int param_1)
     *(char *)(iVar4 + 6) = (char)sVar1;
     *(char *)(iVar4 + 7) = (char)((ushort)sVar1 >> 8);
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_ZCL_CORE",&_LC3,uVar5,"ESP_ZIGBEE_ZCL_CORE");
+    esp_log(2,"ESP_ZIGBEE_ZCL_CORE","W (%lu) %s: Command payload has been tainted\n",uVar5,
+            "ESP_ZIGBEE_ZCL_CORE");
   }
   iVar4 = zb_buf_get_tail_func(param_1,0x1b);
   if (*(char *)(iVar4 + 0x16) == '\0') {

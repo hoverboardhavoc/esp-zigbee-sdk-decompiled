@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_ieee_addr_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,13 +20,13 @@ void esp_zb_zdo_ieee_addr_req(undefined2 *param_1,undefined4 param_2,undefined4 
   iVar1 = zb_buf_get_out_func();
   if (param_1 == (undefined2 *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC23,uVar3,"ESP_ZIGBEE_API_ZDO",
-                  "esp_zb_zdo_ieee_addr_req",500);
+    esp_log(1,"ESP_ZIGBEE_API_ZDO","E (%lu) %s: %s(%d): Invalid parameter\n",uVar3,
+            "ESP_ZIGBEE_API_ZDO","esp_zb_zdo_ieee_addr_req",0x1f5);
   }
   else if (iVar1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC24,uVar3,"ESP_ZIGBEE_API_ZDO",
-                  "esp_zb_zdo_ieee_addr_req",0x1f5);
+    esp_log(1,"ESP_ZIGBEE_API_ZDO","E (%lu) %s: %s(%d): No I/O buffer for ieee_addr request\n",uVar3
+            ,"ESP_ZIGBEE_API_ZDO","esp_zb_zdo_ieee_addr_req",0x1f6);
   }
   else {
     puVar2 = (undefined2 *)zb_buf_get_tail_func(6);

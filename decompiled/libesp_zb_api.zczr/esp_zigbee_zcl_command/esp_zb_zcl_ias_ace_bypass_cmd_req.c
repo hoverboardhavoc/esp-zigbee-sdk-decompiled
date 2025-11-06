@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_ias_ace_bypass_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ byte esp_zb_zcl_ias_ace_bypass_cmd_req(int param_1)
     *pbVar6 = bVar1 + 1;
     return bVar1;
   }
-  puVar4 = (undefined1 *)zb_zcl_start_command_header(1,0,1,0);
+  puVar4 = (undefined1 *)zb_zcl_start_command_header(1,0,0);
   *puVar4 = *(undefined1 *)(param_1 + 0x10);
   pbVar6 = puVar4 + 1;
   for (iVar7 = 0; iVar7 < (int)(uint)*(byte *)(param_1 + 0x10); iVar7 = iVar7 + 1) {
@@ -48,12 +48,6 @@ byte esp_zb_zcl_ias_ace_bypass_cmd_req(int param_1)
              *(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
              *(undefined1 *)(param_1 + 9),uVar2,0x501);
   pbVar6 = (byte *)zb_buf_begin_func(iVar3);
-  if ((*pbVar6 & 4) == 0) {
-    iVar3 = 1;
-  }
-  else {
-    iVar3 = 3;
-  }
-  return pbVar6[iVar3];
+  return pbVar6[(-(uint)((*pbVar6 & 4) == 0) & 0xfffffffe) + 3];
 }
 

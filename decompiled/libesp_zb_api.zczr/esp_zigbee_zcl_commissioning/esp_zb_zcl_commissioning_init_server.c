@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_commissioning.o -> esp_zb_zcl_commissioning_init_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,7 +41,7 @@ void esp_zb_zcl_commissioning_init_server(void)
     uVar1 = *puVar2;
     if (uVar1 == 0x15) {
 _L0:
-      *(undefined1 *)(puVar2 + 3) = 0xb0;
+      *(undefined1 *)(puVar2 + 3) = 0xa0;
       *(undefined1 *)((int)puVar2 + 7) = 0xd;
       *(undefined1 *)(puVar2 + 4) = 1;
       *(undefined1 *)((int)puVar2 + 9) = 0;

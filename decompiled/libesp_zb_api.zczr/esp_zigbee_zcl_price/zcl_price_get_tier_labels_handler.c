@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_price.o -> zcl_price_get_tier_labels_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,19 +49,20 @@ undefined4 zcl_price_get_tier_labels_handler(undefined4 param_1)
   uVar4 = esp_err_to_zb_ret();
   if ((cStack_18 == '\0') || (iStack_14 == 0)) {
     uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_PRICE",&_LC1,uVar4,"ESP_ZIGBEE_ZCL_PRICE");
+    esp_log(1,"ESP_ZIGBEE_ZCL_PRICE","E (%lu) %s: No tier label provided!\n",uVar4,
+            "ESP_ZIGBEE_ZCL_PRICE");
   }
   else {
     iVar2 = zb_buf_get_out_func();
     if (iVar2 != 0) {
       uStack_44 = uStack_24;
+      uStack_35 = (undefined1)iStack_14;
       uStack_40 = uStack_20;
       uStack_3c = uStack_1c;
       uStack_38 = 0x100;
       cStack_36 = cStack_18;
       uStack_34 = (undefined1)((uint)iStack_14 >> 8);
       uStack_33 = (undefined1)((uint)iStack_14 >> 0x10);
-      uStack_35 = (undefined1)iStack_14;
       uStack_32 = (undefined1)((uint)iStack_14 >> 0x18);
       zb_zcl_price_send_cmd_publish_tier_labels
                 (iVar3 + 1,2,*(undefined1 *)(iVar3 + 0xb),*(undefined1 *)(iVar3 + 0xc),&uStack_44,0)

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_secur.o -> esp_zb_secur_broadcast_network_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,8 @@ undefined4 esp_zb_secur_broadcast_network_key(void *param_1,undefined1 param_2)
   
   if (param_1 == (void *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_SECUR",&_LC2,uVar3,"ESP_ZIGBEE_SECUR",
-                  "esp_zb_secur_broadcast_network_key",0x113);
+    esp_log(1,"ESP_ZIGBEE_SECUR","E (%lu) %s: %s(%d): Invalid Argument\n",uVar3,"ESP_ZIGBEE_SECUR",
+            "esp_zb_secur_broadcast_network_key",0x113);
     uVar3 = 0x102;
   }
   else {
@@ -31,16 +31,17 @@ undefined4 esp_zb_secur_broadcast_network_key(void *param_1,undefined1 param_2)
        )) {
       uVar3 = esp_log_timestamp();
       uVar4 = zb_get_network_role();
-      esp_log_write(1,"ESP_ZIGBEE_SECUR",&_LC3,uVar3,"ESP_ZIGBEE_SECUR",
-                    "esp_zb_secur_broadcast_network_key",0x114,uVar4);
+      esp_log(1,"ESP_ZIGBEE_SECUR",
+              "E (%lu) %s: %s(%d): Role %d is not supported to send network key\n",uVar3,
+              "ESP_ZIGBEE_SECUR","esp_zb_secur_broadcast_network_key",0x114,uVar4);
       uVar3 = 0x106;
     }
     else {
       iVar1 = zb_buf_get_out_func();
       if (iVar1 == 0) {
         uVar3 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_SECUR",&_LC4,uVar3,"ESP_ZIGBEE_SECUR",
-                      "esp_zb_secur_broadcast_network_key",0x116);
+        esp_log(1,"ESP_ZIGBEE_SECUR","E (%lu) %s: %s(%d): No memory for broadcasting network key\n",
+                uVar3,"ESP_ZIGBEE_SECUR","esp_zb_secur_broadcast_network_key",0x116);
         uVar3 = 0x101;
       }
       else {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zdo_command.o -> energy_detect_complete_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,8 +26,8 @@ void energy_detect_complete_cb(int param_1)
   pbVar3 = (byte *)zb_buf_get_tail_func(0x97);
   uVar2 = zb_buf_get_status_func(param_1);
   pcVar1 = zdo_energy_detect_user_cb;
-  uVar4 = (uint)*pbVar3;
   if (zdo_energy_detect_user_cb != (code *)0x0) {
+    uVar4 = (uint)*pbVar3;
     __ptr = (byte *)0x0;
     if (uVar4 != 0) {
       __ptr = (byte *)malloc(uVar4 << 1);
@@ -43,7 +43,7 @@ void energy_detect_complete_cb(int param_1)
           iVar5 = iVar8 * 2;
           iVar8 = iVar8 + 1;
           *pbVar7 = pbVar3[iVar5 + 1] >> 3;
-          pbVar7[1] = *pbVar6;
+          pbVar7[1] = *pbVar6 + 0x80;
           pbVar7 = pbVar7 + 2;
         } while (iVar8 < (int)uVar4);
       }

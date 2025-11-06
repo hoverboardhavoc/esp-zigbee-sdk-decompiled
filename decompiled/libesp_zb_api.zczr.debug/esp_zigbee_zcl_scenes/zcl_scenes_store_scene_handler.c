@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_store_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,8 +53,9 @@ int zcl_scenes_store_scene_handler(undefined4 param_1)
       *puVar3 = 0x89;
       local_30 = 1;
       uVar6 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_LC16,uVar6,"ESP_ZIGBEE_ZCL_SCENES",
-                    *(undefined1 *)(puVar2 + 1));
+      esp_log(2,"ESP_ZIGBEE_ZCL_SCENES",
+              "W (%lu) %s: Insufficient scenes table for scene(0x%x), fail to store it\n",uVar6,
+              "ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar2 + 1));
       iVar4 = 0;
     }
     else {
@@ -64,14 +65,15 @@ int zcl_scenes_store_scene_handler(undefined4 param_1)
         *(undefined1 *)(iVar4 + 6) = *(undefined1 *)(puVar2 + 1);
         *(undefined2 *)(iVar4 + 4) = 0;
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_ZCL_SCENES",&_LC15,uVar6,"ESP_ZIGBEE_ZCL_SCENES",
-                      *(undefined1 *)(puVar2 + 1),*puVar2);
+        esp_log(3,"ESP_ZIGBEE_ZCL_SCENES",
+                "I (%lu) %s: Store new scene(0x%x) of group(0x%x) to scenes table\n",uVar6,
+                "ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar2 + 1),*puVar2);
         iVar4 = 0;
       }
       else {
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_ZCL_SCENES",&_LC14,uVar6,"ESP_ZIGBEE_ZCL_SCENES",
-                      *(undefined1 *)(puVar2 + 1),*puVar2);
+        esp_log(3,"ESP_ZIGBEE_ZCL_SCENES","I (%lu) %s: Update existed scene(0x%x) for group(0x%x)\n"
+                ,uVar6,"ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar2 + 1),*puVar2);
         iVar4 = -0x1b;
       }
       *puVar3 = 0;

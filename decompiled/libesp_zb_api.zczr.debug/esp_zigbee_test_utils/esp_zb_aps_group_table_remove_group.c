@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_test_utils.o -> esp_zb_aps_group_table_remove_group
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,8 @@ int esp_zb_aps_group_table_remove_group(int param_1,int param_2)
   if ((param_1 - 1U & 0xffff) < 0xfff7) {
     if (param_2 == 0) {
       uVar2 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC5,uVar2,0x10000,"esp_zb_aps_group_table_remove_group",0x66);
+      esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid endpoint\n",uVar2,0x10000,
+              "esp_zb_aps_group_table_remove_group",0x66);
       iVar1 = 0x102;
     }
     else {
@@ -36,7 +37,8 @@ int esp_zb_aps_group_table_remove_group(int param_1,int param_2)
   }
   else {
     uVar2 = esp_log_timestamp(param_2);
-    esp_log_write(1,0x10000,&_LC4,uVar2,0x10000,"esp_zb_aps_group_table_remove_group",0x65);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid groupid\n",uVar2,0x10000,
+            "esp_zb_aps_group_table_remove_group",0x65);
     iVar1 = 0x102;
   }
   return iVar1;

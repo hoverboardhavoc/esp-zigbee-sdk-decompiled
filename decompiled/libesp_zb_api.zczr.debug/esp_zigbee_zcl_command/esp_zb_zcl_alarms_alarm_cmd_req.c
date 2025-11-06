@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_command.o -> esp_zb_zcl_alarms_alarm_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,8 @@ void esp_zb_zcl_alarms_alarm_cmd_req(int param_1)
   
   if (param_1 == 0) {
     uVar6 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC14,uVar6,"ESP_ZIGBEE_COMMAND",
-                  "esp_zb_zcl_alarms_alarm_cmd_req",0x911);
+    esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): Invalid argument\n",uVar6,
+            "ESP_ZIGBEE_COMMAND","esp_zb_zcl_alarms_alarm_cmd_req",0x911);
     pcVar5 = (char *)zb_zcl_get_ctx();
     *pcVar5 = *pcVar5 + '\x01';
   }
@@ -32,8 +32,9 @@ void esp_zb_zcl_alarms_alarm_cmd_req(int param_1)
     iVar2 = zb_buf_get_out_func();
     if (iVar2 == 0) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_COMMAND",&_LC5,uVar6,"ESP_ZIGBEE_COMMAND",
-                    "esp_zb_zcl_alarms_alarm_cmd_req",0x912,"esp_zb_zcl_alarms_alarm_cmd_req");
+      esp_log(1,"ESP_ZIGBEE_COMMAND","E (%lu) %s: %s(%d): No I/O buffer for %s\n",uVar6,
+              "ESP_ZIGBEE_COMMAND","esp_zb_zcl_alarms_alarm_cmd_req",0x912,
+              "esp_zb_zcl_alarms_alarm_cmd_req");
       pcVar5 = (char *)zb_zcl_get_ctx();
       *pcVar5 = *pcVar5 + '\x01';
     }

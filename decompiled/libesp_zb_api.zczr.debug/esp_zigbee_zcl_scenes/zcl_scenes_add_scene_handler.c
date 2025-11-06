@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_add_scene_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,8 +40,8 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
     if (iVar2 == 0xff) {
       *puVar9 = 0x89;
       uVar10 = esp_log_timestamp();
-      esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_LC19,uVar10,"ESP_ZIGBEE_ZCL_SCENES",
-                    *(undefined1 *)(puVar8 + 1));
+      esp_log(2,"ESP_ZIGBEE_ZCL_SCENES","W (%lu) %s: Insufficient scene table for scene(0x%x)\n",
+              uVar10,"ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar8 + 1));
       uVar10 = 0;
     }
     else {
@@ -52,8 +52,9 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
       else {
         device_scenes_table_record_free();
         uVar10 = esp_log_timestamp();
-        esp_log_write(2,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar10,"ESP_ZIGBEE_ZCL_SCENES",
-                      *(undefined1 *)(puVar8 + 1),*puVar8);
+        esp_log(2,"ESP_ZIGBEE_ZCL_SCENES",
+                "W (%lu) %s: Overwrite existed scene(0x%x) for group(0x%x)\n",uVar10,
+                "ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar8 + 1),*puVar8);
         uVar10 = 0xffffffe5;
       }
       puVar11 = *(undefined2 **)(esp_zb_zcl_scenes_table + iVar2 + 8);
@@ -102,13 +103,14 @@ undefined4 zcl_scenes_add_scene_handler(undefined4 param_1)
       iVar2 = zb_nvram_write_dataset(9);
       if (iVar2 == 0) {
         uVar6 = esp_log_timestamp();
-        esp_log_write(3,"ESP_ZIGBEE_ZCL_SCENES",&_LC18,uVar6,"ESP_ZIGBEE_ZCL_SCENES",
-                      *(undefined1 *)(puVar8 + 1),*puVar8);
+        esp_log(3,"ESP_ZIGBEE_ZCL_SCENES",
+                "I (%lu) %s: Add scene(0x%x) for group(0x%x) to scenes table\n",uVar6,
+                "ESP_ZIGBEE_ZCL_SCENES",*(undefined1 *)(puVar8 + 1),*puVar8);
       }
       else {
         uVar10 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC9,uVar10,"ESP_ZIGBEE_ZCL_SCENES",
-                      "zcl_scenes_add_scene_handler",0x171);
+        esp_log(1,"ESP_ZIGBEE_ZCL_SCENES","E (%lu) %s: %s(%d): Failed to write scene table\n",uVar10
+                ,"ESP_ZIGBEE_ZCL_SCENES","zcl_scenes_add_scene_handler",0x171);
         uVar10 = 0xffffffff;
       }
     }

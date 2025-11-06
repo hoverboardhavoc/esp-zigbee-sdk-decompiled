@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_groups.o -> zb_zcl_group_cluster_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,7 +47,8 @@ int zb_zcl_group_cluster_resp_handler(undefined4 param_1)
     if (bVar1 != 3) {
 _L0:
       uVar5 = esp_log_timestamp();
-      esp_log_write(2,0x10000,&_LC5,uVar5,0x10000,*(undefined1 *)(iVar2 + 0x13));
+      esp_log(2,0x10000,"W (%lu) %s: Unsupported group command(0x%x)\n",uVar5,0x10000,
+              *(undefined1 *)(iVar2 + 0x13));
       return 0;
     }
     iVar4 = zcl_groups_get_remove_group_res(param_1);

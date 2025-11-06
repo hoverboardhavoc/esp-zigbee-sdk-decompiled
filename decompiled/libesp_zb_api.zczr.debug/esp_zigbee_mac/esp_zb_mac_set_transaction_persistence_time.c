@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_mac.o -> esp_zb_mac_set_transaction_persistence_time
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,8 @@ undefined4 esp_zb_mac_set_transaction_persistence_time(uint param_1)
   iVar1 = zb_buf_get_out_func();
   if (iVar1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar3,0x10000,"esp_zb_mac_set_transaction_persistence_time",0x38);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory to set transaction persistence time\n",uVar3,
+            0x10000,"esp_zb_mac_set_transaction_persistence_time",0x38);
     uVar3 = 0x101;
   }
   else {
@@ -44,8 +45,8 @@ undefined4 esp_zb_mac_set_transaction_persistence_time(uint param_1)
     }
     else {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC2,uVar3,0x10000,"esp_zb_mac_set_transaction_persistence_time",0x3b
-                    ,param_1);
+      esp_log(1,0x10000,"E (%lu) %s: %s(%d): Invalid argument, us: %ld\n",uVar3,0x10000,
+              "esp_zb_mac_set_transaction_persistence_time",0x3b,param_1);
       uVar3 = 0x102;
     }
   }

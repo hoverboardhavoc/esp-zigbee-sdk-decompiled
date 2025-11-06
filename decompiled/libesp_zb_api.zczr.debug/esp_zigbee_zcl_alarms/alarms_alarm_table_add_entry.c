@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_alarms.o -> alarms_alarm_table_add_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,8 +24,8 @@ alarms_alarm_table_add_entry
   piVar1 = (int *)alarms_get_alarm_table();
   if (piVar1 == (int *)0x0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_ALARMS",&_LC1,uVar5,"ESP_ZIGBEE_ZCL_ALARMS",
-                  "alarms_alarm_table_add_entry",0xa1,param_1);
+    esp_log(1,"ESP_ZIGBEE_ZCL_ALARMS","E (%lu) %s: %s(%d): No alarm table for ep %d\n",uVar5,
+            "ESP_ZIGBEE_ZCL_ALARMS","alarms_alarm_table_add_entry",0xa1,param_1);
     return 0x105;
   }
   uVar2 = alarms_get_alarm_count(param_1);
@@ -34,15 +34,17 @@ alarms_alarm_table_add_entry
     puVar4 = (undefined1 *)malloc(0xc);
     if (puVar4 != (undefined1 *)0x0) goto _L0;
     uVar5 = esp_log_timestamp();
-    esp_log_write(2,"ESP_ZIGBEE_ZCL_ALARMS",&_LC3,uVar5,"ESP_ZIGBEE_ZCL_ALARMS",param_2,param_3);
+    esp_log(2,"ESP_ZIGBEE_ZCL_ALARMS",
+            "W (%lu) %s: No memory to add alarm log with alarm code: 0x%x, cluster id: 0x%04x, drop it\n"
+            ,uVar5,"ESP_ZIGBEE_ZCL_ALARMS",param_2,param_3);
   }
   else {
     puVar4 = (undefined1 *)alarms_alarm_table_pop_earliest_entry(param_1);
   }
   if (puVar4 == (undefined1 *)0x0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_ALARMS",&_LC4,uVar5,"ESP_ZIGBEE_ZCL_ALARMS",
-                  "alarms_alarm_table_add_entry",0xaf);
+    esp_log(1,"ESP_ZIGBEE_ZCL_ALARMS","E (%lu) %s: %s(%d): No space for alarm table entry\n",uVar5,
+            "ESP_ZIGBEE_ZCL_ALARMS","alarms_alarm_table_add_entry",0xaf);
     return 0x101;
   }
 _L0:

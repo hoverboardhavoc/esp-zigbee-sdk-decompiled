@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_attribute.o -> esp_zb_internal_attribute_list_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,12 +14,10 @@ void esp_zb_internal_attribute_list_free(void *param_1)
 
 {
   void *pvVar1;
-  void *__ptr;
   
   for (pvVar1 = param_1; pvVar1 != (void *)0x0; pvVar1 = *(void **)((int)pvVar1 + 0xc)) {
-    __ptr = (void *)(*(int *)((int)pvVar1 + 8) << 0x10 | (uint)*(ushort *)((int)pvVar1 + 6));
-    if (__ptr != (void *)0x0) {
-      free(__ptr);
+    if (*(void **)((int)pvVar1 + 6) != (void *)0x0) {
+      free(*(void **)((int)pvVar1 + 6));
       *(undefined2 *)((int)pvVar1 + 6) = 0;
       *(undefined2 *)((int)pvVar1 + 8) = 0;
     }

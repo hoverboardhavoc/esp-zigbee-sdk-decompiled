@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_endpoint.o -> esp_zb_ep_list_add_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,8 +26,8 @@ undefined4 esp_zb_ep_list_add_ep(byte *param_1,undefined4 param_2,uint param_3,u
   
   if (param_1 == (byte *)0x0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC2,uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_ep",
-                  0x4f);
+    esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: %s(%d): Uninitialized endpoint linked list!\n",
+            uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_ep",0x4f);
   }
   else {
     do {
@@ -36,8 +36,8 @@ undefined4 esp_zb_ep_list_add_ep(byte *param_1,undefined4 param_2,uint param_3,u
         __ptr = (undefined1 *)malloc(0x28);
         if (__ptr == (undefined1 *)0x0) {
           uVar2 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC4,uVar2,"ESP_ZIGBEE_ENDPOINT",
-                        "esp_zb_ep_list_add_ep",0x5a);
+          esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: %s(%d): No memory for endpoint list node\n",
+                  uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_ep",0x5a);
           return 0x101;
         }
         puVar3 = (undefined1 *)malloc(6);
@@ -72,8 +72,8 @@ undefined4 esp_zb_ep_list_add_ep(byte *param_1,undefined4 param_2,uint param_3,u
       param_1 = pbVar1;
     } while ((uint)*pbVar1 != (param_3 & 0xff));
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ENDPOINT",&_LC3,uVar2,"ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_ep",
-                  0x56,param_3 & 0xff);
+    esp_log(1,"ESP_ZIGBEE_ENDPOINT","E (%lu) %s: %s(%d): Duplicated endpoint id:%d\n",uVar2,
+            "ESP_ZIGBEE_ENDPOINT","esp_zb_ep_list_add_ep",0x56,param_3 & 0xff);
   }
   return 0x102;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zdo_command.o -> zdo_mgmt_lqi_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void zdo_mgmt_lqi_cb(int param_1)
   
   if (param_1 == 0) {
     param_1 = zb_assert("/builds/thread_zigbee/esp-zboss/components/esp_zb_sdk/src/esp_zigbee_zdo_command.c"
-                        ,0x45b);
+                        ,0x45c);
   }
   pcVar2 = (char *)zb_buf_begin_func();
   cVar1 = *pcVar2;
@@ -37,13 +37,13 @@ void zdo_mgmt_lqi_cb(int param_1)
   if (((pcVar3 != (char *)0x0) && (*pcVar3 == cVar1)) && (*(short *)(pcVar3 + 2) == 0x31)) {
     zb_schedule_alarm_cancel(zdo_mgmt_lqi_req_timeout,cVar1,0);
     pcVar4 = *(code **)(pcVar3 + 4);
-    uVar5 = *(undefined4 *)(pcVar3 + 8);
     if (pcVar4 != (code *)0x0) {
       cStack_38 = pcVar2[1];
       bStack_35 = pcVar2[4];
       __nmemb = (uint)bStack_35;
       cStack_37 = pcVar2[2];
       cStack_36 = pcVar2[3];
+      uVar5 = *(undefined4 *)(pcVar3 + 8);
       pvStack_34 = calloc(__nmemb,0x16);
       if (pvStack_34 == (void *)0x0) {
         if (__nmemb != 0) {

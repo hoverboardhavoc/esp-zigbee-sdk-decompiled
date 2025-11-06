@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_command.o -> zb_zcl_frame_get_sequence_number
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,15 +14,8 @@ byte zb_zcl_frame_get_sequence_number(void)
 
 {
   byte *pbVar1;
-  int iVar2;
   
   pbVar1 = (byte *)zb_buf_begin_func();
-  if ((*pbVar1 & 4) == 0) {
-    iVar2 = 1;
-  }
-  else {
-    iVar2 = 3;
-  }
-  return pbVar1[iVar2];
+  return pbVar1[(-(uint)((*pbVar1 & 4) == 0) & 0xfffffffe) + 3];
 }
 

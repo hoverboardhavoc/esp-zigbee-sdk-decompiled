@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_ias_zone.o -> zb_zcl_ias_zone_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,8 +39,8 @@ _L0:
     if (*(char *)(iVar5 + 0x13) == '\0') {
       __ptr = (undefined4 *)malloc(6);
       uVar7 = zb_buf_len_func(param_1);
-      bVar1 = uVar7 < 6;
-      if (!bVar1) {
+      bVar1 = 5 < uVar7;
+      if (bVar1) {
         puVar8 = (undefined1 *)zb_buf_begin_func(param_1);
         uVar2 = puVar8[5];
         *(undefined1 *)__ptr = *puVar8;
@@ -57,7 +57,7 @@ _L0:
         uStack_28 = *__ptr;
         uVar10 = 0x1031;
 _L0:
-        auStack_48[0] = (uint)bVar1;
+        auStack_48[0] = (uint)!bVar1;
         iVar9 = esp_zb_core_action_handler_schedule(uVar10,auStack_48);
         free(__ptr);
         bVar4 = iVar9 != 0;
@@ -67,8 +67,8 @@ _L0:
       if (*(char *)(iVar5 + 0x13) != '\x01') goto _L0;
       __ptr = (undefined4 *)malloc(4);
       uVar7 = zb_buf_len_func(param_1);
-      bVar1 = uVar7 < 4;
-      if (!bVar1) {
+      bVar1 = 3 < uVar7;
+      if (bVar1) {
         puVar8 = (undefined1 *)zb_buf_begin_func(param_1);
         *(undefined1 *)__ptr = *puVar8;
         *(undefined1 *)((int)__ptr + 1) = puVar8[1];

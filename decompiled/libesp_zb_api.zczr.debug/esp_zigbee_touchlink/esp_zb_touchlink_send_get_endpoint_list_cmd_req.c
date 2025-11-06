@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_touchlink.o -> esp_zb_touchlink_send_get_endpoint_list_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,8 +22,8 @@ void esp_zb_touchlink_send_get_endpoint_list_cmd_req(int param_1)
   iVar2 = zb_buf_get_out_func();
   if (iVar2 == 0) {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_TOUCHLINK",&_LC1,uVar5,"ESP_ZIGBEE_TOUCHLINK",
-                  "esp_zb_touchlink_send_get_endpoint_list_cmd_req",0x77);
+    esp_log(1,"ESP_ZIGBEE_TOUCHLINK","E (%lu) %s: %s(%d): Not memory for buffer id\n",uVar5,
+            "ESP_ZIGBEE_TOUCHLINK","esp_zb_touchlink_send_get_endpoint_list_cmd_req",0x77);
   }
   else {
     puVar3 = (undefined1 *)zb_buf_reuse_func();

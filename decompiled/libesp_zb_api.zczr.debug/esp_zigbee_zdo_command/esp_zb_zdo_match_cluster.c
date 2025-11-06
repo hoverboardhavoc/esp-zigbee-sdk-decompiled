@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zdo_command.o -> esp_zb_zdo_match_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,8 +24,8 @@ undefined4 esp_zb_zdo_match_cluster(undefined2 *param_1,undefined4 param_2,undef
   puVar4 = (undefined1 *)zb_buf_initial_alloc_func((iVar2 + 5) * 2);
   if (puVar4 == (undefined1 *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_L0,uVar3,"ESP_ZIGBEE_API_ZDO","esp_zb_zdo_match_cluster",
-                  0x189);
+    esp_log(1,"ESP_ZIGBEE_API_ZDO","E (%lu) %s: %s(%d): Failed to malloc memory for cluster list\n",
+            uVar3,"ESP_ZIGBEE_API_ZDO","esp_zb_zdo_match_cluster",0x18a);
     uVar3 = 0x101;
   }
   else {
@@ -55,8 +55,8 @@ undefined4 esp_zb_zdo_match_cluster(undefined2 *param_1,undefined4 param_2,undef
     }
     else {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_API_ZDO",&_LC22,uVar3,"ESP_ZIGBEE_API_ZDO",
-                    "esp_zb_zdo_match_cluster",0x194);
+      esp_log(1,"ESP_ZIGBEE_API_ZDO","E (%lu) %s: %s(%d): Failed to fill the cluster list\n",uVar3,
+              "ESP_ZIGBEE_API_ZDO","esp_zb_zdo_match_cluster",0x195);
       uVar3 = 0x104;
     }
   }

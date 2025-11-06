@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_test_utils.o -> esp_zb_cert_enable_test_profile
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,8 @@ void esp_zb_cert_enable_test_profile
   if (param_1 == 0x103) {
     pvVar4 = calloc(1,0x30);
     iVar5 = 10;
-    iVar1 = -0x624;
-    iVar2 = -0x610;
+    iVar1 = -0x658;
+    iVar2 = -0x644;
   }
   else {
     if (param_1 != 0x7f01) {
@@ -32,8 +32,8 @@ void esp_zb_cert_enable_test_profile
     }
     pvVar4 = calloc(1,0x20);
     iVar5 = 6;
-    iVar1 = -0x630;
-    iVar2 = -0x630;
+    iVar1 = -0x664;
+    iVar2 = -0x664;
   }
   zb_set_simple_descriptor(pvVar4,param_2,param_1,param_3,param_4,iVar5,iVar5);
   for (uVar3 = 0; (int)uVar3 < iVar5; uVar3 = uVar3 + 1) {

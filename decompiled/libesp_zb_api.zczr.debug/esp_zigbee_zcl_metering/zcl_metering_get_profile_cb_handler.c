@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_metering.o -> zcl_metering_get_profile_cb_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,13 +41,13 @@ undefined4 zcl_metering_get_profile_cb_handler(undefined4 param_1)
   uStack_48 = 0;
   uStack_34 = 0;
   uStack_30 = 0;
-  uStack_2c = 0;
-  uStack_28 = 0;
-  uStack_24 = 0;
   _uStack_44 = CONCAT22(0x702,(ushort)*(byte *)(iVar3 + 4));
   uStack_40 = (uint)*pbVar2;
   uStack_3c = *(undefined4 *)(pbVar2 + 1);
   uStack_38 = (uint)pbVar2[5];
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
   esp_zb_core_action_handler_schedule(8,&uStack_48);
   uVar5 = esp_err_to_zb_ret();
   *puVar1 = (char)uStack_34;
@@ -65,12 +65,16 @@ undefined4 zcl_metering_get_profile_cb_handler(undefined4 param_1)
   if (iVar3 != 0) {
     if (**(byte **)(iVar3 + 6) < (byte)puVar1[6]) {
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_L0,uVar6,"ESP_ZIGBEE_ZCL_METERING");
+      esp_log(1,"ESP_ZIGBEE_ZCL_METERING",
+              "E (%lu) %s: Number of periods delivered cannot exceed the MaxNumberOfPeriodsDelivered attribute\n"
+              ,uVar6,"ESP_ZIGBEE_ZCL_METERING");
     }
   }
   if (puVar1[6] == '\0') {
     uVar5 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_METERING",&_LC8,uVar5,"ESP_ZIGBEE_ZCL_METERING");
+    esp_log(1,"ESP_ZIGBEE_ZCL_METERING",
+            "E (%lu) %s: No appropriate interval for get profile command\n",uVar5,
+            "ESP_ZIGBEE_ZCL_METERING");
     uVar5 = 0xffffffe4;
   }
   return uVar5;

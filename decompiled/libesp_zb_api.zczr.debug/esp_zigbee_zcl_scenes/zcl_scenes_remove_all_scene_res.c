@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zcl_scenes_remove_all_scene_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,8 +15,8 @@ int zcl_scenes_remove_all_scene_res(undefined4 param_1)
 {
   int iVar1;
   uint uVar2;
-  byte *pbVar3;
-  undefined4 uVar4;
+  undefined4 uVar3;
+  byte *pbVar4;
   uint auStack_34 [8];
   undefined2 uStack_14;
   undefined1 uStack_12;
@@ -25,31 +25,28 @@ int zcl_scenes_remove_all_scene_res(undefined4 param_1)
   if (iVar1 == 0) {
     uVar2 = zb_buf_len_func(param_1);
     if (uVar2 < 3) {
-      pbVar3 = (byte *)0x0;
       auStack_34[0] = 1;
-    }
-    else {
-      pbVar3 = (byte *)zb_buf_begin_func(param_1);
-      if (pbVar3 == (byte *)0x0) {
-        auStack_34[0] = 1;
-      }
-      else {
-        auStack_34[0] = (uint)*pbVar3;
-      }
-    }
-    if (pbVar3 == (byte *)0x0) {
       uStack_14 = 0xffff;
     }
     else {
-      uStack_14 = *(undefined2 *)(pbVar3 + 1);
+      pbVar4 = (byte *)zb_buf_begin_func(param_1);
+      if (pbVar4 == (byte *)0x0) {
+        auStack_34[0] = 1;
+        uStack_14 = 0xffff;
+      }
+      else {
+        auStack_34[0] = (uint)*pbVar4;
+        uStack_14 = *(undefined2 *)(pbVar4 + 1);
+      }
     }
     uStack_12 = 0xff;
     iVar1 = esp_zb_core_action_handler_schedule(0x1020,auStack_34);
   }
   else {
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_L0,uVar4,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zcl_scenes_remove_all_scene_res",0x2f0);
+    uVar3 = esp_log_timestamp();
+    esp_log(1,"ESP_ZIGBEE_ZCL_SCENES",
+            "E (%lu) %s: %s(%d): Failed to create remove_all_scene_response message\n",uVar3,
+            "ESP_ZIGBEE_ZCL_SCENES","zcl_scenes_remove_all_scene_res",0x2f0);
   }
   return iVar1;
 }

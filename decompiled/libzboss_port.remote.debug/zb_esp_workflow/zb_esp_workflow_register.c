@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit e883f431f54d7744605c05ac3bc92898d04315c0
- * https://github.com/espressif/esp-zigbee-sdk/commit/e883f431f54d7744605c05ac3bc92898d04315c0
- * Upstream date: 2025-02-14 17:01:07 +0800
- * Upstream subject: esp-zigbee-sdk: (f9a23626)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libzboss_port.remote.debug -> zb_esp_workflow.o -> zb_esp_workflow_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,8 @@ undefined4 zb_esp_workflow_register(undefined4 param_1,undefined4 param_2,char *
   __dest = (char *)malloc(0x1c);
   if (__dest == (char *)0x0) {
     uVar2 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_LC1,uVar2,0x10000,"zb_esp_workflow_register",0x33);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to alloc memory for zb_esp_workflow\n",uVar2,
+            0x10000,"zb_esp_workflow_register",0x33);
     uVar2 = 0x101;
   }
   else {

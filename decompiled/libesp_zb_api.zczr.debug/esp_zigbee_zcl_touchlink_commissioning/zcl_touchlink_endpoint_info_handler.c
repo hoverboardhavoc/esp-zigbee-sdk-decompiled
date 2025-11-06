@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_touchlink_commissioning.o -> zcl_touchlink_endpoint_info_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -86,7 +86,8 @@ undefined4 zcl_touchlink_endpoint_info_handler(undefined4 param_1)
   }
   else {
     uVar7 = esp_log_timestamp();
-    esp_log_write(3,0x10000,&_LC5,uVar7,0x10000);
+    esp_log(3,0x10000,"I (%lu) %s: touchlink endpoint information command wrong packet size.\n",
+            uVar7,0x10000);
   }
   return 0xffffffff;
 }

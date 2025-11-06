@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_scenes.o -> zb_nvram_app1_read_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,20 +36,21 @@ void zb_nvram_app1_read_cb(undefined4 param_1,undefined4 param_2,uint param_3)
   
   if (param_3 < 2) {
     uVar12 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC22,uVar12,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zb_nvram_app1_read_cb",0x5c);
+    esp_log(1,"ESP_ZIGBEE_ZCL_SCENES","E (%lu) %s: %s(%d): The nvram data payload length error\n",
+            uVar12,"ESP_ZIGBEE_ZCL_SCENES","zb_nvram_app1_read_cb",0x5c);
   }
   else if (s_nvram_app1_data == 0) {
     uVar12 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC23,uVar12,"ESP_ZIGBEE_ZCL_SCENES",
-                  "zb_nvram_app1_read_cb",0x5d);
+    esp_log(1,"ESP_ZIGBEE_ZCL_SCENES","E (%lu) %s: %s(%d): The scenes table does not exist\n",uVar12
+            ,"ESP_ZIGBEE_ZCL_SCENES","zb_nvram_app1_read_cb",0x5d);
   }
   else {
     __ptr = (ushort *)malloc(param_3);
     if (__ptr == (ushort *)0x0) {
       uVar12 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC24,uVar12,"ESP_ZIGBEE_ZCL_SCENES",
-                    "zb_nvram_app1_read_cb",0x60);
+      esp_log(1,"ESP_ZIGBEE_ZCL_SCENES",
+              "E (%lu) %s: %s(%d): No memory to read scene table from NVRAM\n",uVar12,
+              "ESP_ZIGBEE_ZCL_SCENES","zb_nvram_app1_read_cb",0x60);
     }
     else {
       iVar11 = zb_nvram_read_data(param_1,param_2,__ptr,param_3);
@@ -61,8 +62,9 @@ void zb_nvram_app1_read_cb(undefined4 param_1,undefined4 param_2,uint param_3)
           puVar17 = (undefined1 *)((int)__ptr + uVar10);
           if (esp_zb_zcl_scenes_table_capacity <= uVar18) {
             uVar12 = esp_log_timestamp();
-            esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC26,uVar12,"ESP_ZIGBEE_ZCL_SCENES",
-                          esp_zb_zcl_scenes_table_capacity);
+            esp_log(1,"ESP_ZIGBEE_ZCL_SCENES",
+                    "E (%lu) %s: Scene table with a capacity of (%d) is full. Failed to restore additional scenes from NVRAM\n"
+                    ,uVar12,"ESP_ZIGBEE_ZCL_SCENES",esp_zb_zcl_scenes_table_capacity);
             break;
           }
           puVar16 = (undefined1 *)(s_nvram_app1_data + uVar18 * 0xc);
@@ -114,8 +116,9 @@ void zb_nvram_app1_read_cb(undefined4 param_1,undefined4 param_2,uint param_3)
       }
       else {
         uVar12 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ZCL_SCENES",&_LC25,uVar12,"ESP_ZIGBEE_ZCL_SCENES",
-                      "zb_nvram_app1_read_cb",99);
+        esp_log(1,"ESP_ZIGBEE_ZCL_SCENES",
+                "E (%lu) %s: %s(%d): Failed to read APP1 section of NVRAM\n",uVar12,
+                "ESP_ZIGBEE_ZCL_SCENES","zb_nvram_app1_read_cb",99);
       }
       free(__ptr);
     }

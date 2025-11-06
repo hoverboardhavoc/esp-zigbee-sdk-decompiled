@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_command.o -> esp_zb_zcl_drlc_cancel_load_control_event_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -32,7 +32,7 @@ void esp_zb_zcl_drlc_cancel_load_control_event_req(int param_1)
     uStack_17 = *(undefined1 *)(param_1 + 0x15);
     uStack_16 = *(undefined2 *)(param_1 + 0x16);
     memcpy(auStack_14,(void *)(param_1 + 0x18),4);
-    zb_zcl_send_cmd(iVar1,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),1,
+    zb_zcl_send_cmd(iVar1,param_1,*(undefined1 *)(param_1 + 0xc),*(undefined1 *)(param_1 + 8),
                     *(undefined1 *)(param_1 + 9),auStack_1c,0xc);
     zb_zcl_frame_get_sequence_number(iVar1);
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_alarms.o -> zb_zcl_alarms_req_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,8 @@ int zb_zcl_alarms_req_resp_handler(int param_1)
   iVar1 = zb_buf_get_tail_func(0x1b);
   if (param_1 == 0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_ALARMS",&_LC5,uVar3,"ESP_ZIGBEE_ZCL_ALARMS",
-                  "zb_zcl_alarms_req_resp_handler",0x19b);
+    esp_log(1,"ESP_ZIGBEE_ZCL_ALARMS","E (%lu) %s: %s(%d): Invalid argument\n",uVar3,
+            "ESP_ZIGBEE_ZCL_ALARMS","zb_zcl_alarms_req_resp_handler",0x19b);
     iVar2 = 0;
   }
   else if (iVar1 == 0) {

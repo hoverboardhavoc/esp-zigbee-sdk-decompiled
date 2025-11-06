@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_touchlink_commissioning.o -> zb_zcl_touchlink_cluster_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,9 @@ undefined4 zb_zcl_touchlink_cluster_handler(undefined4 param_1)
     else {
       if (cVar1 != '@') {
         uVar3 = esp_log_timestamp();
-        esp_log_write(2,0x10000,&_LC8,uVar3,0x10000,*(undefined1 *)(iVar2 + 0x13));
+        esp_log(2,0x10000,
+                "W (%lu) %s: Unsupported touchlink commissioning cluster response command(0x%x)\n",
+                uVar3,0x10000,*(undefined1 *)(iVar2 + 0x13));
         return 0;
       }
       zcl_touchlink_endpoint_info_handler(param_1);
@@ -49,7 +51,9 @@ undefined4 zb_zcl_touchlink_cluster_handler(undefined4 param_1)
     else {
       if (*(char *)(iVar2 + 0x13) != 'B') {
         uVar3 = esp_log_timestamp();
-        esp_log_write(2,0x10000,&_LC9,uVar3,0x10000,*(undefined1 *)(iVar2 + 0x13));
+        esp_log(2,0x10000,
+                "W (%lu) %s: Unsupported touchlink commissioning cluster request command(0x%x)\n",
+                uVar3,0x10000,*(undefined1 *)(iVar2 + 0x13));
         return 0;
       }
       iVar4 = zcl_touchlink_get_endpoint_list_req_handler(param_1);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 5becf8b58fd0c6a13fec507be821364ad0ceba39
- * https://github.com/espressif/esp-zigbee-sdk/commit/5becf8b58fd0c6a13fec507be821364ad0ceba39
- * Upstream date: 2025-01-14 03:03:09 +0000
- * Upstream subject: esp-zigbee-sdk: (acad93d1)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_commissioning.o -> esp_zcl_commissioning_sync_with_attributes
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,12 +15,12 @@
 void esp_zcl_commissioning_sync_with_attributes(void)
 
 {
-  DAT_00010e01 = (char)_DAT_00012552;
-  DAT_00010e02 = (char)((ushort)_DAT_00012552 >> 8);
-  DAT_00010e00 = DAT_00012554;
-  DAT_00010e0a = DAT_00011291;
-  DAT_00010e0b = DAT_00011292;
-  DAT_00010e0c = (char)_DAT_00011294;
+  DAT_00010df1 = (char)_DAT_00012552;
+  DAT_00010df2 = (char)((ushort)_DAT_00012552 >> 8);
+  DAT_00010df0 = DAT_00012554;
+  DAT_00010dfa = DAT_00011291;
+  DAT_00010dfb = DAT_00011292;
+  DAT_00010dfc = (char)_DAT_00011294;
   return;
 }
 

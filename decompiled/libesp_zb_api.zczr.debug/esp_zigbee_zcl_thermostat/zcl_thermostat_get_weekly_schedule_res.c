@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_thermostat.o -> zcl_thermostat_get_weekly_schedule_res
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ int zcl_thermostat_get_weekly_schedule_res(int param_1)
   void *__src;
   undefined4 extraout_a1;
   undefined4 extraout_a1_00;
-  int unaff_s3;
+  uint unaff_s3;
   uint unaff_s4;
   undefined4 uStack_54;
   undefined2 uStack_50;
@@ -48,7 +48,7 @@ int zcl_thermostat_get_weekly_schedule_res(int param_1)
     auStack_48[7] = 0;
     uStack_28 = 0;
     puStack_24 = (undefined2 *)0x0;
-    unaff_s0 = zb_zcl_basic_message_create(auStack_48);
+    unaff_s0 = zb_zcl_basic_message_create();
     if (unaff_s0 == 0) {
       uVar1 = zb_buf_len_func(param_1);
       if ((uVar1 < 3) || (pbVar4 = (byte *)zb_buf_begin_func(param_1), pbVar4 == (byte *)0x0)) {
@@ -76,8 +76,9 @@ int zcl_thermostat_get_weekly_schedule_res(int param_1)
         puStack_24 = puVar2;
         if ((uVar1 != 0) && (puVar2 == (undefined2 *)0x0)) {
           uVar3 = esp_log_timestamp();
-          esp_log_write(1,"ESP_ZIGBEE_ZCL_THERMOSTAT",&_LC3,uVar3,"ESP_ZIGBEE_ZCL_THERMOSTAT",
-                        "zcl_thermostat_get_weekly_schedule_res",0x88);
+          esp_log(1,"ESP_ZIGBEE_ZCL_THERMOSTAT",
+                  "E (%lu) %s: %s(%d): No memory for Get Thermostat Weekly Schedule response\n",
+                  uVar3,"ESP_ZIGBEE_ZCL_THERMOSTAT","zcl_thermostat_get_weekly_schedule_res",0x88);
           return 0x101;
         }
         while ((iVar6 = zb_buf_len_func(param_1,uVar3), iVar6 != 0 && (unaff_s3 == 0))) {
@@ -114,7 +115,7 @@ _L0:
           puVar2[1] = uStack_54._2_2_;
           puVar2 = puVar2 + 3;
         }
-        auStack_48[0] = (uint)(unaff_s3 != 0);
+        auStack_48[0] = unaff_s3 & 1;
       }
       iVar6 = esp_zb_core_action_handler_schedule(0x1070,auStack_48);
       if (puStack_24 == (undefined2 *)0x0) {
@@ -125,8 +126,9 @@ _L0:
     }
   }
   uVar3 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_ZCL_THERMOSTAT",&_LC2,uVar3,"ESP_ZIGBEE_ZCL_THERMOSTAT",
-                "zcl_thermostat_get_weekly_schedule_res",0x81);
+  esp_log(1,"ESP_ZIGBEE_ZCL_THERMOSTAT",
+          "E (%lu) %s: %s(%d): Failed to create Get Thermostat Weekly Schedule Response message\n",
+          uVar3,"ESP_ZIGBEE_ZCL_THERMOSTAT","zcl_thermostat_get_weekly_schedule_res",0x81);
   return unaff_s0;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_price.o -> zcl_price_publish_price_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,13 +13,13 @@
 void zcl_price_publish_price_handler(undefined4 param_1)
 
 {
-  void *__src;
   int iVar1;
   int iVar2;
+  void *__src;
   undefined1 auStack_54 [4];
   undefined1 uStack_50;
   undefined2 uStack_4e;
-  undefined1 auStack_4c [64];
+  undefined1 auStack_4c [60];
   
   iVar1 = zb_buf_get_tail_func(0x38);
   iVar2 = zb_buf_get_tail_func(param_1,0x38);

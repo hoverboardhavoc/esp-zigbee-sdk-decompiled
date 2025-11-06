@@ -1,14 +1,16 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_commissioning.o -> esp_zcl_process_commissioning_srv_specific_commands
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
 undefined4 esp_zcl_process_commissioning_srv_specific_commands(int param_1)
 
@@ -78,16 +80,16 @@ undefined4 esp_zcl_process_commissioning_srv_specific_commands(int param_1)
       if ((bVar1 & 1) != 0) {
         uVar3 = esp_zb_get_short_address();
         uVar4 = esp_zb_get_pan_id();
-        DAT_00010dbc = zb_get_channel_mask();
-        DAT_00010db2 = 0xffff;
-        DAT_00010db4 = 0xffffffff;
-        DAT_00010db8 = 0xffff;
-        g_comm_ctx = uVar3;
-        DAT_00010dba = uVar4;
-        memset(&DAT_00010dc0,0,0x40);
-        DAT_00010dc0 = 0x30202;
-        DAT_00010deb = 1;
-        DAT_00010dfd = 1;
+        DAT_00010dac = zb_get_channel_mask();
+        _DAT_00010da2 = 0xffff;
+        _DAT_00010da4 = 0xffffffff;
+        _DAT_00010da8 = 0xffff;
+        _g_comm_ctx = uVar3;
+        DAT_00010daa = uVar4;
+        memset(&DAT_00010db0,0,0x40);
+        DAT_00010db0 = 0x30202;
+        DAT_00010ddb = 1;
+        DAT_00010ded = 1;
       }
       if ((bVar1 & 2) == 0) {
         if ((bVar1 & 1) == 0) {
@@ -115,22 +117,23 @@ undefined4 esp_zcl_process_commissioning_srv_specific_commands(int param_1)
       if (iVar5 != 0) {
         esp_zb_core_action_handler_schedule(0x1a,&uStack_54);
       }
-      if ((((DAT_00010dc0 >> 8 & 0xff) == 2) && ((DAT_00010dc0 & 0xff) == 2)) &&
-         ((DAT_00010dc0 & 0xffff00) != 0x100)) {
-        DAT_00010e14 = 0;
-        DAT_00010e10 = (uStack_4c >> 8 & 0xff) * 1000;
+      if ((((DAT_00010db0 >> 8 & 0xff) == 2) && ((DAT_00010db0 & 0xff) == 2)) &&
+         ((DAT_00010db0 & 0xffff00) != 0x100)) {
+        DAT_00010e04 = 0;
+        DAT_00010e00 = (uStack_4c >> 8 & 0xff) * 1000;
         uVar7 = zb_random_jitter();
         pcVar11 = esp_zcl_commissioning_process_restart_device_continue;
         uVar10 = 0;
         uVar7 = uVar7 / (0xffffffff / ((uStack_4c >> 0x10 & 0xff) * 0x50));
-        DAT_00010e10 = DAT_00010e10 + uVar7;
-        DAT_00010e14 = (uint)(DAT_00010e10 < uVar7) + DAT_00010e14;
-        DAT_00010e18 = (byte)uStack_4c & 7;
-        DAT_00010e19 = (byte)(uStack_4c >> 3) & 1;
+        DAT_00010e00 = DAT_00010e00 + uVar7;
+        DAT_00010e04 = (uint)(DAT_00010e00 < uVar7) + DAT_00010e04;
+        DAT_00010e08 = (byte)uStack_4c & 7;
+        DAT_00010e09 = (byte)(uStack_4c >> 3) & 1;
       }
       else {
         uVar9 = esp_log_timestamp();
-        esp_log_write(1,"ESP_ZIGBEE_ZCL_COMMISSIONING",&_L0,uVar9,"ESP_ZIGBEE_ZCL_COMMISSIONING");
+        esp_log(1,"ESP_ZIGBEE_ZCL_COMMISSIONING","E (%lu) %s: Invalid Startup Parameter Set\n",uVar9
+                ,"ESP_ZIGBEE_ZCL_COMMISSIONING");
         pcVar11 = (code *)0x0;
         uVar10 = 1;
       }

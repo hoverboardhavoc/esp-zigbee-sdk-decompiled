@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_core.o -> zb_zcl_device_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -114,16 +114,16 @@ _L0:
             if (uVar12 < 0x2b) {
               if (uVar12 != 0x28) {
                 uVar10 = 0x29;
-                goto _L128;
+                goto _L131;
               }
               goto _L0;
             }
             uVar10 = 0x2b;
-            goto _L122;
+            goto _L125;
           }
           if ((uVar12 != 0x31) && (uVar12 != 0x38)) {
             uVar10 = 0x30;
-_L120:
+_L123:
             if (uVar12 == uVar10) goto _L0;
             goto _L0;
           }
@@ -135,7 +135,7 @@ _L0:
             if (uVar12 < 0xf1) {
               if (0xe9 < uVar12) {
                 uVar10 = 0xea;
-                goto _L122;
+                goto _L125;
               }
               if (0xe7 < uVar12) goto _L0;
               if ((uVar12 + 0x20 & 0xff) < 3) goto _L0;
@@ -159,7 +159,7 @@ _L0:
         if (uVar12 < 0xb) {
           if (uVar12 != 8) {
             uVar10 = 9;
-_L128:
+_L131:
             if (uVar12 == uVar10) goto _L0;
             goto _L0;
           }
@@ -176,7 +176,7 @@ _L0:
           if (uVar12 < 0x1a) {
             uVar12 = uVar12 & 0xf7;
             uVar10 = 0x10;
-            goto _L120;
+            goto _L123;
           }
           if (uVar12 == 0x1a) goto _L0;
           uVar10 = 0x1b;
@@ -190,14 +190,14 @@ _L0:
           if (uVar12 < 0x23) {
             if (uVar12 != 0x20) {
               uVar10 = 0x21;
-              goto _L128;
+              goto _L131;
             }
             goto _L0;
           }
           uVar10 = 0x23;
         }
       }
-_L122:
+_L125:
       if (uVar12 == uVar10) {
 _L0:
         uStack_26 = 4;
@@ -206,7 +206,8 @@ _L0:
 _L0:
       uStack_34 = 1;
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,"ESP_ZIGBEE_ZCL_CORE",&_LC1,uVar7,"ESP_ZIGBEE_ZCL_CORE",(char)psVar14[1]);
+      esp_log(1,"ESP_ZIGBEE_ZCL_CORE","E (%lu) %s: Unsupported zcl attribute type(0x%x)\n",uVar7,
+              "ESP_ZIGBEE_ZCL_CORE",(char)psVar14[1]);
     }
 _L0:
     uVar7 = 0;

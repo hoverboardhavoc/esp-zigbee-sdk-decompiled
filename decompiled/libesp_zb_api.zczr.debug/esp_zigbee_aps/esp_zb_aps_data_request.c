@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_aps.o -> esp_zb_aps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -64,11 +64,13 @@ undefined4 esp_zb_aps_data_request(byte *param_1)
       return 0;
     }
     uVar8 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_APS",&_LC3,uVar8,"ESP_ZIGBEE_APS","esp_zb_aps_data_request",0x6e);
+    esp_log(1,"ESP_ZIGBEE_APS","E (%lu) %s: %s(%d): Failed to get buffer id\n",uVar8,
+            "ESP_ZIGBEE_APS","esp_zb_aps_data_request",0x6e);
     return 0x101;
   }
   uVar8 = esp_log_timestamp();
-  esp_log_write(1,"ESP_ZIGBEE_APS",&_LC2,uVar8,"ESP_ZIGBEE_APS","esp_zb_aps_data_request",0x6a);
+  esp_log(1,"ESP_ZIGBEE_APS","E (%lu) %s: %s(%d): Invalid argument\n",uVar8,"ESP_ZIGBEE_APS",
+          "esp_zb_aps_data_request",0x6a);
   return 0x102;
 }
 

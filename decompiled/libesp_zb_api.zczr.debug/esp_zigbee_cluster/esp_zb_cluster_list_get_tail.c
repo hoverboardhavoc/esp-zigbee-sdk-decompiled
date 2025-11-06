@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_cluster_list_get_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,8 @@ short * esp_zb_cluster_list_get_tail(short *param_1,int param_2,uint param_3,int
       }
     } while ((*param_1 != sVar1) || (*(byte *)(param_1 + 4) != param_3));
     uVar4 = esp_log_timestamp(psVar2);
-    esp_log_write(1,0x10000,&_L0,uVar4,0x10000,sVar1);
+    esp_log(1,0x10000,"E (%lu) %s: The requested add cluster ID:0x%x is already existed\n",uVar4,
+            0x10000,sVar1);
     *param_4 = 0x102;
   }
   return (short *)0x0;

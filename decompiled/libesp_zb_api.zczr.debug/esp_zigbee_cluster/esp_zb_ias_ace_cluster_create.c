@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * https://github.com/espressif/esp-zigbee-sdk/commit/232ecc4094b2fa86cc70f7e95820b15daf5d0bff
- * Upstream date: 2025-07-25 14:23:12 +0800
- * Upstream subject: esp-zigbee-sdk: (5de57b2b)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_cluster.o -> esp_zb_ias_ace_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,8 @@ undefined4 esp_zb_ias_ace_cluster_create(byte *param_1)
     pvVar1 = calloc((uint)abStack_14[0],0xf);
     if (pvVar1 == (void *)0x0) {
       uVar3 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC12,uVar3,0x10000);
+      esp_log(1,0x10000,"E (%lu) %s: No sufficient memory for zone table, continue with 0 length.\n"
+              ,uVar3,0x10000);
       abStack_14[0] = 0;
     }
   }

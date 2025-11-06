@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_cluster.o -> esp_zb_cluster_list_update_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-int esp_zb_cluster_list_update_cluster(int param_1,int param_2,uint param_3)
+undefined4 esp_zb_cluster_list_update_cluster(short *param_1,int param_2,uint param_3)
 
 {
   short sVar1;
-  short *psVar2;
+  undefined4 uVar2;
   int iVar3;
-  undefined4 uVar4;
   
   iVar3 = esp_zb_cluster_list_check();
+  uVar2 = 0x102;
   if (iVar3 == 0) {
     sVar1 = *(short *)(*(int *)(param_2 + 0xc) + 10);
-    for (psVar2 = *(short **)(param_1 + 0x10); psVar2 != (short *)0x0;
-        psVar2 = *(short **)(psVar2 + 8)) {
-      if ((*psVar2 == sVar1) && (*(byte *)(psVar2 + 4) == param_3)) {
-        if (param_2 == *(int *)(psVar2 + 2)) {
-          return 0;
-        }
-        esp_zb_internal_attribute_list_free();
-        *(int *)(psVar2 + 2) = param_2;
-        return 0;
+    do {
+      param_1 = *(short **)(param_1 + 8);
+      if (param_1 == (short *)0x0) {
+        uVar2 = esp_log_timestamp();
+        esp_log(1,"ESP_ZIGBEE_CLUSTER",
+                "E (%lu) %s: The requested update cluster ID (0x%4hx) is not found\n",uVar2,
+                "ESP_ZIGBEE_CLUSTER",sVar1);
+        return 0x105;
       }
+    } while ((*param_1 != sVar1) || (*(byte *)(param_1 + 4) != param_3));
+    uVar2 = 0;
+    if (*(int *)(param_1 + 2) != param_2) {
+      esp_zb_internal_attribute_list_free();
+      *(int *)(param_1 + 2) = param_2;
     }
-    uVar4 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_CLUSTER",&_L0,uVar4,"ESP_ZIGBEE_CLUSTER",sVar1);
-    iVar3 = 0x105;
   }
-  return iVar3;
+  return uVar2;
 }
 

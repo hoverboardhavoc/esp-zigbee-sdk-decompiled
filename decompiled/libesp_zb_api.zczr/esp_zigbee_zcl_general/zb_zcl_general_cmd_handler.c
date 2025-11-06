@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit d4fdccd9eea771602c7571d5f751435deed089e9
- * https://github.com/espressif/esp-zigbee-sdk/commit/d4fdccd9eea771602c7571d5f751435deed089e9
- * Upstream date: 2025-05-21 11:16:30 +0000
- * Upstream subject: esp-zigbee-sdk: (5d895722)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr -> esp_zigbee_zcl_general.o -> zb_zcl_general_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,11 +26,10 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
   uint *puVar11;
   int iVar12;
   undefined1 *puVar13;
-  ushort uVar14;
-  undefined2 *puVar15;
+  undefined2 *puVar14;
+  uint *puVar15;
   uint *puVar16;
   undefined2 *puVar17;
-  uint *puVar18;
   undefined4 auStack_48 [8];
   uint *puStack_28;
   undefined2 *puStack_24;
@@ -48,7 +47,7 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
       puVar16 = puStack_28;
       while( true ) {
         puStack_28 = puVar16;
-        puVar18 = puVar11;
+        puVar15 = puVar11;
         uVar8 = zb_buf_len_func(param_1);
         if ((uVar8 < 4) || (pbVar5 = (byte *)zb_buf_begin_func(param_1), pbVar5 == (byte *)0x0)) {
           pbVar5 = (byte *)0x0;
@@ -91,8 +90,8 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
         }
         puVar11[4] = 0;
         puVar16 = puVar11;
-        if (puVar18 != (uint *)0x0) {
-          puVar18[4] = (uint)puVar11;
+        if (puVar15 != (uint *)0x0) {
+          puVar15[4] = (uint)puVar11;
           puVar16 = puStack_28;
         }
       }
@@ -113,7 +112,7 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
       if (iVar7 == 0) {
         puVar11 = (uint *)0x0;
         puVar16 = puStack_28;
-        while ((puStack_28 = puVar16, puVar18 = puVar11, iVar7 = zb_buf_len_func(param_1),
+        while ((puStack_28 = puVar16, puVar15 = puVar11, iVar7 = zb_buf_len_func(param_1),
                iVar7 != 0 && (pbVar5 = (byte *)zb_buf_begin_func(param_1), pbVar5 != (byte *)0x0)))
         {
           iVar7 = zb_zcl_zcl8_statuses_conversion(*pbVar5);
@@ -136,8 +135,8 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
           *(undefined2 *)(puVar11 + 1) = uVar3;
           puVar11[2] = 0;
           puVar16 = puVar11;
-          if (puVar18 != (uint *)0x0) {
-            puVar18[2] = (uint)puVar11;
+          if (puVar15 != (uint *)0x0) {
+            puVar15[2] = (uint)puVar11;
             puVar16 = puStack_28;
           }
         }
@@ -171,7 +170,7 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
       if (iVar7 == 0) {
         puVar11 = (uint *)0x0;
         puVar16 = puStack_28;
-        while ((puStack_28 = puVar16, puVar18 = puVar11, uVar8 = zb_buf_len_func(param_1), 2 < uVar8
+        while ((puStack_28 = puVar16, puVar15 = puVar11, uVar8 = zb_buf_len_func(param_1), 2 < uVar8
                && (puVar9 = (undefined2 *)zb_buf_begin_func(param_1), puVar9 != (undefined2 *)0x0)))
         {
           uVar8 = 3;
@@ -186,29 +185,31 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
           if (uVar10 < uVar8) break;
           zb_buf_cut_left_func(param_1,uVar8);
           puVar11 = (uint *)malloc(0x14);
-          uVar8 = (uint)*(byte *)(puVar9 + 1);
-          *(undefined2 *)(puVar11 + 1) = *puVar9;
-          *puVar11 = uVar8;
-          uVar14 = 0;
-          if (uVar8 == 0) {
-            uVar14 = (ushort)*(byte *)((int)puVar9 + 3);
+          uVar3 = *puVar9;
+          bVar2 = *(byte *)(puVar9 + 1);
+          *puVar11 = (uint)bVar2;
+          *(undefined2 *)(puVar11 + 1) = uVar3;
+          if (bVar2 == 0) {
+            bVar2 = *(byte *)((int)puVar9 + 3);
+            *(undefined2 *)(puVar11 + 2) = 0;
+            *(ushort *)((int)puVar11 + 6) = (ushort)bVar2;
+            uVar3 = esp_zb_zcl_get_attribute_size(puVar9 + 2);
           }
-          *(ushort *)((int)puVar11 + 6) = uVar14;
-          *(undefined2 *)(puVar11 + 2) = 0;
-          uVar3 = 0;
-          if (uVar8 == 0) {
-            uVar3 = esp_zb_zcl_get_attribute_size(*(undefined1 *)((int)puVar9 + 3),puVar9 + 2);
+          else {
+            *(undefined2 *)((int)puVar11 + 6) = 0;
+            *(undefined2 *)(puVar11 + 2) = 0;
+            uVar3 = 0;
           }
           *(undefined2 *)((int)puVar11 + 10) = uVar3;
-          puVar15 = (undefined2 *)0x0;
+          puVar14 = (undefined2 *)0x0;
           if (*(char *)(puVar9 + 1) == '\0') {
-            puVar15 = puVar9 + 2;
+            puVar14 = puVar9 + 2;
           }
-          puVar11[3] = (uint)puVar15;
+          puVar11[3] = (uint)puVar14;
           puVar11[4] = 0;
           puVar16 = puVar11;
-          if (puVar18 != (uint *)0x0) {
-            puVar18[4] = (uint)puVar11;
+          if (puVar15 != (uint *)0x0) {
+            puVar15[4] = (uint)puVar11;
             puVar16 = puStack_28;
           }
         }
@@ -231,7 +232,7 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
       if (iVar7 == 0) {
         puVar11 = (uint *)0x0;
         puVar16 = puStack_28;
-        while ((puStack_28 = puVar16, puVar18 = puVar11, iVar7 = zb_buf_len_func(param_1),
+        while ((puStack_28 = puVar16, puVar15 = puVar11, iVar7 = zb_buf_len_func(param_1),
                iVar7 != 0 && (pbVar5 = (byte *)zb_buf_begin_func(param_1), pbVar5 != (byte *)0x0)))
         {
           bVar2 = zb_zcl_zcl8_statuses_conversion(*pbVar5);
@@ -245,22 +246,21 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
           if (uVar10 < uVar8) break;
           zb_buf_cut_left_func(param_1);
           puVar11 = (uint *)malloc(0xc);
-          uVar8 = (uint)*pbVar5;
-          *puVar11 = uVar8;
-          uVar3 = 0xffff;
-          if (uVar8 != 0) {
-            uVar3 = *(undefined2 *)(pbVar5 + 2);
+          bVar2 = *pbVar5;
+          *puVar11 = (uint)bVar2;
+          if (bVar2 == 0) {
+            *(undefined2 *)((int)puVar11 + 6) = 0xffff;
+            bVar2 = 0xff;
           }
-          *(undefined2 *)((int)puVar11 + 6) = uVar3;
-          bVar2 = 0xff;
-          if (uVar8 != 0) {
+          else {
+            *(undefined2 *)((int)puVar11 + 6) = *(undefined2 *)(pbVar5 + 2);
             bVar2 = pbVar5[1];
           }
           *(byte *)(puVar11 + 1) = bVar2;
           puVar11[2] = 0;
           puVar16 = puVar11;
-          if (puVar18 != (uint *)0x0) {
-            puVar18[2] = (uint)puVar11;
+          if (puVar15 != (uint *)0x0) {
+            puVar15[2] = (uint)puVar11;
             puVar16 = puStack_28;
           }
         }
@@ -285,10 +285,10 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
     iVar7 = zb_zcl_basic_message_create(param_1,auStack_48);
     if (iVar7 == 0) {
       uVar8 = zb_buf_len_func(param_1);
+      puStack_24 = (undefined2 *)0x1;
       if (uVar8 < 2) {
         auStack_48[0] = 1;
         puStack_28 = (uint *)CONCAT31(puStack_28._1_3_,0xff);
-        puStack_24 = (undefined2 *)0x1;
       }
       else {
         auStack_48[0] = 0;
@@ -314,7 +314,8 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
         return 0;
       }
       uVar6 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC1,uVar6,0x10000,*(undefined1 *)(iVar4 + 0x13));
+      esp_log(1,0x10000,"E (%lu) %s: Unsupported ZCL common command(0x%x)\n",uVar6,0x10000,
+              *(undefined1 *)(iVar4 + 0x13));
       return 0;
     }
     puStack_28 = (uint *)((uint)puStack_28 & 0xffffff00);
@@ -331,32 +332,32 @@ undefined4 zb_zcl_general_cmd_handler(undefined4 param_1)
         zb_buf_cut_left_func(param_1,1);
       }
       puVar9 = (undefined2 *)0x0;
-      puVar15 = puStack_24;
-      while ((puStack_24 = puVar15, puVar17 = puVar9, uVar8 = zb_buf_len_func(param_1), 2 < uVar8 &&
-             (puVar15 = (undefined2 *)zb_buf_begin_func(param_1), puVar15 != (undefined2 *)0x0))) {
+      puVar14 = puStack_24;
+      while ((puStack_24 = puVar14, puVar17 = puVar9, uVar8 = zb_buf_len_func(param_1), 2 < uVar8 &&
+             (puVar14 = (undefined2 *)zb_buf_begin_func(param_1), puVar14 != (undefined2 *)0x0))) {
         zb_buf_cut_left_func(param_1,3);
         puVar9 = (undefined2 *)malloc(0xc);
         if (puVar9 == (undefined2 *)0x0) {
           iVar7 = 0x101;
           goto _L0;
         }
-        *puVar9 = *puVar15;
-        bVar2 = *(byte *)(puVar15 + 1);
+        *puVar9 = *puVar14;
+        bVar2 = *(byte *)(puVar14 + 1);
         *(undefined4 *)(puVar9 + 4) = 0;
         *(uint *)(puVar9 + 2) = (uint)bVar2;
-        puVar15 = puVar9;
+        puVar14 = puVar9;
         if (puVar17 != (undefined2 *)0x0) {
           *(undefined2 **)(puVar17 + 4) = puVar9;
-          puVar15 = puStack_24;
+          puVar14 = puStack_24;
         }
       }
       esp_zb_core_action_handler_schedule(0x1004,auStack_48);
       iVar7 = esp_err_to_zb_ret();
       puVar9 = puStack_24;
       while (puVar9 != (undefined2 *)0x0) {
-        puVar15 = *(undefined2 **)(puVar9 + 4);
+        puVar14 = *(undefined2 **)(puVar9 + 4);
         free(puVar9);
-        puVar9 = puVar15;
+        puVar9 = puVar14;
       }
     }
   }

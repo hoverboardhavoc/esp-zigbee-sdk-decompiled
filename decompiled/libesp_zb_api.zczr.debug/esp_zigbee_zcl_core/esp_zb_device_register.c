@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * https://github.com/espressif/esp-zigbee-sdk/commit/88dfcd2f3748e37cbfac85eea52d0fdfbe99049b
- * Upstream date: 2025-08-28 11:19:03 +0000
- * Upstream subject: esp-zigbee-sdk: (0166821f)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_core.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,8 +22,8 @@ undefined4 esp_zb_device_register(void)
   pbVar1 = (byte *)esp_zb_internal_ep_list_to_device_ctx();
   if (pbVar1 == (byte *)0x0) {
     uVar3 = esp_log_timestamp();
-    esp_log_write(1,"ESP_ZIGBEE_ZCL_CORE",&_LC9,uVar3,"ESP_ZIGBEE_ZCL_CORE","esp_zb_device_register"
-                  ,0x23c);
+    esp_log(1,"ESP_ZIGBEE_ZCL_CORE","E (%lu) %s: %s(%d): Failed to register device context\n",uVar3,
+            "ESP_ZIGBEE_ZCL_CORE","esp_zb_device_register",0x23c);
     uVar3 = 0xffffffff;
   }
   else {
@@ -38,7 +38,7 @@ undefined4 esp_zb_device_register(void)
         iVar4 = zb_af_get_endpoint_desc();
         if (*(int *)(iVar4 + 3) == 0) {
           iVar5 = zb_af_get_endpoint_desc(**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
-          *(undefined1 *)(iVar5 + 3) = 0x7a;
+          *(undefined1 *)(iVar5 + 3) = 0x5a;
           *(undefined1 *)(iVar5 + 4) = 5;
           *(undefined1 *)(iVar5 + 5) = 1;
           *(undefined1 *)(iVar5 + 6) = 0;
@@ -46,8 +46,8 @@ undefined4 esp_zb_device_register(void)
       }
       else {
         uVar3 = esp_log_timestamp();
-        esp_log_write(2,"ESP_ZIGBEE_ZCL_CORE",&_LC10,uVar3,"ESP_ZIGBEE_ZCL_CORE",
-                      **(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
+        esp_log(2,"ESP_ZIGBEE_ZCL_CORE","W (%lu) %s: Failed to register handler for endpoint(%d)\n",
+                uVar3,"ESP_ZIGBEE_ZCL_CORE",**(undefined1 **)(*(int *)(pbVar1 + 1) + iVar5));
       }
     }
     uVar3 = 0;

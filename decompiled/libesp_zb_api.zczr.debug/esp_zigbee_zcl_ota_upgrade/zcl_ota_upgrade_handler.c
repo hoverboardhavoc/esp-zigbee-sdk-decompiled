@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * https://github.com/espressif/esp-zigbee-sdk/commit/0bff9367811bb8cb2d99200afddf6ceefe2628f8
- * Upstream date: 2024-12-06 13:11:49 +0800
- * Upstream subject: esp-zigbee-sdk: (e9475ff2)
+ * Last changed at upstream commit ef60059b4d605d61a0103f81567229692f238007
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ef60059b4d605d61a0103f81567229692f238007
+ * Upstream date: 2025-11-06 11:58:56 +0800
+ * Upstream subject: esp-zigbee-sdk: (79cb709a)
  * Source: libesp_zb_api.zczr.debug -> esp_zigbee_zcl_ota_upgrade.o -> zcl_ota_upgrade_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,14 +29,16 @@ undefined4 zcl_ota_upgrade_handler(void)
   iVar6 = esp_zb_has_core_action_handler();
   if (iVar6 == 0) {
     uVar7 = esp_log_timestamp();
-    esp_log_write(1,0x10000,&_L0,uVar7,0x10000,"zcl_ota_upgrade_handler",0x5c);
+    esp_log(1,0x10000,"E (%lu) %s: %s(%d): Failed to find Zigbee core action callback\n",uVar7,
+            0x10000,"zcl_ota_upgrade_handler",0x5c);
     return 0xffffffff;
   }
   if (message_2 == (uint *)0x0) {
     message_2 = (uint *)malloc(0x30);
     if (message_2 == (uint *)0x0) {
       uVar7 = esp_log_timestamp();
-      esp_log_write(1,0x10000,&_LC3,uVar7,0x10000,"zcl_ota_upgrade_handler",0x5f);
+      esp_log(1,0x10000,"E (%lu) %s: %s(%d): No memory for OTA upgrade image message\n",uVar7,
+              0x10000,"zcl_ota_upgrade_handler",0x5f);
       return 0xffffffea;
     }
     memset(message_2,0,0x30);
