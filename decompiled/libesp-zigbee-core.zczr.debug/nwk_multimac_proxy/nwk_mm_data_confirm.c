@@ -1,0 +1,34 @@
+/*
+ * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * Upstream date: 2026-04-16 12:25:02 +0800
+ * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Source: libesp-zigbee-core.zczr.debug -> nwk_multimac_proxy.o -> nwk_mm_data_confirm
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+/* WARNING: Unknown calling convention */
+
+void nwk_mm_data_confirm(uint8_t iface_id,mac_data_cnf_t *cnf)
+
+{
+  undefined3 in_register_00002029;
+  int iVar1;
+  
+  iVar1 = nwk_mm_is_iface_enabled();
+  if (iVar1 == 0) {
+    log_write(2,"nwk_multimac_proxy.c","MCPS-DATA.confirm from disabled iface[%d]",
+              CONCAT31(in_register_00002029,iface_id));
+    if ((cnf != (mac_data_cnf_t *)0x0) && (cnf->msdu != (zmsg_t *)0x0)) {
+      zmsg_free();
+    }
+  }
+  else {
+    nwk_fwd_handle_data_confirm(CONCAT31(in_register_00002029,iface_id),cnf);
+  }
+  return;
+}
+

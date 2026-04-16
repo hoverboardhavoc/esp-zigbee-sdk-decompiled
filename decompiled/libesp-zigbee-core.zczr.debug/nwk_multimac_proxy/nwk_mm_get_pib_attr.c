@@ -1,0 +1,58 @@
+/*
+ * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * Upstream date: 2026-04-16 12:25:02 +0800
+ * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Source: libesp-zigbee-core.zczr.debug -> nwk_multimac_proxy.o -> nwk_mm_get_pib_attr
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+/* WARNING: Unknown calling convention */
+
+ezb_err_t nwk_mm_get_pib_attr(uint8_t iface_id,mac_pib_attr_t pib_attr,void *value,size_t value_size
+                             )
+
+{
+  bool bVar1;
+  undefined3 in_register_00002029;
+  int iVar2;
+  int iVar3;
+  undefined3 in_register_0000202d;
+  ezb_err_t eVar4;
+  code *pcVar5;
+  
+  iVar3 = CONCAT31(in_register_00002029,iface_id);
+  if (iVar3 == 0xff) {
+    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_multimac_proxy.c",0x71,"nwk_mm_get_pib_attr",
+                  "iface_id != 0xFF");
+  }
+  else if (iVar3 == 0xff) {
+    eVar4 = 0;
+    bVar1 = false;
+    while (!bVar1) {
+      iVar3 = nwk_mm_is_iface_valid(0);
+      if (iVar3 != 0) {
+        iVar3 = core_globals_get();
+        pcVar5 = *(code **)(*(int *)(*(int *)(iVar3 + 0xce8) + 4) + 0xc);
+        iVar3 = core_globals_get();
+        iVar3 = (*pcVar5)(*(undefined4 *)(iVar3 + 0xce8),CONCAT31(in_register_0000202d,pib_attr),
+                          value,value_size);
+        if (iVar3 != 0) {
+          eVar4 = iVar3;
+        }
+      }
+      bVar1 = true;
+    }
+    return eVar4;
+  }
+  iVar2 = core_globals_get();
+  pcVar5 = *(code **)(*(int *)(*(int *)(iVar2 + iVar3 * 0xc + 0xce8) + 4) + 0xc);
+  iVar2 = core_globals_get();
+  eVar4 = (*pcVar5)(*(undefined4 *)(iVar2 + iVar3 * 0xc + 0xce8),
+                    CONCAT31(in_register_0000202d,pib_attr),value,value_size);
+  return eVar4;
+}
+

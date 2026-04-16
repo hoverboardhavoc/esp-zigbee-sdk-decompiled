@@ -1,0 +1,30 @@
+/*
+ * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * Upstream date: 2026-04-16 12:25:02 +0800
+ * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Source: libesp-zigbee-core.zczr.release -> timer.o -> tm_sched_init
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+void tm_sched_init(void)
+
+{
+  s_tm_sched_micro.timer_list = (timer_base *)0x0;
+  tasklet_init(&s_tm_sched_micro,tm_sched_process_timers_task,&s_tm_sched_micro);
+  s_tm_sched_micro.get_now = (_func_uint32_t *)&ezb_plat_micro_alarm_get_now;
+  s_tm_sched_micro.alarm_start_at = (_func_void_uint32_t_uint32_t *)&ezb_plat_micro_alarm_start_at;
+  s_tm_sched_micro.alarm_stop = (_func_void *)&ezb_plat_micro_alarm_stop;
+  s_tm_sched_milli.timer_list = (timer_base *)0x0;
+  tasklet_init(&s_tm_sched_milli,tm_sched_process_timers_task,&s_tm_sched_milli);
+  s_tm_sched_milli.get_now = (_func_uint32_t *)&ezb_plat_milli_alarm_get_now;
+  s_tm_sched_milli.alarm_start_at = (_func_void_uint32_t_uint32_t *)&ezb_plat_milli_alarm_start_at;
+  s_tm_sched_milli.alarm_stop = (_func_void *)&ezb_plat_milli_alarm_stop;
+  return;
+}
+

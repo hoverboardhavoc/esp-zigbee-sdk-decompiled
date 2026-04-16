@@ -1,0 +1,45 @@
+/*
+ * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * Upstream date: 2026-04-16 12:25:02 +0800
+ * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Source: libesp-zigbee-core.zczr.release -> nwk_route_table.o -> nwk_route_record_table_find_or_create
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+/* WARNING: Unknown calling convention */
+
+nwk_route_record_t * nwk_route_record_table_find_or_create(ezb_shortaddr_t dst_addr)
+
+{
+  undefined2 in_register_0000202a;
+  uint uVar1;
+  nwk_route_record_t *pnVar2;
+  int iVar3;
+  bitmap_t *blk_busy;
+  void *blk_base;
+  
+  uVar1 = CONCAT22(in_register_0000202a,dst_addr);
+  if (0xfff7 < uVar1) {
+    uVar1 = __assert_func(0,0,0,0);
+  }
+  pnVar2 = nwk_route_record_table_find((ezb_shortaddr_t)uVar1);
+  if (pnVar2 == (nwk_route_record_t *)0x0) {
+    iVar3 = core_globals_get();
+    blk_base = *(void **)(iVar3 + 0xcd4);
+    iVar3 = core_globals_get();
+    blk_busy = *(bitmap_t **)(iVar3 + 0xcd8);
+    iVar3 = core_globals_get();
+    pnVar2 = (nwk_route_record_t *)
+             mempool_alloc_ent(blk_base,blk_busy,0x1c,*(uint16_t *)(iVar3 + 0xcdc));
+    if (pnVar2 != (nwk_route_record_t *)0x0) {
+      memset(&pnVar2->relay_cnt,0,0x1a);
+      pnVar2->dst_addr = (ezb_shortaddr_t)uVar1;
+    }
+  }
+  return pnVar2;
+}
+

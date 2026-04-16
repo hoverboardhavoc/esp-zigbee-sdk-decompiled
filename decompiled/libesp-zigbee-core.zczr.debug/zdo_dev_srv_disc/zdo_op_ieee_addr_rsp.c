@@ -1,0 +1,124 @@
+/*
+ * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
+ * Upstream date: 2026-04-16 12:25:02 +0800
+ * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_op_ieee_addr_rsp
+ *
+ * (C) Espressif, Apache License 2.0.
+ * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
+ * Decompiler output may be incomplete or differ from original semantics.
+ */
+
+/* WARNING: Unknown calling convention */
+
+zdp_status_t
+zdo_op_ieee_addr_rsp
+          (zdo_packet_payload_t *payload,uint8_t request_type,zdp_ieee_addr_rsp_field_t *rsp,
+          _Bool is_write)
+
+{
+  int iVar1;
+  uint uVar2;
+  ezb_shortaddr_t *peVar3;
+  undefined3 in_register_0000202d;
+  undefined3 in_register_00002035;
+  uint unaff_s3;
+  uint uVar4;
+  uint16_t auStack_22 [2];
+  uint16_t offset;
+  
+  if ((payload == (zdo_packet_payload_t *)0x0) || (rsp == (zdp_ieee_addr_rsp_field_t *)0x0)) {
+    __assert_func("//build/esp-zigbee/src/core/zdo/zdo_dev_srv_disc.c",0xb2,"zdo_op_ieee_addr_rsp",
+                  "payload && rsp");
+  }
+  else {
+    if (CONCAT31(in_register_00002035,is_write) == 0) {
+      auStack_22[0] = 0;
+      uVar2 = zmsg_get_length();
+      af_read_le8(payload,auStack_22,&rsp->status);
+      af_read_bytes(payload,auStack_22,8,(uint8_t *)&rsp->ieee_addr_remote_dev);
+      af_read_le16(payload,auStack_22,&rsp->nwk_addr_remote_dev);
+      if ((rsp->status == '\0') && (auStack_22[0] < uVar2)) {
+        af_read_le8(payload,auStack_22,&rsp->num_assoc_dev);
+        uVar4 = (uint)rsp->num_assoc_dev;
+        peVar3 = (ezb_shortaddr_t *)calloc(uVar4,2);
+        rsp->nwk_addr_assoc_dev_list = peVar3;
+        if ((peVar3 == (ezb_shortaddr_t *)0x0) && (uVar4 != 0)) {
+          unaff_s3 = 0x8a;
+          goto _L0;
+        }
+        if (uVar4 != 0) {
+          af_read_le8(payload,auStack_22,&rsp->start_index);
+          for (uVar4 = 0; uVar4 < rsp->num_assoc_dev; uVar4 = uVar4 + 1 & 0xff) {
+            af_read_le16(payload,auStack_22,rsp->nwk_addr_assoc_dev_list + uVar4);
+          }
+        }
+      }
+      else {
+        rsp->num_assoc_dev = '\0';
+        rsp->start_index = '\0';
+        rsp->nwk_addr_assoc_dev_list = (ezb_shortaddr_t *)0x0;
+      }
+      if (uVar2 < auStack_22[0]) {
+        unaff_s3 = 0xfe;
+      }
+      else {
+        unaff_s3 = 0;
+      }
+      goto _L0;
+    }
+    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,rsp->status);
+    iVar1 = zmsg_append_bytes(1,auStack_22);
+    if (iVar1 != 0) {
+      unaff_s3 = 0x8a;
+      goto _L0;
+    }
+    iVar1 = zmsg_append_bytes(payload,8,&rsp->ieee_addr_remote_dev);
+    if (iVar1 != 0) {
+      unaff_s3 = 0x8a;
+      goto _L0;
+    }
+    auStack_22[0] = rsp->nwk_addr_remote_dev;
+    iVar1 = zmsg_append_bytes(payload,2,auStack_22);
+    if (iVar1 != 0) {
+      unaff_s3 = 0x8a;
+      goto _L0;
+    }
+    if (rsp->status != '\0') {
+      unaff_s3 = 0;
+      goto _L0;
+    }
+    unaff_s3 = 0;
+    if (CONCAT31(in_register_0000202d,request_type) != 1) goto _L0;
+    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,rsp->num_assoc_dev);
+    iVar1 = zmsg_append_bytes(payload,1,auStack_22);
+    if (iVar1 != 0) {
+      unaff_s3 = 0x8a;
+      goto _L0;
+    }
+    if (rsp->num_assoc_dev == '\0') {
+      unaff_s3 = 0;
+      goto _L0;
+    }
+  }
+  auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,rsp->start_index);
+  iVar1 = zmsg_append_bytes(payload,1,auStack_22);
+  uVar2 = unaff_s3;
+  if (iVar1 == 0) {
+    for (; uVar2 < rsp->num_assoc_dev; uVar2 = uVar2 + 1 & 0xff) {
+      auStack_22[0] = rsp->nwk_addr_assoc_dev_list[uVar2];
+      iVar1 = zmsg_append_bytes(payload,2,auStack_22);
+      if (iVar1 != 0) {
+        unaff_s3 = 0x8a;
+        break;
+      }
+    }
+  }
+  else {
+    unaff_s3 = 0x8a;
+  }
+_L0:
+  return (zdp_status_t)unaff_s3;
+}
+
