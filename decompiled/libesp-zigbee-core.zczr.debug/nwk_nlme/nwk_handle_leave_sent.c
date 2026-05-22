@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_handle_leave_sent
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,6 +35,9 @@ void nwk_handle_leave_sent(zmsg_t *msg,ezb_err_t error)
   sVar3 = zmsg_get_offset();
   zmsg_read_bytes(msg,sVar3 + 1,1,(undefined1 *)((int)&cnf.field_1 + 9));
   if ((cnf.field_1._9_1_ & 0x40) != 0) {
+    if (error == 0x1f0) {
+      error = 0;
+    }
     cnf._0_4_ = 0;
     cnf.field_1._2_4_ = 0;
     local_20 = (undefined1  [4])(error & 0xff);
@@ -61,7 +64,8 @@ _L0:
     goto _L0;
   }
   pcVar1 = nwk_handle_leave;
-  iVar4 = __assert_func("//build/esp-zigbee/src/core/nwk/nwk_nlme.c",0x237,"nwk_handle_leave_sent",
+  iVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x252,
+                        "nwk_handle_leave_sent",
                         "(((*core_globals_get()).nwk).ctx).state == NWK_STATE_LEAVING");
   nStack_3c.device_address.field_0.u64._2_4_ = 0;
   nStack_3c._8_4_ = 0;

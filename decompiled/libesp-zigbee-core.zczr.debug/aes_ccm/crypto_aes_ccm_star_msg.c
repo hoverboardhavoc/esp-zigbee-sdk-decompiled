@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aes_ccm.o -> crypto_aes_ccm_star_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,64 +18,102 @@ ezb_err_t crypto_aes_ccm_star_msg
 
 {
   int iVar1;
+  ezb_err_t eVar2;
+  psa_key_usage_t usage;
   undefined2 in_register_0000203a;
-  int iVar2;
-  undefined3 in_register_00002045;
   int iVar3;
-  uint16_t auStack_d2 [7];
-  uint uStack_c4;
-  size_t olen;
-  mbedtls_ccm_context ccm_ctx;
+  undefined2 in_register_0000203e;
+  undefined3 in_register_00002045;
+  int iVar4;
+  uint alg;
+  uint local_210;
+  size_t produced;
+  size_t finish_len;
+  uint8_t tail [16];
+  uint16_t remaining;
+  uint16_t remaining_ad;
   zmsg_chunk_t chunk;
-  uint16_t total_ad_len;
+  psa_aead_operation_t op;
+  psa_key_id_t pStack_34;
+  psa_key_id_t key_id;
   
-  iVar3 = CONCAT31(in_register_00002045,tag_len);
-  iVar2 = CONCAT22(in_register_0000203a,ad_len);
-  auStack_d2[0] = plaintext_len;
+  iVar4 = CONCAT31(in_register_00002045,tag_len);
+  iVar3 = CONCAT22(in_register_0000203a,ad_len);
   if (((msg == (zmsg_t *)0x0) || (key == (uint8_t *)0x0)) || (nonce == (uint8_t *)0x0)) {
-    __assert_func("//build/esp-zigbee/src/core/crypto/aes_ccm.c",0x77,"crypto_aes_ccm_star_msg",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/crypto/aes_ccm.c",0x140,
+                  "crypto_aes_ccm_star_msg",
                   "msg != ((void *)0) && key != ((void *)0) && nonce != ((void *)0)");
-_L0:
-    __assert_func("//build/esp-zigbee/src/core/crypto/aes_ccm.c",0x78,"crypto_aes_ccm_star_msg",
-                  "ad_len + plaintext_len <= zmsg_get_length(msg)");
   }
   else {
     iVar1 = zmsg_get_length();
-    if (iVar1 < (int)((uint)plaintext_len + iVar2)) goto _L0;
-    iVar1 = iVar2;
-    if (iVar3 != 0) goto _L0;
-  }
-  iVar1 = 0;
+    if (iVar3 + CONCAT22(in_register_0000203e,plaintext_len) <= iVar1) {
+      if (iVar4 != 0) {
+        pStack_34 = 0;
+        memset(&chunk.len,0,0x1b0);
+        alg = (tag_len & 0x3f) << 0x10 | 0x5400100;
+        if (mode == 0) {
+          usage = 0x100;
+        }
+        else {
+          usage = 0x200;
+        }
+        produced = 0;
+        tail._12_2_ = plaintext_len;
+        tail._14_2_ = ad_len;
+        iVar1 = crypto_psa_import_aes_key(key,alg,usage,&pStack_34);
+        if (iVar1 == 0) {
+          if (mode == 0) {
+            iVar1 = psa_aead_encrypt_setup(&chunk.len,pStack_34,alg);
+          }
+          else {
+            iVar1 = psa_aead_decrypt_setup(&chunk.len,pStack_34,alg);
+          }
+          if (((iVar1 == 0) &&
+              (iVar1 = psa_aead_set_lengths
+                                 (&chunk.len,iVar3,CONCAT22(in_register_0000203e,plaintext_len)),
+              iVar1 == 0)) && (iVar1 = psa_aead_set_nonce(&chunk.len,nonce,0xd), iVar1 == 0)) {
+            zmsg_get_first_chunk(msg,0,tail + 0xe,&remaining);
+            while ((ushort)chunk.data != 0) {
+              iVar1 = psa_aead_update_ad(&chunk.len,chunk.buffer);
+              if (iVar1 != 0) goto _L0;
+              zmsg_get_next_chunk(tail + 0xe,&remaining);
+            }
+            zmsg_get_first_chunk(msg,iVar3,tail + 0xc,&remaining);
+            while ((ushort)chunk.data != 0) {
+              local_210 = 0;
+              iVar1 = psa_aead_update(&chunk.len,chunk.buffer,(ushort)chunk.data,&local_210);
+              if (iVar1 != 0) goto _L0;
+              if (local_210 != (ushort)chunk.data) {
+                __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/crypto/aes_ccm.c",0x16a,
+                              "crypto_aes_ccm_star_msg","produced == chunk.len");
+                break;
+              }
+              zmsg_get_next_chunk(tail + 0xc,&remaining);
+            }
+            if (mode == 0) {
+              local_210 = 0;
+              iVar1 = psa_aead_finish(&chunk.len,&finish_len,0x10,&produced,tag,iVar4,&local_210);
+            }
+            else {
+              iVar1 = psa_aead_verify(&chunk.len,&finish_len,0x10,&produced,tag,iVar4);
+            }
+          }
+        }
 _L0:
-  chunk._10_2_ = (undefined2)iVar1;
-  mbedtls_ccm_init(&olen);
-  iVar1 = mbedtls_ccm_setkey(&olen,2,key,0x80);
-  if (((iVar1 == 0) && (iVar1 = mbedtls_ccm_starts(&olen,mode,nonce,0xd), iVar1 == 0)) &&
-     (iVar1 = mbedtls_ccm_set_lengths(&olen,chunk._10_2_,auStack_d2[0],iVar3), iVar1 == 0)) {
-    zmsg_get_first_chunk(msg,0,&chunk.field_0xa,&ccm_ctx.private_state);
-    while ((ushort)chunk.data != 0) {
-      iVar1 = mbedtls_ccm_update_ad(&olen,chunk.buffer);
-      if (iVar1 != 0) goto _L0;
-      zmsg_get_next_chunk(&chunk.field_0xa,&ccm_ctx.private_state);
-    }
-    zmsg_get_first_chunk(msg,iVar2,auStack_d2,&ccm_ctx.private_state);
-    while ((ushort)chunk.data != 0) {
-      iVar1 = mbedtls_ccm_update(&olen,chunk.buffer,(ushort)chunk.data,&uStack_c4);
-      if (iVar1 != 0) goto _L0;
-      if (uStack_c4 != (ushort)chunk.data) {
-        __assert_func("//build/esp-zigbee/src/core/crypto/aes_ccm.c",0x91,"crypto_aes_ccm_star_msg",
-                      "chunk.len == olen");
-        break;
+        psa_aead_abort(&chunk.len);
+        if (pStack_34 != 0) {
+          psa_destroy_key();
+        }
+        eVar2 = psa_to_ezb_error(iVar1);
+        return eVar2;
       }
-      zmsg_get_next_chunk(auStack_d2,&ccm_ctx.private_state);
+      goto _L0;
     }
-    iVar1 = mbedtls_ccm_finish(&olen,tag,iVar3);
   }
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/crypto/aes_ccm.c",0x141,
+                "crypto_aes_ccm_star_msg","ad_len + plaintext_len <= zmsg_get_length(msg)");
 _L0:
-  mbedtls_ccm_free(&olen);
-  if (iVar1 != 0) {
-    iVar1 = -1;
-  }
-  return iVar1;
+  eVar2 = crypto_psa_ccm_no_tag_msg(mode,key,nonce,msg,ad_len,plaintext_len);
+  return eVar2;
 }
 

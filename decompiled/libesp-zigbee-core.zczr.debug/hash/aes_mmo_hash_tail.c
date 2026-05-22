@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> hash.o -> aes_mmo_hash_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,8 +43,8 @@ void aes_mmo_hash_tail(uint8_t *last_block,uint32_t orig_len,uint8_t *hash)
   }
   else {
     last_block = (uint8_t *)
-                 __assert_func("//build/esp-zigbee/src/core/crypto/hash.c",0x72,"aes_mmo_hash_tail",
-                               "orig_len <= ((1U << (2U * (16) - 3U)) - 1U)");
+                 __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/crypto/hash.c",0x72,
+                               "aes_mmo_hash_tail","orig_len <= ((1U << (2U * (16) - 3U)) - 1U)");
   }
   memcpy(local_30,last_block,__n);
 _L0:

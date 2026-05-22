@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_route_table.o -> nwk_route_record_table_find
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,11 +24,11 @@ nwk_route_record_t * nwk_route_record_table_find(ezb_shortaddr_t dst_addr)
   uVar3 = 0;
   while( true ) {
     uVar3 = bitmap_find_next_bit
-                      (*(undefined4 *)(iVar1 + 0xcd8),*(undefined2 *)(iVar1 + 0xcdc),uVar3);
-    if (*(ushort *)(iVar1 + 0xcdc) <= uVar3) {
+                      (*(undefined4 *)(iVar1 + 0xc74),*(undefined2 *)(iVar1 + 0xc78),uVar3);
+    if (*(ushort *)(iVar1 + 0xc78) <= uVar3) {
       return (nwk_route_record_t *)0x0;
     }
-    pnVar2 = (nwk_route_record_t *)(*(int *)(iVar1 + 0xcd4) + uVar3 * 0x1c);
+    pnVar2 = (nwk_route_record_t *)(*(int *)(iVar1 + 0xc70) + uVar3 * 0x1c);
     if ((uint)pnVar2->dst_addr == CONCAT22(in_register_0000202a,dst_addr)) break;
     uVar3 = uVar3 + 1 & 0xffff;
   }

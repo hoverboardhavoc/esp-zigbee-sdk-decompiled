@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_formation.o -> nwk_formation_active_scan_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -99,12 +99,20 @@ void nwk_formation_active_scan_callback(active_scan_result_t *scan_result,void *
           ref._1_1_ = pnVar11->channel_page;
           bVar7 = nwk_is_device_zc();
           start_req.pan_id._0_1_ = (byte)start_req.pan_id & 0xfe | bVar7 & 1;
-          nwk_mm_start_request(0,&uStack_28);
-          iVar9 = core_globals_get();
-          *(byte *)(iVar9 + 0xb18) = *(byte *)(iVar9 + 0xb18) | 1;
+          iVar9 = nwk_mm_start_request(0,&uStack_28);
+          if (iVar9 == 0) {
+            iVar9 = core_globals_get();
+            uVar13 = 0;
+            *(byte *)(iVar9 + 0xb18) = *(byte *)(iVar9 + 0xb18) | 1;
+          }
+          else {
+            iVar9 = core_globals_get();
+            uVar13 = 0xc4;
+            *(byte *)(iVar9 + 0xb18) = *(byte *)(iVar9 + 0xb18) & 0xfe;
+          }
           iVar9 = core_globals_get();
           *(undefined1 *)(iVar9 + 0xac0) = 0;
-          nwk_network_formation_confirm(0);
+          nwk_network_formation_confirm(uVar13);
           return;
         }
 _L0:

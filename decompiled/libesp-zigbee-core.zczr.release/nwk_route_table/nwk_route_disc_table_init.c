@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_route_table.o -> nwk_route_disc_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,27 +23,27 @@ void nwk_route_disc_table_init(uint16_t capacity)
   int iVar6;
   
   iVar3 = core_globals_get();
-  iVar6 = *(int *)(iVar3 + 0xcc8);
+  iVar6 = *(int *)(iVar3 + 0xc64);
   iVar3 = core_globals_get();
-  iVar5 = *(int *)(iVar3 + 0xccc);
+  iVar5 = *(int *)(iVar3 + 0xc68);
   iVar3 = core_globals_get();
-  if (((*(short *)(iVar3 + 0xcd0) != 0) && (iVar6 != 0)) && (iVar5 != 0)) {
+  if (((*(short *)(iVar3 + 0xc6c) != 0) && (iVar6 != 0)) && (iVar5 != 0)) {
     __assert_func(0,0,0,0);
   }
   iVar3 = core_globals_get();
-  memset((void *)(iVar3 + 0xcc8),0,0xc);
+  memset((void *)(iVar3 + 0xc64),0,0xc);
   iVar3 = core_globals_get();
-  *(uint16_t *)(iVar3 + 0xcd0) = capacity;
+  *(uint16_t *)(iVar3 + 0xc6c) = capacity;
   iVar3 = core_globals_get();
-  uVar1 = *(undefined2 *)(iVar3 + 0xcd0);
+  uVar1 = *(undefined2 *)(iVar3 + 0xc6c);
   iVar3 = core_globals_get();
   uVar4 = mm_calloc(uVar1,0x10);
-  *(undefined4 *)(iVar3 + 0xcc8) = uVar4;
+  *(undefined4 *)(iVar3 + 0xc64) = uVar4;
   iVar3 = core_globals_get();
-  uVar2 = *(ushort *)(iVar3 + 0xcd0);
+  uVar2 = *(ushort *)(iVar3 + 0xc6c);
   iVar3 = core_globals_get();
   uVar4 = mm_calloc(uVar2 + 7 >> 3,1);
-  *(undefined4 *)(iVar3 + 0xccc) = uVar4;
+  *(undefined4 *)(iVar3 + 0xc68) = uVar4;
   return;
 }
 

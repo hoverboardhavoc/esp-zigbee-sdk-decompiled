@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> aps_bind_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,7 +31,8 @@ void aps_bind_table_init(uint8_t src_capacity,uint8_t dst_capacity)
   iVar7 = *(int *)(iVar3 + 0x978);
   iVar3 = core_globals_get();
   if (((*(short *)(iVar3 + 0x97c) != 0) && (iVar6 != 0)) && (iVar7 != 0)) {
-    __assert_func("//build/esp-zigbee/src/core/aps/aps_bind.c",0x1a6,"aps_bind_table_init",&_LC3);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x1a6,
+                  "aps_bind_table_init",&_LC3);
   }
   iVar3 = core_globals_get();
   *(undefined1 *)(iVar3 + 0x974) = 0;
@@ -64,7 +65,8 @@ void aps_bind_table_init(uint8_t src_capacity,uint8_t dst_capacity)
   iVar7 = *(int *)(iVar6 + 0x96c);
   iVar6 = core_globals_get();
   if (((*(short *)(iVar6 + 0x970) != 0) && (iVar3 != 0)) && (iVar7 != 0)) {
-    __assert_func("//build/esp-zigbee/src/core/aps/aps_bind.c",0x1a7,"aps_bind_table_init",&_LC3);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x1a7,
+                  "aps_bind_table_init",&_LC3);
   }
   iVar3 = core_globals_get();
   *(undefined1 *)(iVar3 + 0x968) = 0;

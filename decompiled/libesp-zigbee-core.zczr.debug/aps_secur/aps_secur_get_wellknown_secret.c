@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_get_wellknown_secret
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ uint8_t * aps_secur_get_wellknown_secret(uint8_t index)
     return aps_secur_get_wellknown_secret::s_secur_wellknown_secret
            [CONCAT31(in_register_00002029,index)];
   }
-  uVar2 = __assert_func("//build/esp-zigbee/src/core/aps/aps_secur.c",0x8f,
+  uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_secur.c",0xa5,
                         "aps_secur_get_wellknown_secret","index < SECUR_WELLKNOWN_SECRET_MAX_NR");
   uVar1 = 1 << (uVar2 & 7) & 0xff;
   uVar2 = __atomic_fetch_and_1((uVar2 >> 3) + extraout_a1,~uVar1 & 0xff,5);

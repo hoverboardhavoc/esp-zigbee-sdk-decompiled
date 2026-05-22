@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> nwk_address_by_ref
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,39 +15,52 @@
 ezb_err_t nwk_address_by_ref(nwk_addr_ref_t ref,ezb_shortaddr_t *shortaddr,ezb_extaddr_t *extaddr)
 
 {
-  uint uVar1;
-  _Bool _Var2;
+  undefined4 uVar1;
+  undefined3 uVar2;
+  undefined4 uVar3;
+  uint uVar4;
+  _Bool _Var5;
   undefined2 in_register_0000202a;
-  int iVar3;
+  int iVar6;
   undefined3 extraout_var;
-  ezb_err_t eVar4;
-  nwk_extaddr_c_t *extaddr_c;
-  int iVar5;
+  ezb_err_t eVar7;
+  int iVar8;
+  undefined4 *puVar9;
   
-  uVar1 = CONCAT22(in_register_0000202a,ref);
-  iVar3 = core_globals_get();
-  iVar5 = *(int *)(iVar3 + 0xcb4) + uVar1 * 0x10;
-  if ((*(byte *)(iVar5 + 0xf) & 4) != 0) {
-    uVar1 = (uint)*(ushort *)(iVar5 + 0xc);
+  uVar4 = CONCAT22(in_register_0000202a,ref);
+  iVar6 = core_globals_get();
+  iVar8 = uVar4 * 0x12 + *(int *)(iVar6 + 0xc50);
+  if ((*(byte *)(iVar8 + 0x11) & 4) != 0) {
+    uVar4 = (uint)*(ushort *)(iVar8 + 0xe);
   }
-  _Var2 = check_table_ref((uint16_t)uVar1,*(bitmap_t **)(iVar3 + 0xcb0),*(uint16_t *)(iVar3 + 0xcb8)
+  _Var5 = check_table_ref((uint16_t)uVar4,*(bitmap_t **)(iVar6 + 0xc4c),*(uint16_t *)(iVar6 + 0xc54)
                          );
-  if (CONCAT31(extraout_var,_Var2) == 0) {
-    eVar4 = 5;
+  if (CONCAT31(extraout_var,_Var5) == 0) {
+    eVar7 = 5;
   }
   else {
-    extaddr_c = (nwk_extaddr_c_t *)(*(int *)(iVar3 + 0xcb4) + uVar1 * 0x10);
+    puVar9 = (undefined4 *)(*(int *)(iVar6 + 0xc50) + uVar4 * 0x12);
     if (shortaddr != (ezb_shortaddr_t *)0x0) {
-      *shortaddr = *(ezb_shortaddr_t *)extaddr_c[1].device_id;
+      *shortaddr = *(ezb_shortaddr_t *)(puVar9 + 2);
     }
     if (extaddr == (ezb_extaddr_t *)0x0) {
-      eVar4 = 0;
+      eVar7 = 0;
     }
     else {
-      nwk_extaddr_decompress(extaddr,extaddr_c);
-      eVar4 = 0;
+      uVar1 = *puVar9;
+      uVar2 = *(undefined3 *)(puVar9 + 1);
+      uVar3 = puVar9[1];
+      (extaddr->field_0).u8[0] = (uint8_t)*(undefined3 *)puVar9;
+      (extaddr->field_0).u8[1] = (uint8_t)((uint)uVar1 >> 8);
+      (extaddr->field_0).u8[2] = (uint8_t)((uint)uVar1 >> 0x10);
+      (extaddr->field_0).u8[3] = (uint8_t)((uint)uVar1 >> 0x18);
+      (extaddr->field_0).u8[4] = (uint8_t)uVar2;
+      (extaddr->field_0).u8[5] = (uint8_t)((uint)uVar3 >> 8);
+      (extaddr->field_0).u8[6] = (uint8_t)((uint)uVar3 >> 0x10);
+      (extaddr->field_0).u8[7] = (uint8_t)((uint)uVar3 >> 0x18);
+      eVar7 = 0;
     }
   }
-  return eVar4;
+  return eVar7;
 }
 

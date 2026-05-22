@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> zdo_initiate_commissioning
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,11 +18,11 @@ void zdo_initiate_commissioning(uint16_t comm_ops)
   int iVar1;
   
   iVar1 = core_globals_get();
-  *(uint16_t *)(iVar1 + 0xd26) = comm_ops;
+  *(uint16_t *)(iVar1 + 0xcc2) = comm_ops;
   iVar1 = core_globals_get();
-  *(undefined1 *)(iVar1 + 0xd24) = 0;
+  *(undefined1 *)(iVar1 + 0xcc0) = 0;
   iVar1 = core_globals_get();
-  tasklet_post(iVar1 + 0xd28);
+  tasklet_post(iVar1 + 0xcc4);
   return;
 }
 

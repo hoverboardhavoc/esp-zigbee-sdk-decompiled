@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> on_off.o -> on_off_cluster_on_with_timed_off_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -42,10 +42,10 @@ on_off_cluster_on_with_timed_off_cmd_handler(zcl_packet_t *packet,zcl_packet_t *
   uStack_26 = 0;
   uStack_28 = 0;
   if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1e5,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1e5,
                   "on_off_cluster_on_with_timed_off_cmd_handler","packet && rsp");
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1e9,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1e9,
                   "on_off_cluster_on_with_timed_off_cmd_handler","ep_desc");
   }
   else {
@@ -121,7 +121,7 @@ _L0:
       goto _L0;
     }
   }
-  __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1f5,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x1f5,
                 "on_off_cluster_on_with_timed_off_cmd_handler","on_off_attr_desc");
 _L0:
   eVar1 = zcl_packet_setup_default_response(rsp,packet,0x8c);

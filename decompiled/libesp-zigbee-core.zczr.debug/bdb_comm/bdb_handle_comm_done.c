@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_handle_comm_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ void bdb_handle_comm_done(zdo_comm_result_t *result)
   op = result->last_op;
   error = result->error;
   iVar2 = core_globals_get();
-  bVar1 = *(byte *)(iVar2 + 0xda2);
+  bVar1 = *(byte *)(iVar2 + 0xd4e);
   if (bVar1 == 2) {
     bdb_comm_network_steering_handle_comm_done(op,error);
   }
@@ -41,14 +41,14 @@ void bdb_handle_comm_done(zdo_comm_result_t *result)
   else {
     if (bVar1 == 4) {
       iVar2 = core_globals_get();
-      pcVar3 = bdb_comm_step_to_str(*(bdb_comm_step_t *)(iVar2 + 0xda2));
+      pcVar3 = bdb_comm_step_to_str(*(bdb_comm_step_t *)(iVar2 + 0xd4e));
       log_write(1,"bdb_comm.c","%s: run in wrong state",pcVar3);
-      __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x288,
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x29b,
                     "bdb_handle_comm_done",&_LC6);
 _L0:
       iVar2 = core_globals_get();
-      log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar2 + 0xda2));
-      __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x28c,
+      log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar2 + 0xd4e));
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x29f,
                     "bdb_handle_comm_done",&_LC6);
                     /* WARNING: Bad instruction - Truncating control flow here */
       halt_baddata();

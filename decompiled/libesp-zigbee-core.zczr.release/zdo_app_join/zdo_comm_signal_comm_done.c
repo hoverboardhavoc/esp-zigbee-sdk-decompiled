@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> zdo_comm_signal_comm_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,12 +24,12 @@ void zdo_comm_signal_comm_done(ezb_err_t error)
   byte bStack_14;
   
   iVar3 = core_globals_get();
-  bVar1 = *(byte *)(iVar3 + 0xd24);
+  bVar1 = *(byte *)(iVar3 + 0xcc0);
   uVar2 = (uint)bVar1;
   iVar3 = core_globals_get();
-  *(undefined2 *)(iVar3 + 0xd26) = 0;
+  *(undefined2 *)(iVar3 + 0xcc2) = 0;
   iVar3 = core_globals_get();
-  *(undefined1 *)(iVar3 + 0xd24) = 0;
+  *(undefined1 *)(iVar3 + 0xcc0) = 0;
   if (uVar2 == 2) {
     if (error == 0) goto _L0;
     nwk_disc_table_reset();
@@ -42,7 +42,7 @@ void zdo_comm_signal_comm_done(ezb_err_t error)
       iVar3 = core_globals_get();
                     /* WARNING: Could not recover jumptable at 0x00010114. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-      (**(code **)(iVar3 + 0xd38))(2,4,pcVar4,*(code **)(iVar3 + 0xd38));
+      (**(code **)(iVar3 + 0xcd4))(2,4,pcVar4,*(code **)(iVar3 + 0xcd4));
       return;
     }
   }
@@ -52,7 +52,7 @@ _L0:
   iVar3 = core_globals_get();
   eStack_18 = error;
   bStack_14 = bVar1;
-  (**(code **)(iVar3 + 0xd3c))(3,&eStack_18,*(code **)(iVar3 + 0xd3c));
+  (**(code **)(iVar3 + 0xcd8))(3,&eStack_18,*(code **)(iVar3 + 0xcd8));
   return;
 }
 

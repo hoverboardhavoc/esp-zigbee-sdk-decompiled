@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_nlme.o -> nwk_do_leave
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,10 @@ void nwk_do_leave(uint8_t reason,_Bool rejoin,_Bool remove_children)
   int iVar3;
   undefined3 in_register_0000202d;
   int iVar4;
-  undefined2 uStack_32;
+  undefined2 uStack_3e;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined2 uStack_34;
   nwk_leave_cnf_t nStack_30;
   
   uVar1 = CONCAT31(in_register_0000202d,rejoin);
@@ -61,7 +64,7 @@ void nwk_do_leave(uint8_t reason,_Bool rejoin,_Bool remove_children)
       msg = (zmsg_t *)__assert_func(0,0);
     }
     nwk_build_leave(msg,0xfffd,rejoin,remove_children);
-    nwk_fwd_send_msg(msg);
+    nwk_fwd_send_msg_delayed(msg,0);
     return;
   }
 _L0:
@@ -72,13 +75,16 @@ _L0:
   do {
     __assert_func(0,0,0,0);
 _L0:
-    mac_purge_tx_queue();
-    nwk_fwd_purge(0xffff);
+    uStack_3c = 0;
+    uStack_38 = 0;
+    uStack_34 = 0;
+    nwk_mm_purge_tx_queue(0xff,&uStack_3c);
+    nwk_fwd_purge_ex(0xffff,0,0);
     if (uVar1 == 0) {
       nwk_get_extended_address();
-      iVar3 = nwk_address_ref_by_extended(&uStack_32);
+      iVar3 = nwk_address_ref_by_extended(&uStack_3e);
       if (iVar3 != 0) goto _L0;
-      nwk_address_unlock_ref(uStack_32);
+      nwk_address_unlock_ref(uStack_3e);
       nwk_neighbor_table_clear();
       nwk_route_disc_table_clear();
       nwk_route_table_clear();
@@ -107,8 +113,8 @@ _L0:
       }
     }
     else {
-      uStack_32 = 0xffff;
-      nwk_mm_set_pib_attr(0xff,0x53,&uStack_32);
+      uStack_3e = 0xffff;
+      nwk_mm_set_pib_attr(0xff,0x53,&uStack_3e);
       nStack_30._0_2_ = 0xffff;
       nwk_mm_set_pib_attr(0xff,0x50,&nStack_30);
       iVar3 = core_globals_get();

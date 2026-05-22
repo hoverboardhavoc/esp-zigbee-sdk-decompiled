@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_nwk_mgmt.o -> zdo_op_nwk_mgmt_bind_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -67,7 +67,6 @@ zdo_op_nwk_mgmt_bind_rsp
         }
         else {
           if (peVar3[uVar5].dst_addr_mode != '\x03') {
-            log_write(2,"ZDO_NWK_MGMT","MgmtBindRsp: Invalid DstAddrMode: 0x%02x");
             return 0x80;
           }
           af_read_bytes(payload,auStack_32,8,(uint8_t *)&peVar3[uVar5].dst_addr.short_addr);

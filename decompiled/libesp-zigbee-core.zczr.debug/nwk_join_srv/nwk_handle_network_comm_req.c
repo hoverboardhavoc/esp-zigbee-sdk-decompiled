@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_handle_network_comm_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,8 +35,7 @@ void nwk_handle_network_comm_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
   ezb_extaddr_t *device_extaddr;
   _Bool is_secured;
   uint uVar10;
-  undefined4 uStack_8c;
-  undefined4 uStack_88;
+  anon_union_8_2_c961180f_for_ezb_eui64_s_0 aStack_8c;
   ezb_shortaddr_t eStack_84;
   mac_status_t mStack_82;
   undefined1 uStack_81;
@@ -112,7 +111,7 @@ void nwk_handle_network_comm_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
           return;
         }
         pcVar2 = nwk_handle_rejoin_req;
-        iVar9 = __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x12a,
+        iVar9 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x12a,
                               "nwk_handle_network_comm_req",
                               "(msg = zmsg_alloc(((0x0b - sizeof(uint16_t)) + ((0) ? (__builtin_offsetof (nwk_hdr_t, src_ieee_addr)) : (sizeof(nwk_hdr_t))) + ((is_secured) ? sizeof(secur_aux_hdr_t) : 0)))) != ((void *)0)"
                              );
@@ -172,8 +171,8 @@ void nwk_handle_network_comm_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
               return;
             }
             pcVar2 = nwk_handle_asso_indication;
-            uVar8 = __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x15a,
-                                  "nwk_handle_rejoin_req",
+            uVar8 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",
+                                  0x15a,"nwk_handle_rejoin_req",
                                   "(msg = zmsg_alloc(((0x0b - sizeof(uint16_t)) + ((0) ? (__builtin_offsetof (nwk_hdr_t, src_ieee_addr)) : (sizeof(nwk_hdr_t))) + ((is_secured) ? sizeof(secur_aux_hdr_t) : 0)))) != ((void *)0)"
                                  );
             iStack_7c = extraout_a1;
@@ -182,13 +181,14 @@ void nwk_handle_network_comm_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
             _Var3 = nwk_is_router_started();
             if (CONCAT31(extraout_var_03,_Var3) != 0) {
               _eStack_84 = 0xfffe;
-              uStack_8c = *(undefined4 *)&device_extaddr->field_0;
-              uStack_88 = *(undefined4 *)((int)&device_extaddr->field_0 + 4);
+              aStack_8c.u64._0_4_ = *(undefined4 *)&device_extaddr->field_0;
+              aStack_8c.u64._4_4_ = *(undefined4 *)((int)&device_extaddr->field_0 + 4);
               mVar4 = nwk_accept_child((uint8_t)uVar8,device_extaddr,device_extaddr[1].field_0.u8[0]
                                        ,'\0',&eStack_84);
               _eStack_84 = CONCAT12(mVar4,eStack_84);
-              if (CONCAT31(extraout_var_04,mVar4) != 0xe2) {
-                nwk_mm_asso_response(uVar8,&uStack_8c);
+              if ((CONCAT31(extraout_var_04,mVar4) != 0xe2) &&
+                 (iVar7 = nwk_mm_asso_response(uVar8,&aStack_8c), iVar7 != 0)) {
+                nwk_accept_child_done(iVar7,(ezb_extaddr_t *)&aStack_8c,'\0');
               }
             }
             return;

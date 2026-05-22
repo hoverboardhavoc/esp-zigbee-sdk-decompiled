@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_check_network_parameters
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,16 +49,22 @@ _Bool bdb_comm_check_network_parameters(void)
             }
             iVar1 = nwk_is_authed();
             if (iVar1 != 0) {
-              nwk_get_panid();
-              nwk_set_panid();
-              nwk_get_short_address();
-              nwk_set_short_address();
-              nwk_get_extended_address();
-              nwk_set_extended_address();
-              nwk_get_pan_channel();
-              nwk_set_pan_channel();
-              nwk_get_rx_on_when_idle();
-              nwk_set_rx_on_when_idle();
+              piVar3 = (int *)aps_secur_get_tc_address();
+              if (*piVar3 == 0 && piVar3[1] == 0) {
+                iVar1 = 0;
+              }
+              else {
+                nwk_get_panid();
+                nwk_set_panid();
+                nwk_get_short_address();
+                nwk_set_short_address();
+                nwk_get_extended_address();
+                nwk_set_extended_address();
+                nwk_get_pan_channel();
+                nwk_set_pan_channel();
+                nwk_get_rx_on_when_idle();
+                nwk_set_rx_on_when_idle();
+              }
             }
           }
           goto _L0;

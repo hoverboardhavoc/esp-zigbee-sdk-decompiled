@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,8 +43,8 @@ _L0:
       }
       else {
         iVar3 = core_globals_get();
-        uVar1 = *(uint8_t *)(iVar3 + 0xd0c);
-        *(uint8_t *)(iVar3 + 0xd0c) = uVar1 + '\x01';
+        uVar1 = *(uint8_t *)(iVar3 + 0xca8);
+        *(uint8_t *)(iVar3 + 0xca8) = uVar1 + '\x01';
         packet->tsn = uVar1;
       }
       zmsg_prepend_bytes(packet->payload,1,packet);
@@ -64,8 +64,8 @@ _L0:
           uVar5 = nwk_pim_get_fast_poll_interval();
           nwk_pim_start_fast_poll(5000 / uVar5);
           iVar3 = core_globals_get();
-          *(undefined4 *)(p_Var6 + 0x24) = *(undefined4 *)(iVar3 + 0xd10);
-          *(ezb_af_user_cnf_callback_t *)(iVar3 + 0xd10) = p_Var6 + 0x24;
+          *(undefined4 *)(p_Var6 + 0x24) = *(undefined4 *)(iVar3 + 0xcac);
+          *(ezb_af_user_cnf_callback_t *)(iVar3 + 0xcac) = p_Var6 + 0x24;
           milli_timer_init(zdo_packet_ctx_entry_timeout,p_Var6);
           milli_timer_start(p_Var6 + 4,5000);
         }

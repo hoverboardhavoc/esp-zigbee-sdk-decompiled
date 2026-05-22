@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> identify.o -> identify_timer_ctx_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ ezb_err_t identify_timer_ctx_init(uint8_t ep_id)
   
   pzVar1 = identify_srv_get_attr_desc(ep_id,0xeff0);
   if (pzVar1 == (zcl_attr_desc_t *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x8d,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x8d,
                   "identify_timer_ctx_init","timer_ctx_attr_desc");
   }
   else {
@@ -35,8 +35,8 @@ ezb_err_t identify_timer_ctx_init(uint8_t ep_id)
       return 0;
     }
   }
-  ep_id_00 = __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x8f,
-                           "identify_timer_ctx_init","timer_ctx_attr_desc->data_p");
+  ep_id_00 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",
+                           0x8f,"identify_timer_ctx_init","timer_ctx_attr_desc->data_p");
   pzVar1 = identify_srv_get_attr_desc(ep_id_00,0xeff0);
   if (pzVar1 != (zcl_attr_desc_t *)0x0) {
     milli_timer_stop((int)pzVar1->data_p + 4);
@@ -44,7 +44,7 @@ ezb_err_t identify_timer_ctx_init(uint8_t ep_id)
     pzVar1->data_p = (void *)0x0;
     return eVar3;
   }
-  __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/identify.c",0xa9,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0xa9,
                 "identify_timer_ctx_deinit","timer_ctx_attr_desc");
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

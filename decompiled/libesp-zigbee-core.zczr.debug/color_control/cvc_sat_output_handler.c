@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> cvc_sat_output_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,10 +29,10 @@ void cvc_sat_output_handler(uint8_t ep_id,int32_t output,uint32_t remaining_time
     color_control_set_remaining_time(ep_id,(uint16_t)remaining_time);
     return;
   }
-  attr_id = 0x2c40;
-  remaining_time_00 = 0x6d58;
-  iVar1 = __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/color_control.c",0x2dd,
-                        "cvc_sat_output_handler","output >= 0");
+  attr_id = 0x2c50;
+  remaining_time_00 = 0x6d68;
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/color_control.c"
+                        ,0x2dd,"cvc_sat_output_handler","output >= 0");
   iVar1 = math_mod(iVar1,0xff00);
   uStack_32 = (short)iVar1;
   zcl_message_set_color_control_attr_value(ep_id_00,attr_id,&uStack_32);

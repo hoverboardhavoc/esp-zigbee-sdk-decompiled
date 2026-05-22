@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_mark_recv_attr_report
  *
  * (C) Espressif, Apache License 2.0.
@@ -37,7 +37,7 @@ void zcl_reporting_mark_recv_attr_report
     return;
   }
   iVar3 = core_globals_get();
-  if (*(char *)(iVar3 + 0xd84) == '\0') {
+  if (*(char *)(iVar3 + 0xd20) == '\0') {
     return;
   }
   uVar6 = (uint)(info->u).send_info.min_interval;
@@ -110,7 +110,7 @@ _L0:
   iVar4 = core_globals_get();
   uVar6 = 0x7fffffff;
   iVar3 = 0;
-  for (piVar10 = *(int **)(iVar4 + 0xd98); piVar10 + -1 != (int *)0xfffffffc;
+  for (piVar10 = *(int **)(iVar4 + 0xd34); piVar10 + -1 != (int *)0xfffffffc;
       piVar10 = (int *)*piVar10) {
     iVar4 = piVar10[-1];
     if ((iVar4 != 0) && (*(uint *)(iVar4 + 0xc) < uVar6)) {
@@ -122,11 +122,11 @@ _L0:
     return;
   }
   iVar4 = core_globals_get();
-  milli_timer_stop(iVar4 + 0xd88);
+  milli_timer_stop(iVar4 + 0xd24);
   iVar4 = core_globals_get();
-  milli_timer_init(iVar4 + 0xd88,process_attr_report,iVar3);
+  milli_timer_init(iVar4 + 0xd24,process_attr_report,iVar3);
   iVar3 = core_globals_get();
-  milli_timer_fire_at(iVar3 + 0xd88,uVar6);
+  milli_timer_fire_at(iVar3 + 0xd24,uVar6);
   return;
 }
 

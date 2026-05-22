@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_signal.o -> zdo_app_signal_add_handler_back
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,14 +21,14 @@ ezb_err_t zdo_app_signal_add_handler_back(zdo_app_signal_handler_t handler)
   
   if (handler != (zdo_app_signal_handler_t)0x0) {
     iVar2 = core_globals_get();
-    bVar1 = 2 < *(byte *)(iVar2 + 0xd20);
+    bVar1 = 2 < *(byte *)(iVar2 + 0xcbc);
     if (!bVar1) {
       iVar2 = core_globals_get();
       iVar3 = core_globals_get();
-      *(zdo_app_signal_handler_t *)(iVar2 + (*(byte *)(iVar3 + 0xd20) + 0x340) * 4 + 0x14) = handler
+      *(zdo_app_signal_handler_t *)(iVar2 + (*(byte *)(iVar3 + 0xcbc) + 0x328) * 4 + 0x10) = handler
       ;
       iVar2 = core_globals_get();
-      *(char *)(iVar2 + 0xd20) = *(char *)(iVar2 + 0xd20) + '\x01';
+      *(char *)(iVar2 + 0xcbc) = *(char *)(iVar2 + 0xcbc) + '\x01';
     }
     return (uint)bVar1;
   }

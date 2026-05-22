@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_secur.o -> zdo_secur_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,7 +18,7 @@ void zdo_secur_init(void)
   int iVar1;
   
   iVar1 = core_globals_get();
-  milli_timer_init(iVar1 + 0xd60,zdo_secur_handle_timer,0);
+  milli_timer_init(iVar1 + 0xcfc,zdo_secur_handle_timer,0);
   return;
 }
 

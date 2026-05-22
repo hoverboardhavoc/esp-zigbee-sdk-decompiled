@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_datasets.o -> ezb_plat_datasets_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,8 +20,8 @@ void ezb_plat_datasets_init(void)
   if ((s_nvs_handle == 0) &&
      (iVar1 = nvs_open_from_partition(s_storage_name,"zigbee",1,&s_nvs_handle), iVar1 != 0)) {
     _esp_error_check_failed
-              ("/build/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_datasets.c",
-               0x92,"ezb_plat_datasets_init",
+              ("/builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_datasets.c"
+               ,0x92,"ezb_plat_datasets_init",
                "nvs_open_from_partition(DS_PART_NAME, DS_NAMESPACE, NVS_READWRITE, &s_nvs_handle)");
     if (s_nvs_handle != 0) {
       nvs_close();

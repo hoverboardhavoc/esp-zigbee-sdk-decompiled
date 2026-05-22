@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_iface_mcps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,23 +39,20 @@ ezb_err_t mac_iface_mcps_data_request(mac_interface_t *iface,mac_data_req_t *req
     if (iVar2 == 0) {
       uVar4 = zmsg_get_length(msg);
       if (uVar4 < 0x7e) {
-        if ((req->field_0x1a & 2) != 0) {
+        if ((req->field_0x1a & 2) == 0) {
+          zmsg_queue_enqueue(&(dev->ctx).tx_q,msg);
+          if (((dev->ctx).cur_op != '\x04') && (((dev->ctx).pending_ops & 0x10) == 0)) {
+            mac_start_op(dev,MAC_OPERATION_TRANSMIT_DATA_DIRECT);
+          }
+        }
+        else {
           mac_indirect_transmit(dev,&(req->addresses).destination,msg);
-          return 0;
         }
-        zmsg_queue_enqueue(&(dev->ctx).tx_q,msg);
-        if ((dev->ctx).cur_op == '\x04') {
-          return 0;
-        }
-        if (((dev->ctx).pending_ops & 0x10) != 0) {
-          return 0;
-        }
-        mac_start_op(dev,MAC_OPERATION_TRANSMIT_DATA_DIRECT);
-        return 0;
       }
-      iVar2 = 4;
+      else {
+        iVar2 = 4;
+      }
     }
-    zmsg_free(msg);
   }
   return iVar2;
 }

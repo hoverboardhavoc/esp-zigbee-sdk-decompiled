@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_info_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,8 +49,8 @@ ezb_err_t zcl_reporting_info_add(zcl_reporting_info_t *info)
   else {
     puVar4 = (undefined4 *)calloc(1,8);
     if (puVar4 != (undefined4 *)0x0) {
-      info->next = *(zcl_reporting_info_s **)(iVar3 + 0x10);
-      *(zcl_reporting_info_t **)(iVar3 + 0x10) = info;
+      info->next = *(zcl_reporting_info_s **)(iVar3 + 8);
+      *(zcl_reporting_info_t **)(iVar3 + 8) = info;
       uVar1 = info->direction;
       *puVar4 = info;
       if (uVar1 == '\0') {
@@ -58,8 +58,8 @@ ezb_err_t zcl_reporting_info_add(zcl_reporting_info_t *info)
       }
       puVar4[1] = puVar4 + 1;
       iVar3 = core_globals_get();
-      puVar4[1] = *(undefined4 *)(iVar3 + 0xd98);
-      *(undefined4 **)(iVar3 + 0xd98) = puVar4 + 1;
+      puVar4[1] = *(undefined4 *)(iVar3 + 0xd34);
+      *(undefined4 **)(iVar3 + 0xd34) = puVar4 + 1;
       info_00 = (zcl_reporting_info_t *)*puVar4;
       memset(&uStack_2c,0,0x1b);
       zcl_reporting_remove_stored_reporting_info(info_00);

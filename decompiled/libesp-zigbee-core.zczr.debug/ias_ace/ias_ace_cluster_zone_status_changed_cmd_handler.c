@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> ias_ace.o -> ias_ace_cluster_zone_status_changed_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,7 +57,7 @@ ias_ace_cluster_zone_status_changed_cmd_handler(zcl_packet_t *packet,zcl_packet_
   message.in.payload.zone_label[0x10] = '\0';
   message.in._26_2_ = 0;
   if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/ias_ace.c",0x23c,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_ace.c",0x23c,
                   "ias_ace_cluster_zone_status_changed_cmd_handler","packet && rsp");
   }
   else {

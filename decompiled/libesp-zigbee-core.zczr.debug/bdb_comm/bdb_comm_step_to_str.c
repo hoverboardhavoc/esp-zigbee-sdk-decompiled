@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_step_to_str
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ char * bdb_comm_step_to_str(bdb_comm_step_t step)
   if (CONCAT31(in_register_00002029,step) < 6) {
     return bdb_comm_step_to_str::step_string[CONCAT31(in_register_00002029,step)];
   }
-  __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x206,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x20e,
                 "bdb_comm_step_to_str","step < BDB_COMM_STEP_MAX_NR");
   uVar1 = nwk_get_pan_channel();
   if ((0x7ffffff < uVar1) || (uVar1 = nwk_get_pan_channel(), (uVar1 & 0x7ffffff) < 0x800)) {
@@ -56,6 +56,10 @@ char * bdb_comm_step_to_str(bdb_comm_step_t step)
       }
       pcVar4 = (char *)nwk_is_authed();
       if (pcVar4 == (char *)0x0) {
+        return (char *)0x0;
+      }
+      piVar3 = (int *)aps_secur_get_tc_address();
+      if (*piVar3 == 0 && piVar3[1] == 0) {
         return (char *)0x0;
       }
       nwk_get_panid();

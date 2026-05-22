@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> alarms.o -> ezb_zcl_alarms_cluster_server_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,11 +43,11 @@ void ezb_zcl_alarms_cluster_server_init(uint8_t ep_id)
     }
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x285,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x285,
                   "ezb_zcl_alarms_cluster_server_init","alarm_table_init(ep_id) == 0");
   }
   pcVar1 = ezb_zcl_alarms_cluster_client_init;
-  __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x287,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x287,
                 "ezb_zcl_alarms_cluster_server_init",
                 "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
   uStack_54 = 0x20009;
@@ -60,7 +60,7 @@ void ezb_zcl_alarms_cluster_server_init(uint8_t ep_id)
   if (iVar3 == 0) {
     return;
   }
-  __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x296,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/alarms.c",0x296,
                 "ezb_zcl_alarms_cluster_client_init",
                 "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
   return;

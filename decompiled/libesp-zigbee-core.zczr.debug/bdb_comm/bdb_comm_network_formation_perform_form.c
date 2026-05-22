@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_network_formation_perform_form
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,20 +18,20 @@ void bdb_comm_network_formation_perform_form(void)
   int iVar1;
   
   iVar1 = core_globals_get();
-  if (((*(byte *)(iVar1 + 0xdb2) & 1) == 0) ||
-     (iVar1 = core_globals_get(), *(int *)(iVar1 + 0xda8) == 0)) {
+  if (((*(byte *)(iVar1 + 0xd5e) & 1) == 0) ||
+     (iVar1 = core_globals_get(), *(int *)(iVar1 + 0xd54) == 0)) {
     iVar1 = core_globals_get();
-    if (*(int *)(iVar1 + 0xdac) == 0) {
+    if (*(int *)(iVar1 + 0xd58) == 0) {
       iVar1 = core_globals_get();
-      *(undefined1 *)(iVar1 + 0xda0) = 5;
+      *(undefined1 *)(iVar1 + 0xd4c) = 5;
       bdb_comm_finish_network_formation();
       return;
     }
     iVar1 = core_globals_get();
-    *(byte *)(iVar1 + 0xdb2) = *(byte *)(iVar1 + 0xdb2) & 0xfe;
+    *(byte *)(iVar1 + 0xd5e) = *(byte *)(iVar1 + 0xd5e) & 0xfe;
   }
   iVar1 = core_globals_get();
-  *(undefined1 *)(iVar1 + 0xda0) = 1;
+  *(undefined1 *)(iVar1 + 0xd4c) = 1;
   zdo_initiate_formation();
   return;
 }

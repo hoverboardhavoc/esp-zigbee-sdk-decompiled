@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_secur.o -> nwk_secur_set_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,12 +19,19 @@ void nwk_secur_set_key(uint8_t *key,uint8_t key_seq)
   int iVar2;
   undefined3 extraout_var;
   uint uVar3;
+  byte abStack_21 [4];
+  bitmap_t valid_slots;
   
   iVar2 = core_globals_get();
   uVar1 = nwk_secur_find_slot_by_seq((nwk_secur_context_t *)(iVar2 + 0x9fc),key_seq);
   uVar3 = CONCAT31(extraout_var,uVar1);
   if (1 < uVar3) {
-    uVar3 = *(byte *)(iVar2 + 0xa23) & 1 ^ 1;
+    abStack_21[0] = (byte)((uint)*(undefined4 *)(iVar2 + 0xa20) >> 0x1d) & 3;
+    uVar3 = bitmap_find_first_zero_bit(abStack_21,2);
+    uVar3 = uVar3 & 0xff;
+    if (1 < uVar3) {
+      uVar3 = *(byte *)(iVar2 + 0xa23) & 1 ^ 1;
+    }
   }
   *(byte *)(iVar2 + 0xa23) =
        (byte)((*(uint *)(iVar2 + 0xa20) >> 0x1d & 3 | 1 << (uVar3 & 0x1f) & 3U) << 5) |

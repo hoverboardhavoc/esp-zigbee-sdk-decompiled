@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> on_off.o -> on_off_timer_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,10 +22,10 @@ void on_off_timer_handler(void *arg)
   zcl_attr_desc_t *unaff_s3;
   
   if (arg == (void *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x25f,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x25f,
                   "on_off_timer_handler","arg != ((void *)0)");
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x266,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0x266,
                   "on_off_timer_handler","on_off_attr_desc");
   }
   else {

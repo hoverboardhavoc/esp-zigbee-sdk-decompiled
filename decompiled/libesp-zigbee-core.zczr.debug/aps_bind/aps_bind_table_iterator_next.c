@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> aps_bind_table_iterator_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -67,7 +67,7 @@ void aps_bind_table_iterator_next(aps_bind_table_iterator_t *itor)
         itor->src = paVar4;
         uVar6 = bitmap_find_first_bit(paVar4 + 1,*(undefined2 *)(iVar2 + 0x97c));
         if (*(ushort *)(iVar2 + 0x97c) <= uVar6) {
-          uVar5 = __assert_func("//build/esp-zigbee/src/core/aps/aps_bind.c",0x195,
+          uVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x195,
                                 "aps_bind_table_iterator_next","dst_idx < dst_tbl->ent_nr");
           itor_00->is_done = false;
           itor_00->field_0x1 = 0;

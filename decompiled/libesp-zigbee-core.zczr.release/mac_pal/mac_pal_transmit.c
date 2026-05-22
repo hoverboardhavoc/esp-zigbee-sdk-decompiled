@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> mac_pal.o -> mac_pal_transmit
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,8 +18,7 @@ ezb_err_t mac_pal_transmit(void)
   if ((s_mac_pal_ctx.state != '\0') && (s_mac_pal_ctx.state != '\x05')) {
     s_mac_pal_ctx.csma_nb = '\0';
     s_mac_pal_ctx.tx_retries = '\0';
-    set_state(MAC_PAL_STATE_CSMA_BACKOFF);
-    start_transmit();
+    start_csma();
     return 0;
   }
   return 3;

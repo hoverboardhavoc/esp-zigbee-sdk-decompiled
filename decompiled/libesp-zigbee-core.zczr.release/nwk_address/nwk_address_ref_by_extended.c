@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_ref_by_extended
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,8 +10,8 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010ade) */
-/* WARNING: Removing unreachable block (ram,0x00010b0e) */
+/* WARNING: Removing unreachable block (ram,0x00010a0c) */
+/* WARNING: Removing unreachable block (ram,0x00010a3c) */
 /* WARNING: Unknown calling convention */
 
 ezb_err_t nwk_address_ref_by_extended(ezb_extaddr_t *extaddr,nwk_addr_ref_t *ref_p)
@@ -28,9 +28,9 @@ ezb_err_t nwk_address_ref_by_extended(ezb_extaddr_t *extaddr,nwk_addr_ref_t *ref
   }
   else if ((*(int *)((int)&extaddr->field_0 + 4) + 1U != (uint)(*(int *)&extaddr->field_0 == 0)) ||
           (eVar2 = 2, *(int *)&extaddr->field_0 - 1U < 0xfffffffe)) {
-    ref = search_extended((nwk_addr_table_t *)(iVar1 + 0xcb0),extaddr);
-    if (CONCAT22(extraout_var,ref) < (uint)*(ushort *)(iVar1 + 0xcb8)) {
-      addr_table_lru_update((nwk_addr_table_t *)(iVar1 + 0xcb0),ref);
+    ref = search_extended((nwk_addr_table_t *)(iVar1 + 0xc4c),extaddr);
+    if (CONCAT22(extraout_var,ref) < (uint)*(ushort *)(iVar1 + 0xc54)) {
+      addr_table_lru_update((nwk_addr_table_t *)(iVar1 + 0xc4c),ref);
       *ref_p = ref;
       eVar2 = 0;
     }

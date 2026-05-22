@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_multimac_proxy.o -> nwk_mm_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,10 +10,9 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Control flow encountered bad instruction data */
 /* WARNING: Unknown calling convention */
 
-void nwk_mm_data_request(uint8_t iface_id,mac_data_req_t *req)
+ezb_err_t nwk_mm_data_request(uint8_t iface_id,mac_data_req_t *req)
 
 {
   undefined3 in_register_00002029;
@@ -22,22 +21,25 @@ void nwk_mm_data_request(uint8_t iface_id,mac_data_req_t *req)
   code *pcVar3;
   
   iVar1 = CONCAT31(in_register_00002029,iface_id);
-  iVar2 = nwk_mm_is_iface_enabled();
-  if (iVar2 != 0) {
-    iVar2 = core_globals_get();
-    pcVar3 = *(code **)(*(int *)(*(int *)(iVar2 + iVar1 * 0xc + 0xce8) + 4) + 0x10);
-    iVar2 = core_globals_get();
-    iVar2 = (*pcVar3)(*(undefined4 *)(iVar2 + iVar1 * 0xc + 0xce8),req);
-    if (iVar2 == 0) {
-      return;
-    }
-    log_write(1,"nwk_multimac_proxy.c","%s on iface %d failed: %d","mcps_data_request",iVar1,iVar2);
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_multimac_proxy.c",0x9c,"nwk_mm_data_request",
-                  &_LC6);
+  if (iVar1 == 0xff) {
+    iVar2 = 2;
   }
-  __assert_func("//build/esp-zigbee/src/core/nwk/nwk_multimac_proxy.c",0x9c,"nwk_mm_data_request",
-                &_LC6);
-                    /* WARNING: Bad instruction - Truncating control flow here */
-  halt_baddata();
+  else {
+    iVar2 = nwk_mm_iface_is_enabled();
+    if (iVar2 == 0) {
+      iVar2 = 3;
+    }
+    else {
+      iVar2 = core_globals_get();
+      pcVar3 = *(code **)(*(int *)(*(int *)(iVar2 + iVar1 * 0xc + 0xc84) + 4) + 0x14);
+      iVar2 = core_globals_get();
+      iVar2 = (*pcVar3)(*(undefined4 *)(iVar2 + iVar1 * 0xc + 0xc84),req);
+      if (iVar2 == 0) {
+        return 0;
+      }
+    }
+  }
+  log_write(1,"nwk_multimac_proxy.c","%s on iface %d failed: %d","mcps_data_request",iVar1,iVar2);
+  return iVar2;
 }
 

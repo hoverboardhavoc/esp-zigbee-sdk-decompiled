@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_dump
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,31 +16,19 @@ void nwk_address_dump(void)
 
 {
   int iVar1;
-  int iVar2;
-  uint uVar3;
-  undefined1 *puVar4;
+  uint uVar2;
+  undefined4 *puVar3;
   
   iVar1 = core_globals_get();
-  iVar2 = core_globals_get();
-  log_write(3,"nwk_address.c",0x11110);
-  uVar3 = 0;
-  while( true ) {
-    uVar3 = bitmap_find_next_bit(iVar2 + 0xcaa,0x20,uVar3);
-    uVar3 = uVar3 & 0xff;
-    if (0x1f < uVar3) break;
-    puVar4 = (undefined1 *)(uVar3 * 3 + iVar2 + 0xc4a);
-    log_write(3,"nwk_address.c","  - [%d] %02x:%02x:%02x",uVar3,*puVar4,puVar4[1],puVar4[2]);
-    uVar3 = uVar3 + 1 & 0xff;
-  }
-  log_write(3,"nwk_address.c","Dump NWK Address Table");
-  uVar3 = 0;
-  while (uVar3 = bitmap_find_next_bit
-                           (*(undefined4 *)(iVar1 + 0xcb0),*(undefined2 *)(iVar1 + 0xcb8),uVar3),
-        uVar3 < *(ushort *)(iVar1 + 0xcb8)) {
-    puVar4 = (undefined1 *)(*(int *)(iVar1 + 0xcb4) + uVar3 * 0x10);
-    log_write(3,"nwk_address.c","  - [%d] 0x%04hx <-> (%d)%02x:%02x:%02x:%02x:%02x",uVar3,
-              *(undefined2 *)(puVar4 + 6),puVar4[5],*puVar4,puVar4[1]);
-    uVar3 = uVar3 + 1 & 0xffff;
+  log_write(3,"nwk_address.c",0x110cc);
+  uVar2 = 0;
+  while (uVar2 = bitmap_find_next_bit
+                           (*(undefined4 *)(iVar1 + 0xc4c),*(undefined2 *)(iVar1 + 0xc54),uVar2),
+        uVar2 < *(ushort *)(iVar1 + 0xc54)) {
+    puVar3 = (undefined4 *)(*(int *)(iVar1 + 0xc50) + uVar2 * 0x12);
+    log_write(3,"nwk_address.c","  - [%d] 0x%04hx <-> 0x%016llx",uVar2,*(undefined2 *)(puVar3 + 2),
+              *puVar3,puVar3[1]);
+    uVar2 = uVar2 + 1 & 0xffff;
   }
   return;
 }

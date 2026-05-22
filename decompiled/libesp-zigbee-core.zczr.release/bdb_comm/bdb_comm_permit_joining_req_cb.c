@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> bdb_comm.o -> bdb_comm_permit_joining_req_cb
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,41 +45,41 @@ void bdb_comm_permit_joining_req_cb
               (int)uVar9 >> 8 & 0xff,uVar9 & 0xff);
   }
   iVar8 = core_globals_get();
-  *(undefined1 *)(iVar8 + 0xda0) = 0;
+  *(undefined1 *)(iVar8 + 0xd4c) = 0;
   do {
     bdb_comm_finish_step();
     iVar8 = core_globals_get();
-    bdb_comm_put_app_signal(0x102,*(bdb_comm_status_t *)(iVar8 + 0xda0));
+    bdb_comm_put_app_signal(0x102,*(bdb_comm_status_t *)(iVar8 + 0xd4c));
 _L0:
     uVar9 = 6;
-    while (iVar8 = core_globals_get(), *(char *)(iVar8 + 0xda3) != '\0') {
+    while (iVar8 = core_globals_get(), *(char *)(iVar8 + 0xd4f) != '\0') {
       iVar8 = core_globals_get();
-      uVar4 = __ctzsi2(*(undefined1 *)(iVar8 + 0xda3));
+      uVar4 = __ctzsi2(*(undefined1 *)(iVar8 + 0xd4f));
       uVar9 = uVar4 & 0xff;
       if (uVar4 == 6) {
         return;
       }
       iVar8 = core_globals_get();
-      if (((int)(uint)*(byte *)(iVar8 + 0xda3) >> (uVar4 & 0x1f) & 1U) == 0) goto _L0;
+      if (((int)(uint)*(byte *)(iVar8 + 0xd4f) >> (uVar4 & 0x1f) & 1U) == 0) goto _L0;
       if (uVar4 == 3) {
         iVar8 = core_globals_get();
-        bVar10 = *(byte *)(iVar8 + 0xda1) >> 1;
-_L147:
+        bVar10 = *(byte *)(iVar8 + 0xd4d) >> 1;
+_L157:
         if ((bVar10 & 1) != 0) goto _L0;
       }
       else if ((int)uVar4 < 4) {
         if (uVar4 == 1) {
 _L0:
           iVar8 = core_globals_get();
-          bVar10 = *(byte *)(iVar8 + 0xda1) >> 3;
-          goto _L147;
+          bVar10 = *(byte *)(iVar8 + 0xd4d) >> 3;
+          goto _L157;
         }
         if (uVar4 != 2) {
           uVar9 = 0;
           break;
         }
         iVar8 = core_globals_get();
-        if ((*(byte *)(iVar8 + 0xda1) & 1) != 0) {
+        if ((*(byte *)(iVar8 + 0xd4d) & 1) != 0) {
           uVar9 = 2;
           goto _L0;
         }
@@ -87,23 +87,23 @@ _L0:
       else {
         if (uVar4 == 4) {
           iVar8 = core_globals_get();
-          bVar10 = *(byte *)(iVar8 + 0xda1) >> 2;
-          goto _L147;
+          bVar10 = *(byte *)(iVar8 + 0xd4d) >> 2;
+          goto _L157;
         }
         if (uVar4 == 5) goto _L0;
       }
 _L0:
       iVar8 = core_globals_get();
-      *(byte *)(iVar8 + 0xda3) = ~(byte)(1 << (uVar4 & 0x1f)) & *(byte *)(iVar8 + 0xda3);
+      *(byte *)(iVar8 + 0xd4f) = ~(byte)(1 << (uVar4 & 0x1f)) & *(byte *)(iVar8 + 0xd4f);
     }
     if (uVar9 == 6) {
       return;
     }
 _L0:
     iVar8 = core_globals_get();
-    *(byte *)(iVar8 + 0xda3) = ~(byte)(1 << (uVar9 & 0x1f)) & *(byte *)(iVar8 + 0xda3);
+    *(byte *)(iVar8 + 0xd4f) = ~(byte)(1 << (uVar9 & 0x1f)) & *(byte *)(iVar8 + 0xd4f);
     iVar8 = core_globals_get();
-    *(char *)(iVar8 + 0xda2) = (char)uVar9;
+    *(char *)(iVar8 + 0xd4e) = (char)uVar9;
     if (uVar9 == 3) {
       iVar8 = zdo_dev_joined();
       cVar2 = '\f';
@@ -113,57 +113,55 @@ _L0:
         if (iVar8 != 0) {
           iVar8 = core_globals_get();
           cVar2 = '\x01';
-          *(byte *)(iVar8 + 0xdb2) = *(byte *)(iVar8 + 0xdb2) | 1;
+          *(byte *)(iVar8 + 0xd5e) = *(byte *)(iVar8 + 0xd5e) | 1;
         }
       }
       iVar8 = core_globals_get();
-      *(char *)(iVar8 + 0xda0) = cVar2;
-      if (cVar2 == '\x01') {
+      *(char *)(iVar8 + 0xd4c) = cVar2;
+      if (cVar2 != '\x01') {
+        bdb_comm_finish_network_formation();
+        return;
+      }
+      iVar8 = core_globals_get();
+      if (((*(byte *)(iVar8 + 0xd5e) & 1) == 0) ||
+         (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xd54) == 0)) {
         iVar8 = core_globals_get();
-        if (((*(byte *)(iVar8 + 0xdb2) & 1) != 0) &&
-           (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xda8) != 0)) {
-_L0:
+        if (*(int *)(iVar8 + 0xd58) == 0) {
           iVar8 = core_globals_get();
-          *(undefined1 *)(iVar8 + 0xda0) = 1;
-          zdo_initiate_formation();
+          *(undefined1 *)(iVar8 + 0xd4c) = 5;
+          bdb_comm_finish_network_formation();
           return;
         }
         iVar8 = core_globals_get();
-        if (*(int *)(iVar8 + 0xdac) != 0) {
-          iVar8 = core_globals_get();
-          *(byte *)(iVar8 + 0xdb2) = *(byte *)(iVar8 + 0xdb2) & 0xfe;
-          goto _L0;
-        }
-        iVar8 = core_globals_get();
-        *(undefined1 *)(iVar8 + 0xda0) = 5;
+        *(byte *)(iVar8 + 0xd5e) = *(byte *)(iVar8 + 0xd5e) & 0xfe;
       }
-      bdb_comm_finish_step();
       iVar8 = core_globals_get();
-      bdb_comm_put_app_signal(0x103,*(bdb_comm_status_t *)(iVar8 + 0xda0));
-      goto _L0;
+      *(undefined1 *)(iVar8 + 0xd4c) = 1;
+      zdo_initiate_formation();
+      return;
     }
     if (3 < uVar9) {
       if (uVar9 != 4) {
-        if (uVar9 == 5) {
-          bdb_comm_touchlink_target();
-          return;
+        if (uVar9 != 5) {
+          iVar8 = core_globals_get();
+          log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar8 + 0xd4e));
+          goto _L0;
         }
-        iVar8 = core_globals_get();
-        log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar8 + 0xda2));
-        goto _L0;
+        bdb_comm_touchlink_target();
+        return;
       }
       iVar8 = zdo_dev_joined();
       if (iVar8 == 0) {
         iVar8 = core_globals_get();
-        *(undefined1 *)(iVar8 + 0xda0) = 3;
+        *(undefined1 *)(iVar8 + 0xd4c) = 3;
       }
       else {
         iVar8 = core_globals_get();
-        *(undefined1 *)(iVar8 + 0xda0) = 9;
+        *(undefined1 *)(iVar8 + 0xd4c) = 9;
       }
       bdb_comm_finish_step();
       iVar8 = core_globals_get();
-      bdb_comm_put_app_signal(0x104,*(bdb_comm_status_t *)(iVar8 + 0xda0));
+      bdb_comm_put_app_signal(0x104,*(bdb_comm_status_t *)(iVar8 + 0xd4c));
       goto _L0;
     }
     if (uVar9 == 1) {
@@ -176,7 +174,7 @@ _L0:
         _Var3 = bdb_comm_is_factory_new();
         if (CONCAT31(extraout_var_00,_Var3) == 0) {
           iVar8 = core_globals_get();
-          *(undefined1 *)(iVar8 + 0xda0) = 3;
+          *(undefined1 *)(iVar8 + 0xd4c) = 3;
           uVar9 = nwk_get_pan_channel();
           if (((uVar9 < 0x8000000) && (uVar9 = nwk_get_pan_channel(), 0x7ff < (uVar9 & 0x7ffffff)))
              && (iVar8 = nwk_get_panid(), iVar8 != 0xffff)) {
@@ -188,7 +186,11 @@ _L0:
                 if (iVar8 != 0) goto _L0;
                 iVar8 = nwk_is_device_zc();
                 if (iVar8 != 0) {
-                  while (iVar8 = nwk_is_authed(), iVar8 != 0) {
+                  do {
+                    iVar8 = nwk_is_authed();
+                    if ((iVar8 == 0) ||
+                       (piVar5 = (int *)aps_secur_get_tc_address(), *piVar5 == 0 && piVar5[1] == 0))
+                    break;
                     nwk_get_panid();
                     nwk_set_panid();
                     nwk_get_short_address();
@@ -202,14 +204,14 @@ _L0:
                     iVar8 = nwk_is_device_zc();
                     if ((iVar8 == 0) &&
                        ((iVar8 = nwk_is_device_zr(), iVar8 == 0 ||
-                        (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xdb0) << 0xc < 0)))) {
+                        (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xd5c) << 0xc < 0)))) {
                       iVar8 = core_globals_get();
-                      *(undefined1 *)(iVar8 + 0xda0) = 1;
+                      *(undefined1 *)(iVar8 + 0xd4c) = 1;
                       zdo_initiate_rejoin();
                       break;
                     }
                     iVar8 = core_globals_get();
-                    *(undefined1 *)(iVar8 + 0xda0) = 0;
+                    *(undefined1 *)(iVar8 + 0xd4c) = 0;
                     iVar8 = core_globals_get();
                     *(byte *)(iVar8 + 0xb18) = *(byte *)(iVar8 + 0xb18) | 1;
                     uVar6 = nwk_get_extended_address();
@@ -227,7 +229,7 @@ _L0:
                           iVar8 = core_globals_get();
                           *(ushort *)(iVar8 + 0x9bc) = *(ushort *)(iVar8 + 0x9bc) & 0xffe7 | 8;
                           iVar8 = core_globals_get();
-                          uVar1 = *(ushort *)(iVar8 + 0xdb2);
+                          uVar1 = *(ushort *)(iVar8 + 0xd5e);
                           iVar8 = core_globals_get();
                           *(ushort *)(iVar8 + 0x9bc) =
                                *(ushort *)(iVar8 + 0x9bc) & 0xfff9 |
@@ -240,26 +242,25 @@ _L0:
                     __assert_func(0,0,0,0);
 _L0:
                     uVar9 = nwk_get_short_address();
-                    if (0xfff7 < uVar9) break;
-                  }
+                  } while (uVar9 < 0xfff8);
                 }
               }
             }
           }
           iVar8 = core_globals_get();
-          if (*(char *)(iVar8 + 0xda0) == '\x01') {
+          if (*(char *)(iVar8 + 0xd4c) == '\x01') {
             return;
           }
         }
         else {
           iVar8 = core_globals_get();
-          *(undefined1 *)(iVar8 + 0xda0) = 0;
+          *(undefined1 *)(iVar8 + 0xd4c) = 0;
         }
         bdb_comm_finish_step();
         _Var3 = bdb_comm_is_factory_new();
         iVar8 = core_globals_get();
         bdb_comm_put_app_signal
-                  (0x101 - (short)CONCAT31(extraout_var,_Var3),*(bdb_comm_status_t *)(iVar8 + 0xda0)
+                  (0x101 - (short)CONCAT31(extraout_var,_Var3),*(bdb_comm_status_t *)(iVar8 + 0xd4c)
                   );
       }
       else {
@@ -268,7 +269,7 @@ _L0:
       goto _L0;
     }
     iVar8 = core_globals_get();
-    *(undefined1 *)(iVar8 + 0xda0) = 1;
+    *(undefined1 *)(iVar8 + 0xd4c) = 1;
     iVar8 = zdo_dev_joined();
     if (iVar8 != 0) {
       uStack_1c = 0x1b4fffc;
@@ -283,22 +284,22 @@ _L0:
       return;
     }
     iVar8 = core_globals_get();
-    *(byte *)(iVar8 + 0xdb2) = *(byte *)(iVar8 + 0xdb2) | 1;
+    *(byte *)(iVar8 + 0xd5e) = *(byte *)(iVar8 + 0xd5e) | 1;
     iVar8 = core_globals_get();
-    if (((*(byte *)(iVar8 + 0xdb2) & 1) != 0) &&
-       (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xda8) != 0)) goto _L0;
+    if (((*(byte *)(iVar8 + 0xd5e) & 1) != 0) &&
+       (iVar8 = core_globals_get(), *(int *)(iVar8 + 0xd54) != 0)) goto _L0;
     iVar8 = core_globals_get();
-    if (*(int *)(iVar8 + 0xdac) != 0) {
+    if (*(int *)(iVar8 + 0xd58) != 0) {
       iVar8 = core_globals_get();
-      *(byte *)(iVar8 + 0xdb2) = *(byte *)(iVar8 + 0xdb2) & 0xfe;
+      *(byte *)(iVar8 + 0xd5e) = *(byte *)(iVar8 + 0xd5e) & 0xfe;
 _L0:
       iVar8 = core_globals_get();
-      *(undefined1 *)(iVar8 + 0xda0) = 1;
+      *(undefined1 *)(iVar8 + 0xd4c) = 1;
       zdo_initiate_join();
       return;
     }
     iVar8 = core_globals_get();
-    *(undefined1 *)(iVar8 + 0xda0) = 3;
+    *(undefined1 *)(iVar8 + 0xd4c) = 3;
   } while( true );
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ezb_zcl_ota_upgrade_query_next_image_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,8 +49,8 @@ ezb_err_t ezb_zcl_ota_upgrade_query_next_image_cmd_req
     if (iVar2 == 0) {
       eVar1 = zcl_cmd_to_packet(auStack_3c + 1,0,0,(cmd_req->cmd_ctrl).dis_default_rsp,0,1,0x19);
       if (eVar1 == 0) {
-        auStack_3c[0] = CONCAT22(auStack_3c[0]._2_2_,(ushort)(cmd_req->payload).fc);
-        eVar1 = zmsg_append_bytes(packet._32_4_,2,auStack_3c);
+        auStack_3c[0] = CONCAT31(auStack_3c[0]._1_3_,(cmd_req->payload).fc);
+        eVar1 = zmsg_append_bytes(packet._32_4_,1,auStack_3c);
         if (eVar1 == 0) {
           auStack_3c[0] = CONCAT22(auStack_3c[0]._2_2_,(cmd_req->payload).manuf_code);
           eVar1 = zmsg_append_bytes(packet._32_4_,2,auStack_3c);

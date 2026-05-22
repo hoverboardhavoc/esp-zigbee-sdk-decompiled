@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_device_service_discovery_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,6 +27,7 @@ zdp_status_t zdo_device_service_discovery_req_handler(void *arg)
   undefined3 extraout_var_05;
   undefined3 extraout_var_06;
   undefined3 extraout_var_07;
+  undefined3 extraout_var_08;
   undefined1 auStack_28 [4];
   zdo_packet_t resp;
   
@@ -49,9 +50,9 @@ zdp_status_t zdo_device_service_discovery_req_handler(void *arg)
   iVar3 = zdo_packet_response_init(auStack_28,arg,*(ushort *)((int)arg + 6) | 0x8000);
   if (iVar3 != 0) goto _L0;
   uVar1 = *(ushort *)((int)arg + 6);
-  if (uVar1 == 4) {
-    zVar2 = zdo_simple_desc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-    iVar3 = CONCAT31(extraout_var_04,zVar2);
+  if (uVar1 == 5) {
+    zVar2 = zdo_active_ep_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+    iVar3 = CONCAT31(extraout_var_05,zVar2);
 _L0:
     if (iVar3 == 0) {
       iVar3 = zdo_packet_send(auStack_28);
@@ -59,10 +60,10 @@ _L0:
     }
   }
   else {
-    if (uVar1 < 5) {
+    if (uVar1 < 6) {
       if (uVar1 == 2) {
         zVar2 = zdo_node_desc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-        iVar3 = CONCAT31(extraout_var_06,zVar2);
+        iVar3 = CONCAT31(extraout_var_07,zVar2);
       }
       else if (uVar1 < 3) {
         if (uVar1 == 0) {
@@ -75,36 +76,40 @@ _L0:
             goto _L0;
           }
           zVar2 = zdo_ieee_addr_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-          iVar3 = CONCAT31(extraout_var_00,zVar2);
+          iVar3 = CONCAT31(extraout_var,zVar2);
         }
       }
-      else {
-        if (uVar1 != 3) {
-          iVar3 = 0x84;
-          goto _L0;
-        }
+      else if (uVar1 == 3) {
         zVar2 = zdo_power_desc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-        iVar3 = CONCAT31(extraout_var_01,zVar2);
-      }
-      goto _L0;
-    }
-    if (uVar1 == 0x13) {
-      zVar2 = zdo_device_annce_handler((zdo_packet_t *)arg);
-      iVar3 = CONCAT31(extraout_var_07,zVar2);
-      goto _L0;
-    }
-    if (uVar1 < 0x14) {
-      if (uVar1 == 5) {
-        zVar2 = zdo_active_ep_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-        iVar3 = CONCAT31(extraout_var_05,zVar2);
+        iVar3 = CONCAT31(extraout_var_06,zVar2);
       }
       else {
-        if (uVar1 != 6) {
+        if (uVar1 != 4) {
           iVar3 = 0x84;
           goto _L0;
         }
+        zVar2 = zdo_simple_desc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+        iVar3 = CONCAT31(extraout_var_00,zVar2);
+      }
+      goto _L0;
+    }
+    if (uVar1 == 0x15) {
+      zVar2 = zdo_sys_srv_disc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+      iVar3 = CONCAT31(extraout_var_08,zVar2);
+      goto _L0;
+    }
+    if (uVar1 < 0x16) {
+      if (uVar1 == 6) {
         zVar2 = zdo_match_desc_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-        iVar3 = CONCAT31(extraout_var,zVar2);
+        iVar3 = CONCAT31(extraout_var_04,zVar2);
+      }
+      else {
+        if (uVar1 != 0x13) {
+          iVar3 = 0x84;
+          goto _L0;
+        }
+        zVar2 = zdo_device_annce_handler((zdo_packet_t *)arg);
+        iVar3 = CONCAT31(extraout_var_01,zVar2);
       }
       goto _L0;
     }

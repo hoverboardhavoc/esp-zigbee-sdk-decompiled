@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> mempool_free_idx
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,35 +17,33 @@ void mempool_free_idx(bitmap_t *blk_busy,uint16_t blk_nr,uint16_t blk_idx)
 {
   _Bool _Var1;
   undefined3 extraout_var;
-  int iVar2;
-  int iVar3;
+  nwk_addr_table_t *tbl;
+  undefined3 extraout_var_00;
   undefined2 in_register_0000202e;
+  uint n;
   undefined2 in_register_00002032;
-  uint uVar4;
-  int iVar5;
+  nwk_addr_table_ent_t *pnVar2;
   
   if ((CONCAT22(in_register_00002032,blk_idx) < CONCAT22(in_register_0000202e,blk_nr)) &&
      (_Var1 = test_and_clr_bitmap(CONCAT22(in_register_00002032,blk_idx),blk_busy),
      CONCAT31(extraout_var,_Var1) != 0)) {
     return;
   }
-  __assert_func("//build/esp-zigbee/src/core/common/mempool.h",0x56,"mempool_free_idx",
-                "(blk_idx < blk_nr) && test_and_clr_bitmap(blk_idx, blk_busy)");
-  iVar2 = core_globals_get();
-  iVar3 = core_globals_get();
-  *(undefined1 *)(iVar2 + 0xcaa) = 0;
-  *(undefined1 *)(iVar2 + 0xcab) = 0;
-  *(undefined1 *)(iVar2 + 0xcac) = 0;
-  *(undefined1 *)(iVar2 + 0xcad) = 0;
-  uVar4 = 0;
-  while (uVar4 = bitmap_find_next_bit
-                           (*(undefined4 *)(iVar3 + 0xcb0),*(undefined2 *)(iVar3 + 0xcb8),uVar4),
-        uVar4 < *(ushort *)(iVar3 + 0xcb8)) {
-    iVar5 = *(int *)(iVar3 + 0xcb4) + uVar4 * 0x10;
-    if ((*(ushort *)(iVar5 + 0xe) >> 10 & 1) == 0) {
-      test_and_set_bitmap((uint)*(byte *)(iVar5 + 5),(bitmap_t *)(iVar2 + 0xcaa));
+  tbl = (nwk_addr_table_t *)
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.h",0x56,
+                      "mempool_free_idx",
+                      "(blk_idx < blk_nr) && test_and_clr_bitmap(blk_idx, blk_busy)");
+  _Var1 = check_table_ref((uint16_t)n,tbl->ent_in_use,tbl->ent_nr);
+  if (CONCAT31(extraout_var_00,_Var1) != 0) {
+    pnVar2 = tbl->ents;
+    if (pnVar2[n].ref_cnt == '\0') {
+      test_and_clr_bitmap(n,tbl->ent_in_use);
+      addr_table_lru_remove(tbl,(uint16_t)n);
+      memset(tbl->ents + n,0,0x12);
     }
-    uVar4 = uVar4 + 1 & 0xffff;
+    else {
+      pnVar2[n].field_0x11 = pnVar2[n].field_0x11 | 8;
+    }
   }
   return;
 }

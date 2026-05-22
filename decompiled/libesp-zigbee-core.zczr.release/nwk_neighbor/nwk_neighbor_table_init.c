@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -83,7 +83,7 @@ _L0:
                 uVar7 < uVar1) {
             pnVar6 = (nwk_neighbor_t *)(*(int *)(iVar3 + 0xb20) + uVar7 * 0x20);
             if (((*(uint *)&pnVar6->field_0xc & 3) < 2) &&
-               ((*(uint *)&pnVar6->field_0xc & 0x1c0003c0) == 0x80)) goto _L111;
+               ((*(uint *)&pnVar6->field_0xc & 0x1c0003c0) == 0x80)) goto _L113;
             uVar7 = uVar7 + 1 & 0xffff;
           }
           uVar5 = 0xffff;
@@ -111,7 +111,7 @@ _L0:
           if (pnVar6 == (nwk_neighbor_t *)0x0) {
             return;
           }
-_L111:
+_L113:
           if ((*(uint *)&pnVar6->field_0xc & 0x3c0) != 0x240) {
             if (pnVar6->addr_ref != 0xffff) {
               nwk_address_unlock_ref();

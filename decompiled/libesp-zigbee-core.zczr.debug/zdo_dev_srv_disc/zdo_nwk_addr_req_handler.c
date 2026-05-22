@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_nwk_addr_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x0001154c) */
-/* WARNING: Removing unreachable block (ram,0x00011552) */
-/* WARNING: Removing unreachable block (ram,0x0001177a) */
-/* WARNING: Removing unreachable block (ram,0x0001155e) */
-/* WARNING: Removing unreachable block (ram,0x0001165a) */
-/* WARNING: Removing unreachable block (ram,0x0001167a) */
-/* WARNING: Removing unreachable block (ram,0x0001171e) */
-/* WARNING: Removing unreachable block (ram,0x0001170e) */
-/* WARNING: Removing unreachable block (ram,0x00011734) */
-/* WARNING: Removing unreachable block (ram,0x00011742) */
-/* WARNING: Removing unreachable block (ram,0x0001174a) */
-/* WARNING: Removing unreachable block (ram,0x00011752) */
-/* WARNING: Removing unreachable block (ram,0x0001175c) */
-/* WARNING: Removing unreachable block (ram,0x0001172e) */
-/* WARNING: Removing unreachable block (ram,0x00011664) */
+/* WARNING: Removing unreachable block (ram,0x0001175e) */
+/* WARNING: Removing unreachable block (ram,0x00011764) */
+/* WARNING: Removing unreachable block (ram,0x0001198c) */
+/* WARNING: Removing unreachable block (ram,0x00011770) */
+/* WARNING: Removing unreachable block (ram,0x0001186c) */
+/* WARNING: Removing unreachable block (ram,0x0001188c) */
+/* WARNING: Removing unreachable block (ram,0x00011930) */
+/* WARNING: Removing unreachable block (ram,0x00011920) */
+/* WARNING: Removing unreachable block (ram,0x00011946) */
+/* WARNING: Removing unreachable block (ram,0x00011954) */
+/* WARNING: Removing unreachable block (ram,0x0001195c) */
+/* WARNING: Removing unreachable block (ram,0x00011964) */
+/* WARNING: Removing unreachable block (ram,0x0001196e) */
+/* WARNING: Removing unreachable block (ram,0x00011940) */
+/* WARNING: Removing unreachable block (ram,0x00011876) */
 /* WARNING: Unknown calling convention */
 
 zdp_status_t zdo_nwk_addr_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)

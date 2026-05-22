@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_delete_nbr
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,15 +27,15 @@ void nbt_delete_nbr(nwk_neighbor_table_t *tbl,nwk_neighbor_t *nbr)
     if (nbr->addr_ref != 0xffff) goto _L0;
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x101,"nbt_delete_nbr",
-                  "idx < tbl->ent_nr");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x101,
+                  "nbt_delete_nbr","idx < tbl->ent_nr");
 _L0:
     nwk_address_unlock_ref();
   }
   _Var3 = test_and_clr_bitmap(uVar1 & 0xffff,tbl->ent_in_use);
   if (CONCAT31(extraout_var,_Var3) == 0) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x105,"nbt_delete_nbr",
-                  "test_and_clr_bitmap(idx, tbl->ent_in_use)");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x105,
+                  "nbt_delete_nbr","test_and_clr_bitmap(idx, tbl->ent_in_use)");
   }
   else {
     pnVar2 = tbl->ents;
@@ -47,13 +47,13 @@ _L0:
       return;
     }
   }
-  __assert_func("//build/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x107,"nbt_delete_nbr",
-                "nwk_device_type_is_zed(nbr->device_type)");
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x107,
+                "nbt_delete_nbr","nwk_device_type_is_zed(nbr->device_type)");
 _L0:
   uVar1 = *(uint *)&nbr->field_0xc & 3;
   if ((uVar1 != 0) && (uVar1 != 1)) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x10b,"nbt_delete_nbr",
-                  "nwk_device_type_is_zczr(nbr->device_type)");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x10b,
+                  "nbt_delete_nbr","nwk_device_type_is_zczr(nbr->device_type)");
   }
   nbt_dec_router_cnt(tbl);
   return;

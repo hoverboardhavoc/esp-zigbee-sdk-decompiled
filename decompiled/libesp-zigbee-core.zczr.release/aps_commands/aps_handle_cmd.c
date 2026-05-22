@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> aps_handle_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -286,9 +286,8 @@ _L0:
              ((iVar8 = aps_secur_is_addr_tc((undefined1 *)((int)&pl.field_1 + 0x1f)), iVar8 != 0 &&
               (iVar8 = aps_secur_get_key_pair_by_addr((undefined1 *)((int)&pl.field_1 + 0x1f)),
               iVar8 != 0)))) {
-            if (ind.src_address.field_0.u8[5] == '\0') {
-              *(undefined4 *)(iVar8 + 0xc) = 0;
-              *(ushort *)(iVar8 + 0x34) = *(ushort *)(iVar8 + 0x34) & 0xfff9 | 4;
+            if ((ind.src_address.field_0.u8[5] == '\0') && ((*(ushort *)(iVar8 + 0x34) & 6) == 2)) {
+              aps_secur_key_pair_set_verified();
             }
             apsme_confirm_key_indication
                       ((apsme_confirm_key_ind_t *)((int)&pl.field_1.nwk.src_addr.field_0 + 6));
@@ -370,9 +369,7 @@ _L0:
           iVar8 = zmsg_compare_bytes(msg,uVar2 + iVar8 & 0xffff,&ref,0x10);
           if (iVar8 != 0) {
             if ((*(ushort *)(iVar9 + 0x34) & 6) == 2) {
-              *(ushort *)(iVar9 + 0x34) = *(ushort *)(iVar9 + 0x34) & 0xfff9 | 4;
-              *(undefined4 *)(iVar9 + 0xc) = 0;
-              aps_secur_key_pair_set_timeout(iVar9,0xffff);
+              aps_secur_key_pair_set_verified(iVar9);
             }
             apsme_verify_key_indication
                       ((apsme_verify_key_ind_t *)((int)&pl.field_1.nwk.src_addr.field_0 + 6));

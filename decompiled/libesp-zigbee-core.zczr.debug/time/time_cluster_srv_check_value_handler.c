@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> time_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,8 +24,8 @@ ezb_zcl_status_t time_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t e
   pzVar2 = time_server_get_attr_desc(endpoint,1);
   if ((pzVar2 == (zcl_attr_desc_t *)0x0) || (pbVar3 = (byte *)pzVar2->data_p, pbVar3 == (byte *)0x0)
      ) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/time.c",0xe7,
-                  "time_cluster_srv_check_value_handler",0x10170);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/time.c",0xe7,
+                  "time_cluster_srv_check_value_handler","attr_desc && attr_desc->data_p");
   }
   else {
     if (uVar1 == 1) {

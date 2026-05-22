@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> bdb_comm.o -> bdb_comm_start_top_level_commissioning
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,13 +19,14 @@ ezb_err_t bdb_comm_start_top_level_commissioning(uint8_t mode_mask)
   ezb_err_t eVar2;
   
   iVar1 = core_globals_get();
-  if ((*(char *)(iVar1 + 0xda3) == '\0') &&
-     (iVar1 = core_globals_get(), *(char *)(iVar1 + 0xda2) == '\x06')) {
+  if ((*(char *)(iVar1 + 0xd4f) == '\0') &&
+     (iVar1 = core_globals_get(), *(char *)(iVar1 + 0xd4e) == '\x06')) {
     iVar1 = core_globals_get();
-    *(uint8_t *)(iVar1 + 0xda3) = mode_mask;
+    *(uint8_t *)(iVar1 + 0xd4f) = mode_mask;
     iVar1 = zdo_dev_joined();
     if (iVar1 != 0) {
-      bdb_comm_perform_next_step();
+      iVar1 = core_globals_get();
+      tasklet_post(iVar1 + 0xd3c);
       return 0;
     }
     eVar2 = zdo_dev_start_continue();

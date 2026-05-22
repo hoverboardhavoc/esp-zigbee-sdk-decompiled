@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,17 +23,17 @@ void nwk_address_delete(nwk_addr_ref_t ref)
   int iVar4;
   
   iVar2 = core_globals_get();
-  _Var1 = check_table_ref(ref,*(bitmap_t **)(iVar2 + 0xcb0),*(uint16_t *)(iVar2 + 0xcb8));
+  _Var1 = check_table_ref(ref,*(bitmap_t **)(iVar2 + 0xc4c),*(uint16_t *)(iVar2 + 0xc54));
   if (CONCAT31(extraout_var,_Var1) != 0) {
-    iVar4 = CONCAT22(in_register_0000202a,ref) * 0x10;
-    iVar3 = *(int *)(iVar2 + 0xcb4) + iVar4;
-    if (*(char *)(iVar3 + 0xe) == '\0') {
-      test_and_clr_bitmap(CONCAT22(in_register_0000202a,ref),*(bitmap_t **)(iVar2 + 0xcb0));
-      addr_table_lru_remove((nwk_addr_table_t *)(iVar2 + 0xcb0),ref);
-      memset((void *)(*(int *)(iVar2 + 0xcb4) + iVar4),0,0x10);
+    iVar4 = CONCAT22(in_register_0000202a,ref) * 0x12;
+    iVar3 = *(int *)(iVar2 + 0xc50) + iVar4;
+    if (*(char *)(iVar3 + 0x10) == '\0') {
+      test_and_clr_bitmap(CONCAT22(in_register_0000202a,ref),*(bitmap_t **)(iVar2 + 0xc4c));
+      addr_table_lru_remove((nwk_addr_table_t *)(iVar2 + 0xc4c),ref);
+      memset((void *)(*(int *)(iVar2 + 0xc50) + iVar4),0,0x12);
       return;
     }
-    *(byte *)(iVar3 + 0xf) = *(byte *)(iVar3 + 0xf) | 8;
+    *(byte *)(iVar3 + 0x11) = *(byte *)(iVar3 + 0x11) | 8;
   }
   return;
 }

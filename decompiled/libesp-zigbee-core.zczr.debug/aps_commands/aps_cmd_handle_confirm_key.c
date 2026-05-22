@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_cmd_handle_confirm_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,9 +44,8 @@ void aps_cmd_handle_confirm_key(aps_header_t *aps_hdr,zmsg_t *msg)
           ((ind.src_address.field_0.u64._4_4_ & 0xff) == 4)) &&
          ((iVar1 = aps_secur_is_addr_tc(auStack_2c), iVar1 != 0 &&
           (iVar1 = aps_secur_get_key_pair_by_addr(auStack_2c), iVar1 != 0)))) {
-        if (ind.src_address.field_0.u8[5] == '\0') {
-          *(ushort *)(iVar1 + 0x34) = *(ushort *)(iVar1 + 0x34) & 0xfff9 | 4;
-          *(undefined4 *)(iVar1 + 0xc) = 0;
+        if ((ind.src_address.field_0.u8[5] == '\0') && ((*(ushort *)(iVar1 + 0x34) & 6) == 2)) {
+          aps_secur_key_pair_set_verified();
         }
         apsme_confirm_key_indication((apsme_confirm_key_ind_t *)auStack_2c);
       }

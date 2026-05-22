@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> thermostat.o -> thermostat_setpoint_raise_or_lower_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,7 +58,7 @@ thermostat_setpoint_raise_or_lower_cmd_handler(zcl_packet_t *packet,zcl_packet_t
   ep_id = (packet->header).dst_ep;
   thermostat_get_heat_cool_desc(ep_id,&cool_desc,(zcl_attr_desc_t **)&payload);
   if ((cool_desc == (zcl_attr_desc_t *)0x0) && (_payload == 0)) {
-    __assert_func("//build/esp-zigbee/src/core/api/zcl/cluster/thermostat.c",0x449,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/thermostat.c",0x449,
                   "thermostat_setpoint_raise_or_lower_cmd_handler","heat_desc || cool_desc");
 _L0:
     iVar5 = 0;

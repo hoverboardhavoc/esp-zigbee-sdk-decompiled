@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_mesh_routing.o -> nwk_mesh_send_rrep
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,7 +39,7 @@ void nwk_mesh_send_rrep(zmsg_t *rreq_msg,uint8_t rreq_id,uint8_t path_cost,
   uVar6 = CONCAT22(in_register_00002036,originator);
   uVar8 = uVar7;
   uVar9 = uVar1;
-  if (rreq_msg != (zmsg_t *)0x0) goto _L56;
+  if (rreq_msg != (zmsg_t *)0x0) goto _L60;
   do {
     uVar6 = 0;
     path_cost = '\0';
@@ -47,7 +47,7 @@ void nwk_mesh_send_rrep(zmsg_t *rreq_msg,uint8_t rreq_id,uint8_t path_cost,
     uVar8 = uVar7;
     uVar9 = uVar1;
     rreq_id = extraout_a1;
-_L56:
+_L60:
     uVar7 = uVar8;
     uVar1 = uVar9;
     zmsg_free();
@@ -82,7 +82,7 @@ _L56:
     cVar4 = bVar3 + 0xf;
   }
   zmsg_append_bytes(msg,cVar4,&bStack_38);
-  nwk_fwd_send_msg(msg);
+  nwk_fwd_send_msg_delayed(msg,0);
   return;
 }
 

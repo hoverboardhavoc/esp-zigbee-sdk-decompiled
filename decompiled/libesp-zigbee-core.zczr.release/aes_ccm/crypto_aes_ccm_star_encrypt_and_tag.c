@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> aes_ccm.o -> crypto_aes_ccm_star_encrypt_and_tag
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,15 +19,17 @@ ezb_err_t crypto_aes_ccm_star_encrypt_and_tag
 {
   ezb_err_t eVar1;
   int *in_stack_00000000;
-  size_t in_stack_fffffff0;
+  size_t in_stack_ffffffd0;
+  uint8_t tag [16];
   
-  if (output_len < ilen + (int)olen) {
-    eVar1 = 2;
-  }
-  else {
-    eVar1 = crypto_aes_ccm_star(3,key,nonce,ad,ad_len,input,ilen,output,(size_t)in_stack_00000000,
-                                (size_t *)(output + ilen),(uint8_t *)olen,in_stack_fffffff0);
-    *in_stack_00000000 = *in_stack_00000000 + (int)olen;
+  eVar1 = 2;
+  if (ilen + (int)olen <= output_len) {
+    eVar1 = crypto_aes_ccm_star(0,key,nonce,ad,ad_len,input,ilen,output,(size_t)in_stack_00000000,
+                                (size_t *)&stack0xffffffd0,(uint8_t *)olen,in_stack_ffffffd0);
+    if (eVar1 == 0) {
+      memcpy(output + ilen,&stack0xffffffd0,(size_t)olen);
+      *in_stack_00000000 = *in_stack_00000000 + (int)olen;
+    }
   }
   return eVar1;
 }

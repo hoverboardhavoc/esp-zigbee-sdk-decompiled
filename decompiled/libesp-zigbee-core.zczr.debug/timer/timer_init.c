@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> timer.o -> timer_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,10 +30,10 @@ void timer_init(timer_base *tm,timer_func_t timer_func,void *user_ctx)
     return;
   }
   sched = (tm_sched_t *)
-          __assert_func("//build/esp-zigbee/src/core/common/timer.c",0xbc,"timer_init",
-                        "tm != ((void *)0)");
+          __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/timer.c",0xbc,
+                        "timer_init","tm != ((void *)0)");
   if (tm_00 == (timer_base *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/common/timer.c",0x78,"tm_sched_add",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/timer.c",0x78,"tm_sched_add",
                   "tm != ((void *)0)");
   }
   else {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_utility.o -> touchlink_decrypt_nwk_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ uint8_t touchlink_decrypt_nwk_key
   int iVar2;
   undefined3 extraout_var;
   uint16_t *puVar3;
-  undefined1 *local_160;
+  undefined1 *puStack_48;
   ezb_crypto_key_t crypto_key;
   crypto_aes_context_t aes_ctx;
   uint8_t transport_key [16];
@@ -40,15 +40,15 @@ uint8_t touchlink_decrypt_nwk_key
   }
   else {
     uVar1 = touchlink_calc_transport_key
-                      ((uint8_t *)((int)aes_ctx.storage + 0x11c),common_bitmask,transaction_id,
+                      ((uint8_t *)((int)aes_ctx.storage + 4),common_bitmask,transaction_id,
                        response_id);
     iVar2 = CONCAT31(extraout_var,uVar1);
     if (iVar2 != 0xff) {
-      local_160 = (undefined1 *)((int)aes_ctx.storage + 0x11c);
+      puStack_48 = (undefined1 *)((int)aes_ctx.storage + 4);
       crypto_key.key._0_2_ = 0x10;
       puVar3 = &crypto_key.key_len;
       crypto_aes_ecb_init(puVar3);
-      crypto_aes_ecb_setkey_dec(puVar3,&local_160);
+      crypto_aes_ecb_setkey_dec(puVar3,&puStack_48);
       crypto_aes_ecb_decrypt(puVar3,encrypted_key,decrypted_key);
       crypto_aes_ecb_free(puVar3);
     }

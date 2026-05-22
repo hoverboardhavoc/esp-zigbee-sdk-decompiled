@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_general_write_attr_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,7 +38,7 @@ zcl_status_t zcl_general_write_attr_handler(zcl_packet_t *packet,zcl_packet_t *r
   if ((((packet == (zcl_packet_t *)0x0) ||
        (unaff_s2 = packet->payload, unaff_s2 == (zcl_packet_payload_t *)0x0)) ||
       (rsp == (zcl_packet_t *)0x0)) || (rsp->payload == (zcl_packet_payload_t *)0x0)) {
-    __assert_func("//build/esp-zigbee/src/core/zcl/zcl_general_cmd.c",0x11a,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_general_cmd.c",0x11a,
                   "zcl_general_write_attr_handler",
                   "packet && packet->payload && rsp && rsp->payload");
   }

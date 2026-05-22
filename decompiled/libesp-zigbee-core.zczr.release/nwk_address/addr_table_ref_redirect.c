@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> addr_table_ref_redirect
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,11 +23,11 @@ void addr_table_ref_redirect
   
   iVar3 = CONCAT22(in_register_00002032,target_ref);
   iVar2 = CONCAT22(in_register_0000202e,source_ref);
-  cVar1 = *(char *)((int)tbl + iVar2 * 0x10 + 0xe);
-  *(nwk_addr_ref_t *)((int)tbl + iVar3 * 0x10 + 0xc) = source_ref;
-  *(char *)((int)tbl + iVar3 * 0x10 + 0xe) = *(char *)((int)tbl + iVar3 * 0x10 + 0xe) + cVar1;
-  *(nwk_addr_ref_t *)((int)tbl + iVar2 * 0x10 + 0xc) = target_ref;
-  *(byte *)((int)tbl + iVar2 * 0x10 + 0xf) = *(byte *)((int)tbl + iVar2 * 0x10 + 0xf) | 4;
+  cVar1 = *(char *)((int)tbl + iVar2 * 0x12 + 0x10);
+  *(nwk_addr_ref_t *)((int)tbl + iVar3 * 0x12 + 0xe) = source_ref;
+  *(char *)((int)tbl + iVar3 * 0x12 + 0x10) = *(char *)((int)tbl + iVar3 * 0x12 + 0x10) + cVar1;
+  *(nwk_addr_ref_t *)((int)tbl + iVar2 * 0x12 + 0xe) = target_ref;
+  *(byte *)((int)tbl + iVar2 * 0x12 + 0x11) = *(byte *)((int)tbl + iVar2 * 0x12 + 0x11) | 4;
   return;
 }
 

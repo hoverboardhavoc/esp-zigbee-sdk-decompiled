@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_cli.o -> nwk_handle_attach_timer
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,18 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010492) */
-/* WARNING: Removing unreachable block (ram,0x000104a4) */
-/* WARNING: Removing unreachable block (ram,0x000104fe) */
-/* WARNING: Removing unreachable block (ram,0x00010502) */
-/* WARNING: Removing unreachable block (ram,0x00010536) */
-/* WARNING: Removing unreachable block (ram,0x00010546) */
-/* WARNING: Removing unreachable block (ram,0x00010560) */
-/* WARNING: Removing unreachable block (ram,0x000105a2) */
+/* WARNING: Removing unreachable block (ram,0x0001049e) */
+/* WARNING: Removing unreachable block (ram,0x000104b0) */
+/* WARNING: Removing unreachable block (ram,0x0001050a) */
+/* WARNING: Removing unreachable block (ram,0x0001050e) */
+/* WARNING: Removing unreachable block (ram,0x00010542) */
+/* WARNING: Removing unreachable block (ram,0x00010552) */
+/* WARNING: Removing unreachable block (ram,0x0001056c) */
 /* WARNING: Removing unreachable block (ram,0x000105ae) */
-/* WARNING: Removing unreachable block (ram,0x000105be) */
+/* WARNING: Removing unreachable block (ram,0x000105ba) */
 /* WARNING: Removing unreachable block (ram,0x000105ca) */
-/* WARNING: Removing unreachable block (ram,0x0001065c) */
+/* WARNING: Removing unreachable block (ram,0x000105d6) */
+/* WARNING: Removing unreachable block (ram,0x00010668) */
 /* WARNING: Unknown calling convention */
 
 void nwk_handle_attach_timer(void *ctx)

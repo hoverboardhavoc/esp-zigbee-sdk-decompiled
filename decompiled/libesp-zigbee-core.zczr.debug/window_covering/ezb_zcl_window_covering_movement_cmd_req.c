@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> window_covering.o -> ezb_zcl_window_covering_movement_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -52,7 +52,7 @@ ezb_err_t ezb_zcl_window_covering_movement_cmd_req(ezb_zcl_window_covering_movem
   if (eVar2 == EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_PERCENTAGE_ID) {
     eStack_3a.lift_percentage = (cmd_req->payload).lift_percentage;
     iVar1 = zmsg_append_bytes(packet._32_4_,1,&eStack_3a);
-joined_r0x0001066a:
+joined_r0x0001067a:
     if (iVar1 != 0) goto _L0;
   }
   else {
@@ -69,7 +69,7 @@ joined_r0x0001066a:
         eStack_3a.lift_percentage = (cmd_req->payload).lift_percentage;
         iVar1 = zmsg_append_bytes(packet._32_4_,1,&eStack_3a);
       }
-      goto joined_r0x0001066a;
+      goto joined_r0x0001067a;
     }
     if (EZB_ZCL_CMD_WINDOW_COVERING_STOP_ID < eVar2) {
       if (eVar2 != EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_VALUE_ID) {
@@ -78,7 +78,7 @@ joined_r0x0001066a:
       }
       eStack_3a = cmd_req->payload;
       iVar1 = zmsg_append_bytes(packet._32_4_,2,&eStack_3a);
-      goto joined_r0x0001066a;
+      goto joined_r0x0001067a;
     }
   }
   zcl_packet_send(&uStack_38,&(cmd_req->cmd_ctrl).cnf_ctx);

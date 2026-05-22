@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> apsde_handle_nwk_addr_req_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,11 +21,11 @@ void apsde_handle_nwk_addr_req_result(ezb_zdo_nwk_addr_req_result_t *result,void
   aps_apsde_data_req_t req;
   
   if ((result == (ezb_zdo_nwk_addr_req_result_t *)0x0) || (user_ctx == (void *)0x0)) {
-    __assert_func("//build/esp-zigbee/src/core/aps/aps_main.c",0x27c,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x287,
                   "apsde_handle_nwk_addr_req_result",
                   "result != ((void *)0) && user_ctx != ((void *)0)");
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/aps/aps_main.c",0x285,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x290,
                   "apsde_handle_nwk_addr_req_result","req.dst_addr.addr_mode == EZB_ADDR_MODE_EXT");
   }
   else {

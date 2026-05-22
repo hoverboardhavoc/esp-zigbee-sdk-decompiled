@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_restore_reporting_info
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,7 @@ ezb_err_t zcl_reporting_restore_reporting_info(uint8_t ep_id)
 _L0:
         ds_internal_remove_entry(10,0xffffffff,0);
         iVar5 = core_globals_get();
-        piVar2 = *(int **)(iVar5 + 0xd98);
+        piVar2 = *(int **)(iVar5 + 0xd34);
         while ((piVar2 + -1 != (undefined4 *)0xfffffffc &&
                ((pzVar3 = (zcl_reporting_info_t *)piVar2[-1], pzVar3 == (zcl_reporting_info_t *)0x0
                 || (eVar6 = zcl_reporting_store_reporting_info(pzVar3), eVar6 == 0))))) {

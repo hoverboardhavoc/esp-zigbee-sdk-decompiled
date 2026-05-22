@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_route_table.o -> nwk_route_table_find_or_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,18 +22,18 @@ nwk_route_t * nwk_route_table_find_or_create(ezb_shortaddr_t dst_addr)
   uint uVar5;
   
   iVar1 = core_globals_get();
-  pnVar2 = route_table_find((nwk_route_table_t *)(iVar1 + 0xcbc),dst_addr);
+  pnVar2 = route_table_find((nwk_route_table_t *)(iVar1 + 0xc58),dst_addr);
   if (pnVar2 == (nwk_route_t *)0x0) {
     pnVar3 = (nwk_route_t *)
-             mempool_alloc_ent(*(void **)(iVar1 + 0xcbc),*(bitmap_t **)(iVar1 + 0xcc0),0x10,
-                               *(uint16_t *)(iVar1 + 0xcc4));
+             mempool_alloc_ent(*(void **)(iVar1 + 0xc58),*(bitmap_t **)(iVar1 + 0xc5c),0x10,
+                               *(uint16_t *)(iVar1 + 0xc60));
     pnVar2 = pnVar3;
     if (pnVar3 == (nwk_route_t *)0x0) {
       uVar4 = 0;
       while (uVar4 = bitmap_find_next_bit
-                               (*(undefined4 *)(iVar1 + 0xcc0),*(undefined2 *)(iVar1 + 0xcc4),uVar4)
-            , uVar4 < *(ushort *)(iVar1 + 0xcc4)) {
-        pnVar2 = (nwk_route_t *)(*(int *)(iVar1 + 0xcbc) + uVar4 * 0x10);
+                               (*(undefined4 *)(iVar1 + 0xc5c),*(undefined2 *)(iVar1 + 0xc60),uVar4)
+            , uVar4 < *(ushort *)(iVar1 + 0xc60)) {
+        pnVar2 = (nwk_route_t *)(*(int *)(iVar1 + 0xc58) + uVar4 * 0x10);
         if (pnVar2->ref == '\0') {
           uVar5._0_1_ = pnVar2->ref;
           uVar5._1_1_ = pnVar2->initiator;

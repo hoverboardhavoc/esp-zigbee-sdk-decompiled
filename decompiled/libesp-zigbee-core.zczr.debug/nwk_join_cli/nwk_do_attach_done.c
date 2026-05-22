@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_cli.o -> nwk_do_attach_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -62,21 +62,24 @@ void nwk_do_attach_done(ezb_err_t error,ezb_shortaddr_t alloc_shortaddr)
     uVar5 = nwk_get_short_address();
     iVar3 = nwk_address_update(uVar4,uVar5,(undefined1 *)((int)&parent_extended.field_0 + 6));
     if (iVar3 != 0) {
-      __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x127,"nwk_do_attach_done",
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x131,
+                    "nwk_do_attach_done",
                     "(nwk_address_update(nwk_get_extended_address(), nwk_get_short_address(), &addr_ref)) == 0"
                    );
 _L0:
-      __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",300,"nwk_do_attach_done",
-                    "nbr != ((void *)0)");
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x136,
+                    "nwk_do_attach_done","nbr != ((void *)0)");
 _L0:
-      __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x135,"nwk_do_attach_done",
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x13f,
+                    "nwk_do_attach_done",
                     "(nwk_address_by_extended(&parent_extended, 1, 1, &parent_addr_ref)) == 0");
 _L0:
-      __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x138,"nwk_do_attach_done",
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x142,
+                    "nwk_do_attach_done",
                     "(nwk_address_update(&parent_extended, parent_short, &addr_ref)) == 0");
 _L0:
-      __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x139,"nwk_do_attach_done",
-                    "addr_ref == parent_addr_ref");
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x143,
+                    "nwk_do_attach_done","addr_ref == parent_addr_ref");
       goto _L0;
     }
     nwk_address_lock_ref(parent_extended.field_0.u64._6_2_);

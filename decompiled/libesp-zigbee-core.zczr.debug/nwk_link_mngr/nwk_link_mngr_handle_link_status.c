@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_link_mngr.o -> nwk_link_mngr_handle_link_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -70,7 +70,7 @@ void nwk_link_mngr_handle_link_status(zmsg_t *msg,nwk_rx_info_t *rx_info)
     if (iVar5 == 0) goto _L0;
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_link_mngr.c",0xce,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_link_mngr.c",0x10f,
                   "nwk_link_mngr_handle_link_status","cmd_id == 0x08U");
 _L0:
     iVar5 = nwk_neighbor_table_new(1);

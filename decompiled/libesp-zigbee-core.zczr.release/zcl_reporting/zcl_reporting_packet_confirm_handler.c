@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_packet_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ void zcl_reporting_packet_confirm_handler(zcl_packet_cnf_t *info,void *ctx)
     __assert_func(0,0,0,0);
   }
   iVar2 = core_globals_get();
-  for (piVar1 = *(int **)(iVar2 + 0xd98); piVar1 + -1 != (undefined4 *)0xfffffffc;
+  for (piVar1 = *(int **)(iVar2 + 0xd34); piVar1 + -1 != (undefined4 *)0xfffffffc;
       piVar1 = (int *)*piVar1) {
     info_00 = (zcl_reporting_info_t *)piVar1[-1];
     if ((info_00->field_0x9 & 0xf) == 4) {

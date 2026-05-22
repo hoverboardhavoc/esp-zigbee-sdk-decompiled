@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_info_remove
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ ezb_err_t zcl_reporting_info_remove(zcl_reporting_info_t *info)
   
   zcl_reporting_stop();
   iVar3 = core_globals_get();
-  piVar1 = *(int **)(iVar3 + 0xd98);
+  piVar1 = *(int **)(iVar3 + 0xd34);
   if (piVar1 != (int *)0x0) {
     for (; piVar2 = piVar1 + -1, piVar2 != (int *)0xfffffffc; piVar1 = (int *)*piVar1) {
       iVar3 = *piVar2;
@@ -32,7 +32,7 @@ ezb_err_t zcl_reporting_info_remove(zcl_reporting_info_t *info)
          ((*(uint16_t *)(iVar3 + 6) == info->attr_id &&
           (*(uint16_t *)(iVar3 + 0x30) == info->manuf_code)))) {
         iVar3 = core_globals_get();
-        list_remove_node(iVar3 + 0xd98,piVar1);
+        list_remove_node(iVar3 + 0xd34,piVar1);
         mm_free(piVar2);
         zcl_reporting_remove_stored_reporting_info(info);
         break;

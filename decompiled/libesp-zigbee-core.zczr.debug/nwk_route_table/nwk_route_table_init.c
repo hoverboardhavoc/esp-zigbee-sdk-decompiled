@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> nwk_route_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,39 +23,39 @@ void nwk_route_table_init(uint16_t capacity)
   int iVar6;
   
   iVar3 = core_globals_get();
-  iVar3 = *(int *)(iVar3 + 0xcbc);
+  iVar3 = *(int *)(iVar3 + 0xc58);
   iVar4 = core_globals_get();
-  iVar6 = *(int *)(iVar4 + 0xcc0);
+  iVar6 = *(int *)(iVar4 + 0xc5c);
   iVar4 = core_globals_get();
-  if (((*(short *)(iVar4 + 0xcc4) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_route_table.c",500,"nwk_route_table_init",
-                  &_LC9);
+  if (((*(short *)(iVar4 + 0xc60) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",500,
+                  "nwk_route_table_init",&_LC9);
   }
   iVar3 = core_globals_get();
-  *(undefined1 *)(iVar3 + 0xcbc) = 0;
-  *(undefined1 *)(iVar3 + 0xcbd) = 0;
-  *(undefined1 *)(iVar3 + 0xcbe) = 0;
-  *(undefined1 *)(iVar3 + 0xcbf) = 0;
-  *(undefined1 *)(iVar3 + 0xcc0) = 0;
-  *(undefined1 *)(iVar3 + 0xcc1) = 0;
-  *(undefined1 *)(iVar3 + 0xcc2) = 0;
-  *(undefined1 *)(iVar3 + 0xcc3) = 0;
-  *(undefined1 *)(iVar3 + 0xcc4) = 0;
-  *(undefined1 *)(iVar3 + 0xcc5) = 0;
-  *(undefined1 *)(iVar3 + 0xcc6) = 0;
-  *(undefined1 *)(iVar3 + 0xcc7) = 0;
+  *(undefined1 *)(iVar3 + 0xc58) = 0;
+  *(undefined1 *)(iVar3 + 0xc59) = 0;
+  *(undefined1 *)(iVar3 + 0xc5a) = 0;
+  *(undefined1 *)(iVar3 + 0xc5b) = 0;
+  *(undefined1 *)(iVar3 + 0xc5c) = 0;
+  *(undefined1 *)(iVar3 + 0xc5d) = 0;
+  *(undefined1 *)(iVar3 + 0xc5e) = 0;
+  *(undefined1 *)(iVar3 + 0xc5f) = 0;
+  *(undefined1 *)(iVar3 + 0xc60) = 0;
+  *(undefined1 *)(iVar3 + 0xc61) = 0;
+  *(undefined1 *)(iVar3 + 0xc62) = 0;
+  *(undefined1 *)(iVar3 + 0xc63) = 0;
   iVar3 = core_globals_get();
-  *(uint16_t *)(iVar3 + 0xcc4) = capacity;
+  *(uint16_t *)(iVar3 + 0xc60) = capacity;
   iVar3 = core_globals_get();
-  uVar1 = *(undefined2 *)(iVar3 + 0xcc4);
+  uVar1 = *(undefined2 *)(iVar3 + 0xc60);
   iVar3 = core_globals_get();
   uVar5 = mm_calloc(uVar1,0x10);
-  *(undefined4 *)(iVar3 + 0xcbc) = uVar5;
+  *(undefined4 *)(iVar3 + 0xc58) = uVar5;
   iVar3 = core_globals_get();
-  uVar2 = *(ushort *)(iVar3 + 0xcc4);
+  uVar2 = *(ushort *)(iVar3 + 0xc60);
   iVar3 = core_globals_get();
   uVar5 = mm_calloc(uVar2 + 7 >> 3,1);
-  *(undefined4 *)(iVar3 + 0xcc0) = uVar5;
+  *(undefined4 *)(iVar3 + 0xc5c) = uVar5;
   return;
 }
 

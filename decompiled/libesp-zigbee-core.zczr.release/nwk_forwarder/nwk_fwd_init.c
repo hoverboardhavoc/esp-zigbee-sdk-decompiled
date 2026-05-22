@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_forwarder.o -> nwk_fwd_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,9 +15,21 @@
 void nwk_fwd_init(void)
 
 {
+  nwk_fwd_s *pnVar1;
+  int iVar2;
+  bitmap_t *pbVar3;
+  
   zmsg_queue_init(&s_nwk_fwd);
-  zmsg_tmque_init(&s_nwk_fwd,nwk_fwd_do_send_msg);
+  zmsg_tmque_init(&s_nwk_fwd,nwk_fwd_handle_tmque_timeout);
   tasklet_init(&s_nwk_fwd,nwk_fwd_direct_tx_task,0);
+  pnVar1 = &s_nwk_fwd;
+  memset(&s_nwk_fwd,0,0x2d0);
+  do {
+    iVar2 = nwk_neighbor_table_get_capacity();
+    pbVar3 = (bitmap_t *)mm_calloc(iVar2 + 7U >> 3,1);
+    pnVar1->btt[0].passive_ack = pbVar3;
+    pnVar1 = (nwk_fwd_s *)&(pnVar1->send_queue).length;
+  } while (pnVar1 != (nwk_fwd_s *)0x116f0);
   return;
 }
 

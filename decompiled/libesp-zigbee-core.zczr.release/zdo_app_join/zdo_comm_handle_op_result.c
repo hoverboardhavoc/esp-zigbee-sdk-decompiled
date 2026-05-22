@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> zdo_comm_handle_op_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,19 +43,19 @@ void zdo_comm_handle_op_result(ezb_err_t error,void *unused)
   if (error != 0) goto zdo_comm_signal_comm_done;
   iVar3 = core_globals_get();
   unused = extraout_a1;
-  if (*(short *)(iVar3 + 0xd26) == 0) {
+  if (*(short *)(iVar3 + 0xcc2) == 0) {
 _L0:
     error = 0;
   }
   else {
     iVar3 = core_globals_get();
-    uVar2 = __ctzsi2(*(undefined2 *)(iVar3 + 0xd26));
+    uVar2 = __ctzsi2(*(undefined2 *)(iVar3 + 0xcc2));
     unused = extraout_a1_00;
     if (uVar2 == 0) goto _L0;
     iVar3 = core_globals_get();
-    *(ushort *)(iVar3 + 0xd26) = ~(ushort)(1 << (uVar2 & 0x1f)) & *(ushort *)(iVar3 + 0xd26);
+    *(ushort *)(iVar3 + 0xcc2) = ~(ushort)(1 << (uVar2 & 0x1f)) & *(ushort *)(iVar3 + 0xcc2);
     iVar3 = core_globals_get();
-    *(char *)(iVar3 + 0xd24) = (char)uVar2;
+    *(char *)(iVar3 + 0xcc0) = (char)uVar2;
     if (uVar2 == 6) {
       error = zdo_secur_start_auth(zdo_comm_handle_op_result,0);
       unused = extraout_a1_04;
@@ -71,7 +71,7 @@ _L0:
           uStack_1c = *(uint *)(iVar3 + 8);
           uStack_1d = '\x03';
           iVar3 = core_globals_get();
-          uVar2 = *(uint *)(iVar3 + 0xd40);
+          uVar2 = *(uint *)(iVar3 + 0xcdc);
           uVar5 = nwk_is_device_zed();
           zdo_comm_get_scan_duration(&uStack_1d);
           zdo_comm_get_channel_mask(&uStack_1c);
@@ -127,9 +127,9 @@ _L0:
           }
           nwk_address_get_extpanid(*(undefined1 *)(iVar3 + 8),&uStack_1c);
           iVar3 = core_globals_get();
-          _bStack_14 = CONCAT11(bStack_13,(char)((*(byte *)(iVar3 + 0xd40) & 1) << 1));
+          _bStack_14 = CONCAT11(bStack_13,(char)((*(byte *)(iVar3 + 0xcdc) & 1) << 1));
           iVar3 = core_globals_get();
-          bStack_12 = bStack_12 & 0xfe | *(char *)(iVar3 + 0xd24) == '\x03';
+          bStack_12 = bStack_12 & 0xfe | *(char *)(iVar3 + 0xcc0) == '\x03';
           error = nwk_join_request(&uStack_1c);
           unused = extraout_a1_03;
         }
@@ -163,19 +163,19 @@ _L0:
       iVar3 = nwk_is_device_zed();
       if ((iVar3 == 0) || (error = nwk_start_end_device(), unused = extraout_a1_07, error == 0)) {
         iVar3 = core_globals_get();
-        tasklet_post(iVar3 + 0xd28);
+        tasklet_post(iVar3 + 0xcc4);
         return;
       }
     }
   }
 zdo_comm_signal_comm_done:
   iVar3 = core_globals_get(unused);
-  bVar1 = *(byte *)(iVar3 + 0xd24);
+  bVar1 = *(byte *)(iVar3 + 0xcc0);
   uVar2 = (uint)bVar1;
   iVar3 = core_globals_get();
-  *(undefined2 *)(iVar3 + 0xd26) = 0;
+  *(undefined2 *)(iVar3 + 0xcc2) = 0;
   iVar3 = core_globals_get();
-  *(undefined1 *)(iVar3 + 0xd24) = 0;
+  *(undefined1 *)(iVar3 + 0xcc0) = 0;
   if (uVar2 == 2) {
     if (error == 0) goto _L0;
     nwk_disc_table_reset();
@@ -188,7 +188,7 @@ zdo_comm_signal_comm_done:
       iVar3 = core_globals_get();
                     /* WARNING: Could not recover jumptable at 0x00010114. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-      (**(code **)(iVar3 + 0xd38))(2,4,pcVar4,*(code **)(iVar3 + 0xd38));
+      (**(code **)(iVar3 + 0xcd4))(2,4,pcVar4,*(code **)(iVar3 + 0xcd4));
       return;
     }
   }
@@ -198,7 +198,7 @@ _L0:
   iVar3 = core_globals_get();
   _bStack_14 = CONCAT11(bStack_13,bVar1);
   uStack_18 = error;
-  (**(code **)(iVar3 + 0xd3c))(3,&uStack_18,*(code **)(iVar3 + 0xd3c));
+  (**(code **)(iVar3 + 0xcd8))(3,&uStack_18,*(code **)(iVar3 + 0xcd8));
   return;
 }
 

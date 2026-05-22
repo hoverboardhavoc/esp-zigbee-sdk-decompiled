@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_set_clear
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ void aps_secur_key_pair_set_clear(void)
   int iVar5;
   undefined3 extraout_var;
   int iVar6;
-  undefined2 auStack_22 [7];
+  anon_union_8_2_c961180f_for_ezb_eui64_s_0 aaStack_28 [2];
   code *pcStack_14;
   
   iVar4 = core_globals_get();
@@ -47,22 +47,12 @@ void aps_secur_key_pair_set_clear(void)
   pcStack_14 = pcVar1;
   aps_secur_key_pair_set_clear();
   _Var3 = aps_secur_is_centralized();
-  if (CONCAT31(extraout_var,_Var3) != 0) {
-    iVar4 = core_globals_get();
-    iVar4 = nwk_address_ref_by_extended(iVar4 + 0x9ac,auStack_22);
-    if (iVar4 == 0) {
-      nwk_address_unlock_ref(auStack_22[0]);
-    }
-    iVar4 = core_globals_get();
-    *(undefined1 *)(iVar4 + 0x9ac) = 0;
-    *(undefined1 *)(iVar4 + 0x9ad) = 0;
-    *(undefined1 *)(iVar4 + 0x9ae) = 0;
-    *(undefined1 *)(iVar4 + 0x9af) = 0;
-    *(undefined1 *)(iVar4 + 0x9b0) = 0;
-    *(undefined1 *)(iVar4 + 0x9b1) = 0;
-    *(undefined1 *)(iVar4 + 0x9b2) = 0;
-    *(undefined1 *)(iVar4 + 0x9b3) = 0;
+  if (CONCAT31(extraout_var,_Var3) == 0) {
+    return;
   }
+  aaStack_28[0].u64._4_4_ = 0;
+  aaStack_28[0].u64._0_4_ = 0;
+  aps_secur_set_tc_address((ezb_extaddr_t *)aaStack_28);
   return;
 }
 

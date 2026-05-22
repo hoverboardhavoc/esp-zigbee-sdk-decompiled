@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_commissioning_identify_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,29 +20,29 @@ void touchlink_commissioning_identify_timeout(void *arg)
   int iVar3;
   
   iVar3 = core_globals_get();
-  sVar1 = *(short *)(iVar3 + 0x1420);
-  *(short *)(iVar3 + 0x1420) = sVar1 + -1;
+  sVar1 = *(short *)(iVar3 + 0x13cc);
+  *(short *)(iVar3 + 0x13cc) = sVar1 + -1;
   if (sVar1 == 0) {
     iVar3 = core_globals_get();
-    milli_timer_stop(iVar3 + 0x1424);
+    milli_timer_stop(iVar3 + 0x13d0);
     return;
   }
   iVar3 = core_globals_get();
-  uVar2 = *(undefined2 *)(iVar3 + 0x1420);
+  uVar2 = *(undefined2 *)(iVar3 + 0x13cc);
   iVar3 = core_globals_get();
-  if (*(int *)(iVar3 + 0x1434) == 0) {
+  if (*(int *)(iVar3 + 0x13e0) == 0) {
     return;
   }
   iVar3 = core_globals_get();
-  *(undefined2 *)(iVar3 + 0x1420) = uVar2;
+  *(undefined2 *)(iVar3 + 0x13cc) = uVar2;
   iVar3 = core_globals_get();
-  (**(code **)(iVar3 + 0x1434))(uVar2,*(code **)(iVar3 + 0x1434));
+  (**(code **)(iVar3 + 0x13e0))(uVar2,*(code **)(iVar3 + 0x13e0));
   iVar3 = core_globals_get();
-  milli_timer_stop(iVar3 + 0x1424);
+  milli_timer_stop(iVar3 + 0x13d0);
   iVar3 = core_globals_get();
-  milli_timer_init(iVar3 + 0x1424,touchlink_commissioning_identify_timeout,0);
+  milli_timer_init(iVar3 + 0x13d0,touchlink_commissioning_identify_timeout,0);
   iVar3 = core_globals_get();
-  milli_timer_start(iVar3 + 0x1424,1000);
+  milli_timer_start(iVar3 + 0x13d0,1000);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_cli.o -> nwk_do_attach
  *
  * (C) Espressif, Apache License 2.0.
@@ -66,9 +66,9 @@ _L0:
       if (iVar2 != 0) goto _L0;
       uStack_3c = 1 << ((uint)parent->field_7 & 0x1f) & 0x7ffffffU |
                   ((uint)parent->field_7 >> 7) << 0x1b;
-      iVar2 = nwk_mm_set_pib_attr(0xff,0x61,&uStack_3c);
+      iVar2 = nwk_mm_set_pib_attr(*(byte *)((int)&parent->field_7 + 3) & 0x1f,0x61,&uStack_3c);
       if (iVar2 != 0) goto _L0;
-      nwk_mm_set_pib_attr(0xff,0x4b,parent);
+      nwk_mm_set_pib_attr(*(byte *)((int)&parent->field_7 + 3) & 0x1f,0x4b,parent);
     }
 _L0:
     iVar2 = core_globals_get();
@@ -94,8 +94,8 @@ _L0:
         bStack_30 = (byte)((uint)parent->field_7 >> 7) & 0x1f;
         bStack_2f = SUB41(parent->field_7,0) & 0x7f;
         uStack_2e = req->capability_info;
-        nwk_mm_asso_request(*(byte *)((int)&parent->field_7 + 3) & 0x1f,&uStack_3c);
-        return 0;
+        eVar6 = nwk_mm_asso_request(*(byte *)((int)&parent->field_7 + 3) & 0x1f,&uStack_3c);
+        return eVar6;
       }
       if ((byte)(bVar1 - 1) < 2) {
         eVar6 = nwk_send_rejoin_req(parent,(_Bool)(req->field_0xa & 1),req->capability_info);
@@ -111,14 +111,17 @@ _L0:
       if (bVar1 != 0) goto _L0;
       goto _L0;
     }
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",199,"nwk_do_attach",&_LC1);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0xd1,
+                  "nwk_do_attach",&_LC1);
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0xd5,"nwk_do_attach",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0xdf,
+                  "nwk_do_attach",
                   "(nwk_address_update(nwk_get_extended_address(), nwk_get_short_address(), &(nwk_addr_ref_t){0})) == 0"
                  );
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0xdc,"nwk_do_attach",
-                  "(nwk_mm_set_pib_attr(0xFF, 0x61U, &channel)) == 0");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0xe6,
+                  "nwk_do_attach",
+                  "(nwk_mm_set_pib_attr(best_parent->mac_iface_idx, 0x61U, &channel)) == 0");
   }
   if ((byte)(bVar1 - 4) < 2) {
     eVar6 = nwk_send_network_comm_req
@@ -126,7 +129,8 @@ _L0:
     return eVar6;
   }
 _L0:
-  __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x106,"nwk_do_attach",&_LC1);
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_cli.c",0x110,
+                "nwk_do_attach",&_LC1);
   return 0x2c3;
 }
 

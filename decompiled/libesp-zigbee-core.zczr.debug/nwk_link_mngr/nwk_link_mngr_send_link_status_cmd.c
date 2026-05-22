@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_link_mngr.o -> nwk_link_mngr_send_link_status_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,7 +25,7 @@ void nwk_link_mngr_send_link_status_cmd(void)
   
   _Var1 = nwk_is_router_started();
   if (CONCAT31(extraout_var,_Var1) == 0) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_link_mngr.c",0xa9,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_link_mngr.c",0xea,
                   "nwk_link_mngr_send_link_status_cmd","nwk_is_router_started()");
 _L0:
     iVar3 = core_globals_get();
@@ -42,7 +42,7 @@ _L0:
       iVar3 = core_globals_get();
       eVar2 = nwk_link_mngr_prepare_link_status_command(msg,mac_iface,eVar2,'\x1a');
       *(ezb_shortaddr_t *)(iVar3 + 0xb04) = eVar2;
-      nwk_fwd_send_msg(msg);
+      nwk_fwd_send_msg_delayed(msg,0);
     }
     iVar3 = core_globals_get();
     if (*(short *)(iVar3 + 0xb04) == 0) {

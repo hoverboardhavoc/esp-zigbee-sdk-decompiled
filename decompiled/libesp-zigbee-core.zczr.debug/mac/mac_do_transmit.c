@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_do_transmit
  *
  * (C) Espressif, Apache License 2.0.
@@ -38,13 +38,13 @@ void mac_do_transmit(mac_device *dev)
   if (bVar1 == 5) {
     mac_pal_set_rx_when_idle(1);
     iVar4 = prepare_data_request(dev,tx_frame);
-joined_r0x000120bc:
+joined_r0x0001216c:
     if (iVar4 != 0) goto _L0;
   }
   else if (bVar1 < 6) {
     if (bVar1 == 3) {
       iVar4 = prepare_association_request(dev,tx_frame);
-      goto joined_r0x000120bc;
+      goto joined_r0x0001216c;
     }
     if (bVar1 == 4) {
       eVar3 = prepare_direct_data_frame(dev,tx_frame);
@@ -66,11 +66,12 @@ joined_r0x000120bc:
   else {
     if (bVar1 == 7) {
       iVar4 = prepare_beacon(dev,tx_frame);
-      goto joined_r0x000120bc;
+      goto joined_r0x0001216c;
     }
     if (bVar1 != 8) {
 _L0:
-      __assert_func("//build/esp-zigbee/src/core/mac/mac.c",0x253,"mac_do_transmit",&_L0);
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x253,"mac_do_transmit",
+                    &_LC7);
       goto _L0;
     }
     eVar3 = prepare_indirect_frame(dev,tx_frame);
@@ -83,8 +84,8 @@ _L0:
   if (iVar5 != 0) {
 _L0:
     dev_00 = (mac_device *)
-             __assert_func("//build/esp-zigbee/src/core/mac/mac.c",0x259,"mac_do_transmit",
-                           "(mac_pal_transmit()) == 0");
+             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x259,
+                           "mac_do_transmit","(mac_pal_transmit()) == 0");
     eVar3 = mac_update_scan_channel(dev_00);
     if (eVar3 == 0) {
       mac_do_transmit(dev_00);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_mesh_routing.o -> nwk_mesh_generate_rrec
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,8 +41,8 @@ zmsg_t * nwk_mesh_generate_rrec(ezb_shortaddr_t src_addr,ezb_shortaddr_t dst_add
     }
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_mesh_routing.c",0x85,"nwk_mesh_generate_rrec"
-                  ,"!((dst_addr) >= 0xfff8)");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_mesh_routing.c",0x85,
+                  "nwk_mesh_generate_rrec","!((dst_addr) >= 0xfff8)");
   }
   auStack_22[0] = auStack_22[0] & 0xff00;
   zmsg_append_bytes(unaff_s0,1,auStack_22);

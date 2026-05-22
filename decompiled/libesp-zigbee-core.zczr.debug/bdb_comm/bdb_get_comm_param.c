@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_get_comm_param
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,8 +39,8 @@ ezb_err_t bdb_get_comm_param(uint8_t id,uint8_t len,void *param)
     if (iVar2 != 0) {
       log_write(1,"bdb_comm.c","Invalid param id: 0x%02x",iVar2);
       pcVar1 = zdo_comm_permit_joining;
-      uVar3 = __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2ce,
-                            bdb_get_comm_param::__func__,&_LC6);
+      uVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c"
+                            ,0x2e1,bdb_get_comm_param::__func__,&_LC6);
       pvStack_18 = param;
       pcStack_14 = pcVar1;
       iVar2 = zdo_dev_joined();
@@ -59,43 +59,43 @@ ezb_err_t bdb_get_comm_param(uint8_t id,uint8_t len,void *param)
     }
     if (iVar5 == 1) {
       iVar2 = core_globals_get();
-      *(undefined1 *)param = *(undefined1 *)(iVar2 + 0xda4);
+      *(undefined1 *)param = *(undefined1 *)(iVar2 + 0xd50);
       return 0;
     }
     pcVar6 = bdb_get_comm_param::__func__;
-    iVar5 = __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2b5,
-                          "len == sizeof(uint8_t)");
+    iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
+                          0x2c8,"len == sizeof(uint8_t)");
   }
   if (iVar5 == 1) {
     *pcVar6 = -0x4c;
     return 0;
   }
-  iVar5 = __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2ba,
-                        bdb_get_comm_param::__func__,"len == sizeof(uint8_t)");
+  iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
+                        0x2cd,bdb_get_comm_param::__func__,"len == sizeof(uint8_t)");
 _L0:
   if (iVar5 == 4) {
     iVar2 = core_globals_get();
-    if (*(char *)(iVar2 + 0xda2) == '\0') {
+    if (*(char *)(iVar2 + 0xd4e) == '\0') {
       uVar3 = nwk_get_pan_channel();
       *(undefined4 *)param = uVar3;
       return 0;
     }
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2bf,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2d2,
                   bdb_get_comm_param::__func__,"len == sizeof(uint32_t)");
   }
   iVar2 = core_globals_get();
-  if ((*(char *)(iVar2 + 0xda2) != '\x05') &&
-     (iVar2 = core_globals_get(), *(char *)(iVar2 + 0xda2) != '\x01')) {
+  if ((*(char *)(iVar2 + 0xd4e) != '\x05') &&
+     (iVar2 = core_globals_get(), *(char *)(iVar2 + 0xd4e) != '\x01')) {
     iVar2 = core_globals_get();
-    if ((*(byte *)(iVar2 + 0xdb2) & 1) != 0) {
+    if ((*(byte *)(iVar2 + 0xd5e) & 1) != 0) {
       iVar2 = core_globals_get();
-      *(undefined4 *)param = *(undefined4 *)(iVar2 + 0xda8);
+      *(undefined4 *)param = *(undefined4 *)(iVar2 + 0xd54);
       return 0;
     }
     iVar2 = core_globals_get();
-    *(undefined4 *)param = *(undefined4 *)(iVar2 + 0xdac);
+    *(undefined4 *)param = *(undefined4 *)(iVar2 + 0xd58);
     return 0;
   }
   uVar3 = bdb_comm_touchlink_get_channel_mask();

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_intrp.o -> nwk_intrp_prepend_header
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,14 +12,15 @@
 
 /* WARNING: Unknown calling convention */
 
-void nwk_intrp_prepend_header(zmsg_t *msg)
+ezb_err_t nwk_intrp_prepend_header(zmsg_t *msg)
 
 {
+  ezb_err_t eVar1;
   undefined2 auStack_12 [2];
   uint16_t fcf;
   
   auStack_12[0] = 0xb;
-  zmsg_prepend_bytes(2,auStack_12);
-  return;
+  eVar1 = zmsg_prepend_bytes(2,auStack_12);
+  return eVar1;
 }
 

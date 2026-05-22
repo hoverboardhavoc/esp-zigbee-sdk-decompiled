@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app.o -> nwk_nlme_event_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,10 +29,10 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
   undefined4 uStack_4c;
   undefined4 uStack_48;
   undefined2 uStack_44;
-  undefined4 uStack_24;
+  undefined4 uStack_2c;
   zdo_app_signal_t signal;
   
-  uStack_24 = 0;
+  uStack_2c = 0;
   signal.signal = 0;
   signal.parameters[0] = '\0';
   signal.parameters[1] = '\0';
@@ -48,14 +48,18 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
   signal.parameters[0xb] = '\0';
   if (ind->event == '\0') {
     signal._0_4_ = *(undefined4 *)((int)&ind->field_1 + 2);
-    uStack_24._0_3_ = CONCAT12((ind->field_1).network_status.status,0x203);
-    uStack_24 = CONCAT13(*(undefined1 *)((int)&ind->field_1 + 1),(uint3)uStack_24);
+    uStack_2c._0_3_ = CONCAT12((ind->field_1).network_status.status,0x203);
+    uStack_2c = CONCAT13(*(undefined1 *)((int)&ind->field_1 + 1),(uint3)uStack_2c);
+    if ((ind->field_1).network_status.status == '\x10') {
+      stack0xffffffe8 = 0;
+      zdo_device_annce_req(signal.parameters + 0xe);
+    }
   }
   else {
     if (ind->event != '\x01') {
       uVar4 = 0x28;
-      uVar3 = 0x260;
-      uVar1 = __assert_func("//build/esp-zigbee/src/core/zdo/zdo_app.c",0x81);
+      uVar3 = 0x288;
+      uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app.c",0x8d);
       uStack_50 = 0;
       uStack_4c = 0;
       uStack_48 = 0;
@@ -75,10 +79,10 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
       zdo_app_put_signal(&uStack_54);
       return;
     }
-    uStack_24._0_3_ = CONCAT12((ind->field_1).network_status.status,0x204);
-    uStack_24 = (uint)(uint3)uStack_24;
+    uStack_2c._0_3_ = CONCAT12((ind->field_1).network_status.status,0x204);
+    uStack_2c = (uint)(uint3)uStack_2c;
   }
-  zdo_app_put_signal(&uStack_24);
+  zdo_app_put_signal(&uStack_2c);
   return;
 }
 

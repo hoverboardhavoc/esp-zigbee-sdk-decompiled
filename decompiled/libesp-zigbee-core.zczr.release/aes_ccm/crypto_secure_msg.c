@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> aes_ccm.o -> crypto_secure_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,32 +17,28 @@ ezb_err_t crypto_secure_msg(zmsg_t *msg,uint8_t *key,uint8_t *ccm_nonce,uint16_t
 
 {
   int iVar1;
-  ezb_err_t eVar2;
+  uint uVar2;
+  int iVar3;
+  ezb_err_t eVar4;
   undefined2 in_register_00002036;
   undefined3 in_register_00002039;
-  int iVar3;
-  uint uVar4;
   uint8_t auStack_30 [4];
   uint8_t tag [16];
   
-  iVar3 = CONCAT22(in_register_00002036,ad_len) + CONCAT31(in_register_00002039,tag_len);
-  iVar1 = zmsg_get_length();
-  if (iVar1 < iVar3) {
-    eVar2 = 2;
+  iVar1 = CONCAT22(in_register_00002036,ad_len) + CONCAT31(in_register_00002039,tag_len);
+  iVar3 = zmsg_get_length();
+  if (iVar3 < iVar1) {
+    eVar4 = 2;
   }
   else {
-    iVar1 = zmsg_get_length(msg);
-    uVar4 = iVar1 - iVar3;
-    eVar2 = crypto_aes_ccm_star_msg(msg,3,key,ccm_nonce,ad_len,(uint16_t)uVar4,auStack_30,tag_len);
-    if (eVar2 == 0) {
-      zmsg_write_bytes(msg,CONCAT22(in_register_00002036,ad_len) + (uVar4 & 0xffff) & 0xffff,
+    iVar3 = zmsg_get_length(msg);
+    uVar2 = iVar3 - iVar1;
+    eVar4 = crypto_aes_ccm_star_msg(msg,0,key,ccm_nonce,ad_len,(uint16_t)uVar2,auStack_30,tag_len);
+    if (eVar4 == 0) {
+      zmsg_write_bytes(msg,CONCAT22(in_register_00002036,ad_len) + (uVar2 & 0xffff) & 0xffff,
                        CONCAT31(in_register_00002039,tag_len),auStack_30);
-      eVar2 = 0;
-    }
-    else {
-      eVar2 = -1;
     }
   }
-  return eVar2;
+  return eVar4;
 }
 

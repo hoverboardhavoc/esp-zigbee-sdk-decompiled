@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_conflicts.o -> nwk_address_conflict_resolve
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,19 +36,22 @@ void nwk_address_conflict_resolve(ezb_shortaddr_t offending_addr)
     else {
       child = (nwk_neighbor_t *)
               nwk_neighbor_table_get_by_short(CONCAT22(in_register_0000202a,offending_addr));
-      if ((child != (nwk_neighbor_t *)0x0) && (uVar3 = *(uint *)&child->field_0xc, (uVar3 & 3) == 2)
-         ) {
-        if ((-1 < (int)(uVar3 << 0x14)) && ((uVar3 & 0x3c0) != 0x140)) {
-          if ((uVar3 & 0x400) == 0) {
-            *(uint *)&child->field_0xc = uVar3 & 0xfffffc3f | 0x200;
+      if (child != (nwk_neighbor_t *)0x0) {
+        uVar3 = *(uint *)&child->field_0xc;
+        if ((uVar3 & 3) == 2) {
+          if (((int)(uVar3 << 0x14) < 0) || (((uVar3 & 0x3c0) - 0x140 & 0xffffffbf) == 0)) {
+            *(uint *)&child->field_0xc = *(uint *)&child->field_0xc & 0xfffffc3f | 0x1c0;
+            uVar2 = nwk_neighbor_get_shortaddr(child);
+            log_write(2,"nwk_conflicts.c","Address 0x%04hxconflicts with joining child, skip",uVar2)
+            ;
             return;
           }
-          nwk_child_address_change_request(child);
-          return;
+          *(uint *)&child->field_0xc = uVar3 & 0xfffffc3f | 0x200;
+          if ((uVar3 & 0x400) != 0) {
+            nwk_child_address_change_request(child);
+            return;
+          }
         }
-        uVar2 = nwk_neighbor_get_shortaddr(child);
-        log_write(2,"nwk_conflicts.c","Address 0x%04hxconflicts with joining child, skip",uVar2);
-        return;
       }
     }
   }

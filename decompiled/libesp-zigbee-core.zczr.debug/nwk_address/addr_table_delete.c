@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> addr_table_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,10 +28,10 @@ void addr_table_delete(nwk_addr_table_t *tbl,nwk_addr_ref_t ref)
     if (pnVar2[n].ref_cnt == '\0') {
       test_and_clr_bitmap(n,tbl->ent_in_use);
       addr_table_lru_remove(tbl,ref);
-      memset(tbl->ents + n,0,0x10);
+      memset(tbl->ents + n,0,0x12);
     }
     else {
-      pnVar2[n].field_0xf = pnVar2[n].field_0xf | 8;
+      pnVar2[n].field_0x11 = pnVar2[n].field_0x11 | 8;
     }
   }
   return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> core_api.o -> ezb_core_deinit
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,16 +15,22 @@
 void ezb_core_deinit(void)
 
 {
-  bdb_comm_deinit();
-  af_deinit();
-  aps_deinit();
-  nwk_deinit();
-  multimac_154_deinit();
-  time_ticker_deinit();
-  tm_sched_deinit();
-  datasets_deinit();
-  mempool_deinit();
-  core_globals_deinit();
+  int iVar1;
+  
+  iVar1 = core_globals_inited();
+  if (iVar1 != 0) {
+    bdb_comm_deinit();
+    af_deinit();
+    aps_deinit();
+    nwk_deinit();
+    multimac_154_deinit();
+    time_ticker_deinit();
+    tm_sched_deinit();
+    datasets_deinit();
+    mempool_deinit();
+    core_globals_deinit();
+    return;
+  }
   return;
 }
 

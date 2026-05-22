@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee.release -> zcl_dm_compat.o -> esp_zb_cluster_list_add_custom_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ esp_err_t esp_zb_cluster_list_add_custom_cluster
     if (attr_list != (esp_zb_attribute_list_t *)0x0) {
       *(uint8_t *)((int)&attr_list[-3].attr_list + 2) = role_mask;
       attr_list[-1].attr_list = zb_zcl_custom_cluster_init;
-      uVar1 = ezb_af_endpoint_add_cluster_desc(cluster_list + -3,attr_list + -3);
+      uVar1 = ezb_af_endpoint_add_cluster_desc(cluster_list + -1,attr_list + -3);
     }
   }
   eVar2 = esp_zigbee_err_to_esp(uVar1);

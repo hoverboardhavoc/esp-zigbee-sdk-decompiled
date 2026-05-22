@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_secur.o -> zdo_secur_handle_timer
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void zdo_secur_handle_timer(void)
   
   nwk_pim_stop_fast_poll();
   iVar2 = core_globals_get();
-  bVar1 = *(byte *)(iVar2 + 0xd5c);
+  bVar1 = *(byte *)(iVar2 + 0xcf8);
   if (bVar1 == 1) {
     iVar2 = nwk_is_device_zed();
     if ((iVar2 != 0) && (iVar2 = core_globals_get(), *(char *)(iVar2 + 0x9ee) == '\0')) {
@@ -38,8 +38,8 @@ void zdo_secur_handle_timer(void)
       return;
     }
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/zdo/zdo_app_secur.c",0x8f,"zdo_secur_handle_timer",
-                  &_LC0);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_secur.c",0x8f,
+                  "zdo_secur_handle_timer",&_LC0);
   }
   else {
     if (1 < (byte)(bVar1 - 2)) goto _L0;
@@ -50,7 +50,7 @@ _L0:
       iVar2 = core_globals_get();
       *(char *)(iVar2 + 0x9b8) = *(char *)(iVar2 + 0x9b8) + '\x01';
       iVar2 = core_globals_get();
-      if (*(char *)(iVar2 + 0xd5c) == '\x02') {
+      if (*(char *)(iVar2 + 0xcf8) == '\x02') {
         uStack_24 = 0;
         rk_req.dst_address.field_0.u64._0_4_ = 0;
         rk_req._8_4_ = 0;
@@ -75,7 +75,7 @@ _L0:
         nwk_pim_start_fast_poll(0);
         iVar2 = core_globals_get();
         iVar4 = core_globals_get();
-        milli_timer_start(iVar2 + 0xd60,(*(ushort *)(iVar4 + 0x9ba) & 0x1f) * 1000);
+        milli_timer_start(iVar2 + 0xcfc,(*(ushort *)(iVar4 + 0x9ba) & 0x1f) * 1000);
         return;
       }
       if (iVar2 == 0) {

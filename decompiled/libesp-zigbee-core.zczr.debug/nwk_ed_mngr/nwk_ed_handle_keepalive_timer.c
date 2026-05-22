@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_ed_mngr.o -> nwk_ed_handle_keepalive_timer
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,8 +26,8 @@ void nwk_ed_handle_keepalive_timer(void *ctx)
       iVar1 = core_globals_get();
       if (((*(uint *)(iVar1 + 0xaf8) >> 6 & 1) != 0) &&
          (iVar1 = nwk_get_keepalive_mode(), iVar1 != 2)) {
-        __assert_func("//build/esp-zigbee/src/core/nwk/nwk_ed_mngr.c",0x1e4,
-                      "nwk_ed_handle_keepalive_timer",&_LC5);
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_ed_mngr.c",0x1e4,
+                      "nwk_ed_handle_keepalive_timer",&_L0);
         goto _L0;
       }
       nwk_ed_send_tmo_req();
@@ -39,8 +39,8 @@ void nwk_ed_handle_keepalive_timer(void *ctx)
     else {
       if (uVar2 != 1) {
 _L0:
-        __assert_func("//build/esp-zigbee/src/core/nwk/nwk_ed_mngr.c",0x1ed,
-                      "nwk_ed_handle_keepalive_timer",&_LC5);
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_ed_mngr.c",0x1ed,
+                      "nwk_ed_handle_keepalive_timer",&_L0);
         nwk_ed_get_timeout();
         return;
       }

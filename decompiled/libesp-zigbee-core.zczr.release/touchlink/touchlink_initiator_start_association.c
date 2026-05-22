@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_initiator_start_association
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,26 +39,26 @@ ezb_err_t touchlink_initiator_start_association(void)
   int iVar13;
   
   iVar5 = core_globals_get();
-  if (*(int *)(iVar5 + 0x1414) == 0) {
+  if (*(int *)(iVar5 + 0x13c0) == 0) {
     bVar12 = 0;
     iVar5 = -0x80;
     puVar2 = (undefined4 *)0x0;
-    for (uVar8 = 0; iVar6 = core_globals_get(), uVar8 < *(byte *)(iVar6 + 0xdd4);
+    for (uVar8 = 0; iVar6 = core_globals_get(), uVar8 < *(byte *)(iVar6 + 0xd80);
         uVar8 = uVar8 + 1 & 0xff) {
       iVar6 = core_globals_get();
       iVar13 = iVar6 + uVar8 * 0xc0;
-      if (((((*(ushort *)(iVar13 + 0xde0) & 3) == 1) ||
+      if (((((*(ushort *)(iVar13 + 0xd8c) & 3) == 1) ||
            (iVar11 = touchlink_is_factory_new(), iVar11 == 0)) ||
-          (((*(ushort *)(iVar13 + 0xde0) & 3) == 2 &&
+          (((*(ushort *)(iVar13 + 0xd8c) & 3) == 2 &&
            (uVar9 = touchlink_zigbee_info(), (uVar9 & 3) == 1)))) &&
-         (iVar11 = (int)(((uint)*(byte *)(iVar6 + uVar8 * 0xc0 + 0xe94) +
-                         (uint)*(byte *)(iVar13 + 0xde6)) * 0x1000000) >> 0x18, iVar5 < iVar11)) {
-        bVar10 = *(byte *)(iVar13 + 0xde2) & 1;
+         (iVar11 = (int)(((uint)*(byte *)(iVar6 + uVar8 * 0xc0 + 0xe40) +
+                         (uint)*(byte *)(iVar13 + 0xd92)) * 0x1000000) >> 0x18, iVar5 < iVar11)) {
+        bVar10 = *(byte *)(iVar13 + 0xd8e) & 1;
         if (bVar10 < bVar12) {
           bVar12 = 1;
         }
         else {
-          puVar2 = (undefined4 *)(iVar6 + uVar8 * 0xc0 + 0xdd8);
+          puVar2 = (undefined4 *)(iVar6 + uVar8 * 0xc0 + 0xd84);
           iVar5 = iVar11;
           bVar12 = bVar10;
         }
@@ -73,14 +73,14 @@ ezb_err_t touchlink_initiator_start_association(void)
   }
   else {
     iVar5 = core_globals_get();
-    puVar2 = *(undefined4 **)(iVar5 + 0x1414);
+    puVar2 = *(undefined4 **)(iVar5 + 0x13c0);
     puVar1 = puVar2;
   }
   if (puVar1 == (undefined4 *)0x0) {
     return 5;
   }
   iVar5 = core_globals_get();
-  *(undefined4 **)(iVar5 + 0x1414) = puVar2;
+  *(undefined4 **)(iVar5 + 0x13c0) = puVar2;
   touchlink_set_transaction_id(*puVar2);
   touchlink_set_intrp_channel(*(undefined1 *)((int)puVar2 + 0x21));
   piVar7 = (int *)touchlink_extended_address();

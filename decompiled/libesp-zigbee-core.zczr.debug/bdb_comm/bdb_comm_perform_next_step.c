@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_perform_next_step
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,9 +24,9 @@ void bdb_comm_perform_next_step(void)
   uVar2 = CONCAT31(extraout_var,bVar1);
   if (uVar2 != 6) {
     iVar3 = core_globals_get();
-    *(byte *)(iVar3 + 0xda3) = ~(byte)(1 << (bVar1 & 0x1f)) & *(byte *)(iVar3 + 0xda3);
+    *(byte *)(iVar3 + 0xd4f) = ~(byte)(1 << (bVar1 & 0x1f)) & *(byte *)(iVar3 + 0xd4f);
     iVar3 = core_globals_get();
-    *(byte *)(iVar3 + 0xda2) = bVar1;
+    *(byte *)(iVar3 + 0xd4e) = bVar1;
     if (uVar2 == 3) {
       bdb_comm_network_formation();
     }
@@ -49,12 +49,12 @@ void bdb_comm_perform_next_step(void)
       if (uVar2 != 5) {
 _L0:
         iVar3 = core_globals_get();
-        log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar3 + 0xda2));
-        __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x264,
-                      "bdb_comm_perform_next_step",&_LC6);
+        log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar3 + 0xd4e));
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
+                      0x26c,"bdb_comm_perform_next_step",&_LC6);
         bdb_comm_finish_step();
         iVar3 = core_globals_get();
-        bdb_comm_put_app_signal(0x102,*(bdb_comm_status_t *)(iVar3 + 0xda0));
+        bdb_comm_put_app_signal(0x102,*(bdb_comm_status_t *)(iVar3 + 0xd4c));
         bdb_comm_perform_next_step();
         return;
       }

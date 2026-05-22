@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_join.o -> zdo_comm_perform_next_op
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ void zdo_comm_perform_next_op(void)
   }
   zdo_comm_clr_pending_op(op);
   iVar2 = core_globals_get();
-  *(zdo_comm_operation_t *)(iVar2 + 0xd24) = op;
+  *(zdo_comm_operation_t *)(iVar2 + 0xcc0) = op;
   if (uVar1 == 6) {
     error = zdo_secur_start_auth(zdo_comm_handle_op_result,0);
   }
@@ -46,7 +46,7 @@ void zdo_comm_perform_next_op(void)
         goto _L0;
       }
 _L0:
-      error = __assert_func("//build/esp-zigbee/src/core/zdo/zdo_app_join.c",0x13f,
+      error = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_join.c",0x13f,
                             "zdo_comm_perform_next_op",&_L0);
       goto _L0;
     }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> nwk_route_record_table_clear
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,40 +22,40 @@ void nwk_route_record_table_clear(void)
   int iVar4;
   
   iVar2 = core_globals_get();
-  iVar2 = *(int *)(iVar2 + 0xcd4);
+  iVar2 = *(int *)(iVar2 + 0xc70);
   iVar3 = core_globals_get();
-  iVar4 = *(int *)(iVar3 + 0xcd8);
+  iVar4 = *(int *)(iVar3 + 0xc74);
   iVar3 = core_globals_get();
-  if (((*(short *)(iVar3 + 0xcdc) != 0) && (iVar2 != 0)) && (iVar4 != 0)) {
+  if (((*(short *)(iVar3 + 0xc78) != 0) && (iVar2 != 0)) && (iVar4 != 0)) {
     iVar2 = core_globals_get();
-    pvVar1 = *(void **)(iVar2 + 0xcd4);
+    pvVar1 = *(void **)(iVar2 + 0xc70);
     iVar2 = core_globals_get();
-    memset(pvVar1,0,(uint)*(ushort *)(iVar2 + 0xcdc) * 0x1c);
+    memset(pvVar1,0,(uint)*(ushort *)(iVar2 + 0xc78) * 0x1c);
     iVar2 = core_globals_get();
-    pvVar1 = *(void **)(iVar2 + 0xcd8);
+    pvVar1 = *(void **)(iVar2 + 0xc74);
     iVar2 = core_globals_get();
-    memset(pvVar1,0,*(ushort *)(iVar2 + 0xcdc) + 7 >> 3);
+    memset(pvVar1,0,*(ushort *)(iVar2 + 0xc78) + 7 >> 3);
     return;
   }
-  __assert_func("//build/esp-zigbee/src/core/nwk/nwk_route_table.c",0x217,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",0x217,
                 "nwk_route_record_table_clear",&_LC9);
   iVar2 = core_globals_get();
-  iVar2 = *(int *)(iVar2 + 0xcd4);
+  iVar2 = *(int *)(iVar2 + 0xc70);
   iVar3 = core_globals_get();
-  iVar4 = *(int *)(iVar3 + 0xcd8);
+  iVar4 = *(int *)(iVar3 + 0xc74);
   iVar3 = core_globals_get();
-  if (((*(short *)(iVar3 + 0xcdc) != 0) && (iVar2 != 0)) && (iVar4 != 0)) {
+  if (((*(short *)(iVar3 + 0xc78) != 0) && (iVar2 != 0)) && (iVar4 != 0)) {
     iVar2 = core_globals_get();
-    mm_free(*(undefined4 *)(iVar2 + 0xcd4));
+    mm_free(*(undefined4 *)(iVar2 + 0xc70));
     iVar2 = core_globals_get();
-    *(undefined4 *)(iVar2 + 0xcd4) = 0;
+    *(undefined4 *)(iVar2 + 0xc70) = 0;
     iVar2 = core_globals_get();
-    mm_free(*(undefined4 *)(iVar2 + 0xcd8));
+    mm_free(*(undefined4 *)(iVar2 + 0xc74));
     iVar2 = core_globals_get();
-    *(undefined4 *)(iVar2 + 0xcd8) = 0;
+    *(undefined4 *)(iVar2 + 0xc74) = 0;
     return;
   }
-  __assert_func("//build/esp-zigbee/src/core/nwk/nwk_route_table.c",0x21c,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",0x21c,
                 "nwk_route_record_table_deinit",&_LC9);
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();

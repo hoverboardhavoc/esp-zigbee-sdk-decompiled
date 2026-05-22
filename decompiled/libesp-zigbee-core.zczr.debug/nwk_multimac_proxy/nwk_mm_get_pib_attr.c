@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_multimac_proxy.o -> nwk_mm_get_pib_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,21 +26,22 @@ ezb_err_t nwk_mm_get_pib_attr(uint8_t iface_id,mac_pib_attr_t pib_attr,void *val
   
   iVar3 = CONCAT31(in_register_00002029,iface_id);
   if (iVar3 == 0xff) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_multimac_proxy.c",0x71,"nwk_mm_get_pib_attr",
-                  "iface_id != 0xFF");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_multimac_proxy.c",99,
+                  "nwk_mm_get_pib_attr","iface_id != 0xFF");
   }
   else if (iVar3 == 0xff) {
     eVar4 = 0;
     bVar1 = false;
     while (!bVar1) {
-      iVar3 = nwk_mm_is_iface_valid(0);
+      iVar3 = nwk_mm_iface_is_valid(0);
       if (iVar3 != 0) {
         iVar3 = core_globals_get();
-        pcVar5 = *(code **)(*(int *)(*(int *)(iVar3 + 0xce8) + 4) + 0xc);
+        pcVar5 = *(code **)(*(int *)(*(int *)(iVar3 + 0xc84) + 4) + 0x10);
         iVar3 = core_globals_get();
-        iVar3 = (*pcVar5)(*(undefined4 *)(iVar3 + 0xce8),CONCAT31(in_register_0000202d,pib_attr),
+        iVar3 = (*pcVar5)(*(undefined4 *)(iVar3 + 0xc84),CONCAT31(in_register_0000202d,pib_attr),
                           value,value_size);
         if (iVar3 != 0) {
+          log_write(1,"nwk_multimac_proxy.c","%s on iface %d failed: %d","get_pib_attr",0,iVar3);
           eVar4 = iVar3;
         }
       }
@@ -49,9 +50,9 @@ ezb_err_t nwk_mm_get_pib_attr(uint8_t iface_id,mac_pib_attr_t pib_attr,void *val
     return eVar4;
   }
   iVar2 = core_globals_get();
-  pcVar5 = *(code **)(*(int *)(*(int *)(iVar2 + iVar3 * 0xc + 0xce8) + 4) + 0xc);
+  pcVar5 = *(code **)(*(int *)(*(int *)(iVar2 + iVar3 * 0xc + 0xc84) + 4) + 0x10);
   iVar2 = core_globals_get();
-  eVar4 = (*pcVar5)(*(undefined4 *)(iVar2 + iVar3 * 0xc + 0xce8),
+  eVar4 = (*pcVar5)(*(undefined4 *)(iVar2 + iVar3 * 0xc + 0xc84),
                     CONCAT31(in_register_0000202d,pib_attr),value,value_size);
   return eVar4;
 }

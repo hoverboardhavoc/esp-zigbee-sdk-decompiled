@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> mempool_free_ent
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,8 +25,8 @@ void mempool_free_ent(void *blk_base,bitmap_t *blk_busy,uint16_t blk_size,uint16
                      (((int)obj - (int)blk_base) / CONCAT22(in_register_00002032,blk_size)));
     return;
   }
-  uVar1 = __assert_func("//build/esp-zigbee/src/core/common/mempool.h",0x69,"mempool_free_ent",
-                        0x10348);
+  uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.h",0x69,
+                        "mempool_free_ent","blk_base <= obj");
   __atomic_fetch_or_1((uVar1 >> 3) + extraout_a1,1 << (uVar1 & 7) & 0xff,5);
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_handle_device_leave
  *
  * (C) Espressif, Apache License 2.0.
@@ -17,9 +17,17 @@ void nwk_handle_device_leave(nwk_leave_ind_t *ind)
 {
   int iVar1;
   int iVar2;
+  undefined2 uStack_1c;
+  ezb_shortaddr_t eStack_1a;
+  undefined4 uStack_18;
+  undefined2 uStack_14;
   
   iVar1 = nwk_neighbor_table_get_by_extended(&ind->device_address);
-  nwk_fwd_purge(ind->short_address);
+  uStack_18 = 0;
+  uStack_14 = 0;
+  _uStack_1c = CONCAT22(ind->short_address,2);
+  nwk_mm_purge_tx_queue(0xff,&uStack_1c);
+  nwk_fwd_purge_ex(ind->short_address,0,0);
   iVar2 = nwk_is_device_zed();
   if (iVar2 == 0) {
     nwk_route_table_remove_by_dst(ind->short_address);

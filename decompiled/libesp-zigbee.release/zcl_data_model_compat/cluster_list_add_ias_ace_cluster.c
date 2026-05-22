@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee.release -> zcl_data_model_compat.o -> cluster_list_add_ias_ace_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ esp_err_t cluster_list_add_ias_ace_cluster
   undefined1 uStack_11;
   
   if (cluster_list != (esp_zb_cluster_list_t *)0x0) {
-    cluster_list = cluster_list + -3;
+    cluster_list = cluster_list + -1;
   }
   uVar1 = 2;
   if ((attr_list != (esp_zb_attribute_list_t *)0x0) &&

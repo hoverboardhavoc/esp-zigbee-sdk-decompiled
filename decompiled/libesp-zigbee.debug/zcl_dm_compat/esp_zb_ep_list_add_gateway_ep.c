@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee.debug -> zcl_dm_compat.o -> esp_zb_ep_list_add_gateway_ep
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,9 +35,9 @@ esp_err_t esp_zb_ep_list_add_gateway_ep
       goto _L0;
     }
   }
-  peVar1 = cluster_list + -3;
+  peVar1 = cluster_list + -1;
 _L0:
-  *(byte *)&peVar1[1].cluster_list = *(byte *)&peVar1[1].cluster_list | 1;
+  *(byte *)((int)&peVar1->cluster_list + 1) = *(byte *)((int)&peVar1->cluster_list + 1) | 1;
   ezb_zcl_alarms_cluster_client_init(*(undefined1 *)&peVar1->cluster_list,endpoint_config);
   ezb_zcl_identify_cluster_client_init(*(undefined1 *)&peVar1->cluster_list);
   ezb_zcl_groups_cluster_client_init(*(undefined1 *)&peVar1->cluster_list);

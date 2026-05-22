@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_secur.o -> nwk_process_receive_security
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,8 @@ ezb_err_t nwk_process_receive_security(uint8_t iface_id,zmsg_t *msg)
   uint8_t *key;
   undefined3 extraout_var_01;
   int iVar5;
-  uint uVar6;
+  int iVar6;
+  uint uVar7;
   byte abStack_44 [4];
   nwk_sroute_field_t sroute;
   secur_ccm_nonce_t ccm_nonce;
@@ -36,17 +37,17 @@ ezb_err_t nwk_process_receive_security(uint8_t iface_id,zmsg_t *msg)
   zmsg_read_bytes(msg,0,2,(undefined1 *)((int)&aux_hdr.src_address.field_0 + 5));
   uVar1 = aux_hdr.src_address.field_0.u64._5_2_;
   uVar3 = nwk_fcf_get_hdr_size(aux_hdr.src_address.field_0.u64._5_2_);
-  uVar6 = CONCAT31(extraout_var_00,uVar3);
+  uVar7 = CONCAT31(extraout_var_00,uVar3);
   if ((uVar1 & 0x400) != 0) {
-    iVar5 = zmsg_read_bytes(msg,uVar6,2,abStack_44);
-    uVar6 = (uint)abStack_44[0] * 2 + (uVar6 + iVar5 & 0xffff) & 0xffff;
+    iVar5 = zmsg_read_bytes(msg,uVar7,2,abStack_44);
+    uVar7 = (uint)abStack_44[0] * 2 + (uVar7 + iVar5 & 0xffff) & 0xffff;
   }
   if ((aux_hdr.src_address.field_0.u64._5_2_ & 0x200) != 0) {
     msg->flags = msg->flags | 2;
     if (CONCAT31(extraout_var,bVar2) == 0) {
       return 0x13;
     }
-    zmsg_read_bytes(msg,uVar6,0xe,&ccm_nonce.security_control);
+    zmsg_read_bytes(msg,uVar7,0xe,&ccm_nonce.security_control);
     if (ccm_nonce.security_control != '(') {
       return 0x13;
     }
@@ -58,20 +59,29 @@ ezb_err_t nwk_process_receive_security(uint8_t iface_id,zmsg_t *msg)
     if (CONCAT31(extraout_var_01,_Var4) == 0) {
       return 0x2cd;
     }
+    iVar5 = nwk_neighbor_table_get_by_extended(&aux_hdr.frame_cntr);
+    if (((iVar5 != 0) && (*(uint8_t *)(iVar5 + 7) == aux_hdr.src_address.field_0.u8[4])) &&
+       ((aux_hdr._0_4_ << 0x18 | stack0xffffffd0 >> 8) < *(uint *)(iVar5 + 8))) {
+      return 0x13;
+    }
     stack0xffffffd0 = CONCAT31(uStack_2f,(byte)stack0xffffffd0 | bVar2 & 7);
-    zmsg_write_bytes(msg,uVar6,1,&ccm_nonce.security_control);
-    uVar6 = uVar6 + 0xe & 0xffff;
+    zmsg_write_bytes(msg,uVar7,1,&ccm_nonce.security_control);
+    uVar7 = uVar7 + 0xe & 0xffff;
     _sroute = aux_hdr._4_4_ << 0x18 | (uint)aux_hdr._0_4_ >> 8;
     ccm_nonce.source_address.field_0.u64._0_4_ =
          (uint)aux_hdr.src_address.field_0.u8[3] << 0x18 | (uint)aux_hdr._4_4_ >> 8;
     ccm_nonce.source_address.field_0.u64._4_4_ = aux_hdr._0_4_ << 0x18 | stack0xffffffd0 >> 8;
     ccm_nonce.frame_counter._0_1_ = ccm_nonce.security_control;
-    iVar5 = secur_unsecure_msg(CONCAT31(extraout_var,bVar2),key,&sroute,msg,uVar6);
-    if (iVar5 != 0) {
+    iVar6 = secur_unsecure_msg(CONCAT31(extraout_var,bVar2),key,&sroute,msg,uVar7);
+    if (iVar6 != 0) {
       return 0x2ce;
     }
+    if (iVar5 != 0) {
+      *(uint *)(iVar5 + 8) = (aux_hdr._0_4_ << 0x18 | stack0xffffffd0 >> 8) + 1;
+      *(uint8_t *)(iVar5 + 7) = aux_hdr.src_address.field_0.u8[4];
+    }
   }
-  zmsg_set_offset(msg,uVar6);
+  zmsg_set_offset(msg,uVar7);
   return 0;
 }
 

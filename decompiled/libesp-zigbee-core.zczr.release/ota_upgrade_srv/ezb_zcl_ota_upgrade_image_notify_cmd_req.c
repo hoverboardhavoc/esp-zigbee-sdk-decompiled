@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> ota_upgrade_srv.o -> ezb_zcl_ota_upgrade_image_notify_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,7 +46,7 @@ ezb_err_t ezb_zcl_ota_upgrade_image_notify_cmd_req(ezb_zcl_ota_upgrade_image_not
        (iVar2 = zmsg_append_le16((zmsg_t *)packet._32_4_,(cmd_req->payload).image_type), iVar2 != 0)
        ) goto _L0;
     iVar2 = zmsg_append_le32((zmsg_t *)packet._32_4_,(cmd_req->payload).file_version);
-_L179:
+_L187:
     if (iVar2 != 0) goto _L0;
   }
   else {
@@ -56,7 +56,7 @@ _L179:
       val = (cmd_req->payload).image_type;
 _L0:
       iVar2 = zmsg_append_le16((zmsg_t *)packet._32_4_,val);
-      goto _L179;
+      goto _L187;
     }
     if (uVar1 == '\x01') {
       val = (cmd_req->payload).manuf_code;

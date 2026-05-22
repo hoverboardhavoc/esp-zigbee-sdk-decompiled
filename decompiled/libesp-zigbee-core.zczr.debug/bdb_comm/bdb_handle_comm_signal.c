@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_handle_comm_signal
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void bdb_handle_comm_signal(zdo_comm_signal_t signal,void *param)
   if (uVar1 != 2) {
     if (uVar1 < 3) {
       if (uVar1 == 0) {
-        bdb_comm_perform_next_step();
+        bdb_comm_start_commissioning();
       }
       else {
         if (uVar1 != 1) goto _L0;
@@ -35,10 +35,10 @@ void bdb_handle_comm_signal(zdo_comm_signal_t signal,void *param)
       if (uVar1 != 3) {
 _L0:
         log_write(1,"bdb_comm.c","Invalid signal: 0x%02x",uVar1);
-        uVar1 = __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2ad,
-                              "bdb_handle_comm_signal",&_LC6);
+        uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c"
+                              ,0x2c0,"bdb_handle_comm_signal",&_LC6);
         iVar2 = core_globals_get();
-        *(byte *)(iVar2 + 0xdb2) = *(byte *)(iVar2 + 0xdb2) & 0xfd | (byte)((uVar1 & 1) << 1);
+        *(byte *)(iVar2 + 0xd5e) = *(byte *)(iVar2 + 0xd5e) & 0xfd | (byte)((uVar1 & 1) << 1);
         iVar2 = aps_secur_is_tc();
         if (iVar2 != 0) {
           if (uVar1 == 0) {

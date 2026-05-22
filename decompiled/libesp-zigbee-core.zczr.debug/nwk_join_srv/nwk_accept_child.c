@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_accept_child
  *
  * (C) Espressif, Apache License 2.0.
@@ -129,7 +129,8 @@ nwk_accept_child(uint8_t iface_id,ezb_extaddr_t *device_extaddr,mac_cap_info_t m
   }
   else {
 _L0:
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x8c,"nwk_accept_child",&_LC3);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x8c,
+                  "nwk_accept_child",&_L0);
 _L0:
     uVar12 = nwk_neighbor_get_shortaddr(psVar6);
   }
@@ -154,8 +155,8 @@ _L0:
     }
   }
   if (psVar9 == (short *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_srv.c",0xa5,"nwk_accept_child",
-                  "nbr != ((void *)0)");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",0xa5,
+                  "nwk_accept_child","nbr != ((void *)0)");
 _L0:
     nwk_address_unlock_ref();
   }

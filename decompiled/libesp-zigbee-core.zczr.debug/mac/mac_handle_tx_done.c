@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_tx_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,12 +15,12 @@
 void mac_handle_tx_done(mac_device *dev,zmsg_queue_t *q,ezb_err_t tx_error,_Bool is_indirect)
 
 {
-  zmsg_queue_t *q_00;
+  zmsg_queue_t *pzVar1;
   zmsg_t *msg;
-  ezb_err_t eVar1;
+  ezb_err_t eVar2;
   mac_device *dev_00;
-  int iVar2;
   int iVar3;
+  char *extraout_a1;
   undefined3 in_register_00002035;
   zmsg_t *pzStack_58;
   mac_comm_status_ind_t comm_ind;
@@ -35,8 +35,8 @@ void mac_handle_tx_done(mac_device *dev,zmsg_queue_t *q,ezb_err_t tx_error,_Bool
     if (CONCAT31(in_register_00002035,is_indirect) != 0) {
       zmsg_remove_footer(msg,10);
     }
-    eVar1 = parse_mhr_from_msg(msg,(mac_header_t *)auStack_3c,&comm_ind.field_0x17);
-    if (eVar1 == 0) {
+    eVar2 = parse_mhr_from_msg(msg,(mac_header_t *)auStack_3c,&comm_ind.field_0x17);
+    if (eVar2 == 0) {
       zmsg_remove_header(msg,comm_ind._23_1_);
       if (mhr.src_panid._1_1_ != '\x02') {
         if ((mhr.dst_panid & 7) == 1) {
@@ -47,25 +47,30 @@ void mac_handle_tx_done(mac_device *dev,zmsg_queue_t *q,ezb_err_t tx_error,_Bool
           return;
         }
         dev_00 = (mac_device *)
-                 __assert_func("//build/esp-zigbee/src/core/mac/mac.c",0x4ed,"mac_handle_tx_done",
+                 __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x4ed,
+                               "mac_handle_tx_done",
                                "mac_fcf_get_frame_type(mhr.fcf) == MAC_FRAME_DATA");
-        iVar2 = micro_timer_get_now();
-        while( true ) {
-          q_00 = &(dev_00->ctx).pend_q;
-          iVar3 = zmsg_queue_get_head(q_00);
-          if (iVar3 == 0) {
-            return;
+        if (*extraout_a1 == '\0') {
+          pzVar1 = &(dev_00->ctx).tx_q;
+          while (iVar3 = zmsg_queue_get_head(pzVar1), iVar3 != 0) {
+            mac_handle_tx_done(dev_00,pzVar1,0xda,false);
           }
-          if (iVar2 - *(int *)(iVar3 + 0x18) < 0) break;
-          mac_handle_tx_done(dev_00,q_00,0x1f0,true);
+          pzVar1 = &(dev_00->ctx).itx_q;
+          while (iVar3 = zmsg_queue_get_head(pzVar1), iVar3 != 0) {
+            mac_handle_tx_done(dev_00,pzVar1,0xda,true);
+          }
+          pzVar1 = &(dev_00->ctx).pend_q;
+          while (iVar3 = zmsg_queue_get_head(pzVar1), iVar3 != 0) {
+            mac_handle_tx_done(dev_00,pzVar1,0xda,true);
+          }
+          micro_timer_stop(&(dev_00->ctx).transaction_timer);
         }
-        micro_timer_fire_at(&(dev_00->ctx).transaction_timer,*(undefined4 *)(iVar3 + 0x18));
         return;
       }
     }
     else {
-      __assert_func("//build/esp-zigbee/src/core/mac/mac.c",0x4dd,"mac_handle_tx_done",
-                    "(parse_mhr_from_msg(msg, &mhr, &mhr_len)) == 0");
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x4dd,
+                    "mac_handle_tx_done","(parse_mhr_from_msg(msg, &mhr, &mhr_len)) == 0");
     }
     comm_ind.addresses.source.addr_mode = mhr.src_addr.addr_mode;
     comm_ind.addresses.source._1_1_ = mhr.src_addr._1_1_;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_handle_rejoin_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,8 +29,7 @@ void nwk_handle_rejoin_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
   undefined3 extraout_var_02;
   ezb_extaddr_t *device_extaddr;
   _Bool is_secured;
-  undefined4 uStack_4c;
-  undefined4 uStack_48;
+  anon_union_8_2_c961180f_for_ezb_eui64_s_0 aStack_4c;
   ezb_shortaddr_t eStack_44;
   mac_status_t mStack_42;
   undefined1 uStack_41;
@@ -94,7 +93,7 @@ void nwk_handle_rejoin_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
         return;
       }
       pcVar2 = nwk_handle_asso_indication;
-      uVar7 = __assert_func("//build/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x15a,
+      uVar7 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",0x15a,
                             "nwk_handle_rejoin_req",
                             "(msg = zmsg_alloc(((0x0b - sizeof(uint16_t)) + ((0) ? (__builtin_offsetof (nwk_hdr_t, src_ieee_addr)) : (sizeof(nwk_hdr_t))) + ((is_secured) ? sizeof(secur_aux_hdr_t) : 0)))) != ((void *)0)"
                            );
@@ -104,13 +103,14 @@ void nwk_handle_rejoin_req(zmsg_t *msg,nwk_rx_info_t *rx_info)
       _Var3 = nwk_is_router_started();
       if (CONCAT31(extraout_var_01,_Var3) != 0) {
         _eStack_44 = 0xfffe;
-        uStack_4c = *(undefined4 *)&device_extaddr->field_0;
-        uStack_48 = *(undefined4 *)((int)&device_extaddr->field_0 + 4);
+        aStack_4c.u64._0_4_ = *(undefined4 *)&device_extaddr->field_0;
+        aStack_4c.u64._4_4_ = *(undefined4 *)((int)&device_extaddr->field_0 + 4);
         mVar4 = nwk_accept_child((uint8_t)uVar7,device_extaddr,device_extaddr[1].field_0.u8[0],'\0',
                                  &eStack_44);
         _eStack_44 = CONCAT12(mVar4,eStack_44);
-        if (CONCAT31(extraout_var_02,mVar4) != 0xe2) {
-          nwk_mm_asso_response(uVar7,&uStack_4c);
+        if ((CONCAT31(extraout_var_02,mVar4) != 0xe2) &&
+           (iVar6 = nwk_mm_asso_response(uVar7,&aStack_4c), iVar6 != 0)) {
+          nwk_accept_child_done(iVar6,(ezb_extaddr_t *)&aStack_4c,'\0');
         }
       }
       return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_platform.o -> esp_zigbee_platform_workflow_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,8 +28,8 @@ esp_err_t esp_zigbee_platform_workflow_register
   }
   else if ((update_func == (esp_zigbee_platform_update_func)0x0) ||
           (process_func == (esp_zigbee_platform_process_func)0x0)) {
-    __assert_func("//build/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_platform.c",
-                  0x1e,"esp_zigbee_platform_workflow_register",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_platform.c"
+                  ,0x1e,"esp_zigbee_platform_workflow_register",
                   "((update_func && process_func) && \"workflow functions couldn\'t be NULL\")");
 _L0:
     free(__dest);

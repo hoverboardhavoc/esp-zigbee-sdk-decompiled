@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_table_find_src
  *
  * (C) Espressif, Apache License 2.0.
@@ -46,7 +46,8 @@ aps_bind_src_t * bind_table_find_src(ezb_extaddr_t *src_addr,uint8_t src_ep,uint
         }
       }
       else {
-        __assert_func("//build/esp-zigbee/src/core/aps/aps_bind.c",0xa3,"bind_table_find_src",
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0xa3,
+                      "bind_table_find_src",
                       "(nwk_address_extended_by_ref(tmp_src->addr_ref, &tmp_src_addr)) == 0");
       }
     }

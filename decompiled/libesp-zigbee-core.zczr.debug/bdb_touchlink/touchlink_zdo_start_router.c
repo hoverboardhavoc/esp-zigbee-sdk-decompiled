@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_touchlink.o -> touchlink_zdo_start_router
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,8 +35,8 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
   nwk_addr_ref_t addr_ref;
   
   if (start_router == (touchlink_event_start_router_t *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",0x25,
-                  "touchlink_zdo_start_router","start_router");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",
+                  0x25,"touchlink_zdo_start_router","start_router");
   }
   else {
     nwk_set_extended_panid(&start_router->ext_panid);
@@ -56,8 +56,8 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
       return 0;
     }
   }
-  iVar11 = __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",0x36,
-                         "touchlink_zdo_start_router",
+  iVar11 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c"
+                         ,0x36,"touchlink_zdo_start_router",
                          "(nwk_address_update(nwk_get_extended_address(), touchlink_short_address(), &addr_ref)) == 0"
                         );
   iVar12 = touchlink_commissioning_get();
@@ -68,8 +68,8 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
     }
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",0x11b,
-                  "touchlink_initiator_process_discovery_done",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",
+                  0x11b,"touchlink_initiator_process_discovery_done",
                   "(*touchlink_commissioning_get()).role == TL_COMM_ROLE_INITIATOR");
   }
   pcVar14 = (char *)touchlink_commissioning_get();

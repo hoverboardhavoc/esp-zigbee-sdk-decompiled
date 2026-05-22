@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_commissioning_scan_next_channel
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,45 +33,45 @@ ezb_err_t touchlink_commissioning_scan_next_channel(void)
   do {
     iVar3 = core_globals_get();
     uVar2 = (uint)primary_channel[iVar5 + -4];
-    if ((1 << (uVar2 & 0x1f) & *(uint *)(iVar3 + 0x1410)) != 0) goto _L0;
+    if ((1 << (uVar2 & 0x1f) & *(uint *)(iVar3 + 0x13bc)) != 0) goto _L0;
     iVar5 = iVar5 + 1;
   } while (iVar5 != 4);
   iVar5 = core_globals_get();
-  *(undefined1 *)(iVar5 + 0x140c) = 0;
+  *(undefined1 *)(iVar5 + 0x13b8) = 0;
   iVar5 = 0;
   while( true ) {
     iVar3 = core_globals_get();
     uVar2 = (uint)primary_channel[iVar5];
-    if ((1 << (uVar2 & 0x1f) & *(uint *)(iVar3 + 0x1410)) != 0) break;
+    if ((1 << (uVar2 & 0x1f) & *(uint *)(iVar3 + 0x13bc)) != 0) break;
     iVar5 = iVar5 + 1;
     if (iVar5 == 0xc) {
       iVar5 = core_globals_get();
-      *(undefined1 *)(iVar5 + 0x140c) = 0;
+      *(undefined1 *)(iVar5 + 0x13b8) = 0;
       iVar5 = core_globals_get();
-      *(undefined4 *)(iVar5 + 0x1410) = 0;
+      *(undefined4 *)(iVar5 + 0x13bc) = 0;
       return 5;
     }
   }
 _L0:
   iVar5 = core_globals_get();
   bVar1 = true;
-  if (*(char *)(iVar5 + 0x140c) != '\0') {
+  if (*(char *)(iVar5 + 0x13b8) != '\0') {
     iVar5 = core_globals_get();
-    bVar1 = *(char *)(iVar5 + 0x140c) == '\x05';
+    bVar1 = *(char *)(iVar5 + 0x13b8) == '\x05';
   }
   iVar5 = core_globals_get();
-  if (*(char *)(iVar5 + 0x140c) != '\0') {
+  if (*(char *)(iVar5 + 0x13b8) != '\0') {
     iVar5 = core_globals_get();
-    *(char *)(iVar5 + 0x140c) = *(char *)(iVar5 + 0x140c) + -1;
+    *(char *)(iVar5 + 0x13b8) = *(char *)(iVar5 + 0x13b8) + -1;
   }
   iVar5 = core_globals_get();
-  if (*(char *)(iVar5 + 0x140c) == '\0') {
+  if (*(char *)(iVar5 + 0x13b8) == '\0') {
     iVar5 = core_globals_get();
-    *(uint *)(iVar5 + 0x1410) = ~(1 << (uVar2 & 0x1f)) & *(uint *)(iVar5 + 0x1410);
+    *(uint *)(iVar5 + 0x13bc) = ~(1 << (uVar2 & 0x1f)) & *(uint *)(iVar5 + 0x13bc);
   }
   touchlink_set_intrp_channel(uVar2);
   iVar5 = core_globals_get();
-  eVar4 = touchlink_send_scan_req(bVar1,iVar5 + 0x1410);
+  eVar4 = touchlink_send_scan_req(bVar1,iVar5 + 0x13bc);
   return eVar4;
 }
 

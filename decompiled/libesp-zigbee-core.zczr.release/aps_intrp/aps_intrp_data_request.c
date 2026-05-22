@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> aps_intrp.o -> aps_intrp_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,8 +18,8 @@ ezb_err_t aps_intrp_data_request(aps_intrp_data_req_t *req)
   ezb_shortaddr_t eVar1;
   uint16_t uVar2;
   undefined4 uVar3;
-  void *__src;
   ezb_err_t eVar4;
+  void *__src;
   undefined1 *puVar5;
   uint in_a4;
   byte bVar6;
@@ -58,20 +58,18 @@ _L0:
   uVar2 = req->profile_id;
   puVar5[2] = (char)uVar2;
   puVar5[3] = (char)(uVar2 >> 8);
-  zmsg_prepend_bytes((uint)(puVar5 + (4 - (int)&uStack_2c)) & 0xffff,&uStack_2c);
-  uStack_2c = CONCAT31(uStack_2c._1_3_,3);
-  __src = (void *)nwk_get_extended_address();
-  memcpy((void *)((int)&uStack_2c + 2),__src,8);
-  nwk_req.src_addr.u._4_2_ = req->dst_pan_id;
-  memcpy((void *)((int)&nwk_req.src_addr.u + 6),&req->dst_addr,10);
-  nwk_req._20_4_ = req->asdu;
-  if ((zmsg_t *)nwk_req._20_4_ != (zmsg_t *)0x0) {
-    req->asdu = (zmsg_t *)0x0;
-  }
-  zmsg_add_footer(req,0x18);
-  eVar4 = nwk_intrp_data_request(&uStack_2c);
-  if (req->asdu != (zmsg_t *)0x0) {
-    zmsg_free();
+  eVar4 = zmsg_prepend_bytes((uint)(puVar5 + (4 - (int)&uStack_2c)) & 0xffff,&uStack_2c);
+  if (eVar4 == 0) {
+    uStack_2c = CONCAT31(uStack_2c._1_3_,3);
+    __src = (void *)nwk_get_extended_address();
+    memcpy((void *)((int)&uStack_2c + 2),__src,8);
+    nwk_req.src_addr.u._4_2_ = req->dst_pan_id;
+    memcpy((void *)((int)&nwk_req.src_addr.u + 6),&req->dst_addr,10);
+    nwk_req._20_4_ = req->asdu;
+    eVar4 = zmsg_add_footer(req,0x18);
+    if (eVar4 == 0) {
+      eVar4 = nwk_intrp_data_request(&uStack_2c);
+    }
   }
   return eVar4;
 }

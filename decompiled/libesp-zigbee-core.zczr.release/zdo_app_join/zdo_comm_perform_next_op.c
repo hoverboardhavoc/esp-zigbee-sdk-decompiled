@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> zdo_comm_perform_next_op
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,18 +29,18 @@ void zdo_comm_perform_next_op(void)
   nwk_join_req_t req;
   
   iVar3 = core_globals_get();
-  if (*(short *)(iVar3 + 0xd26) == 0) {
+  if (*(short *)(iVar3 + 0xcc2) == 0) {
 _L0:
     iVar3 = 0;
   }
   else {
     iVar3 = core_globals_get();
-    uVar4 = __ctzsi2(*(undefined2 *)(iVar3 + 0xd26));
+    uVar4 = __ctzsi2(*(undefined2 *)(iVar3 + 0xcc2));
     if (uVar4 == 0) goto _L0;
     iVar3 = core_globals_get();
-    *(ushort *)(iVar3 + 0xd26) = ~(ushort)(1 << (uVar4 & 0x1f)) & *(ushort *)(iVar3 + 0xd26);
+    *(ushort *)(iVar3 + 0xcc2) = ~(ushort)(1 << (uVar4 & 0x1f)) & *(ushort *)(iVar3 + 0xcc2);
     iVar3 = core_globals_get();
-    *(char *)(iVar3 + 0xd24) = (char)uVar4;
+    *(char *)(iVar3 + 0xcc0) = (char)uVar4;
     if (uVar4 == 6) {
       iVar3 = zdo_secur_start_auth(zdo_comm_handle_op_result,0);
 _L0:
@@ -55,7 +55,7 @@ _L0:
           uStack_1c = *(uint *)(iVar3 + 8);
           uStack_1d = '\x03';
           iVar3 = core_globals_get();
-          uVar4 = *(uint *)(iVar3 + 0xd40);
+          uVar4 = *(uint *)(iVar3 + 0xcdc);
           uVar5 = nwk_is_device_zed();
           zdo_comm_get_scan_duration(&uStack_1d);
           zdo_comm_get_channel_mask(&stack0xffffffe4);
@@ -107,10 +107,10 @@ _L0:
           }
           nwk_address_get_extpanid(*(undefined1 *)(iVar3 + 8),&stack0xffffffe4);
           iVar3 = core_globals_get();
-          req.extpanid.field_0.u8[4] = (char)((*(byte *)(iVar3 + 0xd40) & 1) << 1);
+          req.extpanid.field_0.u8[4] = (char)((*(byte *)(iVar3 + 0xcdc) & 1) << 1);
           iVar3 = core_globals_get();
           req.extpanid.field_0.u8[6] =
-               req.extpanid.field_0.u8[6] & 0xfe | *(char *)(iVar3 + 0xd24) == '\x03';
+               req.extpanid.field_0.u8[6] & 0xfe | *(char *)(iVar3 + 0xcc0) == '\x03';
           iVar3 = nwk_join_request(&stack0xffffffe4);
         }
         goto _L0;
@@ -140,19 +140,19 @@ _L0:
       iVar3 = nwk_is_device_zed();
       if ((iVar3 == 0) || (iVar3 = nwk_start_end_device(), iVar3 == 0)) {
         iVar3 = core_globals_get();
-        tasklet_post(iVar3 + 0xd28);
+        tasklet_post(iVar3 + 0xcc4);
         return;
       }
     }
   }
 _L0:
   iVar6 = core_globals_get();
-  bVar1 = *(byte *)(iVar6 + 0xd24);
+  bVar1 = *(byte *)(iVar6 + 0xcc0);
   uVar4 = (uint)bVar1;
   iVar6 = core_globals_get();
-  *(undefined2 *)(iVar6 + 0xd26) = 0;
+  *(undefined2 *)(iVar6 + 0xcc2) = 0;
   iVar6 = core_globals_get();
-  *(undefined1 *)(iVar6 + 0xd24) = 0;
+  *(undefined1 *)(iVar6 + 0xcc0) = 0;
   if (uVar4 == 2) {
     if (iVar3 == 0) goto _L0;
     nwk_disc_table_reset();
@@ -165,7 +165,7 @@ _L0:
       iVar3 = core_globals_get();
                     /* WARNING: Could not recover jumptable at 0x00010114. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-      (**(code **)(iVar3 + 0xd38))(2,4,pcVar2,*(code **)(iVar3 + 0xd38));
+      (**(code **)(iVar3 + 0xcd4))(2,4,pcVar2,*(code **)(iVar3 + 0xcd4));
       return;
     }
   }
@@ -175,7 +175,7 @@ _L0:
   iVar6 = core_globals_get();
   req.extpanid.field_0.u8[4] = bVar1;
   req.extpanid.field_0.u64._0_4_ = iVar3;
-  (**(code **)(iVar6 + 0xd3c))(3,&req,*(code **)(iVar6 + 0xd3c));
+  (**(code **)(iVar6 + 0xcd8))(3,&req,*(code **)(iVar6 + 0xcd8));
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_core.o -> zcl_indication_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,10 +44,11 @@ zcl_status_t zcl_indication_handler(af_data_ind_t *arg)
   packet.header._33_1_ = 0;
   packet._34_2_ = 0;
   if (arg == (af_data_ind_t *)0x0) {
-    __assert_func("//build/esp-zigbee/src/core/zcl/zcl_core.c",0x96,"zcl_indication_handler",&_L0);
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_core.c",0x96,
+                  "zcl_indication_handler",&_L0);
 _L0:
     iVar3 = core_globals_get();
-    if ((*(int *)(iVar3 + 0xd7c) != 0) &&
+    if ((*(int *)(iVar3 + 0xd18) != 0) &&
        (_Var1 = zcl_raw_frame_handler((zcl_packet_t *)auStack_38), CONCAT31(extraout_var,_Var1) != 0
        )) goto _L0;
     unaff_s0 = zcl_packet_is_acceptable(auStack_38);

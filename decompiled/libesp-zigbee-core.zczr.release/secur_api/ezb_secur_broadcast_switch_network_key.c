@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> secur_api.o -> ezb_secur_broadcast_switch_network_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,8 +25,8 @@ ezb_err_t ezb_secur_broadcast_switch_network_key(uint8_t key_seq)
     eVar2 = 0xd;
   }
   else {
-    uStack_1c = 0;
-    req.dst_address.field_0.u64._0_4_ = 0;
+    uStack_1c = 0xffffffff;
+    req.dst_address.field_0.u64._0_4_ = 0xffffffff;
     req.dst_address.field_0.u8[4] = key_seq;
     eVar2 = apsme_switch_key_request(&uStack_1c);
   }

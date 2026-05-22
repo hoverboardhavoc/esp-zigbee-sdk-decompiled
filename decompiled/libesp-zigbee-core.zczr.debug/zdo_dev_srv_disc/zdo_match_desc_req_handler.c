@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_match_desc_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00011eb2) */
+/* WARNING: Removing unreachable block (ram,0x000120c6) */
 /* WARNING: Unknown calling convention */
 
 zdp_status_t zdo_match_desc_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)

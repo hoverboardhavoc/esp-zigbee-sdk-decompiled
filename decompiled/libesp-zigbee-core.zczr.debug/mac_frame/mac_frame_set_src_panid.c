@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> mac_frame.o -> mac_frame_set_src_panid
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ void mac_frame_set_src_panid(ezb_radio_frame_t *frame,ezb_panid_t panid)
     return;
   }
   puVar3 = (undefined4 *)
-           __assert_func("//build/esp-zigbee/src/core/mac/mac_frame.c",0x16e,
+           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x16e,
                          "mac_frame_set_src_panid","index != 0xff");
   puVar7 = (ushort *)*puVar3;
   fcf = *puVar7;
@@ -58,7 +58,7 @@ void mac_frame_set_src_panid(ezb_radio_frame_t *frame,ezb_panid_t panid)
       *(short *)(extraout_a1 + 8) = (short)((uint)uVar6 >> 0x10);
       return;
     }
-    iVar4 = __assert_func("//build/esp-zigbee/src/core/mac/mac_frame.c",0x17e,
+    iVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x17e,
                           "mac_frame_get_dstaddr","index != 0xff");
   }
   if (iVar4 != 0xff) {
@@ -66,8 +66,8 @@ void mac_frame_set_src_panid(ezb_radio_frame_t *frame,ezb_panid_t panid)
     *(undefined2 *)(extraout_a1 + 2) = *(undefined2 *)((int)puVar7 + iVar4);
     return;
   }
-  __assert_func("//build/esp-zigbee/src/core/mac/mac_frame.c",0x184,"mac_frame_get_dstaddr",
-                "index != 0xff");
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x184,
+                "mac_frame_get_dstaddr","index != 0xff");
 _L0:
   *extraout_a1 = 0;
   return;

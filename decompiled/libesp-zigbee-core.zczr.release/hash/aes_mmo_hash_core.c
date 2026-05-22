@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> hash.o -> aes_mmo_hash_core
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,14 +19,14 @@ void aes_mmo_hash_core(uint8_t *data,uint8_t *hash)
   byte *pbVar1;
   byte *pbVar2;
   int iVar3;
-  uint8_t *local_140;
+  uint8_t *puStack_28;
   ezb_crypto_key_t key;
   crypto_aes_context_t aes;
   
   key.key._0_2_ = 0x10;
-  local_140 = hash;
+  puStack_28 = hash;
   crypto_aes_ecb_init(&key.key_len);
-  crypto_aes_ecb_setkey_enc(&key.key_len,&local_140);
+  crypto_aes_ecb_setkey_enc(&key.key_len,&puStack_28);
   crypto_aes_ecb_encrypt(&key.key_len,data,hash);
   crypto_aes_ecb_free(&key.key_len);
   iVar3 = 0;

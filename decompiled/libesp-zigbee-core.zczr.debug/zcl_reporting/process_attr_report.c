@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_reporting.o -> process_attr_report
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,7 +34,7 @@ void process_attr_report(zcl_reporting_info_t *info)
     return;
   }
   iVar4 = core_globals_get();
-  if (*(char *)(iVar4 + 0xd84) == '\0') {
+  if (*(char *)(iVar4 + 0xd20) == '\0') {
     return;
   }
   if (info->direction != '\0') {
@@ -96,7 +96,7 @@ _L0:
       }
       else if (uVar8 != 0) {
         do {
-          __assert_func("//build/esp-zigbee/src/core/zcl/zcl_reporting.c",0x126,
+          __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_reporting.c",0x126,
                         "process_attr_report",&_L0);
 _L0:
           if (uVar8 == 4) {
@@ -115,7 +115,7 @@ _L0:
 _L0:
   iVar5 = core_globals_get();
   iVar4 = 0;
-  for (puVar6 = *(undefined4 **)(iVar5 + 0xd98); piVar7 = puVar6 + -1, piVar7 != (int *)0xfffffffc;
+  for (puVar6 = *(undefined4 **)(iVar5 + 0xd34); piVar7 = puVar6 + -1, piVar7 != (int *)0xfffffffc;
       puVar6 = (undefined4 *)*puVar6) {
     if (((piVar7 != (int *)0x0) && (iVar5 = *piVar7, iVar5 != 0)) &&
        (*(uint *)(iVar5 + 0xc) < uVar2)) {
@@ -125,11 +125,11 @@ _L0:
   }
   if (uVar2 < 0x7fffffff) {
     iVar5 = core_globals_get();
-    milli_timer_stop(iVar5 + 0xd88);
+    milli_timer_stop(iVar5 + 0xd24);
     iVar5 = core_globals_get();
-    milli_timer_init(iVar5 + 0xd88,process_attr_report,iVar4);
+    milli_timer_init(iVar5 + 0xd24,process_attr_report,iVar4);
     iVar4 = core_globals_get();
-    milli_timer_fire_at(iVar4 + 0xd88,uVar2);
+    milli_timer_fire_at(iVar4 + 0xd24,uVar2);
   }
   return;
 }

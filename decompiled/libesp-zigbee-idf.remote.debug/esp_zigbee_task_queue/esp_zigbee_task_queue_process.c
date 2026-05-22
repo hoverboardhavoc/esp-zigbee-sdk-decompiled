@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_task_queue.o -> esp_zigbee_task_queue_process
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,7 +28,7 @@ esp_err_t esp_zigbee_task_queue_process(esp_zigbee_mainloop_context_t *ctx)
       1 << (s_task_queue_event_fd & 0x1fU)) != 0)) {
     sVar2 = read(s_task_queue_event_fd,auStack_20,8);
     if (sVar2 != 8) {
-      __assert_func("//build/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_task_queue.c"
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_task_queue.c"
                     ,100,"esp_zigbee_task_queue_process","ret == sizeof(val)");
       goto _L0;
     }

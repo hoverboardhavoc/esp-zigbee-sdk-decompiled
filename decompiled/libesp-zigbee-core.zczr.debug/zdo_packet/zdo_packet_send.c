@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_packet.o -> zdo_packet_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -42,15 +42,15 @@ _L0:
     else {
       if ((short)packet->cluster_id < 0) {
         if ((packet->ctx).mode != '\0') {
-          __assert_func("//build/esp-zigbee/src/core/zdo/zdo_packet.c",0x1d0,"zdo_packet_send",
-                        "packet->ctx.mode == ZDO_NONE_RSP");
+          __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_packet.c",0x1ca,
+                        "zdo_packet_send","packet->ctx.mode == ZDO_NONE_RSP");
           goto _L0;
         }
       }
       else {
         iVar5 = core_globals_get();
-        uVar1 = *(uint8_t *)(iVar5 + 0xd0c);
-        *(uint8_t *)(iVar5 + 0xd0c) = uVar1 + '\x01';
+        uVar1 = *(uint8_t *)(iVar5 + 0xca8);
+        *(uint8_t *)(iVar5 + 0xca8) = uVar1 + '\x01';
         packet->tsn = uVar1;
       }
       zmsg_prepend_bytes(packet->payload,1,packet);

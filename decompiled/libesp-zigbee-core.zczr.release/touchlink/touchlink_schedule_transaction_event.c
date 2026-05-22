@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_schedule_transaction_event
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,7 @@ ezb_err_t touchlink_schedule_transaction_event(touchlink_transaction_event_t *ev
   anon_union_36_11_e71becce_for_comm *arg;
   
   iVar3 = core_globals_get();
-  if (*(char *)(iVar3 + 0x1401) == '\x02') {
+  if (*(char *)(iVar3 + 0x13ad) == '\x02') {
     bVar1 = event->type;
     if (bVar1 != 6) {
       if (6 < bVar1) {
@@ -59,7 +59,7 @@ ezb_err_t touchlink_schedule_transaction_event(touchlink_transaction_event_t *ev
             action = (event->comm).add_sub_device.curr_device;
             iVar3 = core_globals_get();
             _Var2 = touchlink_commissioning_action_permission
-                              ((touchlink_action_t)action,(ezb_extaddr_t *)(iVar3 + 0xdd4));
+                              ((touchlink_action_t)action,(ezb_extaddr_t *)(iVar3 + 0xd80));
             return CONCAT31(extraout_var,_Var2) + -1;
           }
         }
@@ -116,7 +116,7 @@ _L0:
   }
   else {
     iVar3 = core_globals_get();
-    if (*(char *)(iVar3 + 0x1401) != '\x01') {
+    if (*(char *)(iVar3 + 0x13ad) != '\x01') {
       return 3;
     }
     bVar1 = event->type;
@@ -131,7 +131,7 @@ _L0:
     if (8 < bVar1) {
       if (bVar1 == 10) {
         iVar3 = core_globals_get();
-        bVar1 = *(byte *)(iVar3 + 0x1400);
+        bVar1 = *(byte *)(iVar3 + 0x13ac);
         if (bVar1 == 2) {
           touchlink_disable_timer();
           if ((event->comm).transaction.status != '\0') {
@@ -171,7 +171,7 @@ _L0:
       }
       else if (bVar1 == 0xb) {
         iVar3 = core_globals_get();
-        if (*(char *)(iVar3 + 0x1400) != '\x06') {
+        if (*(char *)(iVar3 + 0x13ac) != '\x06') {
           return 3;
         }
         touchlink_disable_timer();
@@ -184,8 +184,8 @@ _L0:
       }
       else {
         if ((bVar1 != 9) ||
-           ((iVar3 = core_globals_get(), *(char *)(iVar3 + 0x1400) != '\x04' &&
-            (iVar3 = core_globals_get(), *(char *)(iVar3 + 0x1400) != '\x05')))) {
+           ((iVar3 = core_globals_get(), *(char *)(iVar3 + 0x13ac) != '\x04' &&
+            (iVar3 = core_globals_get(), *(char *)(iVar3 + 0x13ac) != '\x05')))) {
           return 3;
         }
         touchlink_disable_timer();
@@ -211,7 +211,7 @@ _L261:
         return 3;
       }
       iVar3 = core_globals_get();
-      if (*(char *)(iVar3 + 0x1400) != '\x02') {
+      if (*(char *)(iVar3 + 0x13ac) != '\x02') {
         return 3;
       }
       iVar3 = *(int *)&event->comm;

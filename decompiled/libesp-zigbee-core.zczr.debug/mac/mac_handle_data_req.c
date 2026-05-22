@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_data_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,8 +35,8 @@ void mac_handle_data_req(mac_device *dev,mac_frame_t *frame)
     }
   }
   else {
-    __assert_func("//build/esp-zigbee/src/core/mac/mac.c",0x409,"mac_handle_data_req",
-                  "*cmd_ptr++ == 4U");
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x409,"mac_handle_data_req"
+                  ,"*cmd_ptr++ == 4U");
 _L0:
     pdVar3 = unaff_s0->prev;
     pdVar2 = unaff_s0->next;

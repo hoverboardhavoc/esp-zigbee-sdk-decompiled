@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app.o -> zdo_dev_start
  *
  * (C) Espressif, Apache License 2.0.
@@ -25,11 +25,11 @@ ezb_err_t zdo_dev_start(_Bool autostart)
   undefined2 uStack_14;
   
   iVar2 = core_globals_get();
-  if ((*(byte *)(iVar2 + 0xd58) & 1) == 0) {
+  if ((*(byte *)(iVar2 + 0xcf4) & 1) == 0) {
     eVar1 = zdo_dev_init();
     if (eVar1 == 0) {
       iVar2 = core_globals_get();
-      *(byte *)(iVar2 + 0xd58) = *(byte *)(iVar2 + 0xd58) | 1;
+      *(byte *)(iVar2 + 0xcf4) = *(byte *)(iVar2 + 0xcf4) | 1;
       if (CONCAT31(in_register_00002029,autostart) == 0) {
         uStack_20 = 0;
         uStack_1c = 0;

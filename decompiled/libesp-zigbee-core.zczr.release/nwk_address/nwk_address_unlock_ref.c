@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_unlock_ref
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,73 +16,71 @@ void nwk_address_unlock_ref(nwk_addr_ref_t ref)
 
 {
   ushort uVar1;
-  undefined2 uVar2;
   ushort ref_00;
-  _Bool _Var3;
+  _Bool _Var2;
   undefined3 extraout_var;
   undefined3 extraout_var_00;
   undefined2 in_register_0000202a;
-  int iVar4;
+  int iVar3;
   uint n;
+  int iVar4;
   int iVar5;
-  int iVar6;
-  uint uVar7;
-  int iVar8;
+  uint uVar6;
+  int iVar7;
   
-  iVar4 = core_globals_get();
-  do_unlock_ref((nwk_addr_table_t *)(iVar4 + 0xcb0),ref);
-  iVar8 = *(int *)(iVar4 + 0xcb4) + CONCAT22(in_register_0000202a,ref) * 0x10;
-  if ((*(byte *)(iVar8 + 0xf) & 4) == 0) {
+  iVar3 = core_globals_get();
+  do_unlock_ref((nwk_addr_table_t *)(iVar3 + 0xc4c),ref);
+  iVar7 = *(int *)(iVar3 + 0xc50) + CONCAT22(in_register_0000202a,ref) * 0x12;
+  if ((*(byte *)(iVar7 + 0x11) & 4) == 0) {
     return;
   }
-  ref_00 = *(ushort *)(iVar8 + 0xc);
+  ref_00 = *(ushort *)(iVar7 + 0xe);
   n = (uint)ref_00;
-  _Var3 = check_table_ref(ref_00,((nwk_addr_table_t *)(iVar4 + 0xcb0))->ent_in_use,
-                          *(uint16_t *)(iVar4 + 0xcb8));
-  if (CONCAT31(extraout_var_00,_Var3) != 0) {
-    iVar8 = *(int *)(iVar4 + 0xcb4) + n * 0x10;
-    uVar7 = (uint)*(byte *)(iVar8 + 0xe);
-    if (uVar7 == 0) {
+  _Var2 = check_table_ref(ref_00,((nwk_addr_table_t *)(iVar3 + 0xc4c))->ent_in_use,
+                          *(uint16_t *)(iVar3 + 0xc54));
+  if (CONCAT31(extraout_var_00,_Var2) != 0) {
+    iVar7 = *(int *)(iVar3 + 0xc50) + n * 0x12;
+    uVar6 = (uint)*(byte *)(iVar7 + 0x10);
+    if (uVar6 == 0) {
       __assert_func(0,0,0,0);
     }
-    *(char *)(iVar8 + 0xe) = (char)(uVar7 - 1);
-    if ((uVar7 - 1 & 0xff) == 0) {
-      if ((*(ushort *)(iVar8 + 0xe) >> 10 & 3) == 0) {
-        iVar8 = *(int *)(iVar4 + 0xcb4);
-        iVar6 = n * 0x10 + iVar8;
-        if ((*(short *)(iVar6 + 8) == -1) || (*(short *)(iVar6 + 10) == -1)) {
-          if ((uint)*(ushort *)(iVar4 + 0xcba) < (uint)*(ushort *)(iVar4 + 0xcb8)) {
-            uVar1 = *(ushort *)((uint)*(ushort *)(iVar4 + 0xcba) * 0x10 + iVar8 + 8);
-            iVar5 = (uint)uVar1 * 0x10 + iVar8;
-            uVar2 = *(undefined2 *)(iVar5 + 10);
-            *(ushort *)(iVar6 + 8) = uVar1;
-            *(undefined2 *)(iVar6 + 10) = uVar2;
+    *(char *)(iVar7 + 0x10) = (char)(uVar6 - 1);
+    if ((uVar6 - 1 & 0xff) == 0) {
+      if ((*(ushort *)(iVar7 + 0x10) >> 10 & 3) == 0) {
+        iVar7 = *(int *)(iVar3 + 0xc50);
+        iVar5 = n * 0x12 + iVar7;
+        if ((*(short *)(iVar5 + 10) == -1) || (*(short *)(iVar5 + 0xc) == -1)) {
+          if ((uint)*(ushort *)(iVar3 + 0xc56) < (uint)*(ushort *)(iVar3 + 0xc54)) {
+            uVar1 = *(ushort *)((uint)*(ushort *)(iVar3 + 0xc56) * 0x12 + iVar7 + 10);
+            *(ushort *)(iVar5 + 10) = uVar1;
+            iVar4 = (uint)uVar1 * 0x12 + iVar7;
+            *(undefined2 *)(iVar5 + 0xc) = *(undefined2 *)(iVar4 + 0xc);
             if (uVar1 != 0xffff) {
-              *(ushort *)(iVar5 + 10) = ref_00;
+              *(ushort *)(iVar4 + 0xc) = ref_00;
             }
-            if (*(ushort *)(iVar6 + 10) != 0xffff) {
-              *(ushort *)(iVar8 + (uint)*(ushort *)(iVar6 + 10) * 0x10 + 8) = ref_00;
+            if (*(ushort *)(iVar5 + 0xc) != 0xffff) {
+              *(ushort *)(iVar7 + (uint)*(ushort *)(iVar5 + 0xc) * 0x12 + 10) = ref_00;
             }
           }
           else {
-            *(ushort *)(iVar6 + 8) = ref_00;
-            *(ushort *)(iVar6 + 10) = ref_00;
+            *(ushort *)(iVar5 + 10) = ref_00;
+            *(ushort *)(iVar5 + 0xc) = ref_00;
           }
-          *(ushort *)(iVar4 + 0xcba) = ref_00;
+          *(ushort *)(iVar3 + 0xc56) = ref_00;
         }
         return;
       }
-      iVar4 = core_globals_get();
-      _Var3 = check_table_ref(ref_00,*(bitmap_t **)(iVar4 + 0xcb0),*(uint16_t *)(iVar4 + 0xcb8));
-      if (CONCAT31(extraout_var,_Var3) != 0) {
-        iVar8 = *(int *)(iVar4 + 0xcb4) + n * 0x10;
-        if (*(char *)(iVar8 + 0xe) == '\0') {
-          test_and_clr_bitmap(n,*(bitmap_t **)(iVar4 + 0xcb0));
-          addr_table_lru_remove((nwk_addr_table_t *)(iVar4 + 0xcb0),ref_00);
-          memset((void *)(*(int *)(iVar4 + 0xcb4) + n * 0x10),0,0x10);
+      iVar3 = core_globals_get();
+      _Var2 = check_table_ref(ref_00,*(bitmap_t **)(iVar3 + 0xc4c),*(uint16_t *)(iVar3 + 0xc54));
+      if (CONCAT31(extraout_var,_Var2) != 0) {
+        iVar7 = *(int *)(iVar3 + 0xc50) + n * 0x12;
+        if (*(char *)(iVar7 + 0x10) == '\0') {
+          test_and_clr_bitmap(n,*(bitmap_t **)(iVar3 + 0xc4c));
+          addr_table_lru_remove((nwk_addr_table_t *)(iVar3 + 0xc4c),ref_00);
+          memset((void *)(*(int *)(iVar3 + 0xc50) + n * 0x12),0,0x12);
           return;
         }
-        *(byte *)(iVar8 + 0xf) = *(byte *)(iVar8 + 0xf) | 8;
+        *(byte *)(iVar7 + 0x11) = *(byte *)(iVar7 + 0x11) | 8;
       }
       return;
     }

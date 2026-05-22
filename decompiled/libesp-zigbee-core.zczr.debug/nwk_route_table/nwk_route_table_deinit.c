@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> nwk_route_table_deinit
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,57 +23,57 @@ void nwk_route_table_deinit(void)
   int iVar6;
   
   iVar3 = core_globals_get();
-  iVar3 = *(int *)(iVar3 + 0xcbc);
+  iVar3 = *(int *)(iVar3 + 0xc58);
   iVar4 = core_globals_get();
-  iVar6 = *(int *)(iVar4 + 0xcc0);
+  iVar6 = *(int *)(iVar4 + 0xc5c);
   iVar4 = core_globals_get();
-  if (((*(short *)(iVar4 + 0xcc4) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
+  if (((*(short *)(iVar4 + 0xc60) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
     iVar3 = core_globals_get();
-    mm_free(*(undefined4 *)(iVar3 + 0xcbc));
+    mm_free(*(undefined4 *)(iVar3 + 0xc58));
     iVar3 = core_globals_get();
-    *(undefined4 *)(iVar3 + 0xcbc) = 0;
+    *(undefined4 *)(iVar3 + 0xc58) = 0;
     iVar3 = core_globals_get();
-    mm_free(*(undefined4 *)(iVar3 + 0xcc0));
+    mm_free(*(undefined4 *)(iVar3 + 0xc5c));
     iVar3 = core_globals_get();
-    *(undefined4 *)(iVar3 + 0xcc0) = 0;
+    *(undefined4 *)(iVar3 + 0xc5c) = 0;
     return;
   }
-  uVar2 = __assert_func("//build/esp-zigbee/src/core/nwk/nwk_route_table.c",0x1fe,
+  uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",0x1fe,
                         "nwk_route_table_deinit",&_LC9);
   iVar3 = core_globals_get();
-  iVar3 = *(int *)(iVar3 + 0xcc8);
+  iVar3 = *(int *)(iVar3 + 0xc64);
   iVar4 = core_globals_get();
-  iVar6 = *(int *)(iVar4 + 0xccc);
+  iVar6 = *(int *)(iVar4 + 0xc68);
   iVar4 = core_globals_get();
-  if (((*(short *)(iVar4 + 0xcd0) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
-    __assert_func("//build/esp-zigbee/src/core/nwk/nwk_route_table.c",0x203,
+  if (((*(short *)(iVar4 + 0xc6c) != 0) && (iVar3 != 0)) && (iVar6 != 0)) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",0x203,
                   "nwk_route_disc_table_init",&_LC9);
   }
   iVar3 = core_globals_get();
-  *(undefined1 *)(iVar3 + 0xcc8) = 0;
-  *(undefined1 *)(iVar3 + 0xcc9) = 0;
-  *(undefined1 *)(iVar3 + 0xcca) = 0;
-  *(undefined1 *)(iVar3 + 0xccb) = 0;
-  *(undefined1 *)(iVar3 + 0xccc) = 0;
-  *(undefined1 *)(iVar3 + 0xccd) = 0;
-  *(undefined1 *)(iVar3 + 0xcce) = 0;
-  *(undefined1 *)(iVar3 + 0xccf) = 0;
-  *(undefined1 *)(iVar3 + 0xcd0) = 0;
-  *(undefined1 *)(iVar3 + 0xcd1) = 0;
-  *(undefined1 *)(iVar3 + 0xcd2) = 0;
-  *(undefined1 *)(iVar3 + 0xcd3) = 0;
+  *(undefined1 *)(iVar3 + 0xc64) = 0;
+  *(undefined1 *)(iVar3 + 0xc65) = 0;
+  *(undefined1 *)(iVar3 + 0xc66) = 0;
+  *(undefined1 *)(iVar3 + 0xc67) = 0;
+  *(undefined1 *)(iVar3 + 0xc68) = 0;
+  *(undefined1 *)(iVar3 + 0xc69) = 0;
+  *(undefined1 *)(iVar3 + 0xc6a) = 0;
+  *(undefined1 *)(iVar3 + 0xc6b) = 0;
+  *(undefined1 *)(iVar3 + 0xc6c) = 0;
+  *(undefined1 *)(iVar3 + 0xc6d) = 0;
+  *(undefined1 *)(iVar3 + 0xc6e) = 0;
+  *(undefined1 *)(iVar3 + 0xc6f) = 0;
   iVar3 = core_globals_get();
-  *(undefined2 *)(iVar3 + 0xcd0) = uVar2;
+  *(undefined2 *)(iVar3 + 0xc6c) = uVar2;
   iVar3 = core_globals_get();
-  uVar2 = *(undefined2 *)(iVar3 + 0xcd0);
+  uVar2 = *(undefined2 *)(iVar3 + 0xc6c);
   iVar3 = core_globals_get();
   uVar5 = mm_calloc(uVar2,0x10);
-  *(undefined4 *)(iVar3 + 0xcc8) = uVar5;
+  *(undefined4 *)(iVar3 + 0xc64) = uVar5;
   iVar3 = core_globals_get();
-  uVar1 = *(ushort *)(iVar3 + 0xcd0);
+  uVar1 = *(ushort *)(iVar3 + 0xc6c);
   iVar3 = core_globals_get();
   uVar5 = mm_calloc(uVar1 + 7 >> 3,1);
-  *(undefined4 *)(iVar3 + 0xccc) = uVar5;
+  *(undefined4 *)(iVar3 + 0xc68) = uVar5;
   return;
 }
 

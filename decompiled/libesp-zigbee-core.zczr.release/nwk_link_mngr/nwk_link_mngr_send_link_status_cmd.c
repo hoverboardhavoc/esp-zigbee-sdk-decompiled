@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
+ * Upstream date: 2026-05-22 03:16:46 +0000
+ * Upstream subject: change: update esp-zigbee-lib (73450389)
  * Source: libesp-zigbee-core.zczr.release -> nwk_link_mngr.o -> nwk_link_mngr_send_link_status_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,113 +10,168 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: status */
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void nwk_link_mngr_send_link_status_cmd(void)
 
 {
-  byte bVar1;
-  char cVar2;
+  char cVar1;
+  ushort uVar2;
   ushort uVar3;
-  short sVar4;
-  _Bool _Var5;
-  short sVar6;
+  ushort uVar4;
+  undefined1 *puVar5;
+  undefined1 *puVar6;
+  uint uVar7;
+  _Bool _Var8;
+  undefined1 uVar9;
+  short sVar10;
   undefined3 extraout_var;
-  int iVar7;
-  int iVar8;
-  undefined4 uVar9;
-  int iVar10;
   int iVar11;
-  uint uVar12;
-  byte bVar13;
-  ushort uVar14;
-  byte bVar15;
-  undefined2 uStack_34;
-  undefined1 uStack_32;
+  int iVar12;
+  undefined4 uVar13;
+  int iVar14;
+  int iVar15;
+  uint8_t delay_s;
+  undefined2 *puVar16;
+  uint uVar17;
+  ushort *puVar18;
+  ushort *puVar19;
+  uint uVar20;
+  byte bVar21;
+  undefined2 uVar22;
+  undefined2 *puVar23;
+  short *psVar25;
+  undefined1 auStack_60 [12];
+  undefined1 *local_54;
+  undefined2 local_44;
+  undefined1 local_42;
   nwk_link_status status;
+  undefined2 *puVar24;
   
-  _Var5 = nwk_is_router_started();
-  if (CONCAT31(extraout_var,_Var5) != 0) goto _L0;
+  puVar5 = auStack_60;
+  _Var8 = nwk_is_router_started();
+  puVar6 = auStack_60;
+  if (CONCAT31(extraout_var,_Var8) != 0) goto _L0;
+  while( true ) {
+    __assert_func(0,0,0,0);
+    puVar6 = puVar5;
 _L0:
-  __assert_func(0,0,0,0);
+    iVar11 = zmsg_alloc(0x27);
+    if (iVar11 == 0) break;
+    iVar12 = core_globals_get();
+    bVar21 = *(byte *)(iVar12 + 0xb06);
+    iVar12 = core_globals_get();
+    uVar2 = *(ushort *)(iVar12 + 0xb04);
+    iVar12 = core_globals_get();
+    local_54 = puVar6;
+    zmsg_set_offset(iVar11,0);
+    uVar13 = nwk_get_short_address();
+    nwk_frame_write_hdr(iVar11,uVar13,0xfffc,1,1,0);
+    iVar14 = core_globals_get();
+    cVar1 = *(char *)(iVar14 + 0x9d9);
+    *(char *)(iVar14 + 0x9d9) = cVar1 + '\x01';
+    local_44._0_1_ = cVar1;
+    zmsg_write_bytes(iVar11,7,1,&local_44);
+    local_44._0_1_ = 8;
+    zmsg_append_bytes(iVar11,1,&local_44);
+    puVar16 = &local_44;
+    local_44 = (ushort)local_44._1_1_ << 8;
+    zmsg_append_bytes(iVar11,1);
+    puVar5 = puVar6 + -0x70;
+    psVar25 = (short *)(puVar6 + -0x70);
+    iVar14 = 0;
+    uVar7 = 0;
 _L0:
-  iVar7 = zmsg_alloc(0x27);
-  if (iVar7 != 0) {
-    iVar8 = core_globals_get();
-    bVar1 = *(byte *)(iVar8 + 0xb06);
-    iVar8 = core_globals_get();
-    uVar3 = *(ushort *)(iVar8 + 0xb04);
-    iVar8 = core_globals_get();
-    zmsg_set_offset(iVar7,0);
-    uVar9 = nwk_get_short_address();
-    nwk_frame_write_hdr(iVar7,uVar9,0xfffc,1,1,0);
-    iVar10 = core_globals_get();
-    cVar2 = *(char *)(iVar10 + 0x9d9);
-    *(char *)(iVar10 + 0x9d9) = cVar2 + '\x01';
-    uStack_34._0_1_ = cVar2;
-    zmsg_write_bytes(iVar7,7,1,&uStack_34);
-    uStack_34._0_1_ = 8;
-    zmsg_append_bytes(iVar7,1,&uStack_34);
-    uStack_34 = (ushort)uStack_34._1_1_ << 8;
-    bVar15 = (uVar3 == 0) << 5;
-    zmsg_append_bytes(iVar7,1,&uStack_34);
-    bVar13 = 0;
-    do {
-      uVar14 = uVar3;
-      if ((0xfff7 < uVar3) || (bVar13 == 0x1a)) goto _L0;
-      iVar10 = nwk_neighbor_table_get_by_short(uVar3);
-      if (((iVar10 != 0) && ((*(uint *)(iVar10 + 0xc) >> 0xd & 0x1f) == (uint)bVar1)) &&
-         (((uVar12 = *(uint *)(iVar10 + 0xc) & 0x3c0, uVar12 == 0x80 || (uVar12 == 0x240)) &&
-          (iVar11 = nwk_neighbor_get_incoming_cost(iVar10), iVar11 != 0)))) {
-        if (1 < (*(uint *)(iVar10 + 0xc) & 3)) goto _L0;
-        uStack_34 = uVar3;
-        uStack_32 = nwk_neighbor_get_link_status(iVar10);
-        bVar13 = bVar13 + 1;
-        zmsg_append_bytes(iVar7,3,&uStack_34);
+    iVar14 = nwk_router_table_next(iVar14);
+    if (iVar14 == 0) {
+      puVar23 = (undefined2 *)(puVar6 + uVar7 * 4 + -0x70);
+      for (uVar20 = uVar7; puVar24 = puVar23 + -2, 1 < uVar20; uVar20 = uVar20 - 1 & 0xff) {
+        uVar22 = *(undefined2 *)(puVar6 + -0x70);
+        uVar9 = puVar6[-0x6e];
+        *(undefined2 *)(puVar6 + -0x70) = *puVar24;
+        *(undefined2 *)(puVar6 + -0x6e) = puVar23[-1];
+        *puVar24 = uVar22;
+        *(undefined1 *)(puVar23 + -1) = uVar9;
+        nwk_ls_heap_shift_down
+                  ((nwk_link_status_heap_ent *)(puVar6 + -0x70),(uint8_t)(uVar20 - 1),
+                   (uint8_t)puVar16);
+        puVar23 = puVar24;
       }
-      uVar3 = uVar3 + 1;
-    } while( true );
+      bVar21 = (uVar2 == 0) << 5;
+      if (uVar7 < 0x1b) {
+        bVar21 = bVar21 | 0x40;
+        uVar22 = 0;
+      }
+      else {
+        uVar7 = uVar7 - 1 & 0xff;
+        uVar22 = *(undefined2 *)(puVar6 + uVar7 * 4 + -0x70);
+      }
+      for (uVar20 = 0; uVar20 != uVar7; uVar20 = uVar20 + 1 & 0xff) {
+        local_44 = *psVar25;
+        local_42 = (undefined1)psVar25[1];
+        zmsg_append_bytes(iVar11,3,&local_44);
+        psVar25 = psVar25 + 2;
+      }
+      sVar10 = zmsg_get_offset(iVar11);
+      local_44 = CONCAT11(local_44._1_1_,bVar21 | (byte)uVar20 & 0x1f);
+      zmsg_write_bytes(iVar11,sVar10 + 1,1,&local_44);
+      *(undefined2 *)(iVar12 + 0xb04) = uVar22;
+      nwk_fwd_send_msg_delayed(iVar11,0);
+      break;
+    }
+    if ((*(uint *)(iVar14 + 0xc) & 3) < 2) goto _L0;
   }
-  goto _L0;
-_L0:
-  if (0xfff7 < uVar14) goto _L0;
-  iVar10 = nwk_neighbor_table_get_by_short(uVar14);
-  if (((iVar10 != 0) && ((*(uint *)(iVar10 + 0xc) >> 0xd & 0x1f) == (uint)bVar1)) &&
-     ((uVar12 = *(uint *)(iVar10 + 0xc) & 0x3c0, uVar12 == 0x80 || (uVar12 == 0x240)))) goto _L0;
-  uVar14 = uVar14 + 1;
-  goto _L0;
-_L0:
-  if (uVar14 == 0xfff8) {
-    bVar15 = bVar15 | 0x40;
-    sVar4 = 0;
-  }
-  else {
-_L0:
-    sVar4 = uVar3 - 1;
-  }
-  sVar6 = zmsg_get_offset(iVar7);
-  uStack_34 = CONCAT11(uStack_34._1_1_,bVar13 | bVar15);
-  zmsg_write_bytes(iVar7,sVar6 + 1,1,&uStack_34);
-  *(short *)(iVar8 + 0xb04) = sVar4;
-  nwk_fwd_send_msg(iVar7);
-_L0:
-  iVar7 = core_globals_get();
-  if (*(short *)(iVar7 + 0xb04) == 0) {
-    iVar7 = core_globals_get();
-    iVar7 = nwk_mm_get_next_router_iface(iVar7 + 0xb06);
-    if (iVar7 != 0) {
-      iVar8 = core_globals_get();
-      iVar7 = core_globals_get();
-      uVar12 = (uint)*(byte *)(iVar7 + 0xa24);
+  iVar11 = core_globals_get();
+  if (*(short *)(iVar11 + 0xb04) == 0) {
+    iVar11 = core_globals_get();
+    iVar11 = nwk_mm_get_next_router_iface(iVar11 + 0xb06);
+    if (iVar11 != 0) {
+      iVar11 = core_globals_get();
+      iVar12 = core_globals_get();
+      delay_s = *(uint8_t *)(iVar12 + 0xa24);
       goto _L0;
     }
   }
-  iVar8 = core_globals_get();
-  uVar12 = 0;
+  iVar11 = core_globals_get();
+  delay_s = '\0';
 _L0:
-  uVar9 = random_add_jitter(uVar12 * 1000,0x40);
-  milli_timer_start(iVar8 + 0xae4,uVar9);
+  nwk_link_mngr_start_timer((milli_timer_t *)(iVar11 + 0xae4),delay_s,0x40);
   return;
+_L0:
+  if (((((*(uint *)(iVar14 + 0xc) >> 0xd & 0x1f) == (uint)bVar21) &&
+       (iVar15 = nwk_neighbor_get_incoming_cost(), iVar15 != 0)) &&
+      ((uVar20 = *(uint *)(iVar14 + 0xc) & 0x3c0, uVar20 == 0x80 || (uVar20 == 0x240)))) &&
+     (uVar20 = nwk_neighbor_get_shortaddr(iVar14), uVar2 <= uVar20)) {
+    if (uVar7 < 0x1b) {
+      *(short *)(puVar6 + uVar7 * 4 + -0x70) = (short)uVar20;
+      uVar9 = nwk_neighbor_get_link_status(iVar14);
+      *(undefined1 *)((int)(puVar6 + uVar7 * 4 + -0x70) + 2) = uVar9;
+      uVar20 = uVar7;
+      while (uVar20 != 0) {
+        uVar17 = (int)(uVar20 - 1) >> 1;
+        puVar18 = (ushort *)(puVar6 + uVar17 * 4 + -0x70);
+        puVar19 = (ushort *)(puVar6 + uVar20 * 4 + -0x70);
+        uVar3 = *puVar18;
+        puVar16 = (undefined2 *)(uint)*puVar19;
+        if (puVar16 <= (undefined2 *)(uint)uVar3) break;
+        *puVar18 = *puVar19;
+        puVar16 = (undefined2 *)(uint)puVar19[1];
+        uVar4 = puVar18[1];
+        puVar18[1] = puVar19[1];
+        *puVar19 = uVar3;
+        *(char *)(puVar19 + 1) = (char)uVar4;
+        uVar20 = uVar17 & 0xff;
+      }
+      uVar7 = uVar7 + 1 & 0xff;
+    }
+    else if (uVar20 < *(ushort *)(puVar6 + -0x70)) {
+      *(short *)(puVar6 + -0x70) = (short)uVar20;
+      uVar9 = nwk_neighbor_get_link_status(iVar14);
+      puVar6[-0x6e] = uVar9;
+      nwk_ls_heap_shift_down
+                ((nwk_link_status_heap_ent *)(puVar6 + -0x70),(uint8_t)uVar7,(uint8_t)puVar16);
+    }
+  }
+  goto _L0;
 }
 
