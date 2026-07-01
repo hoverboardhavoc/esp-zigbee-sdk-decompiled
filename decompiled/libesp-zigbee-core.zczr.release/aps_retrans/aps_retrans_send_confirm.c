@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_retrans.o -> aps_retrans_send_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,7 +36,7 @@ _L6:
     _Var2 = test_and_clr_bitmap(uVar1 & 0xff,(bitmap_t *)(iVar3 + 0x454));
   } while (CONCAT31(extraout_var,_Var2) == 0);
   nwk_pim_stop_fast_poll();
-  aps_send_confirm(pzVar4,error);
+  aps_send_frame_confirm(pzVar4,error);
   iVar3 = core_globals_get();
   tasklet_post(iVar3 + 0x38);
   return;

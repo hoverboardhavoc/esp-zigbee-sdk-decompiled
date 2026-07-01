@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> apsme_verify_key_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,7 +15,6 @@
 ezb_err_t apsme_verify_key_request(apsme_verify_key_req_t *req)
 
 {
-  undefined1 nwk_secured;
   ezb_err_t eVar1;
   _Bool _Var2;
   undefined3 extraout_var;
@@ -25,7 +24,6 @@ ezb_err_t apsme_verify_key_request(apsme_verify_key_req_t *req)
   undefined4 local_30;
   uint8_t hash [16];
   
-  nwk_secured = SUB41(&local_30,0);
   eVar1 = 2;
   if (req != (apsme_verify_key_req_t *)0x0) {
     _Var2 = ezb_eui64_is_invalid(&req->dst_address);
@@ -52,8 +50,8 @@ ezb_err_t apsme_verify_key_request(apsme_verify_key_req_t *req)
               zmsg_append_bytes(msg,8,&local_30);
               if (req->key_type == '\x04') {
                 aps_secur_key_pair_get_hash(iVar3,&local_30);
-                zmsg_append_bytes(msg,0x10);
-                eVar1 = aps_send_cmd(msg,&req->dst_address,(_Bool)nwk_secured);
+                zmsg_append_bytes(msg,0x10,&local_30);
+                eVar1 = aps_send_cmd(msg,&req->dst_address);
                 if (eVar1 == 0) {
                   return 0;
                 }

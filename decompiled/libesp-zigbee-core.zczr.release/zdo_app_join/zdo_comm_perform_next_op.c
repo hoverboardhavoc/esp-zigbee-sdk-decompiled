@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> zdo_comm_perform_next_op
  *
  * (C) Espressif, Apache License 2.0.
@@ -93,18 +93,12 @@ _L0:
             iVar3 = 0x1ea;
             goto _L0;
           }
-          req.extpanid.field_0.u64._4_2_ = 0x8400;
           uStack_1c = 0;
           req.extpanid.field_0.u64._0_4_ = 0;
+          req.extpanid.field_0.u64._4_2_ = 0;
           req.extpanid.field_0.u8[6] = '\0';
-          iVar6 = core_globals_get();
-          if (*(char *)(iVar6 + 0x9ee) != '\0') {
-            req.extpanid.field_0.u64._4_2_ = req.extpanid.field_0.u64._4_2_ | 0x800;
-          }
-          iVar6 = nwk_is_device_zczr();
-          if (iVar6 != 0) {
-            req.extpanid.field_0.u64._4_2_ = req.extpanid.field_0.u64._4_2_ | 0x200;
-          }
+          iVar6 = af_get_node_desc();
+          req.extpanid.field_0.u8[5] = *(undefined1 *)(iVar6 + 2);
           nwk_address_get_extpanid(*(undefined1 *)(iVar3 + 8),&stack0xffffffe4);
           iVar3 = core_globals_get();
           req.extpanid.field_0.u8[4] = (char)((*(byte *)(iVar3 + 0xcdc) & 1) << 1);

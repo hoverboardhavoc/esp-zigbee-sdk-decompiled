@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_secur.o -> apsme_transport_key_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,7 +54,7 @@ void apsme_transport_key_indication(apsme_transport_key_ind_t *ind)
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_secur.c",0xf6,
                     "apsme_transport_key_indication","aps_secur_is_addr_tc(&ind->src_address)");
 _L0:
-      iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_secur.c",0x104,
+      iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_secur.c",0x103,
                             "apsme_transport_key_indication",
                             "(apsme_verify_key_request(&vk_req)) == 0");
       if ((*(char *)(iVar1 + 8) == '\x04') &&
@@ -72,8 +72,7 @@ _L0:
     }
     iVar1 = aps_secur_get_key_pair_by_addr(ind);
     if ((iVar1 != 0) && ((*(ushort *)(iVar1 + 0x34) & 6) != 2)) {
-      *(ushort *)(iVar1 + 0x34) = *(ushort *)(iVar1 + 0x34) & 0xfff9 | 2;
-      memcpy((void *)(iVar1 + 0x12),&ind->field_2,0x10);
+      aps_secur_key_pair_set_unverified(&ind->field_2);
       iVar1 = core_globals_get();
       *(undefined1 *)(iVar1 + 0x9b8) = 0;
       iVar1 = core_globals_get();

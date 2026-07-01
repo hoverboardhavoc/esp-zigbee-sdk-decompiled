@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_cli.o -> nwk_choose_parent
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,8 +12,7 @@
 
 /* WARNING: Unknown calling convention */
 
-nwk_potential_parent_t *
-nwk_choose_parent(nwk_panid_ref_t panid_ref,_Bool is_ed_capable,_Bool is_init_join)
+nwk_potential_parent_t * nwk_choose_parent(nwk_panid_ref_t panid_ref,_Bool is_ed,_Bool is_init_join)
 
 {
   byte bVar1;
@@ -55,11 +54,11 @@ _L0:
         }
       }
       else if (iVar4 << 1 < 0) {
-        if (CONCAT31(in_register_0000202d,is_ed_capable) == 0) {
-          iVar4 = iVar4 << 0x10;
+        if (CONCAT31(in_register_0000202d,is_ed) == 0) {
+          iVar4 = iVar4 << 0x11;
         }
         else {
-          iVar4 = iVar4 << 0x11;
+          iVar4 = iVar4 << 0x10;
         }
         if (iVar4 < 0) goto _L0;
       }

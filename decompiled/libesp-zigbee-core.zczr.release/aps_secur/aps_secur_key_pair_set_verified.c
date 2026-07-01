@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_set_verified
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,8 +19,8 @@ void aps_secur_key_pair_set_verified(aps_device_key_pair_t *key_pair)
   ushort in_a5;
   undefined4 uStack_40;
   undefined4 uStack_3c;
-  undefined1 auStack_38 [16];
-  undefined1 auStack_28 [16];
+  uint8_t auStack_38 [16];
+  uint8_t auStack_28 [16];
   int iStack_18;
   undefined2 uStack_14;
   anon_union_2_2_657f631f_for_aps_device_key_pair_s_8 aStack_12;
@@ -37,8 +37,8 @@ void aps_secur_key_pair_set_verified(aps_device_key_pair_t *key_pair)
   aps_secur_remove_stored_key_pair(unaff_s0);
   uStack_40 = *(undefined4 *)&(unaff_s0->device_address).field_0;
   uStack_3c = *(undefined4 *)((int)&(unaff_s0->device_address).field_0 + 4);
-  memcpy(auStack_38,unaff_s0->link_key,0x10);
-  memcpy(auStack_28,unaff_s0->passphrase,0x10);
+  secur_key_copy(auStack_38,unaff_s0->link_key);
+  secur_key_copy(auStack_28,unaff_s0->passphrase);
   uStack_14._0_1_ = unaff_s0->supported_kn_methods;
   uStack_14._1_1_ = unaff_s0->supported_kn_secrets;
   iStack_18 = unaff_s0->outgoing_frame_cntr + 0x400;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_unsecure_msg_by_key_pair
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,12 +45,11 @@ ezb_err_t aps_secur_unsecure_msg_by_key_pair
     uVar3 = zmsg_get_offset(msg);
     eVar4 = secur_unsecure_msg(bVar2,&ccm_nonce.security_control,&local_40,msg,uVar3);
     if (eVar4 == 0) {
-      if ((key_pair->incoming_frame_cntr == 0xffffffff) || (key_pair->incoming_frame_cntr < uVar1))
-      {
-        key_pair->incoming_frame_cntr = uVar1;
+      if (uVar1 < key_pair->incoming_frame_cntr) {
+        eVar4 = 0x13;
       }
       else {
-        eVar4 = 0x13;
+        key_pair->incoming_frame_cntr = uVar1 + 1;
       }
     }
   }

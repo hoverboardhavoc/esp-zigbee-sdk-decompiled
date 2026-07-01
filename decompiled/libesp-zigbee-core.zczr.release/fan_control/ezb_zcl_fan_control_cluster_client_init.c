@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> fan_control.o -> ezb_zcl_fan_control_cluster_client_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,7 @@ void ezb_zcl_fan_control_cluster_client_init(uint8_t ep_id)
   undefined1 auStack_24 [4];
   zcl_cluster_template_t template;
   
-  memcpy(auStack_24,&_LANCHOR0,0x14);
+  memcpy(auStack_24,&_L0,0x14);
   iVar1 = zcl_cluster_template_add(auStack_24);
   if (iVar1 != 0) {
     __assert_func(0,0,0,0);

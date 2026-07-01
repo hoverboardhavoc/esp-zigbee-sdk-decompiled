@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_link_mngr.o -> nwk_link_mngr_handle_link_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -84,9 +84,9 @@ _L0:
     *(uint *)(iVar5 + 0xc) = *(uint *)(iVar5 + 0xc) & 0xfffc1fff | (rx_info->iface_id & 0x1f) << 0xd
     ;
     iVar6 = core_globals_get();
-    *(undefined1 *)(iVar5 + 0x1d) = *(undefined1 *)(iVar6 + 0xa25);
+    *(undefined1 *)(iVar5 + 0x19) = *(undefined1 *)(iVar6 + 0xa25);
     iVar6 = core_globals_get();
-    *(undefined1 *)(iVar5 + 0x1c) = *(undefined1 *)(iVar6 + 0xa25);
+    *(undefined1 *)(iVar5 + 0x18) = *(undefined1 *)(iVar6 + 0xa25);
     nwk_neighbor_update_lqa(iVar5,rx_info->lqi,(int)rx_info->rssi);
     if ((bVar1 == 0) && (iVar6 = core_globals_get(), *(short *)(iVar6 + 0xb04) == 0)) {
       iVar6 = milli_timer_get_now();
@@ -114,8 +114,8 @@ _L0:
      ((((byte)end_addr & 0x40) == 0 || (uVar12 = nwk_get_short_address(), uVar12 <= stack0xffffffca)
       ))) {
     if (((byte)end_addr & 0x20) != 0) {
-      *(undefined1 *)(iVar5 + 0x19) = 0;
-      *(undefined1 *)(iVar5 + 0x1b) = 0;
+      *(undefined1 *)(iVar5 + 0x15) = 0;
+      *(undefined1 *)(iVar5 + 0x17) = 0;
     }
     sVar10 = 0;
     for (uVar12 = 0; uVar12 < (uVar13 & 0x1f); uVar12 = uVar12 + 1 & 0xff) {
@@ -133,16 +133,16 @@ _L0:
         if (bVar11 < bVar2) {
           bVar11 = bVar2;
         }
-        *(byte *)(iVar5 + 0x19) = *(char *)(iVar5 + 0x19) + ('\a' - bVar11);
+        *(byte *)(iVar5 + 0x15) = *(char *)(iVar5 + 0x15) + ('\a' - bVar11);
         iVar6 = nwk_neighbor_table_get_by_short(uStack_3c);
         if ((iVar6 == 0) || ((*(uint *)(iVar6 + 0xc) >> 0x1a & 7) == 0)) {
-          *(byte *)(iVar5 + 0x1b) = *(char *)(iVar5 + 0x1b) + ('\a' - bVar11);
+          *(byte *)(iVar5 + 0x17) = *(char *)(iVar5 + 0x17) + ('\a' - bVar11);
         }
       }
     }
     if (((byte)end_addr & 0x40) != 0) {
-      *(undefined1 *)(iVar5 + 0x18) = *(undefined1 *)(iVar5 + 0x19);
-      *(undefined1 *)(iVar5 + 0x1a) = *(undefined1 *)(iVar5 + 0x1b);
+      *(undefined1 *)(iVar5 + 0x14) = *(undefined1 *)(iVar5 + 0x15);
+      *(undefined1 *)(iVar5 + 0x16) = *(undefined1 *)(iVar5 + 0x17);
       goto _L0;
     }
   }

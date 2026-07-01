@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_srv.o -> nwk_accept_child
  *
  * (C) Espressif, Apache License 2.0.
@@ -44,6 +44,13 @@ nwk_accept_child(uint8_t iface_id,ezb_extaddr_t *device_extaddr,mac_cap_info_t m
   uVar4 = (mac_cap & 2) >> 1;
   uVar11 = (mac_cap & 8) >> 3;
   if (psVar5 != (short *)0x0) goto _L0;
+  if ((mac_cap & 2) == 0) {
+    uVar9 = nwk_neighbor_table_get_ed_num();
+    iVar7 = core_globals_get();
+    if (*(byte *)(iVar7 + 0x9db) <= uVar9) {
+      return '\x01';
+    }
+  }
   psVar5 = (short *)nwk_neighbor_table_new(uVar4);
   if (psVar5 == (short *)0x0) {
     return '\x01';
@@ -57,7 +64,7 @@ nwk_accept_child(uint8_t iface_id,ezb_extaddr_t *device_extaddr,mac_cap_info_t m
       if ((uVar9 & 9) != 0) {
         iVar7 = core_globals_get();
         if (*(char *)(iVar7 + 0xb07) != '\0') goto _L0;
-        goto _L39;
+        goto _L42;
       }
       if ((uVar9 & 0x24) != 0) goto _L0;
       if ((uVar9 & 0x12) != 0) break;
@@ -75,7 +82,7 @@ _L0:
   } while( true );
   iVar7 = aps_secur_is_centralized();
   if ((iVar7 == 0) || (!bVar2)) {
-_L39:
+_L42:
     mVar10 = '\x02';
     goto _L0;
   }
@@ -127,6 +134,7 @@ _L0:
 _L0:
   if (bVar3) {
     nwk_neighbor_table_delete(psVar5);
+    return mVar10;
   }
   return mVar10;
 }

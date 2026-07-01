@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_cmd_handle_remove_device
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,6 +23,7 @@ void aps_cmd_handle_remove_device(aps_header_t *aps_hdr,zmsg_t *msg)
   
   iVar1 = aps_secur_is_tc();
   if (iVar1 == 0) {
+    if ((msg->flags & 4) == 0) goto _L0;
     local_20 = (undefined1  [4])0x0;
     ind.src_address.field_0.u64._0_4_ = 0;
     ind.src_address.field_0.u64._4_4_ = 0;
@@ -37,9 +38,11 @@ void aps_cmd_handle_remove_device(aps_header_t *aps_hdr,zmsg_t *msg)
       apsme_remove_device_indication((apsme_remove_device_ind_t *)local_20);
     }
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (msg == (zmsg_t *)0x0) {
+    return;
   }
+_L0:
+  zmsg_free(msg);
   return;
 }
 

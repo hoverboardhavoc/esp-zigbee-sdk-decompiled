@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_reasm_ent_input
  *
  * (C) Espressif, Apache License 2.0.
@@ -57,7 +57,7 @@ void aps_reasm_ent_input(aps_reasm_ent_t *ent,aps_header_t *aps_hdr,zmsg_t *frag
   w = &ent->w;
   _Var2 = aps_rx_window_should_ack(w,abStack_21[0]);
   if (CONCAT31(extraout_var_00,_Var2) != 0) {
-    aps_send_ack(aps_hdr,uVar9,(uint)(ent->w).slot_done | 1 << (uVar8 & 0x1f) & 0xffU);
+    aps_send_ack(aps_hdr,frag_msg,uVar9,(uint)(ent->w).slot_done | 1 << (uVar8 & 0x1f) & 0xffU);
   }
   bVar11 = (ent->w).slot_done;
   uVar8 = uVar8 & 0x1f;

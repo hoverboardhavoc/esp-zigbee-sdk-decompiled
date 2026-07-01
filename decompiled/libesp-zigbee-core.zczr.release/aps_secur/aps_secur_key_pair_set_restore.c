@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_set_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -62,8 +62,8 @@ void aps_secur_key_pair_set_restore(void)
     (paVar3->device_address).field_0.u8[7] =
          (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 0x18);
     (paVar3->device_address).field_0.u8[2] = auStack_54[2];
-    memcpy(paVar3->link_key,(void *)((int)&itor.data.device_address.field_0 + 4),0x10);
-    memcpy(paVar3->passphrase,itor.data.link_key + 0xc,0x10);
+    secur_key_copy(paVar3->link_key,itor.data.device_address.field_0.u8 + 4);
+    secur_key_copy(paVar3->passphrase,itor.data.link_key + 0xc);
     paVar3->outgoing_frame_cntr = itor.data.passphrase._12_4_;
     paVar3->supported_kn_methods = (undefined1)itor.data.outgoing_frame_cntr;
     paVar3->supported_kn_secrets = itor.data.outgoing_frame_cntr._1_1_;

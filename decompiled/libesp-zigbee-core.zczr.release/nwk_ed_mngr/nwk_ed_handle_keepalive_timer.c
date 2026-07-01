@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_ed_mngr.o -> nwk_ed_handle_keepalive_timer
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,7 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x0001093c) */
+/* WARNING: Removing unreachable block (ram,0x0001092c) */
 /* WARNING: Variable defined which should be unmapped: req */
 /* WARNING: Unknown calling convention */
 
@@ -87,13 +87,13 @@ _L0:
   iVar3 = core_globals_get();
   if ((*(byte *)(iVar3 + 0xaf8) & 0x40) != 0) {
     iVar3 = core_globals_get();
-    uVar6 = *(uint *)(*(int *)(iVar3 + 0xac4) + 0x18);
+    uVar6 = *(uint *)(*(int *)(iVar3 + 0xac4) + 0x14);
     uVar2 = nwk_ed_get_keepalive_interval();
     if (uVar2 / 1000 < (uVar6 & 0xfffff)) {
       uVar2 = nwk_ed_get_keepalive_interval();
       iVar3 = core_globals_get();
-      uVar6 = *(uint *)(*(int *)(iVar3 + 0xac4) + 0x18);
-      *(uint *)(*(int *)(iVar3 + 0xac4) + 0x18) =
+      uVar6 = *(uint *)(*(int *)(iVar3 + 0xac4) + 0x14);
+      *(uint *)(*(int *)(iVar3 + 0xac4) + 0x14) =
            uVar6 & 0xfff00000 | (uVar6 & 0xfffff) - uVar2 / 1000 & 0xfffff;
       if (uVar5 != 0) goto _L0;
     }

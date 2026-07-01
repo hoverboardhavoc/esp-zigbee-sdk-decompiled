@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_match_desc_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,83 +10,91 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x000120c6) */
+/* WARNING: Variable defined which should be unmapped: req */
+/* WARNING: Removing unreachable block (ram,0x00011ffc) */
 /* WARNING: Unknown calling convention */
 
 zdp_status_t zdo_match_desc_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)
 
 {
-  uint uVar1;
-  undefined2 *puVar2;
-  zdp_status_t zVar3;
+  zdp_status_t zVar1;
+  uint8_t uVar2;
+  undefined2 uVar3;
   undefined3 extraout_var;
-  int iVar4;
-  uint uVar5;
-  ushort uStack_2a;
-  undefined1 auStack_28 [2];
-  uint16_t short_addr;
+  uint uVar4;
+  undefined3 extraout_var_00;
+  int iVar5;
+  uint uVar6;
+  undefined1 auStack_68 [64];
+  undefined1 auStack_28 [4];
   zdp_match_desc_rsp_field_t rsp;
   zdp_match_desc_req_field_t req;
   
   rsp.match_list = (uint8_t *)0x0;
-  auStack_28[0] = '\0';
-  auStack_28[1] = 0;
-  short_addr = 0;
+  auStack_28 = (undefined1  [4])0x0;
   rsp.status = '\0';
   rsp._1_1_ = 0;
   rsp.nwk_addr_of_interest = 0;
   rsp.match_length = '\0';
   rsp._5_3_ = 0;
   if (packet == (zdo_packet_t *)0x0) {
-    zVar3 = 0xfe;
+    zVar1 = 0xfe;
   }
   else if (packet->payload == (zdo_packet_payload_t *)0x0) {
-    zVar3 = 0xfe;
+    zVar1 = 0xfe;
   }
   else {
-    zVar3 = zdo_op_match_desc_req
+    zVar1 = zdo_op_match_desc_req
                       (packet->payload,(zdp_match_desc_req_field_t *)&rsp.match_list,false);
-    if (CONCAT31(extraout_var,zVar3) == 0) {
-      iVar4 = nwk_is_device_zed();
-      if (iVar4 == 0) {
-        uVar1 = (uint)rsp.match_list & 0xffff;
-        uVar5 = nwk_get_short_address();
-        if ((uVar1 == uVar5) || (0xfff7 < ((uint)rsp.match_list & 0xffff))) {
-          auStack_28[0] = '\0';
+    if (CONCAT31(extraout_var,zVar1) == 0) {
+      auStack_28 = (undefined1  [4])((uint)auStack_28 & 0xffffff00);
+      uVar3 = (ushort)rsp.match_list;
+      if (0xfff7 < ((uint)rsp.match_list & 0xffff)) {
+        uVar3 = nwk_get_short_address();
+      }
+      auStack_28._2_2_ = uVar3;
+      rsp._0_4_ = rsp._0_4_ & 0xffffff00;
+      memset(auStack_68,0,0x40);
+      uVar6 = (uint)rsp.match_list & 0xffff;
+      rsp._4_4_ = auStack_68;
+      uVar4 = nwk_get_short_address();
+      if ((uVar6 == uVar4) || (0xfff7 < ((uint)rsp.match_list & 0xffff))) {
+        uVar2 = zdo_match_desc_add_matched_ep_ids
+                          ((zdp_match_desc_req_field_t *)&rsp.match_list,
+                           (zdp_match_desc_rsp_field_t *)auStack_28);
+        rsp.status = uVar2;
+        if ((CONCAT31(extraout_var_00,uVar2) == 0) && (0xfff7 < (ushort)rsp.match_list)) {
+          return 0xfe;
         }
-        else {
-          uStack_2a = 0xffff;
-          auStack_28[0] = 0x81;
-          puVar2 = (undefined2 *)0x0;
-          do {
-            do {
-              puVar2 = (undefined2 *)nwk_neighbor_table_next(puVar2);
-              if (puVar2 == (undefined2 *)0x0) goto _L0;
-            } while ((*(uint *)(puVar2 + 6) & 3) != 2);
-            nwk_address_short_by_ref(*puVar2,&uStack_2a);
-          } while (((uint)rsp.match_list & 0xffff) != (uint)uStack_2a);
-          auStack_28[0] = '\0';
-        }
+        auStack_28 = (undefined1  [4])((uint)auStack_28 & 0xffffff00);
       }
       else {
-        uVar1 = (uint)rsp.match_list & 0xffff;
-        uVar5 = nwk_get_short_address();
-        if ((uVar1 == uVar5) || (0xfff7 < (ushort)rsp.match_list)) {
-          auStack_28[0] = '\0';
+        iVar5 = nwk_is_device_zed();
+        if (iVar5 == 0) {
+          auStack_28[0] = 0x81;
+          iVar5 = 0;
+          do {
+            iVar5 = nwk_child_table_next(iVar5);
+            if (iVar5 == 0) goto _L0;
+          } while (((*(uint *)(iVar5 + 0xc) & 0x3c0) != 0x40) ||
+                  (uVar6 = (uint)rsp.match_list & 0xffff, uVar4 = nwk_neighbor_get_shortaddr(iVar5),
+                  uVar6 != uVar4));
+          auStack_28[0] = 0x89;
         }
         else {
+          if (0xfff7 < packet->dst_addr) {
+            return 0xfe;
+          }
           auStack_28[0] = 0x80;
         }
       }
 _L0:
-      zVar3 = setup_match_desc_response
-                        (resp->payload,(zdp_match_desc_rsp_field_t *)auStack_28,
-                         (zdp_match_desc_req_field_t *)&rsp.match_list);
+      zVar1 = zdo_op_match_desc_rsp(resp->payload,(zdp_match_desc_rsp_field_t *)auStack_28,true);
     }
     else {
-      zVar3 = 0xfe;
+      zVar1 = 0xfe;
     }
   }
-  return zVar3;
+  return zVar1;
 }
 

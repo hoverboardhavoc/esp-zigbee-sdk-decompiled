@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_link_mngr.o -> nwk_link_mngr_handle_link_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -82,9 +82,9 @@ void nwk_link_mngr_handle_link_status(zmsg_t *msg,nwk_rx_info_t *rx_info)
     *(uint *)(iVar7 + 0xc) = *(uint *)(iVar7 + 0xc) & 0xfffc1fff | (rx_info->iface_id & 0x1f) << 0xd
     ;
     iVar8 = core_globals_get();
-    *(undefined1 *)(iVar7 + 0x1d) = *(undefined1 *)(iVar8 + 0xa25);
+    *(undefined1 *)(iVar7 + 0x19) = *(undefined1 *)(iVar8 + 0xa25);
     iVar8 = core_globals_get();
-    *(undefined1 *)(iVar7 + 0x1c) = *(undefined1 *)(iVar8 + 0xa25);
+    *(undefined1 *)(iVar7 + 0x18) = *(undefined1 *)(iVar8 + 0xa25);
     nwk_neighbor_update_lqa(iVar7,rx_info->lqi,(int)rx_info->rssi);
     if ((bVar2 == 0) && (iVar8 = core_globals_get(), *(short *)(iVar8 + 0xb04) == 0)) {
       iVar8 = milli_timer_get_now();
@@ -111,8 +111,8 @@ void nwk_link_mngr_handle_link_status(zmsg_t *msg,nwk_rx_info_t *rx_info)
   if ((((bStack_39 & 0x20) == 0) || (uVar3 = nwk_get_short_address(), uStack_38 <= uVar3)) &&
      (((bStack_39 & 0x40) == 0 || (uVar3 = nwk_get_short_address(), uVar3 <= _cmd_id)))) {
     if ((bStack_39 & 0x20) != 0) {
-      *(undefined1 *)(iVar7 + 0x19) = 0;
-      *(undefined1 *)(iVar7 + 0x1b) = 0;
+      *(undefined1 *)(iVar7 + 0x15) = 0;
+      *(undefined1 *)(iVar7 + 0x17) = 0;
     }
     sVar6 = 0;
     for (uVar3 = 0; uVar3 != (uVar14 & 0x1f); uVar3 = uVar3 + 1 & 0xff) {
@@ -130,16 +130,16 @@ void nwk_link_mngr_handle_link_status(zmsg_t *msg,nwk_rx_info_t *rx_info)
         if (bVar15 < bVar13) {
           bVar15 = bVar13;
         }
-        *(byte *)(iVar7 + 0x19) = *(char *)(iVar7 + 0x19) + ('\a' - bVar15);
+        *(byte *)(iVar7 + 0x15) = *(char *)(iVar7 + 0x15) + ('\a' - bVar15);
         iVar8 = nwk_neighbor_table_get_by_short(start_addr);
         if ((iVar8 == 0) || ((*(uint *)(iVar8 + 0xc) >> 0x1a & 7) == 0)) {
-          *(byte *)(iVar7 + 0x1b) = ('\a' - bVar15) + *(char *)(iVar7 + 0x1b);
+          *(byte *)(iVar7 + 0x17) = ('\a' - bVar15) + *(char *)(iVar7 + 0x17);
         }
       }
     }
     if ((bStack_39 & 0x40) != 0) {
-      *(undefined1 *)(iVar7 + 0x18) = *(undefined1 *)(iVar7 + 0x19);
-      *(undefined1 *)(iVar7 + 0x1a) = *(undefined1 *)(iVar7 + 0x1b);
+      *(undefined1 *)(iVar7 + 0x14) = *(undefined1 *)(iVar7 + 0x15);
+      *(undefined1 *)(iVar7 + 0x16) = *(undefined1 *)(iVar7 + 0x17);
     }
   }
   else {

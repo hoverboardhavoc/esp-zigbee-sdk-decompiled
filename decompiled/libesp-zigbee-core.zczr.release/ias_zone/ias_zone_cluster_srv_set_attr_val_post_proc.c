@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> ias_zone.o -> ias_zone_cluster_srv_set_attr_val_post_proc
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,7 +39,6 @@ void ias_zone_cluster_srv_set_attr_val_post_proc
         uStack_36 = 0xffff;
         iVar4 = nwk_address_ref_by_short(eVar2,&uStack_36);
         if ((iVar4 == 0) || (iVar4 = nwk_address_update(new_value,eVar2,&uStack_36), iVar4 == 0)) {
-          nwk_address_lock_ref(uStack_36);
           memcpy(auStack_34,new_value,8);
           cie_ieee_addr.field_0.u8[4] = '\x03';
           memcpy((void *)((int)&cie_ieee_addr.field_0 + 6),auStack_34,8);

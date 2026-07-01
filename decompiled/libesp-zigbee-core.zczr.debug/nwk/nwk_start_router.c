@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk.o -> nwk_start_router
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,10 +58,10 @@ ezb_err_t nwk_start_router(nwk_start_router_req_t *req)
     }
   }
   else {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk.c",0x2d5,"nwk_start_router",
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk.c",0x2d8,"nwk_start_router",
                   "(nwk_mm_set_pib_attr(0xFF, 0x45U, &beacon_payload)) == 0");
   }
-  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk.c",0x2d6,"nwk_start_router",
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk.c",0x2d9,"nwk_start_router",
                 "(nwk_mm_set_pib_attr(0xFF, 0x46U, &beacon_payload_length)) == 0");
   _Var2 = nwk_is_joined_and_authed();
   if ((CONCAT31(extraout_var_01,_Var2) != 0) &&

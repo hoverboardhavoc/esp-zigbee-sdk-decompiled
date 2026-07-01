@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_ed_mngr.o -> nwk_ed_mngr_handle_ed_tmo_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -67,17 +67,17 @@ _L0:
       req.ed_configuration = req.ed_configuration & 0xfe;
     }
   }
-  if (*(ushort *)(iVar4 + 0x14) == (ushort)bStack_27) {
+  if (*(ushort *)(iVar4 + 0x10) == (ushort)bStack_27) {
     iVar1 = 0;
   }
   else {
-    *(ushort *)(iVar4 + 0x14) = (ushort)bStack_27;
+    *(ushort *)(iVar4 + 0x10) = (ushort)bStack_27;
   }
-  if ((*(uint *)(iVar4 + 0x18) >> 0x14 & 0xf) == (uint)bStack_28) {
+  if ((*(uint *)(iVar4 + 0x14) >> 0x14 & 0xf) == (uint)bStack_28) {
     if (iVar1 != 0) goto _L0;
   }
   else {
-    *(uint *)(iVar4 + 0x18) = (bStack_28 & 0xf) << 0x14 | *(uint *)(iVar4 + 0x18) & 0xff0fffff;
+    *(uint *)(iVar4 + 0x14) = (bStack_28 & 0xf) << 0x14 | *(uint *)(iVar4 + 0x14) & 0xff0fffff;
 _L0:
     nwk_neighbor_table_store_child(iVar4);
   }

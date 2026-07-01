@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_cmd_handle_confirm_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,6 +24,7 @@ void aps_cmd_handle_confirm_key(aps_header_t *aps_hdr,zmsg_t *msg)
   ezb_extaddr_t dst_addr;
   
   if (((aps_hdr->addr_info).dst_addr < 0xfff8) && (iVar1 = aps_secur_is_tc(), iVar1 == 0)) {
+    if ((msg->flags & 4) == 0) goto _L0;
     auStack_2c = (undefined1  [4])0x0;
     ind.src_address.field_0.u64._0_4_ = 0;
     ind.src_address.field_0.u64._4_4_ = 0;
@@ -40,10 +41,11 @@ void aps_cmd_handle_confirm_key(aps_header_t *aps_hdr,zmsg_t *msg)
       iVar1 = zmsg_read_bytes(msg,uVar3,1,(undefined1 *)((int)&ind.src_address.field_0 + 4));
       zmsg_read_bytes(msg,uVar3 + iVar1 & 0xffff,8,&ind.field_0x10);
       piVar2 = (int *)nwk_get_extended_address();
-      if ((((ind._16_4_ == *piVar2) && (dst_addr.field_0.u64._0_4_ == piVar2[1])) &&
-          ((ind.src_address.field_0.u64._4_4_ & 0xff) == 4)) &&
-         ((iVar1 = aps_secur_is_addr_tc(auStack_2c), iVar1 != 0 &&
-          (iVar1 = aps_secur_get_key_pair_by_addr(auStack_2c), iVar1 != 0)))) {
+      if (((ind._16_4_ == *piVar2) &&
+          (((dst_addr.field_0.u64._0_4_ == piVar2[1] &&
+            ((ind.src_address.field_0.u64._4_4_ & 0xff) == 4)) &&
+           (iVar1 = aps_secur_is_addr_tc(auStack_2c), iVar1 != 0)))) &&
+         (iVar1 = aps_secur_get_key_pair_by_addr(auStack_2c), iVar1 != 0)) {
         if ((ind.src_address.field_0.u8[5] == '\0') && ((*(ushort *)(iVar1 + 0x34) & 6) == 2)) {
           aps_secur_key_pair_set_verified();
         }
@@ -51,9 +53,11 @@ void aps_cmd_handle_confirm_key(aps_header_t *aps_hdr,zmsg_t *msg)
       }
     }
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (msg == (zmsg_t *)0x0) {
+    return;
   }
+_L0:
+  zmsg_free(msg);
   return;
 }
 

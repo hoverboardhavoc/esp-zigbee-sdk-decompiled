@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_join.o -> nwk_join_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,8 +26,7 @@ void nwk_join_confirm(nwk_join_cnf_t *cnf)
   uint8_t uStack_1d;
   uint32_t uStack_1c;
   uint uStack_18;
-  byte bStack_14;
-  byte bStack_13;
+  undefined2 uStack_14;
   byte bStack_12;
   
   if (cnf->status != 0) {
@@ -105,22 +104,15 @@ _L0:
             uVar7 = 0x1ea;
             goto zdo_comm_signal_comm_done;
           }
-          bStack_14 = 0;
-          bStack_13 = 0x84;
           uStack_1c = 0;
           uStack_18 = 0;
+          uStack_14 = 0;
           bStack_12 = 0;
-          iVar5 = core_globals_get();
-          if (*(char *)(iVar5 + 0x9ee) != '\0') {
-            bStack_13 = bStack_13 | 8;
-          }
-          iVar5 = nwk_is_device_zczr();
-          if (iVar5 != 0) {
-            bStack_13 = bStack_13 | 2;
-          }
+          iVar5 = af_get_node_desc();
+          uStack_14._1_1_ = *(undefined1 *)(iVar5 + 2);
           nwk_address_get_extpanid(*(undefined1 *)(iVar6 + 8),&uStack_1c);
           iVar6 = core_globals_get();
-          _bStack_14 = CONCAT11(bStack_13,(char)((*(byte *)(iVar6 + 0xcdc) & 1) << 1));
+          uStack_14 = CONCAT11(uStack_14._1_1_,(char)((*(byte *)(iVar6 + 0xcdc) & 1) << 1));
           iVar6 = core_globals_get();
           bStack_12 = bStack_12 & 0xfe | *(char *)(iVar6 + 0xcc0) == '\x03';
           uVar7 = nwk_join_request(&uStack_1c);
@@ -186,7 +178,7 @@ zdo_comm_signal_comm_done:
             *(undefined4 *)(operation_string_0 + uVar2 * 4),uVar7);
 _L0:
   iVar6 = core_globals_get();
-  _bStack_14 = CONCAT11(bStack_13,bVar1);
+  uStack_14 = CONCAT11(uStack_14._1_1_,bVar1);
   uStack_18 = uVar7;
   (**(code **)(iVar6 + 0xcd8))(3,&uStack_18,*(code **)(iVar6 + 0xcd8));
   return;

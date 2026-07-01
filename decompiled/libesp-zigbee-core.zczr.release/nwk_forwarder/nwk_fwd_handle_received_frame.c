@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_forwarder.o -> nwk_fwd_handle_received_frame
  *
  * (C) Espressif, Apache License 2.0.
@@ -156,8 +156,8 @@ void nwk_fwd_handle_received_frame(uint8_t iface_id,mac_frame_t *rx_frame)
     if (*(ezb_shortaddr_t *)(iVar9 + 0x9e2) != eVar2) {
       if (iVar8 == 0) goto _L0;
       uVar18 = *(uint *)(iVar8 + 0xc) & 0x3c0;
-      if (((uVar18 == 0x80) || (uVar18 == 0x240)) && (*(char *)(iVar8 + 0x1d) != -1)) {
-        *(char *)(iVar8 + 0x1d) = *(char *)(iVar8 + 0x1d) + '\x01';
+      if (((uVar18 == 0x80) || (uVar18 == 0x240)) && (*(char *)(iVar8 + 0x19) != -1)) {
+        *(char *)(iVar8 + 0x19) = *(char *)(iVar8 + 0x19) + '\x01';
       }
       uVar3 = 1;
       goto _L0;

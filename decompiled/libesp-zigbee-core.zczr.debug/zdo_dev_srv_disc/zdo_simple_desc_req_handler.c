@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_simple_desc_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,15 +16,14 @@
 zdp_status_t zdo_simple_desc_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)
 
 {
-  zdp_status_t zVar1;
+  uint8_t uVar1;
+  zdp_status_t zVar2;
   undefined3 extraout_var;
-  uint uVar2;
-  int iVar3;
-  undefined2 *puVar4;
+  uint uVar3;
   undefined3 extraout_var_00;
+  int iVar4;
   void *__src;
-  uint8_t uVar5;
-  uint uVar6;
+  uint uVar5;
   undefined1 auStack_2c [4];
   zdp_simple_desc_rsp_field_t rsp;
   zdp_simple_desc_req_field_t req;
@@ -47,32 +46,32 @@ zdp_status_t zdo_simple_desc_req_handler(zdo_packet_t *packet,zdo_packet_t *resp
   rsp.desc.app_output_cluster_count = '\0';
   rsp.desc._9_3_ = 0;
   if (packet == (zdo_packet_t *)0x0) {
-    iVar3 = 0xfe;
+    iVar4 = 0xfe;
   }
   else if (packet->payload == (zdo_packet_payload_t *)0x0) {
-    iVar3 = 0xfe;
+    iVar4 = 0xfe;
   }
   else if (resp == (zdo_packet_t *)0x0) {
-    iVar3 = 0xfe;
+    iVar4 = 0xfe;
   }
   else {
-    zVar1 = zdo_op_simple_desc_req
+    zVar2 = zdo_op_simple_desc_req
                       (packet->payload,(zdp_simple_desc_req_field_t *)&rsp.desc.app_cluster_list,
                        false);
-    if (CONCAT31(extraout_var,zVar1) == 0) {
-      uVar6 = (uint)rsp.desc.app_cluster_list & 0xffff;
-      if (uVar6 < 0xfff8) {
+    if (CONCAT31(extraout_var,zVar2) == 0) {
+      uVar5 = (uint)rsp.desc.app_cluster_list & 0xffff;
+      if (uVar5 < 0xfff8) {
         auStack_2c._2_2_ = (ezb_shortaddr_t)rsp.desc.app_cluster_list;
-        uVar2 = nwk_get_short_address();
-        if (uVar6 == uVar2) {
+        uVar3 = nwk_get_short_address();
+        if (uVar5 == uVar3) {
           if ((((uint)rsp.desc.app_cluster_list >> 0x10 & 0xff) - 1 & 0xff) < 0xfe) {
             __src = (void *)af_get_simple_desc();
-            uVar5 = '\0';
+            uVar1 = '\0';
             if (__src == (void *)0x0) {
-              uVar5 = 0x83;
+              uVar1 = 0x83;
             }
-            auStack_2c[0] = uVar5;
-            if (uVar5 == '\0') {
+            auStack_2c[0] = uVar1;
+            if (uVar1 == '\0') {
               memcpy(&rsp.length,__src,0x10);
             }
           }
@@ -81,44 +80,36 @@ zdp_status_t zdo_simple_desc_req_handler(zdo_packet_t *packet,zdo_packet_t *resp
           }
         }
         else {
-          iVar3 = nwk_is_device_zed();
-          puVar4 = (undefined2 *)0x0;
-          if (iVar3 != 0) {
-            iVar3 = 0xfe;
-            goto _L0;
+          auStack_2c[0] = 0x80;
+          iVar4 = nwk_is_device_zczr();
+          if (iVar4 != 0) {
+            auStack_2c[0] = 0x81;
+            iVar4 = 0;
+            do {
+              iVar4 = nwk_child_table_next(iVar4);
+              if (iVar4 == 0) goto _L0;
+            } while (((*(uint *)(iVar4 + 0xc) & 0x3c0) != 0x40) ||
+                    (uVar3 = (uint)rsp.desc.app_cluster_list & 0xffff,
+                    uVar5 = nwk_neighbor_get_shortaddr(iVar4), uVar3 != uVar5));
+            auStack_2c[0] = 0x89;
           }
-          while (puVar4 = (undefined2 *)nwk_neighbor_table_next(puVar4), puVar4 != (undefined2 *)0x0
-                ) {
-            if ((*(uint *)(puVar4 + 6) & 3) == 2) {
-              nwk_address_short_by_ref(*puVar4,auStack_2c + 2);
-              if (auStack_2c._2_2_ == (ezb_shortaddr_t)rsp.desc.app_cluster_list) break;
-              auStack_2c._2_2_ = 0xffff;
-            }
-          }
-          if (auStack_2c._2_2_ == 0xffff) {
-            uVar5 = 0x81;
-          }
-          else {
-            uVar5 = 0x89;
-          }
-          auStack_2c[0] = uVar5;
         }
-        zVar1 = zdo_op_simple_desc_rsp(resp->payload,(zdp_simple_desc_rsp_field_t *)auStack_2c,true)
+_L0:
+        zVar2 = zdo_op_simple_desc_rsp(resp->payload,(zdp_simple_desc_rsp_field_t *)auStack_2c,true)
         ;
-        iVar3 = CONCAT31(extraout_var_00,zVar1);
-        if (iVar3 != 0) {
-          iVar3 = 0xfe;
+        iVar4 = CONCAT31(extraout_var_00,zVar2);
+        if (iVar4 != 0) {
+          iVar4 = 0xfe;
         }
       }
       else {
-        iVar3 = 0xfe;
+        iVar4 = 0xfe;
       }
     }
     else {
-      iVar3 = 0xfe;
+      iVar4 = 0xfe;
     }
   }
-_L0:
-  return (zdp_status_t)iVar3;
+  return (zdp_status_t)iVar4;
 }
 

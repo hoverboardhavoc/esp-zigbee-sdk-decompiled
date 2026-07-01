@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,6 +23,7 @@ zdp_status_t zdo_nwk_mgmt_req_handler(void *arg)
   undefined3 extraout_var_01;
   undefined3 extraout_var_02;
   undefined3 extraout_var_03;
+  undefined3 extraout_var_04;
   undefined1 auStack_28 [4];
   zdo_packet_t resp;
   
@@ -56,17 +57,21 @@ _L0:
   }
   else {
     if (uVar1 < 0x35) {
-      if (uVar1 == 0x31) {
-        zVar2 = zdo_nwk_mgmt_lqi_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+      if (uVar1 == 0x32) {
+        zVar2 = zdo_nwk_mgmt_rtg_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
         iVar3 = CONCAT31(extraout_var_01,zVar2);
       }
+      else if (uVar1 == 0x33) {
+        zVar2 = zdo_nwk_mgmt_bind_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+        iVar3 = CONCAT31(extraout_var_04,zVar2);
+      }
       else {
-        if (uVar1 != 0x33) {
+        if (uVar1 != 0x31) {
           iVar3 = 0x84;
           goto _L0;
         }
-        zVar2 = zdo_nwk_mgmt_bind_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-        iVar3 = CONCAT31(extraout_var_00,zVar2);
+        zVar2 = zdo_nwk_mgmt_lqi_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
+        iVar3 = CONCAT31(extraout_var,zVar2);
       }
       goto _L0;
     }
@@ -78,7 +83,7 @@ _L0:
     }
     if (uVar1 == 0x38) {
       zVar2 = zdo_nwk_mgmt_nwk_update_req_handler((zdo_packet_t *)arg,(zdo_packet_t *)auStack_28);
-      iVar3 = CONCAT31(extraout_var,zVar2);
+      iVar3 = CONCAT31(extraout_var_00,zVar2);
       goto _L0;
     }
     iVar3 = 0x84;

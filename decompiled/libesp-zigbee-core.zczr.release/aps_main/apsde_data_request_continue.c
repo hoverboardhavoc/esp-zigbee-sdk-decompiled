@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_main.o -> apsde_data_request_continue
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,13 +29,15 @@ ezb_err_t apsde_data_request_continue(aps_apsde_data_req_t *req,ezb_shortaddr_t 
     __assert_func(0,0,0,0);
   }
   if ((0xfff7 < eStack_12) && (eStack_12 != 0xfffe)) {
-    unaff_s0->field_0x18 = unaff_s0->field_0x18 & 0xf9;
+    unaff_s0->field_9 =
+         (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)(unaff_s0->field_9 & 0xf9);
   }
-  if ((unaff_s0->field_0x18 & 2) == 0) {
-    unaff_s0->field_0x18 = unaff_s0->field_0x18 & 0xfb;
+  if (((byte)unaff_s0->field_9 & 2) == 0) {
+    unaff_s0->field_9 =
+         (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)(unaff_s0->field_9 & 0xfb);
   }
   uVar3 = zmsg_get_length();
-  uVar5 = *(uint *)&unaff_s0->field_0x18;
+  uVar5 = *(uint *)&unaff_s0->field_9;
   iVar1 = 0x3a0;
   uVar2 = aps_get_max_asdu((_Bool)((byte)(uVar5 >> 2) & 1),(_Bool)((byte)uVar5 & 1),
                            (_Bool)((byte)(uVar5 >> 3) & 1));

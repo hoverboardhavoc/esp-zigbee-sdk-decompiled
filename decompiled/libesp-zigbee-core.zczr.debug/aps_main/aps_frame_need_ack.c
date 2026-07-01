@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_frame_need_ack
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,12 +15,15 @@
 _Bool aps_frame_need_ack(aps_header_t *aps_hdr)
 
 {
+  byte bVar1;
+  
   if (0xfff7 < (aps_hdr->addr_info).dst_addr) {
     return false;
   }
-  if ((aps_hdr->fcf & 3) == 0) {
-    return (_Bool)(aps_hdr->fcf >> 6 & 1);
+  bVar1 = aps_hdr->fcf;
+  if (((bVar1 & 3) != 0) && ((bVar1 & 3) != 1)) {
+    return false;
   }
-  return false;
+  return (_Bool)(bVar1 >> 6 & 1);
 }
 

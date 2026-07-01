@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_get_comm_param
  *
  * (C) Espressif, Apache License 2.0.
@@ -40,7 +40,7 @@ ezb_err_t bdb_get_comm_param(uint8_t id,uint8_t len,void *param)
       log_write(1,"bdb_comm.c","Invalid param id: 0x%02x",iVar2);
       pcVar1 = zdo_comm_permit_joining;
       uVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c"
-                            ,0x2e1,bdb_get_comm_param::__func__,&_LC6);
+                            ,0x2e2,bdb_get_comm_param::__func__,&_LC6);
       pvStack_18 = param;
       pcStack_14 = pcVar1;
       iVar2 = zdo_dev_joined();
@@ -64,14 +64,14 @@ ezb_err_t bdb_get_comm_param(uint8_t id,uint8_t len,void *param)
     }
     pcVar6 = bdb_get_comm_param::__func__;
     iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
-                          0x2c8,"len == sizeof(uint8_t)");
+                          0x2c9,"len == sizeof(uint8_t)");
   }
   if (iVar5 == 1) {
     *pcVar6 = -0x4c;
     return 0;
   }
   iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
-                        0x2cd,bdb_get_comm_param::__func__,"len == sizeof(uint8_t)");
+                        0x2ce,bdb_get_comm_param::__func__,"len == sizeof(uint8_t)");
 _L0:
   if (iVar5 == 4) {
     iVar2 = core_globals_get();
@@ -82,7 +82,7 @@ _L0:
     }
   }
   else {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2d2,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x2d3,
                   bdb_get_comm_param::__func__,"len == sizeof(uint32_t)");
   }
   iVar2 = core_globals_get();

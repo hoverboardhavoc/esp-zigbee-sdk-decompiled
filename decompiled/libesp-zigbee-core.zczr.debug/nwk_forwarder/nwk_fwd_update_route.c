@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_update_route
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,7 +16,7 @@
 ezb_err_t nwk_fwd_update_route(zmsg_t *msg,nwk_tx_info_t *tx_info)
 
 {
-  byte bVar1;
+  uint8_t uVar1;
   ezb_shortaddr_t eVar2;
   int iVar3;
   ezb_err_t eVar4;
@@ -62,26 +62,10 @@ ezb_err_t nwk_fwd_update_route(zmsg_t *msg,nwk_tx_info_t *tx_info)
       eVar4 = 8;
     }
     else {
-      iVar3 = nwk_is_joined();
-      if (iVar3 == 0) {
-        iVar3 = core_globals_get();
-        eVar2 = **(ezb_shortaddr_t **)(iVar3 + 0xac4);
-      }
-      else {
-        iVar3 = core_globals_get();
-        eVar2 = nwk_neighbor_get_shortaddr(*(undefined4 *)(iVar3 + 0xac4));
-      }
+      eVar2 = nwk_get_parent_shortaddr();
       tx_info->mac_dst_addr = eVar2;
-      iVar3 = nwk_is_joined();
-      if (iVar3 == 0) {
-        iVar3 = core_globals_get();
-        bVar1 = *(byte *)(*(int *)(iVar3 + 0xac4) + 0x13);
-      }
-      else {
-        iVar3 = core_globals_get();
-        bVar1 = (byte)(*(uint *)(*(int *)(iVar3 + 0xac4) + 0xc) >> 0xd);
-      }
-      tx_info->iface_id = bVar1 & 0x1f;
+      uVar1 = nwk_get_parent_mac_iface_idx();
+      tx_info->iface_id = uVar1;
       eVar4 = 0;
     }
   }

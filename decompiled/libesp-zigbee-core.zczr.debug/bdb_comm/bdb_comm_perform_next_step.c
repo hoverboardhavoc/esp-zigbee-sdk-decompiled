@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_perform_next_step
  *
  * (C) Espressif, Apache License 2.0.
@@ -51,7 +51,7 @@ _L0:
         iVar3 = core_globals_get();
         log_write(1,"bdb_comm.c","Invalid step: 0x%02x",*(undefined1 *)(iVar3 + 0xd4e));
         __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",
-                      0x26c,"bdb_comm_perform_next_step",&_LC6);
+                      0x26d,"bdb_comm_perform_next_step",&_LC6);
         bdb_comm_finish_step();
         iVar3 = core_globals_get();
         bdb_comm_put_app_signal(0x102,*(bdb_comm_status_t *)(iVar3 + 0xd4c));

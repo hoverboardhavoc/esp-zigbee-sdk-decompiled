@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_upgrade_end_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,8 +13,7 @@
 /* WARNING: Unknown calling convention */
 
 ezb_zcl_status_t
-ota_upgrade_cluster_cli_upgrade_end_rsp_handler
-          (zcl_packet_t *packet,zcl_packet_t *rsp,zcl_packet_cnf_ctx_t *rsp_cnf)
+ota_upgrade_cluster_cli_upgrade_end_rsp_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
 
 {
   int iVar1;
@@ -47,7 +46,7 @@ ota_upgrade_cluster_cli_upgrade_end_rsp_handler
   }
   else {
     context = ota_upgrade_downloading_context_get((packet->header).dst_ep);
-    _Var2 = ota_upgrade_downloading_stop_rsp_timeout(context,(packet->header).tsn);
+    _Var2 = ota_upgrade_download_stop_timer(context);
     if (CONCAT31(extraout_var,_Var2) == 0) {
       iVar1 = 0xfe;
     }
@@ -72,37 +71,31 @@ ota_upgrade_cluster_cli_upgrade_end_rsp_handler
           else {
             eVar3 = zcl_message_ota_upgrade_downloading_progress(packet,'\x04',auStack_34);
             iVar1 = CONCAT31(extraout_var_01,eVar3);
-            if (iVar1 != 0x96) {
-              if (iVar1 == 0x99) {
-                *(context->attr).upgrade_status = '\x05';
-                eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,packet,context,0x99);
-                iVar1 = CONCAT31(extraout_var_02,eVar3);
-                if (iVar1 == 0) {
-                  ota_upgrade_add_confirm_cb(rsp_cnf,context);
-                  goto _L0;
-                }
-              }
-              else {
-                if (iVar1 == 0) {
-                  *(context->attr).upgrade_status = '\x04';
-                  zcl_message_ota_upgrade_downloading_progress(packet,'\x05',auStack_34);
-                  ota_upgrade_set_upgrade_status_normal(context);
-                  iVar1 = 0;
-                  goto _L0;
-                }
+            if (iVar1 == 0x96) {
+              ota_upgrade_set_upgrade_status_normal(context);
+              eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,0x96);
+              iVar1 = CONCAT31(extraout_var_03,eVar3);
+            }
+            else if (iVar1 == 0x99) {
+              *(context->attr).upgrade_status = '\x05';
+              eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,0x99);
+              iVar1 = CONCAT31(extraout_var_02,eVar3);
+            }
+            else {
+              if (iVar1 != 0) {
                 ota_upgrade_set_upgrade_status_normal(context);
                 iVar1 = 0xfe;
+                goto _L0;
               }
-              goto _L0;
+              *(context->attr).upgrade_status = '\x04';
+              zcl_message_ota_upgrade_downloading_progress(packet,'\x05',auStack_34);
+              ota_upgrade_set_upgrade_status_normal(context);
+              iVar1 = 0;
             }
-            ota_upgrade_set_upgrade_status_normal(context);
-            eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,packet,context,0x96);
-            iVar1 = CONCAT31(extraout_var_03,eVar3);
-            if (iVar1 != 0) goto _L0;
-            ota_upgrade_add_confirm_cb(rsp_cnf,context);
           }
-_L0:
-          if (iVar1 == 0) goto _L0;
+          if (iVar1 == 0) {
+            return (ezb_zcl_status_t)iVar1;
+          }
         }
       }
     }
@@ -111,8 +104,7 @@ _L0:
     }
   }
 _L0:
-  iVar1 = zcl_packet_setup_default_response(rsp,packet,iVar1);
-_L0:
-  return (ezb_zcl_status_t)iVar1;
+  eVar3 = zcl_packet_setup_default_response(rsp,packet,iVar1);
+  return eVar3;
 }
 

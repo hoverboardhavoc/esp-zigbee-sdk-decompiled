@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_send_with_ext
  *
  * (C) Espressif, Apache License 2.0.
@@ -45,7 +45,8 @@ zcl_packet_send_with_ext
       af_req.data.radius = '\0';
       af_req.data.alias_seq_num = '\0';
       af_req.data.alias_src_addr = 0;
-      af_req.data._24_4_ = 0;
+      af_req.data.field_9 = (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)0x0;
+      af_req.data._25_3_ = 0;
       af_req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
       memcpy(&af_req,&(packet->header).dst_addr,10);
       af_req.data.dst_addr.u._6_2_ = (packet->header).cluster_id;
@@ -64,7 +65,8 @@ zcl_packet_send_with_ext
       }
       af_req.data.radius = (byte)(uVar3 << 4) | af_req.data.radius & 0xef;
       if (cnf_ctx == (zcl_packet_cnf_ctx_t *)0x0) {
-        af_req.data._24_4_ = 0;
+        af_req.data.field_9 = (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)0x0;
+        af_req.data._25_3_ = 0;
         af_req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
       }
       else {

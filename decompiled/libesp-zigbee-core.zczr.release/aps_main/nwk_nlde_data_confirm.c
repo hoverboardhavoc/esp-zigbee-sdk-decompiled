@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_main.o -> nwk_nlde_data_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,31 +16,29 @@ void nwk_nlde_data_confirm(nwk_nlde_data_cnf_t *cnf)
 
 {
   uint error;
+  undefined4 uVar1;
   byte abStack_11 [4];
   uint8_t fcf;
   
-  error = aps_process_transmit_done_security(cnf->nsdu);
-  if (error == 0) {
+  zmsg_read_bytes(cnf->nsdu,0,1,abStack_11);
+  if (((abStack_11[0] & 3) == 2) ||
+     (error = aps_process_transmit_done_security(cnf->nsdu), error == 0)) {
+    error = 0;
     if (cnf->status != 0) {
       error = cnf->status | 0x200;
     }
   }
   else {
-    log_write(1,"aps_main.c","APS frame tx done (dst:0x%04x err:0x%02x) security failed 0x%x",
-              cnf->dst_addr,error);
+    uVar1 = aps_frame_type_str(abStack_11[0] & 3);
+    log_write(1,"aps_main.c","APS %s frame (dst:0x%04x err:0x%02x) tx done security failed 0x%x",
+              uVar1,cnf->dst_addr,cnf->status,error);
   }
-  zmsg_read_bytes(cnf->nsdu,0,1,abStack_11);
-  if ((abStack_11[0] & 3) == 0) {
-    if ((abStack_11[0] & 0x40) == 0) {
-      aps_send_confirm(cnf->nsdu,error);
-      return;
-    }
+  if ((abStack_11[0] & 0x40) == 0) {
+    aps_send_frame_confirm(cnf->nsdu,error);
   }
-  else if ((abStack_11[0] & 3) == 1) {
-    aps_send_cmd_confirm(error);
-    return;
+  else {
+    zmsg_free(cnf->nsdu);
   }
-  zmsg_free();
   return;
 }
 

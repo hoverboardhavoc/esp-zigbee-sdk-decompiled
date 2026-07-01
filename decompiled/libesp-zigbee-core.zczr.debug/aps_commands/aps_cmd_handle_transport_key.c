@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_cmd_handle_transport_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -131,7 +131,6 @@ _L0:
         if ((dst_addr.field_0.u64._4_4_ != -1) || (src_addr.field_0.u64._0_4_ != -1)) {
           iVar3 = nwk_address_update((undefined1 *)((int)&dst_addr.field_0 + 4),0,&puStack_7c);
           if (iVar3 != 0) goto _L0;
-          nwk_address_lock_ref((uint)puStack_7c & 0xffff);
           iVar3 = nwk_is_device_zr();
           if ((iVar3 != 0) && ((aps_hdr->addr_info).src_addr != 0)) {
             nwk_route_table_add_rev_route(0,0);

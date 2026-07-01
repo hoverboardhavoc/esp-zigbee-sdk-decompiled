@@ -1,9 +1,9 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
- * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_send_confirm
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_send_data_confirm
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
@@ -12,7 +12,7 @@
 
 /* WARNING: Unknown calling convention */
 
-void aps_send_confirm(zmsg_t *msg,ezb_err_t error)
+void aps_send_data_confirm(zmsg_t *msg,ezb_err_t error)
 
 {
   undefined4 uVar1;

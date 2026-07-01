@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_image_notify_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,8 +13,7 @@
 /* WARNING: Unknown calling convention */
 
 ezb_zcl_status_t
-ota_upgrade_cluster_cli_image_notify_req_handler
-          (zcl_packet_t *packet,zcl_packet_t *rsp,zcl_packet_cnf_ctx_t *rsp_cnf)
+ota_upgrade_cluster_cli_image_notify_req_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
 
 {
   ezb_zcl_status_t eVar1;
@@ -37,7 +36,7 @@ ota_upgrade_cluster_cli_image_notify_req_handler
   payload._6_2_ = 0xffff;
   if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",
-                  0x277,"ota_upgrade_cluster_cli_image_notify_req_handler","packet && rsp");
+                  0x291,"ota_upgrade_cluster_cli_image_notify_req_handler","packet && rsp");
   }
   else {
     unaff_s2 = ota_upgrade_downloading_context_get((packet->header).dst_ep);
@@ -78,8 +77,7 @@ ota_upgrade_cluster_cli_image_notify_req_handler
                        (ota_upgrade_image_notify_t *)local_30);
     iVar3 = CONCAT31(extraout_var,eVar1);
     if (iVar3 == 0) {
-      ota_upgrade_add_confirm_cb(rsp_cnf,unaff_s2);
-      eVar1 = ota_upgrade_setup_query_next_image_request(rsp,packet,unaff_s2);
+      eVar1 = ota_upgrade_setup_query_next_image_request(rsp,unaff_s2,packet);
       return eVar1;
     }
   }

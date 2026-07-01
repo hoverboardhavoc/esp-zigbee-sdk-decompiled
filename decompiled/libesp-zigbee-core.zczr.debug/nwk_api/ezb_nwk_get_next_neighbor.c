@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_api.o -> ezb_nwk_get_next_neighbor
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,8 +53,8 @@ ezb_err_t ezb_nwk_get_next_neighbor
       nbr_info->outgoing_cost = (byte)((uint)*(undefined4 *)((int)pvVar3 + 0xc) >> 0x1a) & 7;
       nbr_info->age = (uint8_t)(*(uint *)((int)pvVar3 + 0xc) >> 0x12);
       if ((*(uint *)((int)pvVar3 + 0xc) & 3) == 2) {
-        nbr_info->device_timeout = *(uint *)((int)pvVar3 + 0x18) >> 0x14 & 0xf;
-        nbr_info->timeout_counter = *(uint *)((int)pvVar3 + 0x18) & 0xfffff;
+        nbr_info->device_timeout = *(uint *)((int)pvVar3 + 0x14) >> 0x14 & 0xf;
+        nbr_info->timeout_counter = *(uint *)((int)pvVar3 + 0x14) & 0xfffff;
         eVar4 = 0;
       }
       else {

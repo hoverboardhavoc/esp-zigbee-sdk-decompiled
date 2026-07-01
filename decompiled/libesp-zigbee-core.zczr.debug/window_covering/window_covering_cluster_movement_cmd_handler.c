@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> window_covering.o -> window_covering_cluster_movement_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -43,7 +43,7 @@ window_covering_cluster_movement_cmd_handler(zcl_packet_t *packet,zcl_packet_t *
   if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
     pzVar2 = (zcl_packet_t *)
              __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/window_covering.c"
-                           ,0xa7,"window_covering_cluster_movement_cmd_handler","packet && rsp");
+                           ,0xab,"window_covering_cluster_movement_cmd_handler","packet && rsp");
 _L0:
     if (in_a5 < 3) {
       attr_id = 0;
@@ -90,7 +90,7 @@ _L0:
       eVar1 = window_covering_srv_set_attr_value
                         ((packet->header).dst_ep,attr_id,(uint8_t *)&message.in);
       iVar4 = CONCAT31(extraout_var,eVar1);
-      if (iVar4 == 0) goto _L0;
+      if (iVar4 != 0) goto _L0;
     }
     iVar4 = zcl_packet_to_message(&stack0xffffffdc,packet);
     if (iVar4 == 0) {

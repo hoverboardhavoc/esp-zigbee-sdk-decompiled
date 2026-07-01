@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_child_table_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,12 +24,12 @@ nwk_neighbor_t * nwk_child_table_next(nwk_neighbor_t *nbr)
     uVar3 = (*(ushort *)(iVar1 + 0xb24) - 1) - (uint)*(ushort *)(iVar1 + 0xb26);
   }
   else {
-    uVar3 = (int)nbr - *(int *)(iVar1 + 0xb20) >> 5;
+    uVar3 = ((int)nbr - *(int *)(iVar1 + 0xb20) >> 2) * -0x49249249;
   }
   uVar3 = bitmap_find_next_bit(*(undefined4 *)(iVar1 + 0xb1c),(uVar3 & 0xffff) + 1 & 0xffff);
   pnVar2 = (nwk_neighbor_t *)0x0;
   if (uVar3 < *(ushort *)(iVar1 + 0xb24)) {
-    pnVar2 = (nwk_neighbor_t *)(*(int *)(iVar1 + 0xb20) + uVar3 * 0x20);
+    pnVar2 = (nwk_neighbor_t *)(*(int *)(iVar1 + 0xb20) + uVar3 * 0x1c);
   }
   return pnVar2;
 }

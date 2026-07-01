@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_image_block_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,8 +13,7 @@
 /* WARNING: Unknown calling convention */
 
 ezb_zcl_status_t
-ota_upgrade_cluster_cli_image_block_rsp_handler
-          (zcl_packet_t *packet,zcl_packet_t *rsp,zcl_packet_cnf_ctx_t *rsp_cnf)
+ota_upgrade_cluster_cli_image_block_rsp_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
 
 {
   undefined1 uVar1;
@@ -49,7 +48,7 @@ ota_upgrade_cluster_cli_image_block_rsp_handler
   }
   else {
     context = ota_upgrade_downloading_context_get((packet->header).dst_ep);
-    _Var3 = ota_upgrade_downloading_stop_rsp_timeout(context,(packet->header).tsn);
+    _Var3 = ota_upgrade_download_stop_timer(context);
     if (CONCAT31(extraout_var,_Var3) == 0) {
       iVar2 = 0xfe;
     }
@@ -86,7 +85,7 @@ ota_upgrade_cluster_cli_image_block_rsp_handler
         eVar4 = ota_upgrade_handle_image_block_with_success
                           (context,(ota_upgrade_image_block_rsp_t *)auStack_3c);
         if (CONCAT31(extraout_var_00,eVar4) == 0) {
-          eVar4 = ota_upgrade_setup_upgrade_end_request(rsp,packet,context,'\0');
+          eVar4 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,'\0');
           iVar2 = CONCAT31(extraout_var_01,eVar4);
         }
         else {
@@ -94,15 +93,13 @@ ota_upgrade_cluster_cli_image_block_rsp_handler
             iVar2 = 0xfe;
             goto _L0;
           }
-          eVar4 = ota_upgrade_setup_image_block_request(rsp,packet,context);
+          eVar4 = ota_upgrade_setup_image_block_request(rsp,context,packet);
           iVar2 = CONCAT31(extraout_var_02,eVar4);
         }
-        if (iVar2 == 0) {
-          ota_upgrade_add_confirm_cb(rsp_cnf,context);
-          zcl_message_ota_upgrade_downloading_progress(packet,'\x01',auStack_3c);
-          if (*(context->attr).upgrade_status == '\x02') {
-            zcl_message_ota_upgrade_downloading_progress(packet,'\x03',auStack_3c);
-          }
+        if ((iVar2 == 0) &&
+           (zcl_message_ota_upgrade_downloading_progress(packet,'\x01',auStack_3c),
+           *(context->attr).upgrade_status == '\x02')) {
+          zcl_message_ota_upgrade_downloading_progress(packet,'\x03',auStack_3c);
         }
       }
       else if (((uint)auStack_3c & 0xff) == 0x97) {

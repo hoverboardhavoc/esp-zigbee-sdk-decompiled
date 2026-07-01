@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> af_desc.o -> af_node_desc_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -39,8 +39,8 @@ void af_node_desc_update(void)
   if (iVar4 != 0) {
     *(byte *)(iVar3 + 0xc8a) = *(byte *)(iVar3 + 0xc8a) | 2;
   }
-  iVar4 = core_globals_get();
-  if (*(char *)(iVar4 + 0x9ee) != '\0') {
+  iVar4 = nwk_get_rx_on_when_idle();
+  if (iVar4 != 0) {
     *(byte *)(iVar3 + 0xc8a) = *(byte *)(iVar3 + 0xc8a) | 8;
   }
   iVar4 = core_globals_get();

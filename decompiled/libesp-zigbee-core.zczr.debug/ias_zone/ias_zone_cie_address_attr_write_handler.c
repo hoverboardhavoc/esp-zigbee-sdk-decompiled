@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> ias_zone.o -> ias_zone_cie_address_attr_write_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,6 @@ void ias_zone_cie_address_attr_write_handler
     if ((iVar2 == 0) ||
        (iVar2 = nwk_address_update(new_value,CONCAT22(in_register_00002032,short_addr),&uStack_36),
        iVar2 == 0)) {
-      nwk_address_lock_ref(uStack_36);
                     /* WARNING: Load size is inaccurate */
                     /* WARNING: Load size is inaccurate */
       cie_ieee_addr.field_0.u64._0_4_ = *(undefined4 *)((int)new_value + 4);

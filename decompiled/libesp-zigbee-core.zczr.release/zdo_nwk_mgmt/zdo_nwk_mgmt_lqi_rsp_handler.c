@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_lqi_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -63,7 +63,7 @@ zdp_status_t zdo_nwk_mgmt_lqi_rsp_handler(zdo_packet_t *packet)
                *(ushort *)(rsp._0_4_ + iVar4 + 0x12) & 0xfc80;
         }
       }
-      zdo_packet_notify_result(&packet->ctx,0,&dev_info);
+      zdo_cb_nwk_mgmt_lqi_rsp((zdp_nwk_mgmt_lqi_rsp_field_t *)&dev_info,&packet->ctx);
       zVar1 = '\0';
       goto _L0;
     }

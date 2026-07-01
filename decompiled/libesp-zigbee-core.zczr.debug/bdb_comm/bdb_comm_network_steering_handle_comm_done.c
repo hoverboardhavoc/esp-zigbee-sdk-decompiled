@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_network_steering_handle_comm_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -59,7 +59,7 @@ _L0:
       if ((uVar1 == 2) || ((1 < uVar1 && ((uVar1 - 5 & 0xff) < 3)))) {
         if (error == 0) {
           error = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c"
-                                ,0x158,"bdb_comm_network_steering_handle_comm_done","error != 0");
+                                ,0x159,"bdb_comm_network_steering_handle_comm_done","error != 0");
           goto _L0;
         }
         goto _L0;
@@ -79,7 +79,7 @@ _L0:
     iVar2 = core_globals_get();
     pcVar3 = bdb_comm_step_to_str(*(bdb_comm_step_t *)(iVar2 + 0xd4e));
     log_write(1,"bdb_comm.c","%s: invalid op(%d)",pcVar3,uVar1);
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x173,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_comm.c",0x174,
                   "bdb_comm_network_steering_handle_comm_done",&_LC6);
   }
   zdo_dev_set_joined(1);

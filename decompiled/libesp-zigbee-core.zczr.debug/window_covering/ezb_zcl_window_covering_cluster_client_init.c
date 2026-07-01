@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> window_covering.o -> ezb_zcl_window_covering_cluster_client_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ void ezb_zcl_window_covering_cluster_client_init(uint8_t ep_id)
   if (iVar1 == 0) {
     return;
   }
-  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/window_covering.c",0x111
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/window_covering.c",0x115
                 ,"ezb_zcl_window_covering_cluster_client_init",
                 "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
   return;

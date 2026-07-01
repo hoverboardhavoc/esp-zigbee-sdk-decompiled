@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_tc_setup_key_pair
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,40 +19,45 @@ ezb_err_t aps_secur_tc_setup_key_pair(aps_device_key_pair_t *key_pair)
   bool bVar2;
   _Bool _Var3;
   undefined3 extraout_var;
-  int iVar4;
   undefined3 extraout_var_00;
+  int iVar4;
+  undefined3 extraout_var_01;
+  int iVar5;
   
+  iVar5 = 0;
+  if (((key_pair->field_8).flags & 6) == 0) {
+    _Var3 = secur_is_key_valid(key_pair->link_key);
+    iVar5 = CONCAT31(extraout_var,_Var3);
+  }
   _Var3 = aps_secur_is_centralized();
   bVar1 = false;
-  if (CONCAT31(extraout_var,_Var3) != 0) {
+  if (CONCAT31(extraout_var_00,_Var3) != 0) {
     iVar4 = core_globals_get();
     bVar1 = (*(ushort *)(iVar4 + 0x9bc) & 6) != 0;
   }
   _Var3 = aps_secur_is_centralized();
-  if (CONCAT31(extraout_var_00,_Var3) == 0) {
-    bVar2 = bVar1;
-    if (!bVar1) goto _L0;
-_L0:
-    iVar4 = secur_ic_get_key(key_pair);
-    if (iVar4 == 0) {
-      memcpy(key_pair->passphrase,key_pair->link_key,0x10);
-      key_pair->outgoing_frame_cntr = 0;
-      *(byte *)&key_pair->field_8 = *(byte *)&key_pair->field_8 & 0x38 | 0x40;
-      key_pair->timeout = 0xffff;
-      key_pair->incoming_frame_cntr = 0xffffffff;
-      return 0;
-    }
-  }
-  else {
+  bVar2 = true;
+  if (CONCAT31(extraout_var_01,_Var3) != 0) {
     iVar4 = core_globals_get();
     bVar2 = (*(ushort *)(iVar4 + 0x9bc) & 6) != 4;
-    if (bVar1) goto _L0;
   }
-  if (!bVar2) {
-    return -1;
+  if (iVar5 == 0) {
+    if (bVar1) {
+      iVar5 = secur_ic_get_key(key_pair);
+      if (iVar5 == 0) {
+        memcpy(key_pair->passphrase,key_pair->link_key,0x10);
+        key_pair->incoming_frame_cntr = 0;
+        key_pair->outgoing_frame_cntr = 0;
+        *(byte *)&key_pair->field_8 = *(byte *)&key_pair->field_8 & 0x38 | 0x40;
+        key_pair->timeout = 0xffff;
+        return 0;
+      }
+    }
+    if (!bVar2) {
+      return -1;
+    }
+    aps_secur_key_pair_setup_global_tclk(key_pair);
   }
-_L0:
-  aps_secur_key_pair_setup_global_tclk(key_pair);
   return 0;
 }
 

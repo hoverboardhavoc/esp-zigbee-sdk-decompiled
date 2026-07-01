@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> ota_upgrade_cli.o -> ezb_zcl_ota_upgrade_cluster_client_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,14 +26,15 @@ void ezb_zcl_ota_upgrade_cluster_client_init(uint8_t ep_id)
   memcpy(auStack_24,&_LANCHOR0,0x14);
   pzVar1 = ota_upgrade_cli_get_attr_desc(ep_id,attr_id);
   if (pzVar1 != (zcl_attr_desc_t *)0x0) {
-    unaff_s0 = (undefined4 *)calloc(1,0x48);
+    unaff_s0 = (undefined4 *)calloc(1,0x74);
     pzVar1->data_p = unaff_s0;
     if (unaff_s0 != (undefined4 *)0x0) {
-      *(undefined2 *)((int)unaff_s0 + 0x32) = 0;
-      *(undefined1 *)(unaff_s0 + 0xc) = 0x30;
+      unaff_s0[0xc] = 0x330;
+      *(undefined1 *)(unaff_s0 + 0xe) = 0;
       unaff_s0[10] = 0;
       unaff_s0[0xb] = 0;
-      milli_timer_init(unaff_s0 + 0xe,ota_upgrade_downloading_rsp_timeout,unaff_s0);
+      unaff_s0[0xd] = 5000;
+      milli_timer_init(unaff_s0 + 0xf,ota_upgrade_download_retry,unaff_s0);
       pzVar1 = ota_upgrade_cli_get_attr_desc(ep_id,0);
       if (pzVar1 != (zcl_attr_desc_t *)0x0) goto _L0;
     }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_main.o -> aps_handle_datagram
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,11 +21,11 @@ void aps_handle_datagram(aps_header_t *aps_hdr,zmsg_t *msg)
   int iVar3;
   ezb_err_t eVar4;
   byte bVar5;
-  aps_apsde_data_ind_t aStack_20;
+  aps_apsde_data_ind_t aStack_24;
   
-  if (((((0xfff7 < (aps_hdr->addr_info).dst_addr) || ((aps_hdr->fcf & 3) != 0)) ||
-       ((aps_hdr->fcf & 0x40) == 0)) || (eVar4 = aps_send_ack(aps_hdr,'\0',0xff), eVar4 == 0)) &&
-     (iVar3 = aps_check_duplicates(aps_hdr), iVar3 == 0)) {
+  if (((((0xfff7 < (aps_hdr->addr_info).dst_addr) || ((aps_hdr->fcf & 2) != 0)) ||
+       ((aps_hdr->fcf & 0x40) == 0)) || (eVar4 = aps_send_ack(aps_hdr,msg,'\0',0xff), eVar4 == 0))
+     && (iVar3 = aps_check_duplicates(aps_hdr), iVar3 == 0)) {
     bVar5 = aps_hdr->fcf & 3;
     if (bVar5 == 1) {
       aps_handle_cmd(aps_hdr,msg);
@@ -36,13 +36,15 @@ void aps_handle_datagram(aps_header_t *aps_hdr,zmsg_t *msg)
       return;
     }
     if ((aps_hdr->fcf & 3) == 0) {
-      memcpy(&aStack_20,aps_hdr,0xc);
-      aStack_20.asdu = msg;
+      memcpy(&aStack_24,aps_hdr,0xc);
+      aStack_24.lqi = aps_hdr->lqi;
+      aStack_24.rssi = aps_hdr->rssi;
+      aStack_24.asdu = msg;
       uVar2 = zmsg_get_offset(msg);
       zmsg_remove_header(msg,uVar2);
-      _Var1 = aps_apsde_user_data_indication(&aStack_20);
+      _Var1 = aps_apsde_user_data_indication(&aStack_24);
       if (CONCAT31(extraout_var,_Var1) == 0) {
-        aps_apsde_data_indication(&aStack_20);
+        aps_apsde_data_indication(&aStack_24);
       }
       return;
     }

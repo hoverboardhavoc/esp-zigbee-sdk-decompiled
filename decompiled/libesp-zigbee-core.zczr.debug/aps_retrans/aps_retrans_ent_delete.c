@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_retrans_ent_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -49,7 +49,7 @@ _L0:
   ent_00->tx_msg = (zmsg_t *)0x0;
   iVar3 = core_globals_get();
   aps_retrans_ent_delete((aps_tx_context_t *)(iVar3 + 0x38),ent_00);
-  aps_send_confirm(pzVar4,extraout_a1);
+  aps_send_frame_confirm(pzVar4,extraout_a1);
   iVar3 = core_globals_get();
   tasklet_post(iVar3 + 0x38);
   return;

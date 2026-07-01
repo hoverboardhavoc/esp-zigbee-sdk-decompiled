@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_frame.o -> aps_frame_append_cmd_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,6 +20,7 @@ void aps_frame_append_cmd_hdr
 {
   char *pcVar1;
   int iVar2;
+  undefined4 uVar3;
   undefined3 in_register_0000202d;
   undefined3 in_register_00002031;
   undefined3 in_register_00002035;
@@ -35,17 +36,16 @@ void aps_frame_append_cmd_hdr
   *pcVar1 = cStack_23 + '\x01';
   iVar2 = zmsg_append_bytes(msg,2,&bStack_24);
   if (iVar2 == 0) goto _L0;
-  while( true ) {
+  do {
     __assert_func(0,0,0,0);
 _L0:
     if (CONCAT31(in_register_00002035,is_secured) == 0) break;
     key_id = key_id | 0x20;
     aps_hdr.fcf = (uint8_t)key_id;
     iVar2 = zmsg_append_bytes(msg,0xd,&aps_hdr);
-    if (iVar2 == 0) {
-      return;
-    }
-  }
+  } while (iVar2 != 0);
+  uVar3 = zmsg_get_length(msg);
+  zmsg_set_offset(msg,uVar3);
   return;
 }
 

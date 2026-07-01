@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_bind_trans_schedule_next_nmsg
  *
  * (C) Espressif, Apache License 2.0.
@@ -41,14 +41,14 @@ ezb_err_t aps_bind_trans_schedule_next_nmsg
     dst = (aps_bind_dst_t *)aps_bind_table_next_dst_by_src(src,dst);
     if (((dst == (aps_bind_dst_t *)0x0) ||
         (pzVar1 = (zmsg_t *)zmsg_clone(msg), pzVar1 == (zmsg_t *)0x0)) ||
-       (iVar2 = zmsg_add_footer(&req.field_0x18,4), iVar2 != 0)) goto _L0;
+       (iVar2 = zmsg_add_footer(&req.field_9,4), iVar2 != 0)) goto _L0;
     pzVar1->flags = pzVar1->flags | 0x20;
     if ((dst->field_0x5 & 1) == 0) {
       req.asdu = (zmsg_t *)CONCAT31(req.asdu._1_3_,3);
       iVar2 = nwk_address_extended_by_ref
                         ((dst->field_0).extaddr.addr_ref,(undefined1 *)((int)&req.asdu + 2));
       if (iVar2 != 0) {
-        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x135,
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x127,
                       "aps_bind_trans_schedule_next_nmsg",
                       "(nwk_address_extended_by_ref(dst->extaddr.addr_ref, &req.dst_addr.u.extended_addr)) == 0"
                      );

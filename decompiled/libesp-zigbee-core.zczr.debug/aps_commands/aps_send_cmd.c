@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_send_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,62 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: nlde_req */
 /* WARNING: Unknown calling convention */
 
-ezb_err_t aps_send_cmd(zmsg_t *msg,ezb_extaddr_t *dst_addr,_Bool nwk_secured)
+ezb_err_t aps_send_cmd(zmsg_t *msg,ezb_extaddr_t *dst_addr)
 
 {
-  ezb_err_t eVar1;
-  int iVar2;
-  zmsg_t *pzStack_1c;
-  nwk_nlde_data_req_t nlde_req;
+  undefined3 uVar1;
+  uint uVar2;
+  ezb_err_t eVar3;
+  int iVar4;
+  byte bVar5;
+  zmsg_t *local_30;
+  aps_apsde_data_req_t aps_req;
+  ezb_shortaddr_t dst_shortaddr;
+  uint8_t fcf;
   
-  pzStack_1c = (zmsg_t *)0x0;
-  nlde_req.nsdu = (zmsg_t *)0x0;
-  nlde_req.dst_addr = 0;
-  nlde_req.radius = '\0';
-  nlde_req.alias_seq_num = '\0';
-  if ((*(int *)&dst_addr->field_0 == -1) && (*(int *)((int)&dst_addr->field_0 + 4) == -1)) {
-    nlde_req.nsdu = (zmsg_t *)0xfffd;
-  }
-  else {
-    iVar2 = nwk_address_short_by_extended(dst_addr,&nlde_req);
-    if (iVar2 != 0) {
-      return iVar2;
+  uVar2 = zmsg_get_length();
+  if (uVar2 < 0x5b) {
+    aps_req.asdu = (zmsg_t *)0x0;
+    aps_req.dst_addr._0_4_ = 0;
+    aps_req.dst_addr.u._2_4_ = 0;
+    aps_req._12_4_ = 0;
+    aps_req.cluster_id = 0;
+    aps_req.profile_id = 0;
+    aps_req.radius = '\0';
+    aps_req.alias_seq_num = '\0';
+    aps_req.alias_src_addr = 0;
+    local_30 = msg;
+    zmsg_read_bytes(msg,0,1,&aps_req.field_0x1b);
+    uVar1 = SUB43(aps_req._20_4_,1);
+    bVar5 = (byte)aps_req._27_1_ >> 5 & 1 |
+            (byte)aps_req._20_4_ & 0xfc | (byte)(((byte)aps_req._27_1_ >> 6 & 1) << 1);
+    aps_req._21_3_ = uVar1;
+    aps_req.radius = bVar5;
+    if ((*(int *)&dst_addr->field_0 == -1) && (*(int *)((int)&dst_addr->field_0 + 4) == -1)) {
+      aps_req.field_9 = (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)0xfd;
+      aps_req._25_1_ = 0xff;
+      aps_req._20_4_ = CONCAT31(uVar1,bVar5) & 0xfffffffc;
+      goto _L0;
     }
   }
-  eVar1 = aps_process_transmit_security(dst_addr,msg);
-  if (eVar1 == 0) {
-    nlde_req._4_4_ =
-         CONCAT13(nlde_req.alias_seq_num,
-                  CONCAT12(SUB41(nlde_req._4_4_,2) & 0xfe | nwk_secured,nlde_req.dst_addr)) |
-         0x20000;
-    pzStack_1c = msg;
-    eVar1 = nwk_nlde_data_request(&pzStack_1c);
+  else {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_commands.c",0x3b,
+                  "aps_send_cmd","zmsg_get_length(msg) <= 90");
   }
-  return eVar1;
+  iVar4 = nwk_address_short_by_extended(dst_addr,&aps_req.field_9);
+  if (iVar4 != 0) {
+    return iVar4;
+  }
+_L0:
+  zmsg_add_footer(msg,&local_30,0x1c);
+  if ((aps_req._20_4_ & 2) == 0) {
+    eVar3 = aps_send_frame(aps_req._24_2_,&local_30);
+  }
+  else {
+    eVar3 = aps_retrans_send_msg(aps_req._24_2_,0x5a,&local_30);
+  }
+  return eVar3;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_cli.o -> nwk_do_attach
  *
  * (C) Espressif, Apache License 2.0.
@@ -160,9 +160,9 @@ _L0:
        (iVar8 = *(int *)(iVar6 + iVar7 + 0xb3c), iVar8 << 2 < 0)) {
       if (nVar1 == '\0') {
         if (iVar8 << 1 < 0) {
-          iVar15 = iVar8 << 0x11;
+          iVar15 = iVar8 << 0x10;
           if (iVar5 == 0) {
-            iVar15 = iVar8 << 0x10;
+            iVar15 = iVar8 << 0x11;
           }
           if (iVar15 < 0) goto _L0;
         }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_nwk_addr_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -81,7 +81,7 @@ zdp_status_t zdo_nwk_addr_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)
         }
       }
       bVar4 = (byte)((uint)rsp.nwk_addr_assoc_dev_list >> 0x18);
-      if ((uint)rsp.ieee_addr_remote_dev.field_0.u64._3_4_ >> 0x10 == 0xffff) {
+      if (rsp.ieee_addr_remote_dev.field_0.u64._5_2_ == -1) {
         if (packet->dst_addr < 0xfff8) {
           local_40[1] = (char)rsp.nwk_addr_assoc_dev_list;
           local_40[0] = 0x81;

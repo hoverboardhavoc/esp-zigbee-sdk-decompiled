@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee.release -> aps_compat.o -> esp_zb_apsde_data_indication_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -26,7 +26,7 @@ _Bool esp_zb_apsde_data_indication_handler(ezb_apsde_data_ind_t *ind)
   if (__src == (void *)0x0) {
     esp_zb_apsde_data_indication_handler((ezb_apsde_data_ind_t *)0x0);
   }
-  memcpy(auStack_50,__src,0x24);
+  memcpy(auStack_50,__src,0x28);
   _Var2 = (*p_Var1)(eRam00000010);
   return _Var2;
 }

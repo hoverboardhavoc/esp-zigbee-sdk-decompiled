@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_setup_global_tclk
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,10 +36,10 @@ void aps_secur_key_pair_setup_global_tclk(aps_device_key_pair_t *key_pair)
     iVar2 = core_globals_get();
     __src = (undefined1 *)(iVar2 + 0x990);
   }
+  key_pair->incoming_frame_cntr = 0;
   key_pair->outgoing_frame_cntr = 0;
   *(byte *)&key_pair->field_8 = *(byte *)&key_pair->field_8 & 0x38 | 1;
   key_pair->timeout = 0xffff;
-  key_pair->incoming_frame_cntr = 0xffffffff;
   memcpy(key_pair->link_key,__src,0x10);
   return;
 }

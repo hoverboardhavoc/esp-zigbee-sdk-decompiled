@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> apsme_switch_key_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -19,7 +19,6 @@ ezb_err_t apsme_switch_key_request(apsme_switch_key_req_t *req)
   uint uVar2;
   undefined4 uVar3;
   zmsg_t *msg;
-  undefined1 nwk_secured;
   ezb_err_t eVar4;
   
   eVar4 = 2;
@@ -34,11 +33,10 @@ ezb_err_t apsme_switch_key_request(apsme_switch_key_req_t *req)
       msg = (zmsg_t *)zmsg_alloc(uVar3);
       eVar4 = 1;
       if (msg != (zmsg_t *)0x0) {
-        nwk_secured = (uVar1 & uVar2) != 0xffffffff;
-        aps_frame_append_cmd_hdr((uVar1 & uVar2) == 0xffffffff,0,0);
+        aps_frame_append_cmd_hdr((uVar1 & uVar2) == 0xffffffff,(uVar1 & uVar2) != 0xffffffff,0,0);
         zmsg_append_u8(msg,'\t');
         zmsg_append_u8(msg,req->key_seq);
-        eVar4 = aps_send_cmd(msg,&req->dst_address,(_Bool)nwk_secured);
+        eVar4 = aps_send_cmd(msg,&req->dst_address);
         if (eVar4 != 0) {
           zmsg_free(msg);
         }

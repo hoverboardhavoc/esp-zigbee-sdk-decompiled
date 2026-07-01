@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
+ * Upstream date: 2026-07-01 11:36:50 +0800
+ * Upstream subject: change: update esp-zigbee-lib (9401bce7)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_handle_image_notify
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,7 @@ ota_upgrade_handle_image_notify
      (payload == (ota_upgrade_image_notify_t *)0x0)) {
     context = (ota_upgrade_downloading_context_t *)
               __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c"
-                            ,400,"ota_upgrade_handle_image_notify","context && payload");
+                            ,0x1a9,"ota_upgrade_handle_image_notify","context && payload");
 _L0:
     puVar5 = (context->attr).current_file_version;
     if (puVar5 == (uint32_t *)0x0) {
