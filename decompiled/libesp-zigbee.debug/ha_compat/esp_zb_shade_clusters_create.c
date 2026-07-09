@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> ha_compat.o -> esp_zb_shade_clusters_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_zb_cluster_list_t * esp_zb_shade_clusters_create(esp_zb_shade_cfg_t *shade_cfg)
+undefined4 esp_zb_shade_clusters_create(int param_1)
 
 {
-  esp_zb_shade_config_cluster_cfg_t *peVar1;
-  esp_zb_cluster_list_t *peVar2;
+  int iVar1;
+  undefined4 uVar2;
   undefined4 uVar3;
-  esp_zb_level_cluster_cfg_t *peVar4;
-  esp_zb_on_off_cluster_cfg_t *peVar5;
-  esp_zb_scenes_cluster_cfg_t *peVar6;
-  esp_zb_groups_cluster_cfg_t *peVar7;
-  esp_zb_identify_cluster_cfg_t *peVar8;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
   
-  if (shade_cfg == (esp_zb_shade_cfg_t *)0x0) {
-    peVar1 = (esp_zb_shade_config_cluster_cfg_t *)0x0;
-    peVar4 = (esp_zb_level_cluster_cfg_t *)0x0;
-    peVar5 = (esp_zb_on_off_cluster_cfg_t *)0x0;
-    peVar6 = (esp_zb_scenes_cluster_cfg_t *)0x0;
-    peVar7 = (esp_zb_groups_cluster_cfg_t *)0x0;
-    peVar8 = (esp_zb_identify_cluster_cfg_t *)0x0;
+  if (param_1 == 0) {
+    iVar1 = 0;
+    iVar4 = 0;
+    iVar5 = 0;
+    iVar6 = 0;
+    iVar7 = 0;
+    iVar8 = 0;
   }
   else {
-    peVar8 = &shade_cfg->identify_cfg;
-    peVar7 = &shade_cfg->groups_cfg;
-    peVar6 = &shade_cfg->scenes_cfg;
-    peVar5 = &shade_cfg->on_off_cfg;
-    peVar4 = &shade_cfg->level_cfg;
-    peVar1 = &shade_cfg->shade_cfg;
+    iVar8 = param_1 + 2;
+    iVar7 = param_1 + 4;
+    iVar6 = param_1 + 6;
+    iVar5 = param_1 + 0xe;
+    iVar4 = param_1 + 0xf;
+    iVar1 = param_1 + 0x10;
   }
-  peVar2 = (esp_zb_cluster_list_t *)esp_zb_zcl_cluster_list_create();
-  uVar3 = esp_zb_basic_cluster_create(shade_cfg);
-  esp_zb_cluster_list_add_basic_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_identify_cluster_create(peVar8);
-  esp_zb_cluster_list_add_identify_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_groups_cluster_create(peVar7);
-  esp_zb_cluster_list_add_groups_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_scenes_cluster_create(peVar6);
-  esp_zb_cluster_list_add_scenes_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_on_off_cluster_create(peVar5);
-  esp_zb_cluster_list_add_on_off_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_level_cluster_create(peVar4);
-  esp_zb_cluster_list_add_level_cluster(peVar2,uVar3,1);
-  uVar3 = esp_zb_shade_config_cluster_create(peVar1);
-  esp_zb_cluster_list_add_shade_config_cluster(peVar2,uVar3,1);
-  return peVar2;
+  uVar2 = esp_zb_zcl_cluster_list_create();
+  uVar3 = esp_zb_basic_cluster_create(param_1);
+  esp_zb_cluster_list_add_basic_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_identify_cluster_create(iVar8);
+  esp_zb_cluster_list_add_identify_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_groups_cluster_create(iVar7);
+  esp_zb_cluster_list_add_groups_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_scenes_cluster_create(iVar6);
+  esp_zb_cluster_list_add_scenes_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_on_off_cluster_create(iVar5);
+  esp_zb_cluster_list_add_on_off_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_level_cluster_create(iVar4);
+  esp_zb_cluster_list_add_level_cluster(uVar2,uVar3,1);
+  uVar3 = esp_zb_shade_config_cluster_create(iVar1);
+  esp_zb_cluster_list_add_shade_config_cluster(uVar2,uVar3,1);
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> zb_zcl_window_covering_movement_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_window_covering_movement_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_window_covering_movement_handler(undefined2 *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_err_t err;
+  undefined1 uVar1;
   undefined2 uStack_18;
   undefined2 uStack_16;
-  esp_zb_zcl_window_covering_movement_message_t app_message;
+  ushort uStack_14;
+  undefined2 uStack_12;
   
-  uStack_16 = *(undefined2 *)((int)arg + 2);
-                    /* WARNING: Load size is inaccurate */
-  uStack_18 = *arg;
-  app_message.info._0_2_ = ZEXT12(*(byte *)(*(int *)((int)arg + 8) + 0x20));
-  app_message.info.cluster = *(uint16_t *)((int)arg + 0xc);
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_WINDOW_COVERING_MOVEMENT_CB_ID,&uStack_18);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x10) = eVar1;
+  uStack_16 = param_1[1];
+  uStack_18 = *param_1;
+  uStack_14 = (ushort)*(byte *)(*(int *)(param_1 + 4) + 0x20);
+  uStack_12 = param_1[6];
+  if (param_2 != (code *)0x0) {
+    (*param_2)(0x1b,&uStack_18,param_2);
+    uVar1 = esp_err_to_zcl_status();
+    *(undefined1 *)(param_1 + 8) = uVar1;
   }
   return;
 }

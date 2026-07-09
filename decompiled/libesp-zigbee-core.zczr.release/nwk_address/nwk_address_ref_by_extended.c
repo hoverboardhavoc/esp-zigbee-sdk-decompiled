@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_ref_by_extended
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,32 +12,32 @@
 
 /* WARNING: Removing unreachable block (ram,0x00010a0c) */
 /* WARNING: Removing unreachable block (ram,0x00010a3c) */
-/* WARNING: Unknown calling convention */
 
-ezb_err_t nwk_address_ref_by_extended(ezb_extaddr_t *extaddr,nwk_addr_ref_t *ref_p)
+undefined4 nwk_address_ref_by_extended(int *param_1,undefined2 *param_2)
 
 {
-  nwk_addr_ref_t ref;
   int iVar1;
-  ezb_err_t eVar2;
-  undefined2 extraout_var;
+  uint uVar2;
+  undefined4 uVar3;
   
   iVar1 = core_globals_get();
-  if (extaddr == (ezb_extaddr_t *)0x0) {
-    eVar2 = 2;
+  if (param_1 == (int *)0x0) {
+    uVar3 = 2;
   }
-  else if ((*(int *)((int)&extaddr->field_0 + 4) + 1U != (uint)(*(int *)&extaddr->field_0 == 0)) ||
-          (eVar2 = 2, *(int *)&extaddr->field_0 - 1U < 0xfffffffe)) {
-    ref = search_extended((nwk_addr_table_t *)(iVar1 + 0xc4c),extaddr);
-    if (CONCAT22(extraout_var,ref) < (uint)*(ushort *)(iVar1 + 0xc54)) {
-      addr_table_lru_update((nwk_addr_table_t *)(iVar1 + 0xc4c),ref);
-      *ref_p = ref;
-      eVar2 = 0;
+  else {
+    if ((param_1[1] + 1U == (uint)(*param_1 == 0)) && (0xfffffffd < *param_1 - 1U)) {
+      return 2;
+    }
+    uVar2 = search_extended(iVar1 + 0xc4c,param_1);
+    if (uVar2 < *(ushort *)(iVar1 + 0xc54)) {
+      addr_table_lru_update(iVar1 + 0xc4c,uVar2);
+      *param_2 = (short)uVar2;
+      uVar3 = 0;
     }
     else {
-      eVar2 = 5;
+      uVar3 = 5;
     }
   }
-  return eVar2;
+  return uVar3;
 }
 

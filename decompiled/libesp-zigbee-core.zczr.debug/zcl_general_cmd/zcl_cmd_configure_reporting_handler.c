@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_cmd_configure_reporting_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,183 +10,162 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_cmd_configure_reporting_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void zcl_cmd_configure_reporting_handler(int param_1,int param_2)
 
 {
-  zcl_status_t zVar1;
-  undefined1 uVar2;
-  _Bool _Var3;
-  int iVar4;
+  undefined1 uVar1;
+  int iVar2;
+  int iVar3;
+  uint uVar4;
   int iVar5;
-  uint uVar6;
-  zcl_attr_desc_t *attr_desc;
-  undefined3 extraout_var;
-  char *pcVar7;
+  char *pcVar6;
   size_t __size;
-  int iVar8;
-  undefined3 extraout_var_00;
-  undefined4 uVar9;
-  zmsg_t *unaff_s3;
-  uint16_t uVar10;
-  uint16_t uStack_44;
-  uint16_t local_42;
-  undefined1 auStack_40 [2];
-  uint16_t offset;
-  zcl_configure_reporting_req_t config_reporting_req;
+  undefined4 uVar7;
+  undefined4 unaff_s3;
+  undefined2 uVar8;
+  undefined2 uStack_44;
+  ushort local_42;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  void *pvStack_34;
   
-  _auStack_40 = 0;
-  config_reporting_req.direction = '\0';
-  config_reporting_req._1_1_ = 0;
-  config_reporting_req.attr_id = 0;
-  config_reporting_req.field_2._0_4_ = 0;
-  config_reporting_req.field_2._4_4_ = 0;
-  if (packet == (zcl_packet_t *)0x0) {
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  pvStack_34 = (void *)0x0;
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_general_cmd.c",0x239,
                   "zcl_cmd_configure_reporting_handler","packet");
   }
   else {
-    unaff_s3 = packet->payload;
-    if (((packet->header).fc & 4) != 0) {
-      uVar10 = (packet->header).manuf_code;
+    unaff_s3 = *(undefined4 *)(param_1 + 0x24);
+    if ((*(byte *)(param_1 + 0x1a) & 4) != 0) {
+      uVar8 = *(undefined2 *)(param_1 + 0x1c);
       goto _L0;
     }
   }
-  uVar10 = 0;
+  uVar8 = 0;
 _L0:
-  iVar4 = af_get_ep_desc((packet->header).dst_ep);
-  if (iVar4 == 0) {
-    iVar4 = 0x81;
+  iVar2 = af_get_ep_desc(*(undefined1 *)(param_1 + 0x15));
+  if (iVar2 == 0) {
+    iVar2 = 0x81;
   }
   else {
-    if (((packet->header).fc & 8) == 0) {
-      uVar9 = 1;
+    if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+      uVar7 = 1;
     }
     else {
-      uVar9 = 2;
+      uVar7 = 2;
     }
-    iVar5 = af_endpoint_get_cluster_desc((packet->header).cluster_id,uVar9);
-    if (iVar5 == 0) {
-      iVar4 = 0xc3;
+    iVar3 = af_endpoint_get_cluster_desc(*(undefined2 *)(param_1 + 0x16),uVar7);
+    if (iVar3 == 0) {
+      iVar2 = 0xc3;
     }
     else {
-      uVar6 = zmsg_get_length(unaff_s3);
+      uVar4 = zmsg_get_length(unaff_s3);
       local_42 = 0;
-      while (local_42 < uVar6) {
-        _auStack_40 = 0;
-        config_reporting_req.direction = '\0';
-        config_reporting_req._1_1_ = 0;
-        config_reporting_req.attr_id = 0;
-        config_reporting_req.field_2._0_4_ = 0;
-        config_reporting_req.field_2._4_4_ = 0;
-        af_read_le8(unaff_s3,&local_42,auStack_40);
-        af_read_le16(unaff_s3,&local_42,&offset);
-        if (auStack_40[0] == '\0') {
-          af_read_le8(unaff_s3,&local_42,&config_reporting_req.direction);
-          af_read_le16(unaff_s3,&local_42,&config_reporting_req.attr_id);
-          af_read_le16(unaff_s3,&local_42,&config_reporting_req.field_2.recv_info.timeout);
-          iVar4 = zcl_attr_type_is_analog(config_reporting_req._0_4_ & 0xff);
-          if (iVar4 != 0) {
+      while (local_42 < uVar4) {
+        uStack_40 = 0;
+        uStack_3c = 0;
+        uStack_38 = 0;
+        pvStack_34 = (void *)0x0;
+        af_read_le8(unaff_s3,&local_42);
+        af_read_le16(unaff_s3,&local_42,(int)&uStack_40 + 2);
+        if ((uStack_40 & 0xff) == 0) {
+          af_read_le8(unaff_s3,&local_42,&uStack_3c);
+          af_read_le16(unaff_s3,&local_42,(int)&uStack_3c + 2);
+          af_read_le16(unaff_s3,&local_42,&uStack_38);
+          iVar2 = zcl_attr_type_is_analog(uStack_3c & 0xff);
+          if (iVar2 != 0) {
             __size = zcl_packet_read_variable_attr_size
-                               (packet->payload,local_42,config_reporting_req._0_4_ & 0xff);
-            config_reporting_req.field_2._4_4_ = calloc(1,__size);
-            zcl_packet_read_variable_attr_value
-                      (unaff_s3,&local_42,config_reporting_req._0_4_ & 0xff,
-                       config_reporting_req.field_2._4_4_);
+                               (*(undefined4 *)(param_1 + 0x24),local_42,uStack_3c & 0xff);
+            pvStack_34 = calloc(1,__size);
+            zcl_packet_read_variable_attr_value(unaff_s3,&local_42,uStack_3c & 0xff,pvStack_34);
           }
         }
         else {
-          af_read_le16(unaff_s3,&local_42,(uint16_t *)&config_reporting_req);
+          af_read_le16(unaff_s3,&local_42,&uStack_3c);
         }
-        if (uVar6 < local_42) {
-          iVar4 = 0x80;
+        if (uVar4 < local_42) {
+          iVar2 = 0x80;
           goto _L0;
         }
-        attr_desc = (zcl_attr_desc_t *)zcl_cluster_get_attr_desc(iVar5,_auStack_40 >> 0x10,uVar10);
-        zVar1 = check_configure_reporting_field
-                          ((zcl_configure_reporting_req_t *)auStack_40,attr_desc);
-        if (CONCAT31(extraout_var,zVar1) == 0) {
-          if (((packet->header).fc & 8) == 0) {
-            uVar9 = 1;
+        iVar2 = zcl_cluster_get_attr_desc(iVar3,uStack_40 >> 0x10,uVar8);
+        iVar5 = check_configure_reporting_field(&uStack_40,iVar2);
+        if (iVar5 == 0) {
+          if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+            uVar7 = 1;
           }
           else {
-            uVar9 = 2;
+            uVar7 = 2;
           }
-          pcVar7 = (char *)zcl_reporting_info_find
-                                     ((packet->header).dst_ep,(packet->header).cluster_id,uVar9,
-                                      _auStack_40 >> 0x10,attr_desc->manuf_code);
-          if (pcVar7 == (char *)0x0) {
-            if (((packet->header).fc & 8) == 0) {
-              uVar9 = 1;
+          pcVar6 = (char *)zcl_reporting_info_find
+                                     (*(undefined1 *)(param_1 + 0x15),
+                                      *(undefined2 *)(param_1 + 0x16),uVar7,uStack_40 >> 0x10,
+                                      *(undefined2 *)(iVar2 + 4));
+          if (pcVar6 == (char *)0x0) {
+            if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+              uVar7 = 1;
             }
             else {
-              uVar9 = 2;
+              uVar7 = 2;
             }
-            pcVar7 = (char *)zcl_reporting_info_create
-                                       ((packet->header).dst_ep,(packet->header).profile_id,
-                                        auStack_40[0] != '\0',(packet->header).cluster_id,uVar9,
-                                        _auStack_40 >> 0x10,attr_desc->manuf_code);
+            pcVar6 = (char *)zcl_reporting_info_create
+                                       (*(undefined1 *)(param_1 + 0x15),
+                                        *(undefined2 *)(param_1 + 0x18),(char)uStack_40 != '\0',
+                                        *(undefined2 *)(param_1 + 0x16),uVar7,uStack_40 >> 0x10,
+                                        *(undefined2 *)(iVar2 + 4));
             zcl_reporting_info_add();
-            iVar8 = err_to_zcl_status();
+            iVar5 = err_to_zcl_status();
           }
           else {
-            iVar8 = 0;
+            iVar5 = 0;
           }
-          uVar9 = config_reporting_req._0_4_;
-          iVar4 = 0;
-          if (iVar8 != 0) goto _L0;
-          if (*pcVar7 == '\0') {
-            *(uint16_t *)(pcVar7 + 0x10) = config_reporting_req.attr_id;
-            ((anon_struct_2_1_35098041_for_recv_info *)(pcVar7 + 0x12))->timeout =
-                 (uint16_t)config_reporting_req.field_2.recv_info.timeout;
-            _Var3 = reportable_change_is_present
-                              (config_reporting_req.attr_id,
-                               (uint16_t)config_reporting_req.field_2.recv_info.timeout,
-                               config_reporting_req.direction);
-            if (CONCAT31(extraout_var_00,_Var3) != 0) {
-              zcl_write_attr_value
-                        (pcVar7 + 0x18,config_reporting_req.field_2._4_4_,
-                         config_reporting_req._0_4_ & 0xff);
+          iVar2 = 0;
+          if (iVar5 != 0) goto _L0;
+          if (*pcVar6 == '\0') {
+            *(undefined2 *)(pcVar6 + 0x10) = uStack_3c._2_2_;
+            *(undefined2 *)(pcVar6 + 0x12) = (undefined2)uStack_38;
+            iVar2 = reportable_change_is_present(uStack_3c & 0xff);
+            if (iVar2 != 0) {
+              zcl_write_attr_value(pcVar6 + 0x18,pvStack_34,uStack_3c & 0xff);
             }
           }
           else {
-            pcVar7[0x10] = config_reporting_req.direction;
-            pcVar7[0x11] = config_reporting_req._1_1_;
-            config_reporting_req._0_4_ = uVar9;
+            *(undefined2 *)(pcVar6 + 0x10) = (undefined2)uStack_3c;
           }
-          zcl_reporting_info_update(pcVar7);
-          uVar2 = err_to_zcl_status();
-          uStack_44 = CONCAT11(uStack_44._1_1_,uVar2);
-          zmsg_append_bytes(rsp->payload,1,&uStack_44);
+          zcl_reporting_info_update(pcVar6);
+          uVar1 = err_to_zcl_status();
+          uStack_44 = CONCAT11(uStack_44._1_1_,uVar1);
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_44);
         }
         else {
-          uStack_44._0_1_ = zVar1;
-          zmsg_append_bytes(rsp->payload,1,&uStack_44);
-          uStack_44 = CONCAT11(uStack_44._1_1_,auStack_40[0]);
-          zmsg_append_bytes(rsp->payload,1,&uStack_44);
-          uStack_44 = offset;
-          zmsg_append_bytes(rsp->payload,2,&uStack_44);
+          uStack_44._0_1_ = (char)iVar5;
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_44);
+          uStack_44 = CONCAT11(uStack_44._1_1_,(char)uStack_40);
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_44);
+          uStack_44 = uStack_40._2_2_;
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),2,&uStack_44);
         }
-        if (config_reporting_req.field_2._4_4_ != 0) {
+        if (pvStack_34 != (void *)0x0) {
           mm_free();
-          config_reporting_req.field_2._4_4_ = 0;
+          pvStack_34 = (void *)0x0;
         }
       }
-      iVar4 = 0;
+      iVar2 = 0;
     }
   }
 _L0:
-  if (config_reporting_req.field_2._4_4_ != 0) {
+  if (pvStack_34 != (void *)0x0) {
     mm_free();
   }
-  if (iVar4 == 0) {
-    zVar1 = zcl_packet_setup_response(rsp,packet,7);
+  if (iVar2 == 0) {
+    zcl_packet_setup_response(param_2,param_1,7);
   }
   else {
-    zVar1 = zcl_packet_setup_default_response(rsp,packet,iVar4);
+    zcl_packet_setup_default_response(param_2,param_1,iVar2);
   }
-  return zVar1;
+  return;
 }
 

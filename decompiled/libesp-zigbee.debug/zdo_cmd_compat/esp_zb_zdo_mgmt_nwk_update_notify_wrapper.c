@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_mgmt_nwk_update_notify_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,76 +10,58 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_mgmt_nwk_update_notify_wrapper
-               (ezb_zdo_nwk_mgmt_nwk_update_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_mgmt_nwk_update_notify_wrapper(int *param_1,undefined4 *param_2)
 
 {
   code *pcVar1;
-  ezb_zdp_nwk_mgmt_nwk_update_notify_field_t *peVar2;
+  int iVar2;
+  byte *pbVar3;
   uint uStack_38;
-  esp_zb_zdo_mgmt_update_notify_t notify;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar1 = *user_ctx;
+  pcVar1 = (code *)*param_2;
   if (pcVar1 == (code *)0x0) goto _L0;
   uStack_38 = 0;
-  notify.status = '\0';
-  notify._1_3_ = 0;
-  notify.scanned_channels = 0;
-  notify.total_transmission = 0;
-  notify.transmission_failures = 0;
-  notify.scanned_channels_list_count = '\0';
-  notify.energy_values[0] = '\0';
-  notify.energy_values[1] = '\0';
-  notify.energy_values[2] = '\0';
-  notify.energy_values[3] = '\0';
-  notify.energy_values[4] = '\0';
-  notify.energy_values[5] = '\0';
-  notify.energy_values[6] = '\0';
-  notify.energy_values[7] = '\0';
-  notify.energy_values[8] = '\0';
-  notify.energy_values[9] = '\0';
-  notify.energy_values[10] = '\0';
-  notify.energy_values[0xb] = '\0';
-  notify.energy_values[0xc] = '\0';
-  notify.energy_values[0xd] = '\0';
-  notify.energy_values[0xe] = '\0';
-  notify.energy_values[0xf] = '\0';
-  notify.energy_values[0x10] = '\0';
-  notify.energy_values[0x11] = '\0';
-  notify.energy_values[0x12] = '\0';
-  notify.energy_values[0x13] = '\0';
-  notify.energy_values[0x14] = '\0';
-  notify.energy_values[0x15] = '\0';
-  notify.energy_values[0x16] = '\0';
-  if (result->error == 0) {
-    peVar2 = result->rsp;
-    if (peVar2 == (ezb_zdp_nwk_mgmt_nwk_update_notify_field_t *)0x0) {
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (*param_1 == 0) {
+    pbVar3 = (byte *)param_1[1];
+    if (pbVar3 == (byte *)0x0) {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
                     ,0x1fa,"esp_zb_zdo_mgmt_nwk_update_notify_wrapper","result->rsp");
       goto _L0;
     }
-    uStack_38 = (uint)peVar2->status;
-    notify._0_4_ = peVar2->scanned_channels;
-    peVar2 = result->rsp;
-    notify.scanned_channels._0_2_ = peVar2->total_transmissions;
-    notify.scanned_channels._2_2_ = peVar2->transmissions_failure;
-    notify._9_3_ = 0;
-    notify.total_transmission._0_1_ = peVar2->scanned_channels_list_count;
-    if (peVar2->scanned_channels_list_count != '\0') {
-      memcpy((void *)((int)&notify.total_transmission + 1),peVar2->energy_values,
-             (uint)peVar2->scanned_channels_list_count);
+    uStack_38 = (uint)*pbVar3;
+    uStack_34 = *(undefined4 *)(pbVar3 + 4);
+    iVar2 = param_1[1];
+    uStack_30 = *(undefined4 *)(iVar2 + 8);
+    uStack_2c = (uint)*(byte *)(iVar2 + 0xc);
+    if (*(char *)(iVar2 + 0xc) != '\0') {
+      memcpy((void *)((int)&uStack_2c + 1),(void *)(iVar2 + 0xd),(uint)*(byte *)(iVar2 + 0xc));
     }
   }
   else {
 _L0:
     uStack_38 = CONCAT31(uStack_38._1_3_,0x85);
   }
-  (*pcVar1)(&uStack_38,*(undefined4 *)((int)user_ctx + 4));
+  (*pcVar1)(&uStack_38,param_2[1]);
 _L0:
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

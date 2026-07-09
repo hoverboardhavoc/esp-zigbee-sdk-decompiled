@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> color_control_color_capacity_is_supported
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,54 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool color_control_color_capacity_is_supported(uint8_t ep_id,uint8_t cmd_id)
+ushort color_control_color_capacity_is_supported(uint param_1)
 
 {
   ushort uVar1;
-  zcl_attr_desc_t *pzVar2;
-  undefined3 in_register_0000202d;
-  uint uVar3;
+  int iVar2;
   
-  uVar3 = CONCAT31(in_register_0000202d,cmd_id);
-  pzVar2 = color_control_srv_get_attr_desc(ep_id,0x400a);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
-    return false;
+  iVar2 = color_control_srv_get_attr_desc(0x400a);
+  if (iVar2 == 0) {
+    return 0;
   }
-                    /* WARNING: Load size is inaccurate */
-  uVar1 = *pzVar2->data_p;
-  if (uVar3 < 0x44) {
-    if (0x3f < uVar3) {
-      return (_Bool)((byte)(uVar1 >> 1) & 1);
+  uVar1 = **(ushort **)(iVar2 + 8);
+  if (param_1 < 0x44) {
+    if (0x3f < param_1) {
+      return uVar1 >> 1 & 1;
     }
-    if (uVar3 < 10) {
-      if (6 < uVar3) {
-        return (_Bool)((byte)(uVar1 >> 3) & 1);
+    if (param_1 < 10) {
+      if (6 < param_1) {
+        return uVar1 >> 3 & 1;
       }
-      if (uVar3 < 7) {
-        return (_Bool)((byte)uVar1 & 1);
+      if (param_1 < 7) {
+        return uVar1 & 1;
       }
-      return false;
+      return 0;
     }
-    if (uVar3 != 10) {
-      return false;
+    if (param_1 != 10) {
+      return 0;
     }
   }
   else {
-    if (uVar3 == 0x47) {
-      return true;
+    if (param_1 == 0x47) {
+      return 1;
     }
-    if (uVar3 < 0x48) {
-      if (uVar3 == 0x44) {
-        return (_Bool)((byte)(uVar1 >> 2) & 1);
+    if (param_1 < 0x48) {
+      if (param_1 == 0x44) {
+        return uVar1 >> 2 & 1;
       }
-      return false;
+      return 0;
     }
-    if (1 < (uVar3 - 0x4b & 0xff)) {
-      return false;
+    if (1 < (param_1 - 0x4b & 0xff)) {
+      return 0;
     }
   }
-  return (_Bool)((byte)(uVar1 >> 4) & 1);
+  return uVar1 >> 4 & 1;
 }
 

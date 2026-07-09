@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> nwk_route_record_table_remove_by_dst
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_route_record_table_remove_by_dst(ezb_shortaddr_t dst_addr)
+void nwk_route_record_table_remove_by_dst(void)
 
 {
-  nwk_route_record_t *obj;
   int iVar1;
-  void *blk_base;
-  bitmap_t *blk_busy;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
   
-  obj = nwk_route_record_table_find(dst_addr);
-  if (obj != (nwk_route_record_t *)0x0) {
-    iVar1 = core_globals_get();
-    blk_base = *(void **)(iVar1 + 0xc70);
-    iVar1 = core_globals_get();
-    blk_busy = *(bitmap_t **)(iVar1 + 0xc74);
-    iVar1 = core_globals_get();
-    mempool_free_ent(blk_base,blk_busy,0x1c,*(uint16_t *)(iVar1 + 0xc78),obj);
+  iVar1 = nwk_route_record_table_find();
+  if (iVar1 != 0) {
+    iVar2 = core_globals_get();
+    uVar3 = *(undefined4 *)(iVar2 + 0xc70);
+    iVar2 = core_globals_get();
+    uVar4 = *(undefined4 *)(iVar2 + 0xc74);
+    iVar2 = core_globals_get();
+    mempool_free_ent(uVar3,uVar4,0x1c,*(undefined2 *)(iVar2 + 0xc78),iVar1);
   }
   return;
 }

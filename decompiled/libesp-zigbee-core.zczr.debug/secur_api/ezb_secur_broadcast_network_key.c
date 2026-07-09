@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> secur_api.o -> ezb_secur_broadcast_network_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,47 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_secur_broadcast_network_key(uint8_t *key,uint8_t key_seq)
+undefined4 ezb_secur_broadcast_network_key(void *param_1,uint param_2)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
+  undefined4 uVar2;
   undefined4 uStack_3c;
-  apsme_transport_key_req_t req;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  int iStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined2 uStack_14;
   
-  if (key == (uint8_t *)0x0) {
-    eVar2 = 2;
+  if (param_1 == (void *)0x0) {
+    uVar2 = 2;
   }
   else {
     iVar1 = aps_secur_is_tc();
     if (iVar1 == 0) {
-      eVar2 = 0xd;
+      uVar2 = 0xd;
     }
     else {
-      req._8_4_ = 0;
-      req.field_2._3_4_ = 0;
-      req.field_2._7_4_ = 0;
-      req.field_2._15_4_ = 0;
-      req.field_2._19_4_ = 0;
-      req._32_4_ = 0;
-      req.tunnel_address.field_0.u64._2_2_ = 0;
-      req.dst_address.field_0.u64._4_4_ = 1;
-      req.field_2._11_4_ = (uint)key_seq << 8;
+      uStack_30 = 0;
+      uStack_2c = 0;
+      uStack_28 = 0;
+      uStack_20 = 0;
+      uStack_1c = 0;
+      uStack_18 = 0;
+      uStack_14 = 0;
+      uStack_34 = 1;
+      iStack_24 = (param_2 & 0xff) << 8;
       uStack_3c = 0xffffffff;
-      req.dst_address.field_0.u64._0_4_ = 0xffffffff;
-      memcpy((void *)((int)&req.dst_address.field_0 + 5),key,0x10);
-      eVar2 = apsme_transport_key_request(&uStack_3c);
+      uStack_38 = 0xffffffff;
+      memcpy((void *)((int)&uStack_34 + 1),param_1,0x10);
+      uVar2 = apsme_transport_key_request(&uStack_3c);
     }
   }
-  return eVar2;
+  return uVar2;
 }
 

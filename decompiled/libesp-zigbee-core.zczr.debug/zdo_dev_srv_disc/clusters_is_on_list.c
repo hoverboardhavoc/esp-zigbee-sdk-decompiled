@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> clusters_is_on_list
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool clusters_is_on_list(uint16_t *cluster_list,uint8_t list_len,uint16_t *clusters,
-                         uint8_t num_of_clusters)
+undefined4 clusters_is_on_list(int param_1,uint param_2,int param_3,uint param_4)
 
 {
-  undefined3 in_register_0000202d;
-  undefined3 in_register_00002035;
   uint uVar1;
   uint uVar2;
   
   uVar2 = 0;
   do {
-    if (CONCAT31(in_register_0000202d,list_len) <= uVar2) {
-      return false;
+    if (param_2 <= uVar2) {
+      return 0;
     }
-    for (uVar1 = 0; uVar1 < CONCAT31(in_register_00002035,num_of_clusters); uVar1 = uVar1 + 1 & 0xff
-        ) {
-      if (cluster_list[uVar2] == clusters[uVar1]) {
-        return true;
+    for (uVar1 = 0; uVar1 < param_4; uVar1 = uVar1 + 1 & 0xff) {
+      if (*(short *)(uVar2 * 2 + param_1) == *(short *)(uVar1 * 2 + param_3)) {
+        return 1;
       }
     }
     uVar2 = uVar2 + 1 & 0xff;

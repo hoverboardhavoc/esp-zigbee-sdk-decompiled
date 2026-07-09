@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_nlme.o -> nwk_nlme_event_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
+void nwk_nlme_event_indication(char *param_1)
 
 {
-  nwk_network_status_t status;
-  ezb_shortaddr_t eVar1;
-  char *pcVar2;
+  char cVar1;
+  undefined2 uVar2;
+  undefined4 uVar3;
   
-  if (ind->event != '\0') {
-    if (ind->event == '\x01') {
-      log_write(3,"nwk_nlme.c","Permit Joining: duration %d",(ind->field_1).network_status.status);
+  if (*param_1 != '\0') {
+    if (*param_1 == '\x01') {
+      log_write(3,"nwk_nlme.c","Permit Joining: duration %d",param_1[2]);
       return;
     }
-    ind = (nwk_nlme_event_ind_t *)__assert_func(0,0,0,0);
+    param_1 = (char *)__assert_func(0,0,0,0);
   }
-  status = (ind->field_1).network_status.status;
-  eVar1 = (ind->field_1).network_status.network_addr;
-  pcVar2 = nwk_network_status_to_str(status);
-  log_write(3,"nwk_nlme.c","NWK Status Indication: %s (0x%02x), addr 0x%04x",pcVar2,status,eVar1);
+  cVar1 = param_1[2];
+  uVar2 = *(undefined2 *)(param_1 + 4);
+  uVar3 = nwk_network_status_to_str(cVar1);
+  log_write(3,"nwk_nlme.c","NWK Status Indication: %s (0x%02x), addr 0x%04x",uVar3,cVar1,uVar2);
   return;
 }
 

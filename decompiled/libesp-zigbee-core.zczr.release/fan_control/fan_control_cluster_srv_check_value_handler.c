@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> fan_control.o -> fan_control_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-fan_control_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t endpoint,void *value)
+byte fan_control_cluster_srv_check_value_handler(int param_1,byte *param_2)
 
 {
   byte bVar1;
-  undefined2 in_register_0000202a;
   byte bVar2;
   
-  if (CONCAT22(in_register_0000202a,attr_id) == 0) {
-                    /* WARNING: Load size is inaccurate */
-    bVar1 = *value;
+  if (param_1 == 0) {
+    bVar1 = *param_2;
     bVar2 = 6;
   }
   else {
-    if (CONCAT22(in_register_0000202a,attr_id) != 1) {
-      return '\0';
+    if (param_1 != 1) {
+      return 0;
     }
-                    /* WARNING: Load size is inaccurate */
-    bVar1 = *value;
+    bVar1 = *param_2;
     bVar2 = 4;
   }
   return -(bVar2 < bVar1) & 0x87;

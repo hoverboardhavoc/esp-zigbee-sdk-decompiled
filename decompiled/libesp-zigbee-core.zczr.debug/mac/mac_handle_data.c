@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_data
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_handle_data(mac_device *dev,mac_frame_t *mac_frame)
+void mac_handle_data(int param_1,int param_2)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
+  int iVar1;
   
-  if ((dev->ctx).state != '\x02') {
-    if ((((dev->ctx).cur_op == '\x06') && ((mac_frame->mhr).dst_addr.addr_mode != '\0')) &&
-       (_Var1 = mac_frame_is_from_coord(dev,mac_frame), CONCAT31(extraout_var,_Var1) != 0)) {
-      mac_stop_timer(dev);
-      mac_finish_op(dev);
-      mac_report_poll_result(dev,'\0');
-      mac_perform_next_op(dev);
+  if (*(char *)(param_1 + 0x2d) != '\x02') {
+    if (((*(char *)(param_1 + 0x2e) == '\x06') && (*(char *)(param_2 + 4) != '\0')) &&
+       (iVar1 = mac_frame_is_from_coord(), iVar1 != 0)) {
+      mac_stop_timer(param_1);
+      mac_finish_op(param_1);
+      mac_report_poll_result(param_1,0);
+      mac_perform_next_op(param_1);
     }
-    nwk_mm_data_indication((dev->ctx).iface_id,mac_frame);
+    nwk_mm_data_indication(*(undefined1 *)(param_1 + 0x2c),param_2);
   }
   return;
 }

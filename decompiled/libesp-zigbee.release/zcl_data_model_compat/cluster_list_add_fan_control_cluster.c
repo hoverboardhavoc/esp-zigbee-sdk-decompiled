@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_data_model_compat.o -> cluster_list_add_fan_control_cluster
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t cluster_list_add_fan_control_cluster
-                    (esp_zb_cluster_list_t *cluster_list,esp_zb_attribute_list_t *attr_list,
-                    uint8_t role_mask)
+void cluster_list_add_fan_control_cluster(int param_1,int param_2,byte param_3)
 
 {
   undefined4 uVar1;
-  esp_err_t eVar2;
-  undefined *puVar3;
+  undefined *puVar2;
   
-  if (cluster_list != (esp_zb_cluster_list_t *)0x0) {
-    cluster_list = cluster_list + -1;
+  if (param_1 != 0) {
+    param_1 = param_1 + -4;
   }
   uVar1 = 2;
-  if ((attr_list != (esp_zb_attribute_list_t *)0x0) &&
-     (cluster_list != (esp_zb_cluster_list_t *)0x0)) {
-    *(uint8_t *)((int)&attr_list[-3].attr_list + 2) = role_mask;
-    if ((role_mask & 1) == 0) {
-      puVar3 = &ezb_zcl_fan_control_cluster_client_init;
+  if ((param_2 != 0) && (param_1 != 0)) {
+    *(byte *)(param_2 + -10) = param_3;
+    if ((param_3 & 1) == 0) {
+      puVar2 = &ezb_zcl_fan_control_cluster_client_init;
     }
     else {
-      puVar3 = &ezb_zcl_fan_control_cluster_server_init;
+      puVar2 = &ezb_zcl_fan_control_cluster_server_init;
     }
-    attr_list[-1].attr_list = puVar3;
-    zcl_cluster_desc_add_revision_attr((zcl_cluster_desc_t *)(attr_list + -3),1);
-    uVar1 = ezb_af_endpoint_add_cluster_desc(cluster_list,(zcl_cluster_desc_t *)(attr_list + -3));
+    *(undefined **)(param_2 + -4) = puVar2;
+    zcl_cluster_desc_add_revision_attr_isra_0(param_2 + -0xc,1);
+    uVar1 = ezb_af_endpoint_add_cluster_desc(param_1,param_2 + -0xc);
   }
-  eVar2 = esp_zigbee_err_to_esp(uVar1);
-  return eVar2;
+  esp_zigbee_err_to_esp(uVar1);
+  return;
 }
 

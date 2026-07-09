@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_discovery.o -> nwk_handle_active_scan_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,91 +10,72 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_handle_active_scan_result(active_scan_result_t *scan_result,void *user_ctx)
+void nwk_handle_active_scan_result(byte *param_1)
 
 {
-  nwk_beacon_info_t *zigbee_beacon;
-  undefined1 uVar1;
-  int iVar2;
+  char *pcVar1;
+  undefined1 uVar2;
   int iVar3;
-  uint uVar4;
-  active_scan_result_t *scan_result_00;
-  void *user_ctx_00;
-  undefined1 auStack_2c [4];
-  nwk_potential_parent_t parent;
-  ezb_extpanid_t extpanid;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  uint uStack_1c;
+  int iStack_18;
+  int iStack_14;
   
-  if (((((scan_result->beacon_type == '\0') &&
-        (zigbee_beacon = (nwk_beacon_info_t *)scan_result->beacon_payload,
-        0xe < scan_result->beacon_payload_length)) && (zigbee_beacon->protocol_id == '\0')) &&
-      ((zigbee_beacon->field_0x1 == '\"' &&
-       ((iVar2 = core_globals_get(), *(char *)(iVar2 + 0xac8) == '\0' ||
-        ((short)(scan_result->pan_descriptor).superframe_spec < 0)))))) &&
-     ((iVar2 = core_globals_get(), *(char *)(iVar2 + 0xac9) == '\0' ||
-      ((char)zigbee_beacon->field_0x2 < '\0')))) {
-    parent.field_7 =
-         *(anon_union_4_2_657f631f_for_nwk_disc_table_ent_s_7 *)
-          &(zigbee_beacon->extended_panid).field_0;
-    iVar2 = *(int *)((int)&(zigbee_beacon->extended_panid).field_0 + 4);
+  if (((((param_1[2] == 0) && (pcVar1 = *(char **)(param_1 + 0x18), 0xe < param_1[0x16])) &&
+       (*pcVar1 == '\0')) &&
+      ((pcVar1[1] == '\"' &&
+       ((iVar3 = core_globals_get(), *(char *)(iVar3 + 0xac8) == '\0' ||
+        (*(short *)(param_1 + 0x12) < 0)))))) &&
+     ((iVar3 = core_globals_get(), *(char *)(iVar3 + 0xac9) == '\0' || (pcVar1[2] < '\0')))) {
+    iStack_18 = *(int *)(pcVar1 + 3);
+    iStack_14 = *(int *)(pcVar1 + 7);
     iVar3 = core_globals_get();
     if (*(int *)(iVar3 + 0x9ef) != 0 || *(int *)(iVar3 + 0x9f3) != 0) {
       iVar3 = core_globals_get();
-      if (*(anon_union_4_2_657f631f_for_nwk_disc_table_ent_s_7 *)(iVar3 + 0x9ef) != parent.field_7)
-      {
+      if (*(int *)(iVar3 + 0x9ef) != iStack_18) {
         return;
       }
-      if (*(int *)(iVar3 + 0x9f3) != iVar2) {
+      if (*(int *)(iVar3 + 0x9f3) != iStack_14) {
         return;
       }
     }
-    uVar4 = nwk_address_add_panid_mapping((scan_result->pan_descriptor).coord_panid,&parent.field_7)
-    ;
-    if (uVar4 == 0xff) {
-      iVar2 = nwk_disc_table_find_weakest_pan((scan_result->pan_descriptor).lqi);
-      if (iVar2 == 0xff) {
+    uStack_24 = nwk_address_add_panid_mapping(*(undefined2 *)(param_1 + 0xe),&iStack_18);
+    if (uStack_24 == 0xff) {
+      iVar3 = nwk_disc_table_find_weakest_pan(param_1[0x14]);
+      if (iVar3 == 0xff) {
         return;
       }
       nwk_disc_table_remove_pan();
-      uVar4 = nwk_address_add_panid_mapping
-                        ((scan_result->pan_descriptor).coord_panid,&parent.field_7);
-      if (uVar4 == 0xff) {
-        scan_result_00 =
-             (active_scan_result_t *)
-             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_discovery.c",0x6c,
-                           "nwk_handle_active_scan_result","panid_ref != ((nwk_panid_ref_t)(-1))");
-        if (scan_result_00 == (active_scan_result_t *)0x0) {
-          iVar2 = core_globals_get();
-          *(undefined1 *)(iVar2 + 0xac0) = 0;
+      uStack_24 = nwk_address_add_panid_mapping(*(undefined2 *)(param_1 + 0xe),&iStack_18);
+      if (uStack_24 == 0xff) {
+        iVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_discovery.c",0x6c,
+                              "nwk_handle_active_scan_result","panid_ref != ((nwk_panid_ref_t)(-1))"
+                             );
+        if (iVar3 == 0) {
+          iVar3 = core_globals_get();
+          *(undefined1 *)(iVar3 + 0xac0) = 0;
           nwk_network_discovery_confirm(0);
         }
         else {
-          nwk_handle_active_scan_result(scan_result_00,user_ctx_00);
+          nwk_handle_active_scan_result();
         }
         return;
       }
     }
-    parent.panid_ref = '\0';
-    parent.lqa = '\0';
-    parent.update_id = '\0';
-    parent.kn_secrets = '\0';
-    parent.addr._4_4_ = uVar4 & 0xff;
-    auStack_2c = *(undefined1 (*) [4])&(scan_result->pan_descriptor).coord_addr.u.group_addr;
-    parent.addr.group_addr =
-         *(ezb_grpaddr_t *)((int)&(scan_result->pan_descriptor).coord_addr.u + 4);
-    parent._12_4_ =
-         (uint)((scan_result->pan_descriptor).coord_addr.addr_mode == '\x02') << 0x1d |
-         (scan_result->iface_id & 0x1f) << 0x18;
-    uVar1 = nwk_calculate_lqa_raw
-                      ((scan_result->pan_descriptor).lqi,(int)(scan_result->pan_descriptor).rssi);
-    parent.addr._5_1_ = uVar1;
-    parent._12_4_ =
-         parent._12_4_ & 0xbffff000 | (scan_result->pan_descriptor).channel_number & 0x7f |
-         ((scan_result->pan_descriptor).channel_page & 0x1f) << 7 |
-         (uint)((scan_result->pan_descriptor).superframe_spec >> 0xf) << 0x1e;
-    convert_beacon_to_parent((nwk_potential_parent_t *)auStack_2c,zigbee_beacon);
-    nwk_disc_table_add_parent((nwk_potential_parent_t *)auStack_2c);
+    uStack_20 = 0;
+    uStack_24 = uStack_24 & 0xff;
+    uStack_2c = *(undefined4 *)(param_1 + 6);
+    uStack_28 = *(undefined4 *)(param_1 + 10);
+    uStack_1c = (uint)(param_1[4] == 2) << 0x1d | (*param_1 & 0x1f) << 0x18;
+    uVar2 = nwk_calculate_lqa_raw(param_1[0x14],(int)(char)param_1[0x15]);
+    uStack_24._0_2_ = CONCAT11(uVar2,(undefined1)uStack_24);
+    uStack_1c = uStack_1c & 0xbffff000 | param_1[0x11] & 0x7f | (param_1[0x10] & 0x1f) << 7 |
+                (uint)(*(ushort *)(param_1 + 0x12) >> 0xf) << 0x1e;
+    convert_beacon_to_parent(&uStack_2c,pcVar1);
+    nwk_disc_table_add_parent(&uStack_2c);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_handle_bcast
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool nwk_fwd_handle_bcast(nwk_rx_info_t *rx_info,zmsg_t *msg)
+uint nwk_fwd_handle_bcast(int param_1,undefined4 param_2)
 
 {
   ushort uVar1;
-  _Bool _Var2;
-  uint uVar3;
-  undefined3 extraout_var;
+  uint uVar2;
   
   core_globals_get();
-  uVar3 = nwk_is_device_in_bcast_group(rx_info->nwk_dst_addr);
-  if (uVar3 != 0) {
-    _Var2 = nwk_btt_add_if_absent(rx_info,msg);
-    uVar3 = CONCAT31(extraout_var,_Var2);
-    if (uVar3 != 0) {
-      uVar1 = rx_info->nwk_src_addr;
-      uVar3 = nwk_get_short_address();
-      uVar3 = (uint)(uVar1 != uVar3);
-    }
+  uVar2 = nwk_is_device_in_bcast_group(*(undefined2 *)(param_1 + 4));
+  if ((uVar2 != 0) && (uVar2 = nwk_btt_add_if_absent(param_1,param_2), uVar2 != 0)) {
+    uVar1 = *(ushort *)(param_1 + 6);
+    uVar2 = nwk_get_short_address();
+    uVar2 = (uint)(uVar1 != uVar2);
   }
-  return SUB41(uVar3,0);
+  return uVar2;
 }
 

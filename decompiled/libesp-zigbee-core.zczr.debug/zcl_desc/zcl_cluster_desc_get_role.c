@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_desc.o -> zcl_cluster_desc_get_role
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,20 +11,19 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-uint8_t zcl_cluster_desc_get_role(zcl_cluster_desc_t *cluster_desc)
+ushort zcl_cluster_desc_get_role(int param_1)
 
 {
   int iVar1;
   
-  if (cluster_desc != (zcl_cluster_desc_t *)0x0) {
-    return cluster_desc->role_mask;
+  if (param_1 != 0) {
+    return (ushort)*(byte *)(param_1 + 2);
   }
   iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x14d,
                         "zcl_cluster_desc_get_role","cluster_desc");
   if (iVar1 != 0) {
-    return (uint8_t)*(undefined2 *)(iVar1 + 4);
+    return *(ushort *)(iVar1 + 4);
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x153,
                 "zcl_cluster_desc_get_manuf_code","cluster_desc");

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac_frame.o -> mac_frame_find_payload_index
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,15 +10,13 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t mac_frame_find_payload_index(ezb_radio_frame_t *frame)
+undefined4 mac_frame_find_payload_index(undefined4 *param_1)
 
 {
-  uint8_t uVar1;
+  undefined4 uVar1;
   
-  if ((*(ushort *)frame->psdu & 0x200) == 0) {
-    uVar1 = mac_fcf_skip_addr_field_index(*(ushort *)frame->psdu);
+  if ((*(ushort *)*param_1 & 0x200) == 0) {
+    uVar1 = mac_fcf_skip_addr_field_index();
   }
   else {
     uVar1 = 0xff;

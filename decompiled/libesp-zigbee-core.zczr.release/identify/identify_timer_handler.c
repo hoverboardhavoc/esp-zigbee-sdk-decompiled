@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> identify.o -> identify_timer_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void identify_timer_handler(zcl_identify_timer_ctx_t *timer_ctx)
+void identify_timer_handler(undefined1 *param_1)
 
 {
-  uint8_t ep_id;
-  int iVar1;
-  zcl_attr_desc_t *pzVar2;
-  uint16_t attr_id;
-  uint16_t in_a1;
-  uint16_t extraout_a1;
+  undefined1 uVar1;
+  undefined4 uVar2;
+  int iVar3;
   short asStack_12 [5];
   
-  if (timer_ctx != (zcl_identify_timer_ctx_t *)0x0) goto _L22;
+  if (param_1 != (undefined1 *)0x0) goto _L22;
   do {
-    timer_ctx = (zcl_identify_timer_ctx_t *)__assert_func(0,0,0,0);
-    in_a1 = extraout_a1;
+    param_1 = (undefined1 *)__assert_func(0,0,0,0);
 _L22:
-    pzVar2 = identify_srv_get_attr_desc(timer_ctx->ep_id,in_a1);
-  } while (pzVar2 == (zcl_attr_desc_t *)0x0);
-                    /* WARNING: Load size is inaccurate */
-  asStack_12[0] = *pzVar2->data_p;
+    iVar3 = identify_srv_get_attr_desc_constprop_0(*param_1);
+  } while (iVar3 == 0);
+  asStack_12[0] = **(short **)(iVar3 + 8);
   if (asStack_12[0] != 0) {
     asStack_12[0] = asStack_12[0] + -1;
   }
-  ep_id = timer_ctx->ep_id;
-  iVar1 = ezb_zcl_set_attr_value(ep_id,3,1,0,0,asStack_12,0);
-  if (iVar1 == 0) {
-    pzVar2 = identify_srv_get_attr_desc(ep_id,attr_id);
-    zcl_message_notify_attr_value(ep_id,3,1,pzVar2);
+  uVar1 = *param_1;
+  iVar3 = ezb_zcl_set_attr_value(uVar1,3,1,0,0,asStack_12,0);
+  if (iVar3 == 0) {
+    uVar2 = identify_srv_get_attr_desc_constprop_0(uVar1);
+    zcl_message_notify_attr_value(uVar1,3,1,uVar2);
   }
   return;
 }

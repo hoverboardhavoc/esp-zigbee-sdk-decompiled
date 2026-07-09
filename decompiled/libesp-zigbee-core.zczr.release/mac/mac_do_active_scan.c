@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_do_active_scan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_do_active_scan(mac_device *dev)
+void mac_do_active_scan(void *param_1)
 
 {
   byte bVar1;
-  ezb_panid_t eVar2;
-  ushort uVar3;
-  ezb_shortaddr_t eVar4;
-  char cVar5;
-  ezb_radio_frame_t *tx_frame;
-  zmsg_queue_t *pzVar6;
-  zmsg_t *msg;
-  int iVar7;
-  ezb_err_t eVar8;
-  uint8_t *__src;
-  undefined2 uVar9;
-  active_scan_callback p_Var10;
-  uint8_t *puVar11;
-  uint __n;
+  ushort uVar2;
+  char cVar3;
+  int *piVar4;
+  undefined1 *puVar5;
+  int iVar6;
+  undefined2 uVar7;
+  uint uVar8;
+  int iVar9;
+  undefined4 unaff_s3;
   undefined4 uStack_28;
   undefined4 uStack_24;
   undefined4 uStack_20;
@@ -37,145 +30,222 @@ void mac_do_active_scan(mac_device *dev)
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  if (((*(uint *)&(dev->ctx).field_0x70 & 1) == 0) ||
-     (eVar8 = mac_update_scan_channel(dev), eVar8 != 0)) {
-    mac_pal_set_panid((dev->pib).panid);
-    mac_pal_set_rx_when_idle(*(uint *)&(dev->pib).transaction_persistence_time >> 0x11 & 1);
-    p_Var10 = (dev->ctx).field_7.active_scan_result_handler;
-    (dev->ctx).state = '\0';
-    (dev->ctx).cur_op = '\0';
-    if (p_Var10 != (active_scan_callback)0x0) {
-      (*p_Var10)((active_scan_result_t *)0x0,(dev->ctx).scan_user_ctx);
+  while( true ) {
+    if (((*(uint *)((int)param_1 + 0x9c) & 1) != 0) &&
+       (iVar6 = mac_update_scan_channel_part_0(), iVar6 == 0)) goto mac_do_transmit_part_0;
+    mac_pal_set_panid(*(undefined2 *)((int)param_1 + 10));
+    mac_pal_set_rx_when_idle(*(uint *)((int)param_1 + 0x28) >> 0x11 & 1);
+    *(undefined1 *)((int)param_1 + 0x2d) = 0;
+    *(undefined1 *)((int)param_1 + 0x2e) = 0;
+    if (*(code **)((int)param_1 + 0x38) != (code *)0x0) {
+      (**(code **)((int)param_1 + 0x38))(0,*(undefined4 *)((int)param_1 + 0x3c));
     }
-    mac_perform_next_op(dev);
+    if ((*(uint *)((int)param_1 + 0x9c) & 1) == 0) {
+      return;
+    }
+    if (*(char *)((int)param_1 + 0x2e) != '\0') {
+      return;
+    }
+    uVar2 = *(ushort *)((int)param_1 + 0x30);
+    if ((uVar2 & 0x40) == 0) {
+      if ((uVar2 & 2) == 0) {
+        if ((uVar2 & 4) == 0) {
+          if ((uVar2 & 8) == 0) {
+            if ((uVar2 & 0x80) == 0) {
+              if ((uVar2 & 0x100) == 0) {
+                if ((uVar2 & 0x20) == 0) {
+                  uVar8 = 4;
+                  if ((uVar2 & 0x10) == 0) {
+                    if (*(char *)((int)param_1 + 0x2e) != '\0') {
+                      return;
+                    }
+                    if (-1 < *(int *)((int)param_1 + 0x28) << 0xe) {
+                      mac_pal_sleep();
+                      return;
+                    }
+                    mac_pal_receive(*(undefined1 *)((int)param_1 + 0x42),
+                                    *(undefined1 *)((int)param_1 + 0x41));
+                    return;
+                  }
+                }
+                else {
+                  uVar8 = 5;
+                }
+              }
+              else {
+                uVar8 = 8;
+              }
+            }
+            else {
+              uVar8 = 7;
+            }
+          }
+          else {
+            uVar8 = 3;
+          }
+        }
+        else {
+          uVar8 = 2;
+        }
+      }
+      else {
+        uVar8 = 1;
+      }
+    }
+    else {
+      uVar8 = 6;
+    }
+    *(ushort *)((int)param_1 + 0x30) = uVar2 & ~(ushort)(1 << uVar8);
+    *(char *)((int)param_1 + 0x2e) = (char)uVar8;
+    uStack_14 = unaff_s3;
+    micro_timer_stop((int)param_1 + 0x8c);
+    if (5 < uVar8) {
+      if (uVar8 == 6) {
+        mac_pal_receive(*(undefined1 *)((int)param_1 + 0x42),*(undefined1 *)((int)param_1 + 0x41));
+        micro_timer_start((int)param_1 + 0x8c,
+                          ((*(ushort *)((int)param_1 + 0x1c) + 0x3bf) / 0x3c0 + 1) * 0x3c00);
+        return;
+      }
+      goto _L0;
+    }
+    if (3 < uVar8) goto _L0;
+    if (uVar8 == 2) {
+      *(undefined1 *)((int)param_1 + 0x2d) = 1;
+      mac_do_ed_scan(param_1);
+      return;
+    }
+    if (uVar8 == 3) break;
+    *(undefined1 *)((int)param_1 + 0x2d) = 1;
+    unaff_s3 = uStack_14;
+  }
+  *(undefined1 *)((int)param_1 + 0x2d) = 2;
+_L0:
+  if ((*(uint *)((int)param_1 + 0x9c) & 1) == 0) {
     return;
   }
-  tx_frame = (ezb_radio_frame_t *)mac_pal_get_tx_frame();
-  tx_frame->channel = (dev->ctx).phy_channel;
-  (tx_frame->info).tx.max_frame_retries = (dev->pib).max_frame_retries;
-  (tx_frame->info).tx.max_csma_backoffs = (dev->pib).max_csma_backoffs;
-  (tx_frame->info).tx.max_csma_be = (dev->pib).max_be;
-  (tx_frame->info).tx.min_csma_be = (dev->pib).min_be;
-  bVar1 = (dev->ctx).cur_op;
-  puVar11 = (uint8_t *)(uint)bVar1;
-  if (puVar11 == (uint8_t *)0x5) {
+mac_do_transmit_part_0:
+  piVar4 = (int *)mac_pal_get_tx_frame();
+  *(undefined1 *)((int)piVar4 + 5) = *(undefined1 *)((int)param_1 + 0x41);
+  *(undefined1 *)(piVar4 + 4) = *(undefined1 *)((int)param_1 + 0x1e);
+  *(undefined1 *)((int)piVar4 + 0x11) = *(undefined1 *)((int)param_1 + 0x22);
+  *(undefined1 *)((int)piVar4 + 0x12) = *(undefined1 *)((int)param_1 + 0x21);
+  *(undefined1 *)((int)piVar4 + 0x13) = *(undefined1 *)((int)param_1 + 0x20);
+  bVar1 = *(byte *)((int)param_1 + 0x2e);
+  uVar8 = (uint)bVar1;
+  if (uVar8 == 5) {
     mac_pal_set_rx_when_idle(1);
-    puVar11 = (uint8_t *)0x3;
+    uVar8 = 3;
     uStack_24 = CONCAT31(uStack_24._1_3_,3);
-    memcpy((void *)((int)&uStack_24 + 2),dev,8);
-    uStack_18 = *(undefined4 *)&(dev->pib).coord_extaddr.field_0;
-    uVar3 = (dev->pib).coord_shortaddr;
+    memcpy((void *)((int)&uStack_24 + 2),param_1,8);
+    uStack_18 = *(undefined4 *)((int)param_1 + 0x10);
     uStack_1c._0_3_ = CONCAT12(3,(undefined2)uStack_1c);
-    uStack_14 = *(undefined4 *)((int)&(dev->pib).coord_extaddr.field_0 + 4);
-    eVar2 = (dev->pib).panid;
-    uStack_28 = CONCAT22(eVar2,eVar2);
-    if (uVar3 < 0xfffe) {
+    uStack_14 = *(undefined4 *)((int)param_1 + 0x14);
+    uStack_28 = CONCAT22(*(undefined2 *)((int)param_1 + 10),*(undefined2 *)((int)param_1 + 10));
+    if (*(ushort *)((int)param_1 + 0xe) < 0xfffe) {
       uStack_1c._0_3_ = CONCAT12(2,(undefined2)uStack_1c);
       uStack_18._2_2_ = (undefined2)((uint)uStack_18 >> 0x10);
-      uStack_18 = CONCAT22(uStack_18._2_2_,uVar3);
+      uStack_18 = CONCAT22(uStack_18._2_2_,*(ushort *)((int)param_1 + 0xe));
     }
-    uVar3 = (dev->pib).short_address;
-    if (uVar3 < 0xfffe) {
+    if (*(ushort *)((int)param_1 + 8) < 0xfffe) {
       uStack_24 = CONCAT31(uStack_24._1_3_,2);
-      uStack_24 = CONCAT22(uVar3,(undefined2)uStack_24);
+      uStack_24 = CONCAT22(*(ushort *)((int)param_1 + 8),(undefined2)uStack_24);
     }
-    cVar5 = mac_frame_write_hdr(tx_frame->psdu,&uStack_24,&uStack_28,0,3,4);
-    tx_frame->length = cVar5 + '\x02';
+    cVar3 = mac_frame_write_hdr(*piVar4,&uStack_24,&uStack_28,0,3,4);
+    *(char *)(piVar4 + 1) = cVar3 + '\x02';
     goto _L0;
   }
-  if ((uint8_t *)0x5 < puVar11) goto _L0;
-  if (puVar11 == (uint8_t *)0x3) {
+  if (5 < uVar8) goto _L0;
+  if (uVar8 == 3) {
     uStack_24 = CONCAT31(uStack_24._1_3_,bVar1);
-    memcpy((void *)((int)&uStack_24 + 2),dev,8);
-    uStack_18 = *(undefined4 *)&(dev->pib).coord_extaddr.field_0;
-    uVar3 = (dev->pib).coord_shortaddr;
+    memcpy((void *)((int)&uStack_24 + 2),param_1,8);
+    uStack_18 = *(undefined4 *)((int)param_1 + 0x10);
     uStack_1c._0_3_ = CONCAT12(bVar1,(undefined2)uStack_1c);
-    uStack_14 = *(undefined4 *)((int)&(dev->pib).coord_extaddr.field_0 + 4);
-    uStack_28 = CONCAT22((dev->pib).panid,0xffff);
-    if (uVar3 < 0xfffe) {
+    uStack_14 = *(undefined4 *)((int)param_1 + 0x14);
+    uStack_28 = CONCAT22(*(undefined2 *)((int)param_1 + 10),0xffff);
+    if (*(ushort *)((int)param_1 + 0xe) < 0xfffe) {
       uStack_1c._0_3_ = CONCAT12(2,(undefined2)uStack_1c);
       uStack_18._2_2_ = (undefined2)((uint)uStack_18 >> 0x10);
-      uStack_18 = CONCAT22(uStack_18._2_2_,uVar3);
+      uStack_18 = CONCAT22(uStack_18._2_2_,*(ushort *)((int)param_1 + 0xe));
     }
-    cVar5 = mac_frame_write_hdr(tx_frame->psdu,&uStack_24,&uStack_28,0,3,1);
-    tx_frame->length = cVar5 + '\x02';
-    (dev->pib).dsn = (dev->pib).dsn + '\x01';
-    mac_frame_set_seq_num(tx_frame);
-    puVar11 = tx_frame->psdu;
-    iVar7 = mac_frame_find_payload_index(tx_frame);
-    puVar11 = puVar11 + iVar7;
-    puVar11[1] = (dev->ctx).mac_cap_info;
-    tx_frame->length = tx_frame->length + '\x01';
+    cVar3 = mac_frame_write_hdr(*piVar4,&uStack_24,&uStack_28,0,3,1);
+    *(char *)(piVar4 + 1) = cVar3 + '\x02';
+    *(char *)((int)param_1 + 0xc) = *(char *)((int)param_1 + 0xc) + '\x01';
+    mac_frame_set_seq_num(piVar4);
+    iVar9 = *piVar4;
+    iVar6 = mac_frame_find_payload_index(piVar4);
+    uVar8 = iVar9 + iVar6;
+    *(undefined1 *)(uVar8 + 1) = *(undefined1 *)((int)param_1 + 0x40);
+    *(char *)(piVar4 + 1) = (char)piVar4[1] + '\x01';
     goto _L0;
   }
-  if (puVar11 == (uint8_t *)0x4) {
-    pzVar6 = &(dev->ctx).tx_q;
+  if (uVar8 == 4) {
+    iVar6 = (int)param_1 + 0x48;
     goto _L0;
   }
-  if (puVar11 == (uint8_t *)0x1) {
+  if (uVar8 == 1) {
     uStack_1c = 0x20000;
     uStack_18 = 0xffff;
     uStack_28 = 0xffffffff;
     uStack_24 = 0;
     uStack_20 = 0;
     uStack_14 = 0;
-    cVar5 = mac_frame_write_hdr(tx_frame->psdu,&uStack_24,&uStack_28,0,7);
-    tx_frame->length = cVar5 + '\x02';
-    (dev->pib).dsn = (dev->pib).dsn + '\x01';
-    mac_frame_set_seq_num(tx_frame);
+    cVar3 = mac_frame_write_hdr(*piVar4,&uStack_24,&uStack_28,0,7);
+    *(char *)(piVar4 + 1) = cVar3 + '\x02';
+    *(char *)((int)param_1 + 0xc) = *(char *)((int)param_1 + 0xc) + '\x01';
+    mac_frame_set_seq_num(piVar4);
     mac_pal_set_panid(0xffff);
     mac_pal_set_rx_when_idle(1);
-    tx_frame->channel = (dev->ctx).scan_channel;
+    *(undefined1 *)((int)piVar4 + 5) = *(undefined1 *)((int)param_1 + 0x32);
     goto _L0;
   }
 _L0:
   do {
     __assert_func(0,0,0,0);
 _L0:
-    if (puVar11 == (uint8_t *)0x7) {
+    if (uVar8 == 7) {
       memset((void *)((int)&uStack_24 + 1),0,0x13);
       uStack_24 = CONCAT31(uStack_24._1_3_,2);
-      uStack_24 = CONCAT22((dev->pib).short_address,(undefined2)uStack_24);
-      uStack_28 = CONCAT22(0xffff,(dev->pib).panid);
-      cVar5 = mac_frame_write_hdr(tx_frame->psdu,&uStack_24,&uStack_28,0,0,0);
-      tx_frame->length = cVar5 + '\x02';
-      (dev->pib).bsn = (dev->pib).bsn + '\x01';
-      mac_frame_set_seq_num(tx_frame);
-      puVar11 = tx_frame->psdu;
-      iVar7 = mac_frame_find_payload_index(tx_frame);
-      uVar3 = *(ushort *)&(dev->pib).field_0x2a;
-      eVar4 = (dev->pib).coord_shortaddr;
-      puVar11 = puVar11 + iVar7;
-      if ((eVar4 == 0xffff) || (uVar9 = 0x4fff, (dev->pib).short_address != eVar4)) {
-        uVar9 = 0xfff;
+      uStack_24 = CONCAT22(*(undefined2 *)((int)param_1 + 8),(undefined2)uStack_24);
+      uStack_28 = CONCAT22(0xffff,*(undefined2 *)((int)param_1 + 10));
+      cVar3 = mac_frame_write_hdr(*piVar4,&uStack_24,&uStack_28,0,0,0);
+      *(char *)(piVar4 + 1) = cVar3 + '\x02';
+      *(char *)((int)param_1 + 0xd) = *(char *)((int)param_1 + 0xd) + '\x01';
+      mac_frame_set_seq_num(piVar4);
+      iVar9 = *piVar4;
+      iVar6 = mac_frame_find_payload_index(piVar4);
+      uVar2 = *(ushort *)((int)param_1 + 0x2a);
+      puVar5 = (undefined1 *)(iVar6 + iVar9);
+      if ((*(short *)((int)param_1 + 0xe) == -1) ||
+         (uVar7 = 0x4fff, *(short *)((int)param_1 + 8) != *(short *)((int)param_1 + 0xe))) {
+        uVar7 = 0xfff;
       }
-      *puVar11 = (uint8_t)uVar9;
-      puVar11[2] = '\0';
-      puVar11[3] = '\0';
-      puVar11[1] = (byte)(((uVar3 & 1) << 0xf) >> 8) | (byte)((ushort)uVar9 >> 8);
-      __n = 0;
-      tx_frame->length = tx_frame->length + '\x04';
-      __src = (dev->pib).beacon_payload;
-      if ((__src != (uint8_t *)0x0) && (__n = (uint)(dev->pib).beacon_payload_len, __n != 0)) {
-        memcpy(puVar11 + 4,__src,__n);
+      *puVar5 = (char)uVar7;
+      puVar5[2] = 0;
+      puVar5[3] = 0;
+      puVar5[1] = (byte)(((uVar2 & 1) << 0xf) >> 8) | (byte)((ushort)uVar7 >> 8);
+      uVar8 = 0;
+      *(char *)(piVar4 + 1) = (char)piVar4[1] + '\x04';
+      if ((*(void **)((int)param_1 + 0x24) != (void *)0x0) &&
+         (uVar8 = (uint)*(byte *)((int)param_1 + 0x23), uVar8 != 0)) {
+        memcpy(puVar5 + 4,*(void **)((int)param_1 + 0x24),uVar8);
       }
-      puVar11 = (uint8_t *)(__n + tx_frame->length);
-      tx_frame->length = (uint8_t)puVar11;
+      uVar8 = uVar8 + *(byte *)(piVar4 + 1);
+      *(char *)(piVar4 + 1) = (char)uVar8;
     }
     else {
-      pzVar6 = &(dev->ctx).itx_q;
-      if (puVar11 != (uint8_t *)0x8) goto _L0;
+      iVar6 = (int)param_1 + 0x54;
+      if (uVar8 != 8) goto _L0;
 _L0:
-      msg = (zmsg_t *)zmsg_queue_get_head(pzVar6);
-      if (msg == (zmsg_t *)0x0) goto _L0;
-      txframe_from_zmsg(msg,tx_frame);
+      iVar6 = zmsg_queue_get_head(iVar6);
+      if (iVar6 == 0) goto _L0;
+      txframe_from_zmsg_isra_0(piVar4);
 _L0:
-      (dev->pib).dsn = (dev->pib).dsn + '\x01';
-      mac_frame_set_seq_num(tx_frame);
+      *(char *)((int)param_1 + 0xc) = *(char *)((int)param_1 + 0xc) + '\x01';
+      mac_frame_set_seq_num(piVar4);
     }
 _L0:
-    iVar7 = mac_pal_transmit();
-    if (iVar7 == 0) {
+    iVar6 = mac_pal_transmit();
+    if (iVar6 == 0) {
       return;
     }
   } while( true );

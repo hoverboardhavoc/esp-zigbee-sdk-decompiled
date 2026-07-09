@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_frame.o -> aps_frame_fcf_skip_aux_hdr_offset
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,27 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: scf */
-/* WARNING: Unknown calling convention */
-
-uint16_t aps_frame_fcf_skip_aux_hdr_offset(uint8_t fcf,zmsg_t *msg)
+uint aps_frame_fcf_skip_aux_hdr_offset(uint param_1,undefined4 param_2)
 
 {
-  uint16_t uVar1;
-  short sVar2;
-  byte abStack_11 [4];
-  uint8_t scf;
+  uint uVar1;
+  int iVar2;
+  byte bStack_11;
   
-  uVar1 = aps_frame_fcf_skip_ext_hdr_offset(fcf,msg);
-  if ((fcf & 0x20) != 0) {
-    abStack_11[0] = 0;
-    zmsg_read_bytes(msg,uVar1,1,abStack_11);
-    if ((abStack_11[0] & 0x20) == 0) {
-      sVar2 = 5;
+  uVar1 = aps_frame_fcf_skip_ext_hdr_offset();
+  if ((param_1 & 0x20) != 0) {
+    bStack_11 = 0;
+    zmsg_read_bytes(param_2,uVar1,1,&bStack_11);
+    if ((bStack_11 & 0x20) == 0) {
+      iVar2 = 5;
     }
     else {
-      sVar2 = 0xd;
+      iVar2 = 0xd;
     }
-    if ((abStack_11[0] & 0x18) == 8) {
-      sVar2 = sVar2 + 1;
+    if ((bStack_11 & 0x18) == 8) {
+      iVar2 = iVar2 + 1;
     }
-    uVar1 = uVar1 + sVar2;
+    uVar1 = uVar1 + iVar2 & 0xffff;
   }
   return uVar1;
 }

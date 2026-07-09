@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> color_control.o -> stop_cvc_color
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void stop_cvc_color(uint8_t ep_id,uint8_t mode)
+void stop_cvc_color(uint param_1,uint param_2)
 
 {
   byte *pbVar1;
-  undefined3 in_register_00002029;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  undefined3 in_register_0000202d;
-  uint uVar4;
+  int iVar2;
+  int iVar3;
   
-  uVar4 = CONCAT31(in_register_0000202d,mode);
-  pzVar2 = color_control_srv_get_attr_desc(ep_id,(uint16_t)uVar4);
-  pzVar3 = color_control_srv_get_attr_desc(ep_id,0x4001);
-  if ((pzVar2 == (zcl_attr_desc_t *)0x0) || (pzVar3 == (zcl_attr_desc_t *)0x0)) {
-    pzVar3 = (zcl_attr_desc_t *)__assert_func(0,0,0,0);
+  iVar2 = color_control_srv_get_attr_desc_part_0();
+  iVar3 = color_control_srv_get_attr_desc(param_1,0x4001);
+  if ((iVar2 == 0) || (iVar3 == 0)) {
+    iVar3 = __assert_func(0,0,0,0);
   }
-                    /* WARNING: Load size is inaccurate */
-  if ((*pzVar3->data_p != uVar4) && (uVar4 != 0xff)) {
+  if ((**(byte **)(iVar3 + 8) != param_2) && (param_2 != 0xff)) {
     return;
   }
-  pbVar1 = (byte *)pzVar2->data_p;
-  if ((uint)*pbVar1 == CONCAT31(in_register_00002029,ep_id)) {
+  pbVar1 = *(byte **)(iVar2 + 8);
+  if (*pbVar1 == param_1) {
     zcl_cvc_stop(pbVar1);
   }
-  if ((uint)pbVar1[0x40] == CONCAT31(in_register_00002029,ep_id)) {
+  if (pbVar1[0x40] == param_1) {
     zcl_cvc_stop(pbVar1 + 0x40);
   }
-  pzVar2 = color_control_srv_get_attr_desc(ep_id,2);
-  if (pzVar2 != (zcl_attr_desc_t *)0x0) {
-    *(undefined2 *)pzVar2->data_p = 0;
+  iVar2 = color_control_srv_get_attr_desc(param_1,2);
+  if (iVar2 != 0) {
+    **(undefined2 **)(iVar2 + 8) = 0;
   }
   return;
 }

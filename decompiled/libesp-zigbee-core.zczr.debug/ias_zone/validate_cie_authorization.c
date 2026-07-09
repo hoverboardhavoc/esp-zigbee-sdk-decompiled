@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ias_zone.o -> validate_cie_authorization
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,47 +10,37 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: cie_ieee_addr */
-/* WARNING: Unknown calling convention */
-
-_Bool validate_cie_authorization(uint8_t ep_id,uint16_t short_addr)
+undefined4 validate_cie_authorization(undefined4 param_1,int param_2)
 
 {
   int iVar1;
-  zcl_attr_desc_t *pzVar2;
-  int iVar3;
-  undefined2 in_register_0000202e;
-  int in_a4;
+  int iVar2;
   int unaff_s2;
-  ezb_extaddr_t cie_addr_val;
-  ezb_extaddr_t cie_ieee_addr;
+  int iStack_18;
+  int iStack_14;
   
-  cie_addr_val.field_0.u64._4_4_ = 0;
-  cie_addr_val.field_0.u64._0_4_ = 0;
-  pzVar2 = ias_zone_srv_get_attr_desc(ep_id,0x10);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+  iStack_18 = 0;
+  iStack_14 = 0;
+  iVar2 = ias_zone_srv_get_attr_desc(0x10);
+  if (iVar2 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_zone.c",0x78,
                   "validate_cie_authorization","attr_desc");
+    iStack_14 = param_2;
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    iVar1 = *pzVar2->data_p;
-    unaff_s2 = *(int *)((int)pzVar2->data_p + 4);
-    cie_addr_val.field_0.u64._0_4_ = unaff_s2;
-    iVar3 = nwk_address_extended_by_short
-                      (CONCAT22(in_register_0000202e,short_addr),
-                       (undefined1 *)((int)&cie_addr_val.field_0 + 4));
-    if (iVar3 != 0) {
-      return false;
+    iVar1 = **(int **)(iVar2 + 8);
+    unaff_s2 = (*(int **)(iVar2 + 8))[1];
+    iVar2 = nwk_address_extended_by_short(param_1,&iStack_18);
+    if (iVar2 != 0) {
+      return 0;
     }
-    in_a4 = 0;
-    if (cie_addr_val.field_0.u64._4_4_ != iVar1) {
-      return false;
+    if (iStack_18 != iVar1) {
+      return 0;
     }
   }
-  if (in_a4 != unaff_s2) {
-    return false;
+  if (iStack_14 != unaff_s2) {
+    return 0;
   }
-  return true;
+  return 1;
 }
 

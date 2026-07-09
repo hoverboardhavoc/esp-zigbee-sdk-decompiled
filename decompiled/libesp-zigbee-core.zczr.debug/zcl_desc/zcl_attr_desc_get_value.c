@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_desc.o -> zcl_attr_desc_get_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_attr_desc_get_value(zcl_attr_desc_t *attr_desc,void *value)
+undefined4 zcl_attr_desc_get_value(int param_1,int param_2)
 
 {
   int iVar1;
   
-  if ((attr_desc == (zcl_attr_desc_t *)0x0) || (value == (void *)0x0)) {
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x8e,
                   "zcl_attr_desc_get_value",0x101f8);
   }
   else {
-    iVar1 = zcl_read_attr_value(value,attr_desc->data_p,attr_desc->type);
+    iVar1 = zcl_read_attr_value(param_2,*(undefined4 *)(param_1 + 8),*(undefined1 *)(param_1 + 2));
     if (iVar1 != 0) {
       return 0;
     }
   }
-  return -1;
+  return 0xffffffff;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_conflicts.o -> nwk_change_network_address
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,26 +11,23 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void nwk_change_network_address(ezb_shortaddr_t new_addr)
+void nwk_change_network_address(void)
 
 {
   undefined2 uVar1;
-  undefined2 in_register_0000202a;
   undefined4 uVar2;
   undefined4 uVar3;
   int iVar4;
   undefined4 uStack_18;
-  nwk_network_status_cmd_t cmd;
-  nwk_addr_ref_t addr_ref;
+  undefined2 auStack_12 [5];
   
-  nwk_set_short_address(CONCAT22(in_register_0000202a,new_addr));
+  nwk_set_short_address();
   uVar2 = nwk_get_extended_address();
   uVar3 = nwk_get_short_address();
-  iVar4 = nwk_address_update(uVar2,uVar3,(undefined1 *)((int)&cmd.target_addr + 1));
+  iVar4 = nwk_address_update(uVar2,uVar3,auStack_12);
   if (iVar4 == 0) {
-    iVar4 = nwk_neighbor_table_get_by_addr_ref(cmd._2_2_);
+    iVar4 = nwk_neighbor_table_get_by_addr_ref(auStack_12[0]);
     if (iVar4 != 0) {
       log_write(1,"nwk_conflicts.c","BUG: address conflict neighbor, delete it");
       nwk_neighbor_table_delete(iVar4);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> simple_measurement.o -> pm2_5_measurement_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,48 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-pm2_5_measurement_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t endpoint,void *value)
+bool pm2_5_measurement_cluster_srv_check_value_handler
+               (uint param_1,undefined4 param_2,undefined4 *param_3)
 
 {
   bool bVar1;
-  zcl_attr_desc_t *pzVar2;
-  int iVar3;
-  undefined2 in_register_0000202a;
-  uint uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 uVar4;
   undefined4 auStack_24 [3];
   
-  uVar4 = CONCAT22(in_register_0000202a,attr_id);
-  if (3 < uVar4) {
-    return '\0';
+  if (3 < param_1) {
+    return false;
   }
-                    /* WARNING: Load size is inaccurate */
-  uVar5 = *value;
-  uVar6 = 0;
-  if ((uVar4 & 0xfffffffd) != 0) goto _L0;
-  pzVar2 = simple_measurement_srv_get_attr_desc(endpoint,0x42a,1);
-  if (pzVar2 != (zcl_attr_desc_t *)0x0) goto _L0;
+  uVar3 = *param_3;
+  uVar4 = 0;
+  if ((param_1 & 0xfffffffd) != 0) goto _L0;
+  iVar2 = simple_measurement_srv_get_attr_desc(param_2,0x42a,1);
+  if (iVar2 != 0) goto _L0;
   while( true ) {
     do {
-      pzVar2 = (zcl_attr_desc_t *)__assert_func(0,0,0,0);
+      iVar2 = __assert_func(0,0,0,0);
 _L0:
-    } while (pzVar2->data_p == (void *)0x0);
-    memcpy(auStack_24,pzVar2->data_p,4);
-    uVar6 = auStack_24[0];
+    } while (*(void **)(iVar2 + 8) == (void *)0x0);
+    memcpy(auStack_24,*(void **)(iVar2 + 8),4);
+    uVar4 = auStack_24[0];
 _L0:
-    if (1 < uVar4) break;
-    pzVar2 = simple_measurement_srv_get_attr_desc(endpoint,0x42a,2);
-    if ((pzVar2 != (zcl_attr_desc_t *)0x0) && (pzVar2->data_p != (void *)0x0)) {
-      memcpy(auStack_24,pzVar2->data_p,4);
+    if (1 < param_1) break;
+    iVar2 = simple_measurement_srv_get_attr_desc(param_2,0x42a,2);
+    if ((iVar2 != 0) && (*(void **)(iVar2 + 8) != (void *)0x0)) {
+      memcpy(auStack_24,*(void **)(iVar2 + 8),4);
 _L0:
-      iVar3 = __lesf2(uVar6,uVar5);
-      if (iVar3 < 1) {
-        iVar3 = __gesf2(auStack_24[0],uVar5);
-        bVar1 = iVar3 < 0;
+      iVar2 = __lesf2(uVar4,uVar3);
+      if (iVar2 < 1) {
+        iVar2 = __gesf2(auStack_24[0],uVar3);
+        bVar1 = iVar2 < 0;
       }
       else {
         bVar1 = true;

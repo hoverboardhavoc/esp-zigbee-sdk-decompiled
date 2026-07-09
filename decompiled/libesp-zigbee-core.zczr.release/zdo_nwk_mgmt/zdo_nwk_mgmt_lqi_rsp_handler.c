@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_lqi_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,70 +10,62 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: rsp */
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_nwk_mgmt_lqi_rsp_handler(zdo_packet_t *packet)
+undefined4 zdo_nwk_mgmt_lqi_rsp_handler(int param_1)
 
 {
-  zdp_status_t zVar1;
-  zmsg_t *payload;
-  uint uVar2;
+  int iVar1;
+  undefined4 uVar2;
   uint uVar3;
-  int iVar4;
+  uint uVar4;
+  int iVar5;
   byte bStack_2c;
   byte bStack_2b;
-  uint16_t uStack_2a;
-  uint8_t dev_info;
-  uint8_t state_info;
-  uint16_t offset;
-  zdp_nwk_mgmt_lqi_rsp_field_t rsp;
+  ushort uStack_2a;
+  undefined4 uStack_28;
+  void *pvStack_24;
   
-  _dev_info = 0;
-  rsp.status = '\0';
-  rsp.neighbor_table_entries = '\0';
-  rsp.start_index = '\0';
-  rsp.neighbor_table_list_count = '\0';
-  if ((packet != (zdo_packet_t *)0x0) && (payload = packet->payload, payload != (zmsg_t *)0x0)) {
+  uStack_28 = 0;
+  pvStack_24 = (void *)0x0;
+  if ((param_1 != 0) && (iVar1 = *(int *)(param_1 + 0x14), iVar1 != 0)) {
     uStack_2a = 0;
-    uVar3 = zmsg_get_length(payload);
-    af_read_le8(payload,&uStack_2a,&dev_info);
-    af_read_le8(payload,&uStack_2a,&state_info);
-    af_read_le8(payload,&uStack_2a,(uint8_t *)&offset);
-    af_read_le8(payload,&uStack_2a,(uint8_t *)((int)&offset + 1));
-    if (uStack_2a <= uVar3) {
-      if (((_dev_info & 0xff) == 0) && (_dev_info >> 0x18 != 0)) {
-        rsp._0_4_ = calloc(_dev_info >> 0x18,0x16);
-        uVar2 = 0;
-        if ((void *)rsp._0_4_ == (void *)0x0) goto _L0;
-        for (; uVar2 < _dev_info >> 0x18; uVar2 = uVar2 + 1 & 0xff) {
-          iVar4 = uVar2 * 0x16;
+    uVar4 = zmsg_get_length(iVar1);
+    af_read_le8_isra_0(iVar1,&uStack_2a,&uStack_28);
+    af_read_le8_isra_0(iVar1,&uStack_2a,(int)&uStack_28 + 1);
+    af_read_le8_isra_0(iVar1,&uStack_2a,(int)&uStack_28 + 2);
+    af_read_le8_isra_0(iVar1,&uStack_2a,(int)&uStack_28 + 3);
+    if (uStack_2a <= uVar4) {
+      if (((uStack_28 & 0xff) == 0) && (uStack_28 >> 0x18 != 0)) {
+        pvStack_24 = calloc(uStack_28 >> 0x18,0x16);
+        uVar3 = 0;
+        if (pvStack_24 == (void *)0x0) goto _L0;
+        for (; uVar3 < uStack_28 >> 0x18; uVar3 = uVar3 + 1 & 0xff) {
+          iVar5 = uVar3 * 0x16;
           bStack_2c = 0;
           bStack_2b = 0;
-          af_read_bytes(payload,&uStack_2a,8,(uint8_t *)(rsp._0_4_ + iVar4));
-          af_read_bytes(payload,&uStack_2a,8,(uint8_t *)(rsp._0_4_ + iVar4 + 8));
-          af_read_le16(payload,&uStack_2a,(uint16_t *)(rsp._0_4_ + iVar4 + 0x10));
-          af_read_le8(payload,&uStack_2a,&bStack_2c);
-          af_read_le8(payload,&uStack_2a,&bStack_2b);
-          af_read_le8(payload,&uStack_2a,(uint8_t *)(rsp._0_4_ + iVar4 + 0x14));
-          af_read_le8(payload,&uStack_2a,(uint8_t *)(rsp._0_4_ + iVar4 + 0x15));
-          if (uVar3 < uStack_2a) goto _L0;
-          *(ushort *)(rsp._0_4_ + iVar4 + 0x12) =
+          af_read_bytes_isra_0(iVar1,&uStack_2a,8,(void *)((int)pvStack_24 + iVar5));
+          af_read_bytes_isra_0(iVar1,&uStack_2a,8,(int)pvStack_24 + iVar5 + 8);
+          af_read_le16_isra_0(iVar1,&uStack_2a,(int)pvStack_24 + iVar5 + 0x10);
+          af_read_le8_isra_0(iVar1,&uStack_2a,&bStack_2c);
+          af_read_le8_isra_0(iVar1,&uStack_2a,&bStack_2b);
+          af_read_le8_isra_0(iVar1,&uStack_2a,(int)pvStack_24 + iVar5 + 0x14);
+          af_read_le8_isra_0(iVar1,&uStack_2a,(int)pvStack_24 + iVar5 + 0x15);
+          if (uVar4 < uStack_2a) goto _L0;
+          *(ushort *)((int)pvStack_24 + iVar5 + 0x12) =
                bStack_2c & 0x7f | (ushort)((bStack_2b & 3) << 8) |
-               *(ushort *)(rsp._0_4_ + iVar4 + 0x12) & 0xfc80;
+               *(ushort *)((int)pvStack_24 + iVar5 + 0x12) & 0xfc80;
         }
       }
-      zdo_cb_nwk_mgmt_lqi_rsp((zdp_nwk_mgmt_lqi_rsp_field_t *)&dev_info,&packet->ctx);
-      zVar1 = '\0';
+      zdo_cb_nwk_mgmt_lqi_rsp_isra_0(&uStack_28,param_1 + 8);
+      uVar2 = 0;
       goto _L0;
     }
   }
 _L0:
-  zVar1 = 0xfe;
+  uVar2 = 0xfe;
 _L0:
-  if (rsp._0_4_ != 0) {
+  if (pvStack_24 != (void *)0x0) {
     mm_free();
   }
-  return zVar1;
+  return uVar2;
 }
 

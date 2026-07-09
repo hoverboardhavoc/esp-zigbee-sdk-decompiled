@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scenes_cluster_get_scene_membership_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,73 +10,64 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-scenes_cluster_get_scene_membership_rsp_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void scenes_cluster_get_scene_membership_rsp_handler(int param_1,undefined4 param_2)
 
 {
-  uint8_t uVar1;
-  ezb_zcl_status_t eVar2;
-  uint uVar3;
-  uint uVar4;
-  undefined1 *offset_00;
+  uint uVar1;
+  uint uVar2;
+  uint __nmemb;
   undefined4 local_40;
-  ezb_zcl_scenes_get_scene_membership_rsp_message_t message;
-  uint16_t offset;
+  undefined4 uStack_3c;
+  int iStack_38;
+  undefined4 uStack_34;
+  uint uStack_30;
+  void *pvStack_2c;
+  uint uStack_28;
+  ushort auStack_22 [5];
   
-  message._26_2_ = 0;
+  auStack_22[0] = 0;
   local_40 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.status = '\0';
-  message.in.capacity = '\0';
-  message.in.group_id = 0;
-  message.in.scene_count = '\0';
-  message.in._9_3_ = 0;
-  message.in.scene_list = (uint8_t *)0x0;
-  uVar3 = zcl_packet_to_message(&local_40,packet);
-  if (uVar3 == 0) {
-    uVar4 = zmsg_get_length(packet->payload);
-    offset_00 = &message.field_0x1a;
-    message._4_4_ = packet;
-    af_read_le8(packet->payload,(uint16_t *)offset_00,(uint8_t *)&message.in);
-    af_read_le8(packet->payload,(uint16_t *)offset_00,(uint8_t *)((int)&message.in.header + 1));
-    af_read_le16(packet->payload,(uint16_t *)offset_00,(uint16_t *)((int)&message.in.header + 2));
-    if (((char)message.in.header == '\0') && ((ushort)message._26_2_ < uVar4)) {
-      af_read_le8(packet->payload,(uint16_t *)offset_00,&message.in.status);
-      uVar1 = message.in.status;
-      if ((message.in._4_4_ & 0xff) != 0) {
-        message.in._8_4_ = calloc(message.in._4_4_ & 0xff,1);
-        if ((uint8_t *)message.in._8_4_ == (uint8_t *)0x0) {
-          uVar3 = 0x89;
+  uStack_3c = 0;
+  iStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  pvStack_2c = (void *)0x0;
+  uStack_28 = 0;
+  uVar1 = zcl_packet_to_message(&local_40,param_1);
+  if (uVar1 == 0) {
+    uVar2 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    iStack_38 = param_1;
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_34);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,(int)&uStack_34 + 1);
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,(int)&uStack_34 + 2);
+    if (((char)uStack_34 == '\0') && (auStack_22[0] < uVar2)) {
+      af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_30);
+      __nmemb = uStack_30 & 0xff;
+      if (__nmemb != 0) {
+        pvStack_2c = calloc(__nmemb,1);
+        if (pvStack_2c == (void *)0x0) {
+          uVar1 = 0x89;
           goto _L0;
         }
-        af_read_bytes(packet->payload,(uint16_t *)&message.field_0x1a,(ushort)uVar1,
-                      (uint8_t *)message.in._8_4_);
+        af_read_bytes(*(undefined4 *)(param_1 + 0x24),auStack_22,__nmemb,pvStack_2c);
       }
     }
-    if (uVar4 < (ushort)message._26_2_) {
-      uVar3 = 0x80;
+    if (uVar2 < auStack_22[0]) {
+      uVar1 = 0x80;
     }
     else {
-      message.in.scene_list = (uint8_t *)CONCAT31(message.in.scene_list._1_3_,0xfe);
-      zcl_core_action_schedule(0x13,&local_40);
-      if (((uint)message.in.scene_list & 0xff) != 0xfe) {
-        uVar3 = (uint)message.in.scene_list & 0xff;
+      uStack_28 = CONCAT31(uStack_28._1_3_,0xfe);
+      zcl_core_action_schedule(0x14,&local_40);
+      if ((uStack_28 & 0xff) != 0xfe) {
+        uVar1 = uStack_28 & 0xff;
       }
     }
   }
 _L0:
-  if (message.in._8_4_ != 0) {
+  if (pvStack_2c != (void *)0x0) {
     mm_free();
   }
-  eVar2 = zcl_packet_setup_default_response(rsp,packet,uVar3);
-  return eVar2;
+  zcl_packet_setup_default_response(param_2,param_1,uVar1);
+  return;
 }
 

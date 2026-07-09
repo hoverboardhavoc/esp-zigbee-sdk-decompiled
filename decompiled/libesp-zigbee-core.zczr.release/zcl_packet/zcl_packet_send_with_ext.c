@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_send_with_ext
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,74 +10,69 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t
-zcl_packet_send_with_ext
-          (zcl_packet_t *packet,zcl_packet_cnf_ctx_t *cnf_ctx,zcl_packet_tx_option_t *option)
+undefined4 zcl_packet_send_with_ext(int param_1,undefined4 *param_2,byte *param_3)
 
 {
-  zcl_status_t zVar1;
-  uint16_t uVar2;
-  uint uVar3;
-  undefined2 extraout_var;
+  uint uVar1;
+  uint uVar2;
+  undefined4 uVar3;
   int iVar4;
-  _Bool is_secured;
-  zcl_packet_payload_t *pzStack_44;
-  af_data_req_t af_req;
+  byte bVar5;
+  undefined4 uStack_44;
+  undefined1 auStack_40 [10];
+  undefined2 uStack_36;
+  undefined2 uStack_34;
+  undefined2 uStack_32;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
   
-  if (packet != (zcl_packet_t *)0x0) {
-    zcl_frame_fill_header(packet);
-    uVar3 = zmsg_get_length(packet->payload);
-    is_secured = false;
-    if (option != (zcl_packet_tx_option_t *)0x0) {
-      is_secured = (_Bool)((byte)*option & 1);
+  if (param_1 != 0) {
+    zcl_frame_fill_header_isra_0();
+    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    bVar5 = 0;
+    if (param_3 != (byte *)0x0) {
+      bVar5 = *param_3 & 1;
     }
     uVar2 = zcl_packet_max_available_space
-                      ((packet->header).cluster_id,is_secured,
-                       (_Bool)((byte)(*(ushort *)&(packet->header).fc >> 2) & 1));
-    zVar1 = 0x89;
-    if (uVar3 <= CONCAT22(extraout_var,uVar2)) {
-      pzStack_44 = packet->payload;
-      packet->payload = (zcl_packet_payload_t *)0x0;
-      af_req.data.cluster_id = 0;
-      af_req.data.profile_id = 0;
-      af_req.data.radius = '\0';
-      af_req.data.alias_seq_num = '\0';
-      af_req.data.alias_src_addr = 0;
-      af_req.data.field_9 = (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)0x0;
-      af_req.data._25_3_ = 0;
-      af_req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-      memcpy(&af_req,&(packet->header).dst_addr,10);
-      af_req.data.dst_addr.u._6_2_ = (packet->header).cluster_id;
-      af_req.data._14_2_ = (packet->header).profile_id;
-      af_req.data.dst_addr.u._4_1_ = (packet->header).src_ep;
-      af_req.data.dst_addr.u._5_1_ = (packet->header).dst_ep;
-      if (option == (zcl_packet_tx_option_t *)0x0) {
-        af_req.data.radius = af_req.data.radius | 2;
+                      (*(undefined2 *)(param_1 + 0x16),bVar5,*(ushort *)(param_1 + 0x1a) >> 2 & 1);
+    uVar3 = 0x89;
+    if (uVar1 <= uVar2) {
+      uStack_44 = *(undefined4 *)(param_1 + 0x24);
+      *(undefined4 *)(param_1 + 0x24) = 0;
+      uStack_30 = 0;
+      uStack_2c = 0;
+      uStack_28 = 0;
+      uStack_24 = 0;
+      memcpy(auStack_40,(void *)(param_1 + 10),10);
+      uStack_34 = *(undefined2 *)(param_1 + 0x16);
+      uStack_32 = *(undefined2 *)(param_1 + 0x18);
+      uStack_36 = *(undefined2 *)(param_1 + 0x14);
+      if (param_3 == (byte *)0x0) {
+        uStack_2c._0_1_ = (byte)uStack_2c | 2;
         iVar4 = zcl_cluster_fragment_is_supported();
-        af_req.data.radius = af_req.data.radius & 0xf3 | (byte)(iVar4 << 2) & 0xc;
-        uVar3 = 0;
+        uStack_2c._0_1_ = (byte)uStack_2c & 0xf3 | (byte)(iVar4 << 2) & 0xc;
+        uVar1 = 0;
       }
       else {
-        af_req.data.radius = af_req.data.radius & 0xf0 | (byte)*option & 0xf;
-        uVar3 = (byte)*option >> 4 & 1;
+        uStack_2c._0_1_ = (byte)uStack_2c & 0xf0 | *param_3 & 0xf;
+        uVar1 = *param_3 >> 4 & 1;
       }
-      af_req.data.radius = (byte)(uVar3 << 4) | af_req.data.radius & 0xef;
-      if (cnf_ctx == (zcl_packet_cnf_ctx_t *)0x0) {
-        af_req.data.field_9 = (anon_union_1_2_0b76fd53_for_aps_apsde_data_req_s_9)0x0;
-        af_req.data._25_3_ = 0;
-        af_req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
+      uStack_2c = CONCAT31(uStack_2c._1_3_,(byte)(uVar1 << 4) | (byte)uStack_2c & 0xef);
+      if (param_2 == (undefined4 *)0x0) {
+        uStack_28 = 0;
+        uStack_24 = 0;
       }
       else {
-        af_req.data._24_4_ = cnf_ctx->cb;
-        af_req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)cnf_ctx->user_ctx;
+        uStack_28 = *param_2;
+        uStack_24 = param_2[1];
       }
-      af_data_request(&pzStack_44);
-      zVar1 = err_to_zcl_status();
+      af_data_request(&uStack_44);
+      uVar3 = err_to_zcl_status();
     }
-    return zVar1;
+    return uVar3;
   }
-  return '\x01';
+  return 1;
 }
 

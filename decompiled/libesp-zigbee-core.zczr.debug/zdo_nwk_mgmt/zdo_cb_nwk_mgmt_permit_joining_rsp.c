@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_cb_nwk_mgmt_permit_joining_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t
-zdo_cb_nwk_mgmt_permit_joining_rsp
-          (zdp_nwk_mgmt_permit_joining_rsp_field_t *rsp,zdo_packet_ctx_t *ctx)
+undefined4 zdo_cb_nwk_mgmt_permit_joining_rsp(int param_1,int param_2)
 
 {
-  zdp_status_t zVar1;
+  int iVar1;
   int iVar2;
-  undefined3 extraout_var;
-  zdp_nwk_mgmt_permit_joining_rsp_field_t azStack_24 [12];
+  undefined4 uVar3;
+  undefined1 auStack_24 [12];
   
-  if ((rsp != (zdp_nwk_mgmt_permit_joining_rsp_field_t *)0x0) && (ctx != (zdo_packet_ctx_t *)0x0)) {
-    zdo_packet_notify_result(ctx,0);
-    return '\0';
+  if ((param_1 != 0) && (param_2 != 0)) {
+    zdo_packet_notify_result(param_2,0);
+    return 0;
   }
-  iVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x425,
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x425,
                         "zdo_cb_nwk_mgmt_permit_joining_rsp","rsp && ctx");
-  azStack_24[0].status = '\0';
-  if (iVar2 == 0) {
-    zVar1 = 0xfe;
+  auStack_24[0] = 0;
+  if (iVar1 == 0) {
+    uVar3 = 0xfe;
   }
-  else if (*(zdo_packet_payload_t **)(iVar2 + 0x14) == (zdo_packet_payload_t *)0x0) {
-    zVar1 = 0xfe;
+  else if (*(int *)(iVar1 + 0x14) == 0) {
+    uVar3 = 0xfe;
   }
   else {
-    zVar1 = zdo_op_nwk_mgmt_permit_joining_rsp
-                      (*(zdo_packet_payload_t **)(iVar2 + 0x14),azStack_24,false);
-    if (CONCAT31(extraout_var,zVar1) == 0) {
-      zVar1 = zdo_cb_nwk_mgmt_permit_joining_rsp(azStack_24,(zdo_packet_ctx_t *)(iVar2 + 8));
+    iVar2 = zdo_op_nwk_mgmt_permit_joining_rsp(auStack_24,0);
+    if (iVar2 == 0) {
+      uVar3 = zdo_cb_nwk_mgmt_permit_joining_rsp(auStack_24,iVar1 + 8);
     }
     else {
-      zVar1 = 0xfe;
+      uVar3 = 0xfe;
     }
   }
-  return zVar1;
+  return uVar3;
 }
 

@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_secur.o -> zdo_secur_handle_timer
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void zdo_secur_handle_timer(void)
 
@@ -20,7 +18,10 @@ void zdo_secur_handle_timer(void)
   undefined4 *puVar3;
   int iVar4;
   undefined4 uStack_24;
-  apsme_request_key_req_t rk_req;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined1 uStack_14;
   
   nwk_pim_stop_fast_poll();
   iVar2 = core_globals_get();
@@ -52,23 +53,22 @@ _L0:
       iVar2 = core_globals_get();
       if (*(char *)(iVar2 + 0xcf8) == '\x02') {
         uStack_24 = 0;
-        rk_req.dst_address.field_0.u64._0_4_ = 0;
-        rk_req._8_4_ = 0;
-        rk_req.partner_address.field_0.u8[3] = '\0';
-        rk_req.dst_address.field_0.u64._4_4_ = 4;
+        uStack_20 = 0;
+        uStack_18 = 0;
+        uStack_14 = 0;
+        uStack_1c = 4;
         puVar3 = (undefined4 *)aps_secur_get_tc_address();
         uStack_24 = *puVar3;
-        rk_req.dst_address.field_0.u64._0_4_ = puVar3[1];
+        uStack_20 = puVar3[1];
         iVar2 = apsme_request_key_request(&uStack_24);
       }
       else {
         uStack_24 = 0;
-        rk_req.dst_address.field_0.u64._0_4_ = 0;
-        rk_req.dst_address.field_0.u64._5_3_ = (int3)((uint)rk_req.dst_address.field_0._4_4_ >> 8);
-        rk_req.dst_address.field_0.u8[4] = 4;
+        uStack_20 = 0;
+        uStack_1c = CONCAT31((int3)((uint)uStack_1c >> 8),4);
         puVar3 = (undefined4 *)aps_secur_get_tc_address();
         uStack_24 = *puVar3;
-        rk_req.dst_address.field_0.u64._0_4_ = puVar3[1];
+        uStack_20 = puVar3[1];
         iVar2 = apsme_verify_key_request(&uStack_24);
       }
       if (iVar2 == 0) {

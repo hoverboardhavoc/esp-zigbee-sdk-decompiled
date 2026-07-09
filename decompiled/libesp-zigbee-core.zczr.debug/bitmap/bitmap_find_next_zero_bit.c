@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> bitmap.o -> bitmap_find_next_zero_bit
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint16_t bitmap_find_next_zero_bit(bitmap_t *map,uint16_t nbit,uint16_t pos)
+uint bitmap_find_next_zero_bit(int param_1,uint param_2,uint param_3)
 
 {
-  uint uVar1;
-  int iVar2;
-  undefined2 in_register_0000202e;
-  undefined2 in_register_00002032;
+  int iVar1;
+  uint uVar2;
   uint uVar3;
-  uint uVar4;
   
-  uVar1 = CONCAT22(in_register_0000202e,nbit);
-  if (CONCAT22(in_register_00002032,pos) < uVar1) {
-    uVar3 = CONCAT22(in_register_00002032,pos) >> 3;
-    uVar4 = ~(uint)map[uVar3] & -1 << (pos & 7);
-    while ((uVar4 & 0xff) == 0) {
-      if (uVar1 <= (uVar3 + 1) * 8) goto _L0;
-      uVar3 = uVar3 + 1 & 0xffff;
-      uVar4 = ~(uint)map[uVar3];
+  if (param_3 < param_2) {
+    uVar2 = param_3 >> 3;
+    uVar3 = ~(uint)*(byte *)(param_1 + uVar2) & -1 << (param_3 & 7);
+    while ((uVar3 & 0xff) == 0) {
+      if (param_2 <= (uVar2 + 1) * 8) {
+        return param_2;
+      }
+      uVar2 = uVar2 + 1 & 0xffff;
+      uVar3 = ~(uint)*(byte *)(param_1 + uVar2);
     }
-    iVar2 = __ctzsi2();
-    uVar4 = uVar3 * 8 + iVar2;
-    if (uVar4 < uVar1) {
-      uVar1 = uVar4;
+    iVar1 = __ctzsi2();
+    uVar3 = uVar2 * 8 + iVar1;
+    if (uVar3 < param_2) {
+      param_2 = uVar3;
     }
-    uVar1 = uVar1 & 0xffff;
+    param_2 = param_2 & 0xffff;
   }
-_L0:
-  return (uint16_t)uVar1;
+  return param_2;
 }
 

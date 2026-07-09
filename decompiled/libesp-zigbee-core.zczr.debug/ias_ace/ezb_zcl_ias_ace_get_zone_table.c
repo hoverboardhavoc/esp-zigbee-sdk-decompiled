@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ias_ace.o -> ezb_zcl_ias_ace_get_zone_table
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_ias_ace_zone_table_t ezb_zcl_ias_ace_get_zone_table(uint8_t ep_id)
+int ezb_zcl_ias_ace_get_zone_table(void)
 
 {
-  undefined3 in_register_00002029;
   int iVar1;
-  ezb_zcl_ias_ace_zone_table_t pvVar2;
   
-  iVar1 = zcl_get_attr_desc(CONCAT31(in_register_00002029,ep_id),0x501,1,0xeff1,0x131b);
+  iVar1 = zcl_get_attr_desc(0x501,1,0xeff1,0x131b);
   if (iVar1 == 0) {
-    pvVar2 = (ezb_zcl_ias_ace_zone_table_t)0x0;
+    iVar1 = 0;
   }
   else {
-    pvVar2 = *(ezb_zcl_ias_ace_zone_table_t *)(iVar1 + 8);
-    if (pvVar2 == (ezb_zcl_ias_ace_zone_table_t)0x0) {
-      pvVar2 = (ezb_zcl_ias_ace_zone_table_t)0x0;
+    iVar1 = *(int *)(iVar1 + 8);
+    if (iVar1 == 0) {
+      iVar1 = 0;
     }
   }
-  return pvVar2;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> touchlink_join_router.o -> touchlink_send_join_router_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,62 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: req */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_send_join_router_req(touchlink_disc_dev_info_t *dev_info)
+undefined4 touchlink_send_join_router_req(int param_1)
 
 {
-  uint16_t uVar1;
+  undefined2 uVar1;
   int iVar2;
-  uint32_t *puVar3;
+  undefined4 *puVar3;
   undefined4 uVar4;
   undefined4 uVar5;
-  ezb_err_t eVar6;
   undefined1 auStack_54 [2];
-  undefined1 auStack_52 [2];
-  zcl_touchlink_join_router_req_t req;
+  undefined1 auStack_52 [10];
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined4 uStack_40;
+  undefined1 uStack_3c;
+  undefined1 auStack_3b [16];
+  undefined1 uStack_2b;
+  undefined1 uStack_2a;
+  undefined2 uStack_28;
+  undefined2 uStack_26;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  int iStack_14;
   
   memset(auStack_54,0,0x44);
-  eVar6 = 2;
-  if (dev_info != (touchlink_disc_dev_info_t *)0x0) {
+  uVar5 = 2;
+  if (param_1 != 0) {
     iVar2 = touchlink_transaction_id(0);
-    eVar6 = 3;
+    uVar5 = 3;
     if (iVar2 != 0) {
-      iVar2 = touchlink_disc_table_entry_exists(dev_info);
-      eVar6 = 5;
-      if ((iVar2 != 0) && (((dev_info->basic).zigbee_info & 3) == 1)) {
-        req.cmd_ctrl._8_4_ = touchlink_transaction_id(0);
-        puVar3 = (uint32_t *)touchlink_extended_pan_id();
-        req.transaction_id = *puVar3;
-        req.ext_panid.field_0.u64._0_4_ = puVar3[1];
-        uVar4 = touchlink_nwk_key();
-        uVar1 = (dev_info->basic).key_bitmask;
-        uVar5 = touchlink_transaction_id(0);
-        req.ext_panid.field_0.u8[4] =
-             touchlink_encrypt_nwk_key
-                       (uVar4,(undefined1 *)((int)&req.ext_panid.field_0 + 5),uVar1,uVar5,
-                        (dev_info->basic).response_id);
-        req.encrypted_nwk_key[0xc] = touchlink_nwk_update_id();
-        req.encrypted_nwk_key[0xd] = touchlink_current_channel();
-        req._40_2_ = touchlink_pan_id();
-        req._42_2_ = nwk_assign_shortaddr();
-        req.pan_id = 1;
-        req.new_nwk_addr = 0xfeff;
-        req.free_nwk_addr_begin = 1;
-        req.free_nwk_addr_end = 0xfeff;
-        req.group_id_begin = 1;
-        req.group_id_end = 0xfff7;
-        req.free_group_id_begin = 0;
-        req.free_group_id_end = 1;
-        iVar2 = touchlink_transaction_get();
-        req.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)(iVar2 + 0x610);
+      iVar2 = touchlink_disc_table_entry_exists(param_1);
+      uVar5 = 5;
+      if ((iVar2 != 0) && ((*(ushort *)(param_1 + 8) & 3) == 1)) {
+        uStack_48 = touchlink_transaction_id(0);
+        puVar3 = (undefined4 *)touchlink_extended_pan_id();
+        uStack_44 = *puVar3;
+        uStack_40 = puVar3[1];
+        uVar5 = touchlink_nwk_key();
+        uVar1 = *(undefined2 *)(param_1 + 0xc);
+        uVar4 = touchlink_transaction_id(0);
+        uStack_3c = touchlink_encrypt_nwk_key
+                              (uVar5,auStack_3b,uVar1,uVar4,*(undefined4 *)(param_1 + 4));
+        uStack_2b = touchlink_nwk_update_id();
+        uStack_2a = touchlink_current_channel();
+        uStack_28 = touchlink_pan_id();
+        uStack_26 = nwk_assign_shortaddr();
+        uStack_24 = 0xfeff0001;
+        uStack_1c = 0xfeff0001;
+        uStack_20 = 0xfff70001;
+        uStack_18 = 0x10000;
+        iStack_14 = touchlink_transaction_get();
+        iStack_14 = iStack_14 + 0x610;
         auStack_54[0] = 3;
-        memcpy(auStack_52,&(dev_info->basic).ieee_addr,8);
-        eVar6 = zcl_touchlink_network_join_router_req(auStack_54);
+        memcpy(auStack_52,(void *)(param_1 + 0xf),8);
+        uVar5 = zcl_touchlink_network_join_router_req(auStack_54);
       }
     }
   }
-  return eVar6;
+  return uVar5;
 }
 

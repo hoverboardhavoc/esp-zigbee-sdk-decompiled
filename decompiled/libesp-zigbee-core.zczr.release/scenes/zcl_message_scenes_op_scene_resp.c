@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> scenes.o -> zcl_message_scenes_op_scene_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_scenes_op_scene_resp
-          (zcl_packet_t *packet,uint8_t status,uint16_t group_id,uint8_t scene_id)
+uint zcl_message_scenes_op_scene_resp
+               (undefined4 param_1,undefined1 param_2,undefined2 param_3,undefined1 param_4)
 
 {
   uint uVar1;
-  undefined1 auStack_38 [4];
-  ezb_zcl_scenes_operate_scene_rsp_message_t message;
+  undefined1 auStack_38 [8];
+  undefined4 uStack_30;
+  undefined1 uStack_2c;
+  undefined2 uStack_2a;
+  undefined1 uStack_28;
+  byte bStack_24;
   
   memset(auStack_38,0,0x18);
-  uVar1 = zcl_packet_to_message(auStack_38,packet);
+  uVar1 = zcl_packet_to_message(auStack_38,param_1);
   if (uVar1 == 0) {
-    message.in.scene_id = 0xfe;
-    message._4_4_ = packet;
-    message.in.header._0_1_ = status;
-    message.in.header._2_2_ = group_id;
-    message.in.status = scene_id;
-    zcl_core_action_schedule(0x11,auStack_38);
-    if (message.in.scene_id != 0xfe) {
-      uVar1 = (uint)message.in.scene_id;
+    bStack_24 = 0xfe;
+    uStack_30 = param_1;
+    uStack_2c = param_2;
+    uStack_2a = param_3;
+    uStack_28 = param_4;
+    zcl_core_action_schedule(0x12,auStack_38);
+    if (bStack_24 != 0xfe) {
+      uVar1 = (uint)bStack_24;
     }
   }
-  return (ezb_zcl_status_t)uVar1;
+  return uVar1;
 }
 

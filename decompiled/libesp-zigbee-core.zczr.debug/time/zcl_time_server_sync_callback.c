@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> zcl_time_server_sync_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_time_server_sync_callback(ezb_zdo_match_desc_req_result_t *rsp,void *user_ctx)
+void zcl_time_server_sync_callback(int param_1,int param_2,int param_3)
 
 {
   uint unaff_s0;
-  ezb_zdp_match_desc_rsp_field_t *in_a5;
-  ezb_zdp_match_desc_rsp_field_t *peVar1;
-  int iStack_38;
-  ezb_zcl_read_attr_cmd_t cmd;
+  char *pcVar1;
+  int aiStack_38 [2];
+  undefined2 uStack_30;
+  undefined1 uStack_2e;
+  undefined1 uStack_2d;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined2 *puStack_18;
+  undefined2 uStack_14;
+  undefined2 uStack_12;
   
-  if (rsp != (ezb_zdo_match_desc_req_result_t *)0x0) {
-    peVar1 = rsp->rsp;
-    if (((peVar1 != (ezb_zdp_match_desc_rsp_field_t *)0x0) && (peVar1->status == '\0')) &&
-       (peVar1->match_length != '\0')) {
-      cmd.cmd_ctrl.dst_addr._0_4_ = 0;
-      cmd.cmd_ctrl.cluster_id = 0;
-      cmd.cmd_ctrl.manuf_code = 0;
-      cmd.cmd_ctrl.fc = (anon_struct_1_3_9083e743_for_fc)0x0;
-      cmd.cmd_ctrl._17_3_ = 0;
-      cmd.cmd_ctrl.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-      iStack_38 = (uint)rsp->rsp->nwk_addr_of_interest << 0x10;
-      iStack_38 = CONCAT31(iStack_38._1_3_,2);
-      cmd.cmd_ctrl.dst_addr.u._2_4_ = (int)user_ctx << 0x18;
-      cmd.cmd_ctrl._8_4_ = 10;
-      cmd.cmd_ctrl.cnf_ctx.user_ctx = (void *)0x2;
-      cmd.payload.attr_field._0_2_ = 0;
-      cmd.payload.attr_field._2_2_ = 1;
-      cmd.payload._0_4_ = &cmd.payload.attr_field;
-      for (unaff_s0 = 0; in_a5 = rsp->rsp, unaff_s0 < in_a5->match_length;
+  if (param_1 != 0) {
+    pcVar1 = *(char **)(param_1 + 4);
+    if (((pcVar1 != (char *)0x0) && (*pcVar1 == '\0')) && (pcVar1[4] != '\0')) {
+      aiStack_38[1] = 0;
+      uStack_28 = 0;
+      uStack_24 = 0;
+      uStack_20 = 0;
+      aiStack_38[0] = (uint)*(ushort *)(*(int *)(param_1 + 4) + 2) << 0x10;
+      aiStack_38[0] = CONCAT31(aiStack_38[0]._1_3_,2);
+      _uStack_30 = param_2 << 0x18;
+      uStack_2c = 10;
+      uStack_1c = 2;
+      uStack_14 = 0;
+      uStack_12 = 1;
+      puStack_18 = &uStack_14;
+      for (unaff_s0 = 0; param_3 = *(int *)(param_1 + 4), unaff_s0 < *(byte *)(param_3 + 4);
           unaff_s0 = unaff_s0 + 1 & 0xff) {
 _L0:
-        cmd.cmd_ctrl.dst_addr.u._4_1_ = in_a5->match_list[unaff_s0];
-        ezb_zcl_read_attr_cmd_req(&iStack_38);
+        _uStack_30 = CONCAT12(*(undefined1 *)(*(int *)(param_3 + 8) + unaff_s0),uStack_30);
+        ezb_zcl_read_attr_cmd_req(aiStack_38);
       }
     }
     return;

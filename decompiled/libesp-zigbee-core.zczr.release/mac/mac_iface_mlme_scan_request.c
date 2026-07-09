@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_iface_mlme_scan_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,82 +10,74 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_iface_mlme_scan_request(mac_interface_t *iface,mac_scan_req_t *req)
+int mac_iface_mlme_scan_request(int *param_1,byte *param_2)
 
 {
   byte bVar1;
-  uint8_t uVar2;
-  uint uVar3;
-  _Bool _Var4;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  mac_device *dev;
+  uint uVar2;
+  int iVar3;
+  int iVar4;
   uint uVar5;
-  uint uVar6;
-  anon_union_4_2_0921b8ba_for_cb_u aVar7;
-  uint uVar8;
-  void *pvVar9;
-  ezb_err_t eVar10;
+  undefined4 uVar6;
+  uint uVar7;
+  undefined4 uVar8;
+  int iVar9;
   
-  bVar1 = req->scan_type;
-  dev = (mac_device *)iface->dev;
+  bVar1 = *param_2;
+  iVar4 = *param_1;
   if (bVar1 == 1) {
-    pvVar9 = req->user_ctx;
-    aVar7 = req->cb_u;
-    uVar2 = req->scan_duration;
-    uVar5 = (req->scan_channels).u32;
-    if ((*(uint *)&(dev->ctx).field_0x70 & 1) == 0) {
+    uVar8 = *(undefined4 *)(param_2 + 0xc);
+    uVar6 = *(undefined4 *)(param_2 + 8);
+    bVar1 = param_2[1];
+    uVar5 = *(uint *)(param_2 + 4);
+    if ((*(uint *)(iVar4 + 0x9c) & 1) == 0) {
       return 3;
     }
-    _Var4 = mac_can_scan(dev);
-    eVar10 = 9;
-    if (CONCAT31(extraout_var,_Var4) != 0) {
-      (dev->ctx).scan_channel = 0xff;
-      uVar3 = uVar5 >> 0x1b;
-      uVar6 = (dev->pib).supported_channel_page.u32;
-      (dev->ctx).scan_channels.u32 = (dev->ctx).scan_channels.u32 & 0x7ffffff | uVar3 << 0x1b;
-      (dev->ctx).field_7 = (anon_union_4_2_1421745a_for_mac_context_s_7)aVar7;
-      (dev->ctx).scan_user_ctx = pvVar9;
-      (dev->ctx).scan_duration = uVar2;
-      uVar8 = 0;
-      if (uVar6 >> 0x1b == uVar3) {
-        uVar8 = uVar6 & 0x7ffffff & uVar5 & 0x7ffffff;
+    iVar3 = mac_can_scan();
+    iVar9 = 9;
+    if (iVar3 != 0) {
+      *(undefined1 *)(iVar4 + 0x32) = 0xff;
+      uVar2 = uVar5 >> 0x1b;
+      *(uint *)(iVar4 + 0x34) = *(uint *)(iVar4 + 0x34) & 0x7ffffff | uVar2 << 0x1b;
+      *(undefined4 *)(iVar4 + 0x38) = uVar6;
+      *(undefined4 *)(iVar4 + 0x3c) = uVar8;
+      *(byte *)(iVar4 + 0x33) = bVar1;
+      uVar7 = 0;
+      if (*(uint *)(iVar4 + 0x18) >> 0x1b == uVar2) {
+        uVar7 = *(uint *)(iVar4 + 0x18) & 0x7ffffff & uVar5 & 0x7ffffff;
       }
-      (dev->ctx).scan_channels.u32 = (dev->ctx).scan_channels.u32 & 0xf8000000 | uVar8;
-      mac_start_op(dev,MAC_OPERATION_ACTIVE_SCAN);
-      eVar10 = 0;
+      *(uint *)(iVar4 + 0x34) = *(uint *)(iVar4 + 0x34) & 0xf8000000 | uVar7;
+      mac_start_op(iVar4,1);
+      iVar9 = 0;
     }
-    return eVar10;
+    return iVar9;
   }
   if (bVar1 < 2) {
-    pvVar9 = req->user_ctx;
-    aVar7 = req->cb_u;
-    uVar2 = req->scan_duration;
-    uVar5 = (req->scan_channels).u32;
-    if ((*(uint *)&(dev->ctx).field_0x70 & 1) == 0) {
+    uVar8 = *(undefined4 *)(param_2 + 0xc);
+    uVar6 = *(undefined4 *)(param_2 + 8);
+    bVar1 = param_2[1];
+    uVar5 = *(uint *)(param_2 + 4);
+    if ((*(uint *)(iVar4 + 0x9c) & 1) == 0) {
       return 3;
     }
-    _Var4 = mac_can_scan(dev);
-    eVar10 = 9;
-    if (CONCAT31(extraout_var_00,_Var4) != 0) {
-      (dev->ctx).scan_channel = 0xff;
-      uVar3 = uVar5 >> 0x1b;
-      uVar6 = (dev->pib).supported_channel_page.u32;
-      (dev->ctx).scan_channels.u32 = (dev->ctx).scan_channels.u32 & 0x7ffffff | uVar3 << 0x1b;
-      (dev->ctx).field_7 = (anon_union_4_2_1421745a_for_mac_context_s_7)aVar7;
-      (dev->ctx).scan_user_ctx = pvVar9;
-      (dev->ctx).scan_duration = uVar2;
-      uVar8 = 0;
-      if (uVar6 >> 0x1b == uVar3) {
-        uVar8 = uVar6 & 0x7ffffff & uVar5 & 0x7ffffff;
+    iVar3 = mac_can_scan();
+    iVar9 = 9;
+    if (iVar3 != 0) {
+      *(undefined1 *)(iVar4 + 0x32) = 0xff;
+      uVar2 = uVar5 >> 0x1b;
+      *(uint *)(iVar4 + 0x34) = *(uint *)(iVar4 + 0x34) & 0x7ffffff | uVar2 << 0x1b;
+      *(undefined4 *)(iVar4 + 0x38) = uVar6;
+      *(undefined4 *)(iVar4 + 0x3c) = uVar8;
+      *(byte *)(iVar4 + 0x33) = bVar1;
+      uVar7 = 0;
+      if (*(uint *)(iVar4 + 0x18) >> 0x1b == uVar2) {
+        uVar7 = *(uint *)(iVar4 + 0x18) & 0x7ffffff & uVar5 & 0x7ffffff;
       }
-      (dev->ctx).scan_channels.u32 = (dev->ctx).scan_channels.u32 & 0xf8000000 | uVar8;
-      mac_start_op(dev,MAC_OPERATION_ED_SCAN);
-      eVar10 = 0;
+      *(uint *)(iVar4 + 0x34) = *(uint *)(iVar4 + 0x34) & 0xf8000000 | uVar7;
+      mac_start_op(iVar4,2);
+      iVar9 = 0;
     }
-    return eVar10;
+    return iVar9;
   }
   return (-(uint)(2 < (byte)(bVar1 - 2)) & 0xfffffffc) + 6;
 }

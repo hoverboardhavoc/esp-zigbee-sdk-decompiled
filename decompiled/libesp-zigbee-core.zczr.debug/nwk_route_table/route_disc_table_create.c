@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> route_disc_table_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_route_disc_t *
-route_disc_table_create(nwk_route_disc_table_t *tbl,ezb_shortaddr_t src_addr,uint8_t rreq_id)
+undefined2 * route_disc_table_create(int *param_1,undefined2 param_2,undefined1 param_3)
 
 {
-  ushort blk_nr;
-  nwk_route_disc_t *pnVar1;
-  uint16_t uVar2;
-  undefined2 extraout_var;
+  ushort uVar1;
+  int iVar2;
+  undefined2 *__s;
+  uint uVar3;
   
-  pnVar1 = tbl->ents;
-  blk_nr = tbl->ent_nr;
-  uVar2 = mempool_alloc_idx(tbl->ent_in_use,blk_nr);
-  if (CONCAT22(extraout_var,uVar2) < (uint)blk_nr) {
-    pnVar1 = pnVar1 + CONCAT22(extraout_var,uVar2);
-    if (pnVar1 != (nwk_route_disc_t *)0x0) {
-      memset(pnVar1,0,0x10);
-      pnVar1->rreq_id = rreq_id;
-      pnVar1->src_addr = src_addr;
-      pnVar1->sender_addr = 0xffff;
-      pnVar1->forward_cost = 0xff;
-      pnVar1->residual_cost = 0xff;
-      pnVar1->expiry = 10;
+  iVar2 = *param_1;
+  uVar1 = *(ushort *)(param_1 + 2);
+  uVar3 = mempool_alloc_idx(param_1[1],(uint)uVar1);
+  if (uVar3 < uVar1) {
+    __s = (undefined2 *)(iVar2 + uVar3 * 0x10);
+    if (__s != (undefined2 *)0x0) {
+      memset(__s,0,0x10);
+      *(undefined1 *)(__s + 5) = param_3;
+      *__s = param_2;
+      __s[1] = 0xffff;
+      *(undefined1 *)((int)__s + 0xb) = 0xff;
+      *(undefined1 *)(__s + 6) = 0xff;
+      __s[4] = 10;
     }
   }
   else {
-    pnVar1 = (nwk_route_disc_t *)0x0;
+    __s = (undefined2 *)0x0;
   }
-  return pnVar1;
+  return __s;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink.o -> touchlink_commissioning_start_identify
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void touchlink_commissioning_start_identify(uint16_t duration)
+void touchlink_commissioning_start_identify(undefined4 param_1)
 
 {
-  touchlink_commissioning_t *ptVar1;
+  int iVar1;
   
-  ptVar1 = touchlink_commissioning_get();
-  if ((ptVar1->identify).cb != (touchlink_identify_callback_t)0x0) {
-    ptVar1 = touchlink_commissioning_get();
-    (ptVar1->identify).duration = duration;
-    ptVar1 = touchlink_commissioning_get();
-    (*(ptVar1->identify).cb)(duration);
-    ptVar1 = touchlink_commissioning_get();
-    milli_timer_stop(&(ptVar1->identify).timer);
-    ptVar1 = touchlink_commissioning_get();
-    milli_timer_init(&(ptVar1->identify).timer,touchlink_commissioning_identify_timeout,0);
-    ptVar1 = touchlink_commissioning_get();
-    milli_timer_start(&(ptVar1->identify).timer,1000);
+  iVar1 = touchlink_commissioning_get();
+  if (*(int *)(iVar1 + 0x34) != 0) {
+    iVar1 = touchlink_commissioning_get();
+    *(short *)(iVar1 + 0x20) = (short)param_1;
+    iVar1 = touchlink_commissioning_get();
+    (**(code **)(iVar1 + 0x34))(param_1,*(code **)(iVar1 + 0x34));
+    iVar1 = touchlink_commissioning_get();
+    milli_timer_stop(iVar1 + 0x24);
+    iVar1 = touchlink_commissioning_get();
+    milli_timer_init(iVar1 + 0x24,touchlink_commissioning_identify_timeout,0);
+    iVar1 = touchlink_commissioning_get();
+    milli_timer_start(iVar1 + 0x24,1000);
   }
   return;
 }

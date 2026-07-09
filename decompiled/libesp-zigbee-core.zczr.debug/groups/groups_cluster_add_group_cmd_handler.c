@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> groups.o -> groups_cluster_add_group_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,85 +10,78 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t groups_cluster_add_group_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+undefined4 groups_cluster_add_group_cmd_handler(int param_1,int param_2)
 
 {
-  uint8_t uVar1;
-  bool bVar2;
-  uint16_t uVar3;
-  _Bool _Var4;
-  undefined1 uVar5;
-  ezb_zcl_status_t eVar6;
-  uint16_t uVar7;
-  uint uVar8;
-  undefined3 extraout_var;
-  int iVar9;
+  bool bVar1;
+  undefined2 uVar2;
+  ushort uVar3;
+  undefined1 uVar4;
+  short sVar5;
+  uint uVar6;
+  int iVar7;
+  undefined4 uVar8;
   uint unaff_s2;
-  uint16_t uStack_26;
-  uint16_t uStack_24;
-  uint16_t uStack_22;
-  uint16_t group_id;
-  uint16_t offset;
+  undefined2 uStack_26;
+  undefined2 uStack_24;
+  ushort auStack_22 [7];
   
-  uStack_22 = 0;
+  auStack_22[0] = 0;
   uStack_24 = 0xffff;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/groups.c",0x100,
                   "groups_cluster_add_group_cmd_handler","packet && rsp");
 _L0:
-    iVar9 = ezb_zcl_is_identifying((packet->header).dst_ep);
-    if (iVar9 == 0) {
-      bVar2 = false;
+    iVar7 = ezb_zcl_is_identifying(*(undefined1 *)(param_1 + 0x15));
+    if (iVar7 == 0) {
+      bVar1 = false;
       goto _L0;
     }
   }
   else {
-    uVar8 = zmsg_get_length(packet->payload);
-    af_read_le16(packet->payload,&uStack_22,&uStack_24);
-    uVar3 = uStack_22;
-    if (uStack_22 < uVar8) {
-      uVar7 = groups_read_group_name(packet->payload,uStack_22,(void *)0x0);
-      uStack_22 = uVar3 + uVar7;
+    uVar6 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_24);
+    uVar3 = auStack_22[0];
+    if (auStack_22[0] < uVar6) {
+      sVar5 = groups_read_group_name(*(undefined4 *)(param_1 + 0x24),(uint)auStack_22[0],0);
+      auStack_22[0] = uVar3 + sVar5;
     }
-    if (uVar8 < uStack_22) {
+    if (uVar6 < auStack_22[0]) {
       unaff_s2 = 0;
-      bVar2 = true;
+      bVar1 = true;
       goto _L0;
     }
-    uVar1 = (packet->header).cmd_id;
-    unaff_s2 = (uint)(uVar1 == '\x05');
-    if (uVar1 == '\x05') goto _L0;
+    unaff_s2 = (uint)(*(char *)(param_1 + 0x20) == '\x05');
+    if (*(char *)(param_1 + 0x20) == '\x05') goto _L0;
   }
-  uVar3 = uStack_24;
-  _Var4 = groups_check_group_id_is_valid(uStack_24);
-  if (CONCAT31(extraout_var,_Var4) == 0) {
+  uVar2 = uStack_24;
+  iVar7 = groups_check_group_id_is_valid(uStack_24);
+  if (iVar7 == 0) {
     uStack_26 = CONCAT11(uStack_26._1_1_,0x87);
-    zmsg_append_bytes(rsp->payload,1,&uStack_26);
-    bVar2 = false;
+    zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_26);
+    bVar1 = false;
   }
   else {
-    aps_group_table_add(uVar3,(packet->header).dst_ep);
-    uVar5 = err_to_zcl_status();
-    uStack_26 = CONCAT11(uStack_26._1_1_,uVar5);
-    zmsg_append_bytes(rsp->payload,1,&uStack_26);
+    aps_group_table_add(uVar2,*(undefined1 *)(param_1 + 0x15));
+    uVar4 = err_to_zcl_status();
+    uStack_26 = CONCAT11(uStack_26._1_1_,uVar4);
+    zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_26);
     uStack_26 = uStack_24;
-    zmsg_append_bytes(rsp->payload,2,&uStack_26);
-    bVar2 = false;
+    zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),2,&uStack_26);
+    bVar1 = false;
   }
 _L0:
-  if ((packet->header).dst_addr.u.short_addr < 0xfff8) {
-    if ((bVar2) || (unaff_s2 != 0)) {
-      eVar6 = zcl_packet_setup_default_response(rsp,packet);
+  if (*(ushort *)(param_1 + 0xc) < 0xfff8) {
+    if ((bVar1) || (unaff_s2 != 0)) {
+      uVar8 = zcl_packet_setup_default_response(param_2,param_1);
     }
     else {
-      eVar6 = zcl_packet_setup_response(rsp,packet);
+      uVar8 = zcl_packet_setup_response(param_2,param_1);
     }
   }
   else {
-    eVar6 = 0xfe;
+    uVar8 = 0xfe;
   }
-  return eVar6;
+  return uVar8;
 }
 

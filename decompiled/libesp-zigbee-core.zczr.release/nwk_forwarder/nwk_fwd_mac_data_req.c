@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_forwarder.o -> nwk_fwd_mac_data_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_fwd_mac_data_req(zmsg_t *msg,uint8_t iface_id,ezb_shortaddr_t dst_addr,_Bool indirect_tx)
+void nwk_fwd_mac_data_req(undefined4 param_1,undefined4 param_2,undefined2 param_3,uint param_4)
 
 {
   int iVar1;
-  undefined3 in_register_0000202d;
-  zmsg_t *pzStack_3c;
-  mac_data_req_t req;
+  undefined4 uStack_3c;
+  undefined1 auStack_38 [2];
+  undefined2 uStack_36;
+  undefined1 uStack_2e;
+  undefined2 uStack_2c;
+  undefined2 uStack_24;
+  byte bStack_22;
   
-  memset(&req,0,0x18);
-  req.msdu._0_1_ = 2;
-  pzStack_3c = msg;
+  memset(auStack_38,0,0x18);
+  auStack_38[0] = 2;
+  uStack_3c = param_1;
   iVar1 = core_globals_get();
-  req.msdu._2_2_ = *(undefined2 *)(iVar1 + 0x9e2);
-  req.addresses.source.u._4_1_ = 2;
-  req.addresses.source.u._6_2_ = dst_addr;
+  uStack_36 = *(undefined2 *)(iVar1 + 0x9e2);
+  uStack_2e = 2;
+  uStack_2c = param_3;
   iVar1 = core_globals_get();
-  req.addresses.destination.u._4_2_ = *(undefined2 *)(iVar1 + 0x9e4);
-  req.addresses.destination.u._6_1_ =
-       req.addresses.destination.u._6_1_ & 0xfd | (byte)((indirect_tx & 1) << 1);
-  iVar1 = nwk_process_transmit_security(CONCAT31(in_register_0000202d,iface_id),msg);
-  if ((iVar1 != 0) ||
-     (iVar1 = nwk_mm_data_request(CONCAT31(in_register_0000202d,iface_id),&pzStack_3c), iVar1 != 0))
-  {
-    nwk_fwd_finish_tx(msg,iVar1);
+  uStack_24 = *(undefined2 *)(iVar1 + 0x9e4);
+  bStack_22 = bStack_22 & 0xfd | (byte)((param_4 & 1) << 1);
+  iVar1 = nwk_process_transmit_security(param_2,param_1);
+  if ((iVar1 != 0) || (iVar1 = nwk_mm_data_request(param_2,&uStack_3c), iVar1 != 0)) {
+    nwk_fwd_finish_tx(param_1,iVar1);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> thermostat.o -> thermostat_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,569 +10,494 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-thermostat_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t endpoint,void *value)
+byte thermostat_cluster_srv_check_value_handler(uint param_1,undefined4 param_2,ushort *param_3)
 
 {
   char cVar1;
-  undefined2 in_register_0000202a;
-  uint uVar2;
-  zcl_attr_desc_t *pzVar3;
-  zcl_attr_desc_t *pzVar4;
-  uint16_t uVar5;
-  char *pcVar6;
-  undefined1 uVar7;
-  ezb_zcl_status_t eVar8;
-  int iVar9;
-  int16_t iStack_24;
-  int16_t iStack_22;
-  int16_t max_val;
-  int16_t min_val;
+  int iVar2;
+  int iVar3;
+  undefined4 uVar4;
+  char *pcVar5;
+  byte bVar6;
+  short sStack_24;
+  short asStack_22 [5];
   
-  uVar2 = CONCAT22(in_register_0000202a,attr_id);
-  iStack_22 = 0;
-  iStack_24 = 0;
-  pcVar6 = (char *)value;
-  if (uVar2 == 0x23) {
+  asStack_22[0] = 0;
+  sStack_24 = 0;
+  pcVar5 = (char *)param_3;
+  if (param_1 == 0x23) {
 _L0:
-    if ((byte)*pcVar6 < 2) {
-      eVar8 = '\0';
+    if ((byte)*(ushort *)pcVar5 < 2) {
+      bVar6 = 0;
     }
     else {
-      eVar8 = 0x87;
+      bVar6 = 0x87;
     }
 _L0:
-    if (eVar8 != '\0') {
-      return eVar8;
+    if (bVar6 != 0) {
+      return bVar6;
     }
   }
   else {
-    if (0x23 < uVar2) {
-      if (uVar2 == 0x39) {
-        pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x38);
-        if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-          eVar8 = '\0';
+    if (0x23 < param_1) {
+      if (param_1 == 0x39) {
+        iVar2 = thermostat_srv_get_attr_desc(param_2,0x38);
+        if (iVar2 == 0) {
+          bVar6 = 0;
+        }
+        else if ((byte)*param_3 < **(byte **)(iVar2 + 8)) {
+          *(byte *)param_3 = **(byte **)(iVar2 + 8);
+          bVar6 = 0;
         }
         else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-          if (*value < *pzVar3->data_p) {
-            *(byte *)value = *pzVar3->data_p;
-            eVar8 = '\0';
-          }
-          else {
-            eVar8 = '\0';
-          }
+          bVar6 = 0;
         }
       }
-      else if (uVar2 < 0x3a) {
-        if (uVar2 == 0x35) {
-          pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x36);
-          if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-            eVar8 = '\0';
+      else if (param_1 < 0x3a) {
+        if (param_1 == 0x35) {
+          iVar2 = thermostat_srv_get_attr_desc(param_2,0x36);
+          if (iVar2 == 0) {
+            bVar6 = 0;
+          }
+          else if (**(byte **)(iVar2 + 8) < (byte)*param_3) {
+            *(byte *)param_3 = **(byte **)(iVar2 + 8);
+            bVar6 = 0;
           }
           else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-            if (*pzVar3->data_p < *value) {
-              *(byte *)value = *pzVar3->data_p;
-              eVar8 = '\0';
-            }
-            else {
-              eVar8 = '\0';
-            }
+            bVar6 = 0;
           }
         }
-        else if (uVar2 < 0x36) {
-          if (uVar2 == 0x32) goto _L0;
-          if (uVar2 == 0x34) {
-            pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x35);
-            pzVar4 = thermostat_srv_get_attr_desc(endpoint,0x36);
-            if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-              eVar8 = '\0';
+        else if (param_1 < 0x36) {
+          if (param_1 == 0x32) goto _L0;
+          if (param_1 == 0x34) {
+            iVar2 = thermostat_srv_get_attr_desc(param_2,0x35);
+            iVar3 = thermostat_srv_get_attr_desc(param_2,0x36);
+            if (iVar2 == 0) {
+              bVar6 = 0;
+            }
+            else if ((byte)*param_3 < **(byte **)(iVar2 + 8)) {
+              bVar6 = 0x87;
             }
             else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-              if (*value < *pzVar3->data_p) {
-                eVar8 = 0x87;
-              }
-              else {
-                eVar8 = '\0';
-              }
+              bVar6 = 0;
             }
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-            if ((pzVar4 != (zcl_attr_desc_t *)0x0) && (*pzVar4->data_p < *value)) {
-              eVar8 = 0x87;
+            if ((iVar3 != 0) && (**(byte **)(iVar3 + 8) < (byte)*param_3)) {
+              bVar6 = 0x87;
             }
           }
-          else if (uVar2 == 0x24) {
-                    /* WARNING: Load size is inaccurate */
-            if (*value < 0x5a1) {
-              eVar8 = '\0';
+          else if (param_1 == 0x24) {
+            if (*param_3 < 0x5a1) {
+              bVar6 = 0;
             }
             else {
-              eVar8 = 0x87;
+              bVar6 = 0x87;
             }
           }
           else {
-            eVar8 = '\0';
+            bVar6 = 0;
           }
         }
-        else if (uVar2 == 0x37) {
-          pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x38);
-          pzVar4 = thermostat_srv_get_attr_desc(endpoint,0x39);
-          if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-            eVar8 = '\0';
+        else if (param_1 == 0x37) {
+          iVar2 = thermostat_srv_get_attr_desc(param_2,0x38);
+          iVar3 = thermostat_srv_get_attr_desc(param_2,0x39);
+          if (iVar2 == 0) {
+            bVar6 = 0;
+          }
+          else if ((byte)*param_3 < **(byte **)(iVar2 + 8)) {
+            bVar6 = 0x87;
           }
           else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-            if (*value < *pzVar3->data_p) {
-              eVar8 = 0x87;
-            }
-            else {
-              eVar8 = '\0';
-            }
+            bVar6 = 0;
           }
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-          if ((pzVar4 != (zcl_attr_desc_t *)0x0) && (*pzVar4->data_p < *value)) {
-            eVar8 = 0x87;
+          if ((iVar3 != 0) && (**(byte **)(iVar3 + 8) < (byte)*param_3)) {
+            bVar6 = 0x87;
           }
         }
-        else if (uVar2 == 0x38) {
-          pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x39);
-          if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-            eVar8 = '\0';
+        else if (param_1 == 0x38) {
+          iVar2 = thermostat_srv_get_attr_desc(param_2,0x39);
+          if (iVar2 == 0) {
+            bVar6 = 0;
+          }
+          else if (**(byte **)(iVar2 + 8) < (byte)*param_3) {
+            *(byte *)param_3 = **(byte **)(iVar2 + 8);
+            bVar6 = 0;
           }
           else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-            if (*pzVar3->data_p < *value) {
-              *(byte *)value = *pzVar3->data_p;
-              eVar8 = '\0';
-            }
-            else {
-              eVar8 = '\0';
-            }
+            bVar6 = 0;
           }
         }
-        else if (uVar2 == 0x36) {
-          pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x35);
-          if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-            eVar8 = '\0';
+        else if (param_1 == 0x36) {
+          iVar2 = thermostat_srv_get_attr_desc(param_2,0x35);
+          if (iVar2 == 0) {
+            bVar6 = 0;
+          }
+          else if ((byte)*param_3 < **(byte **)(iVar2 + 8)) {
+            *(byte *)param_3 = **(byte **)(iVar2 + 8);
+            bVar6 = 0;
           }
           else {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-            if (*value < *pzVar3->data_p) {
-              *(byte *)value = *pzVar3->data_p;
-              eVar8 = '\0';
-            }
-            else {
-              eVar8 = '\0';
-            }
+            bVar6 = 0;
           }
         }
         else {
-          eVar8 = '\0';
+          bVar6 = 0;
         }
       }
-      else if (uVar2 == 0x45) {
-                    /* WARNING: Load size is inaccurate */
-        if ((byte)(*value - 1U) < 5) {
-          eVar8 = '\0';
+      else if (param_1 == 0x45) {
+        if ((byte)((byte)*param_3 - 1) < 5) {
+          bVar6 = 0;
         }
         else {
-          eVar8 = 0x87;
+          bVar6 = 0x87;
         }
       }
-      else if (uVar2 < 0x46) {
-        if (uVar2 == 0x42) {
-                    /* WARNING: Load size is inaccurate */
-          if ((byte)(*value - 1U) < 3) {
-            eVar8 = '\0';
+      else if (param_1 < 0x46) {
+        if (param_1 == 0x42) {
+          if ((byte)((byte)*param_3 - 1) < 3) {
+            bVar6 = 0;
           }
           else {
-            eVar8 = 0x87;
+            bVar6 = 0x87;
           }
         }
-        else if (uVar2 == 0x43) {
-                    /* WARNING: Load size is inaccurate */
-          if ((byte)(*value - 1U) < 3) {
-            eVar8 = '\0';
+        else if (param_1 == 0x43) {
+          if ((byte)((byte)*param_3 - 1) < 3) {
+            bVar6 = 0;
           }
           else {
-            eVar8 = 0x87;
+            bVar6 = 0x87;
           }
         }
-        else if (uVar2 == 0x40) {
-                    /* WARNING: Load size is inaccurate */
-          if ((byte)(*value - 1U) < 4) {
-            eVar8 = '\0';
+        else if (param_1 == 0x40) {
+          if ((byte)((byte)*param_3 - 1) < 4) {
+            bVar6 = 0;
           }
           else {
-            eVar8 = 0x87;
+            bVar6 = 0x87;
           }
         }
         else {
-          eVar8 = '\0';
+          bVar6 = 0;
         }
       }
       else {
-        if (uVar2 == 0x46) {
-          iStack_22 = -0x6ab3;
-          iStack_24 = 0x7fff;
+        if (param_1 == 0x46) {
+          asStack_22[0] = -0x6ab3;
+          sStack_24 = 0x7fff;
           goto _L0;
         }
-        if (uVar2 == 0x47) {
-                    /* WARNING: Load size is inaccurate */
-          if (*value == '\0') {
-            eVar8 = 0x87;
+        if (param_1 == 0x47) {
+          if ((byte)*param_3 == 0) {
+            bVar6 = 0x87;
           }
           else {
-            eVar8 = '\0';
+            bVar6 = 0;
           }
         }
         else {
-          eVar8 = '\0';
+          bVar6 = 0;
         }
       }
       goto _L0;
     }
-    if (0x16 < uVar2) {
-      if (uVar2 == 0x1c) {
-                    /* WARNING: Load size is inaccurate */
-        if (*value < 10) {
-          if (*value == 2) {
-            eVar8 = 0x87;
+    if (0x16 < param_1) {
+      if (param_1 == 0x1c) {
+        if ((byte)*param_3 < 10) {
+          if ((byte)*param_3 == 2) {
+            bVar6 = 0x87;
           }
           else {
-            pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x1b);
-            if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-              eVar8 = '\0';
+            iVar2 = thermostat_srv_get_attr_desc(param_2,0x1b);
+            if (iVar2 == 0) {
+              bVar6 = 0;
             }
-            else {
-                    /* WARNING: Load size is inaccurate */
-              if (*pzVar3->data_p < 2) {
-                    /* WARNING: Load size is inaccurate */
-                if ((byte)(*value - 4U) < 2) {
-                  eVar8 = 0x87;
-                }
-                else {
-                  eVar8 = '\0';
-                }
-              }
-              else if ((byte)(*pzVar3->data_p - 2) < 2) {
-                    /* WARNING: Load size is inaccurate */
-                if (*value == '\x03') {
-                  eVar8 = 0x87;
-                }
-                else if (*value == '\x06') {
-                  eVar8 = 0x87;
-                }
-                else {
-                  eVar8 = '\0';
-                }
+            else if (**(byte **)(iVar2 + 8) < 2) {
+              if ((byte)((byte)*param_3 - 4) < 2) {
+                bVar6 = 0x87;
               }
               else {
-                eVar8 = '\0';
+                bVar6 = 0;
               }
+            }
+            else if ((byte)(**(byte **)(iVar2 + 8) - 2) < 2) {
+              if ((byte)*param_3 == 3) {
+                bVar6 = 0x87;
+              }
+              else if ((byte)*param_3 == 6) {
+                bVar6 = 0x87;
+              }
+              else {
+                bVar6 = 0;
+              }
+            }
+            else {
+              bVar6 = 0;
             }
           }
         }
         else {
-          eVar8 = 0x87;
+          bVar6 = 0x87;
         }
       }
-      else if (uVar2 < 0x1d) {
-        if (uVar2 == 0x19) {
-                    /* WARNING: Load size is inaccurate */
-          if (*value < 0x1a) {
-            eVar8 = '\0';
+      else if (param_1 < 0x1d) {
+        if (param_1 == 0x19) {
+          if ((byte)*param_3 < 0x1a) {
+            bVar6 = 0;
           }
           else {
-            eVar8 = 0x87;
+            bVar6 = 0x87;
           }
         }
-        else if (uVar2 < 0x1a) {
-          if ((uVar2 - 0x17 & 0xffff) < 2) {
-            pzVar3 = thermostat_srv_get_attr_desc(endpoint,5);
-            pzVar4 = thermostat_srv_get_attr_desc(endpoint,6);
-            if ((pzVar3 == (zcl_attr_desc_t *)0x0) || (pzVar4 == (zcl_attr_desc_t *)0x0)) {
-              iStack_22 = -0x6ab3;
-              iStack_24 = 0x7fff;
+        else if (param_1 < 0x1a) {
+          if ((param_1 - 0x17 & 0xffff) < 2) {
+            iVar2 = thermostat_srv_get_attr_desc(param_2,5);
+            iVar3 = thermostat_srv_get_attr_desc(param_2,6);
+            if ((iVar2 == 0) || (iVar3 == 0)) {
+              asStack_22[0] = -0x6ab3;
+              sStack_24 = 0x7fff;
             }
             else {
-                    /* WARNING: Load size is inaccurate */
-              iStack_22 = *pzVar3->data_p;
-                    /* WARNING: Load size is inaccurate */
-              iStack_24 = *pzVar4->data_p;
+              asStack_22[0] = **(short **)(iVar2 + 8);
+              sStack_24 = **(short **)(iVar3 + 8);
             }
             goto _L0;
           }
-          eVar8 = '\0';
+          bVar6 = 0;
         }
-        else if (uVar2 == 0x1b) {
-                    /* WARNING: Load size is inaccurate */
-          if (*value < 6) {
-            pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x1c);
-            if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-              eVar8 = '\0';
+        else if (param_1 == 0x1b) {
+          if ((byte)*param_3 < 6) {
+            iVar2 = thermostat_srv_get_attr_desc(param_2,0x1c);
+            if (iVar2 == 0) {
+              bVar6 = 0;
             }
             else {
-                    /* WARNING: Load size is inaccurate */
-              cVar1 = *pzVar3->data_p;
-                    /* WARNING: Load size is inaccurate */
-              if (*value < 2) {
+              cVar1 = **(char **)(iVar2 + 8);
+              if ((byte)*param_3 < 2) {
                 if ((byte)(cVar1 - 4U) < 2) {
-                  eVar8 = 0x87;
+                  bVar6 = 0x87;
                 }
                 else {
-                  eVar8 = '\0';
+                  bVar6 = 0;
                 }
               }
-              else if ((byte)(*value - 2) < 2) {
+              else if ((byte)((byte)*param_3 - 2) < 2) {
                 if (cVar1 == '\x03') {
-                  eVar8 = 0x87;
+                  bVar6 = 0x87;
                 }
                 else if (cVar1 == '\x06') {
-                  eVar8 = 0x87;
+                  bVar6 = 0x87;
                 }
                 else {
-                  eVar8 = '\0';
+                  bVar6 = 0;
                 }
               }
               else {
-                eVar8 = '\0';
+                bVar6 = 0;
               }
             }
           }
           else {
-            eVar8 = 0x87;
+            bVar6 = 0x87;
           }
         }
         else {
-          eVar8 = '\0';
+          bVar6 = 0;
         }
       }
-      else if (uVar2 == 0x1e) {
-                    /* WARNING: Load size is inaccurate */
-        eVar8 = *value;
-        if (eVar8 == '\x03') {
-          eVar8 = '\0';
+      else if (param_1 == 0x1e) {
+        bVar6 = (byte)*param_3;
+        if (bVar6 == 3) {
+          bVar6 = 0;
         }
-        else if (eVar8 == '\x04') {
-          eVar8 = '\0';
+        else if (bVar6 == 4) {
+          bVar6 = 0;
         }
-        else if (eVar8 != '\0') {
-          eVar8 = 0x87;
+        else if (bVar6 != 0) {
+          bVar6 = 0x87;
         }
       }
-      else if (uVar2 == 0x20) {
-                    /* WARNING: Load size is inaccurate */
-        if (*value < 7) {
-          eVar8 = '\0';
+      else if (param_1 == 0x20) {
+        if ((byte)*param_3 < 7) {
+          bVar6 = 0;
         }
         else {
-          eVar8 = 0x87;
+          bVar6 = 0x87;
         }
       }
       else {
-        eVar8 = '\0';
+        bVar6 = 0;
       }
       goto _L0;
     }
-    if (0x14 < uVar2) {
-      pzVar3 = thermostat_srv_get_attr_desc(endpoint,3);
-      pzVar4 = thermostat_srv_get_attr_desc(endpoint,4);
-      if ((pzVar3 == (zcl_attr_desc_t *)0x0) || (pzVar4 == (zcl_attr_desc_t *)0x0)) {
-        iStack_22 = -0x6ab3;
-        iStack_24 = 0x7fff;
+    if (0x14 < param_1) {
+      iVar2 = thermostat_srv_get_attr_desc(param_2,3);
+      iVar3 = thermostat_srv_get_attr_desc(param_2,4);
+      if ((iVar2 == 0) || (iVar3 == 0)) {
+        asStack_22[0] = -0x6ab3;
+        sStack_24 = 0x7fff;
       }
       else {
-                    /* WARNING: Load size is inaccurate */
-        iStack_22 = *pzVar3->data_p;
-                    /* WARNING: Load size is inaccurate */
-        iStack_24 = *pzVar4->data_p;
+        asStack_22[0] = **(short **)(iVar2 + 8);
+        sStack_24 = **(short **)(iVar3 + 8);
       }
       goto _L0;
     }
-    if (uVar2 == 8) {
+    if (param_1 == 8) {
 _L0:
-      pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x1c);
-      if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-        pcVar6 = "thermostat_cluster_srv_check_value_handler";
+      iVar2 = thermostat_srv_get_attr_desc(param_2,0x1c);
+      if (iVar2 == 0) {
+        pcVar5 = "thermostat_cluster_srv_check_value_handler";
         __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/thermostat.c",
                       0x365,"attr_desc");
         goto _L0;
       }
-                    /* WARNING: Load size is inaccurate */
-      if (*pzVar3->data_p == '\0') {
-        eVar8 = 0x87;
+      if (**(char **)(iVar2 + 8) == '\0') {
+        bVar6 = 0x87;
       }
-      else if (*pzVar3->data_p == '\x03') {
-        eVar8 = 0x87;
+      else if (**(char **)(iVar2 + 8) == '\x03') {
+        bVar6 = 0x87;
+      }
+      else if ((byte)*param_3 < 0x65) {
+        bVar6 = 0;
       }
       else {
-                    /* WARNING: Load size is inaccurate */
-        if (*value < 0x65) {
-          eVar8 = '\0';
-        }
-        else {
-          eVar8 = 0x87;
-        }
+        bVar6 = 0x87;
       }
       goto _L0;
     }
-    if (uVar2 < 9) {
-      if (uVar2 != 1) {
-        if (uVar2 == 7) {
-          pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x1c);
-          if (pzVar3 == (zcl_attr_desc_t *)0x0) {
+    if (param_1 < 9) {
+      if (param_1 != 1) {
+        if (param_1 == 7) {
+          iVar2 = thermostat_srv_get_attr_desc(param_2,0x1c);
+          if (iVar2 == 0) {
             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/thermostat.c",
                           0x358,"thermostat_cluster_srv_check_value_handler","attr_desc");
             goto _L0;
           }
-                    /* WARNING: Load size is inaccurate */
-          if (*pzVar3->data_p == '\0') {
-            eVar8 = 0x87;
+          if (**(char **)(iVar2 + 8) == '\0') {
+            bVar6 = 0x87;
           }
-          else if (*pzVar3->data_p == '\x04') {
-            eVar8 = 0x87;
+          else if (**(char **)(iVar2 + 8) == '\x04') {
+            bVar6 = 0x87;
+          }
+          else if ((byte)*param_3 < 0x65) {
+            bVar6 = 0;
           }
           else {
-                    /* WARNING: Load size is inaccurate */
-            if (*value < 0x65) {
-              eVar8 = '\0';
-            }
-            else {
-              eVar8 = 0x87;
-            }
+            bVar6 = 0x87;
           }
         }
         else {
-          if (uVar2 == 0) {
-            iStack_22 = -0x6ab3;
-            iStack_24 = 0x7fff;
+          if (param_1 == 0) {
+            asStack_22[0] = -0x6ab3;
+            sStack_24 = 0x7fff;
             goto _L0;
           }
-          eVar8 = '\0';
+          bVar6 = 0;
         }
         goto _L0;
       }
-      iStack_22 = -0x6ab3;
-      iStack_24 = 0x7fff;
+      asStack_22[0] = -0x6ab3;
+      sStack_24 = 0x7fff;
     }
     else {
-      if (uVar2 != 0x12) {
-        if (uVar2 < 0x13) {
-          if (uVar2 == 0x10) {
-                    /* WARNING: Load size is inaccurate */
-            cVar1 = *value;
-            if ((cVar1 < -0x19) || ('\x19' < cVar1)) {
-              if (cVar1 < '\0') {
-                uVar7 = 0xe7;
+      if (param_1 != 0x12) {
+        if (param_1 < 0x13) {
+          if (param_1 == 0x10) {
+            bVar6 = (byte)*param_3;
+            if (((char)bVar6 < -0x19) || ('\x19' < (char)bVar6)) {
+              if ((char)bVar6 < '\0') {
+                bVar6 = 0xe7;
               }
               else {
-                uVar7 = 0x19;
+                bVar6 = 0x19;
               }
-              *(undefined1 *)value = uVar7;
-              eVar8 = '\0';
+              *(byte *)param_3 = bVar6;
+              bVar6 = 0;
             }
             else {
-              eVar8 = '\0';
+              bVar6 = 0;
             }
           }
           else {
-            if (uVar2 == 0x11) goto _L0;
-            eVar8 = '\0';
+            if (param_1 == 0x11) goto _L0;
+            bVar6 = 0;
           }
         }
         else {
-          if (uVar2 == 0x13) {
+          if (param_1 == 0x13) {
 _L0:
-            thermostat_get_cool_setpoint_limit(endpoint,&iStack_22,&iStack_24);
+            thermostat_get_cool_setpoint_limit(param_2,asStack_22,&sStack_24);
             goto _L0;
           }
-          if (uVar2 == 0x14) goto _L0;
-          eVar8 = '\0';
+          if (param_1 == 0x14) goto _L0;
+          bVar6 = 0;
         }
         goto _L0;
       }
 _L0:
-      thermostat_get_heat_setpoint_limit(endpoint,&iStack_22,&iStack_24);
+      thermostat_get_heat_setpoint_limit(param_2,asStack_22,&sStack_24);
     }
 _L0:
-                    /* WARNING: Load size is inaccurate */
-    if (*value < iStack_22) {
+    if ((short)*param_3 < asStack_22[0]) {
       return 0x87;
     }
-    if (iStack_24 < *value) {
+    if (sStack_24 < (short)*param_3) {
       return 0x87;
     }
-    eVar8 = '\0';
+    bVar6 = 0;
   }
-  pzVar3 = thermostat_srv_get_attr_desc(endpoint,0x19);
-  if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-    iVar9 = 0;
+  iVar2 = thermostat_srv_get_attr_desc(param_2,0x19);
+  if (iVar2 == 0) {
+    iVar2 = 0;
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    iVar9 = (int)*pzVar3->data_p;
+    iVar2 = (int)**(char **)(iVar2 + 8);
   }
-  if (uVar2 == 0x13) {
+  if (param_1 == 0x13) {
 _L0:
-    if (uVar2 == 0x11) {
-      uVar5 = 0x12;
+    if (param_1 == 0x11) {
+      uVar4 = 0x12;
     }
     else {
-      uVar5 = 0x14;
+      uVar4 = 0x14;
     }
-    pzVar3 = thermostat_srv_get_attr_desc(endpoint,uVar5);
-    if (pzVar3 != (zcl_attr_desc_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-      if ((int)*value < iVar9 * 10 + (int)*pzVar3->data_p) {
-        eVar8 = 0x87;
+    iVar3 = thermostat_srv_get_attr_desc(param_2,uVar4);
+    if (iVar3 != 0) {
+      if ((int)(short)*param_3 < iVar2 * 10 + (int)**(short **)(iVar3 + 8)) {
+        bVar6 = 0x87;
       }
       else {
-        eVar8 = '\0';
+        bVar6 = 0;
       }
     }
   }
   else {
-    if (uVar2 < 0x14) {
-      if (uVar2 == 0x11) goto _L0;
-      if (uVar2 != 0x12) {
-        return eVar8;
+    if (param_1 < 0x14) {
+      if (param_1 == 0x11) goto _L0;
+      if (param_1 != 0x12) {
+        return bVar6;
       }
     }
-    else if (uVar2 != 0x14) {
-      return eVar8;
+    else if (param_1 != 0x14) {
+      return bVar6;
     }
-    if (uVar2 == 0x12) {
-      uVar5 = 0x11;
+    if (param_1 == 0x12) {
+      uVar4 = 0x11;
     }
     else {
-      uVar5 = 0x13;
+      uVar4 = 0x13;
     }
-    pzVar3 = thermostat_srv_get_attr_desc(endpoint,uVar5);
-    if (pzVar3 != (zcl_attr_desc_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-      if ((int)*pzVar3->data_p + iVar9 * -10 < (int)*value) {
-        eVar8 = 0x87;
+    iVar3 = thermostat_srv_get_attr_desc(param_2,uVar4);
+    if (iVar3 != 0) {
+      if ((int)**(short **)(iVar3 + 8) + iVar2 * -10 < (int)(short)*param_3) {
+        bVar6 = 0x87;
       }
       else {
-        eVar8 = '\0';
+        bVar6 = 0;
       }
     }
   }
-  return eVar8;
+  return bVar6;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,86 +10,91 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_packet_send(zdo_packet_t *packet)
+int zdo_packet_send(char *param_1)
 
 {
-  uint8_t uVar1;
-  code cVar2;
+  char cVar1;
+  char cVar2;
   int iVar3;
-  uint16_t uVar4;
-  undefined2 extraout_var;
+  uint uVar4;
   uint uVar5;
-  ezb_af_user_cnf_callback_t p_Var6;
-  zdo_packet_user_ctx_t pvVar7;
-  zdo_packet_req_callback_t p_Var8;
-  zdo_packet_payload_t *pzStack_44;
-  af_data_req_t af_req;
+  char *pcVar6;
+  undefined4 uVar7;
+  undefined4 uVar8;
+  undefined4 uStack_44;
+  undefined1 auStack_40 [2];
+  undefined2 uStack_3e;
+  undefined2 uStack_34;
+  undefined1 uStack_2c;
+  code *pcStack_28;
+  char *pcStack_24;
   
-  if (packet == (zdo_packet_t *)0x0) {
+  if (param_1 == (char *)0x0) {
 _L0:
     iVar3 = 0x80;
   }
   else {
-    uVar4 = zdo_packet_max_available_space(packet->cluster_id);
-    uVar5 = zmsg_get_length(packet->payload);
-    if (uVar5 <= CONCAT22(extraout_var,uVar4)) {
-      if ((short)packet->cluster_id < 0) {
-        if ((packet->ctx).mode != '\0') {
+    uVar4 = zdo_packet_max_available_space(*(undefined2 *)(param_1 + 6));
+    uVar5 = zmsg_get_length(*(undefined4 *)(param_1 + 0x14));
+    if (uVar5 <= uVar4) {
+      if (*(short *)(param_1 + 6) < 0) {
+        if (param_1[8] != '\0') {
           __assert_func(0,0,0,0);
           goto _L0;
         }
       }
       else {
         iVar3 = core_globals_get();
-        uVar1 = *(uint8_t *)(iVar3 + 0xca8);
-        *(uint8_t *)(iVar3 + 0xca8) = uVar1 + '\x01';
-        packet->tsn = uVar1;
+        cVar1 = *(char *)(iVar3 + 0xca8);
+        *(char *)(iVar3 + 0xca8) = cVar1 + '\x01';
+        *param_1 = cVar1;
       }
-      zmsg_prepend_bytes(packet->payload,1,packet);
-      uVar1 = packet->tsn;
-      cVar2 = (code)(packet->ctx).mode;
-      p_Var8 = (packet->ctx).req_ctx.cb;
-      pvVar7 = (packet->ctx).req_ctx.arg;
-      p_Var6 = (ezb_af_user_cnf_callback_t)calloc(1,0x28);
-      if (p_Var6 != (ezb_af_user_cnf_callback_t)0x0) {
-        *(zdo_packet_user_ctx_t *)(p_Var6 + 0x20) = pvVar7;
-        *p_Var6 = (_func_void_ezb_af_user_cnf_t_ptr_void_ptr)uVar1;
-        p_Var6[0x18] = cVar2;
-        *(zdo_packet_req_callback_t *)(p_Var6 + 0x1c) = p_Var8;
-        p_Var6[0x14] = (_func_void_ezb_af_user_cnf_t_ptr_void_ptr)((byte)p_Var6[0x14] & 0xfc);
-        *(ezb_af_user_cnf_callback_t *)(p_Var6 + 0x24) = p_Var6 + 0x24;
-        if (cVar2 != (code)0x0) {
-          uVar5 = nwk_pim_get_fast_poll_interval();
-          nwk_pim_start_fast_poll(5000 / uVar5);
+      zmsg_prepend_bytes(*(undefined4 *)(param_1 + 0x14),1,param_1);
+      cVar1 = *param_1;
+      cVar2 = param_1[8];
+      uVar8 = *(undefined4 *)(param_1 + 0xc);
+      uVar7 = *(undefined4 *)(param_1 + 0x10);
+      pcVar6 = (char *)calloc(1,0x28);
+      if (pcVar6 != (char *)0x0) {
+        *(undefined4 *)(pcVar6 + 0x20) = uVar7;
+        *pcVar6 = cVar1;
+        pcVar6[0x18] = cVar2;
+        *(undefined4 *)(pcVar6 + 0x1c) = uVar8;
+        pcVar6[0x14] = pcVar6[0x14] & 0xfc;
+        *(char **)(pcVar6 + 0x24) = pcVar6 + 0x24;
+        if (cVar2 != '\0') {
+          uVar4 = nwk_pim_get_fast_poll_interval();
+          nwk_pim_start_fast_poll(5000 / uVar4);
           iVar3 = core_globals_get();
-          *(undefined4 *)(p_Var6 + 0x24) = *(undefined4 *)(iVar3 + 0xcac);
-          *(ezb_af_user_cnf_callback_t *)(iVar3 + 0xcac) = p_Var6 + 0x24;
-          milli_timer_init(zdo_packet_ctx_entry_timeout,p_Var6);
-          milli_timer_start(p_Var6 + 4,5000);
+          *(undefined4 *)(pcVar6 + 0x24) = *(undefined4 *)(iVar3 + 0xcac);
+          *(char **)(iVar3 + 0xcac) = pcVar6 + 0x24;
+          milli_timer_init(zdo_packet_ctx_entry_timeout,pcVar6);
+          milli_timer_start(pcVar6 + 4,5000);
         }
-        memset(&af_req,0,0x18);
-        pzStack_44 = packet->payload;
-        packet->payload = (zdo_packet_payload_t *)0x0;
-        af_req.data.asdu._0_1_ = 2;
-        af_req.data.asdu._2_2_ = packet->dst_addr;
-        af_req.data.dst_addr.u._6_2_ = packet->cluster_id;
-        af_req.data.radius = '\x02';
-        af_req.data._24_4_ = zdo_packet_cnf_handler;
-        af_req.cnf_ctx.cb = p_Var6;
-        af_data_request(&pzStack_44);
+        memset(auStack_40,0,0x18);
+        uStack_44 = *(undefined4 *)(param_1 + 0x14);
+        param_1[0x14] = '\0';
+        param_1[0x15] = '\0';
+        param_1[0x16] = '\0';
+        param_1[0x17] = '\0';
+        auStack_40[0] = 2;
+        uStack_3e = *(undefined2 *)(param_1 + 2);
+        uStack_34 = *(undefined2 *)(param_1 + 6);
+        uStack_2c = 2;
+        pcStack_28 = zdo_packet_cnf_handler;
+        pcStack_24 = pcVar6;
+        af_data_request(&uStack_44);
         iVar3 = ezb_err_to_zdp_status();
-        if (iVar3 != 0) {
-          milli_timer_stop(p_Var6 + 4);
-          mm_free(p_Var6);
+        if (iVar3 == 0) {
+          return 0;
         }
-        goto _L0;
+        milli_timer_stop(pcVar6 + 4);
+        mm_free(pcVar6);
+        return iVar3;
       }
     }
     iVar3 = 0x8a;
   }
-_L0:
-  return (zdp_status_t)iVar3;
+  return iVar3;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_iface_mlme_asso_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_iface_mlme_asso_request(mac_interface_t *iface,mac_associate_req_t *req)
+undefined4 mac_iface_mlme_asso_request(int *param_1,char *param_2)
 
 {
-  ezb_addr_mode_t eVar1;
-  ezb_err_t eVar2;
-  mac_device *dev;
+  undefined4 uVar1;
+  int iVar2;
   
-  dev = (mac_device *)iface->dev;
-  if ((*(uint *)&(dev->ctx).field_0x70 & 1) == 0) {
+  iVar2 = *param_1;
+  if ((*(uint *)(iVar2 + 0x9c) & 1) == 0) {
     return 3;
   }
-  eVar2 = 3;
-  if ((((dev->pib).short_address == 0xffff) && (eVar2 = 9, (dev->ctx).state == '\0')) &&
-     (eVar2 = 2, req != (mac_associate_req_t *)0x0)) {
-    eVar1 = (req->coord_address).addr_mode;
-    if (eVar1 == '\x02') {
-      (dev->pib).coord_shortaddr = (req->coord_address).u.short_addr;
+  uVar1 = 3;
+  if (((*(short *)(iVar2 + 8) == -1) && (uVar1 = 9, *(char *)(iVar2 + 0x2d) == '\0')) &&
+     (uVar1 = 2, param_2 != (char *)0x0)) {
+    if (*param_2 == '\x02') {
+      *(undefined2 *)(iVar2 + 0xe) = *(undefined2 *)(param_2 + 2);
     }
     else {
-      if (eVar1 != '\x03') {
+      if (*param_2 != '\x03') {
         return 2;
       }
-      memcpy(&(dev->pib).coord_extaddr,&(req->coord_address).u,8);
+      memcpy((void *)(iVar2 + 0x10),param_2 + 2,8);
     }
-    mac_set_panid(dev,req->coord_panid);
-    (dev->ctx).phy_channel_page = req->channel_page;
-    (dev->ctx).phy_channel = req->logical_channel;
-    (dev->ctx).mac_cap_info = req->capability;
-    mac_start_op(dev,MAC_OPERATION_TRANSMIT_ASSO_REQ);
-    eVar2 = 0;
+    mac_set_panid(iVar2,*(undefined2 *)(param_2 + 10));
+    *(char *)(iVar2 + 0x42) = param_2[0xc];
+    *(char *)(iVar2 + 0x41) = param_2[0xd];
+    *(char *)(iVar2 + 0x40) = param_2[0xe];
+    mac_start_op(iVar2,3);
+    uVar1 = 0;
   }
-  return eVar2;
+  return uVar1;
 }
 

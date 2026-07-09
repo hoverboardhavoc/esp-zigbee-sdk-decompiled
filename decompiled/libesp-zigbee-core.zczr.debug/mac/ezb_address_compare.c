@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> ezb_address_compare
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool ezb_address_compare(ezb_address_t *addr1,ezb_address_t *addr2)
+undefined4 ezb_address_compare(char *param_1,char *param_2)
 
 {
-  if (addr1->addr_mode != addr2->addr_mode) {
-    return false;
+  if (*param_1 != *param_2) {
+    return 0;
   }
-  if (addr1->addr_mode != '\x02') {
-    if (((addr1->u).group_addr == (addr2->u).group_addr) &&
-       (*(int *)((int)&addr1->u + 4) == *(int *)((int)&addr2->u + 4))) {
-      return true;
+  if (*param_1 != '\x02') {
+    if ((*(int *)(param_1 + 2) == *(int *)(param_2 + 2)) &&
+       (*(int *)(param_1 + 6) == *(int *)(param_2 + 6))) {
+      return 1;
     }
-    return false;
+    return 0;
   }
-  if ((addr1->u).short_addr != (addr2->u).short_addr) {
-    return false;
+  if (*(short *)(param_1 + 2) != *(short *)(param_2 + 2)) {
+    return 0;
   }
-  return true;
+  return 1;
 }
 

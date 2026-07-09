@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_key_pair_set_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_key_pair_set_init(uint16_t capacity)
+void aps_secur_key_pair_set_init(undefined2 param_1)
 
 {
   undefined2 uVar1;
@@ -45,7 +43,7 @@ void aps_secur_key_pair_set_init(uint16_t capacity)
   *(undefined1 *)(iVar3 + 0x9aa) = 0;
   *(undefined1 *)(iVar3 + 0x9ab) = 0;
   iVar3 = core_globals_get();
-  *(uint16_t *)(iVar3 + 0x9a8) = capacity;
+  *(undefined2 *)(iVar3 + 0x9a8) = param_1;
   iVar3 = core_globals_get();
   uVar1 = *(undefined2 *)(iVar3 + 0x9a8);
   iVar3 = core_globals_get();

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_common.o -> zcl_message_notify_attr_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
 void zcl_message_notify_attr_value
-               (uint8_t dst_ep,uint16_t cluster_id,uint8_t role,zcl_attr_desc_t *attr_desc)
+               (undefined1 param_1,undefined2 param_2,undefined1 param_3,undefined2 *param_4)
 
 {
   undefined1 uStack_38;
-  uint8_t uStack_37;
-  uint16_t uStack_36;
-  zcl_set_attr_value_message_t message;
+  undefined1 uStack_37;
+  undefined2 uStack_36;
+  undefined1 uStack_34;
+  undefined2 uStack_30;
+  undefined1 uStack_2c;
+  undefined2 uStack_2a;
+  undefined4 uStack_28;
+  undefined1 uStack_24;
   
   memset(&uStack_38,0,0x18);
-  uStack_37 = dst_ep;
-  uStack_36 = cluster_id;
-  message.info.status = role;
-  if (attr_desc != (zcl_attr_desc_t *)0x0) {
-    message.info._4_2_ = attr_desc->id;
-    message.in.attribute.id._0_1_ = attr_desc->type;
-    message.in.attribute._2_2_ =
-         zcl_get_attr_value_size((zcl_attr_type_t)message.in.attribute.id,attr_desc->data_p);
-    message.in.attribute.data._0_4_ = attr_desc->data_p;
+  uStack_37 = param_1;
+  uStack_36 = param_2;
+  uStack_34 = param_3;
+  if (param_4 != (undefined2 *)0x0) {
+    uStack_30 = *param_4;
+    uStack_2c = *(undefined1 *)(param_4 + 1);
+    uStack_2a = zcl_get_attr_value_size(*(undefined4 *)(param_4 + 4));
+    uStack_28 = *(undefined4 *)(param_4 + 4);
   }
-  message.in.attribute.data.value._0_1_ = 0xfe;
+  uStack_24 = 0xfe;
   zcl_core_action_schedule(0,&uStack_38);
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_touchlink.o -> touchlink_zdo_start_router
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_router)
+undefined4 touchlink_zdo_start_router(int param_1)
 
 {
   undefined1 uVar1;
@@ -27,22 +25,20 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
   undefined4 uVar10;
   int iVar11;
   int iVar12;
-  ezb_err_t eVar13;
-  char *pcVar14;
-  undefined1 *puVar15;
+  char *pcVar13;
+  undefined1 *puVar14;
   void *__src;
-  undefined2 auStack_12 [2];
-  nwk_addr_ref_t addr_ref;
+  undefined2 auStack_12 [3];
   
-  if (start_router == (touchlink_event_start_router_t *)0x0) {
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",
                   0x25,"touchlink_zdo_start_router","start_router");
   }
   else {
-    nwk_set_extended_panid(&start_router->ext_panid);
-    nwk_set_pan_channel(1 << (start_router->channel & 0x1f) & 0x7ffffff);
-    nwk_set_panid(start_router->pan_id);
-    nwk_set_short_address(start_router->new_short_addr);
+    nwk_set_extended_panid(param_1 + 1);
+    nwk_set_pan_channel(1 << (*(byte *)(param_1 + 0xc) & 0x1f) & 0x7ffffff);
+    nwk_set_panid(*(undefined2 *)(param_1 + 10));
+    nwk_set_short_address(*(undefined2 *)(param_1 + 0xe));
     uVar9 = nwk_get_extended_address();
     uVar10 = touchlink_short_address();
     iVar11 = nwk_address_update(uVar9,uVar10,auStack_12);
@@ -50,7 +46,7 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
       nwk_address_lock_ref(auStack_12[0]);
       iVar11 = core_globals_get();
       *(byte *)(iVar11 + 0xb18) = *(byte *)(iVar11 + 0xb18) | 1;
-      nwk_secur_set_key(start_router->nwk_key,0);
+      nwk_secur_set_key(param_1 + 0x10,0);
       nwk_secur_switch_key(0);
       zdo_initiate_commissioning(0x80);
       return 0;
@@ -63,8 +59,8 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
   iVar12 = touchlink_commissioning_get();
   if (*(char *)(iVar12 + 1) == '\x01') {
     if (iVar11 != 0) {
-      eVar13 = touchlink_commissioning_task_result(1);
-      return eVar13;
+      uVar9 = touchlink_commissioning_task_result(1);
+      return uVar9;
     }
   }
   else {
@@ -72,8 +68,8 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
                   0x11b,"touchlink_initiator_process_discovery_done",
                   "(*touchlink_commissioning_get()).role == TL_COMM_ROLE_INITIATOR");
   }
-  pcVar14 = (char *)touchlink_commissioning_get();
-  if (*pcVar14 == '\x03') {
+  pcVar13 = (char *)touchlink_commissioning_get();
+  if (*pcVar13 == '\x03') {
     iVar11 = touchlink_transaction_get();
     *(undefined1 *)(iVar11 + 0x60c) = 5;
     iVar11 = touchlink_transaction_get();
@@ -88,15 +84,15 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
     uVar8 = touchlink_assign_short_addr();
     *(undefined2 *)(iVar11 + 0x61e) = uVar8;
     iVar11 = touchlink_transaction_get();
-    puVar15 = (undefined1 *)touchlink_extended_address();
-    uVar7 = puVar15[1];
-    uVar1 = puVar15[2];
-    uVar2 = puVar15[3];
-    uVar3 = puVar15[4];
-    uVar4 = puVar15[5];
-    uVar5 = puVar15[6];
-    uVar6 = puVar15[7];
-    *(undefined1 *)(iVar11 + 0x611) = *puVar15;
+    puVar14 = (undefined1 *)touchlink_extended_address();
+    uVar7 = puVar14[1];
+    uVar1 = puVar14[2];
+    uVar2 = puVar14[3];
+    uVar3 = puVar14[4];
+    uVar4 = puVar14[5];
+    uVar5 = puVar14[6];
+    uVar6 = puVar14[7];
+    *(undefined1 *)(iVar11 + 0x611) = *puVar14;
     *(undefined1 *)(iVar11 + 0x612) = uVar7;
     *(undefined1 *)(iVar11 + 0x613) = uVar1;
     *(undefined1 *)(iVar11 + 0x614) = uVar2;
@@ -109,7 +105,7 @@ ezb_err_t touchlink_zdo_start_router(touchlink_event_start_router_t *start_route
     memcpy((void *)(iVar11 + 0x620),__src,0x10);
   }
   iVar11 = touchlink_transaction_get();
-  eVar13 = touchlink_zdo_start_router((touchlink_event_start_router_t *)(iVar11 + 0x610));
-  return eVar13;
+  uVar9 = touchlink_zdo_start_router(iVar11 + 0x610);
+  return uVar9;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_bind_mgmt.o -> zdo_bind_and_unbindreq_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,68 +10,101 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: req */
-/* WARNING: Removing unreachable block (ram,0x000104ee) */
-/* WARNING: Removing unreachable block (ram,0x000104f8) */
-/* WARNING: Removing unreachable block (ram,0x00010550) */
-/* WARNING: Removing unreachable block (ram,0x000104de) */
-/* WARNING: Removing unreachable block (ram,0x000104e8) */
-/* WARNING: Removing unreachable block (ram,0x000105bc) */
-/* WARNING: Removing unreachable block (ram,0x0001052e) */
-/* WARNING: Removing unreachable block (ram,0x000104fe) */
-/* WARNING: Removing unreachable block (ram,0x00010562) */
-/* WARNING: Removing unreachable block (ram,0x000105c2) */
-/* WARNING: Removing unreachable block (ram,0x00010588) */
-/* WARNING: Removing unreachable block (ram,0x00010590) */
-/* WARNING: Removing unreachable block (ram,0x0001050a) */
-/* WARNING: Removing unreachable block (ram,0x00010592) */
-/* WARNING: Removing unreachable block (ram,0x00010512) */
-/* WARNING: Removing unreachable block (ram,0x00010528) */
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_bind_and_unbindreq_handler(zdo_packet_t *packet,zdo_packet_t *resp)
+undefined4 zdo_bind_and_unbindreq_handler(int param_1,int param_2)
 
 {
-  zdp_status_t zVar1;
-  undefined3 extraout_var;
-  int iVar2;
-  int *piVar3;
-  ezb_address_t dst_addr;
-  zdp_bind_rsp_field_t rsp;
-  zdp_bind_req_field_t req;
+  int iVar1;
+  int *piVar2;
+  undefined4 uVar3;
+  int iVar4;
+  uint uVar5;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined2 uStack_30;
+  undefined1 auStack_2c [4];
+  int iStack_28;
+  int iStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  _rsp = 0;
-  dst_addr.u._6_1_ = 0;
-  dst_addr._0_4_ = 0;
-  dst_addr.u.group_addr.bcast = 0;
-  if (packet == (zdo_packet_t *)0x0) {
+  iStack_28 = 0;
+  iStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  auStack_2c[0] = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  if (param_1 == 0) {
     return 0xfe;
   }
-  if (packet->payload == (zdo_packet_payload_t *)0x0) {
+  if (*(int *)(param_1 + 0x14) == 0) {
     return 0xfe;
   }
-  if (resp == (zdo_packet_t *)0x0) {
+  if (param_2 == 0) {
     return 0xfe;
   }
-  if (0xfff7 < packet->dst_addr) {
+  if (0xfff7 < *(ushort *)(param_1 + 2)) {
     return 0xfe;
   }
-  zVar1 = zdo_op_bind_and_unbind_req(packet->payload,(zdp_bind_req_field_t *)&rsp,false);
-  if (CONCAT31(extraout_var,zVar1) != 0) {
+  iVar1 = zdo_op_bind_and_unbind_req(&iStack_28,0);
+  if (iVar1 != 0) {
     return 0xfe;
   }
-  iVar2 = nwk_get_extended_address();
-  if (iVar2 != 0) {
-    piVar3 = (int *)nwk_get_extended_address();
-    if ((_rsp == *piVar3) && (piVar3[1] == 0)) {
-      dst_addr.u._6_1_ = 0x82;
+  iVar1 = nwk_get_extended_address();
+  if (iVar1 != 0) {
+    piVar2 = (int *)nwk_get_extended_address();
+    if ((iStack_28 == *piVar2) && (iStack_24 == piVar2[1])) {
+      if (((uStack_20 & 0xff) - 1 & 0xff) < 0xfe) {
+        uVar5 = uStack_1c & 0xff;
+        if ((uVar5 != 3) && (uVar5 != 1)) {
+          iVar1 = 0x80;
+          goto _L0;
+        }
+        uStack_38 = CONCAT31(uStack_38._1_3_,(undefined1)uStack_1c);
+        if (uVar5 == 3) {
+          uStack_30 = (undefined2)uStack_14;
+          uStack_38 = CONCAT22(uStack_1c._2_2_,(undefined2)uStack_38);
+          uStack_34 = uStack_18;
+        }
+        else if (uVar5 == 1) {
+          uStack_38 = CONCAT22(uStack_1c._2_2_,(undefined2)uStack_38);
+          uStack_34 = CONCAT22(uStack_34._2_2_,(undefined2)uStack_18);
+        }
+        if (*(short *)(param_1 + 6) == 0x21) {
+          aps_bind_table_add(&iStack_28,uStack_20._2_2_,&uStack_38,uStack_14._2_1_);
+          iVar1 = ezb_err_to_zdp_status();
+          if (iVar1 == 0x8a) {
+            iVar1 = 0x8c;
+          }
+          else if (iVar1 == 0xfe) {
+            return 0xfe;
+          }
+          goto _L0;
+        }
+        if (*(short *)(param_1 + 6) == 0x22) {
+          iVar4 = aps_bind_table_remove(&iStack_28,uStack_20._2_2_,&uStack_38,uStack_14._2_1_);
+          iVar1 = 0;
+          if (iVar4 != 0) {
+            iVar1 = 0x88;
+          }
+          goto _L0;
+        }
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_bind_mgmt.c",0xc2,
+                      "zdo_bind_and_unbindreq_handler",&_LC3);
+      }
+      iVar1 = 0x82;
       goto _L0;
     }
   }
-  dst_addr.u._6_1_ = 0x84;
+  iVar1 = 0x84;
 _L0:
-  zVar1 = zdo_op_bind_and_unbind_rsp
-                    (resp->payload,(zdp_bind_rsp_field_t *)((int)&dst_addr.u + 6),true);
-  return zVar1;
+  auStack_2c[0] = (undefined1)iVar1;
+  uVar3 = zdo_op_bind_and_unbind_rsp(*(undefined4 *)(param_2 + 0x14),auStack_2c,1);
+  return uVar3;
 }
 

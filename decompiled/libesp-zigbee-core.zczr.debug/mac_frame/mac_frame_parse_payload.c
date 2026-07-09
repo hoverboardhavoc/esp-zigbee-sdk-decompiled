@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac_frame.o -> mac_frame_parse_payload
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_frame_parse_payload(ezb_radio_frame_t *radio_frame,uint8_t mhr_len,mac_payload_t *mpl)
+undefined4 mac_frame_parse_payload(int *param_1,int param_2,char *param_3)
 
 {
-  undefined3 in_register_0000202d;
-  
-  if (radio_frame == (ezb_radio_frame_t *)0x0) {
+  if (param_1 == (int *)0x0) {
     return 2;
   }
-  if (mpl != (mac_payload_t *)0x0) {
-    if ((CONCAT31(in_register_0000202d,mhr_len) - 3U & 0xff) < 0x7c) {
-      mpl->buf = radio_frame->psdu + CONCAT31(in_register_0000202d,mhr_len);
-      mpl->len = (radio_frame->length - mhr_len) + 0xfe;
+  if (param_3 != (char *)0x0) {
+    if ((param_2 - 3U & 0xff) < 0x7c) {
+      *(int *)(param_3 + 4) = *param_1 + param_2;
+      *param_3 = ((char)param_1[1] - (char)param_2) + -2;
       return 0;
     }
     return 0x10;

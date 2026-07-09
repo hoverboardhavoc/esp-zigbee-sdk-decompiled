@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_packet.o -> zcl_packet_setup_stamp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,85 +10,87 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_packet_setup_stamp
-               (zcl_packet_t *packet,uint8_t src_ep,uint8_t dst_ep,uint16_t cluster_id,
-               uint16_t profile_id,uint8_t addr_mode,uint8_t *addr)
+int zcl_packet_setup_stamp
+              (int param_1,undefined1 param_2,undefined1 param_3,undefined2 param_4,int param_5,
+              undefined1 param_6,undefined1 *param_7)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  uint8_t uVar3;
-  uint8_t uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined1 uVar5;
+  undefined1 uVar6;
   byte bVar7;
-  zcl_packet_t *packet_00;
-  uint8_t *extraout_a1;
-  uint8_t uVar8;
-  undefined *puVar9;
-  undefined2 in_register_0000203a;
-  int iVar10;
+  int iVar8;
+  undefined1 *extraout_a1;
+  undefined1 uVar9;
+  undefined *puVar10;
   
-  iVar10 = CONCAT22(in_register_0000203a,profile_id);
-  if (addr == (uint8_t *)0x0) {
-    puVar9 = &_LC2;
-    uVar8 = '\x10';
-    packet_00 = (zcl_packet_t *)
-                __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_packet.c",0xdd);
-    if ((packet_00 != (zcl_packet_t *)0x0) && (extraout_a1 != (uint8_t *)0x0)) {
-      (packet_00->header).tsn = extraout_a1[0x1e];
-      (packet_00->header).cmd_id = uVar8;
-      (packet_00->header).manuf_code = *(uint16_t *)(extraout_a1 + 0x1c);
-      bVar7 = extraout_a1[0x1a];
-      (packet_00->header).fc = bVar7;
-      if ((bVar7 & 8) == 0) {
-        (packet_00->header).fc = bVar7 | 8;
-      }
-      else {
-        (packet_00->header).fc = bVar7 & 0xf7;
-      }
-      if (iVar10 == 0) {
-        (packet_00->header).fc = (packet_00->header).fc & 0xef;
-      }
-      else {
-        (packet_00->header).fc = (packet_00->header).fc | 0x10;
-      }
-      zcl_packet_setup_stamp
-                (packet_00,extraout_a1[0x15],extraout_a1[0x14],*(uint16_t *)(extraout_a1 + 0x16),
-                 *(uint16_t *)(extraout_a1 + 0x18),*extraout_a1,extraout_a1 + 2);
-      if (puVar9 == (undefined *)0x0) {
-        (packet_00->header).tsn = extraout_a1[0x1e];
-        (packet_00->header).fc = (packet_00->header).fc | 0x20;
-      }
-      else {
-        (packet_00->header).tsn = 0xff;
-        (packet_00->header).fc = (packet_00->header).fc & 0xdf;
-      }
-    }
-    return;
+  if (param_7 != (undefined1 *)0x0) {
+    *(undefined1 *)(param_1 + 0x14) = param_2;
+    *(undefined1 *)(param_1 + 0x15) = param_3;
+    *(undefined2 *)(param_1 + 0x16) = param_4;
+    *(short *)(param_1 + 0x18) = (short)param_5;
+    *(undefined1 *)(param_1 + 10) = param_6;
+    uVar9 = param_7[1];
+    uVar1 = param_7[2];
+    uVar2 = param_7[3];
+    uVar3 = param_7[4];
+    uVar4 = param_7[5];
+    uVar5 = param_7[6];
+    uVar6 = param_7[7];
+    *(undefined1 *)(param_1 + 0xc) = *param_7;
+    *(undefined1 *)(param_1 + 0xd) = uVar9;
+    *(undefined1 *)(param_1 + 0xe) = uVar1;
+    *(undefined1 *)(param_1 + 0xf) = uVar2;
+    *(undefined1 *)(param_1 + 0x10) = uVar3;
+    *(undefined1 *)(param_1 + 0x11) = uVar4;
+    *(undefined1 *)(param_1 + 0x12) = uVar5;
+    *(undefined1 *)(param_1 + 0x13) = uVar6;
+    return param_1;
   }
-  (packet->header).src_ep = src_ep;
-  (packet->header).dst_ep = dst_ep;
-  (packet->header).cluster_id = cluster_id;
-  (packet->header).profile_id = profile_id;
-  (packet->header).dst_addr.addr_mode = addr_mode;
-  uVar8 = addr[1];
-  uVar1 = addr[2];
-  uVar2 = addr[3];
-  uVar3 = addr[4];
-  uVar4 = addr[5];
-  uVar5 = addr[6];
-  uVar6 = addr[7];
-  *(uint8_t *)&(packet->header).dst_addr.u = *addr;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 1) = uVar8;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 2) = uVar1;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 3) = uVar2;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 4) = uVar3;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 5) = uVar4;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 6) = uVar5;
-  *(uint8_t *)((int)&(packet->header).dst_addr.u + 7) = uVar6;
-  return;
+  puVar10 = &_LC2;
+  uVar9 = 0x14;
+  iVar8 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_packet.c",0xdd);
+  if (iVar8 == 0) {
+    iVar8 = 0x87;
+  }
+  else if (extraout_a1 == (undefined1 *)0x0) {
+    iVar8 = 0x87;
+  }
+  else {
+    *(undefined1 *)(iVar8 + 0x1e) = extraout_a1[0x1e];
+    *(undefined1 *)(iVar8 + 0x20) = uVar9;
+    *(undefined2 *)(iVar8 + 0x1c) = *(undefined2 *)(extraout_a1 + 0x1c);
+    bVar7 = extraout_a1[0x1a];
+    *(byte *)(iVar8 + 0x1a) = bVar7;
+    if ((bVar7 & 8) == 0) {
+      *(byte *)(iVar8 + 0x1a) = bVar7 | 8;
+    }
+    else {
+      *(byte *)(iVar8 + 0x1a) = bVar7 & 0xf7;
+    }
+    if (param_5 == 0) {
+      *(byte *)(iVar8 + 0x1a) = *(byte *)(iVar8 + 0x1a) & 0xef;
+    }
+    else {
+      *(byte *)(iVar8 + 0x1a) = *(byte *)(iVar8 + 0x1a) | 0x10;
+    }
+    zcl_packet_setup_stamp
+              (iVar8,extraout_a1[0x15],extraout_a1[0x14],*(undefined2 *)(extraout_a1 + 0x16),
+               *(undefined2 *)(extraout_a1 + 0x18),*extraout_a1,extraout_a1 + 2);
+    if (puVar10 == (undefined *)0x0) {
+      *(undefined1 *)(iVar8 + 0x1e) = extraout_a1[0x1e];
+      *(byte *)(iVar8 + 0x1a) = *(byte *)(iVar8 + 0x1a) | 0x20;
+      iVar8 = 0;
+    }
+    else {
+      *(undefined1 *)(iVar8 + 0x1e) = 0xff;
+      *(byte *)(iVar8 + 0x1a) = *(byte *)(iVar8 + 0x1a) & 0xdf;
+      iVar8 = 0;
+    }
+  }
+  return iVar8;
 }
 

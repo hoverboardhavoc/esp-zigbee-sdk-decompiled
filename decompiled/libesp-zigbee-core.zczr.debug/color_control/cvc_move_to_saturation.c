@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> cvc_move_to_saturation
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-cvc_move_to_saturation
-          (uint8_t ep_id,ezb_zcl_color_control_move_to_saturation_cmd_payload_t *payload)
+undefined4 cvc_move_to_saturation(uint param_1,byte *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  zcl_attr_desc_t *pzVar2;
-  undefined1 local_30 [4];
-  zcl_cvc_input_t input;
+  int iVar1;
+  undefined4 uVar2;
+  uint local_30;
+  uint uStack_2c;
+  uint uStack_28;
+  undefined4 uStack_24;
+  uint uStack_20;
+  undefined4 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (payload == (ezb_zcl_color_control_move_to_saturation_cmd_payload_t *)0x0) {
+  if (param_2 == (byte *)0x0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/color_control.c",0x442
                   ,"cvc_move_to_saturation","payload");
   }
   else {
-    input.ep_id = '\0';
-    input._1_3_ = 0;
-    input.begin = 0;
-    input.duration = 0;
-    local_30._1_3_ = 0;
-    local_30[0] = ep_id;
-    input.end = 1;
-    input._12_4_ = ZEXT24(payload->transition_time);
-    input._20_4_ = cvc_sat_output_handler;
-    input.cb = (zcl_cvc_output_callback_t)0x1;
-    if (payload->saturation != 0xff) {
-      pzVar2 = color_control_srv_get_attr_desc(ep_id,1);
-      if (pzVar2 != (zcl_attr_desc_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-        input._0_4_ = ZEXT14(*pzVar2->data_p);
-        input.begin = (int32_t)payload->saturation;
-        eVar1 = schedule_cvc_color_line(ep_id,(zcl_cvc_input_t *)local_30);
-        return eVar1;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_1c = 0;
+    local_30 = param_1 & 0xff;
+    uStack_24 = 1;
+    uStack_20 = (uint)*(ushort *)(param_2 + 2);
+    pcStack_18 = cvc_sat_output_handler;
+    uStack_14 = 1;
+    if (*param_2 != 0xff) {
+      iVar1 = color_control_srv_get_attr_desc(1);
+      if (iVar1 != 0) {
+        uStack_2c = (uint)**(byte **)(iVar1 + 8);
+        uStack_28 = (uint)*param_2;
+        uVar2 = schedule_cvc_color_line(param_1,&local_30);
+        return uVar2;
       }
       return 0x86;
     }

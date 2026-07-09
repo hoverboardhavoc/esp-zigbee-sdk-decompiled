@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nwk_neighbor_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,71 +10,64 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_neighbor_table_init(uint16_t capacity)
+short * nwk_neighbor_table_init(uint param_1)
 
 {
-  _Bool _Var1;
-  undefined2 in_register_0000202a;
+  int iVar1;
   int iVar2;
-  undefined3 extraout_var;
   undefined4 uVar3;
-  undefined3 extraout_var_00;
-  int iVar4;
-  nwk_neighbor_t *nbr;
+  short *psVar4;
   uint uVar5;
   
-  uVar5 = CONCAT22(in_register_0000202a,capacity);
-  iVar2 = core_globals_get();
-  _Var1 = nbt_is_inited((nwk_neighbor_table_t *)(iVar2 + 0xb1c));
-  if ((CONCAT31(extraout_var,_Var1) == 0) && (uVar5 != 0)) {
-    memset((nwk_neighbor_table_t *)(iVar2 + 0xb1c),0,0x10);
-    *(uint16_t *)(iVar2 + 0xb24) = capacity;
-    uVar3 = mm_calloc(uVar5,0x1c);
-    *(undefined4 *)(iVar2 + 0xb20) = uVar3;
-    uVar3 = mm_calloc(*(ushort *)(iVar2 + 0xb24) + 7 >> 3,1);
-    *(undefined4 *)(iVar2 + 0xb1c) = uVar3;
-    *(short *)(iVar2 + 0xb26) = (short)(uVar5 >> 1);
-    return;
+  iVar1 = core_globals_get();
+  iVar2 = nbt_is_inited((void *)(iVar1 + 0xb1c));
+  if ((iVar2 == 0) && (param_1 != 0)) {
+    memset((void *)(iVar1 + 0xb1c),0,0x10);
+    *(short *)(iVar1 + 0xb24) = (short)param_1;
+    uVar3 = mm_calloc(param_1,0x1c);
+    *(undefined4 *)(iVar1 + 0xb20) = uVar3;
+    psVar4 = (short *)mm_calloc(*(ushort *)(iVar1 + 0xb24) + 7 >> 3,1);
+    *(short **)(iVar1 + 0xb1c) = psVar4;
+    *(short *)(iVar1 + 0xb26) = (short)(param_1 >> 1);
+    return psVar4;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x1ab,
                 "nwk_neighbor_table_init",&_LC11);
-  iVar2 = core_globals_get();
-  _Var1 = nbt_is_inited((nwk_neighbor_table_t *)(iVar2 + 0xb1c));
-  if (CONCAT31(extraout_var_00,_Var1) != 0) {
-    mm_free(*(undefined4 *)(iVar2 + 0xb20));
-    *(undefined4 *)(iVar2 + 0xb20) = 0;
-    mm_free(*(undefined4 *)(iVar2 + 0xb1c));
-    *(undefined4 *)(iVar2 + 0xb1c) = 0;
-    return;
+  iVar1 = core_globals_get();
+  iVar2 = nbt_is_inited(iVar1 + 0xb1c);
+  if (iVar2 != 0) {
+    mm_free(*(undefined4 *)(iVar1 + 0xb20));
+    *(undefined4 *)(iVar1 + 0xb20) = 0;
+    psVar4 = (short *)mm_free(*(undefined4 *)(iVar1 + 0xb1c));
+    *(undefined4 *)(iVar1 + 0xb1c) = 0;
+    return psVar4;
   }
-  iVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x1b9,
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x1b9,
                         "nwk_neighbor_table_deinit",&_LC11);
-  iVar4 = core_globals_get();
-  nbr = nbt_get_new_nbr((nwk_neighbor_table_t *)(iVar4 + 0xb1c),SUB41(iVar2,0));
-  if (iVar2 == 0) {
-    if (nbr == (nwk_neighbor_t *)0x0) {
-      return;
+  iVar2 = core_globals_get();
+  psVar4 = (short *)nbt_get_new_nbr(iVar2 + 0xb1c,iVar1);
+  if (iVar1 == 0) {
+    if (psVar4 == (short *)0x0) {
+      return (short *)0x0;
     }
   }
-  else if (nbr == (nwk_neighbor_t *)0x0) {
-    nbr = nbt_get_stale_router((nwk_neighbor_table_t *)(iVar4 + 0xb1c));
-    if (nbr == (nwk_neighbor_t *)0x0) {
-      return;
+  else if (psVar4 == (short *)0x0) {
+    psVar4 = (short *)nbt_get_stale_router(iVar2 + 0xb1c);
+    if (psVar4 == (short *)0x0) {
+      return (short *)0x0;
     }
-    if (nbr->addr_ref != 0xffff) {
+    if (*psVar4 != -1) {
       nwk_address_unlock_ref();
     }
   }
-  memset(nbr,0,0x1c);
-  nbr->addr_ref = 0xffff;
-  uVar5 = *(uint *)&nbr->field_0xc;
-  *(uint *)&nbr->field_0xc = uVar5 | 3;
+  memset(psVar4,0,0x1c);
+  *psVar4 = -1;
+  uVar5 = *(uint *)(psVar4 + 6);
+  *(uint *)(psVar4 + 6) = uVar5 | 3;
   uVar5 = uVar5 & 0xfffffc3f;
-  *(uint *)&nbr->field_0xc = uVar5 | 0xc3;
-  *(uint *)&nbr->field_0xc = uVar5 | 0x1c0000c3;
-  nwk_neighbor_clear_lqa(nbr);
-  return;
+  *(uint *)(psVar4 + 6) = uVar5 | 0xc3;
+  *(uint *)(psVar4 + 6) = uVar5 | 0x1c0000c3;
+  nwk_neighbor_clear_lqa(psVar4);
+  return psVar4;
 }
 

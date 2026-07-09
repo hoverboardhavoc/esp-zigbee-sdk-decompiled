@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_ed_mngr.o -> nwk_ed_send_tmo_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,18 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_ed_send_tmo_req(void)
+bool nwk_ed_send_tmo_req(void)
 
 {
-  uint8_t uVar1;
+  undefined1 uVar1;
   int iVar2;
   undefined4 uVar3;
   undefined4 uVar4;
   undefined1 uStack_15;
-  undefined2 auStack_14 [2];
-  nwk_ed_tmo_req_cmd_t req;
+  undefined2 auStack_14 [4];
   
   iVar2 = zmsg_alloc(0x2f);
   if (iVar2 != 0) {
@@ -37,6 +34,6 @@ ezb_err_t nwk_ed_send_tmo_req(void)
     zmsg_append_bytes(iVar2,2,auStack_14);
     nwk_fwd_send_msg_delayed(iVar2,0);
   }
-  return (uint)(iVar2 == 0);
+  return iVar2 == 0;
 }
 

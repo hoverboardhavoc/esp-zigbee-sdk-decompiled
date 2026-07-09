@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_bind_trans_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_bind_trans_request(aps_apsde_data_req_t *req)
+int aps_bind_trans_request(int *param_1)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
-  aps_bind_src_t *local_20;
-  aps_bind_ctx_t bind_ctx;
+  int local_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 auStack_14 [3];
   
-  if ((req == (aps_apsde_data_req_t *)0x0) || (req->asdu == (zmsg_t *)0x0)) {
+  if ((param_1 == (int *)0x0) || (*param_1 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x13c,
                   "aps_bind_trans_request","req != ((void *)0) && req->asdu != ((void *)0)");
   }
-  else if ((req->dst_addr).addr_mode == '\0') {
-    local_20 = (aps_bind_src_t *)0x0;
-    bind_ctx.src = (aps_bind_src_t *)0x0;
-    bind_ctx.dst = (aps_bind_dst_t *)0x0;
-    bind_ctx.error = 0;
+  else if ((char)param_1[1] == '\0') {
+    local_20 = 0;
+    uStack_1c = 0;
+    uStack_18 = 0;
+    auStack_14[0] = 0;
     nwk_get_extended_address();
-    local_20 = (aps_bind_src_t *)aps_bind_table_find_src(req->src_ep,req->cluster_id);
-    if (local_20 == (aps_bind_src_t *)0x0) {
+    local_20 = aps_bind_table_find_src(*(undefined1 *)((int)param_1 + 0xe),(short)param_1[4]);
+    if (local_20 == 0) {
       return 0x3a8;
     }
-    iVar1 = zmsg_add_footer(req->asdu,req,0x1c);
+    iVar1 = zmsg_add_footer(*param_1,param_1,0x1c);
     if (iVar1 != 0) {
       return iVar1;
     }
@@ -43,11 +42,10 @@ ezb_err_t aps_bind_trans_request(aps_apsde_data_req_t *req)
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x13d,
                 "aps_bind_trans_request","req->dst_addr.addr_mode == EZB_ADDR_MODE_NONE");
 _L0:
-  eVar2 = aps_bind_trans_schedule_next_nmsg
-                    (local_20,(aps_bind_dst_t *)bind_ctx.src,req->asdu,(uint8_t *)&bind_ctx.error);
-  if (eVar2 == 0) {
-    eVar2 = zmsg_add_footer(req->asdu,&local_20,0x10);
+  iVar1 = aps_bind_trans_schedule_next_nmsg(local_20,uStack_1c,*param_1,auStack_14);
+  if (iVar1 == 0) {
+    iVar1 = zmsg_add_footer(*param_1,&local_20,0x10);
   }
-  return eVar2;
+  return iVar1;
 }
 

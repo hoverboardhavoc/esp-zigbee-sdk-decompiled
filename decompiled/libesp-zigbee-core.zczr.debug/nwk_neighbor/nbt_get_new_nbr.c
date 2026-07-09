@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_get_new_nbr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_neighbor_t * nbt_get_new_nbr(nwk_neighbor_table_t *tbl,_Bool is_router)
+uint nbt_get_new_nbr(undefined4 *param_1,int param_2)
 
 {
-  _Bool _Var1;
-  nwk_neighbor_t *n;
-  undefined3 in_register_0000202d;
+  char cVar1;
   uint uVar2;
-  nwk_neighbor_t *pnVar3;
+  uint uVar3;
   
-  if (CONCAT31(in_register_0000202d,is_router) == 0) {
-    pnVar3 = (nwk_neighbor_t *)(uint)tbl->ent_nr;
-    uVar2 = (int)pnVar3 - (uint)tbl->ed_capacity & 0xffff;
+  if (param_2 == 0) {
+    uVar3 = (uint)*(ushort *)(param_1 + 2);
+    uVar2 = uVar3 - *(ushort *)((int)param_1 + 10) & 0xffff;
   }
   else {
-    pnVar3 = (nwk_neighbor_t *)((uint)tbl->ent_nr - (uint)tbl->ed_capacity & 0xffff);
+    uVar3 = (uint)*(ushort *)(param_1 + 2) - (uint)*(ushort *)((int)param_1 + 10) & 0xffff;
     uVar2 = 0;
   }
-  n = (nwk_neighbor_t *)bitmap_find_next_zero_bit(tbl->ent_in_use,tbl->ent_nr,uVar2);
-  if (n < pnVar3) {
-    _Var1 = test_and_set_bitmap((uint)n,tbl->ent_in_use);
-    if (_Var1) {
+  uVar2 = bitmap_find_next_zero_bit(*param_1,*(undefined2 *)(param_1 + 2),uVar2);
+  if (uVar2 < uVar3) {
+    cVar1 = test_and_set_bitmap(*param_1);
+    if (cVar1 == '\x01') {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x11a,
                     "nbt_get_new_nbr","!test_and_set_bitmap(idx, tbl->ent_in_use)");
     }
     else {
-      n = tbl->ents + (int)n;
-      if (CONCAT31(in_register_0000202d,is_router) != 0) {
-        nbt_inc_router_cnt(tbl);
-        return n;
+      uVar2 = param_1[1] + uVar2 * 0x1c;
+      if (param_2 != 0) {
+        nbt_inc_router_cnt(param_1);
+        return uVar2;
       }
     }
-    nbt_inc_ed_cnt(tbl);
+    nbt_inc_ed_cnt(param_1);
   }
   else {
-    n = (nwk_neighbor_t *)0x0;
+    uVar2 = 0;
   }
-  return n;
+  return uVar2;
 }
 

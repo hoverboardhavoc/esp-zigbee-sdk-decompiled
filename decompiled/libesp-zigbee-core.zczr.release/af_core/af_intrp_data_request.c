@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_core.o -> af_intrp_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t af_intrp_data_request(af_intrp_data_req_t *req)
+int af_intrp_data_request(int param_1)
 
 {
-  int extraout_a0;
-  zmsg_t *msg;
-  af_user_cnf_ctx_t cnf_ctx;
+  int iVar1;
+  int iVar2;
   
-  if (req != (af_intrp_data_req_t *)0x0) {
-    msg = (req->data).asdu;
-    cnf_ctx = (af_user_cnf_ctx_t)aps_intrp_data_request();
-    if (extraout_a0 != 0) {
-      if (msg == (zmsg_t *)0x0) {
-        return extraout_a0;
+  if (param_1 != 0) {
+    iVar2 = *(int *)(param_1 + 0x14);
+    iVar1 = aps_intrp_data_request();
+    if (iVar1 != 0) {
+      if (iVar2 == 0) {
+        return iVar1;
       }
-      zmsg_free(msg);
-      return extraout_a0;
+      zmsg_free(iVar2);
+      return iVar1;
     }
-    af_data_add_cnf_cb(msg,cnf_ctx);
+    af_data_add_cnf_cb_isra_0(iVar2,*(undefined4 *)(param_1 + 0x18),*(undefined4 *)(param_1 + 0x1c))
+    ;
   }
   return 0;
 }

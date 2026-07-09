@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_iface_mlme_asso_response
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,51 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_iface_mlme_asso_response(mac_interface_t *iface,mac_associate_rsp_t *rsp)
+int mac_iface_mlme_asso_response(undefined4 *param_1,void *param_2)
 
 {
   int iVar1;
-  zmsg_t *msg;
-  undefined4 uVar2;
-  mac_device *dev;
-  ezb_shortaddr_t aeStack_56 [2];
-  ezb_panid_t eStack_52;
-  mac_panids_t panids;
-  mac_addresses_t addresses;
-  uint8_t hdr [28];
+  int iVar2;
+  undefined4 uVar3;
+  void *__src;
+  undefined2 uStack_56;
+  undefined2 uStack_54;
+  undefined2 uStack_52;
+  undefined1 auStack_50 [2];
+  undefined1 auStack_4e [8];
+  undefined1 uStack_46;
+  undefined1 auStack_44 [8];
+  undefined1 auStack_3c [2];
+  undefined1 auStack_3a [34];
   
-  dev = (mac_device *)iface->dev;
-  msg = (zmsg_t *)zmsg_alloc(0);
+  __src = (void *)*param_1;
+  iVar2 = zmsg_alloc(0);
   iVar1 = 1;
-  if (msg != (zmsg_t *)0x0) {
-    memset((void *)((int)&addresses.destination.u + 4),0,0x1c);
-    panids.source._0_1_ = 3;
-    memcpy(&panids.destination,dev,8);
-    addresses.source.u._4_1_ = 3;
-    memcpy((void *)((int)&addresses.source.u + 6),rsp,8);
-    aeStack_56[1] = 0xffff;
-    eStack_52 = (dev->pib).panid;
-    uVar2 = mac_frame_write_hdr((undefined1 *)((int)&addresses.destination.u + 4),&panids,
-                                aeStack_56 + 1,0,3,2);
-    iVar1 = zmsg_append_bytes(msg,uVar2,(undefined1 *)((int)&addresses.destination.u + 4));
+  if (iVar2 != 0) {
+    memset(auStack_3c,0,0x1c);
+    auStack_50[0] = 3;
+    memcpy(auStack_4e,__src,8);
+    uStack_46 = 3;
+    memcpy(auStack_44,param_2,8);
+    uStack_54 = 0xffff;
+    uStack_52 = *(undefined2 *)((int)__src + 10);
+    uVar3 = mac_frame_write_hdr(auStack_3c,auStack_50,&uStack_54,0,3,2);
+    iVar1 = zmsg_append_bytes(iVar2,uVar3,auStack_3c);
     if (iVar1 == 0) {
-      aeStack_56[0] = rsp->asso_shortaddr;
-      iVar1 = zmsg_append_bytes(msg,2,aeStack_56);
+      uStack_56 = *(undefined2 *)((int)param_2 + 8);
+      iVar1 = zmsg_append_bytes(iVar2,2,&uStack_56);
       if (iVar1 == 0) {
-        aeStack_56[0] = CONCAT11(aeStack_56[0]._1_1_,rsp->status);
-        iVar1 = zmsg_append_bytes(msg,1,aeStack_56);
+        uStack_56 = CONCAT11(uStack_56._1_1_,*(undefined1 *)((int)param_2 + 10));
+        iVar1 = zmsg_append_bytes(iVar2,1,&uStack_56);
         if (iVar1 == 0) {
-          addresses.destination.u._4_1_ = 3;
-          memcpy((void *)((int)&addresses.destination.u + 6),rsp,8);
-          mac_indirect_transmit(dev,(ezb_address_t *)((int)&addresses.destination.u + 4),msg);
+          auStack_3c[0] = 3;
+          memcpy(auStack_3a,param_2,8);
+          mac_indirect_transmit(__src,auStack_3c,iVar2);
           return 0;
         }
       }
     }
-    zmsg_free(msg);
+    zmsg_free(iVar2);
   }
   return iVar1;
 }

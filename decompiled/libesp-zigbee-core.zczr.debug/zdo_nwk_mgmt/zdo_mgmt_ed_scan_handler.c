@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_mgmt_ed_scan_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,68 +10,52 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_mgmt_ed_scan_handler(nwk_ed_scan_result_t *result,void *user_ctx)
+void zdo_mgmt_ed_scan_handler(int param_1,int param_2)
 
 {
-  undefined1 auStack_38 [4];
-  zdp_nwk_mgmt_nwk_update_notify_field_t notify;
+  uint uStack_38;
+  uint uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  auStack_38 = (undefined1  [4])0x0;
-  notify.status = '\0';
-  notify._1_3_ = 0;
-  notify.scanned_channels = 0;
-  notify.total_transmissions = 0;
-  notify.transmissions_failure = 0;
-  notify.scanned_channels_list_count = '\0';
-  notify.energy_values[0] = '\0';
-  notify.energy_values[1] = '\0';
-  notify.energy_values[2] = '\0';
-  notify.energy_values[3] = '\0';
-  notify.energy_values[4] = '\0';
-  notify.energy_values[5] = '\0';
-  notify.energy_values[6] = '\0';
-  notify.energy_values[7] = '\0';
-  notify.energy_values[8] = '\0';
-  notify.energy_values[9] = '\0';
-  notify.energy_values[10] = '\0';
-  notify.energy_values[0xb] = '\0';
-  notify.energy_values[0xc] = '\0';
-  notify.energy_values[0xd] = '\0';
-  notify.energy_values[0xe] = '\0';
-  notify.energy_values[0xf] = '\0';
-  notify.energy_values[0x10] = '\0';
-  notify.energy_values[0x11] = '\0';
-  notify.energy_values[0x12] = '\0';
-  notify.energy_values[0x13] = '\0';
-  notify.energy_values[0x14] = '\0';
-  notify.energy_values[0x15] = '\0';
-  notify.energy_values[0x16] = '\0';
-  if (user_ctx == (void *)0x0) {
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_2 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x4f1,
                   "zdo_mgmt_ed_scan_handler",&_LC8);
   }
   else {
-    zmsg_get_footer(*(undefined4 *)((int)user_ctx + 0x14),auStack_38,0x28);
-    zmsg_remove_footer(*(undefined4 *)((int)user_ctx + 0x14),0x28);
-    if (result != (nwk_ed_scan_result_t *)0x0) {
-      notify._0_4_ = notify._0_4_ | 1 << (result->channel_number & 0x1f);
-      notify.scanned_channels = 0;
-      if ((notify._8_4_ & 0xff) < 0x1b) {
-        notify.energy_values[(notify._8_4_ & 0xff) - 4] = result->max_rssi;
-        notify.total_transmissions._0_1_ = (char)notify._8_4_ + '\x01';
+    zmsg_get_footer(*(undefined4 *)(param_2 + 0x14),&uStack_38,0x28);
+    zmsg_remove_footer(*(undefined4 *)(param_2 + 0x14),0x28);
+    if (param_1 != 0) {
+      uStack_34 = uStack_34 | 1 << (*(byte *)(param_1 + 1) & 0x1f);
+      uStack_30 = 0;
+      if ((uStack_2c & 0xff) < 0x1b) {
+        *(undefined1 *)((int)&uStack_2c + (uStack_2c & 0xff) + 1) = *(undefined1 *)(param_1 + 2);
+        uStack_2c = CONCAT31(uStack_2c._1_3_,(char)uStack_2c + '\x01');
       }
-      zmsg_add_footer(*(undefined4 *)((int)user_ctx + 0x14),auStack_38,0x28);
+      zmsg_add_footer(*(undefined4 *)(param_2 + 0x14),&uStack_38,0x28);
       return;
     }
   }
-  auStack_38 = (undefined1  [4])((uint)auStack_38 & 0xffffff00);
-  zdo_op_nwk_mgmt_nwk_update_notify
-            (*(zdo_packet_payload_t **)((int)user_ctx + 0x14),
-             (zdp_nwk_mgmt_nwk_update_notify_field_t *)auStack_38,true);
-  zdo_packet_send(user_ctx);
-  mm_free(user_ctx);
+  uStack_38 = uStack_38 & 0xffffff00;
+  zdo_op_nwk_mgmt_nwk_update_notify(*(undefined4 *)(param_2 + 0x14),&uStack_38,1);
+  zdo_packet_send(param_2);
+  mm_free(param_2);
   return;
 }
 

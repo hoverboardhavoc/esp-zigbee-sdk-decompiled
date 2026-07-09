@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scene_table_store_scene
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,58 +10,58 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t scene_table_store_scene(uint8_t ep_id,zcl_scene_table_entry_t *entry)
+undefined4 scene_table_store_scene(undefined4 param_1,int param_2)
 
 {
   byte bVar1;
-  uint uVar2;
-  ezb_zcl_scenes_extension_field_t *peVar3;
-  uint16_t uVar4;
-  uint8_t *puVar5;
-  ezb_err_t eVar6;
+  undefined2 uVar2;
+  uint uVar3;
+  undefined4 *puVar4;
+  int iVar5;
+  undefined1 *puVar6;
+  undefined4 uVar7;
   uint __size;
   
-  if (entry == (zcl_scene_table_entry_t *)0x0) {
-    eVar6 = 2;
+  if (param_2 == 0) {
+    uVar7 = 2;
   }
   else {
-    uVar4 = scene_entry_get_extended_field_length(entry);
-    __size = uVar4 + 0x18 & 0xffff;
-    puVar5 = (uint8_t *)calloc(1,__size);
-    if (puVar5 == (uint8_t *)0x0) {
-      eVar6 = 1;
+    iVar5 = scene_entry_get_extended_field_length(param_2);
+    __size = iVar5 + 0x18U & 0xffff;
+    puVar6 = (undefined1 *)calloc(1,__size);
+    if (puVar6 == (undefined1 *)0x0) {
+      uVar7 = 1;
     }
     else {
-      *puVar5 = ep_id;
-      uVar4 = entry->group_id;
-      puVar5[1] = (uint8_t)uVar4;
-      puVar5[2] = (uint8_t)(uVar4 >> 8);
-      puVar5[3] = entry->scene_id;
-      strncpy((char *)(puVar5 + 4),entry->scene_name,0x11);
-      uVar4 = entry->transition_time;
-      puVar5[0x15] = (uint8_t)uVar4;
-      puVar5[0x16] = (uint8_t)(uVar4 >> 8);
-      puVar5[0x17] = entry->transition_time_100ms;
-      uVar2 = 0;
-      for (peVar3 = entry->extension_field; peVar3 != (ezb_zcl_scenes_extension_field_t *)0x0;
-          peVar3 = peVar3->next) {
-        puVar5[uVar2 + 0x18] = (uint8_t)peVar3->cluster_id;
-        (puVar5 + uVar2 + 0x18)[1] = *(uint8_t *)((int)&peVar3->cluster_id + 1);
-        bVar1 = peVar3->length;
-        puVar5[(uVar2 + 2 & 0xffff) + 0x18] = bVar1;
-        uVar2 = uVar2 + 3 & 0xffff;
+      *puVar6 = (char)param_1;
+      uVar2 = *(undefined2 *)(param_2 + 2);
+      puVar6[1] = (char)uVar2;
+      puVar6[2] = (char)((ushort)uVar2 >> 8);
+      puVar6[3] = *(undefined1 *)(param_2 + 4);
+      strncpy(puVar6 + 4,(char *)(param_2 + 8),0x11);
+      uVar2 = *(undefined2 *)(param_2 + 6);
+      puVar6[0x15] = (char)uVar2;
+      puVar6[0x16] = (char)((ushort)uVar2 >> 8);
+      puVar6[0x17] = *(undefined1 *)(param_2 + 0x19);
+      uVar3 = 0;
+      for (puVar4 = *(undefined4 **)(param_2 + 0x1c); puVar4 != (undefined4 *)0x0;
+          puVar4 = (undefined4 *)*puVar4) {
+        puVar6[uVar3 + 0x18] = *(undefined1 *)(puVar4 + 1);
+        (puVar6 + uVar3 + 0x18)[1] = *(undefined1 *)((int)puVar4 + 5);
+        bVar1 = *(byte *)((int)puVar4 + 6);
+        puVar6[(uVar3 + 2 & 0xffff) + 0x18] = bVar1;
+        uVar3 = uVar3 + 3 & 0xffff;
         if (bVar1 != 0) {
-          memcpy(puVar5 + uVar2 + 0x18,peVar3->value,(uint)bVar1);
-          uVar2 = peVar3->length + uVar2 & 0xffff;
+          memcpy(puVar6 + uVar3 + 0x18,(void *)puVar4[2],(uint)bVar1);
+          uVar3 = *(byte *)((int)puVar4 + 6) + uVar3 & 0xffff;
         }
       }
-      scene_table_remove_stored_scene(ep_id,entry->group_id,entry->scene_id);
-      eVar6 = ds_internal_add_entry(0xb,puVar5,__size);
-      mm_free(puVar5);
+      scene_table_remove_stored_scene
+                (param_1,*(undefined2 *)(param_2 + 2),*(undefined1 *)(param_2 + 4));
+      uVar7 = ds_internal_add_entry(0xb,puVar6,__size);
+      mm_free(puVar6);
     }
   }
-  return eVar6;
+  return uVar7;
 }
 

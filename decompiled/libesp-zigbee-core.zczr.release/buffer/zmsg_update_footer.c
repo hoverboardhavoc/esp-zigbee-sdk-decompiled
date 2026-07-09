@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_update_footer
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-void zmsg_update_footer(zmsg_t *msg,void *obj,uint16_t len)
+void zmsg_update_footer(int param_1,void *param_2,size_t param_3)
 
 {
-  buffer_t *pbVar1;
-  buffer_t *pbVar2;
-  buffer_t *buf;
+  int *piVar1;
+  int *piVar2;
+  int *piVar3;
   void *extraout_a1;
-  undefined2 in_register_00002032;
-  size_t __n;
-  uint uVar3;
+  void *extraout_a1_00;
+  uint uVar4;
   
-  __n = CONCAT22(in_register_00002032,len);
-  uVar3 = (uint)msg->tail;
-  if (uVar3 < __n) {
-    __n = 0;
-    msg = (zmsg_t *)__assert_func(0,0,0);
-    obj = extraout_a1;
+  uVar4 = (uint)*(ushort *)(param_1 + 0x10);
+  if (uVar4 < param_3) {
+    param_3 = 0;
+    param_1 = __assert_func(0,0,0);
+    param_2 = extraout_a1;
   }
-  pbVar2 = msg->chunks;
-  buf = msg->chunks;
-  while (pbVar1 = pbVar2, pbVar1 != (buffer_t *)0x0) {
-    buf = pbVar1;
-    pbVar2 = *(buffer_t **)&pbVar1->field_0;
+  piVar2 = (int *)*(int *)(param_1 + 8);
+  piVar3 = (int *)*(int *)(param_1 + 8);
+  while (piVar1 = piVar2, piVar1 != (int *)0x0) {
+    piVar3 = piVar1;
+    piVar2 = (int *)*piVar1;
   }
-  if (0xac < uVar3) {
-    buf = (buffer_t *)buffer_get_tail(buf,(uint16_t)obj);
+  if (0xac < uVar4) {
+    piVar3 = (int *)buffer_get_tail_part_0();
+    param_2 = extraout_a1_00;
   }
-  memcpy((void *)((int)buf + (0xb0 - uVar3)),obj,__n);
+  memcpy((void *)((int)piVar3 + (0xb0 - uVar4)),param_2,param_3);
   return;
 }
 

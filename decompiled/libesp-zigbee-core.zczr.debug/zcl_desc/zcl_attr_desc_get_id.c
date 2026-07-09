@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_desc.o -> zcl_attr_desc_get_id
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,22 +11,21 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-uint16_t zcl_attr_desc_get_id(zcl_attr_desc_t *attr_desc)
+uint zcl_attr_desc_get_id(ushort *param_1)
 
 {
-  uint16_t uVar1;
-  int iVar2;
+  int iVar1;
+  uint uVar2;
   
-  if (attr_desc != (zcl_attr_desc_t *)0x0) {
-    return attr_desc->id;
+  if (param_1 != (ushort *)0x0) {
+    return (uint)*param_1;
   }
-  iVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x82,
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x82,
                         "zcl_attr_desc_get_id","attr_desc");
-  if (iVar2 != 0) {
-    uVar1 = zcl_get_attr_value_size(*(undefined1 *)(iVar2 + 2),*(undefined4 *)(iVar2 + 8));
-    return uVar1;
+  if (iVar1 != 0) {
+    uVar2 = zcl_get_attr_value_size(*(undefined1 *)(iVar1 + 2),*(undefined4 *)(iVar1 + 8));
+    return uVar2;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_desc.c",0x88,"attr_desc");
                     /* WARNING: Bad instruction - Truncating control flow here */

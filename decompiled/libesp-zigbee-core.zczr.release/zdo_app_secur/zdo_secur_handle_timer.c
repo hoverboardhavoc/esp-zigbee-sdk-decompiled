@@ -1,17 +1,14 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_secur.o -> zdo_secur_handle_timer
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Variable defined which should be unmapped: rk_req */
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void zdo_secur_handle_timer(void)
 
@@ -22,7 +19,10 @@ void zdo_secur_handle_timer(void)
   undefined4 *puVar4;
   code *UNRECOVERED_JUMPTABLE;
   code *pcStack_24;
-  apsme_request_key_req_t rk_req;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined1 uStack_14;
   
   nwk_pim_stop_fast_poll();
   iVar2 = core_globals_get();
@@ -40,21 +40,21 @@ void zdo_secur_handle_timer(void)
         *(char *)(iVar2 + 0x9b8) = *(char *)(iVar2 + 0x9b8) + '\x01';
         iVar2 = core_globals_get();
         pcStack_24 = (code *)0x0;
-        rk_req.dst_address.field_0.u64._0_4_ = 0;
+        uStack_20 = 0;
         if (*(char *)(iVar2 + 0xcf8) == '\x02') {
-          rk_req.dst_address.field_0.u64._4_4_ = 4;
-          rk_req._8_4_ = 0;
-          rk_req.partner_address.field_0.u8[3] = '\0';
+          uStack_1c = 4;
+          uStack_18 = 0;
+          uStack_14 = 0;
           puVar4 = (undefined4 *)aps_secur_get_tc_address();
           pcStack_24 = (code *)*puVar4;
-          rk_req.dst_address.field_0.u64._0_4_ = puVar4[1];
+          uStack_20 = puVar4[1];
           iVar2 = apsme_request_key_request(&pcStack_24);
         }
         else {
-          rk_req.dst_address.field_0.u8[4] = 4;
+          uStack_1c = CONCAT31(uStack_1c._1_3_,4);
           puVar4 = (undefined4 *)aps_secur_get_tc_address();
           pcStack_24 = (code *)*puVar4;
-          rk_req.dst_address.field_0.u64._0_4_ = puVar4[1];
+          uStack_20 = puVar4[1];
           iVar2 = apsme_verify_key_request(&pcStack_24);
         }
         if (iVar2 == 0) {
@@ -99,7 +99,7 @@ void zdo_secur_handle_timer(void)
     *(byte *)(iVar3 + 8) = *(byte *)(iVar3 + 8) | 2;
     iVar3 = zdo_mgmt_req_get_param(iVar2);
     *(byte *)(iVar3 + 8) = *(byte *)(iVar3 + 8) & 0xfe;
-    rk_req.dst_address.field_0.u64._0_4_ = 0;
+    uStack_20 = 0;
     pcStack_24 = zdo_secur_finish_state_after_leave;
     zdo_mgmt_req_set_user_ctx(iVar2,&pcStack_24);
     zdo_send_mgmt_req(iVar2,0);

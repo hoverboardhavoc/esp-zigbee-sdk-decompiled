@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> zb_zcl_disc_attr_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_disc_attr_resp_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_disc_attr_resp_handler(undefined1 *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_err_t err;
-  undefined1 auStack_38 [4];
-  esp_zb_zcl_cmd_discover_attributes_resp_message_t app_message;
+  undefined1 uVar1;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  auStack_38[0] = '\0';
-  auStack_38[1] = 0;
-  auStack_38[2] = '\0';
-  auStack_38[3] = 0;
-  app_message.info.status = '\0';
-  app_message.info._1_1_ = 0;
-  app_message.info.header.fc = '\0';
-  app_message.info.header._1_1_ = 0;
-  app_message.info.header.manuf_code = 0;
-  app_message.info.header.tsn = '\0';
-  app_message.info.header.rssi = '\0';
-  app_message.info.src_address.addr_type = '\0';
-  app_message.info.src_address._1_3_ = 0;
-  app_message.info.src_address.u.src_id = 0;
-  app_message.info.src_address.u._4_4_ = 0;
-  app_message.info.dst_address = 0;
-  app_message.info.src_endpoint = '\0';
-  app_message.info.dst_endpoint = '\0';
-  app_message.info.cluster = 0;
-  app_message.info.profile = 0;
-  app_message.info.command.id = '\0';
-  app_message.info.command.direction = '\0';
-  app_message.info.command.is_common = '\0';
-  app_message.info._31_1_ = 0;
-  app_message.is_completed = '\0';
-  app_message._33_3_ = 0;
-  convert_to_esp_zb_zcl_cmd_info
-            ((esp_zb_zcl_cmd_info_t *)auStack_38,*(ezb_zcl_cmd_hdr_t **)((int)arg + 8));
-                    /* WARNING: Load size is inaccurate */
-  auStack_38[0] = *arg;
-  app_message._32_4_ = *(undefined4 *)((int)arg + 0x10);
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_CMD_DISC_ATTR_RESP_CB_ID,auStack_38);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x14) = eVar1;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  convert_to_esp_zb_zcl_cmd_info(&uStack_38,*(undefined4 *)(param_1 + 8));
+  uStack_38 = CONCAT31(uStack_38._1_3_,*param_1);
+  uStack_14 = *(undefined4 *)(param_1 + 0x10);
+  if (param_2 != (code *)0x0) {
+    (*param_2)(6,&uStack_38);
+    uVar1 = esp_err_to_zcl_status();
+    param_1[0x14] = uVar1;
   }
   return;
 }

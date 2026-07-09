@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_ctx_list_remove_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_packet_ctx_list_remove_entry(zdo_packet_ctx_entry_t *ent)
+void zdo_packet_ctx_list_remove_entry(int param_1)
 
 {
   int iVar1;
@@ -21,9 +19,8 @@ void zdo_packet_ctx_list_remove_entry(zdo_packet_ctx_entry_t *ent)
   iVar1 = core_globals_get();
   piVar2 = *(int **)(iVar1 + 0xcac);
   if (piVar2 != (int *)0x0) {
-    for (; (zdo_packet_ctx_entry_t *)(piVar2 + -9) != (zdo_packet_ctx_entry_t *)0xffffffdc;
-        piVar2 = (int *)*piVar2) {
-      if ((zdo_packet_ctx_entry_t *)(piVar2 + -9) == ent) {
+    for (; piVar2 + -9 != (int *)0xffffffdc; piVar2 = (int *)*piVar2) {
+      if (piVar2 + -9 == (int *)param_1) {
         iVar1 = core_globals_get();
         list_remove_node(iVar1 + 0xcac,piVar2);
         if (*(char *)(piVar2 + -3) == '\0') {

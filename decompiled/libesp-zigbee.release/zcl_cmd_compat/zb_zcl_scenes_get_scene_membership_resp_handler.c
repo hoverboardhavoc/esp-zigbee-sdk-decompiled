@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> zb_zcl_scenes_get_scene_membership_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,27 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_scenes_get_scene_membership_resp_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_scenes_get_scene_membership_resp_handler(int param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_err_t err;
-  undefined1 auStack_3c [4];
-  esp_zb_zcl_scenes_get_scene_membership_resp_message_t app_message;
+  undefined1 uVar1;
+  undefined1 auStack_3c [32];
+  undefined1 uStack_1c;
+  undefined2 uStack_1a;
+  undefined1 uStack_18;
+  undefined4 uStack_14;
   
   memset(auStack_3c,0,0x2c);
-  convert_to_esp_zb_zcl_cmd_info
-            ((esp_zb_zcl_cmd_info_t *)auStack_3c,*(ezb_zcl_cmd_hdr_t **)((int)arg + 8));
-  auStack_3c[0] = *(esp_zb_zcl_status_t *)((int)arg + 0xc);
-  app_message.info.command.id = *(uint8_t *)((int)arg + 0xd);
-  app_message.info._30_2_ = *(undefined2 *)((int)arg + 0xe);
-  app_message.capacity = *(uint8_t *)((int)arg + 0x10);
-  app_message._36_4_ = *(undefined4 *)((int)arg + 0x14);
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_CMD_GET_SCENE_MEMBERSHIP_RESP_CB_ID,auStack_3c);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x18) = eVar1;
+  convert_to_esp_zb_zcl_cmd_info(auStack_3c,*(undefined4 *)(param_1 + 8));
+  auStack_3c[0] = *(undefined1 *)(param_1 + 0xc);
+  uStack_1c = *(undefined1 *)(param_1 + 0xd);
+  uStack_1a = *(undefined2 *)(param_1 + 0xe);
+  uStack_18 = *(undefined1 *)(param_1 + 0x10);
+  uStack_14 = *(undefined4 *)(param_1 + 0x14);
+  if (param_2 != (code *)0x0) {
+    (*param_2)(0x14,auStack_3c);
+    uVar1 = esp_err_to_zcl_status();
+    *(undefined1 *)(param_1 + 0x18) = uVar1;
   }
   return;
 }

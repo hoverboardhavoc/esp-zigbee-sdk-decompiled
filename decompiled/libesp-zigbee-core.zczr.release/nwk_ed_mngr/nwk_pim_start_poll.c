@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_ed_mngr.o -> nwk_pim_start_poll
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,90 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void nwk_pim_start_poll(void)
 
 {
-  _Bool _Var1;
-  short sVar2;
+  uint uVar1;
+  int iVar2;
   int iVar3;
-  undefined3 extraout_var;
   int iVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  int iVar7;
-  int extraout_a1;
-  int iVar8;
-  undefined1 uStack_39;
-  undefined1 uStack_38;
-  byte bStack_37;
-  byte bStack_34;
-  byte bStack_33;
+  int iVar5;
   
-  iVar3 = __assert_func(0,0,0,0);
-  _Var1 = nwk_is_router_started();
-  iVar8 = CONCAT31(extraout_var,_Var1);
-  if (iVar8 == 0) {
-    if (iVar3 == 0) {
-      return;
-    }
-_L0:
-    zmsg_free(iVar3);
+  iVar3 = nwk_is_device_zed();
+  if (iVar3 == 0) {
+    nwk_ed_start_keepalive_part_0();
+  }
+  iVar3 = core_globals_get();
+  if ((*(byte *)(iVar3 + 0xb16) & 0x20) != 0) {
     return;
   }
-  iVar4 = nwk_secur_get_seclevel();
-  if (((ushort)(iVar4 != 0) != (*(ushort *)(iVar3 + 0x16) >> 1 & 1)) ||
-     (*(short *)(extraout_a1 + 2) != *(short *)(extraout_a1 + 6))) goto _L0;
-  uStack_38 = 0;
-  iVar4 = core_globals_get();
-  bStack_37 = *(byte *)(iVar4 + 0xa28);
-  sVar2 = zmsg_get_offset(iVar3);
-  zmsg_read_bytes(iVar3,sVar2 + 1,2,&bStack_34);
-  if (0xe < bStack_34) {
-    uStack_38 = 1;
-    goto _L0;
+  iVar3 = core_globals_get();
+  *(byte *)(iVar3 + 0xb16) = *(byte *)(iVar3 + 0xb16) | 0x20;
+  iVar3 = core_globals_get();
+  iVar5 = *(int *)(iVar3 + 0xb0c);
+  iVar3 = core_globals_get();
+  uVar1 = nwk_ed_get_keepalive_interval();
+  iVar2 = core_globals_get();
+  if (((*(byte *)(iVar2 + 0xb16) & 0x10) != 0) && (1000 < uVar1)) {
+    uVar1 = 1000;
   }
-  if (bStack_33 != 0) {
-    uStack_38 = 2;
-    goto _L0;
+  iVar2 = core_globals_get();
+  if ((*(short *)(iVar2 + 0xb14) != 0) &&
+     (iVar2 = core_globals_get(), *(uint *)(iVar2 + 0xb10) <= uVar1)) {
+    iVar2 = core_globals_get();
+    uVar1 = *(uint *)(iVar2 + 0xb10);
   }
-  iVar4 = nwk_neighbor_table_get_by_short(*(undefined2 *)(extraout_a1 + 6));
-  if ((iVar4 == 0) || ((*(uint *)(iVar4 + 0xc) & 0x3c0) != 0x40)) goto _L0;
-  iVar7 = nwk_get_keepalive_mode();
-  if (iVar7 == 3) {
-    if ((*(uint *)(iVar4 + 0xc) & 0x400) == 0) {
-      bStack_37 = bStack_37 & 0xfd;
+  if (uVar1 == 0) {
+    uVar1 = 10;
+  }
+  *(uint *)(iVar3 + 0xb0c) = uVar1;
+  iVar3 = core_globals_get();
+  iVar3 = milli_timer_is_running(iVar3 + 0xafc);
+  if (iVar3 != 0) {
+    iVar3 = core_globals_get();
+    if (*(int *)(iVar3 + 0xb0c) != iVar5) {
+      iVar3 = core_globals_get();
+      iVar3 = milli_timer_get_fire_time(iVar3 + 0xafc);
+      iVar2 = core_globals_get();
+      iVar4 = *(int *)(iVar2 + 0xb0c);
+      iVar2 = core_globals_get();
+      milli_timer_fire_at(iVar2 + 0xafc,(iVar3 - iVar5) + iVar4);
+      return;
     }
-    else {
-      bStack_37 = bStack_37 & 0xfe;
-    }
+    return;
   }
-  if (*(ushort *)(iVar4 + 0x10) == (ushort)bStack_33) {
-    iVar8 = 0;
-  }
-  else {
-    *(ushort *)(iVar4 + 0x10) = (ushort)bStack_33;
-  }
-  if ((*(uint *)(iVar4 + 0x14) >> 0x14 & 0xf) == (uint)bStack_34) {
-    if (iVar8 != 0) goto _L0;
-  }
-  else {
-    *(uint *)(iVar4 + 0x14) = *(uint *)(iVar4 + 0x14) & 0xff0fffff | (bStack_34 & 0xf) << 0x14;
-_L0:
-    nwk_neighbor_table_store_child(iVar4);
-  }
-  nwk_neighbor_zed_keepalive(iVar4);
-_L0:
-  zmsg_free(iVar3);
-  uVar5 = zmsg_alloc(0x2f);
-  zmsg_set_offset(0);
-  uVar6 = nwk_get_short_address();
-  nwk_frame_write_hdr(uVar5,uVar6,*(undefined2 *)(extraout_a1 + 6),1,1,0);
-  uStack_39 = 0xc;
-  zmsg_append_bytes(uVar5,1,&uStack_39);
-  zmsg_append_bytes(uVar5,2,&uStack_38);
-  nwk_fwd_send_msg_delayed(uVar5,0);
+  iVar3 = core_globals_get();
+  iVar2 = core_globals_get();
+  milli_timer_start(iVar3 + 0xafc,*(undefined4 *)(iVar2 + 0xb0c));
   return;
 }
 

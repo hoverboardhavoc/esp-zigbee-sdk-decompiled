@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_mesh_routing.o -> nwk_mesh_update_neighbor
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,42 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_neighbor_t * nwk_mesh_update_neighbor(nwk_rx_info_t *rx_info)
+int nwk_mesh_update_neighbor(int param_1)
 
 {
-  ezb_shortaddr_t eVar1;
-  nwk_neighbor_t *pnVar2;
+  short sVar1;
+  int iVar2;
   int iVar3;
   
-  eVar1 = rx_info->mac_src_addr;
-  pnVar2 = (nwk_neighbor_t *)nwk_neighbor_table_get_by_short(eVar1);
-  if (pnVar2 == (nwk_neighbor_t *)0x0) {
-    pnVar2 = (nwk_neighbor_t *)nwk_neighbor_table_new(1);
-    if (pnVar2 == (nwk_neighbor_t *)0x0) {
-      return (nwk_neighbor_t *)0x0;
+  sVar1 = *(short *)(param_1 + 2);
+  iVar2 = nwk_neighbor_table_get_by_short(sVar1);
+  if (iVar2 == 0) {
+    iVar2 = nwk_neighbor_table_new(1);
+    if (iVar2 == 0) {
+      return 0;
     }
-    iVar3 = nwk_address_by_short(eVar1,1,pnVar2);
+    iVar3 = nwk_address_by_short(sVar1,1,iVar2);
     if (iVar3 != 0) {
-      nwk_neighbor_table_delete(pnVar2);
-      return (nwk_neighbor_t *)0x0;
+      nwk_neighbor_table_delete(iVar2);
+      return 0;
     }
   }
-  iVar3 = nwk_neighbor_get_incoming_cost(pnVar2);
+  iVar3 = nwk_neighbor_get_incoming_cost(iVar2);
   if (iVar3 == 0) {
-    *(uint *)&pnVar2->field_0xc =
-         *(uint *)&pnVar2->field_0xc & 0xfffc1fff | (rx_info->iface_id & 0x1f) << 0xd;
+    *(uint *)(iVar2 + 0xc) =
+         *(uint *)(iVar2 + 0xc) & 0xfffc1fff | (*(byte *)(param_1 + 8) & 0x1f) << 0xd;
     iVar3 = core_globals_get();
-    (pnVar2->dev).r.inbound_activity = *(uint8_t *)(iVar3 + 0xa25);
+    *(undefined1 *)(iVar2 + 0x19) = *(undefined1 *)(iVar3 + 0xa25);
     iVar3 = core_globals_get();
-    (pnVar2->dev).r.outbound_activity = *(uint8_t *)(iVar3 + 0xa25);
-    nwk_neighbor_update_lqa(pnVar2,rx_info->lqi,(int)rx_info->rssi);
-    *(uint *)&pnVar2->field_0xc = eVar1 != 0 | 0x1c000080 | *(uint *)&pnVar2->field_0xc & 0xe3fffc3c
-    ;
-    return pnVar2;
+    *(undefined1 *)(iVar2 + 0x18) = *(undefined1 *)(iVar3 + 0xa25);
+    nwk_neighbor_update_lqa(iVar2,*(undefined1 *)(param_1 + 9),(int)*(char *)(param_1 + 10));
+    *(uint *)(iVar2 + 0xc) = sVar1 != 0 | 0x1c000080 | *(uint *)(iVar2 + 0xc) & 0xe3fffc3c;
+    return iVar2;
   }
-  iVar3 = nwk_neighbor_get_outgoing_cost(pnVar2);
+  iVar3 = nwk_neighbor_get_outgoing_cost(iVar2);
   if (iVar3 == 0) {
-    return (nwk_neighbor_t *)0x0;
+    return 0;
   }
-  return pnVar2;
+  return iVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_dm_compat.o -> esp_zb_metering_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_zb_attribute_list_t * esp_zb_metering_cluster_create(esp_zb_metering_cluster_cfg_t *cfg)
+void esp_zb_metering_cluster_create(undefined4 *param_1)
 
 {
-  esp_zb_attribute_list_t *peVar1;
-  undefined1 local_20 [8];
+  undefined4 local_20;
+  uint uStack_1c;
   undefined4 uStack_18;
   undefined4 uStack_14;
   
-  local_20._0_4_ = 0;
-  local_20._4_4_ = 0;
+  local_20 = 0;
+  uStack_1c = 0;
   uStack_18 = 0;
   uStack_14 = 0;
-  if (cfg != (esp_zb_metering_cluster_cfg_t *)0x0) {
-    local_20._4_4_ = ZEXT24((cfg->current_summation_delivered).high);
-    local_20._0_4_ = (cfg->current_summation_delivered).low;
-    uStack_18._0_1_ = cfg->status;
-    uStack_18._1_1_ = cfg->uint_of_measure;
-    uStack_18._2_1_ = cfg->summation_formatting;
-    uStack_18._3_1_ = cfg->metering_device_type;
-    cfg = (esp_zb_metering_cluster_cfg_t *)local_20;
+  if (param_1 != (undefined4 *)0x0) {
+    uStack_1c = (uint)*(ushort *)(param_1 + 1);
+    local_20 = *param_1;
+    uStack_18 = *(undefined4 *)((int)param_1 + 6);
+    param_1 = &local_20;
   }
-  peVar1 = (esp_zb_attribute_list_t *)metering_cluster_create(cfg);
-  return peVar1;
+  metering_cluster_create(param_1);
+  return;
 }
 

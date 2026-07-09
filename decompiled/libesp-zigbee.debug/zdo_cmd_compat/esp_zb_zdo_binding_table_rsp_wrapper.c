@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_binding_table_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,134 +10,111 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: table_info */
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_binding_table_rsp_wrapper(ezb_zdo_nwk_mgmt_bind_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_binding_table_rsp_wrapper
+               (int *param_1,undefined4 *param_2,int param_3,void *param_4)
 
 {
   byte bVar1;
-  undefined1 uVar2;
-  undefined1 uVar3;
-  undefined1 uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
-  uint8_t uVar7;
-  uint8_t uVar8;
-  uint8_t uVar9;
-  uint8_t uVar10;
-  uint8_t uVar11;
-  uint uVar12;
+  char cVar2;
+  char cVar3;
+  char cVar4;
+  char cVar5;
+  char cVar6;
+  char cVar7;
+  char cVar8;
+  undefined1 uVar9;
+  undefined1 uVar10;
+  undefined1 uVar11;
+  undefined1 uVar12;
+  undefined1 uVar13;
+  undefined1 uVar14;
+  undefined1 uVar15;
+  uint uVar16;
   uint extraout_a1;
-  uint uVar13;
-  ezb_zdp_nwk_mgmt_bind_table_entry_t *peVar14;
-  char *pcVar15;
-  uint8_t *puVar16;
-  int in_a4;
-  ezb_zdp_nwk_mgmt_bind_rsp_field_t *peVar17;
-  int in_a6;
-  code *pcVar18;
+  uint uVar17;
+  undefined1 *puVar18;
+  char *pcVar19;
+  undefined1 *puVar20;
+  code *pcVar21;
   undefined4 uStack_18;
-  esp_zb_zdo_binding_table_info_t table_info;
+  void *pvStack_14;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar18 = *user_ctx;
+  pcVar21 = (code *)*param_2;
   uStack_18 = 0;
-  table_info.status = '\0';
-  table_info.index = '\0';
-  table_info.total = '\0';
-  table_info.count = '\0';
-  if (pcVar18 != (code *)0x0) {
-    if (result->error == 0) {
-      peVar17 = result->rsp;
-      if (peVar17 == (ezb_zdp_nwk_mgmt_bind_rsp_field_t *)0x0) {
-        pcVar15 = "result->rsp";
-        uVar12 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
+  pvStack_14 = (void *)0x0;
+  if (pcVar21 != (code *)0x0) {
+    if (*param_1 == 0) {
+      puVar20 = (undefined1 *)param_1[1];
+      if (puVar20 == (undefined1 *)0x0) {
+        pcVar19 = "result->rsp";
+        uVar16 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
                                ,0x1ca,"esp_zb_zdo_binding_table_rsp_wrapper");
-        uVar13 = extraout_a1;
+        uVar17 = extraout_a1;
         goto _L0;
       }
-      bVar1 = peVar17->binding_table_list_count;
-      uStack_18 = CONCAT13(bVar1,CONCAT12(peVar17->binding_table_entries,
-                                          CONCAT11(peVar17->start_index,peVar17->status)));
-      if ((peVar17->binding_table_list != (ezb_zdp_nwk_mgmt_bind_table_entry_t *)0x0) &&
-         (bVar1 != 0)) {
-        table_info._0_4_ = calloc((uint)bVar1,0x1c);
-        if ((void *)table_info._0_4_ != (void *)0x0) {
-          uVar12 = 0;
-          while (uVar12 < result->rsp->binding_table_list_count) {
-            puVar16 = (uint8_t *)(table_info._0_4_ + uVar12 * 0x1c);
-            in_a4 = uVar12 * 0x18;
-            peVar14 = result->rsp->binding_table_list + uVar12;
-            uVar5 = (peVar14->src_addr).field_0.u8[1];
-            uVar6 = (peVar14->src_addr).field_0.u8[2];
-            uVar7 = (peVar14->src_addr).field_0.u8[3];
-            uVar8 = (peVar14->src_addr).field_0.u8[4];
-            uVar9 = (peVar14->src_addr).field_0.u8[5];
-            uVar10 = (peVar14->src_addr).field_0.u8[6];
-            uVar11 = (peVar14->src_addr).field_0.u8[7];
-            *puVar16 = (peVar14->src_addr).field_0.u8[0];
-            puVar16[1] = uVar5;
-            puVar16[2] = uVar6;
-            puVar16[3] = uVar7;
-            puVar16[4] = uVar8;
-            puVar16[5] = uVar9;
-            puVar16[6] = uVar10;
-            puVar16[7] = uVar11;
-            peVar17 = (ezb_zdp_nwk_mgmt_bind_rsp_field_t *)(uVar12 * 0x1c + table_info._0_4_);
-            peVar17[1].status = result->rsp->binding_table_list[uVar12].src_ep;
-            peVar14 = result->rsp->binding_table_list + uVar12;
-            uVar2 = *(undefined1 *)((int)&peVar14->cluster_id + 1);
-            peVar17[1].start_index = *(undefined1 *)&peVar14->cluster_id;
-            peVar17[1].binding_table_list_count = uVar2;
-            *(uint8_t *)&peVar17[1].binding_table_list =
-                 result->rsp->binding_table_list[uVar12].dst_addr_mode;
-            pcVar15 = (char *)(result->rsp->binding_table_list + uVar12);
-            uVar13 = uVar12;
-            in_a6 = table_info._0_4_;
-            if (((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr_mode == '\x01') {
-              *(ezb_shortaddr_t *)((int)&peVar17[1].binding_table_list + 2) =
-                   (((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr).short_addr;
+      bVar1 = puVar20[3];
+      uStack_18 = CONCAT13(bVar1,CONCAT12(puVar20[1],CONCAT11(puVar20[2],*puVar20)));
+      if ((*(int *)(puVar20 + 4) != 0) && (bVar1 != 0)) {
+        pvStack_14 = calloc((uint)bVar1,0x1c);
+        if (pvStack_14 != (void *)0x0) {
+          uVar16 = 0;
+          while (uVar16 < *(byte *)(param_1[1] + 3)) {
+            puVar18 = (undefined1 *)((int)pvStack_14 + uVar16 * 0x1c);
+            param_3 = uVar16 * 0x18;
+            puVar20 = (undefined1 *)(*(int *)(param_1[1] + 4) + param_3);
+            uVar9 = puVar20[1];
+            uVar10 = puVar20[2];
+            uVar11 = puVar20[3];
+            uVar12 = puVar20[4];
+            uVar13 = puVar20[5];
+            uVar14 = puVar20[6];
+            uVar15 = puVar20[7];
+            *puVar18 = *puVar20;
+            puVar18[1] = uVar9;
+            puVar18[2] = uVar10;
+            puVar18[3] = uVar11;
+            puVar18[4] = uVar12;
+            puVar18[5] = uVar13;
+            puVar18[6] = uVar14;
+            puVar18[7] = uVar15;
+            puVar20 = (undefined1 *)(uVar16 * 0x1c + (int)pvStack_14);
+            puVar20[8] = *(undefined1 *)(*(int *)(param_1[1] + 4) + param_3 + 8);
+            *(undefined2 *)(puVar20 + 10) = *(undefined2 *)(*(int *)(param_1[1] + 4) + param_3 + 10)
+            ;
+            puVar20[0xc] = *(undefined1 *)(*(int *)(param_1[1] + 4) + param_3 + 0xc);
+            pcVar19 = (char *)(*(int *)(param_1[1] + 4) + param_3);
+            uVar17 = uVar16;
+            param_4 = pvStack_14;
+            if (pcVar19[0xc] == '\x01') {
+              *(undefined2 *)(puVar20 + 0xe) = *(undefined2 *)(pcVar19 + 0xe);
             }
             else {
 _L0:
-              uVar2 = *(undefined1 *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 1);
-              uVar5 = *(uint8_t *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 2);
-              uVar6 = *(uint8_t *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 3);
-              uVar7 = *(uint8_t *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 4);
-              uVar8 = *(uint8_t *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 5);
-              uVar3 = *(undefined1 *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 6);
-              uVar4 = *(undefined1 *)
-                       ((int)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr + 7);
-              *(undefined1 *)((int)&peVar17[1].binding_table_list + 2) =
-                   *(undefined1 *)&((ezb_zdp_nwk_mgmt_bind_table_entry_t *)pcVar15)->dst_addr;
-              *(undefined1 *)((int)&peVar17[1].binding_table_list + 3) = uVar2;
-              peVar17[2].status = uVar5;
-              peVar17[2].binding_table_entries = uVar6;
-              peVar17[2].start_index = uVar7;
-              peVar17[2].binding_table_list_count = uVar8;
-              *(undefined1 *)&peVar17[2].binding_table_list = uVar3;
-              *(undefined1 *)((int)&peVar17[2].binding_table_list + 1) = uVar4;
+              cVar2 = pcVar19[0xf];
+              cVar3 = pcVar19[0x10];
+              cVar4 = pcVar19[0x11];
+              cVar5 = pcVar19[0x12];
+              cVar6 = pcVar19[0x13];
+              cVar7 = pcVar19[0x14];
+              cVar8 = pcVar19[0x15];
+              puVar20[0xe] = pcVar19[0xe];
+              puVar20[0xf] = cVar2;
+              puVar20[0x10] = cVar3;
+              puVar20[0x11] = cVar4;
+              puVar20[0x12] = cVar5;
+              puVar20[0x13] = cVar6;
+              puVar20[0x14] = cVar7;
+              puVar20[0x15] = cVar8;
             }
-            *(uint8_t *)((int)&peVar17[2].binding_table_list + 2) =
-                 (&result->rsp->binding_table_list->dst_ep)[in_a4];
-            if ((int)uVar13 < (int)(result->rsp->binding_table_list_count - 1)) {
-              in_a6 = (uVar12 + 1) * 0x1c + in_a6;
+            puVar20[0x16] = *(undefined1 *)(*(int *)(param_1[1] + 4) + param_3 + 0x16);
+            if ((int)uVar17 < (int)(*(byte *)(param_1[1] + 3) - 1)) {
+              param_4 = (void *)((uVar16 + 1) * 0x1c + (int)param_4);
             }
             else {
-              in_a6 = 0;
+              param_4 = (void *)0x0;
             }
-            peVar17[3].status = (char)in_a6;
-            peVar17[3].binding_table_entries = (char)((uint)in_a6 >> 8);
-            peVar17[3].start_index = (char)((uint)in_a6 >> 0x10);
-            peVar17[3].binding_table_list_count = (char)((uint)in_a6 >> 0x18);
-            uVar12 = uVar13 + 1 & 0xff;
+            *(void **)(puVar20 + 0x18) = param_4;
+            uVar16 = uVar17 + 1 & 0xff;
           }
         }
       }
@@ -145,12 +122,12 @@ _L0:
     else {
       uStack_18 = 0x85;
     }
-    (*pcVar18)(&uStack_18,*(undefined4 *)((int)user_ctx + 4));
+    (*pcVar21)(&uStack_18,param_2[1]);
   }
-  if (table_info._0_4_ != 0) {
-    free((void *)table_info._0_4_);
+  if (pvStack_14 != (void *)0x0) {
+    free(pvStack_14);
   }
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

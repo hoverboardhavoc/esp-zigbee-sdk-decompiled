@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_extended_by_ref
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,49 +11,41 @@
  */
 
 /* WARNING: Removing unreachable block (ram,0x000108ba) */
-/* WARNING: Unknown calling convention */
 
-ezb_err_t nwk_address_extended_by_ref(nwk_addr_ref_t ref,ezb_extaddr_t *extaddr)
+undefined4 nwk_address_extended_by_ref(uint param_1,undefined1 *param_2)
 
 {
-  undefined4 uVar1;
-  undefined3 uVar2;
-  undefined4 uVar3;
-  uint uVar4;
-  _Bool _Var5;
-  int iVar6;
-  undefined3 extraout_var;
-  undefined2 in_register_0000202a;
-  int iVar7;
-  ezb_err_t eVar8;
-  undefined4 *puVar9;
+  undefined3 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  undefined4 uVar5;
+  undefined4 *puVar6;
   
-  uVar4 = CONCAT22(in_register_0000202a,ref);
-  iVar6 = core_globals_get();
-  iVar7 = *(int *)(iVar6 + 0xc50) + uVar4 * 0x12;
-  if ((*(byte *)(iVar7 + 0x11) & 4) != 0) {
-    uVar4 = (uint)*(ushort *)(iVar7 + 0xe);
+  iVar3 = core_globals_get();
+  iVar4 = *(int *)(iVar3 + 0xc50) + param_1 * 0x12;
+  if ((*(byte *)(iVar4 + 0x11) & 4) != 0) {
+    param_1 = (uint)*(ushort *)(iVar4 + 0xe);
   }
-  _Var5 = check_table_ref((uint16_t)uVar4,*(bitmap_t **)(iVar6 + 0xc4c),*(uint16_t *)(iVar6 + 0xc54)
-                         );
-  eVar8 = 5;
-  if (CONCAT31(extraout_var,_Var5) != 0) {
-    puVar9 = (undefined4 *)(*(int *)(iVar6 + 0xc50) + uVar4 * 0x12);
-    if (extaddr != (ezb_extaddr_t *)0x0) {
-      uVar1 = *puVar9;
-      uVar2 = *(undefined3 *)(puVar9 + 1);
-      uVar3 = puVar9[1];
-      (extaddr->field_0).u8[0] = (uint8_t)*(undefined3 *)puVar9;
-      (extaddr->field_0).u8[1] = (uint8_t)((uint)uVar1 >> 8);
-      (extaddr->field_0).u8[3] = (uint8_t)((uint)uVar1 >> 0x18);
-      (extaddr->field_0).u8[5] = (uint8_t)((uint)uVar3 >> 8);
-      (extaddr->field_0).u8[2] = (uint8_t)((uint)uVar1 >> 0x10);
-      (extaddr->field_0).u8[4] = (uint8_t)uVar2;
-      (extaddr->field_0).u8[6] = (uint8_t)((uint)uVar3 >> 0x10);
-      (extaddr->field_0).u8[7] = (uint8_t)((uint)uVar3 >> 0x18);
+  iVar4 = check_table_ref(param_1,*(undefined4 *)(iVar3 + 0xc4c),*(undefined2 *)(iVar3 + 0xc54));
+  uVar5 = 5;
+  if (iVar4 != 0) {
+    puVar6 = (undefined4 *)(*(int *)(iVar3 + 0xc50) + param_1 * 0x12);
+    if (param_2 != (undefined1 *)0x0) {
+      uVar5 = *puVar6;
+      uVar1 = *(undefined3 *)(puVar6 + 1);
+      uVar2 = puVar6[1];
+      *param_2 = (char)*(undefined3 *)puVar6;
+      param_2[1] = (char)((uint)uVar5 >> 8);
+      param_2[3] = (char)((uint)uVar5 >> 0x18);
+      param_2[5] = (char)((uint)uVar2 >> 8);
+      param_2[2] = (char)((uint)uVar5 >> 0x10);
+      param_2[4] = (char)uVar1;
+      param_2[6] = (char)((uint)uVar2 >> 0x10);
+      param_2[7] = (char)((uint)uVar2 >> 0x18);
     }
-    eVar8 = 0;
+    uVar5 = 0;
   }
-  return eVar8;
+  return uVar5;
 }
 

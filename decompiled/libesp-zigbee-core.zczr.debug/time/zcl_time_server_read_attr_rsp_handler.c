@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> zcl_time_server_read_attr_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,61 +10,51 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_time_server_read_attr_rsp_handler(zcl_cmd_read_attr_rsp_message_t *message)
+int zcl_time_server_read_attr_rsp_handler(int param_1)
 
 {
-  uint16_t short_address;
-  ezb_zcl_read_attr_rsp_variable_t *peVar1;
-  zcl_time_server_time_ctx_t *pzVar2;
+  ushort uVar1;
+  uint *puVar2;
   int iVar3;
-  ezb_zcl_time_server_rank_t eVar4;
+  int iVar4;
   uint uVar5;
-  uint32_t uVar6;
+  int iVar6;
   
-  if (message == (zcl_cmd_read_attr_rsp_message_t *)0x0) {
-    iVar3 = 0;
+  if (param_1 == 0) {
+    iVar4 = 0;
   }
-  else if ((message->in).variables == (ezb_zcl_read_attr_rsp_variable_t *)0x0) {
-    iVar3 = 0;
+  else if (*(int *)(param_1 + 0xc) == 0) {
+    iVar4 = 0;
   }
   else {
-    pzVar2 = time_server_get_time_ctx(((message->in).header)->dst_ep);
-    if ((pzVar2 == (zcl_time_server_time_ctx_t *)0x0) ||
-       (iVar3 = milli_timer_is_running(&pzVar2->sync_timer), iVar3 == 0)) {
-      iVar3 = 0;
+    iVar3 = time_server_get_time_ctx(*(undefined1 *)(*(int *)(param_1 + 8) + 0x15));
+    if ((iVar3 == 0) || (iVar4 = milli_timer_is_running(iVar3 + 0xc), iVar4 == 0)) {
+      iVar4 = 0;
     }
     else {
-      short_address = (((message->in).header)->src_addr).u.short_addr;
-      eVar4 = EZB_ZCL_TIME_SERVER_RANK_UNSYNCHRONIZED;
-      uVar6 = 0;
-      for (peVar1 = (message->in).variables; peVar1 != (ezb_zcl_read_attr_rsp_variable_t *)0x0;
-          peVar1 = peVar1->next) {
-        uVar5._0_2_ = peVar1->attr_id;
-        uVar5._2_1_ = peVar1->status;
-        uVar5._3_1_ = peVar1->attr_type;
-        if (((uVar5 & 0xffffff) == 0) && ((uint32_t *)peVar1->attr_value != (uint32_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-          uVar6 = *peVar1->attr_value;
+      uVar1 = *(ushort *)(*(int *)(param_1 + 8) + 2);
+      uVar5 = 0;
+      iVar6 = 0;
+      for (puVar2 = *(uint **)(param_1 + 0xc); puVar2 != (uint *)0x0; puVar2 = (uint *)puVar2[2]) {
+        if (((*puVar2 & 0xffffff) == 0) && ((int *)puVar2[1] != (int *)0x0)) {
+          iVar6 = *(int *)puVar2[1];
         }
-        else if (((uVar5 & 0xffffff) == 1) && ((uint8_t *)peVar1->attr_value != (uint8_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-          eVar4 = zcl_time_get_server_rank(*peVar1->attr_value,short_address);
+        else if (((*puVar2 & 0xffffff) == 1) && ((undefined1 *)puVar2[1] != (undefined1 *)0x0)) {
+          uVar5 = zcl_time_get_server_rank(*(undefined1 *)puVar2[1],uVar1);
         }
       }
-      if ((uVar6 != 0xffffffff) &&
-         ((pzVar2->min_rank < eVar4 ||
-          ((pzVar2->min_rank == eVar4 && (short_address < pzVar2->server_addr)))))) {
-        pzVar2->min_rank = (uint8_t)eVar4;
-        pzVar2->server_addr = short_address;
-        if (pzVar2->nwk_time != uVar6) {
-          pzVar2->nwk_time = uVar6;
-          (*(pzVar2->interface).set_utc_time)(uVar6);
+      if ((iVar6 != -1) &&
+         ((*(byte *)(iVar3 + 0x24) < uVar5 ||
+          ((*(byte *)(iVar3 + 0x24) == uVar5 && (uVar1 < *(ushort *)(iVar3 + 0x1c))))))) {
+        *(char *)(iVar3 + 0x24) = (char)uVar5;
+        *(ushort *)(iVar3 + 0x1c) = uVar1;
+        if (*(int *)(iVar3 + 0x20) != iVar6) {
+          *(int *)(iVar3 + 0x20) = iVar6;
+          (**(code **)(iVar3 + 4))(iVar6,*(code **)(iVar3 + 4));
         }
       }
     }
   }
-  return SUB41(iVar3,0);
+  return iVar4;
 }
 

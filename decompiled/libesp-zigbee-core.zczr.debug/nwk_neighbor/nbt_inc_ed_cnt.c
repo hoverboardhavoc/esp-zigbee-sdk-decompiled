@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_inc_ed_cnt
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,17 +11,16 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void nbt_inc_ed_cnt(nwk_neighbor_table_t *tbl)
+void nbt_inc_ed_cnt(int param_1)
 
 {
   int iVar1;
   char *pcVar2;
   undefined4 in_stack_000000e8;
   
-  if (tbl->ed_num < tbl->ed_capacity) {
-    tbl->ed_num = tbl->ed_num + 1;
+  if (*(ushort *)(param_1 + 0xc) < *(ushort *)(param_1 + 10)) {
+    *(ushort *)(param_1 + 0xc) = *(ushort *)(param_1 + 0xc) + 1;
     return;
   }
   pcVar2 = "nbt_inc_ed_cnt";

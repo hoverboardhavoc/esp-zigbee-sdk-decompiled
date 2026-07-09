@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aes_ccm.o -> crypto_aes_ccm_star_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,172 +10,158 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Type propagation algorithm not settling */
 
-ezb_err_t crypto_aes_ccm_star_msg
-                    (zmsg_t *msg,int mode,uint8_t *key,uint8_t *nonce,uint16_t ad_len,
-                    uint16_t plaintext_len,uint8_t *tag,uint8_t tag_len)
+int crypto_aes_ccm_star_msg
+              (int param_1,int param_2,int param_3,int param_4,uint param_5,uint param_6,
+              undefined4 param_7,uint param_8)
 
 {
-  uint8_t *unaff_s0;
-  ezb_err_t eVar1;
+  int unaff_s0;
+  int iVar1;
   int iVar2;
-  size_t sVar3;
   int extraout_a1;
-  undefined2 in_register_0000203a;
+  uint uVar3;
   uint uVar4;
-  uint uVar5;
-  undefined2 in_register_0000203e;
-  size_t sVar6;
-  uint8_t *puVar7;
-  undefined3 in_register_00002045;
-  uint uVar8;
-  uint uVar9;
-  uint8_t *unaff_s6;
+  undefined4 uVar5;
+  uint uVar6;
+  int unaff_s6;
+  uint uVar7;
   undefined2 uStack_27a;
-  uint16_t uStack_278;
-  uint16_t remaining_ad;
-  uint16_t remaining;
-  psa_key_id_t key_id;
-  size_t finish_len;
-  size_t produced;
-  psa_key_id_t key_id_1;
-  size_t tail_len;
-  size_t produced_1;
-  zmsg_chunk_t chunk;
-  zmsg_chunk_t chunk_1;
-  size_t tag_olen;
-  undefined1 auStack_234 [4];
-  uint8_t tail [16];
-  undefined1 auStack_1e0 [4];
-  psa_aead_operation_t op;
+  undefined2 uStack_278;
+  undefined2 uStack_276;
+  int aiStack_274 [6];
+  undefined1 auStack_25c [4];
+  undefined4 uStack_258;
+  ushort uStack_254;
+  undefined1 auStack_250 [4];
+  undefined4 uStack_24c;
+  ushort uStack_248;
+  undefined4 auStack_244 [4];
+  undefined1 auStack_234 [84];
+  undefined1 auStack_1e0 [440];
   
-  uVar8 = CONCAT31(in_register_00002045,tag_len);
-  sVar3 = CONCAT22(in_register_0000203e,plaintext_len);
-  uVar5 = CONCAT22(in_register_0000203a,ad_len);
-  if (((msg != (zmsg_t *)0x0) && (unaff_s0 = key, key != (uint8_t *)0x0)) &&
-     (uVar4 = uVar5, sVar6 = sVar3, puVar7 = tag, uVar9 = uVar8, unaff_s6 = nonce,
-     nonce != (uint8_t *)0x0)) goto _L0;
+  if (((param_1 != 0) && (unaff_s0 = param_3, param_3 != 0)) &&
+     (uVar3 = param_5, uVar4 = param_6, uVar5 = param_7, uVar6 = param_8, unaff_s6 = param_4,
+     param_4 != 0)) goto _L0;
 _L0:
   do {
     do {
-      msg = (zmsg_t *)__assert_func(0,0,0,0);
-      mode = extraout_a1;
-      uVar4 = uVar5;
-      sVar6 = sVar3;
-      puVar7 = tag;
-      uVar9 = uVar8;
+      param_1 = __assert_func(0,0,0,0);
+      param_2 = extraout_a1;
+      uVar3 = param_5;
+      uVar4 = param_6;
+      uVar5 = param_7;
+      uVar6 = param_8;
 _L0:
-      uVar5 = uVar4;
-      sVar3 = sVar6;
-      tag = puVar7;
-      uVar8 = uVar9;
+      param_5 = uVar3;
+      param_6 = uVar4;
+      param_7 = uVar5;
+      param_8 = uVar6;
       iVar2 = zmsg_get_length();
-    } while (iVar2 < (int)(uVar4 + sVar6));
-    if (uVar9 != 0) {
-      _remaining = 0;
+    } while (iVar2 < (int)(uVar3 + uVar4));
+    if (uVar6 != 0) {
+      aiStack_274[0] = 0;
       memset(auStack_1e0,0,0x1b0);
-      uVar5 = (uVar9 & 0x3f) << 0x10 | 0x5400100;
-      uStack_27a = (undefined2)uVar4;
-      key_id = 0;
-      uStack_278 = (uint16_t)sVar6;
-      iVar2 = crypto_psa_import_aes_key
-                        (unaff_s0,uVar5,(uint)(mode != 0) * 0x100 + 0x100,(psa_key_id_t *)&remaining
-                        );
+      uVar7 = (uVar6 & 0x3f) << 0x10 | 0x5400100;
+      uStack_27a = (undefined2)uVar3;
+      aiStack_274[1] = 0;
+      uStack_278 = (short)uVar4;
+      iVar2 = crypto_psa_import_aes_key_constprop_0
+                        (unaff_s0,uVar7,(uint)(param_2 != 0) * 0x100 + 0x100,aiStack_274);
       if (iVar2 == 0) {
-        if (mode == 0) {
+        if (param_2 == 0) {
           iVar2 = psa_aead_encrypt_setup();
         }
         else {
-          iVar2 = psa_aead_decrypt_setup(auStack_1e0,_remaining,uVar5);
+          iVar2 = psa_aead_decrypt_setup(auStack_1e0,aiStack_274[0],uVar7);
         }
-        if (((iVar2 == 0) && (iVar2 = psa_aead_set_lengths(auStack_1e0,uVar4,sVar6), iVar2 == 0)) &&
+        if (((iVar2 == 0) && (iVar2 = psa_aead_set_lengths(auStack_1e0,uVar3,uVar4), iVar2 == 0)) &&
            (iVar2 = psa_aead_set_nonce(auStack_1e0,unaff_s6,0xd), iVar2 == 0)) {
-          zmsg_get_first_chunk(msg,0,&uStack_27a,&produced_1);
-          while ((ushort)chunk.data != 0) {
-            iVar2 = psa_aead_update_ad(auStack_1e0,chunk.buffer);
+          zmsg_get_first_chunk(param_1,0,&uStack_27a,auStack_25c);
+          while (uStack_254 != 0) {
+            iVar2 = psa_aead_update_ad(auStack_1e0,uStack_258);
             if (iVar2 != 0) goto _L0;
-            zmsg_get_next_chunk(&uStack_27a,&produced_1);
+            zmsg_get_next_chunk(&uStack_27a,auStack_25c);
           }
-          zmsg_get_first_chunk(msg,uVar4,&uStack_278,&produced_1);
+          zmsg_get_first_chunk(param_1,uVar3,&uStack_278,auStack_25c);
           while( true ) {
-            if ((ushort)chunk.data == 0) {
-              if (mode == 0) {
-                chunk_1.len = 0;
-                chunk_1._10_2_ = 0;
-                iVar2 = psa_aead_finish(auStack_1e0,auStack_234,0x10,&key_id,puVar7,uVar9,
-                                        &chunk_1.len);
+            if (uStack_254 == 0) {
+              if (param_2 == 0) {
+                auStack_244[0] = 0;
+                iVar2 = psa_aead_finish(auStack_1e0,auStack_234,0x10,aiStack_274 + 1,uVar5,uVar6,
+                                        auStack_244);
               }
               else {
-                iVar2 = psa_aead_verify(auStack_1e0,auStack_234,0x10,&key_id,puVar7,uVar9);
+                iVar2 = psa_aead_verify(auStack_1e0,auStack_234,0x10,aiStack_274 + 1,uVar5,uVar6);
               }
               goto _L0;
             }
-            finish_len = 0;
-            iVar2 = psa_aead_update(auStack_1e0,chunk.buffer,(ushort)chunk.data,&finish_len);
+            aiStack_274[2] = 0;
+            iVar2 = psa_aead_update(auStack_1e0,uStack_258,uStack_254,aiStack_274 + 2);
             if (iVar2 != 0) goto _L0;
-            uVar5 = (uint)(ushort)chunk.data;
-            unaff_s0 = (uint8_t *)0x0;
-            sVar3 = finish_len;
-            if (uVar5 != finish_len) break;
-            zmsg_get_next_chunk(&uStack_278,&produced_1);
+            param_5 = (uint)uStack_254;
+            unaff_s0 = 0;
+            param_6 = aiStack_274[2];
+            if (param_5 != aiStack_274[2]) break;
+            zmsg_get_next_chunk(&uStack_278,auStack_25c);
           }
           goto _L0;
         }
       }
 _L0:
       psa_aead_abort(auStack_1e0);
-      sVar3 = _remaining;
+      iVar1 = aiStack_274[0];
       goto _L0;
     }
-    produced = 0;
-    remaining_ad = (uint16_t)sVar6;
+    aiStack_274[3] = 0;
+    uStack_276 = (short)uVar4;
     memset(auStack_234,0,0x54);
-    key_id_1 = 0;
-    iVar2 = crypto_psa_import_aes_key
-                      (unaff_s0,0x4c01300,(uint)(mode != 0) * 0x100 + 0x100,&produced);
+    aiStack_274[4] = 0;
+    iVar2 = crypto_psa_import_aes_key_constprop_0
+                      (unaff_s0,0x4c01300,(uint)(param_2 != 0) * 0x100 + 0x100,aiStack_274 + 3);
     if (iVar2 != 0) {
 _L0:
       psa_cipher_abort(auStack_234);
-      sVar3 = produced;
+      iVar1 = aiStack_274[3];
 _L0:
-      if (sVar3 != 0) {
+      if (iVar1 != 0) {
         psa_destroy_key();
       }
       if (iVar2 == -0x87) {
-        eVar1 = 2;
+        iVar1 = 2;
       }
       else {
         if (-0x87 < iVar2) {
           return -(uint)(iVar2 != 0);
         }
-        eVar1 = 0x13;
-        if ((iVar2 != -0x95) && (eVar1 = 1, iVar2 != -0x8a)) {
+        iVar1 = 0x13;
+        if ((iVar2 != -0x95) && (iVar1 = 1, iVar2 != -0x8a)) {
           return -1;
         }
       }
-      return eVar1;
+      return iVar1;
     }
-    if (mode == 0) {
+    if (param_2 == 0) {
       iVar2 = psa_cipher_encrypt_setup();
     }
     else {
-      iVar2 = psa_cipher_decrypt_setup(auStack_234,produced,0x4c01300);
+      iVar2 = psa_cipher_decrypt_setup(auStack_234,aiStack_274[3],0x4c01300);
     }
     if ((iVar2 != 0) || (iVar2 = psa_cipher_set_iv(auStack_234,unaff_s6,0xd), iVar2 != 0)) goto _L0;
-    zmsg_get_first_chunk(msg,uVar4,&remaining_ad,&chunk.len);
-    while (uVar5 = (uint)(ushort)chunk_1.data, uVar5 != 0) {
-      tail_len = 0;
-      iVar2 = psa_cipher_update(auStack_234,chunk_1.buffer,uVar5,&tail_len);
+    zmsg_get_first_chunk(param_1,uVar3,&uStack_276,auStack_250);
+    while (param_5 = (uint)uStack_248, param_5 != 0) {
+      aiStack_274[5] = 0;
+      iVar2 = psa_cipher_update(auStack_234,uStack_24c,param_5,aiStack_274 + 5);
       if (iVar2 != 0) goto _L0;
-      uVar5 = (uint)(ushort)chunk_1.data;
-      unaff_s0 = (uint8_t *)0x0;
-      sVar3 = tail_len;
-      if (uVar5 != tail_len) goto _L0;
-      zmsg_get_next_chunk(&remaining_ad,&chunk.len);
+      param_5 = (uint)uStack_248;
+      unaff_s0 = 0;
+      param_6 = aiStack_274[5];
+      if (param_5 != aiStack_274[5]) goto _L0;
+      zmsg_get_next_chunk(&uStack_276,auStack_250);
     }
-    iVar2 = psa_cipher_finish(auStack_234,&chunk_1.len,0x10,&key_id_1);
-    if ((iVar2 != 0) || (unaff_s0 = (uint8_t *)0x0, sVar3 = key_id_1, key_id_1 == 0)) goto _L0;
+    iVar2 = psa_cipher_finish(auStack_234,auStack_244,0x10,aiStack_274 + 4);
+    if ((iVar2 != 0) || (unaff_s0 = 0, param_6 = aiStack_274[4], aiStack_274[4] == 0)) goto _L0;
   } while( true );
 }
 

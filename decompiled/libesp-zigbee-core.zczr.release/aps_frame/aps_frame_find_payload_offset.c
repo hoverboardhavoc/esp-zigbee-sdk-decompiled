@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_frame.o -> aps_frame_find_payload_offset
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: fcf */
-/* WARNING: Unknown calling convention */
-
-uint16_t aps_frame_find_payload_offset(zmsg_t *msg)
+uint aps_frame_find_payload_offset(undefined4 param_1)
 
 {
   byte bVar1;
-  uint16_t offset;
-  short sVar2;
+  uint uVar2;
+  int iVar3;
   byte bStack_12;
-  byte abStack_11 [3];
-  uint8_t fcf;
-  uint8_t ext_fcf;
+  byte bStack_11;
   
   bStack_12 = 0;
-  zmsg_read_u8(msg,0,&bStack_12);
+  zmsg_read_u8(0,&bStack_12);
   bVar1 = bStack_12;
-  offset = aps_fcf_get_hdr_size(bStack_12);
+  uVar2 = aps_fcf_get_hdr_size(bStack_12);
   if ((char)bVar1 < '\0') {
-    abStack_11[0] = 0;
-    zmsg_read_u8(msg,offset,abStack_11);
-    sVar2 = 1;
-    if ((byte)((abStack_11[0] & 3) - 1) < 2) {
-      sVar2 = ((bVar1 & 3) == 2) + 2;
+    bStack_11 = 0;
+    zmsg_read_u8(param_1,uVar2,&bStack_11);
+    iVar3 = 1;
+    if ((byte)((bStack_11 & 3) - 1) < 2) {
+      iVar3 = ((bVar1 & 3) == 2) + 2;
     }
-    offset = offset + sVar2;
+    uVar2 = uVar2 + iVar3 & 0xffff;
   }
   if ((bVar1 & 0x20) != 0) {
-    abStack_11[0] = 0;
-    zmsg_read_u8(msg,offset,abStack_11);
-    offset = offset + (abStack_11[0] >> 2 & 8) + 5 + (ushort)((abStack_11[0] & 0x18) == 8);
+    bStack_11 = 0;
+    zmsg_read_u8(param_1,uVar2,&bStack_11);
+    uVar2 = uVar2 + (bStack_11 >> 2 & 8) + 5 + (uint)((bStack_11 & 0x18) == 8) & 0xffff;
   }
   if ((bStack_12 & 3) == 1) {
-    offset = offset + 1;
+    uVar2 = uVar2 + 1 & 0xffff;
   }
-  return offset;
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_core_compat.o -> zcl_reset_default_attr_adapter
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
 void zcl_reset_default_attr_adapter
-               (uint8_t ep_id,uint16_t cluster_id,uint8_t cluster_role,uint16_t attr_id,
-               void *attr_value)
+               (undefined4 param_1,undefined4 param_2,uint param_3,void *param_4)
 
 {
-  int iVar1;
+  undefined1 uVar1;
+  int iVar2;
   size_t __n;
   void *__src;
-  undefined3 in_register_00002031;
-  esp_zb_zcl_attribute_t curr_attr;
+  uint local_40;
+  undefined4 uStack_3c;
+  void *pvStack_38;
+  uint uStack_2c;
+  undefined4 uStack_28;
+  void *pvStack_24;
   
-  iVar1 = ezb_zcl_get_attr_desc(CONCAT31(in_register_00002031,cluster_role),0);
-  if ((iVar1 != 0) && (attr_value != (void *)0x0)) {
-    ezb_zcl_attr_desc_get_type();
-    __n = ezb_zcl_get_attr_value_size(attr_value);
-    __src = (*s_reset_default_attr_cb)(ep_id,cluster_id,eRam00000010);
+  iVar2 = ezb_zcl_get_attr_desc(0);
+  if ((iVar2 != 0) && (param_4 != (void *)0x0)) {
+    uStack_28 = 0;
+    pvStack_24 = (void *)0x0;
+    uStack_2c = param_3 & 0xffff;
+    uVar1 = ezb_zcl_attr_desc_get_type();
+    uStack_28 = CONCAT31(uStack_28._1_3_,uVar1);
+    pvStack_24 = param_4;
+    __n = ezb_zcl_get_attr_value_size(param_4);
+    uStack_28 = CONCAT22((short)__n,(undefined2)uStack_28);
+    local_40 = uStack_2c;
+    uStack_3c = uStack_28;
+    pvStack_38 = pvStack_24;
+    __src = (void *)(*s_reset_default_attr_cb)(param_1,param_2,&local_40,s_reset_default_attr_cb);
     if (__src == (void *)0x0) {
-      memset(attr_value,0,__n);
+      memset(param_4,0,__n);
     }
     else {
-      memcpy(attr_value,__src,__n);
+      memcpy(param_4,__src,__n);
     }
   }
   return;

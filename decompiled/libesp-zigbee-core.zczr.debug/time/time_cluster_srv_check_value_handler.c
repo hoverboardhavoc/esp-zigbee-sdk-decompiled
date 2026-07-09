@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> time_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,55 +10,46 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t time_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t endpoint,void *value)
+byte time_cluster_srv_check_value_handler(uint param_1,undefined4 param_2,byte *param_3)
 
 {
-  undefined2 in_register_0000202a;
-  uint uVar1;
-  zcl_attr_desc_t *pzVar2;
-  byte *pbVar3;
+  int iVar1;
+  byte *pbVar2;
   
-  uVar1 = CONCAT22(in_register_0000202a,attr_id);
-  pzVar2 = time_server_get_attr_desc(endpoint,1);
-  if ((pzVar2 == (zcl_attr_desc_t *)0x0) || (pbVar3 = (byte *)pzVar2->data_p, pbVar3 == (byte *)0x0)
-     ) {
+  iVar1 = time_server_get_attr_desc(param_2,1);
+  if ((iVar1 == 0) || (pbVar2 = *(byte **)(iVar1 + 8), pbVar2 == (byte *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/time.c",0xe7,
                   "time_cluster_srv_check_value_handler","attr_desc && attr_desc->data_p");
   }
   else {
-    if (uVar1 == 1) {
-                    /* WARNING: Load size is inaccurate */
-      if (((*value ^ *pbVar3) & 5) == 0) {
-        return (*value ^ *pbVar3) & 5;
+    if (param_1 == 1) {
+      if (((*param_3 ^ *pbVar2) & 5) == 0) {
+        return (*param_3 ^ *pbVar2) & 5;
       }
       return 0x88;
     }
-    if (1 < uVar1) {
-      if (3 < (uVar1 - 2 & 0xffff)) {
-        return '\0';
+    if (1 < param_1) {
+      if (3 < (param_1 - 2 & 0xffff)) {
+        return 0;
       }
-      if ((*pbVar3 & 4) == 0) {
-                    /* WARNING: Load size is inaccurate */
-        if (*value != -1) {
-          return *pbVar3 & 4;
+      if ((*pbVar2 & 4) == 0) {
+        if (*(int *)param_3 != -1) {
+          return *pbVar2 & 4;
         }
         return 0x87;
       }
       return 0x88;
     }
-    if (uVar1 == 0) {
-      if ((*pbVar3 & 1) != 0) {
+    if (param_1 == 0) {
+      if ((*pbVar2 & 1) != 0) {
         return 0x88;
       }
-                    /* WARNING: Load size is inaccurate */
-      if (*value != -1) {
-        return *pbVar3 & 1;
+      if (*(int *)param_3 != -1) {
+        return *pbVar2 & 1;
       }
       return 0x87;
     }
   }
-  return '\0';
+  return 0;
 }
 

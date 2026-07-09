@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> ezb_zcl_time_cluster_server_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,11 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ezb_zcl_time_cluster_server_init(uint8_t ep_id)
+void ezb_zcl_time_cluster_server_init(void)
 
 {
   code *pcVar1;
-  ezb_err_t eVar2;
-  int iVar3;
+  int iVar2;
   undefined4 uStack_54;
   undefined4 uStack_50;
   undefined4 uStack_4c;
@@ -25,17 +22,20 @@ void ezb_zcl_time_cluster_server_init(uint8_t ep_id)
   undefined4 uStack_44;
   code *pcStack_34;
   undefined4 uStack_24;
-  zcl_cluster_template_t template;
+  code *pcStack_20;
+  code *pcStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_24 = 0x1000a;
-  template._0_4_ = time_cluster_srv_check_value_handler;
-  template.check_value_handler = time_cluster_srv_write_attr_hook;
-  template.write_attr_handler = (zcl_cluster_write_attr_t)0x0;
-  template.cmd_disc_handler = (zcl_cluster_disc_cmd_t)0x0;
-  eVar2 = time_server_ctx_init(ep_id);
-  if (eVar2 == 0) {
-    iVar3 = zcl_cluster_template_add(&uStack_24);
-    if (iVar3 == 0) {
+  pcStack_20 = time_cluster_srv_check_value_handler;
+  pcStack_1c = time_cluster_srv_write_attr_hook;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  iVar2 = time_server_ctx_init();
+  if (iVar2 == 0) {
+    iVar2 = zcl_cluster_template_add(&uStack_24);
+    if (iVar2 == 0) {
       return;
     }
   }
@@ -53,8 +53,8 @@ void ezb_zcl_time_cluster_server_init(uint8_t ep_id)
   uStack_48 = 0;
   uStack_44 = 0;
   pcStack_34 = pcVar1;
-  iVar3 = zcl_cluster_template_add(&uStack_54);
-  if (iVar3 == 0) {
+  iVar2 = zcl_cluster_template_add(&uStack_54);
+  if (iVar2 == 0) {
     return;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/time.c",0x1ab,

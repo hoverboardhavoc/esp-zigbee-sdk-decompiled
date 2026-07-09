@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_ed_mngr.o -> nwk_ed_handle_tmo_req_sent
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_ed_handle_tmo_req_sent(zmsg_t *msg,ezb_err_t error)
+void nwk_ed_handle_tmo_req_sent(int param_1,int param_2)
 
 {
   int iVar1;
   
-  if (error == 0) {
+  if (param_2 == 0) {
     iVar1 = core_globals_get();
     if (*(char *)(iVar1 + 0x9ee) == '\0') {
       nwk_pim_start_fast_poll(0);
     }
   }
   else {
-    nwk_ed_process_keepalive_result(false);
+    nwk_ed_process_keepalive_result(0);
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (param_1 != 0) {
+    zmsg_free(param_1);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_command
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_handle_command(mac_device *dev,mac_frame_t *mac_frame)
+void mac_handle_command(int param_1,int param_2)
 
 {
   byte bVar1;
-  _Bool _Var2;
-  undefined3 extraout_var;
+  int iVar2;
   
-  bVar1 = *(mac_frame->mpl).buf;
+  bVar1 = **(byte **)(param_2 + 0x24);
   if (bVar1 == 4) {
-    mac_handle_data_req(dev,mac_frame);
+    mac_handle_data_req();
   }
   else if (bVar1 < 5) {
     if (bVar1 == 1) {
-      if (((dev->pib).field_0x2a & 1) != 0) {
-        mac_handle_association_req(dev,mac_frame);
+      if ((*(byte *)(param_1 + 0x2a) & 1) != 0) {
+        mac_handle_association_req();
       }
     }
-    else if (((bVar1 == 2) &&
-             (((undefined1  [116])dev->ctx & (undefined1  [116])0xffff00) ==
-              (undefined1  [116])0x60200)) && ((mac_frame->mhr).dst_addr.addr_mode != '\0')) {
-      mac_stop_timer(dev);
-      mac_finish_op(dev);
-      mac_handle_association_rsp(dev,mac_frame);
-      mac_perform_next_op(dev);
+    else if (((bVar1 == 2) && ((*(uint *)(param_1 + 0x2c) & 0xffff00) == 0x60200)) &&
+            (*(char *)(param_2 + 4) != '\0')) {
+      mac_stop_timer();
+      mac_finish_op(param_1);
+      mac_handle_association_rsp(param_1,param_2);
+      mac_perform_next_op(param_1);
     }
   }
-  else if ((bVar1 == 7) && (_Var2 = mac_should_send_beacon(dev), CONCAT31(extraout_var,_Var2) != 0))
-  {
-    mac_start_op(dev,MAC_OPERATION_TRANSMIT_BEACON);
+  else if ((bVar1 == 7) && (iVar2 = mac_should_send_beacon(), iVar2 != 0)) {
+    mac_start_op(param_1,7);
   }
   return;
 }

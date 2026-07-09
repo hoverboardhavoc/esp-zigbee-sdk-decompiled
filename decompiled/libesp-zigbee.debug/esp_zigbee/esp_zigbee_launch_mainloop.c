@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> esp_zigbee.o -> esp_zigbee_launch_mainloop
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zigbee_launch_mainloop(void)
+int esp_zigbee_launch_mainloop(void)
 
 {
   int iVar1;
-  undefined4 uStack_44;
-  undefined1 auStack_40 [4];
-  esp_zigbee_mainloop_context_t mainloop;
+  int aiStack_40 [6];
+  int iStack_28;
+  timeval tStack_20;
+  __fd_mask _Stack_18;
   
   while( true ) {
-    for (iVar1 = 2; iVar1 != 0; iVar1 = iVar1 + -1) {
-      *(undefined4 *)((int)(&mainloop.read_fds + -1) + iVar1 * 4) = 0;
+    iVar1 = 2;
+    while (iVar1 != 0) {
+      iVar1 = iVar1 + -1;
+      aiStack_40[iVar1] = 0;
     }
     for (iVar1 = 2; iVar1 != 0; iVar1 = iVar1 + -1) {
-      mainloop.read_fds.__fds_bits[iVar1] = 0;
+      aiStack_40[iVar1 + 1] = 0;
     }
     for (iVar1 = 2; iVar1 != 0; iVar1 = iVar1 + -1) {
-      mainloop.write_fds.__fds_bits[iVar1] = 0;
+      aiStack_40[iVar1 + 3] = 0;
     }
-    mainloop.error_fds.__fds_bits[1] = 0xffffffff;
-    mainloop._28_4_ = 0xf0000;
-    mainloop.timeout.tv_sec._0_4_ = 0;
-    mainloop.timeout.tv_sec._4_4_ = 0;
-    esp_zigbee_lock_acquire(0xffffffff);
-    esp_zigbee_platform_update(auStack_40);
+    iStack_28 = -1;
+    tStack_20.tv_sec = 0xf0000;
+    tStack_20.tv_usec = 0;
+    _Stack_18 = 0;
+    esp_zigbee_lock_acquire();
+    esp_zigbee_platform_update(aiStack_40);
     esp_zigbee_sleep_process();
     esp_zigbee_lock_release();
-    iVar1 = select(mainloop.error_fds.__fds_bits[1] + 1,(fd_set *)auStack_40,
-                   (fd_set *)(mainloop.read_fds.__fds_bits + 1),
-                   (fd_set *)(mainloop.write_fds.__fds_bits + 1),(timeval *)&mainloop.field_0x1c);
+    iVar1 = select(iStack_28 + 1,(fd_set *)aiStack_40,(fd_set *)(aiStack_40 + 2),
+                   (fd_set *)(aiStack_40 + 4),&tStack_20);
     if (iVar1 < 0) break;
     esp_zigbee_lock_acquire(0xffffffff);
-    iVar1 = esp_zigbee_platform_process(auStack_40);
+    iVar1 = esp_zigbee_platform_process(aiStack_40);
     esp_zigbee_lock_release();
     if (iVar1 != 0) {
       esp_log(0x11,"ESP-ZIGBEE","esp_zigbee_platform_process failed");

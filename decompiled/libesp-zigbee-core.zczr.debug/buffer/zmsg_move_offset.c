@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_move_offset
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,18 +11,17 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void zmsg_move_offset(zmsg_t *msg,int delta)
+void zmsg_move_offset(int param_1,int param_2)
 
 {
   int unaff_s0;
   int iVar1;
   undefined8 in_stack_000000c8;
   
-  iVar1 = (uint)msg->offset + delta;
-  if ((-1 < iVar1) && (iVar1 <= (int)(uint)msg->length)) {
-    msg->offset = msg->offset + (short)delta;
+  iVar1 = (uint)*(ushort *)(param_1 + 0x12) + param_2;
+  if ((-1 < iVar1) && (iVar1 <= (int)(uint)*(ushort *)(param_1 + 0xe))) {
+    *(ushort *)(param_1 + 0x12) = *(ushort *)(param_1 + 0x12) + (short)param_2;
     return;
   }
   iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0xcd,

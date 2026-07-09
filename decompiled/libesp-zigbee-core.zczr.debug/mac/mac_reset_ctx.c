@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_reset_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_reset_ctx(mac_device *dev)
+void mac_reset_ctx(int param_1)
 
 {
-  memset(&dev->ctx,0,0x74);
-  (dev->ctx).cur_op = '\0';
-  (dev->ctx).scan_channel = 0xff;
-  (dev->ctx).phy_channel = '\v';
-  (dev->ctx).phy_channel_page = '\0';
-  (dev->ctx).pan_channel = 0xff;
-  (dev->ctx).pan_channel_page = 0xff;
-  tasklet_init(&(dev->ctx).operation_task,mac_tasklet_func_wrapper,dev);
-  micro_timer_init(&(dev->ctx).operation_timer,mac_timer_func_wrapper,dev);
-  zmsg_queue_init(&(dev->ctx).tx_q);
-  micro_timer_init(&(dev->ctx).transaction_timer,mac_handle_transaction_timeout,dev);
-  zmsg_queue_init(&(dev->ctx).itx_q);
-  zmsg_queue_init(&(dev->ctx).pend_q);
+  memset((void *)(param_1 + 0x2c),0,0x74);
+  *(undefined1 *)(param_1 + 0x2e) = 0;
+  *(undefined1 *)(param_1 + 0x32) = 0xff;
+  *(undefined1 *)(param_1 + 0x41) = 0xb;
+  *(undefined1 *)(param_1 + 0x42) = 0;
+  *(undefined1 *)(param_1 + 0x43) = 0xff;
+  *(undefined1 *)(param_1 + 0x44) = 0xff;
+  tasklet_init(param_1 + 0x7c,mac_tasklet_func_wrapper,param_1);
+  micro_timer_init(param_1 + 0x8c,mac_timer_func_wrapper,param_1);
+  zmsg_queue_init(param_1 + 0x48);
+  micro_timer_init(param_1 + 0x6c,mac_handle_transaction_timeout,param_1);
+  zmsg_queue_init(param_1 + 0x54);
+  zmsg_queue_init(param_1 + 0x60);
   return;
 }
 

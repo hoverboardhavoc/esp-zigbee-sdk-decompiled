@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> color_control_move_to_color_temperature_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,65 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: req */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-color_control_move_to_color_temperature_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void color_control_move_to_color_temperature_cmd_handler(int param_1,int param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  _Bool _Var2;
-  byte bVar3;
-  uint uVar4;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  uint16_t *offset_00;
-  undefined1 auStack_18 [4];
-  ezb_zcl_color_control_move_to_color_temperature_cmd_payload_t req;
-  uint16_t offset;
+  uint uVar1;
+  int iVar2;
+  undefined4 uStack_18;
+  undefined2 uStack_14;
+  ushort uStack_12;
   
-  req.transition_time = 0;
-  auStack_18._0_2_ = 0;
-  auStack_18._2_2_ = 0;
-  req.color_temperature_mireds = 0;
-  if (packet == (zcl_packet_t *)0x0) {
-    uVar4 = 0;
+  uStack_12 = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 == 0) {
+    iVar2 = 0;
   }
-  else if (rsp == (zcl_packet_t *)0x0) {
-    uVar4 = 0;
+  else if (param_2 == 0) {
+    iVar2 = 0;
   }
   else {
-    offset_00 = &req.transition_time;
-    af_read_le16(packet->payload,offset_00,(uint16_t *)auStack_18);
-    af_read_le16(packet->payload,offset_00,(uint16_t *)(auStack_18 + 2));
-    uVar4 = zmsg_get_length(packet->payload);
-    if (uVar4 < req.transition_time) {
-      uVar4 = 0x80;
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_18);
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),&uStack_12,(int)&uStack_18 + 2);
+    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    if (uVar1 < uStack_12) {
+      iVar2 = 0x80;
     }
     else {
-      af_read_le8(packet->payload,offset_00,(uint8_t *)&req);
-      af_read_le8(packet->payload,offset_00,(uint8_t *)((int)&req.color_temperature_mireds + 1));
-      _Var2 = color_control_check_options_is_exec
-                        ((packet->header).dst_ep,(uint8_t)req.color_temperature_mireds,
-                         req.color_temperature_mireds._1_1_);
-      if (CONCAT31(extraout_var,_Var2) == 0) {
-        uVar4 = 0;
+      af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_14);
+      af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,(int)&uStack_14 + 1);
+      iVar2 = color_control_check_options_is_exec
+                        (*(undefined1 *)(param_1 + 0x15),(undefined1)uStack_14,uStack_14._1_1_);
+      if (iVar2 == 0) {
+        iVar2 = 0;
       }
       else {
-        eVar1 = color_control_change_color_mode(packet,'\x02');
-        uVar4 = CONCAT31(extraout_var_00,eVar1);
-        if (uVar4 == 0) {
-          bVar3 = move_to_cvc_color_temperature
-                            ((packet->header).dst_ep,
-                             (ezb_zcl_color_control_move_to_color_temperature_cmd_payload_t *)
-                             auStack_18);
-          uVar4 = (uint)bVar3;
+        iVar2 = color_control_change_color_mode(param_1,2);
+        if (iVar2 == 0) {
+          iVar2 = move_to_cvc_color_temperature(*(undefined1 *)(param_1 + 0x15),&uStack_18,0);
         }
       }
     }
   }
-  eVar1 = zcl_packet_setup_default_response(rsp,packet,uVar4);
-  return eVar1;
+  zcl_packet_setup_default_response(param_2,param_1,iVar2);
+  return;
 }
 

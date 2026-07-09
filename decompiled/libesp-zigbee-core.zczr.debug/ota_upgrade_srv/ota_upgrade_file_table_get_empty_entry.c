@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_srv.o -> ota_upgrade_file_table_get_empty_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ota_upgrade_file_t * ota_upgrade_file_table_get_empty_entry(ota_upgrade_file_table_t *file_table)
+int ota_upgrade_file_table_get_empty_entry(byte *param_1)
 
 {
-  uint uVar1;
+  int iVar1;
+  uint uVar2;
   
-  uVar1 = 0;
+  uVar2 = 0;
   while( true ) {
-    if (file_table == (ota_upgrade_file_table_t *)0x0) {
-      return (ota_upgrade_file_t *)0x0;
+    if (param_1 == (byte *)0x0) {
+      return 0;
     }
-    if (file_table->size <= uVar1) break;
-    if (file_table->entry[uVar1].header.total_image_size == 0) {
-      return file_table->entry + uVar1;
+    if (*param_1 <= uVar2) break;
+    iVar1 = *(int *)(param_1 + 4) + uVar2 * 0x4c;
+    if (*(int *)(iVar1 + 0x34) == 0) {
+      return iVar1;
     }
-    uVar1 = uVar1 + 1 & 0xff;
+    uVar2 = uVar2 + 1 & 0xff;
   }
-  return (ota_upgrade_file_t *)0x0;
+  return 0;
 }
 

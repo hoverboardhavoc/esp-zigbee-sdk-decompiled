@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> aps_send_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,48 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_send_cmd(zmsg_t *msg,ezb_extaddr_t *dst_addr)
+void aps_send_cmd(undefined4 param_1,int *param_2)
 
 {
   byte bVar1;
   uint uVar2;
-  ezb_err_t eVar3;
-  int iVar4;
+  int iVar3;
   byte bStack_2f;
   undefined2 uStack_2e;
-  uint8_t fcf;
-  zmsg_t *pzStack_2c;
-  ezb_shortaddr_t dst_shortaddr;
-  aps_apsde_data_req_t aps_req;
+  undefined4 uStack_2c;
+  undefined1 auStack_28 [20];
+  byte bStack_14;
   
   uVar2 = zmsg_get_length();
   if (0x5a < uVar2) {
     __assert_func(0,0,0,0);
   }
-  memset(&aps_req,0,0x18);
-  pzStack_2c = msg;
-  zmsg_read_u8(msg,0,&bStack_2f);
-  bVar1 = aps_req.radius & 0xfc;
-  aps_req.radius = bStack_2f >> 5 & 2 | bStack_2f >> 5 & 1 | bVar1;
-  if ((*(int *)&dst_addr->field_0 == -1) && (*(int *)((int)&dst_addr->field_0 + 4) == -1)) {
+  memset(auStack_28,0,0x18);
+  uStack_2c = param_1;
+  zmsg_read_u8(param_1,0,&bStack_2f);
+  bVar1 = bStack_14 & 0xfc;
+  bStack_14 = bStack_2f >> 5 & 2 | bStack_2f >> 5 & 1 | bVar1;
+  if ((*param_2 == -1) && (param_2[1] == -1)) {
     uStack_2e = 0xfffd;
-    aps_req.radius = bVar1;
+    bStack_14 = bVar1;
   }
   else {
-    iVar4 = nwk_address_short_by_extended(dst_addr,&uStack_2e);
-    if (iVar4 != 0) {
-      return iVar4;
+    iVar3 = nwk_address_short_by_extended(param_2,&uStack_2e);
+    if (iVar3 != 0) {
+      return;
     }
   }
-  zmsg_add_footer(msg,&stack0xffffffd4,0x1c);
-  if ((aps_req.radius & 2) == 0) {
-    eVar3 = aps_send_frame(&stack0xffffffd4);
+  zmsg_add_footer(param_1,&uStack_2c,0x1c);
+  if ((bStack_14 & 2) == 0) {
+    aps_send_frame(&uStack_2c);
   }
   else {
-    eVar3 = aps_retrans_send_msg(uStack_2e,0x5a,&stack0xffffffd4);
+    aps_retrans_send_msg(uStack_2e,0x5a,&uStack_2c);
   }
-  return eVar3;
+  return;
 }
 

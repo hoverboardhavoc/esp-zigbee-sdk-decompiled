@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_by_extended
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_address_by_extended
-                    (ezb_extaddr_t *extaddr,_Bool create,_Bool lock,nwk_addr_ref_t *ref_p)
+undefined4 nwk_address_by_extended(int *param_1,int param_2,int param_3,undefined2 *param_4)
 
 {
-  uint uVar1;
-  nwk_addr_ref_t nVar2;
+  int iVar1;
+  uint uVar2;
   int iVar3;
-  ezb_err_t eVar4;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  undefined3 in_register_0000202d;
-  undefined3 in_register_00002031;
-  nwk_addr_table_t *tbl;
   
-  iVar3 = core_globals_get();
-  if (extaddr == (ezb_extaddr_t *)0x0) {
-    eVar4 = 2;
+  iVar1 = core_globals_get();
+  if (param_1 == (int *)0x0) {
+    return 2;
   }
-  else if ((*(int *)((int)&extaddr->field_0 + 4) + 1U != (uint)(*(int *)&extaddr->field_0 == 0)) ||
-          (eVar4 = 2, *(int *)&extaddr->field_0 - 1U < 0xfffffffe)) {
-    tbl = (nwk_addr_table_t *)(iVar3 + 0xc4c);
-    nVar2 = search_extended(tbl,extaddr);
-    uVar1 = CONCAT22(extraout_var,nVar2);
-    if (uVar1 < *(ushort *)(iVar3 + 0xc54)) {
-      addr_table_lru_update(tbl,nVar2);
-    }
-    else {
-      if (CONCAT31(in_register_0000202d,create) == 0) {
-        return 5;
-      }
-      nVar2 = addr_table_add(tbl,0xffff,extaddr);
-      uVar1 = CONCAT22(extraout_var_00,nVar2);
-      if (*(ushort *)(iVar3 + 0xc54) <= uVar1) {
-        return 1;
-      }
-    }
-    *ref_p = (nwk_addr_ref_t)uVar1;
-    if (CONCAT31(in_register_00002031,lock) != 0) {
-      nwk_address_lock_ref((nwk_addr_ref_t)uVar1);
-    }
-    eVar4 = 0;
+  if ((param_1[1] + 1U == (uint)(*param_1 == 0)) && (0xfffffffd < *param_1 - 1U)) {
+    return 2;
   }
-  return eVar4;
+  iVar3 = iVar1 + 0xc4c;
+  uVar2 = search_extended(iVar3,param_1);
+  if (uVar2 < *(ushort *)(iVar1 + 0xc54)) {
+    addr_table_lru_update(iVar3,uVar2);
+  }
+  else {
+    if (param_2 == 0) {
+      return 5;
+    }
+    uVar2 = addr_table_add(iVar3,0xffff,param_1);
+    if (*(ushort *)(iVar1 + 0xc54) <= uVar2) {
+      return 1;
+    }
+  }
+  *param_4 = (short)uVar2;
+  if (param_3 != 0) {
+    nwk_address_lock_ref(uVar2);
+  }
+  return 0;
 }
 

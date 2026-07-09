@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_identify.o -> touchlink_identify_req_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void touchlink_identify_req_confirm(touchlink_cmd_cnf_t *cnf,void *arg)
+int touchlink_identify_req_confirm(int param_1)
 
 {
   undefined2 extraout_a0;
@@ -27,19 +25,29 @@ void touchlink_identify_req_confirm(touchlink_cmd_cnf_t *cnf,void *arg)
   code *pcStack_28;
   char *pcStack_24;
   
-  if (cnf == (touchlink_cmd_cnf_t *)0x0) {
-    pcVar3 = "touchlink_identify_req_confirm";
-    puVar2 = (undefined1 *)
-             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/touchlink/touchlink_identify.c"
-                           ,0x14,0x10000);
-    uStack_3c = 0;
-    uStack_38 = 0;
-    uStack_34 = 0;
-    uStack_30 = 0;
-    uStack_2c = 0;
-    pcStack_28 = (code *)0x0;
-    pcStack_24 = (char *)0x0;
-    if ((puVar2 != (undefined1 *)0x0) && (iVar1 = touchlink_transaction_id(0), iVar1 != 0)) {
+  if (param_1 != 0) {
+    return param_1;
+  }
+  pcVar3 = "touchlink_identify_req_confirm";
+  puVar2 = (undefined1 *)
+           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/touchlink/touchlink_identify.c"
+                         ,0x14,0x10000);
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  pcStack_28 = (code *)0x0;
+  pcStack_24 = (char *)0x0;
+  if (puVar2 == (undefined1 *)0x0) {
+    iVar1 = 2;
+  }
+  else {
+    iVar1 = touchlink_transaction_id(0);
+    if (iVar1 == 0) {
+      iVar1 = 3;
+    }
+    else {
       uStack_30 = touchlink_transaction_id(0);
       uStack_2c = CONCAT22(uStack_2c._2_2_,extraout_a0);
       pcStack_28 = touchlink_identify_req_confirm;
@@ -48,10 +56,9 @@ void touchlink_identify_req_confirm(touchlink_cmd_cnf_t *cnf,void *arg)
       uStack_3c = CONCAT13(puVar2[1],CONCAT12(*puVar2,(undefined2)uStack_3c));
       uStack_34 = CONCAT22(uStack_34._2_2_,*(undefined2 *)(puVar2 + 6));
       pcStack_24 = pcVar3;
-      zcl_touchlink_identify_req(&uStack_3c);
+      iVar1 = zcl_touchlink_identify_req(&uStack_3c);
     }
-    return;
   }
-  return;
+  return iVar1;
 }
 

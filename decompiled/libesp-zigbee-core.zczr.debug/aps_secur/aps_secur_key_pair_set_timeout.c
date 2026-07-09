@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_key_pair_set_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,15 +10,11 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_key_pair_set_timeout(aps_device_key_pair_t *key_pair,uint16_t timeout)
+void aps_secur_key_pair_set_timeout(int param_1,int param_2)
 
 {
-  undefined2 in_register_0000202e;
-  
-  key_pair->timeout = timeout;
-  if (CONCAT22(in_register_0000202e,timeout) != 0) {
+  *(short *)(param_1 + 0x10) = (short)param_2;
+  if (param_2 != 0) {
     time_ticker_register_receiver(3);
   }
   return;

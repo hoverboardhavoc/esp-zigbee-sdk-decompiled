@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_desc.o -> zcl_free_cluster_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_free_cluster_desc(zcl_cluster_desc_t *cluster_desc)
+void zcl_free_cluster_desc(int param_1)
 
 {
-  zcl_attr_desc_s *pzVar1;
-  zcl_attr_desc_t *attr_desc;
+  int iVar1;
   
-  if (cluster_desc != (zcl_cluster_desc_t *)0x0) {
-    attr_desc = cluster_desc->attr_list;
-    while (attr_desc != (zcl_attr_desc_t *)0x0) {
-      pzVar1 = attr_desc->next;
-      zcl_free_attr_desc(attr_desc);
-      attr_desc = pzVar1;
+  if (param_1 != 0) {
+    iVar1 = *(int *)(param_1 + 0xc);
+    while (iVar1 != 0) {
+      iVar1 = *(int *)(iVar1 + 0xc);
+      zcl_free_attr_desc();
     }
-    cluster_desc->next = (zcl_cluster_desc_s *)0x0;
-    mm_free(cluster_desc);
+    *(undefined4 *)(param_1 + 0x10) = 0;
+    mm_free(param_1);
     return;
   }
   return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_frame.o -> aps_frame_prepend_data_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,96 +10,91 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_frame_prepend_data_hdr
-                    (zmsg_t *msg,aps_addr_t *addr,_Bool is_ack_required,_Bool is_secured,
-                    _Bool is_fragmented,_Bool inc_ext_nonce)
+void aps_frame_prepend_data_hdr
+               (undefined4 param_1,int param_2,uint param_3,int param_4,int param_5,int param_6)
 
 {
-  char cVar1;
+  byte bVar1;
   byte bVar2;
   uint uVar3;
-  uint16_t *puVar4;
+  byte *pbVar4;
   int iVar5;
-  char *pcVar6;
-  ezb_err_t eVar7;
-  undefined4 uVar8;
-  undefined3 in_register_00002035;
-  undefined3 in_register_0000203d;
-  byte bStack_3c;
-  uint8_t uStack_3b;
-  undefined1 uStack_3a;
-  undefined1 uStack_39;
-  uint8_t aps_hdr [12];
-  secur_aux_hdr_t aux_hdr;
+  byte *pbVar6;
+  undefined4 uVar7;
+  byte abStack_3c [12];
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined2 uStack_24;
   
-  _bStack_3c = 0;
-  aps_hdr[0] = '\0';
-  aps_hdr[1] = '\0';
-  aps_hdr[2] = '\0';
-  aps_hdr[3] = '\0';
-  aps_hdr[4] = '\0';
-  aps_hdr[5] = '\0';
-  aps_hdr[6] = '\0';
-  aps_hdr[7] = '\0';
-  if (addr->grp_addr == 0) {
-    uVar3 = (uint)(0xfff7 < addr->dst_addr) << 3;
-    if (CONCAT31(in_register_00002035,is_secured) != 0) goto _L0;
+  abStack_3c[0] = 0;
+  abStack_3c[1] = 0;
+  abStack_3c[2] = 0;
+  abStack_3c[3] = 0;
+  abStack_3c[4] = 0;
+  abStack_3c[5] = 0;
+  abStack_3c[6] = 0;
+  abStack_3c[7] = 0;
+  abStack_3c[8] = 0;
+  abStack_3c[9] = 0;
+  abStack_3c[10] = 0;
+  abStack_3c[0xb] = 0;
+  if (*(short *)(param_2 + 4) == 0) {
+    uVar3 = (uint)(0xfff7 < *(ushort *)(param_2 + 2)) << 3;
+    if (param_4 != 0) goto _L0;
   }
   else {
     uVar3 = 0xc;
-    if (CONCAT31(in_register_00002035,is_secured) == 0) goto _L0;
+    if (param_4 == 0) goto _L0;
 _L0:
-    aps_hdr[8] = '\0';
-    aps_hdr[9] = '\0';
-    aps_hdr[10] = '\0';
-    aps_hdr[0xb] = '\0';
+    uStack_30 = 0;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_24 = 0;
     uVar3 = uVar3 | 0x20;
-    uVar8 = 5;
-    if (CONCAT31(in_register_0000203d,inc_ext_nonce) != 0) {
-      aps_hdr[8] = ' ';
-      aps_hdr[9] = '\0';
-      aps_hdr[10] = '\0';
-      aps_hdr[0xb] = '\0';
-      uVar8 = 0xd;
+    uVar7 = 5;
+    if (param_6 != 0) {
+      uStack_30 = 0x20;
+      uVar7 = 0xd;
     }
-    iVar5 = zmsg_prepend_bytes(msg,uVar8,aps_hdr + 8);
+    iVar5 = zmsg_prepend_bytes(param_1,uVar7,&uStack_30);
     if (iVar5 != 0) {
       __assert_func(0,0,0,0);
     }
   }
   if ((uVar3 & 0xc) == 0) {
-    uVar3 = uVar3 | (is_ack_required & 3) << 6;
+    uVar3 = uVar3 | (param_3 & 3) << 6;
   }
 _L0:
-  uVar8 = _bStack_3c;
-  bVar2 = (byte)uVar3 | is_fragmented << 7;
+  uVar7 = abStack_3c._0_4_;
+  bVar2 = (byte)uVar3 | (byte)(param_5 << 7);
   if ((uVar3 & 0xc) == 0xc) {
-    puVar4 = (uint16_t *)&uStack_39;
-    _bStack_3c = CONCAT11((char)addr->grp_addr,bVar2);
-    uStack_39 = SUB41(uVar8,3);
-    _bStack_3c = CONCAT12((char)(addr->grp_addr >> 8),_bStack_3c);
+    pbVar4 = abStack_3c + 3;
+    abStack_3c[1] = (char)*(undefined2 *)(param_2 + 4);
+    abStack_3c[0] = bVar2;
+    abStack_3c[3] = SUB41(uVar7,3);
+    abStack_3c[2] = (char)((ushort)*(undefined2 *)(param_2 + 4) >> 8);
   }
   else {
-    puVar4 = (uint16_t *)&uStack_3a;
-    _bStack_3c = CONCAT11(addr->dst_ep,bVar2);
+    pbVar4 = abStack_3c + 2;
+    abStack_3c[1] = *(undefined1 *)(param_2 + 7);
+    abStack_3c[0] = bVar2;
   }
-  *puVar4 = addr->cluster_id;
-  puVar4[1] = addr->profile_id;
-  *(uint8_t *)(puVar4 + 2) = addr->src_ep;
-  pcVar6 = (char *)core_globals_get();
-  cVar1 = *pcVar6;
-  *pcVar6 = cVar1 + '\x01';
-  *(char *)((int)puVar4 + 5) = cVar1;
+  *(undefined2 *)pbVar4 = *(undefined2 *)(param_2 + 8);
+  *(undefined2 *)(pbVar4 + 2) = *(undefined2 *)(param_2 + 10);
+  pbVar4[4] = *(byte *)(param_2 + 6);
+  pbVar6 = (byte *)core_globals_get();
+  bVar1 = *pbVar6;
+  *pbVar6 = bVar1 + 1;
+  pbVar4[5] = bVar1;
   if ((char)bVar2 < '\0') {
-    *(undefined1 *)(puVar4 + 3) = 1;
-    puVar4 = puVar4 + 4;
+    pbVar4[6] = 1;
+    pbVar4 = pbVar4 + 8;
   }
   else {
-    puVar4 = puVar4 + 3;
+    pbVar4 = pbVar4 + 6;
   }
-  eVar7 = zmsg_prepend_bytes(msg,(int)puVar4 - (int)&bStack_3c & 0xffff);
-  return eVar7;
+  zmsg_prepend_bytes(param_1,(int)pbVar4 - (int)abStack_3c & 0xffff);
+  return;
 }
 

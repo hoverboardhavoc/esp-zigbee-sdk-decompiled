@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> touchlink_utility.o -> touchlink_current_channel
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,60 +10,57 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t touchlink_current_channel(void)
+uint touchlink_current_channel(void)
 
 {
-  uint8_t uVar1;
-  _Bool _Var2;
-  byte bVar3;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  int iVar4;
-  undefined3 extraout_var_01;
+  byte bVar1;
+  int iVar2;
+  int iVar3;
+  uint uVar4;
   uint uVar5;
-  uint uVar6;
-  uint8_t auStack_30 [28];
+  byte abStack_30 [28];
   
-  bVar3 = touchlink_touchlink_info();
-  if ((bVar3 & 1) == 0) {
-    uVar5 = nwk_get_pan_channel();
-    uVar6 = 0xc;
+  uVar4 = touchlink_touchlink_info();
+  if ((uVar4 & 1) == 0) {
+    uVar4 = nwk_get_pan_channel();
+    uVar5 = 0xc;
     do {
-      if (((uVar5 & 0x7ffffff) >> (uVar6 & 0x1f) & 1) != 0) {
-        return (uint8_t)uVar6;
+      if (((uVar4 & 0x7ffffff) >> (uVar5 & 0x1f) & 1) != 0) {
+        return uVar5 & 0xff;
       }
-      uVar6 = uVar6 + 1;
-    } while (uVar6 != 0x1b);
-    return '\v';
+      uVar5 = uVar5 + 1;
+    } while (uVar5 != 0x1b);
+    return 0xb;
   }
-  iVar4 = touchlink_device_info_get();
-  _Var2 = touchlink_channel_is_valid(*(uint8_t *)(iVar4 + 1));
-  if (CONCAT31(extraout_var_01,_Var2) == 0) {
-    builtin_memcpy(auStack_30,"\v\x0f\x14\x19",4);
-    iVar4 = 0;
+  iVar3 = touchlink_device_info_get();
+  iVar3 = touchlink_channel_is_valid(*(undefined1 *)(iVar3 + 1));
+  if (iVar3 == 0) {
+    abStack_30[0] = 0xb;
+    abStack_30[1] = 0xf;
+    abStack_30[2] = 0x14;
+    abStack_30[3] = 0x19;
+    iVar3 = 0;
     do {
-      uVar1 = auStack_30[iVar4];
-      _Var2 = touchlink_channel_is_valid(uVar1);
-      if (CONCAT31(extraout_var,_Var2) != 0) {
-        return uVar1;
+      bVar1 = abStack_30[iVar3];
+      iVar2 = touchlink_channel_is_valid((uint)bVar1);
+      if (iVar2 != 0) {
+        return (uint)bVar1;
       }
-      iVar4 = iVar4 + 1;
-    } while (iVar4 != 4);
-    memcpy(auStack_30 + 4,&_LC1,0xc);
-    iVar4 = 0;
+      iVar3 = iVar3 + 1;
+    } while (iVar3 != 4);
+    memcpy(abStack_30 + 4,&_LC1,0xc);
+    iVar3 = 0;
     do {
-      uVar1 = (auStack_30 + 4)[iVar4];
-      _Var2 = touchlink_channel_is_valid(uVar1);
-      if (CONCAT31(extraout_var_00,_Var2) != 0) {
-        return uVar1;
+      uVar4 = (uint)(abStack_30 + 4)[iVar3];
+      iVar2 = touchlink_channel_is_valid(uVar4);
+      if (iVar2 != 0) {
+        return uVar4;
       }
-      iVar4 = iVar4 + 1;
-    } while (iVar4 != 0xc);
-    return '\v';
+      iVar3 = iVar3 + 1;
+    } while (iVar3 != 0xc);
+    return 0xb;
   }
-  iVar4 = touchlink_device_info_get();
-  return *(uint8_t *)(iVar4 + 1);
+  iVar3 = touchlink_device_info_get();
+  return (uint)*(byte *)(iVar3 + 1);
 }
 

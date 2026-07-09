@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_formation.o -> nwk_formation_active_scan_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,160 +10,151 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_formation_active_scan_callback(active_scan_result_t *scan_result,void *user_ctx)
+void nwk_formation_active_scan_callback(int param_1)
 
 {
-  uint8_t uVar1;
+  undefined1 uVar1;
   char cVar2;
   short sVar3;
   short sVar4;
-  ezb_panid_t eVar5;
-  _Bool _Var6;
-  byte bVar7;
-  ezb_panid_t eVar8;
-  int iVar9;
+  byte bVar5;
+  undefined2 uVar6;
+  int iVar7;
+  int iVar8;
+  short *psVar9;
   int iVar10;
-  nwk_disc_table_lite_ent_t *pnVar11;
-  nwk_disc_table_lite_ent_t *pnVar12;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
+  byte *pbVar11;
+  undefined4 uVar12;
   undefined4 uVar13;
-  undefined4 uVar14;
-  int *piVar15;
-  ezb_panid_t *peVar16;
-  uint uVar17;
+  int *piVar14;
+  short *psVar15;
+  uint uVar16;
   undefined2 uStack_2a;
   undefined2 uStack_28;
-  nwk_addr_ref_t ref;
-  mac_start_req_t start_req;
+  byte bStack_26;
+  byte bStack_25;
+  byte bStack_24;
   
-  iVar9 = core_globals_get();
-  if (scan_result == (active_scan_result_t *)0x0) {
-    iVar10 = core_globals_get();
-    uVar1 = *(uint8_t *)(iVar10 + 0xba4);
-    iVar10 = core_globals_get();
-    cVar2 = *(char *)(iVar10 + 0xba4);
-    pnVar11 = nwk_disc_table_lite_get_slot(uVar1);
-    bVar7 = cVar2 + 1U & 1;
-    pnVar12 = nwk_disc_table_lite_get_slot(bVar7);
-    if (pnVar12->pan_cnt < pnVar11->pan_cnt) {
-      iVar10 = core_globals_get();
-      *(byte *)(iVar10 + 0xba4) = bVar7;
+  iVar7 = core_globals_get();
+  if (param_1 == 0) {
+    iVar8 = core_globals_get();
+    uVar1 = *(undefined1 *)(iVar8 + 0xba4);
+    iVar8 = core_globals_get();
+    cVar2 = *(char *)(iVar8 + 0xba4);
+    iVar8 = nwk_disc_table_lite_get_slot(uVar1);
+    bVar5 = cVar2 + 1U & 1;
+    iVar10 = nwk_disc_table_lite_get_slot(bVar5);
+    if (*(byte *)(iVar10 + 2) < *(byte *)(iVar8 + 2)) {
+      iVar8 = core_globals_get();
+      *(byte *)(iVar8 + 0xba4) = bVar5;
     }
-    iVar10 = core_globals_get();
-    pnVar11 = nwk_disc_table_lite_get_slot(*(uint8_t *)(iVar10 + 0xba4));
-    if ((*(uint *)(iVar9 + 0xac8) & 0x7ffffff) != 0) {
-      pnVar11->channel_page = (byte)(*(uint *)(iVar9 + 0xac8) >> 0x1b);
-      pnVar11->channel_number = 0xff;
-      iVar10 = 0;
-      if (*(uint *)(iVar9 + 0xac8) < 0x8000000) {
-        iVar10 = 10;
+    iVar8 = core_globals_get();
+    pbVar11 = (byte *)nwk_disc_table_lite_get_slot(*(undefined1 *)(iVar8 + 0xba4));
+    if ((*(uint *)(iVar7 + 0xac8) & 0x7ffffff) != 0) {
+      *pbVar11 = (byte)(*(uint *)(iVar7 + 0xac8) >> 0x1b);
+      pbVar11[1] = 0xff;
+      iVar8 = 0;
+      if (*(uint *)(iVar7 + 0xac8) < 0x8000000) {
+        iVar8 = 10;
       }
-      uVar17 = iVar10 + 1;
-      while (((*(uint *)(iVar9 + 0xac8) & 0x7ffffff) >> (uVar17 & 0x1f) & 1) == 0) {
-        uVar17 = uVar17 + 1;
-        if ((uVar17 & 0xff) == 0x1b) goto _L0;
+      uVar16 = iVar8 + 1;
+      while (((*(uint *)(iVar7 + 0xac8) & 0x7ffffff) >> (uVar16 & 0x1f) & 1) == 0) {
+        uVar16 = uVar16 + 1;
+        if ((uVar16 & 0xff) == 0x1b) goto _L0;
       }
-      pnVar11->channel_number = (uint8_t)uVar17;
-      pnVar11->pan_cnt = '\0';
+      pbVar11[1] = (byte)uVar16;
+      pbVar11[2] = 0;
     }
-    eVar8 = nwk_get_panid();
-    _Var6 = nwk_check_assigned_panid(eVar8);
-    if (CONCAT31(extraout_var,_Var6) == 0) {
+    nwk_get_panid();
+    iVar7 = nwk_check_assigned_panid();
+    if (iVar7 == 0) {
       do {
-        eVar8 = random_noncrypto_get_u32();
-        _Var6 = nwk_check_assigned_panid(eVar8);
-      } while (CONCAT31(extraout_var_00,_Var6) == 0);
-      nwk_set_panid(eVar8);
+        uVar6 = random_noncrypto_get_u32();
+        iVar7 = nwk_check_assigned_panid(uVar6);
+      } while (iVar7 == 0);
+      nwk_set_panid(uVar6);
     }
-    iVar9 = nwk_is_device_zc();
-    if (iVar9 == 0) goto _L0;
-    uVar13 = 0;
+    iVar7 = nwk_is_device_zc();
+    if (iVar7 == 0) goto _L0;
+    uVar12 = 0;
     do {
-      nwk_set_short_address(uVar13);
+      nwk_set_short_address(uVar12);
       do {
-        uVar13 = nwk_get_extended_address();
-        uVar14 = nwk_get_short_address();
-        iVar9 = nwk_address_update(uVar13,uVar14,&uStack_2a);
-        if (iVar9 == 0) {
+        uVar12 = nwk_get_extended_address();
+        uVar13 = nwk_get_short_address();
+        iVar7 = nwk_address_update(uVar12,uVar13,&uStack_2a);
+        if (iVar7 == 0) {
           nwk_address_lock_ref(uStack_2a);
-          piVar15 = (int *)nwk_get_extended_panid();
-          if ((piVar15[1] + 1U == (uint)(*piVar15 == 0)) && (0xfffffffd < *piVar15 - 1U)) {
+          piVar14 = (int *)nwk_get_extended_panid();
+          if ((piVar14[1] + 1U == (uint)(*piVar14 == 0)) && (0xfffffffd < *piVar14 - 1U)) {
             nwk_get_extended_address();
             nwk_set_extended_panid();
           }
           uStack_28 = nwk_get_panid();
-          ref._0_1_ = pnVar11->channel_number;
-          ref._1_1_ = pnVar11->channel_page;
-          bVar7 = nwk_is_device_zc();
-          start_req.pan_id._0_1_ = (byte)start_req.pan_id & 0xfe | bVar7 & 1;
-          iVar9 = nwk_mm_start_request(0,&uStack_28);
-          if (iVar9 == 0) {
-            iVar9 = core_globals_get();
-            uVar13 = 0;
-            *(byte *)(iVar9 + 0xb18) = *(byte *)(iVar9 + 0xb18) | 1;
+          bStack_26 = pbVar11[1];
+          bStack_25 = *pbVar11;
+          bVar5 = nwk_is_device_zc();
+          bStack_24 = bStack_24 & 0xfe | bVar5 & 1;
+          iVar7 = nwk_mm_start_request(0,&uStack_28);
+          if (iVar7 == 0) {
+            iVar7 = core_globals_get();
+            uVar12 = 0;
+            *(byte *)(iVar7 + 0xb18) = *(byte *)(iVar7 + 0xb18) | 1;
           }
           else {
-            iVar9 = core_globals_get();
-            uVar13 = 0xc4;
-            *(byte *)(iVar9 + 0xb18) = *(byte *)(iVar9 + 0xb18) & 0xfe;
+            iVar7 = core_globals_get();
+            uVar12 = 0xc4;
+            *(byte *)(iVar7 + 0xb18) = *(byte *)(iVar7 + 0xb18) & 0xfe;
           }
-          iVar9 = core_globals_get();
-          *(undefined1 *)(iVar9 + 0xac0) = 0;
-          nwk_network_formation_confirm(uVar13);
+          iVar7 = core_globals_get();
+          *(undefined1 *)(iVar7 + 0xac0) = 0;
+          nwk_network_formation_confirm(uVar12);
           return;
         }
 _L0:
         __assert_func(0,0,0,0);
 _L0:
-        uVar17 = nwk_get_short_address();
-      } while ((uVar17 < 0xfff8) && (iVar9 = nwk_get_short_address(), iVar9 != 0));
-      uVar13 = nwk_assign_shortaddr();
+        uVar16 = nwk_get_short_address();
+      } while ((uVar16 < 0xfff8) && (iVar7 = nwk_get_short_address(), iVar7 != 0));
+      uVar12 = nwk_assign_shortaddr();
     } while( true );
   }
-  iVar10 = core_globals_get();
-  uVar1 = *(uint8_t *)(iVar10 + 0xba4);
-  iVar10 = core_globals_get();
-  cVar2 = *(char *)(iVar10 + 0xba4);
-  pnVar11 = nwk_disc_table_lite_get_slot(uVar1);
-  bVar7 = cVar2 + 1U & 1;
-  pnVar12 = nwk_disc_table_lite_get_slot(bVar7);
-  sVar3._0_1_ = pnVar12->channel_page;
-  sVar3._1_1_ = pnVar12->channel_number;
-  sVar4._0_1_ = (scan_result->pan_descriptor).channel_page;
-  sVar4._1_1_ = (scan_result->pan_descriptor).channel_number;
-  if (sVar3 != sVar4) {
-    if (pnVar12->pan_cnt < pnVar11->pan_cnt) {
-      iVar10 = core_globals_get();
-      *(byte *)(iVar10 + 0xba4) = bVar7;
-      pnVar12 = nwk_disc_table_lite_get_slot(bVar7 ^ 1);
+  iVar8 = core_globals_get();
+  uVar1 = *(undefined1 *)(iVar8 + 0xba4);
+  iVar8 = core_globals_get();
+  cVar2 = *(char *)(iVar8 + 0xba4);
+  iVar8 = nwk_disc_table_lite_get_slot(uVar1);
+  bVar5 = cVar2 + 1U & 1;
+  psVar9 = (short *)nwk_disc_table_lite_get_slot(bVar5);
+  if (*psVar9 != *(short *)(param_1 + 0x10)) {
+    if (*(byte *)(psVar9 + 1) < *(byte *)(iVar8 + 2)) {
+      iVar8 = core_globals_get();
+      *(byte *)(iVar8 + 0xba4) = bVar5;
+      psVar9 = (short *)nwk_disc_table_lite_get_slot(bVar5 ^ 1);
     }
-    pnVar12->pan_cnt = '\0';
+    *(undefined1 *)(psVar9 + 1) = 0;
   }
-  uVar1 = (scan_result->pan_descriptor).channel_number;
-  eVar8 = (scan_result->pan_descriptor).coord_panid;
-  peVar16 = pnVar12->panids;
-  pnVar12->channel_page = (scan_result->pan_descriptor).channel_page;
-  pnVar12->channel_number = uVar1;
-  for (uVar17 = 0; uVar17 != pnVar12->pan_cnt; uVar17 = uVar17 + 1 & 0xff) {
-    eVar5 = *peVar16;
-    peVar16 = peVar16 + 1;
-    if (eVar5 == eVar8) goto _L0;
+  uVar1 = *(undefined1 *)(param_1 + 0x11);
+  sVar3 = *(short *)(param_1 + 0xe);
+  psVar15 = psVar9 + 2;
+  *(undefined1 *)psVar9 = *(undefined1 *)(param_1 + 0x10);
+  *(undefined1 *)((int)psVar9 + 1) = uVar1;
+  for (uVar16 = 0; uVar16 != *(byte *)(psVar9 + 1); uVar16 = uVar16 + 1 & 0xff) {
+    sVar4 = *psVar15;
+    psVar15 = psVar15 + 1;
+    if (sVar4 == sVar3) goto _L0;
   }
-  if (uVar17 < 0x1c) {
-    pnVar12->panids[uVar17] = eVar8;
-    pnVar12->pan_cnt = (char)uVar17 + '\x01';
+  if (uVar16 < 0x1c) {
+    psVar9[uVar16 + 2] = sVar3;
+    *(char *)(psVar9 + 1) = (char)uVar16 + '\x01';
   }
   else {
     log_write(2,"nwk_formation.c","Too many PANs on channel: %d:%d");
   }
 _L0:
-  *(uint *)(iVar9 + 0xac8) =
-       *(uint *)(iVar9 + 0xac8) & 0xf8000000 |
-       *(uint *)(iVar9 + 0xac8) & 0x7ffffff &
-       ~(1 << ((scan_result->pan_descriptor).channel_number & 0x1f));
+  *(uint *)(iVar7 + 0xac8) =
+       *(uint *)(iVar7 + 0xac8) & 0xf8000000 |
+       *(uint *)(iVar7 + 0xac8) & 0x7ffffff & ~(1 << (*(byte *)(param_1 + 0x11) & 0x1f));
   return;
 }
 

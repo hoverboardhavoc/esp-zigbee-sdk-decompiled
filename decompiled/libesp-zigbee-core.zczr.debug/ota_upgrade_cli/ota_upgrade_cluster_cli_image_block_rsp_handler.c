@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_image_block_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,99 +10,88 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Type propagation algorithm not settling */
 
-ezb_zcl_status_t
-ota_upgrade_cluster_cli_image_block_rsp_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+int ota_upgrade_cluster_cli_image_block_rsp_handler(int param_1,int param_2)
 
 {
-  undefined1 uVar1;
+  int iVar1;
   int iVar2;
-  _Bool _Var3;
-  ezb_zcl_status_t eVar4;
-  ota_upgrade_downloading_context_t *context;
-  undefined3 extraout_var;
-  uint uVar5;
-  undefined3 extraout_var_00;
-  undefined3 extraout_var_01;
-  undefined3 extraout_var_02;
-  uint16_t *puVar6;
+  uint uVar3;
   uint __size;
-  undefined1 auStack_3c [4];
-  ota_upgrade_image_block_rsp_t payload;
-  uint16_t offset;
+  uint uStack_3c;
+  undefined4 uStack_38;
+  undefined1 auStack_36 [2];
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  uint uStack_2c;
+  void *pvStack_28;
+  ushort auStack_22 [5];
   
-  payload.field_1._18_2_ = 0;
-  auStack_3c = (undefined1  [4])0x0;
-  payload.status = '\0';
-  payload._1_3_ = 0;
-  payload.field_1.wait_for_data.current_time = 0;
-  payload.field_1.success.file_version = 0;
-  payload.field_1.success.file_offset = 0;
-  payload.field_1._12_4_ = 0;
-  if (packet == (zcl_packet_t *)0x0) {
+  auStack_22[0] = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  pvStack_28 = (void *)0x0;
+  if (param_1 == 0) {
     iVar2 = 1;
   }
-  else if (rsp == (zcl_packet_t *)0x0) {
+  else if (param_2 == 0) {
     iVar2 = 1;
   }
   else {
-    context = ota_upgrade_downloading_context_get((packet->header).dst_ep);
-    _Var3 = ota_upgrade_download_stop_timer(context);
-    if (CONCAT31(extraout_var,_Var3) == 0) {
+    iVar1 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
+    iVar2 = ota_upgrade_download_stop_timer();
+    if (iVar2 == 0) {
       iVar2 = 0xfe;
     }
-    else if (*(context->attr).upgrade_status == '\x01') {
-      uVar5 = zmsg_get_length(packet->payload);
-      af_read_le8(packet->payload,(uint16_t *)((int)&payload.field_1 + 0x12),auStack_3c);
-      if (((uint)auStack_3c & 0xff) == 0) {
-        puVar6 = (uint16_t *)((int)&(&payload.field_1.wait_for_data)[1].request_time + 2);
-        af_read_le16(packet->payload,puVar6,(uint16_t *)&payload);
-        af_read_le16(packet->payload,puVar6,(uint16_t *)&payload.field_0x2);
-        af_read_le32(packet->payload,puVar6,(uint32_t *)&payload.field_1);
-        af_read_le32(packet->payload,puVar6,&payload.field_1.success.file_version);
-        af_read_le8(packet->payload,puVar6,(uint8_t *)&payload.field_1.success.file_offset);
-        uVar1 = payload.field_1.success.file_offset._0_1_;
-        __size = payload.field_1.success.file_offset & 0xff;
-        payload.field_1._12_4_ = calloc(1,__size);
-        if (((uint8_t *)payload.field_1._12_4_ == (uint8_t *)0x0) && (__size != 0)) {
+    else if (**(char **)(iVar1 + 0x18) == '\x01') {
+      uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+      af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_3c);
+      if ((uStack_3c & 0xff) == 0) {
+        af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&stack0xffffffc8);
+        af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,auStack_36);
+        af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_34);
+        af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_30);
+        af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_2c);
+        __size = uStack_2c & 0xff;
+        pvStack_28 = calloc(1,__size);
+        if ((pvStack_28 == (void *)0x0) && (__size != 0)) {
           iVar2 = 0x89;
           goto _L0;
         }
-        af_read_bytes(packet->payload,(uint16_t *)((int)&payload.field_1 + 0x12),(ushort)(byte)uVar1
-                      ,(uint8_t *)payload.field_1._12_4_);
+        af_read_bytes(*(undefined4 *)(param_1 + 0x24),auStack_22,__size,pvStack_28);
       }
-      else if (((uint)auStack_3c & 0xff) == 0x97) {
-        puVar6 = (uint16_t *)((int)&(&payload.field_1.wait_for_data)[1].request_time + 2);
-        af_read_le32(packet->payload,puVar6,(uint32_t *)&payload);
-        af_read_le32(packet->payload,puVar6,(uint32_t *)&payload.field_1);
-        af_read_le16(packet->payload,puVar6,(uint16_t *)&payload.field_1.success.file_version);
+      else if ((uStack_3c & 0xff) == 0x97) {
+        af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&stack0xffffffc8);
+        af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_34);
+        af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_30);
       }
-      if (uVar5 < (ushort)payload.field_1._18_2_) {
+      if (uVar3 < auStack_22[0]) {
         iVar2 = 0x80;
       }
-      else if (((uint)auStack_3c & 0xff) == 0) {
-        eVar4 = ota_upgrade_handle_image_block_with_success
-                          (context,(ota_upgrade_image_block_rsp_t *)auStack_3c);
-        if (CONCAT31(extraout_var_00,eVar4) == 0) {
-          eVar4 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,'\0');
-          iVar2 = CONCAT31(extraout_var_01,eVar4);
+      else if ((uStack_3c & 0xff) == 0) {
+        iVar2 = ota_upgrade_handle_image_block_with_success(iVar1,&uStack_3c);
+        if (iVar2 == 0) {
+          iVar2 = ota_upgrade_setup_upgrade_end_request(param_2,iVar1,param_1,0);
         }
         else {
-          if (CONCAT31(extraout_var_00,eVar4) != 0x99) {
+          if (iVar2 != 0x99) {
             iVar2 = 0xfe;
             goto _L0;
           }
-          eVar4 = ota_upgrade_setup_image_block_request(rsp,context,packet);
-          iVar2 = CONCAT31(extraout_var_02,eVar4);
+          iVar2 = ota_upgrade_setup_image_block_request(param_2,iVar1,param_1);
         }
-        if ((iVar2 == 0) &&
-           (zcl_message_ota_upgrade_downloading_progress(packet,'\x01',auStack_3c),
-           *(context->attr).upgrade_status == '\x02')) {
-          zcl_message_ota_upgrade_downloading_progress(packet,'\x03',auStack_3c);
+        if (iVar2 == 0) {
+          zcl_message_ota_upgrade_downloading_progress(param_1,1,&uStack_3c);
+          if (**(char **)(iVar1 + 0x18) == '\x02') {
+            zcl_message_ota_upgrade_downloading_progress(param_1,3,&uStack_3c);
+          }
         }
       }
-      else if (((uint)auStack_3c & 0xff) == 0x97) {
+      else if ((uStack_3c & 0xff) == 0x97) {
         iVar2 = 0x85;
       }
       else {
@@ -114,12 +103,12 @@ ota_upgrade_cluster_cli_image_block_rsp_handler(zcl_packet_t *packet,zcl_packet_
     }
   }
 _L0:
-  if (payload.field_1._12_4_ != 0) {
+  if (pvStack_28 != (void *)0x0) {
     mm_free();
   }
   if (iVar2 != 0) {
-    iVar2 = zcl_packet_setup_default_response(rsp,packet,iVar2);
+    iVar2 = zcl_packet_setup_default_response(param_2,param_1,iVar2);
   }
-  return (ezb_zcl_status_t)iVar2;
+  return iVar2;
 }
 

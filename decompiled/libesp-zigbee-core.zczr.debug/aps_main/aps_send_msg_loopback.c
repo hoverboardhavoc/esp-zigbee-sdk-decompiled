@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_send_msg_loopback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,34 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: aps_hdr */
-/* WARNING: Unknown calling convention */
-
-void aps_send_msg_loopback(aps_addr_t *addr,zmsg_t *msg)
+void aps_send_msg_loopback(undefined4 *param_1,undefined4 param_2)
 
 {
-  ezb_shortaddr_t eVar1;
-  zmsg_t *msg_00;
-  undefined1 auStack_24 [4];
-  aps_header_t aps_hdr;
+  short sVar1;
+  int iVar2;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  eVar1 = addr->grp_addr;
-  msg_00 = (zmsg_t *)zmsg_clone(msg);
-  if (msg_00 != (zmsg_t *)0x0) {
-    aps_hdr.addr_info.cluster_id = 0;
-    aps_hdr.addr_info.profile_id = 0;
-    auStack_24._0_2_ = addr->src_addr;
-    auStack_24._2_2_ = addr->dst_addr;
-    aps_hdr.addr_info._0_4_ = *(undefined4 *)&addr->grp_addr;
-    aps_hdr.addr_info._4_4_ = *(undefined4 *)&addr->cluster_id;
-    aps_hdr.fcf = '\x7f';
-    aps_hdr.aps_cntr = '\0';
-    aps_hdr.cmd_id = '\0';
-    aps_hdr.lqi = '\0';
-    aps_handle_data((aps_header_t *)auStack_24,msg_00);
+  sVar1 = *(short *)(param_1 + 1);
+  iVar2 = zmsg_clone(param_2);
+  if (iVar2 != 0) {
+    uStack_18 = 0;
+    uStack_24 = *param_1;
+    uStack_20 = param_1[1];
+    uStack_1c = param_1[2];
+    uStack_14 = 0x7f;
+    aps_handle_data(&uStack_24,iVar2);
   }
-  if (eVar1 == 0) {
-    aps_send_data_confirm(msg,(uint)(msg_00 == (zmsg_t *)0x0));
+  if (sVar1 == 0) {
+    aps_send_data_confirm(param_2,iVar2 == 0);
   }
   return;
 }

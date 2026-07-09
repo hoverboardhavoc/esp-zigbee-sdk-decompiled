@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_intrp.o -> aps_intrp_data_sent
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_intrp_data_sent(zmsg_t *msg,ezb_err_t error)
+void aps_intrp_data_sent(int param_1,byte param_2)
 
 {
-  zmsg_t *pzStack_44;
-  undefined1 auStack_40 [4];
-  aps_intrp_data_cnf_t cnf;
-  aps_intrp_data_req_t req;
+  int iStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  uint uStack_38;
+  undefined4 uStack_34;
+  uint uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  cnf.asdu = (zmsg_t *)0x0;
-  pzStack_44 = msg;
-  zmsg_get_footer(&cnf.asdu,0x18);
-  zmsg_remove_footer(pzStack_44,0x18);
-  cnf.status = '\0';
-  cnf._17_3_ = 0;
-  auStack_40 = (undefined1  [4])0x0;
-  cnf.dst_addr._0_4_ = 0;
-  cnf.dst_addr.u._2_4_ = 0;
-  cnf._8_4_ = 0;
-  cnf._12_4_ = error & 0xff;
-  cnf._16_4_ = aps_intrp_msg_transfer_ownership(&pzStack_44);
-  aps_intrp_data_confirm((aps_intrp_data_cnf_t *)auStack_40);
-  if (pzStack_44 != (zmsg_t *)0x0) {
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  iStack_44 = param_1;
+  zmsg_get_footer(&uStack_28,0x18);
+  zmsg_remove_footer(iStack_44,0x18);
+  uStack_2c = 0;
+  uStack_40 = uStack_24;
+  uStack_3c = uStack_20;
+  uStack_38 = uStack_1c & 0xffff;
+  uStack_34 = CONCAT22(uStack_1c._2_2_,(short)uStack_18);
+  uStack_30 = (uint)param_2;
+  uStack_2c = aps_intrp_msg_transfer_ownership(&iStack_44);
+  aps_intrp_data_confirm(&uStack_40);
+  if (iStack_44 != 0) {
     zmsg_free();
   }
   return;

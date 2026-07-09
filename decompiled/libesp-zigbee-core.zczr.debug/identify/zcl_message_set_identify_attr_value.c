@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> identify.o -> zcl_message_set_identify_attr_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t zcl_message_set_identify_attr_value(uint16_t ep_id,uint16_t identify_value)
+int zcl_message_set_identify_attr_value(undefined1 param_1,undefined2 param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  undefined3 extraout_var;
-  zcl_attr_desc_t *pzVar2;
-  uint16_t auStack_12 [3];
+  int iVar1;
+  undefined4 uVar2;
+  undefined2 auStack_12 [3];
   
-  auStack_12[0] = identify_value;
-  eVar1 = identify_srv_set_attr_desc((uint8_t)ep_id,0,(uint8_t *)auStack_12);
-  if (CONCAT31(extraout_var,eVar1) == 0) {
-    pzVar2 = identify_srv_get_attr_desc((uint8_t)ep_id,0);
-    zcl_message_notify_attr_value(ep_id & 0xff,3,1,pzVar2);
+  auStack_12[0] = param_2;
+  iVar1 = identify_srv_set_attr_desc(param_1,0,auStack_12);
+  if (iVar1 == 0) {
+    uVar2 = identify_srv_get_attr_desc(param_1,0);
+    zcl_message_notify_attr_value(param_1,3,1,uVar2);
   }
-  return eVar1;
+  return iVar1;
 }
 

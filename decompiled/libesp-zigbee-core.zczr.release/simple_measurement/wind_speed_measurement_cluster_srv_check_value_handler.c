@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> simple_measurement.o -> wind_speed_measurement_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,65 +10,56 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-wind_speed_measurement_cluster_srv_check_value_handler
-          (uint16_t attr_id,uint8_t endpoint,void *value)
+bool wind_speed_measurement_cluster_srv_check_value_handler
+               (uint param_1,undefined4 param_2,ushort *param_3)
 
 {
   ushort uVar1;
   ushort uVar2;
   bool bVar3;
-  zcl_attr_desc_t *pzVar4;
-  undefined2 in_register_0000202a;
-  uint uVar5;
-  uint16_t uVar6;
-  uint16_t uVar7;
+  int iVar4;
+  ushort uVar5;
+  ushort uVar6;
   
-  uVar5 = CONCAT22(in_register_0000202a,attr_id);
-  if (3 < uVar5) {
-    return '\0';
+  if (3 < param_1) {
+    return false;
   }
-                    /* WARNING: Load size is inaccurate */
-  uVar1 = *value;
+  uVar1 = *param_3;
   if (uVar1 == 0xffff) {
     bVar3 = false;
   }
   else {
-    if (uVar5 == 3) {
-      uVar7 = 0;
-      uVar6 = 0x308;
+    if (param_1 == 3) {
+      uVar6 = 0;
+      uVar5 = 0x308;
     }
     else {
-      uVar7 = 0;
-      if ((uVar5 & 0xfffffffd) != 0) goto _L0;
-      pzVar4 = simple_measurement_srv_get_attr_desc(endpoint,0x40b,1);
-      if (pzVar4 != (zcl_attr_desc_t *)0x0) goto _L0;
+      uVar6 = 0;
+      if ((param_1 & 0xfffffffd) != 0) goto _L0;
+      iVar4 = simple_measurement_srv_get_attr_desc(param_2,0x40b,1);
+      if (iVar4 != 0) goto _L0;
       do {
         do {
-          pzVar4 = (zcl_attr_desc_t *)__assert_func(0,0,0,0);
+          iVar4 = __assert_func(0,0,0,0);
 _L0:
-        } while ((uint16_t *)pzVar4->data_p == (uint16_t *)0x0);
-                    /* WARNING: Load size is inaccurate */
-        uVar6 = *pzVar4->data_p;
-        if (uVar6 != 0xffff) {
-          uVar7 = uVar6;
+        } while (*(ushort **)(iVar4 + 8) == (ushort *)0x0);
+        uVar5 = **(ushort **)(iVar4 + 8);
+        if (uVar5 != 0xffff) {
+          uVar6 = uVar5;
         }
-        uVar6 = 0xfffe;
-        if (uVar5 == 2) goto _L0;
+        uVar5 = 0xfffe;
+        if (param_1 == 2) goto _L0;
 _L0:
-        pzVar4 = simple_measurement_srv_get_attr_desc(endpoint,0x40b,2);
-      } while ((pzVar4 == (zcl_attr_desc_t *)0x0) || ((ushort *)pzVar4->data_p == (ushort *)0x0));
-                    /* WARNING: Load size is inaccurate */
-      uVar2 = *pzVar4->data_p;
-      uVar6 = 0xfffe;
+        iVar4 = simple_measurement_srv_get_attr_desc(param_2,0x40b,2);
+      } while ((iVar4 == 0) || (*(ushort **)(iVar4 + 8) == (ushort *)0x0));
+      uVar2 = **(ushort **)(iVar4 + 8);
+      uVar5 = 0xfffe;
       if (uVar2 != 0xffff) {
-        uVar6 = uVar2;
+        uVar5 = uVar2;
       }
     }
 _L0:
-    bVar3 = uVar1 < uVar7 || uVar6 < uVar1;
+    bVar3 = uVar1 < uVar6 || uVar5 < uVar1;
   }
   return bVar3;
 }

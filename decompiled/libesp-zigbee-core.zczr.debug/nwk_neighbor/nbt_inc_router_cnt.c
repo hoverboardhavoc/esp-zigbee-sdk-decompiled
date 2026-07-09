@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_inc_router_cnt
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,22 +15,23 @@
 /* WARNING: Removing unreachable block (ram,0x0001090e) */
 /* WARNING: Removing unreachable block (ram,0x000108c0) */
 /* WARNING: Removing unreachable block (ram,0x000108c8) */
-/* WARNING: Unknown calling convention */
 
-void nbt_inc_router_cnt(nwk_neighbor_table_t *tbl)
+undefined8 nbt_inc_router_cnt(int param_1)
 
 {
   int unaff_s0;
   int iVar1;
   char *pcVar2;
   int unaff_s7;
+  undefined8 in_fa0;
   undefined4 in_csr726;
   undefined4 in_stack_0000000c;
   undefined4 in_stack_000000e8;
   
-  if ((int)(uint)tbl->r_num < (int)((uint)tbl->ent_nr - (uint)tbl->ed_capacity)) {
-    tbl->r_num = tbl->r_num + 1;
-    return;
+  if ((int)(uint)*(ushort *)(param_1 + 0xe) <
+      (int)((uint)*(ushort *)(param_1 + 8) - (uint)*(ushort *)(param_1 + 10))) {
+    *(ushort *)(param_1 + 0xe) = *(ushort *)(param_1 + 0xe) + 1;
+    return in_fa0;
   }
   pcVar2 = "nbt_inc_router_cnt";
   iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xd3);

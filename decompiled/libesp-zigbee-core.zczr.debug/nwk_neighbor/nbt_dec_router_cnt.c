@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_dec_router_cnt
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nbt_dec_router_cnt(nwk_neighbor_table_t *tbl)
+uint nbt_dec_router_cnt(uint param_1)
 
 {
   uint uVar1;
+  uint uVar2;
   int extraout_a1;
   
-  if (tbl->r_num != 0) {
-    tbl->r_num = tbl->r_num - 1;
-    return;
+  if (*(short *)(param_1 + 0xe) != 0) {
+    *(short *)(param_1 + 0xe) = *(short *)(param_1 + 0xe) + -1;
+    return param_1;
   }
-  uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xd9,
+  uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xd9,
                         "nbt_dec_router_cnt",&_LC4);
-  __atomic_fetch_or_1((uVar1 >> 3) + extraout_a1,1 << (uVar1 & 7) & 0xff,5);
-  return;
+  uVar1 = 1 << (uVar2 & 7) & 0xff;
+  uVar2 = __atomic_fetch_or_1((uVar2 >> 3) + extraout_a1,uVar1,5);
+  return (uint)((uVar2 & uVar1) != 0);
 }
 

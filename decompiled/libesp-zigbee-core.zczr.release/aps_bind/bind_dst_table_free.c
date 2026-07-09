@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_bind.o -> bind_dst_table_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void bind_dst_table_free(aps_bind_dst_t *dst)
+void bind_dst_table_free(short *param_1)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  int iVar2;
+  int iVar1;
+  uint uVar2;
   uint uVar3;
-  uint extraout_a1;
-  uint n;
-  aps_bind_dst_t *paVar4;
-  bitmap_t *p;
+  short *psVar4;
+  undefined4 uVar5;
   
-  if (dst->ref_cnt != '\0') {
-    dst = (aps_bind_dst_t *)__assert_func(0,0,0,0);
+  if ((char)param_1[2] != '\0') {
+    param_1 = (short *)__assert_func(0,0,0,0);
   }
-  if (((*(ushort *)&dst->ref_cnt >> 8 & 1) == 0) && ((dst->field_0).extaddr.addr_ref != 0xffff)) {
+  if ((((ushort)param_1[2] >> 8 & 1) == 0) && (*param_1 != -1)) {
     nwk_address_unlock_ref();
   }
-  iVar2 = core_globals_get();
-  paVar4 = *(aps_bind_dst_t **)(iVar2 + 0x974);
-  iVar2 = core_globals_get();
-  p = *(bitmap_t **)(iVar2 + 0x978);
-  iVar2 = core_globals_get();
-  uVar3 = (uint)*(ushort *)(iVar2 + 0x97c);
-  if (dst < paVar4) {
-    bind_src_size();
-    uVar3 = extraout_a1;
+  iVar1 = core_globals_get();
+  psVar4 = *(short **)(iVar1 + 0x974);
+  iVar1 = core_globals_get();
+  uVar5 = *(undefined4 *)(iVar1 + 0x978);
+  iVar1 = core_globals_get();
+  uVar2 = (uint)*(ushort *)(iVar1 + 0x97c);
+  if (param_1 < psVar4) {
+    uVar2 = mempool_free_ent_part_0();
   }
-  n = ((int)dst - (int)paVar4) / 6 & 0xffff;
-  if (n < uVar3) goto _L26;
+  uVar3 = ((int)param_1 - (int)psVar4) / 6 & 0xffff;
+  if (uVar3 < uVar2) goto _L26;
   do {
-    n = 0;
-    p = (bitmap_t *)__assert_func(0,0,0,0);
+    uVar3 = 0;
+    uVar5 = __assert_func(0,0,0,0);
 _L26:
-    _Var1 = test_and_clr_bitmap(n,p);
-  } while (CONCAT31(extraout_var,_Var1) == 0);
+    iVar1 = test_and_clr_bitmap(uVar3,uVar5);
+  } while (iVar1 == 0);
   return;
 }
 

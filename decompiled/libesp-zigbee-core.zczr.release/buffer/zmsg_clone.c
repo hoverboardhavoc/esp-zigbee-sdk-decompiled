@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_clone
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zmsg_t * zmsg_clone(zmsg_t *msg)
+int zmsg_clone(int param_1)
 
 {
-  zmsg_t *dst_msg;
-  ezb_err_t eVar1;
+  int iVar1;
+  int iVar2;
   
-  dst_msg = zmsg_alloc(msg->header);
-  if (dst_msg != (zmsg_t *)0x0) {
-    eVar1 = zmsg_append_bytes_from_msg(dst_msg,msg,0,msg->length);
-    if (eVar1 == 0) {
-      dst_msg->flags = msg->flags;
-      (dst_msg->timestamp).val = (msg->timestamp).val;
-      dst_msg->offset = msg->offset;
-      return dst_msg;
+  iVar1 = zmsg_alloc(*(undefined2 *)(param_1 + 0xc));
+  if (iVar1 != 0) {
+    iVar2 = zmsg_append_bytes_from_msg(param_1,0,*(undefined2 *)(param_1 + 0xe));
+    if (iVar2 == 0) {
+      *(undefined2 *)(iVar1 + 0x16) = *(undefined2 *)(param_1 + 0x16);
+      *(undefined4 *)(iVar1 + 0x18) = *(undefined4 *)(param_1 + 0x18);
+      *(undefined2 *)(iVar1 + 0x12) = *(undefined2 *)(param_1 + 0x12);
+      return iVar1;
     }
-    zmsg_free(dst_msg);
+    zmsg_free(iVar1);
   }
-  return (zmsg_t *)0x0;
+  return 0;
 }
 

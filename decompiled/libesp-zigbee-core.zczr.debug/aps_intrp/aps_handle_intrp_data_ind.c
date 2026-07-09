@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_intrp.o -> aps_handle_intrp_data_ind
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_handle_intrp_data_ind(aps_intrp_header_t *aps_hdr,zmsg_t *msg)
+void aps_handle_intrp_data_ind(int param_1,int param_2)
 
 {
-  zmsg_t *apzStack_44 [3];
-  undefined1 auStack_38 [4];
-  aps_intrp_data_ind_t ind;
+  int aiStack_44 [3];
+  undefined2 uStack_38;
+  undefined2 uStack_36;
+  undefined2 uStack_34;
+  undefined2 uStack_32;
+  undefined2 uStack_30;
+  undefined2 uStack_2e;
+  undefined2 uStack_2c;
+  undefined2 uStack_2a;
+  undefined2 uStack_28;
+  undefined2 uStack_26;
+  undefined2 uStack_24;
+  undefined2 uStack_22;
+  undefined2 uStack_20;
+  undefined2 uStack_1e;
+  undefined1 uStack_1c;
+  undefined4 uStack_18;
+  undefined1 uStack_14;
+  undefined1 uStack_13;
   
-  auStack_38._0_2_ = aps_hdr->src_panid;
-  auStack_38[2] = (aps_hdr->src_addr).addr_mode;
-  auStack_38[3] = (aps_hdr->src_addr).field_0x1;
-  ind.src_pan_id = (aps_hdr->src_addr).u.short_addr;
-  ind.src_addr._0_2_ = (aps_hdr->src_addr).u.group_addr.bcast;
-  ind.src_addr.u.short_addr = *(ezb_shortaddr_t *)((int)&(aps_hdr->src_addr).u + 4);
-  ind.src_addr.u.group_addr.bcast = *(ezb_shortaddr_t *)((int)&(aps_hdr->src_addr).u + 6);
-  ind.src_addr.u._4_2_ = aps_hdr->dst_panid;
-  ind.src_addr.u._6_2_ = *(undefined2 *)&aps_hdr->dst_addr;
-  ind.dst_pan_id = (aps_hdr->dst_addr).u.short_addr;
-  ind.dst_addr._0_2_ = (aps_hdr->dst_addr).u.group_addr.bcast;
-  ind.dst_addr.u.short_addr = *(ezb_shortaddr_t *)((int)&(aps_hdr->dst_addr).u + 4);
-  ind.dst_addr.u.group_addr.bcast = *(ezb_shortaddr_t *)((int)&(aps_hdr->dst_addr).u + 6);
-  ind.dst_addr.u._4_2_ = aps_hdr->profile_id;
-  ind.dst_addr.u._6_2_ = aps_hdr->cluster_id;
-  ind.profile_id._0_1_ = 0;
-  apzStack_44[0] = msg;
-  ind._28_4_ = aps_intrp_msg_transfer_ownership(apzStack_44);
-  ind.asdu._0_1_ = aps_hdr->lqi;
-  ind.asdu._1_1_ = aps_hdr->rssi;
-  aps_intrp_data_indication((aps_intrp_data_ind_t *)auStack_38);
-  if (apzStack_44[0] != (zmsg_t *)0x0) {
+  uStack_38 = *(undefined2 *)(param_1 + 6);
+  uStack_36 = *(undefined2 *)(param_1 + 8);
+  uStack_34 = *(undefined2 *)(param_1 + 10);
+  uStack_32 = *(undefined2 *)(param_1 + 0xc);
+  uStack_30 = *(undefined2 *)(param_1 + 0xe);
+  uStack_2e = *(undefined2 *)(param_1 + 0x10);
+  uStack_2c = *(undefined2 *)(param_1 + 0x12);
+  uStack_2a = *(undefined2 *)(param_1 + 0x14);
+  uStack_28 = *(undefined2 *)(param_1 + 0x16);
+  uStack_26 = *(undefined2 *)(param_1 + 0x18);
+  uStack_24 = *(undefined2 *)(param_1 + 0x1a);
+  uStack_22 = *(undefined2 *)(param_1 + 0x1c);
+  uStack_20 = *(undefined2 *)(param_1 + 4);
+  uStack_1e = *(undefined2 *)(param_1 + 2);
+  uStack_1c = 0;
+  aiStack_44[0] = param_2;
+  uStack_18 = aps_intrp_msg_transfer_ownership(aiStack_44);
+  uStack_14 = *(undefined1 *)(param_1 + 0x1e);
+  uStack_13 = *(undefined1 *)(param_1 + 0x1f);
+  aps_intrp_data_indication(&uStack_38);
+  if (aiStack_44[0] != 0) {
     zmsg_free();
   }
   return;

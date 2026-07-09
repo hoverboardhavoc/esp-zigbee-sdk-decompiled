@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_queue_enqueue
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_queue_enqueue(zmsg_queue_t *q,zmsg_t *msg)
+void zmsg_queue_enqueue(int param_1,int *param_2)
 
 {
-  zmsg_t *extraout_a1;
-  dlist_node_s *pdVar1;
+  int *extraout_a1;
+  undefined4 *puVar1;
   
-  if (((msg->node).next != (dlist_node_s *)0x0) && ((msg->node).prev != (dlist_node_s *)0x0)) {
-    q = (zmsg_queue_t *)
-        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1e5,
-                      "zmsg_queue_enqueue","!dlist_node_is_on_list(&msg->node)");
-    msg = extraout_a1;
+  if ((*param_2 != 0) && (param_2[1] != 0)) {
+    param_1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1e5,
+                            "zmsg_queue_enqueue","!dlist_node_is_on_list(&msg->node)");
+    param_2 = extraout_a1;
   }
-  pdVar1 = (q->list).prev;
-  (q->list).prev = &msg->node;
-  (msg->node).next = &q->list;
-  (msg->node).prev = pdVar1;
-  pdVar1->next = &msg->node;
-  q->length = q->length + 1;
+  puVar1 = *(undefined4 **)(param_1 + 4);
+  *(int **)(param_1 + 4) = param_2;
+  *param_2 = param_1;
+  param_2[1] = (int)puVar1;
+  *puVar1 = param_2;
+  *(short *)(param_1 + 8) = *(short *)(param_1 + 8) + 1;
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_compare_bytes
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: chunk */
-/* WARNING: Unknown calling convention */
-
-_Bool zmsg_compare_bytes(zmsg_t *msg,uint16_t offset,void *buf,uint16_t length)
+bool zmsg_compare_bytes(void *param_1,ushort param_2)
 
 {
   uint uVar1;
   int iVar2;
   uint __n;
-  uint16_t auStack_22 [3];
+  ushort auStack_22 [3];
   undefined1 auStack_1c [4];
-  zmsg_chunk_t chunk;
+  void *pvStack_18;
+  ushort uStack_14;
   
-  uVar1 = (uint)length;
-  auStack_22[0] = length;
-  zmsg_get_first_chunk(msg,offset,auStack_22,(zmsg_chunk_t *)auStack_1c);
-  while( true ) {
-    __n = (uint)(ushort)chunk.data;
-    if ((__n == 0) || (iVar2 = memcmp(buf,chunk.buffer,__n), iVar2 != 0)) break;
-    uVar1 = (uVar1 & 0xffff) - __n;
-    buf = (void *)((int)buf + __n);
-    zmsg_get_next_chunk(auStack_22,(zmsg_chunk_t *)auStack_1c);
+  uVar1 = (uint)param_2;
+  auStack_22[0] = param_2;
+  zmsg_get_first_chunk(auStack_22,auStack_1c);
+  while ((__n = (uint)uStack_14, __n != 0 && (iVar2 = memcmp(param_1,pvStack_18,__n), iVar2 == 0)))
+  {
+    param_1 = (void *)((int)param_1 + __n);
+    uVar1 = uVar1 - __n & 0xffff;
+    zmsg_get_next_chunk(auStack_22,auStack_1c);
   }
-  return (uVar1 & 0xffff) == 0;
+  return uVar1 == 0;
 }
 

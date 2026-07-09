@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> time.o -> zcl_time_server_read_attr_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,79 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_time_server_read_attr_rsp_handler(zcl_cmd_read_attr_rsp_message_t *message)
+int zcl_time_server_read_attr_rsp_handler(int param_1)
 
 {
   byte bVar1;
   ushort uVar2;
-  zcl_time_server_time_ctx_t *pzVar3;
-  uint32_t uVar4;
-  uint uVar5;
-  ezb_zcl_read_attr_rsp_variable_t *peVar6;
-  byte bVar7;
-  _func_void_uint32_t *p_Var8;
-  _Bool has_master;
-  int iVar9;
+  int iVar3;
+  int iVar4;
+  uint *puVar5;
+  byte bVar6;
+  int iVar7;
   
-  if ((((message == (zcl_cmd_read_attr_rsp_message_t *)0x0) ||
-       ((message->in).variables == (ezb_zcl_read_attr_rsp_variable_t *)0x0)) ||
-      (pzVar3 = time_server_get_time_ctx(((message->in).header)->dst_ep),
-      pzVar3 == (zcl_time_server_time_ctx_t *)0x0)) ||
-     (iVar9 = milli_timer_is_running(&pzVar3->sync_timer), iVar9 == 0)) {
-    iVar9 = 0;
+  if ((((param_1 == 0) || (*(int *)(param_1 + 0xc) == 0)) ||
+      (iVar3 = time_server_get_time_ctx(*(undefined1 *)(*(int *)(param_1 + 8) + 0x15)), iVar3 == 0))
+     || (iVar7 = milli_timer_is_running(iVar3 + 0xc), iVar7 == 0)) {
+    iVar7 = 0;
   }
   else {
-    uVar2 = (((message->in).header)->src_addr).u.short_addr;
-    uVar4 = 0;
-    bVar7 = 0;
-    for (peVar6 = (message->in).variables; peVar6 != (ezb_zcl_read_attr_rsp_variable_t *)0x0;
-        peVar6 = peVar6->next) {
-      uVar5._0_2_ = peVar6->attr_id;
-      uVar5._2_1_ = peVar6->status;
-      uVar5._3_1_ = peVar6->attr_type;
-      if ((uVar5 & 0xffffff) == 0) {
-        if ((uint32_t *)peVar6->attr_value != (uint32_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-          uVar4 = *peVar6->attr_value;
+    uVar2 = *(ushort *)(*(int *)(param_1 + 8) + 2);
+    iVar4 = 0;
+    bVar6 = 0;
+    for (puVar5 = *(uint **)(param_1 + 0xc); puVar5 != (uint *)0x0; puVar5 = (uint *)puVar5[2]) {
+      if ((*puVar5 & 0xffffff) == 0) {
+        if ((int *)puVar5[1] != (int *)0x0) {
+          iVar4 = *(int *)puVar5[1];
         }
       }
-      else if (((uVar5 & 0xffffff) == 1) && ((byte *)peVar6->attr_value != (byte *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-        bVar1 = *peVar6->attr_value;
+      else if (((*puVar5 & 0xffffff) == 1) && ((byte *)puVar5[1] != (byte *)0x0)) {
+        bVar1 = *(byte *)puVar5[1];
         if (uVar2 == 0) {
           if ((bVar1 & 8) == 0) {
 _L0:
-            bVar7 = 2;
+            bVar6 = 2;
             if ((bVar1 & 1) == 0) {
-              bVar7 = bVar1 >> 1 & 1;
+              bVar6 = bVar1 >> 1 & 1;
             }
           }
           else {
-            bVar7 = 5;
+            bVar6 = 5;
             if ((bVar1 & 1) == 0) goto _L0;
           }
         }
         else {
           if ((bVar1 & 8) == 0) goto _L0;
 _L0:
-          bVar7 = (bVar1 & 1) + 3;
+          bVar6 = (bVar1 & 1) + 3;
         }
       }
     }
-    if ((uVar4 != 0xffffffff) &&
-       ((pzVar3->min_rank < bVar7 || ((pzVar3->min_rank == bVar7 && (uVar2 < pzVar3->server_addr))))
-       )) {
-      pzVar3->min_rank = bVar7;
-      pzVar3->server_addr = uVar2;
-      if (pzVar3->nwk_time != uVar4) {
-        p_Var8 = (pzVar3->interface).set_utc_time;
-        pzVar3->nwk_time = uVar4;
-        (*p_Var8)(uVar4);
+    if ((iVar4 != -1) &&
+       ((*(byte *)(iVar3 + 0x24) < bVar6 ||
+        ((*(byte *)(iVar3 + 0x24) == bVar6 && (uVar2 < *(ushort *)(iVar3 + 0x1c))))))) {
+      *(byte *)(iVar3 + 0x24) = bVar6;
+      *(ushort *)(iVar3 + 0x1c) = uVar2;
+      if (*(int *)(iVar3 + 0x20) != iVar4) {
+        *(int *)(iVar3 + 0x20) = iVar4;
+        (**(code **)(iVar3 + 4))(*(code **)(iVar3 + 4));
       }
     }
   }
-  return SUB41(iVar9,0);
+  return iVar7;
 }
 

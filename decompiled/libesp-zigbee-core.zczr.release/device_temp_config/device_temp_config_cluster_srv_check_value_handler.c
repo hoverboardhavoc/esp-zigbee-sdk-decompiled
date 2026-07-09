@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> device_temp_config.o -> device_temp_config_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-device_temp_config_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t endpoint,void *value)
+byte device_temp_config_cluster_srv_check_value_handler(uint param_1,byte *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  undefined2 in_register_0000202a;
-  uint uVar2;
+  byte bVar1;
   
-  uVar2 = CONCAT22(in_register_0000202a,attr_id);
-  if (uVar2 == 0x10) {
-                    /* WARNING: Load size is inaccurate */
-    return -(2 < *value) & 0x87;
+  if (param_1 == 0x10) {
+    return -(2 < *param_2) & 0x87;
   }
-  if (uVar2 < 0x11) {
-    if ((uVar2 == 1) || ((uVar2 == 2 || (uVar2 == 0)))) {
+  if (param_1 < 0x11) {
+    if ((param_1 == 1) || ((param_1 == 2 || (param_1 == 0)))) {
 _L0:
-                    /* WARNING: Load size is inaccurate */
-      eVar1 = '\0';
-      if ((*value != -0x8000) && (400 < ((int)*value + 200U & 0xffff))) {
-        eVar1 = 0x87;
+      bVar1 = 0;
+      if ((*(short *)param_2 != -0x8000) && (400 < ((int)*(short *)param_2 + 200U & 0xffff))) {
+        bVar1 = 0x87;
       }
-      return eVar1;
+      return bVar1;
     }
   }
-  else if ((uVar2 == 0x11) || (uVar2 == 0x12)) goto _L0;
-  return '\0';
+  else if ((param_1 == 0x11) || (param_1 == 0x12)) goto _L0;
+  return 0;
 }
 

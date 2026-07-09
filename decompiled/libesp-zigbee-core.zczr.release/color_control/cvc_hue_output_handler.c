@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> color_control.o -> cvc_hue_output_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void cvc_hue_output_handler(uint8_t ep_id,int32_t output,uint32_t remaining_time,uintptr_t user_ctx)
+void cvc_hue_output_handler(undefined4 param_1,int param_2,undefined2 param_3,undefined2 param_4)
 
 {
-  int iVar1;
-  undefined1 auStack_11 [4];
-  uint8_t hue;
+  undefined1 auStack_11 [9];
   
-  iVar1 = output % 0xff;
-  if (iVar1 < 0) {
-    iVar1 = iVar1 + 0xff;
+  param_2 = param_2 % 0xff;
+  if (param_2 < 0) {
+    param_2 = param_2 + 0xff;
   }
-  auStack_11[0] = (undefined1)iVar1;
-  zcl_message_set_color_control_attr_value(ep_id,(uint16_t)user_ctx,auStack_11);
-  color_control_set_remaining_time(ep_id,(uint16_t)remaining_time);
+  auStack_11[0] = (undefined1)param_2;
+  zcl_message_set_color_control_attr_value_isra_0(param_4,auStack_11);
+  color_control_set_remaining_time(param_1,param_3);
   return;
 }
 

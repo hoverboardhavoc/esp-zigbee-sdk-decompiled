@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> identify.o -> identify_timer_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,54 +10,58 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void identify_timer_handler(zcl_identify_timer_ctx_t *timer_ctx)
+uint identify_timer_handler(undefined1 *param_1)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  undefined4 uVar2;
-  int iVar3;
+  int iVar1;
+  uint uVar2;
+  undefined4 uVar3;
   undefined1 extraout_a1;
-  uint16_t identify_value;
-  undefined1 uVar4;
+  short sVar4;
+  undefined1 uVar5;
   undefined4 uStack_44;
   undefined4 uStack_40;
   undefined4 uStack_3c;
   undefined4 uStack_38;
-  undefined4 uStack_34;
+  uint uStack_34;
   
-  if (timer_ctx == (zcl_identify_timer_ctx_t *)0x0) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x7c,
+  if (param_1 == (undefined1 *)0x0) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x89,
                   "identify_timer_handler","timer_ctx");
   }
   else {
-    pzVar1 = identify_srv_get_attr_desc(timer_ctx->ep_id,0);
-    if (pzVar1 != (zcl_attr_desc_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-      identify_value = *pzVar1->data_p;
-      if (identify_value != 0) {
-        identify_value = identify_value - 1;
+    iVar1 = identify_srv_get_attr_desc(*param_1,0);
+    if (iVar1 != 0) {
+      sVar4 = **(short **)(iVar1 + 8);
+      if (sVar4 != 0) {
+        sVar4 = sVar4 + -1;
       }
-      zcl_message_set_identify_attr_value((ushort)timer_ctx->ep_id,identify_value);
-      return;
+      uVar2 = zcl_message_set_identify_attr_value(*param_1,sVar4);
+      return uVar2;
     }
   }
-  uVar4 = 0x9c;
-  uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x7f
+  uVar5 = 8;
+  uVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x8c
                         ,"identify_attr_desc");
   uStack_44 = 0;
   uStack_40 = 0;
   uStack_3c = 0;
   uStack_38 = 0;
   uStack_34 = 0;
-  iVar3 = zcl_packet_to_message(&uStack_44,uVar2);
-  if (iVar3 == 0) {
-    uStack_38._0_2_ = CONCAT11(uVar4,extraout_a1);
+  iVar1 = zcl_packet_to_message(&uStack_44,uVar3);
+  if (iVar1 == 0) {
+    uStack_38._0_2_ = CONCAT11(uVar5,extraout_a1);
     uStack_34 = CONCAT31(uStack_34._1_3_,0xfe);
-    uStack_3c = uVar2;
-    zcl_core_action_schedule(10,&uStack_44);
+    uStack_3c = uVar3;
+    zcl_core_action_schedule(0xb,&uStack_44);
+    uStack_34 = uStack_34 & 0xff;
+    if (uStack_34 == 0xfe) {
+      uStack_34 = 0;
+    }
   }
-  return;
+  else {
+    uStack_34 = 0;
+  }
+  return uStack_34;
 }
 

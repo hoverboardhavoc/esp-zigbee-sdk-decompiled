@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,102 +10,87 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_address_update(ezb_extaddr_t *extaddr,ezb_shortaddr_t shortaddr,nwk_addr_ref_t *ref_p)
+undefined4 nwk_address_update(int *param_1,uint param_2,undefined2 *param_3)
 
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  ushort uVar3;
-  undefined2 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
+  byte bVar1;
+  ushort uVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  uint uVar6;
   uint uVar7;
-  nwk_addr_ref_t nVar8;
-  nwk_addr_ref_t target_ref;
-  int iVar9;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  undefined2 extraout_var_01;
-  undefined2 in_register_0000202e;
-  int *piVar11;
-  undefined1 *puVar12;
-  nwk_addr_table_t *tbl;
-  nwk_addr_table_t *tbl_00;
-  uint uVar10;
+  int *piVar8;
+  undefined1 *puVar9;
+  int iVar10;
+  int iVar11;
   
-  iVar9 = core_globals_get();
-  if (0xfff7 < CONCAT22(in_register_0000202e,shortaddr)) {
+  iVar5 = core_globals_get();
+  if (0xfff7 < param_2) {
     return 2;
   }
-  if (extaddr == (ezb_extaddr_t *)0x0) {
+  if (param_1 == (int *)0x0) {
     return 2;
   }
-  if ((*(int *)((int)&extaddr->field_0 + 4) + 1U == (uint)(*(int *)&extaddr->field_0 == 0)) &&
-     (0xfffffffd < *(int *)&extaddr->field_0 - 1U)) {
+  if ((param_1[1] + 1U == (uint)(*param_1 == 0)) && (0xfffffffd < *param_1 - 1U)) {
     return 2;
   }
-  tbl_00 = (nwk_addr_table_t *)(iVar9 + 0xc4c);
-  nVar8 = search_short(tbl_00,shortaddr);
-  uVar7 = CONCAT22(extraout_var,nVar8);
-  uVar3 = *(ushort *)(iVar9 + 0xc54);
-  target_ref = search_extended(tbl_00,extaddr);
-  uVar10 = CONCAT22(extraout_var_00,target_ref);
-  if (uVar7 < uVar3) {
-    if ((uVar10 < *(ushort *)(iVar9 + 0xc54)) && (uVar7 != uVar10)) {
-      tbl = *(nwk_addr_table_t **)(iVar9 + 0xc50);
-      piVar11 = (int *)(uVar7 * 0x12 + (int)tbl);
-      if ((piVar11[1] + 1U != (uint)(*piVar11 == 0)) || (*piVar11 - 1U < 0xfffffffe)) {
-        *(byte *)((int)piVar11 + 0x11) = *(byte *)((int)piVar11 + 0x11) | 1;
+  iVar11 = iVar5 + 0xc4c;
+  uVar6 = search_short(iVar11,param_2);
+  uVar2 = *(ushort *)(iVar5 + 0xc54);
+  uVar7 = search_extended(iVar11,param_1);
+  if (uVar6 < uVar2) {
+    if ((uVar7 < *(ushort *)(iVar5 + 0xc54)) && (uVar6 != uVar7)) {
+      iVar10 = *(int *)(iVar5 + 0xc50);
+      piVar8 = (int *)(uVar6 * 0x12 + iVar10);
+      if ((piVar8[1] + 1U != (uint)(*piVar8 == 0)) || (*piVar8 - 1U < 0xfffffffe)) {
+        *(byte *)((int)piVar8 + 0x11) = *(byte *)((int)piVar8 + 0x11) | 1;
         return 0xd;
       }
-      if (*(byte *)(piVar11 + 4) == 0) {
-        nwk_address_delete(nVar8);
-        uVar7 = uVar10;
+      if (*(byte *)(piVar8 + 4) == 0) {
+        nwk_address_delete(uVar6);
+        uVar6 = uVar7;
       }
       else {
-        bVar2 = *(byte *)((int)tbl + uVar10 * 0x12 + 0x10);
-        if (bVar2 == 0) {
-          nwk_address_delete(target_ref);
+        bVar1 = *(byte *)(uVar7 * 0x12 + iVar10 + 0x10);
+        if (bVar1 == 0) {
+          nwk_address_delete();
         }
-        else if (bVar2 < *(byte *)(piVar11 + 4)) {
-          addr_table_ref_redirect(tbl,target_ref,nVar8);
+        else if (bVar1 < *(byte *)(piVar8 + 4)) {
+          addr_table_ref_redirect_isra_0(iVar10,uVar7,uVar6);
         }
         else {
-          addr_table_ref_redirect(tbl,nVar8,target_ref);
-          uVar7 = uVar10;
+          addr_table_ref_redirect_isra_0(iVar10,uVar6,uVar7);
+          uVar6 = uVar7;
         }
       }
     }
   }
   else {
-    uVar7 = uVar10;
-    if (*(ushort *)(iVar9 + 0xc54) <= uVar10) {
-      nVar8 = addr_table_add(tbl_00,shortaddr,extaddr);
-      uVar7 = CONCAT22(extraout_var_01,nVar8);
+    uVar6 = uVar7;
+    if (*(ushort *)(iVar5 + 0xc54) <= uVar7) {
+      uVar6 = addr_table_add(iVar11,param_2,param_1);
       goto _L0;
     }
   }
-  puVar1 = (undefined4 *)((int)&extaddr->field_0 + 4);
-  puVar12 = (undefined1 *)(*(int *)(iVar9 + 0xc50) + uVar7 * 0x12);
-  uVar4 = *(undefined2 *)puVar1;
-  uVar5 = *(undefined4 *)&extaddr->field_0;
-  uVar6 = *puVar1;
-  *puVar12 = (char)*(undefined2 *)&extaddr->field_0;
-  puVar12[1] = (char)((uint)uVar5 >> 8);
-  puVar12[3] = (char)((uint)uVar5 >> 0x18);
-  puVar12[5] = (char)((uint)uVar6 >> 8);
-  puVar12[2] = (char)((uint)uVar5 >> 0x10);
-  puVar12[4] = (char)uVar4;
-  puVar12[6] = (char)((uint)uVar6 >> 0x10);
-  puVar12[7] = (char)((uint)uVar6 >> 0x18);
-  *(ezb_shortaddr_t *)(puVar12 + 8) = shortaddr;
-  addr_table_lru_update(tbl_00,(nwk_addr_ref_t)uVar7);
+  puVar9 = (undefined1 *)(*(int *)(iVar5 + 0xc50) + uVar6 * 0x12);
+  iVar4 = param_1[1];
+  iVar10 = *param_1;
+  iVar3 = param_1[1];
+  *puVar9 = (char)(short)*param_1;
+  puVar9[1] = (char)((uint)iVar10 >> 8);
+  puVar9[3] = (char)((uint)iVar10 >> 0x18);
+  puVar9[5] = (char)((uint)iVar3 >> 8);
+  puVar9[2] = (char)((uint)iVar10 >> 0x10);
+  puVar9[4] = (char)(short)iVar4;
+  puVar9[6] = (char)((uint)iVar3 >> 0x10);
+  puVar9[7] = (char)((uint)iVar3 >> 0x18);
+  *(short *)(puVar9 + 8) = (short)param_2;
+  addr_table_lru_update(iVar11,uVar6);
 _L0:
-  iVar9 = *(int *)(iVar9 + 0xc50) + uVar7 * 0x12;
-  *(byte *)(iVar9 + 0x11) = *(byte *)(iVar9 + 0x11) & 0xfe;
-  *ref_p = (nwk_addr_ref_t)uVar7;
+  iVar5 = *(int *)(iVar5 + 0xc50) + uVar6 * 0x12;
+  *(byte *)(iVar5 + 0x11) = *(byte *)(iVar5 + 0x11) & 0xfe;
+  *param_3 = (short)uVar6;
   return 0;
 }
 

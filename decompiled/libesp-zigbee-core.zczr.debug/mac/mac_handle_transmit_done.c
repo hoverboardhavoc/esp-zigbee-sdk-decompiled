@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_transmit_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,56 +11,50 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void mac_handle_transmit_done
-               (mac_device *dev,ezb_radio_frame_t *frame,ezb_radio_frame_t *ack,ezb_err_t tx_error)
+void mac_handle_transmit_done(int param_1,undefined4 *param_2,undefined4 *param_3,uint param_4)
 
 {
   byte bVar1;
-  zmsg_queue_t *pzVar2;
-  uint32_t uVar3;
-  int iVar4;
+  int iVar2;
   
-  bVar1 = (dev->ctx).cur_op;
+  bVar1 = *(byte *)(param_1 + 0x2e);
   if (bVar1 != 5) {
     if (bVar1 < 6) {
       if (bVar1 == 3) {
-        mac_start_timer(dev,(ushort)(dev->pib).rsp_wait_time);
+        mac_start_timer(*(undefined1 *)(param_1 + 0x1f));
         return;
       }
       if (bVar1 == 4) {
-        mac_finish_op(dev);
-        pzVar2 = &(dev->ctx).tx_q;
-        mac_handle_tx_done(dev,pzVar2,tx_error,false);
-        iVar4 = zmsg_queue_get_head(pzVar2);
-        if (iVar4 != 0) {
-          mac_start_op(dev,MAC_OPERATION_TRANSMIT_DATA_DIRECT);
+        mac_finish_op();
+        mac_handle_tx_done(param_1,param_1 + 0x48,param_4,0);
+        iVar2 = zmsg_queue_get_head(param_1 + 0x48);
+        if (iVar2 != 0) {
+          mac_start_op(param_1,4);
         }
-        mac_perform_next_op(dev);
+        mac_perform_next_op(param_1);
         return;
       }
       if (bVar1 == 1) {
-        uVar3 = mac_scan_duration_to_msec((dev->ctx).scan_duration);
-        micro_timer_start(&(dev->ctx).operation_timer,uVar3 * 1000);
+        iVar2 = mac_scan_duration_to_msec(*(undefined1 *)(param_1 + 0x33));
+        micro_timer_start(param_1 + 0x8c,iVar2 * 1000);
         return;
       }
     }
     else {
       if (bVar1 == 7) {
-        mac_finish_op(dev);
-        mac_perform_next_op(dev);
+        mac_finish_op();
+        mac_perform_next_op(param_1);
         return;
       }
       if (bVar1 == 8) {
-        mac_finish_op(dev);
-        pzVar2 = &(dev->ctx).itx_q;
-        mac_handle_tx_done(dev,pzVar2,tx_error,true);
-        iVar4 = zmsg_queue_get_head(pzVar2);
-        if (iVar4 != 0) {
-          mac_start_op(dev,MAC_OPERATION_TRANSMIT_INDIRECT);
+        mac_finish_op();
+        mac_handle_tx_done(param_1,param_1 + 0x54,param_4,1);
+        iVar2 = zmsg_queue_get_head(param_1 + 0x54);
+        if (iVar2 != 0) {
+          mac_start_op(param_1,8);
         }
-        mac_perform_next_op(dev);
+        mac_perform_next_op(param_1);
         return;
       }
     }
@@ -69,24 +63,24 @@ void mac_handle_transmit_done
                     /* WARNING: Bad instruction - Truncating control flow here */
     halt_baddata();
   }
-  if ((frame->length == '\0') || ((*(ushort *)frame->psdu >> 5 & 1) != 0)) {
-    mac_finish_op(dev);
-    if (tx_error == 0) {
-      if (ack == (ezb_radio_frame_t *)0x0) goto _L0;
-      if ((*(ushort *)ack->psdu & 0x10) != 0) goto _L0;
-      tx_error = 0x1eb;
+  if ((*(char *)(param_2 + 1) == '\0') || ((*(ushort *)*param_2 >> 5 & 1) != 0)) {
+    mac_finish_op(param_1);
+    if (param_4 == 0) {
+      if (param_3 == (undefined4 *)0x0) goto _L0;
+      if ((*(ushort *)*param_3 & 0x10) != 0) goto _L0;
+      param_4 = 0x1eb;
     }
-    mac_report_poll_result(dev,(mac_status_t)tx_error);
+    mac_report_poll_result(param_1,param_4 & 0xff);
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x507,
                   "mac_handle_transmit_done",
                   "frame->length == 0 || mac_frame_is_ack_required(frame)");
 _L0:
-    mac_start_op(dev,MAC_OPERATION_WAITING_FOR_DATA);
+    mac_start_op(param_1,6);
   }
 _L0:
-  mac_perform_next_op(dev);
+  mac_perform_next_op(param_1);
   return;
 }
 

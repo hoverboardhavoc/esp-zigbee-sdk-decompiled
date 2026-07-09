@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> on_off.o -> on_off_process_transition
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,121 +10,107 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void on_off_process_transition(uint8_t ep_id,uint8_t cmd_id,uint8_t on_off,uint16_t x,uint16_t y)
+void on_off_process_transition
+               (undefined4 param_1,uint param_2,int param_3,short param_4,short param_5)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  _Bool on_off_00;
-  bool on_off_01;
-  uint16_t attr_id;
-  undefined3 in_register_0000202d;
-  uint uVar4;
-  undefined3 in_register_00002031;
-  int iVar5;
-  int iVar6;
-  uint16_t *value;
-  uint16_t uStack_24;
-  uint16_t auStack_22 [5];
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  bool bVar4;
+  undefined4 uVar5;
+  short *psVar6;
+  short sStack_24;
+  short asStack_22 [5];
   
-  iVar5 = CONCAT31(in_register_00002031,on_off);
-  uVar4 = CONCAT31(in_register_0000202d,cmd_id);
-  iVar6 = iVar5;
-  uStack_24 = y;
-  auStack_22[0] = x;
-  if (uVar4 < 2) goto _L0;
+  iVar1 = param_3;
+  sStack_24 = param_5;
+  asStack_22[0] = param_4;
+  if (param_2 < 2) goto _L0;
   while( true ) {
-    pzVar1 = on_off_srv_get_attr_desc(ep_id,0);
-    pzVar2 = on_off_srv_get_attr_desc(ep_id,0x4001);
-    pzVar3 = on_off_srv_get_attr_desc(ep_id,0x4002);
-    if (pzVar1 != (zcl_attr_desc_t *)0x0) break;
-    iVar6 = 0;
+    iVar1 = on_off_srv_get_attr_desc(param_1,0);
+    iVar2 = on_off_srv_get_attr_desc(param_1,0x4001);
+    iVar3 = on_off_srv_get_attr_desc(param_1,0x4002);
+    if (iVar1 != 0) break;
+    iVar1 = 0;
     __assert_func(0,0,0,0);
 _L0:
-    iVar6 = zcl_level_action_affect_by_on_off(iVar6 != 0);
-    if (iVar6 != 0) {
+    iVar1 = zcl_level_action_affect_by_on_off(iVar1 != 0);
+    if (iVar1 != 0) {
       return;
     }
   }
-  if ((pzVar2 == (zcl_attr_desc_t *)0x0) || (pzVar3 == (zcl_attr_desc_t *)0x0)) {
-    on_off_00 = iVar5 != 0;
+  if ((iVar2 == 0) || (iVar3 == 0)) {
+    bVar4 = param_3 != 0;
     goto _L0;
   }
-                    /* WARNING: Load size is inaccurate */
-  if (*pzVar1->data_p == '\x01') {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-    if (*pzVar2->data_p == 0) {
-      if (*pzVar3->data_p != 0) goto _L0;
-      if (uVar4 != 0x40) {
-        if (uVar4 == 0x42) goto _L0;
-        if (uVar4 != 0) {
+  if (**(char **)(iVar1 + 8) == '\x01') {
+    if (**(short **)(iVar2 + 8) == 0) {
+      if (**(short **)(iVar3 + 8) != 0) goto _L0;
+      if (param_2 != 0x40) {
+        if (param_2 == 0x42) goto _L0;
+        if (param_2 != 0) {
           return;
         }
       }
-      on_off_00 = false;
+      bVar4 = false;
 _L0:
-      zcl_message_on_off_set_attr_value(ep_id,on_off_00);
+      zcl_message_on_off_set_attr_value_isra_0(param_1,bVar4);
       return;
     }
-    if (*pzVar3->data_p != 0) {
-      if (uVar4 != 0x40) {
-        if (uVar4 == 0x42) {
-          if (auStack_22[0] != 0) goto _L0;
-          uStack_24 = 0;
-          on_off_01 = false;
+    if (**(short **)(iVar3 + 8) != 0) {
+      if (param_2 != 0x40) {
+        if (param_2 == 0x42) {
+          if (asStack_22[0] != 0) goto _L0;
+          sStack_24 = 0;
+          bVar4 = false;
           goto _L0;
         }
-        if (uVar4 != 0) {
+        if (param_2 != 0) {
           return;
         }
       }
-      auStack_22[0] = 0;
-      zcl_message_on_off_set_attr_value(ep_id,false);
-      value = auStack_22;
-      attr_id = 0x4001;
+      asStack_22[0] = 0;
+      zcl_message_on_off_set_attr_value_isra_0(param_1,0);
+      psVar6 = asStack_22;
+      uVar5 = 0x4001;
       goto _L0;
     }
 _L0:
-    on_off_01 = iVar5 != 0;
+    bVar4 = param_3 != 0;
 _L0:
-    zcl_message_on_off_set_attr_value(ep_id,on_off_01);
+    zcl_message_on_off_set_attr_value_isra_0(param_1,bVar4);
 _L0:
-    on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
+    on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    if ((*pzVar1->data_p != '\0') || (*pzVar2->data_p != 0)) goto _L0;
-                    /* WARNING: Load size is inaccurate */
-    if (*pzVar3->data_p == 0) {
-      if (uVar4 != 0x41) {
-        if (uVar4 == 0x42) goto _L0;
-        if (uVar4 != 1) {
+    if ((**(char **)(iVar1 + 8) != '\0') || (**(short **)(iVar2 + 8) != 0)) goto _L0;
+    if (**(short **)(iVar3 + 8) == 0) {
+      if (param_2 != 0x41) {
+        if (param_2 == 0x42) goto _L0;
+        if (param_2 != 1) {
           return;
         }
       }
-      on_off_00 = true;
+      bVar4 = true;
       goto _L0;
     }
-    if (uVar4 != 0x41) {
-      if (uVar4 == 0x42) {
-        auStack_22[0] = 0;
+    if (param_2 != 0x41) {
+      if (param_2 == 0x42) {
+        asStack_22[0] = 0;
         goto _L0;
       }
-      if (uVar4 != 1) {
+      if (param_2 != 1) {
         return;
       }
     }
-    uStack_24 = 0;
-    zcl_message_on_off_set_attr_value(ep_id,true);
+    sStack_24 = 0;
+    zcl_message_on_off_set_attr_value_isra_0(param_1,1);
   }
-  value = &uStack_24;
-  attr_id = 0x4002;
+  psVar6 = &sStack_24;
+  uVar5 = 0x4002;
 _L0:
-  on_off_srv_set_attr_value(ep_id,attr_id,(uint8_t *)value);
+  on_off_srv_set_attr_value(param_1,uVar5,psVar6);
   return;
 }
 

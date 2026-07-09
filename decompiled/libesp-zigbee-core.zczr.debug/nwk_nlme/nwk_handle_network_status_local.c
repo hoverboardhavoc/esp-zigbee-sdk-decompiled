@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_handle_network_status_local
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_handle_network_status_local(nwk_network_status_cmd_t *status_cmd)
+void nwk_handle_network_status_local(byte *param_1)
 
 {
   byte bVar1;
-  nwk_network_status_cmd_t *pnVar2;
-  undefined1 auStack_18 [4];
-  nwk_nlme_event_ind_t ind;
+  byte *pbVar2;
+  int iStack_18;
+  uint uStack_14;
   
-  bVar1 = status_cmd->status_code;
+  bVar1 = *param_1;
   if (bVar1 == 0xd) {
-    nwk_address_conflict_resolve(status_cmd->target_addr);
+    nwk_address_conflict_resolve(*(undefined2 *)(param_1 + 1));
     return;
   }
   if (bVar1 < 0xe) {
-    pnVar2 = status_cmd;
+    pbVar2 = param_1;
     if (bVar1 != 0xb) {
       if (bVar1 < 0xc) {
         if (bVar1 < 3) {
-          nwk_route_table_remove_by_dst(status_cmd->target_addr);
+          nwk_route_table_remove_by_dst(*(undefined2 *)(param_1 + 1));
           return;
         }
         if (bVar1 == 9) goto _L0;
@@ -54,18 +52,14 @@ void nwk_handle_network_status_local(nwk_network_status_cmd_t *status_cmd)
     }
     else if (bVar1 == 0x14) goto _L0;
 _L0:
-    pnVar2 = (nwk_network_status_cmd_t *)
-             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0xb8,
-                           "nwk_handle_network_status_local",&_LC18);
+    pbVar2 = (byte *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0xb8,
+                                   "nwk_handle_network_status_local",&_LC18);
   }
-  nwk_route_record_table_remove_by_dst
-            (CONCAT11(*(undefined1 *)((int)&status_cmd->target_addr + 1),(char)pnVar2->target_addr))
-  ;
+  nwk_route_record_table_remove_by_dst(CONCAT11(param_1[2],pbVar2[1]));
 _L0:
-  auStack_18 = (undefined1  [4])((uint)status_cmd->status_code << 0x10);
-  ind.field_1._0_2_ = 0;
-  ind._0_2_ = status_cmd->target_addr;
-  nwk_nlme_event_indication((nwk_nlme_event_ind_t *)auStack_18);
+  iStack_18 = (uint)*param_1 << 0x10;
+  uStack_14 = (uint)*(ushort *)(param_1 + 1);
+  nwk_nlme_event_indication(&iStack_18);
   return;
 }
 

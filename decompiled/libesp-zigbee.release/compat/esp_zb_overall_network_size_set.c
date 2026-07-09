@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> compat.o -> esp_zb_overall_network_size_set
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zb_overall_network_size_set(uint16_t size)
+void esp_zb_overall_network_size_set(ushort param_1)
 
 {
-  esp_err_t eVar1;
   int iStack_24;
-  ezb_mem_config_t mem_cfg;
+  ushort uStack_20;
+  ushort uStack_1e;
+  int iStack_1c;
+  uint uStack_18;
+  undefined2 uStack_14;
   
-  iStack_24 = (uint)size << 0x10;
-  mem_cfg._4_4_ = (uint)size << 0x10;
-  mem_cfg.route_record_table_size = 0;
-  mem_cfg.route_discovery_table_size = size;
-  mem_cfg.aps_key_pair_set_size = 0;
-  mem_cfg.buffer_pool_size = size;
-  mem_cfg.address_table_size = size;
+  iStack_24 = (uint)param_1 << 0x10;
+  iStack_1c = (uint)param_1 << 0x10;
+  uStack_18 = (uint)param_1;
+  uStack_14 = 0;
+  uStack_20 = param_1;
+  uStack_1e = param_1;
   ezb_config_memory(&iStack_24);
-  eVar1 = esp_zigbee_err_to_esp();
-  return eVar1;
+  esp_zigbee_err_to_esp();
+  return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_info_find
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_reporting_info_t *
-zcl_reporting_info_find
-          (uint8_t ep_id,uint16_t cluster_id,uint8_t role,uint16_t attr_id,uint16_t manuf_code)
+int zcl_reporting_info_find(uint param_1,uint param_2,byte param_3,uint param_4,uint param_5)
 
 {
-  undefined3 in_register_00002029;
   int iVar1;
-  zcl_reporting_info_t *pzVar2;
-  undefined2 in_register_0000202e;
-  undefined2 in_register_00002036;
-  undefined2 in_register_0000203a;
-  int *piVar3;
+  int *piVar2;
   
   iVar1 = core_globals_get();
-  piVar3 = *(int **)(iVar1 + 0xd34);
+  piVar2 = *(int **)(iVar1 + 0xd34);
   while( true ) {
-    if (piVar3 + -1 == (undefined4 *)0xfffffffc) {
-      return (zcl_reporting_info_t *)0x0;
+    if (piVar2 + -1 == (int *)0xfffffffc) {
+      return 0;
     }
-    pzVar2 = (zcl_reporting_info_t *)piVar3[-1];
-    if (((((uint)pzVar2->ep_id == CONCAT31(in_register_00002029,ep_id)) &&
-         ((uint)pzVar2->cluster_id == CONCAT22(in_register_0000202e,cluster_id))) &&
-        ((role & pzVar2->cluster_role) != 0)) &&
-       (((uint)pzVar2->attr_id == CONCAT22(in_register_00002036,attr_id) &&
-        ((uint)pzVar2->manuf_code == CONCAT22(in_register_0000203a,manuf_code))))) break;
-    piVar3 = (int *)*piVar3;
+    iVar1 = piVar2[-1];
+    if ((((*(byte *)(iVar1 + 1) == param_1) && (*(ushort *)(iVar1 + 4) == param_2)) &&
+        ((param_3 & *(byte *)(iVar1 + 8)) != 0)) &&
+       ((*(ushort *)(iVar1 + 6) == param_4 && (*(ushort *)(iVar1 + 0x30) == param_5)))) break;
+    piVar2 = (int *)*piVar2;
   }
-  return pzVar2;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> scenes.o -> scene_table_find_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_scene_table_entry_t * scene_table_find_entry(uint8_t ep_id,uint16_t group_id,uint16_t scene_id)
+byte * scene_table_find_entry(uint param_1,uint param_2)
 
 {
-  zcl_scene_table_entry_t *pzVar1;
-  undefined2 in_register_0000202e;
-  undefined2 in_register_00002032;
-  char *pcVar2;
+  byte *pbVar1;
+  byte *pbVar2;
   uint uVar3;
   
-  pzVar1 = (zcl_scene_table_entry_t *)scene_table_get(ep_id);
-  if (pzVar1 != (zcl_scene_table_entry_t *)0x0) {
-    pcVar2 = pzVar1->scene_name;
-    for (uVar3 = 0; (uVar3 & 0xff) < (uint)pzVar1->is_used; uVar3 = uVar3 + 1) {
-      if (((*pcVar2 != '\0') &&
-          ((uint)*(ushort *)(pcVar2 + 2) == CONCAT22(in_register_0000202e,group_id))) &&
-         ((uint)(byte)pcVar2[4] == CONCAT22(in_register_00002032,scene_id))) {
-        return (zcl_scene_table_entry_t *)pzVar1[uVar3].scene_name;
+  pbVar1 = (byte *)scene_table_get();
+  if (pbVar1 != (byte *)0x0) {
+    pbVar2 = pbVar1 + 8;
+    for (uVar3 = 0; (uVar3 & 0xff) < (uint)*pbVar1; uVar3 = uVar3 + 1) {
+      if (((*pbVar2 != 0) && (*(ushort *)(pbVar2 + 2) == param_1)) && (pbVar2[4] == param_2)) {
+        return pbVar1 + uVar3 * 0x20 + 8;
       }
-      pcVar2 = pcVar2 + 0x20;
+      pbVar2 = pbVar2 + 0x20;
     }
-    pzVar1 = (zcl_scene_table_entry_t *)0x0;
+    pbVar1 = (byte *)0x0;
   }
-  return pzVar1;
+  return pbVar1;
 }
 

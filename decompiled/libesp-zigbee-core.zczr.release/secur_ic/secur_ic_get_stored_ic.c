@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> secur_ic.o -> secur_ic_get_stored_ic
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void secur_ic_get_stored_ic(ezb_extaddr_t *addr,ds_ic_info_iterator_t *itor)
+void secur_ic_get_stored_ic(int *param_1,int *param_2)
 
 {
-  dataset_ic_info_t *ic;
-  
-  itor->index = 0;
-  itor->is_done = false;
+  *(undefined2 *)(param_2 + 7) = 0;
+  *(undefined1 *)((int)param_2 + 0x1e) = 0;
   while( true ) {
-    ds_ic_info_itor_read(itor);
-    if (itor->is_done != false) {
+    ds_ic_info_itor_read(param_2);
+    if (*(char *)((int)param_2 + 0x1e) != '\0') {
       return;
     }
-    if ((*(int *)&addr->field_0 == *(int *)&(itor->data).device_address.field_0) &&
-       (*(int *)((int)&addr->field_0 + 4) == *(int *)((int)&(itor->data).device_address.field_0 + 4)
-       )) break;
-    itor->index = itor->index + 1;
+    if ((*param_1 == *param_2) && (param_1[1] == param_2[1])) break;
+    *(short *)(param_2 + 7) = (short)param_2[7] + 1;
   }
   return;
 }

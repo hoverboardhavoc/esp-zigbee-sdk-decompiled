@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_mgmt_lqi_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,118 +10,108 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: lqi_rsp */
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_mgmt_lqi_rsp_wrapper(ezb_zdo_nwk_mgmt_lqi_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_mgmt_lqi_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  uint8_t uVar3;
-  uint8_t uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
-  uint8_t uVar7;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined1 uVar5;
+  undefined1 uVar6;
+  undefined1 uVar7;
   uint uVar8;
-  ezb_zdp_nwk_mgmt_lqi_neighbor_table_entry_t *peVar9;
-  char *pcVar10;
-  ezb_zdp_nwk_mgmt_lqi_rsp_field_t *peVar11;
-  uint8_t *puVar12;
-  int iVar13;
-  code *pcVar14;
+  undefined1 *puVar9;
+  int iVar10;
+  char *pcVar11;
+  int iVar12;
+  undefined4 *puVar13;
+  undefined1 *puVar14;
+  code *pcVar15;
   undefined4 uStack_18;
-  esp_zb_zdo_mgmt_lqi_rsp_t lqi_rsp;
+  void *pvStack_14;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar14 = *user_ctx;
-  if (pcVar14 != (code *)0x0) {
+  pcVar15 = (code *)*param_2;
+  if (pcVar15 != (code *)0x0) {
     uStack_18 = 0;
-    lqi_rsp.status = '\0';
-    lqi_rsp.neighbor_table_entries = '\0';
-    lqi_rsp.start_index = '\0';
-    lqi_rsp.neighbor_table_list_count = '\0';
-    if (result->error == 0) {
-      peVar11 = result->rsp;
-      if (peVar11 == (ezb_zdp_nwk_mgmt_lqi_rsp_field_t *)0x0) {
-        pcVar10 = "result->rsp";
+    pvStack_14 = (void *)0x0;
+    if (*param_1 == 0) {
+      puVar13 = (undefined4 *)param_1[1];
+      if (puVar13 == (undefined4 *)0x0) {
+        pcVar11 = "result->rsp";
         uVar8 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
                               ,0x19d,"esp_zb_zdo_mgmt_lqi_rsp_wrapper");
         goto _L0;
       }
-      uStack_18._0_1_ = peVar11->status;
-      uStack_18._1_1_ = peVar11->neighbor_table_entries;
-      uStack_18._2_1_ = peVar11->start_index;
-      uStack_18._3_1_ = peVar11->neighbor_table_list_count;
-      if (((peVar11->neighbor_table_list != (ezb_zdp_nwk_mgmt_lqi_neighbor_table_entry_t *)0x0) &&
-          (peVar11->neighbor_table_list_count != 0)) &&
-         (lqi_rsp._0_4_ = calloc((uint)peVar11->neighbor_table_list_count,0x16),
-         (void *)lqi_rsp._0_4_ != (void *)0x0)) {
-        for (uVar8 = 0; pcVar10 = (char *)result->rsp,
-            uVar8 < ((ezb_zdp_nwk_mgmt_lqi_rsp_field_t *)pcVar10)->neighbor_table_list_count;
+      uStack_18 = *puVar13;
+      if (((puVar13[1] != 0) && (*(byte *)((int)puVar13 + 3) != 0)) &&
+         (pvStack_14 = calloc((uint)*(byte *)((int)puVar13 + 3),0x16), pvStack_14 != (void *)0x0)) {
+        for (uVar8 = 0; pcVar11 = (char *)param_1[1], uVar8 < (byte)pcVar11[3];
             uVar8 = uVar8 + 1 & 0xff) {
 _L0:
-          puVar12 = (uint8_t *)(lqi_rsp._0_4_ + uVar8 * 0x16);
-          peVar9 = ((ezb_zdp_nwk_mgmt_lqi_rsp_field_t *)pcVar10)->neighbor_table_list + uVar8;
-          uVar1 = (peVar9->extended_pan_id).field_0.u8[1];
-          uVar2 = (peVar9->extended_pan_id).field_0.u8[2];
-          uVar3 = (peVar9->extended_pan_id).field_0.u8[3];
-          uVar4 = (peVar9->extended_pan_id).field_0.u8[4];
-          uVar5 = (peVar9->extended_pan_id).field_0.u8[5];
-          uVar6 = (peVar9->extended_pan_id).field_0.u8[6];
-          uVar7 = (peVar9->extended_pan_id).field_0.u8[7];
-          *puVar12 = (peVar9->extended_pan_id).field_0.u8[0];
-          puVar12[1] = uVar1;
-          puVar12[2] = uVar2;
-          puVar12[3] = uVar3;
-          puVar12[4] = uVar4;
-          puVar12[5] = uVar5;
-          puVar12[6] = uVar6;
-          puVar12[7] = uVar7;
-          iVar13 = lqi_rsp._0_4_ + uVar8 * 0x16;
-          peVar9 = result->rsp->neighbor_table_list;
-          uVar1 = peVar9[uVar8].extended_addr.field_0.u8[1];
-          uVar2 = peVar9[uVar8].extended_addr.field_0.u8[2];
-          uVar3 = peVar9[uVar8].extended_addr.field_0.u8[3];
-          uVar4 = peVar9[uVar8].extended_addr.field_0.u8[4];
-          uVar5 = peVar9[uVar8].extended_addr.field_0.u8[5];
-          uVar6 = peVar9[uVar8].extended_addr.field_0.u8[6];
-          uVar7 = peVar9[uVar8].extended_addr.field_0.u8[7];
-          *(uint8_t *)(iVar13 + 8) = peVar9[uVar8].extended_addr.field_0.u8[0];
-          *(uint8_t *)(iVar13 + 9) = uVar1;
-          *(uint8_t *)(iVar13 + 10) = uVar2;
-          *(uint8_t *)(iVar13 + 0xb) = uVar3;
-          *(uint8_t *)(iVar13 + 0xc) = uVar4;
-          *(uint8_t *)(iVar13 + 0xd) = uVar5;
-          *(uint8_t *)(iVar13 + 0xe) = uVar6;
-          *(uint8_t *)(iVar13 + 0xf) = uVar7;
-          *(ezb_shortaddr_t *)(iVar13 + 0x10) = result->rsp->neighbor_table_list[uVar8].nwk_addr;
-          *(byte *)(iVar13 + 0x12) =
-               *(byte *)(iVar13 + 0x12) & 0xfc |
-               (byte)*(undefined2 *)&result->rsp->neighbor_table_list[uVar8].field_0x12 & 3;
-          *(byte *)(iVar13 + 0x12) =
-               (byte)((*(ushort *)&result->rsp->neighbor_table_list[uVar8].field_0x12 >> 2 & 3) << 2
-                     ) | *(byte *)(iVar13 + 0x12) & 0xf3;
-          *(byte *)(iVar13 + 0x12) =
-               (byte)((*(ushort *)&result->rsp->neighbor_table_list[uVar8].field_0x12 >> 4 & 7) << 4
-                     ) | *(byte *)(iVar13 + 0x12) & 0x8f;
-          *(byte *)(iVar13 + 0x13) =
-               (byte)((ushort)*(undefined2 *)&result->rsp->neighbor_table_list[uVar8].field_0x12 >>
-                     8) & 3;
-          *(uint8_t *)(iVar13 + 0x14) = result->rsp->neighbor_table_list[uVar8].device_depth;
-          *(uint8_t *)(iVar13 + 0x15) = result->rsp->neighbor_table_list[uVar8].lqa;
+          iVar12 = uVar8 * 0x16;
+          puVar14 = (undefined1 *)((int)pvStack_14 + iVar12);
+          puVar9 = (undefined1 *)(*(int *)(pcVar11 + 4) + iVar12);
+          uVar1 = puVar9[1];
+          uVar2 = puVar9[2];
+          uVar3 = puVar9[3];
+          uVar4 = puVar9[4];
+          uVar5 = puVar9[5];
+          uVar6 = puVar9[6];
+          uVar7 = puVar9[7];
+          *puVar14 = *puVar9;
+          puVar14[1] = uVar1;
+          puVar14[2] = uVar2;
+          puVar14[3] = uVar3;
+          puVar14[4] = uVar4;
+          puVar14[5] = uVar5;
+          puVar14[6] = uVar6;
+          puVar14[7] = uVar7;
+          iVar10 = *(int *)(param_1[1] + 4) + iVar12;
+          uVar1 = *(undefined1 *)(iVar10 + 9);
+          uVar2 = *(undefined1 *)(iVar10 + 10);
+          uVar3 = *(undefined1 *)(iVar10 + 0xb);
+          uVar4 = *(undefined1 *)(iVar10 + 0xc);
+          uVar5 = *(undefined1 *)(iVar10 + 0xd);
+          uVar6 = *(undefined1 *)(iVar10 + 0xe);
+          uVar7 = *(undefined1 *)(iVar10 + 0xf);
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 8) = *(undefined1 *)(iVar10 + 8);
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 9) = uVar1;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 10) = uVar2;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0xb) = uVar3;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0xc) = uVar4;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0xd) = uVar5;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0xe) = uVar6;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0xf) = uVar7;
+          *(undefined2 *)((int)pvStack_14 + iVar12 + 0x10) =
+               *(undefined2 *)(*(int *)(param_1[1] + 4) + iVar12 + 0x10);
+          *(byte *)((int)pvStack_14 + iVar12 + 0x12) =
+               *(byte *)((int)pvStack_14 + iVar12 + 0x12) & 0xfc |
+               (byte)*(undefined2 *)(*(int *)(param_1[1] + 4) + iVar12 + 0x12) & 3;
+          *(byte *)((int)pvStack_14 + iVar12 + 0x12) =
+               (byte)((*(ushort *)(*(int *)(param_1[1] + 4) + iVar12 + 0x12) >> 2 & 3) << 2) |
+               *(byte *)((int)pvStack_14 + iVar12 + 0x12) & 0xf3;
+          *(byte *)((int)pvStack_14 + iVar12 + 0x12) =
+               (byte)((*(ushort *)(*(int *)(param_1[1] + 4) + iVar12 + 0x12) >> 4 & 7) << 4) |
+               *(byte *)((int)pvStack_14 + iVar12 + 0x12) & 0x8f;
+          *(byte *)((int)pvStack_14 + iVar12 + 0x13) =
+               (byte)((ushort)*(undefined2 *)(*(int *)(param_1[1] + 4) + iVar12 + 0x12) >> 8) & 3;
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0x14) =
+               *(undefined1 *)(*(int *)(param_1[1] + 4) + iVar12 + 0x14);
+          *(undefined1 *)((int)pvStack_14 + iVar12 + 0x15) =
+               *(undefined1 *)(iVar12 + *(int *)(param_1[1] + 4) + 0x15);
         }
       }
     }
     else {
       uStack_18 = 0x85;
     }
-    (*pcVar14)(&uStack_18,*(undefined4 *)((int)user_ctx + 4));
-    if (lqi_rsp._0_4_ != 0) {
-      free((void *)lqi_rsp._0_4_);
+    (*pcVar15)(&uStack_18,param_2[1]);
+    if (pvStack_14 != (void *)0x0) {
+      free(pvStack_14);
     }
   }
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

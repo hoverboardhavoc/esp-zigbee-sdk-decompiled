@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_reasm_ent_handle_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_reasm_ent_handle_timeout(aps_reasm_ent_t *ent)
+void aps_reasm_ent_handle_timeout(int param_1)
 
 {
   int iVar1;
   
-  if (ent->retry_cntr < 3) {
-    ent->retry_cntr = ent->retry_cntr + 1;
-    milli_timer_start(&ent->tm,0x640);
+  if (*(byte *)(param_1 + 0x20) < 3) {
+    *(byte *)(param_1 + 0x20) = *(byte *)(param_1 + 0x20) + 1;
+    milli_timer_start(param_1 + 0x10,0x640);
   }
   else {
-    aps_reasm_ent_deinit(ent);
+    aps_reasm_ent_deinit();
     iVar1 = core_globals_get();
-    aps_reasm_ent_delete((aps_rx_context_t *)(iVar1 + 0x458),ent);
+    aps_reasm_ent_delete(iVar1 + 0x458,param_1);
   }
   return;
 }

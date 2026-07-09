@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_sys_srv_disc_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_sys_srv_disc_rsp_handler(zdo_packet_t *packet)
+undefined4 zdo_sys_srv_disc_rsp_handler(int param_1)
 
 {
-  zdp_status_t zVar1;
-  undefined3 extraout_var;
-  int iVar2;
-  zdp_sys_srv_disc_rsp_field_t zStack_14;
-  zdp_sys_srv_disc_rsp_field_t rsp;
+  int iVar1;
+  undefined4 uVar2;
+  uint auStack_14 [3];
   
-  zStack_14.status = '\0';
-  zStack_14._1_1_ = 0;
-  zStack_14.server_mask = 0;
-  if (packet == (zdo_packet_t *)0x0) {
-    zVar1 = 0xfe;
+  auStack_14[0] = 0;
+  if (param_1 == 0) {
+    uVar2 = 0xfe;
   }
-  else if (packet->payload == (zdo_packet_payload_t *)0x0) {
-    zVar1 = 0xfe;
+  else if (*(int *)(param_1 + 0x14) == 0) {
+    uVar2 = 0xfe;
   }
   else {
-    zVar1 = zdo_op_sys_srv_disc_rsp(packet->payload,&zStack_14,false);
-    if (CONCAT31(extraout_var,zVar1) == 0) {
-      if (((uint)zStack_14 & 0x400000) != 0) {
-        iVar2 = core_globals_get();
-        *(uint16_t *)(iVar2 + 0x9dc) = packet->src_addr;
+    iVar1 = zdo_op_sys_srv_disc_rsp(auStack_14,0);
+    if (iVar1 == 0) {
+      if ((auStack_14[0] & 0x400000) != 0) {
+        iVar1 = core_globals_get();
+        *(undefined2 *)(iVar1 + 0x9dc) = *(undefined2 *)(param_1 + 4);
       }
-      zVar1 = zdo_cb_sys_srv_disc_rsp(&zStack_14,&packet->ctx);
+      uVar2 = zdo_cb_sys_srv_disc_rsp(auStack_14,param_1 + 8);
     }
     else {
-      zVar1 = 0xfe;
+      uVar2 = 0xfe;
     }
   }
-  return zVar1;
+  return uVar2;
 }
 

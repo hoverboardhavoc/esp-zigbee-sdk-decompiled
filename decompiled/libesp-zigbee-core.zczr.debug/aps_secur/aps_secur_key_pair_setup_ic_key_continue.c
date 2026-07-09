@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_key_pair_setup_ic_key_continue
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_key_pair_setup_ic_key_continue(aps_device_key_pair_t *key_pair)
+void aps_secur_key_pair_setup_ic_key_continue(int param_1)
 
 {
   ushort uVar1;
   
-  memcpy(key_pair->passphrase,key_pair->link_key,0x10);
-  uVar1 = (key_pair->field_8).flags;
-  (key_pair->field_8).flags = uVar1 & 0xfff9;
-  (key_pair->field_8).flags = uVar1 & 0xfff8;
-  (key_pair->field_8).flags = uVar1 & 0xff38 | 0x40;
-  key_pair->timeout = 0xffff;
-  key_pair->incoming_frame_cntr = 0;
-  key_pair->outgoing_frame_cntr = 0;
+  memcpy((void *)(param_1 + 0x22),(void *)(param_1 + 0x12),0x10);
+  uVar1 = *(ushort *)(param_1 + 0x34);
+  *(ushort *)(param_1 + 0x34) = uVar1 & 0xfff9;
+  *(ushort *)(param_1 + 0x34) = uVar1 & 0xfff8;
+  *(ushort *)(param_1 + 0x34) = uVar1 & 0xff38 | 0x40;
+  *(undefined2 *)(param_1 + 0x10) = 0xffff;
+  *(undefined4 *)(param_1 + 0xc) = 0;
+  *(undefined4 *)(param_1 + 8) = 0;
   return;
 }
 

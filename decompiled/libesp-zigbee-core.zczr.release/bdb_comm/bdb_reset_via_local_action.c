@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> bdb_comm.o -> bdb_reset_via_local_action
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void bdb_reset_via_local_action(void)
 
 {
   undefined2 uVar1;
   undefined4 uVar2;
   undefined4 uStack_24;
-  zdo_nwk_mgmt_leave_req_t req;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_24 = 0;
-  req._0_4_ = 0;
-  req.field.device_addr.field_0.u64._2_4_ = 0;
-  req.field._6_4_ = 0;
-  req.cb = (ezb_zdo_nwk_mgmt_leave_req_callback_t)0x0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
   uVar1 = nwk_get_short_address();
   uStack_24 = CONCAT22(uStack_24._2_2_,uVar1);
   uVar2 = zdo_nwk_mgmt_leave_req(&uStack_24);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_append_bytes_from_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zmsg_append_bytes_from_msg
-                    (zmsg_t *dst_msg,zmsg_t *src_msg,uint16_t offset,uint16_t length)
+int zmsg_append_bytes_from_msg(int param_1,int param_2,int param_3,uint param_4)
 
 {
-  uint16_t uVar1;
-  uint16_t offset_00;
-  ezb_err_t eVar2;
-  undefined2 in_register_00002032;
-  undefined2 in_register_00002036;
-  uint16_t auStack_32 [3];
+  uint uVar1;
+  int iVar2;
+  uint uVar3;
+  undefined2 auStack_32 [3];
   undefined1 auStack_2c [4];
-  zmsg_chunk_t chunk;
+  undefined4 uStack_28;
+  ushort uStack_24;
   
-  eVar2 = 2;
-  if (CONCAT22(in_register_00002036,length) + CONCAT22(in_register_00002032,offset) <=
-      (int)(uint)src_msg->length) {
-    offset_00 = dst_msg->length;
-    auStack_32[0] = length;
-    eVar2 = zmsg_set_length(dst_msg,length + offset_00);
-    if (eVar2 == 0) {
-      zmsg_get_first_chunk(src_msg,offset,auStack_32,(zmsg_chunk_t *)auStack_2c);
-      while( true ) {
-        uVar1 = (uint16_t)chunk.data;
-        if ((uint16_t)chunk.data == 0) break;
-        zmsg_write_bytes(dst_msg,offset_00,(uint16_t)chunk.data,chunk.buffer);
-        offset_00 = offset_00 + uVar1;
-        zmsg_get_next_chunk(auStack_32,(zmsg_chunk_t *)auStack_2c);
+  auStack_32[0] = (undefined2)param_4;
+  iVar2 = 2;
+  if ((int)(param_4 + param_3) <= (int)(uint)*(ushort *)(param_2 + 0xe)) {
+    uVar1 = (uint)*(ushort *)(param_1 + 0xe);
+    iVar2 = zmsg_set_length((param_4 & 0xffff) + uVar1 & 0xffff);
+    if (iVar2 == 0) {
+      zmsg_get_first_chunk(param_2,param_3,auStack_32,auStack_2c);
+      while (uVar3 = (uint)uStack_24, uVar3 != 0) {
+        zmsg_write_bytes(param_1,uVar1,uVar3,uStack_28);
+        uVar1 = uVar1 + uVar3 & 0xffff;
+        zmsg_get_next_chunk(auStack_32,auStack_2c);
       }
     }
   }
-  return eVar2;
+  return iVar2;
 }
 

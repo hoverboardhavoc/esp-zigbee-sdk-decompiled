@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app.o -> nwk_nlme_event_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
+void nwk_nlme_event_indication(char *param_1)
 
 {
   undefined4 uVar1;
@@ -30,33 +28,30 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
   undefined4 uStack_48;
   undefined2 uStack_44;
   undefined4 uStack_2c;
-  zdo_app_signal_t signal;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined2 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_2c = 0;
-  signal.signal = 0;
-  signal.parameters[0] = '\0';
-  signal.parameters[1] = '\0';
-  signal.parameters[2] = '\0';
-  signal.parameters[3] = '\0';
-  signal.parameters[4] = '\0';
-  signal.parameters[5] = '\0';
-  signal.parameters[6] = '\0';
-  signal.parameters[7] = '\0';
-  signal.parameters[8] = '\0';
-  signal.parameters[9] = '\0';
-  signal.parameters[10] = '\0';
-  signal.parameters[0xb] = '\0';
-  if (ind->event == '\0') {
-    signal._0_4_ = *(undefined4 *)((int)&ind->field_1 + 2);
-    uStack_2c._0_3_ = CONCAT12((ind->field_1).network_status.status,0x203);
-    uStack_2c = CONCAT13(*(undefined1 *)((int)&ind->field_1 + 1),(uint3)uStack_2c);
-    if ((ind->field_1).network_status.status == '\x10') {
-      stack0xffffffe8 = 0;
-      zdo_device_annce_req(signal.parameters + 0xe);
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  if (*param_1 == '\0') {
+    uStack_28 = *(undefined4 *)(param_1 + 4);
+    uStack_2c._0_3_ = CONCAT12(param_1[2],0x203);
+    uStack_2c = CONCAT13(param_1[3],(uint3)uStack_2c);
+    if (param_1[2] == '\x10') {
+      uStack_18 = 0;
+      uStack_14 = 0;
+      zdo_device_annce_req(&uStack_18);
     }
   }
   else {
-    if (ind->event != '\x01') {
+    if (*param_1 != '\x01') {
       uVar4 = 0x28;
       uVar3 = 0x288;
       uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app.c",0x8d);
@@ -79,7 +74,7 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
       zdo_app_put_signal(&uStack_54);
       return;
     }
-    uStack_2c._0_3_ = CONCAT12((ind->field_1).network_status.status,0x204);
+    uStack_2c._0_3_ = CONCAT12(param_1[2],0x204);
     uStack_2c = (uint)(uint3)uStack_2c;
   }
   zdo_app_put_signal(&uStack_2c);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> on_off.o -> on_off_timer_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,62 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void on_off_timer_handler(void *arg)
+void on_off_timer_handler(char *param_1)
 
 {
-  uint8_t ep_id;
-  uint16_t x;
-  zcl_attr_desc_t *pzVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  uint16_t attr_id;
-  uint16_t y;
-  byte on_off;
+  char cVar1;
+  short sVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  short sVar6;
+  byte bVar7;
   
-  if (arg != (void *)0x0) goto _L98;
+  if (param_1 != (char *)0x0) goto _L98;
   do {
-    arg = (void *)__assert_func(0,0,0,0);
+    param_1 = (char *)__assert_func(0,0,0,0);
 _L98:
-                    /* WARNING: Load size is inaccurate */
-    pzVar1 = on_off_srv_get_attr_desc(*arg,0);
-                    /* WARNING: Load size is inaccurate */
-    pzVar2 = on_off_srv_get_attr_desc(*arg,0x4001);
-                    /* WARNING: Load size is inaccurate */
-    pzVar3 = on_off_srv_get_attr_desc(*arg,0x4002);
-  } while (pzVar1 == (zcl_attr_desc_t *)0x0);
-  if ((pzVar2 != (zcl_attr_desc_t *)0x0) && (pzVar3 != (zcl_attr_desc_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-    y = *pzVar3->data_p;
-                    /* WARNING: Load size is inaccurate */
-    x = *pzVar2->data_p;
-    if (*pzVar1->data_p == 0) {
-      on_off = 0;
-      if (y != 0) {
-        y = y - 1;
+    iVar3 = on_off_srv_get_attr_desc(*param_1,0);
+    iVar4 = on_off_srv_get_attr_desc(*param_1,0x4001);
+    iVar5 = on_off_srv_get_attr_desc(*param_1,0x4002);
+  } while (iVar3 == 0);
+  if ((iVar4 != 0) && (iVar5 != 0)) {
+    sVar6 = **(short **)(iVar5 + 8);
+    sVar2 = **(short **)(iVar4 + 8);
+    if (**(byte **)(iVar3 + 8) == 0) {
+      bVar7 = 0;
+      if (sVar6 != 0) {
+        sVar6 = sVar6 + -1;
       }
     }
-    else if (x == 0) {
-      on_off = 0;
+    else if (sVar2 == 0) {
+      bVar7 = 0;
     }
     else {
-      x = x - 1;
-      on_off = *pzVar1->data_p & -(x != 0);
+      sVar2 = sVar2 + -1;
+      bVar7 = **(byte **)(iVar3 + 8) & -(sVar2 != 0);
     }
-                    /* WARNING: Load size is inaccurate */
-    on_off_process_transition(*arg,'B',on_off,x,y);
-    if (on_off != 0) {
-      y = x;
+    on_off_process_transition(*param_1,0x42,bVar7,sVar2,sVar6);
+    if (bVar7 != 0) {
+      sVar6 = sVar2;
     }
-    if (y != 0) {
-                    /* WARNING: Load size is inaccurate */
-      ep_id = *arg;
-      pzVar1 = on_off_srv_get_attr_desc(ep_id,attr_id);
-                    /* WARNING: Load size is inaccurate */
-      if ((pzVar1 != (zcl_attr_desc_t *)0x0) && (*pzVar1->data_p == ep_id)) {
-        milli_timer_start((uint8_t *)((int)pzVar1->data_p + 4),100);
+    if (sVar6 != 0) {
+      cVar1 = *param_1;
+      iVar3 = on_off_srv_get_attr_desc_part_0();
+      if ((iVar3 != 0) && (**(char **)(iVar3 + 8) == cVar1)) {
+        milli_timer_start(*(char **)(iVar3 + 8) + 4,100);
         return;
       }
       return;

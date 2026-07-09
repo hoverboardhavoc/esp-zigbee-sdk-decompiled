@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aes.o -> crypto_aes_ecb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,15 +10,13 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void crypto_aes_ecb_init(crypto_aes_context_t *ctx)
+void crypto_aes_ecb_init(int *param_1)
 
 {
   int iVar1;
   
-  (ctx->context).ctx = ctx->storage;
-  (ctx->context).ctx_size = 8;
+  *param_1 = (int)(param_1 + 2);
+  *(undefined2 *)(param_1 + 1) = 8;
   iVar1 = ezb_plat_crypto_aes_init();
   if (iVar1 != 0) {
     __assert_func(0,0,0,0);

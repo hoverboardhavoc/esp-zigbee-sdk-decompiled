@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_common.o -> zcl_get_attr_value_size
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,176 +10,172 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint16_t zcl_get_attr_value_size(zcl_attr_type_t attr_type,void *attr_value)
+uint zcl_get_attr_value_size(uint param_1,ushort *param_2)
 
 {
-  undefined3 in_register_00002029;
-  short sVar1;
+  ushort uVar1;
   uint uVar2;
   
-  uVar2 = CONCAT31(in_register_00002029,attr_type);
-  if (uVar2 == 0x3a) {
+  if (param_1 == 0x3a) {
     return 8;
   }
-  if (uVar2 < 0x3b) {
-    if (uVar2 == 0x1e) {
+  if (param_1 < 0x3b) {
+    if (param_1 == 0x1e) {
       return 7;
     }
-    if (uVar2 < 0x1f) {
-      if (uVar2 == 0xd) {
+    if (param_1 < 0x1f) {
+      if (param_1 == 0xd) {
         return 6;
       }
-      if (uVar2 < 0xe) {
-        if (uVar2 == 0) {
+      if (param_1 < 0xe) {
+        if (param_1 == 0) {
           return 0;
         }
-        if (uVar2 == 10) {
+        if (param_1 == 10) {
           return 3;
         }
-        if (uVar2 < 0xb) {
-          if (uVar2 == 8) {
+        if (param_1 < 0xb) {
+          if (param_1 == 8) {
             return 1;
           }
-          if (uVar2 == 9) {
+          if (param_1 == 9) {
             return 2;
           }
         }
         else {
-          if (uVar2 == 0xb) {
+          if (param_1 == 0xb) {
             return 4;
           }
-          if (uVar2 == 0xc) {
+          if (param_1 == 0xc) {
             return 5;
           }
         }
       }
       else {
-        if (uVar2 == 0x19) {
+        if (param_1 == 0x19) {
           return 2;
         }
-        if (uVar2 < 0x1a) {
-          if (uVar2 == 0xf) {
+        if (param_1 < 0x1a) {
+          if (param_1 == 0xf) {
             return 8;
           }
-          if (uVar2 < 0x10) {
-            if (uVar2 == 0xe) {
+          if (param_1 < 0x10) {
+            if (param_1 == 0xe) {
               return 7;
             }
           }
           else {
-            if (uVar2 == 0x10) {
+            if (param_1 == 0x10) {
               return 1;
             }
-            if (uVar2 == 0x18) {
+            if (param_1 == 0x18) {
               return 1;
             }
           }
         }
         else {
-          if (uVar2 == 0x1c) {
+          if (param_1 == 0x1c) {
             return 5;
           }
-          if (uVar2 < 0x1d) {
-            if (uVar2 == 0x1a) {
+          if (param_1 < 0x1d) {
+            if (param_1 == 0x1a) {
               return 3;
             }
-            if (uVar2 == 0x1b) {
+            if (param_1 == 0x1b) {
               return 4;
             }
           }
-          else if (uVar2 == 0x1d) {
+          else if (param_1 == 0x1d) {
             return 6;
           }
         }
       }
     }
     else {
-      if (uVar2 == 0x29) {
+      if (param_1 == 0x29) {
         return 2;
       }
-      if (uVar2 < 0x2a) {
-        if (uVar2 == 0x24) {
+      if (param_1 < 0x2a) {
+        if (param_1 == 0x24) {
           return 5;
         }
-        if (uVar2 < 0x25) {
-          if (uVar2 == 0x21) {
+        if (param_1 < 0x25) {
+          if (param_1 == 0x21) {
             return 2;
           }
-          if (uVar2 < 0x22) {
-            if (uVar2 == 0x1f) {
+          if (param_1 < 0x22) {
+            if (param_1 == 0x1f) {
               return 8;
             }
-            if (uVar2 == 0x20) {
+            if (param_1 == 0x20) {
               return 1;
             }
           }
           else {
-            if (uVar2 == 0x22) {
+            if (param_1 == 0x22) {
               return 3;
             }
-            if (uVar2 == 0x23) {
+            if (param_1 == 0x23) {
               return 4;
             }
           }
         }
         else {
-          if (uVar2 == 0x26) {
+          if (param_1 == 0x26) {
             return 7;
           }
-          if (uVar2 < 0x27) {
-            if (uVar2 == 0x25) {
+          if (param_1 < 0x27) {
+            if (param_1 == 0x25) {
               return 6;
             }
           }
           else {
-            if (uVar2 == 0x27) {
+            if (param_1 == 0x27) {
               return 8;
             }
-            if (uVar2 == 0x28) {
+            if (param_1 == 0x28) {
               return 1;
             }
           }
         }
       }
       else {
-        if (uVar2 == 0x2e) {
+        if (param_1 == 0x2e) {
           return 7;
         }
-        if (uVar2 < 0x2f) {
-          if (uVar2 == 0x2c) {
+        if (param_1 < 0x2f) {
+          if (param_1 == 0x2c) {
             return 5;
           }
-          if (uVar2 < 0x2d) {
-            if (uVar2 == 0x2a) {
+          if (param_1 < 0x2d) {
+            if (param_1 == 0x2a) {
               return 3;
             }
-            if (uVar2 == 0x2b) {
+            if (param_1 == 0x2b) {
               return 4;
             }
           }
-          else if (uVar2 == 0x2d) {
+          else if (param_1 == 0x2d) {
             return 6;
           }
         }
         else {
-          if (uVar2 == 0x31) {
+          if (param_1 == 0x31) {
             return 2;
           }
-          if (uVar2 < 0x32) {
-            if (uVar2 == 0x2f) {
+          if (param_1 < 0x32) {
+            if (param_1 == 0x2f) {
               return 8;
             }
-            if (uVar2 == 0x30) {
+            if (param_1 == 0x30) {
               return 1;
             }
           }
           else {
-            if (uVar2 == 0x38) {
+            if (param_1 == 0x38) {
               return 2;
             }
-            if (uVar2 == 0x39) {
+            if (param_1 == 0x39) {
               return 4;
             }
           }
@@ -188,94 +184,89 @@ uint16_t zcl_get_attr_value_size(zcl_attr_type_t attr_type,void *attr_value)
     }
   }
   else {
-    if (uVar2 == 0x4a) {
-      if (attr_value != (void *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-        uVar2 = (uint)*attr_value;
+    if (param_1 == 0x4a) {
+      if (param_2 != (ushort *)0x0) {
+        uVar2 = (uint)*param_2;
         if (uVar2 == 0xffff) {
           uVar2 = 2;
         }
-        return (short)((uVar2 << 0x12) >> 0x10) + 2;
+        return ((uVar2 << 0x12) >> 0x10) + 2 & 0xffff;
       }
       return 0xffff;
     }
-    if (uVar2 < 0x4b) {
-      if (uVar2 < 0x45) {
-        if (0x42 < uVar2) {
-          if (attr_value == (void *)0x0) {
+    if (param_1 < 0x4b) {
+      if (param_1 < 0x45) {
+        if (0x42 < param_1) {
+          if (param_2 == (ushort *)0x0) {
             return 0xffff;
           }
-                    /* WARNING: Load size is inaccurate */
-          if (*attr_value != -1) {
-            return *attr_value + 2;
+          if (*param_2 != 0xffff) {
+            return (uint)(ushort)(*param_2 + 2);
           }
           return 2;
         }
-        if ((uVar2 - 0x41 & 0xff) < 2) {
-          if (attr_value == (void *)0x0) {
+        if ((param_1 - 0x41 & 0xff) < 2) {
+          if (param_2 == (ushort *)0x0) {
             return 0xffff;
           }
-                    /* WARNING: Load size is inaccurate */
-          if (*attr_value != 0xff) {
-            return *attr_value + 1;
+          if ((byte)*param_2 != 0xff) {
+            return (byte)*param_2 + 1;
           }
           return 1;
         }
       }
       else {
-        if (uVar2 == 0x48) {
+        if (param_1 == 0x48) {
 _L0:
-          log_write(2,"ZCL_COMMON","Unsupported data type (0x%x)!",uVar2);
+          log_write(2,"ZCL_COMMON","Unsupported data type (0x%x)!",param_1);
           return 0xffff;
         }
-        if (uVar2 == 0x49) {
-          if (attr_value != (void *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-            sVar1 = *attr_value;
-            if (sVar1 == -1) {
-              sVar1 = 2;
+        if (param_1 == 0x49) {
+          if (param_2 != (ushort *)0x0) {
+            uVar1 = *param_2;
+            if (uVar1 == 0xffff) {
+              uVar1 = 2;
             }
-            return (sVar1 + 1) * 2;
+            return (uint)(ushort)((uVar1 + 1) * 2);
           }
           return 0xffff;
         }
       }
     }
     else {
-      if (uVar2 == 0xf0) {
+      if (param_1 == 0xf0) {
         return 8;
       }
-      if (uVar2 < 0xf1) {
-        if (uVar2 < 0x52) {
-          if ((0x4f < uVar2) || (uVar2 == 0x4c)) goto _L0;
+      if (param_1 < 0xf1) {
+        if (param_1 < 0x52) {
+          if ((0x4f < param_1) || (param_1 == 0x4c)) goto _L0;
         }
-        else if (uVar2 < 0xea) {
-          if (0xe7 < uVar2) {
+        else if (param_1 < 0xea) {
+          if (0xe7 < param_1) {
             return 2;
           }
-          if ((uVar2 + 0x20 & 0xff) < 3) {
+          if ((param_1 + 0x20 & 0xff) < 3) {
             return 4;
           }
         }
-        else if (uVar2 == 0xea) {
+        else if (param_1 == 0xea) {
           return 4;
         }
       }
       else {
-        if (uVar2 == 0xf1) {
+        if (param_1 == 0xf1) {
           return 0x10;
         }
-        if (uVar2 == 0xfe) {
-          if (attr_value != (void *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-            return *attr_value;
+        if (param_1 == 0xfe) {
+          if (param_2 != (ushort *)0x0) {
+            return (uint)*param_2;
           }
           return 0xffff;
         }
       }
     }
   }
-  log_write(2,"ZCL_COMMON","Unknown data type (0x%x)",uVar2);
+  log_write(2,"ZCL_COMMON","Unknown data type (0x%x)",param_1);
   return 0xffff;
 }
 

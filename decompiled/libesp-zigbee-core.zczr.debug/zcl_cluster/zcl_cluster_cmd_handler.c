@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_cluster.o -> zcl_cluster_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_cluster_cmd_handler(zcl_packet_t *packet)
+undefined4 zcl_cluster_cmd_handler(int param_1)
 
 {
-  zcl_status_t zVar1;
-  uint16_t cluster_id;
-  zcl_cluster_template_t *template;
-  uint8_t cluster_role;
+  uint uVar1;
+  int iVar2;
+  undefined4 uVar3;
   
-  if (packet == (zcl_packet_t *)0x0) {
-    cluster_id = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_cluster.c",0x91,
-                               "zcl_cluster_cmd_handler","packet");
+  if (param_1 == 0) {
+    uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_cluster.c",0x91,
+                          "zcl_cluster_cmd_handler","packet");
   }
   else {
-    cluster_id = (packet->header).cluster_id;
-    if (((packet->header).fc & 8) != 0) {
-      cluster_role = '\x02';
+    uVar1 = (uint)*(ushort *)(param_1 + 0x16);
+    if ((*(byte *)(param_1 + 0x1a) & 8) != 0) {
+      uVar3 = 2;
       goto _L0;
     }
   }
-  cluster_role = '\x01';
+  uVar3 = 1;
 _L0:
-  template = zcl_cluster_template_find(cluster_id,cluster_role);
-  if (template == (zcl_cluster_template_t *)0x0) {
-    zVar1 = 0x81;
+  iVar2 = zcl_cluster_template_find(uVar1,uVar3);
+  if (iVar2 == 0) {
+    uVar3 = 0x81;
   }
-  else if ((short)(packet->header).cluster_id < 0) {
-    zVar1 = zcl_cluster_custom_cmd_handler(packet,template);
+  else if (*(short *)(param_1 + 0x16) < 0) {
+    uVar3 = zcl_cluster_custom_cmd_handler(param_1,iVar2);
   }
-  else if ((template->field_5).cmd_proc_handler == (zcl_cluster_process_cmd_t)0x0) {
-    zVar1 = 0x81;
+  else if (*(code **)(iVar2 + 0x10) == (code *)0x0) {
+    uVar3 = 0x81;
   }
   else {
-    zVar1 = (*(template->field_5).cmd_proc_handler)(packet);
+    uVar3 = (**(code **)(iVar2 + 0x10))(param_1);
   }
-  return zVar1;
+  return uVar3;
 }
 

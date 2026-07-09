@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> crc.o -> crc16_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint16_t crc16_next(uint16_t crc,uint8_t *p,uint32_t len)
+void crc16_next(uint param_1,int param_2,char *param_3,uint param_4)
 
 {
-  undefined2 in_register_0000202a;
-  uint uVar1;
-  uint8_t *extraout_a1;
-  char *pcVar2;
-  uint32_t i;
-  char *pcVar3;
-  uint in_a5;
+  int extraout_a1;
+  char *pcVar1;
   
-  uVar1 = CONCAT22(in_register_0000202a,crc);
-  if (p != (uint8_t *)0x0) {
-    pcVar2 = (char *)len;
-    for (pcVar3 = (char *)0x0; pcVar3 < pcVar2; pcVar3 = pcVar3 + 1) {
-      uVar1 = uVar1 ^ p[(int)pcVar3];
-      for (in_a5 = 0; in_a5 < 8; in_a5 = in_a5 + 1) {
-        if ((uVar1 & 1) == 0) {
+  if (param_2 != 0) {
+    for (pcVar1 = (char *)0x0; pcVar1 < param_3; pcVar1 = pcVar1 + 1) {
+      param_1 = param_1 ^ (byte)pcVar1[param_2];
+      for (param_4 = 0; param_4 < 8; param_4 = param_4 + 1) {
+        if ((param_1 & 1) == 0) {
 _L0:
-          uVar1 = uVar1 >> 1;
+          param_1 = param_1 >> 1;
         }
         else {
-          uVar1 = (uVar1 >> 1 ^ 0xffff8408) & 0xffff;
+          param_1 = (param_1 >> 1 ^ 0xffff8408) & 0xffff;
         }
       }
     }
-    return (uint16_t)uVar1;
+    return;
   }
-  pcVar3 = "p != ((void *)0)";
-  pcVar2 = "crc16_next";
-  uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/crc.c",0x3b);
-  p = extraout_a1;
+  pcVar1 = "p != ((void *)0)";
+  param_3 = "crc16_next";
+  param_1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/crc.c",0x3b);
+  param_2 = extraout_a1;
   goto _L0;
 }
 

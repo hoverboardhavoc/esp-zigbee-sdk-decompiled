@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_upgrade_end_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,101 +10,86 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-ota_upgrade_cluster_cli_upgrade_end_rsp_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+undefined4 ota_upgrade_cluster_cli_upgrade_end_rsp_handler(int param_1,int param_2)
 
 {
   int iVar1;
-  uint16_t *offset_00;
-  _Bool _Var2;
-  ezb_zcl_status_t eVar3;
-  ota_upgrade_downloading_context_t *context;
-  undefined3 extraout_var;
-  uint uVar4;
-  undefined3 extraout_var_00;
-  undefined3 extraout_var_01;
-  undefined3 extraout_var_02;
-  undefined3 extraout_var_03;
-  undefined1 auStack_34 [4];
-  ota_upgrade_upgrade_end_rsp_t payload;
-  uint16_t offset;
+  int iVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  int iStack_28;
+  ushort auStack_22 [5];
   
-  payload.upgrade_time._2_2_ = 0;
-  auStack_34._0_2_ = 0;
-  auStack_34._2_2_ = 0;
-  payload.manuf_code = 0;
-  payload.image_type = 0;
-  payload.file_version = 0;
-  payload.current_time = 0;
-  if (packet == (zcl_packet_t *)0x0) {
-    iVar1 = 1;
+  auStack_22[0] = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  iStack_28 = 0;
+  if (param_1 == 0) {
+    iVar2 = 1;
   }
-  else if (rsp == (zcl_packet_t *)0x0) {
-    iVar1 = 1;
+  else if (param_2 == 0) {
+    iVar2 = 1;
   }
   else {
-    context = ota_upgrade_downloading_context_get((packet->header).dst_ep);
-    _Var2 = ota_upgrade_download_stop_timer(context);
-    if (CONCAT31(extraout_var,_Var2) == 0) {
-      iVar1 = 0xfe;
+    iVar1 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
+    iVar2 = ota_upgrade_download_stop_timer();
+    if (iVar2 == 0) {
+      iVar2 = 0xfe;
     }
-    else if (*(context->attr).upgrade_status == '\x02') {
-      uVar4 = zmsg_get_length(packet->payload);
-      offset_00 = (uint16_t *)((int)&payload.upgrade_time + 2);
-      af_read_le16(packet->payload,offset_00,(uint16_t *)auStack_34);
-      af_read_le16(packet->payload,offset_00,(uint16_t *)(auStack_34 + 2));
-      af_read_le32(packet->payload,offset_00,(uint32_t *)&payload);
-      af_read_le32(packet->payload,offset_00,&payload.file_version);
-      af_read_le32(packet->payload,offset_00,&payload.current_time);
-      if (uVar4 < payload.upgrade_time._2_2_) {
-        iVar1 = 0x80;
+    else if (**(char **)(iVar1 + 0x18) == '\x02') {
+      uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+      af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_34);
+      af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,(int)&uStack_34 + 2);
+      af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_30);
+      af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_2c);
+      af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&iStack_28);
+      if (uVar3 < auStack_22[0]) {
+        iVar2 = 0x80;
       }
       else {
-        eVar3 = ota_upgrade_handle_upgrade_end(context,(ota_upgrade_upgrade_end_rsp_t *)auStack_34);
-        iVar1 = CONCAT31(extraout_var_00,eVar3);
-        if (iVar1 == 0) {
-          if (payload.current_time == 0xffffffff) {
-            *(context->attr).upgrade_status = '\x03';
+        iVar2 = ota_upgrade_handle_upgrade_end(iVar1,&uStack_34);
+        if (iVar2 == 0) {
+          if (iStack_28 == -1) {
+            **(undefined1 **)(iVar1 + 0x18) = 3;
           }
           else {
-            eVar3 = zcl_message_ota_upgrade_downloading_progress(packet,'\x04',auStack_34);
-            iVar1 = CONCAT31(extraout_var_01,eVar3);
-            if (iVar1 == 0x96) {
-              ota_upgrade_set_upgrade_status_normal(context);
-              eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,0x96);
-              iVar1 = CONCAT31(extraout_var_03,eVar3);
+            iVar2 = zcl_message_ota_upgrade_downloading_progress(param_1,4,&uStack_34);
+            if (iVar2 == 0x96) {
+              ota_upgrade_set_upgrade_status_normal(iVar1);
+              iVar2 = ota_upgrade_setup_upgrade_end_request(param_2,iVar1,param_1,0x96);
             }
-            else if (iVar1 == 0x99) {
-              *(context->attr).upgrade_status = '\x05';
-              eVar3 = ota_upgrade_setup_upgrade_end_request(rsp,context,packet,0x99);
-              iVar1 = CONCAT31(extraout_var_02,eVar3);
+            else if (iVar2 == 0x99) {
+              **(undefined1 **)(iVar1 + 0x18) = 5;
+              iVar2 = ota_upgrade_setup_upgrade_end_request(param_2,iVar1,param_1,0x99);
             }
             else {
-              if (iVar1 != 0) {
-                ota_upgrade_set_upgrade_status_normal(context);
-                iVar1 = 0xfe;
+              if (iVar2 != 0) {
+                ota_upgrade_set_upgrade_status_normal(iVar1);
+                iVar2 = 0xfe;
                 goto _L0;
               }
-              *(context->attr).upgrade_status = '\x04';
-              zcl_message_ota_upgrade_downloading_progress(packet,'\x05',auStack_34);
-              ota_upgrade_set_upgrade_status_normal(context);
-              iVar1 = 0;
+              **(undefined1 **)(iVar1 + 0x18) = 4;
+              zcl_message_ota_upgrade_downloading_progress(param_1,5,&uStack_34);
+              ota_upgrade_set_upgrade_status_normal(iVar1);
+              iVar2 = 0;
             }
           }
-          if (iVar1 == 0) {
-            return (ezb_zcl_status_t)iVar1;
+          if (iVar2 == 0) {
+            return 0;
           }
         }
       }
     }
     else {
-      iVar1 = 0xfe;
+      iVar2 = 0xfe;
     }
   }
 _L0:
-  eVar3 = zcl_packet_setup_default_response(rsp,packet,iVar1);
-  return eVar3;
+  uVar4 = zcl_packet_setup_default_response(param_2,param_1,iVar2);
+  return uVar4;
 }
 

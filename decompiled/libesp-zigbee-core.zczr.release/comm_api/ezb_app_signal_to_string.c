@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> comm_api.o -> ezb_app_signal_to_string
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-char * ezb_app_signal_to_string(ezb_app_signal_type_t signal)
+undefined * ezb_app_signal_to_string(uint param_1)
 
 {
-  undefined2 in_register_0000202a;
-  ezb_app_signal_name *peVar1;
+  ushort *puVar1;
   int iVar2;
   
-  peVar1 = s_app_signal_table;
+  puVar1 = &s_app_signal_table;
   iVar2 = 0;
   do {
-    if ((uint)peVar1->signal == CONCAT22(in_register_0000202a,signal)) break;
+    if (*puVar1 == param_1) break;
     iVar2 = iVar2 + 1;
-    peVar1 = peVar1 + 1;
+    puVar1 = puVar1 + 4;
   } while (iVar2 != 0x16);
-  return s_app_signal_table[iVar2].msg;
+  return (&PTR__L0_000102e0)[iVar2 * 2];
 }
 

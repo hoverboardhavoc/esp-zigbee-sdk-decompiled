@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac_frame.o -> mac_frame_set_dstaddr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,78 +10,72 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_frame_set_dstaddr(ezb_radio_frame_t *frame,ezb_address_t *address)
+undefined4 * mac_frame_set_dstaddr(undefined4 *param_1,char *param_2)
 
 {
-  ushort fcf;
-  ezb_grpaddr_t eVar1;
-  uint16_t *puVar2;
-  uint8_t uVar3;
-  undefined3 extraout_var;
-  undefined4 *puVar4;
-  undefined3 extraout_var_00;
-  int iVar5;
+  ushort uVar1;
+  undefined2 *puVar2;
+  undefined4 *puVar3;
+  int iVar4;
   undefined1 *extraout_a1;
+  undefined4 uVar5;
   undefined4 uVar6;
-  undefined4 uVar7;
-  ushort *puVar8;
+  ushort *puVar7;
   
-  puVar2 = (uint16_t *)frame->psdu;
-  uVar3 = mac_fcf_find_dstaddr_index(*puVar2);
-  iVar5 = CONCAT31(extraout_var,uVar3);
-  if (iVar5 == 0xff) {
-    iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x19c,
-                          "mac_frame_set_dstaddr","(index != 0xff)");
+  puVar2 = (undefined2 *)*param_1;
+  puVar3 = (undefined4 *)mac_fcf_find_dstaddr_index(*puVar2);
+  if (puVar3 == (undefined4 *)0xff) {
+    puVar3 = (undefined4 *)
+             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x19c,
+                           "mac_frame_set_dstaddr","(index != 0xff)");
 _L0:
-    *(ezb_shortaddr_t *)((int)puVar2 + iVar5) = (address->u).short_addr;
-    return;
+    *(undefined2 *)((int)puVar2 + (int)puVar3) = *(undefined2 *)(param_2 + 2);
+    return puVar3;
   }
-  if (address->addr_mode == '\x02') goto _L0;
-  if (address->addr_mode == '\x03') {
-    eVar1 = *(ezb_grpaddr_t *)((int)&address->u + 4);
-    *(ezb_grpaddr_t *)(iVar5 + (int)puVar2) = (address->u).group_addr;
-    ((ezb_grpaddr_t *)(iVar5 + (int)puVar2))[1] = eVar1;
-    return;
+  if (*param_2 == '\x02') goto _L0;
+  if (*param_2 == '\x03') {
+    uVar5 = *(undefined4 *)(param_2 + 6);
+    puVar3 = (undefined4 *)((int)puVar3 + (int)puVar2);
+    *puVar3 = *(undefined4 *)(param_2 + 2);
+    puVar3[1] = uVar5;
+    return puVar3;
   }
-  puVar4 = (undefined4 *)
+  puVar3 = (undefined4 *)
            __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x1a8,
                          "mac_frame_set_dstaddr",&_LC4);
-  puVar8 = (ushort *)*puVar4;
-  fcf = *puVar8;
-  uVar3 = mac_fcf_find_srcaddr_index(fcf);
-  iVar5 = CONCAT31(extraout_var_00,uVar3);
-  if ((fcf & 0xc000) != 0x8000) {
-    if ((fcf & 0xc000) != 0xc000) {
-      if ((fcf & 0xc000) != 0) {
+  puVar7 = (ushort *)*puVar3;
+  uVar1 = *puVar7;
+  iVar4 = mac_fcf_find_srcaddr_index(uVar1);
+  if ((uVar1 & 0xc000) != 0x8000) {
+    if ((uVar1 & 0xc000) != 0xc000) {
+      if ((uVar1 & 0xc000) != 0) {
         *extraout_a1 = 0;
-        return;
+        return (undefined4 *)0x10;
       }
       goto _L0;
     }
-    if (iVar5 != 0xff) {
+    if (iVar4 != 0xff) {
       *extraout_a1 = 3;
-      uVar6 = *(undefined4 *)(iVar5 + (int)puVar8);
-      uVar7 = ((undefined4 *)(iVar5 + (int)puVar8))[1];
-      *(short *)(extraout_a1 + 2) = (short)uVar6;
-      *(short *)(extraout_a1 + 4) = (short)((uint)uVar6 >> 0x10);
-      *(short *)(extraout_a1 + 6) = (short)uVar7;
-      *(short *)(extraout_a1 + 8) = (short)((uint)uVar7 >> 0x10);
-      return;
+      uVar5 = *(undefined4 *)(iVar4 + (int)puVar7);
+      uVar6 = ((undefined4 *)(iVar4 + (int)puVar7))[1];
+      *(short *)(extraout_a1 + 2) = (short)uVar5;
+      *(short *)(extraout_a1 + 4) = (short)((uint)uVar5 >> 0x10);
+      *(short *)(extraout_a1 + 6) = (short)uVar6;
+      *(short *)(extraout_a1 + 8) = (short)((uint)uVar6 >> 0x10);
+      return (undefined4 *)0x0;
     }
-    iVar5 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x1b8,
+    iVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x1b8,
                           "mac_frame_get_srcaddr","(index != 0xff)");
   }
-  if (iVar5 != 0xff) {
+  if (iVar4 != 0xff) {
     *extraout_a1 = 2;
-    *(undefined2 *)(extraout_a1 + 2) = *(undefined2 *)((int)puVar8 + iVar5);
-    return;
+    *(undefined2 *)(extraout_a1 + 2) = *(undefined2 *)((int)puVar7 + iVar4);
+    return (undefined4 *)0x0;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_frame.c",0x1be,
                 "mac_frame_get_srcaddr","(index != 0xff)");
 _L0:
   *extraout_a1 = 0;
-  return;
+  return (undefined4 *)0x0;
 }
 

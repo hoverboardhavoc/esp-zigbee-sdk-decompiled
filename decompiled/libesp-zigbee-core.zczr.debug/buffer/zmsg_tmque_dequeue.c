@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_tmque_dequeue
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,19 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_tmque_dequeue(zmsg_tmque_t *q,zmsg_t *msg)
+void zmsg_tmque_dequeue(int *param_1,int *param_2)
 
 {
-  zmsg_tmque_t *pzVar1;
+  int *piVar1;
   
-  pzVar1 = (zmsg_tmque_t *)(q->mq).list.next;
-  if (((zmsg_tmque_t *)msg == pzVar1) &&
-     ((q == pzVar1 || (pzVar1 != (zmsg_tmque_t *)(q->mq).list.prev)))) {
-    micro_timer_fire_at(&q->tm,(msg->node).next[3].next);
+  piVar1 = (int *)*param_1;
+  if ((param_2 == piVar1) && ((param_1 == piVar1 || (piVar1 != (int *)param_1[1])))) {
+    micro_timer_fire_at(param_1 + 3,*(undefined4 *)(*param_2 + 0x18));
   }
-  zmsg_queue_dequeue(&q->mq,msg);
+  zmsg_queue_dequeue(param_1,param_2);
   return;
 }
 

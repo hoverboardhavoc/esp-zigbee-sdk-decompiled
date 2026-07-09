@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_setup_global_tclk
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_key_pair_setup_global_tclk(aps_device_key_pair_t *key_pair)
+void aps_secur_key_pair_setup_global_tclk(int param_1)
 
 {
-  _Bool _Var1;
-  int iVar2;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
+  int iVar1;
   undefined1 *__src;
   
-  iVar2 = core_globals_get();
-  _Var1 = secur_is_key_valid((uint8_t *)(iVar2 + 0x990));
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    _Var1 = aps_secur_is_centralized();
-    if (CONCAT31(extraout_var_00,_Var1) == 0) {
+  iVar1 = core_globals_get();
+  iVar1 = secur_is_key_valid(iVar1 + 0x990);
+  if (iVar1 == 0) {
+    iVar1 = aps_secur_is_centralized();
+    if (iVar1 == 0) {
       __src = s_secur_wellknown_secret_0;
     }
     else {
@@ -33,14 +28,14 @@ void aps_secur_key_pair_setup_global_tclk(aps_device_key_pair_t *key_pair)
     }
   }
   else {
-    iVar2 = core_globals_get();
-    __src = (undefined1 *)(iVar2 + 0x990);
+    iVar1 = core_globals_get();
+    __src = (undefined1 *)(iVar1 + 0x990);
   }
-  key_pair->incoming_frame_cntr = 0;
-  key_pair->outgoing_frame_cntr = 0;
-  *(byte *)&key_pair->field_8 = *(byte *)&key_pair->field_8 & 0x38 | 1;
-  key_pair->timeout = 0xffff;
-  memcpy(key_pair->link_key,__src,0x10);
+  *(undefined4 *)(param_1 + 0xc) = 0;
+  *(undefined4 *)(param_1 + 8) = 0;
+  *(byte *)(param_1 + 0x34) = *(byte *)(param_1 + 0x34) & 0x38 | 1;
+  *(undefined2 *)(param_1 + 0x10) = 0xffff;
+  memcpy((void *)(param_1 + 0x12),__src,0x10);
   return;
 }
 

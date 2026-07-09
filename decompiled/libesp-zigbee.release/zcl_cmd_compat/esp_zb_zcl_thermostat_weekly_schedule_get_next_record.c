@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> esp_zb_zcl_thermostat_weekly_schedule_get_next_record
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zb_zcl_thermostat_weekly_schedule_get_next_record
-                    (uint16_t *iterator,esp_zb_zcl_thermostat_weekly_schedule_record_t *record)
+undefined4 esp_zb_zcl_thermostat_weekly_schedule_get_next_record(ushort *param_1,char *param_2)
 
 {
-  uint16_t uVar1;
+  undefined2 uVar1;
   uint uVar2;
-  uint8_t uVar3;
-  esp_err_t eVar4;
-  undefined3 extraout_var;
-  uint8_t *puVar5;
-  uint16_t *puVar6;
-  uint8_t uVar7;
+  undefined4 uVar3;
+  int iVar4;
+  char *pcVar5;
+  undefined2 *puVar6;
+  char cVar7;
   
-  if (iterator == (uint16_t *)0x0) {
+  if (param_1 == (ushort *)0x0) {
     return 0x102;
   }
-  eVar4 = 0x102;
-  if (record != (esp_zb_zcl_thermostat_weekly_schedule_record_t *)0x0) {
-    uVar3 = get_endpoint_by_cluster(0x102,(uint8_t)record);
-    if (CONCAT31(extraout_var,uVar3) != 0) {
-      uVar2 = (uint)*iterator;
-      uVar7 = '\0';
+  uVar3 = 0x102;
+  if (param_2 != (char *)0x0) {
+    iVar4 = get_endpoint_by_cluster_constprop_0(0x102);
+    if (iVar4 != 0) {
+      uVar2 = (uint)*param_1;
+      cVar7 = '\0';
       do {
-        puVar5 = (uint8_t *)
-                 ezb_zcl_thermostat_get_weekly_schedule_entry(CONCAT31(extraout_var,uVar3),uVar7);
-        if (puVar5 != (uint8_t *)0x0) {
-          if (uVar2 < puVar5[1]) {
-            record->day_of_week = uVar7;
-            record->mode_for_seq = *puVar5;
-            puVar6 = (uint16_t *)(*(int *)(puVar5 + 4) + uVar2 * 6);
-            record->transition_time = *puVar6;
+        pcVar5 = (char *)ezb_zcl_thermostat_get_weekly_schedule_entry(iVar4,cVar7);
+        if (pcVar5 != (char *)0x0) {
+          if (uVar2 < (byte)pcVar5[1]) {
+            *param_2 = cVar7;
+            param_2[1] = *pcVar5;
+            puVar6 = (undefined2 *)(*(int *)(pcVar5 + 4) + uVar2 * 6);
+            *(undefined2 *)(param_2 + 2) = *puVar6;
             uVar1 = puVar6[2];
-            record->heat_setpoint = puVar6[1];
-            record->cool_setpoint = uVar1;
-            *iterator = *iterator + 1;
+            *(undefined2 *)(param_2 + 4) = puVar6[1];
+            *(undefined2 *)(param_2 + 6) = uVar1;
+            *param_1 = *param_1 + 1;
             return 0;
           }
-          uVar2 = uVar2 - puVar5[1] & 0xffff;
+          uVar2 = uVar2 - (byte)pcVar5[1] & 0xffff;
         }
-        uVar7 = uVar7 + '\x01';
-      } while (uVar7 != '\a');
-      *iterator = 0xffff;
+        cVar7 = cVar7 + '\x01';
+      } while (cVar7 != '\a');
+      *param_1 = 0xffff;
     }
-    eVar4 = 0x105;
+    uVar3 = 0x105;
   }
-  return eVar4;
+  return uVar3;
 }
 

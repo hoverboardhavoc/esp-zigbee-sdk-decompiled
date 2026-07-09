@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_desc.o -> af_set_node_power_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,16 +10,14 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t af_set_node_power_desc(af_node_power_desc_t *desc)
+undefined4 af_set_node_power_desc(undefined2 *param_1)
 
 {
   int iVar1;
   
-  if (desc != (af_node_power_desc_t *)0x0) {
+  if (param_1 != (undefined2 *)0x0) {
     iVar1 = core_globals_get();
-    *(af_node_power_desc_t *)(iVar1 + 0xc98) = *desc;
+    *(undefined2 *)(iVar1 + 0xc98) = *param_1;
     return 0;
   }
   return 2;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scene_table_deinit
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void scene_table_deinit(uint8_t ep_id)
+void scene_table_deinit(undefined4 param_1)
 
 {
   uint uVar1;
   byte *pbVar2;
-  zcl_attr_desc_t *pzVar3;
+  int iVar3;
   
-  pzVar3 = scenes_srv_get_attr_desc(ep_id,0xeff1);
-  if (pzVar3 != (zcl_attr_desc_t *)0x0) {
-    pbVar2 = (byte *)pzVar3->data_p;
+  iVar3 = scenes_srv_get_attr_desc(0xeff1);
+  if (iVar3 != 0) {
+    pbVar2 = *(byte **)(iVar3 + 8);
     if (pbVar2 != (byte *)0x0) {
       for (uVar1 = 0; uVar1 < *pbVar2; uVar1 = uVar1 + 1 & 0xff) {
-        scene_table_remove_entry(ep_id,(zcl_scene_table_entry_t *)(pbVar2 + uVar1 * 0x20 + 8));
+        scene_table_remove_entry(param_1,pbVar2 + uVar1 * 0x20 + 8);
       }
       mm_free(pbVar2);
     }
-    pzVar3->data_p = (void *)0x0;
+    *(undefined4 *)(iVar3 + 8) = 0;
   }
   return;
 }

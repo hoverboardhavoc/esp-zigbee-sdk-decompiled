@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> aps_relay_cmd
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_relay_cmd(zmsg_t *msg,ezb_extaddr_t *dst_addr)
+void aps_relay_cmd(undefined4 param_1,undefined4 param_2)
 
 {
-  ezb_err_t eVar1;
-  zmsg_t *pzStack_1c;
-  nwk_nlde_data_req_t nlde_req;
+  int iVar1;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  uint uStack_14;
   
-  pzStack_1c = (zmsg_t *)0x0;
-  nlde_req.nsdu = (zmsg_t *)0x0;
-  nlde_req.dst_addr = 0;
-  nlde_req.radius = '\0';
-  nlde_req.alias_seq_num = '\0';
-  eVar1 = nwk_address_short_by_extended(dst_addr,&nlde_req);
-  if (eVar1 == 0) {
-    nlde_req._4_4_ = nlde_req._4_4_ & 0xfffcffff | 0x20000;
-    pzStack_1c = msg;
-    eVar1 = nwk_nlde_data_request(&pzStack_1c);
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  iVar1 = nwk_address_short_by_extended(param_2,&uStack_18);
+  if (iVar1 == 0) {
+    uStack_14 = uStack_14 & 0xfffcffff | 0x20000;
+    uStack_1c = param_1;
+    nwk_nlde_data_request(&uStack_1c);
   }
-  return eVar1;
+  return;
 }
 

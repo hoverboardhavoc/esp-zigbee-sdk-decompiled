@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scenes_cluster_recall_scene_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: group_id */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t scenes_cluster_recall_scene_req_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+undefined4 scenes_cluster_recall_scene_req_handler(int param_1,undefined4 param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  uint uVar2;
-  uint16_t uStack_18;
-  uint8_t local_15;
-  uint16_t transition_time;
+  uint uVar1;
+  undefined4 uVar2;
+  undefined2 uStack_18;
+  undefined1 local_15;
+  undefined2 uStack_14;
   ushort uStack_12;
-  uint8_t scene_id;
-  uint16_t group_id;
-  uint16_t offset;
   
   uStack_12 = 0;
-  transition_time = 0;
-  local_15 = '\0';
+  uStack_14 = 0;
+  local_15 = 0;
   uStack_18 = 0xffff;
-  af_read_le16(packet->payload,&stack0xffffffee,&transition_time);
-  af_read_le8(packet->payload,&stack0xffffffee,&local_15);
-  uVar2 = zmsg_get_length(packet->payload);
-  if (uStack_12 < uVar2) {
-    af_read_le16(packet->payload,&stack0xffffffee,&uStack_18);
+  af_read_le16(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_14);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,&local_15);
+  uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (uStack_12 < uVar1) {
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_18);
   }
-  uVar2 = zmsg_get_length(packet->payload);
-  if (uVar2 < uStack_12) {
-    eVar1 = 0x80;
-  }
-  else {
-    eVar1 = zcl_scenes_recall_scene(packet,transition_time,local_15,uStack_18);
-  }
-  if ((packet->header).dst_addr.u.short_addr < 0xfff8) {
-    eVar1 = zcl_packet_setup_default_response(rsp,packet,eVar1);
+  uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (uVar1 < uStack_12) {
+    uVar2 = 0x80;
   }
   else {
-    eVar1 = 0xfe;
+    uVar2 = zcl_scenes_recall_scene(param_1,uStack_14,local_15,uStack_18);
   }
-  return eVar1;
+  if (*(ushort *)(param_1 + 0xc) < 0xfff8) {
+    uVar2 = zcl_packet_setup_default_response(param_2,param_1,uVar2);
+  }
+  else {
+    uVar2 = 0xfe;
+  }
+  return uVar2;
 }
 

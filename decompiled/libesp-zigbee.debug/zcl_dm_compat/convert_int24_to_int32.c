@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_dm_compat.o -> convert_int24_to_int32
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,12 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-int32_t convert_int24_to_int32(esp_zb_int24_t *var)
+uint convert_int24_to_int32(int3 *param_1)
 
 {
-  if (-1 < var->high) {
-    return (int)(int3)*var;
+  if (-1 < *(char *)((int)param_1 + 2)) {
+    return (int)*param_1;
   }
-  return (int)(int3)*var | 0xff000000;
+  return (int)*param_1 | 0xff000000;
 }
 

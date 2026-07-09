@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ias_zone.o -> ias_zone_initiate_normal_operation_mode_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,71 +10,60 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-ias_zone_initiate_normal_operation_mode_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void ias_zone_initiate_normal_operation_mode_cmd_handler(int param_1,int param_2)
 
 {
-  _Bool _Var1;
-  ezb_zcl_status_t eVar2;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  ias_zone_srv_zone_ctx_t *piVar3;
-  int iVar4;
-  zcl_attr_desc_t *pzVar5;
-  uint uVar6;
+  int iVar1;
+  undefined1 *puVar2;
+  uint uVar3;
   undefined4 uStack_28;
-  ezb_zcl_ias_zone_initiate_normal_mode_message_t message;
+  undefined4 uStack_24;
   
   uStack_28 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  uStack_24 = 0;
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_zone.c",0xcc,
                   "ias_zone_initiate_normal_operation_mode_cmd_handler","packet && rsp");
   }
   else {
-    _Var1 = validate_cie_establishment((packet->header).dst_ep);
-    if (CONCAT31(extraout_var,_Var1) == 0) {
-      uVar6 = 0x7e;
+    iVar1 = validate_cie_establishment(*(undefined1 *)(param_1 + 0x15));
+    if (iVar1 == 0) {
+      uVar3 = 0x7e;
       goto _L0;
     }
   }
-  _Var1 = validate_cie_authorization((packet->header).dst_ep,(packet->header).src_addr.u.short_addr)
-  ;
-  if (CONCAT31(extraout_var_00,_Var1) == 0) {
-    uVar6 = 0x7e;
+  iVar1 = validate_cie_authorization(*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 2));
+  if (iVar1 == 0) {
+    uVar3 = 0x7e;
   }
   else {
-    uVar6 = zcl_packet_to_message(&uStack_28,packet);
-    if (uVar6 == 0) {
-      message.info.cluster_id._0_1_ = 0xfe;
-      zcl_core_action_schedule(0x2f,&uStack_28);
-      uVar6 = (uint)message.info._0_4_ >> 0x10 & 0xff;
-      if (uVar6 != 0xfe) {
-        piVar3 = ias_zone_srv_get_zone_ctx((packet->header).dst_ep);
-        iVar4 = milli_timer_is_running(&piVar3->restore_normal_mode_timer);
-        if (iVar4 != 0) {
-          milli_timer_stop(&piVar3->restore_normal_mode_timer);
+    uVar3 = zcl_packet_to_message(&uStack_28,param_1);
+    if (uVar3 == 0) {
+      uStack_24._0_3_ = CONCAT12(0xfe,(undefined2)uStack_24);
+      zcl_core_action_schedule(0x30,&uStack_28);
+      uVar3 = uStack_24 >> 0x10 & 0xff;
+      if (uVar3 != 0xfe) {
+        puVar2 = (undefined1 *)ias_zone_srv_get_zone_ctx(*(undefined1 *)(param_1 + 0x15));
+        iVar1 = milli_timer_is_running(puVar2 + 4);
+        if (iVar1 != 0) {
+          milli_timer_stop(puVar2 + 4);
         }
-        pzVar5 = ias_zone_srv_get_attr_desc((packet->header).dst_ep,0x13);
-        if (pzVar5 != (zcl_attr_desc_t *)0x0) {
-          if (piVar3->is_prev_sensitivity_level_set != false) {
-            *(uint8_t *)pzVar5->data_p = piVar3->prev_sensitivity_level;
-            piVar3->is_prev_sensitivity_level_set = false;
+        iVar1 = ias_zone_srv_get_attr_desc(*(undefined1 *)(param_1 + 0x15),0x13);
+        if (iVar1 != 0) {
+          if (puVar2[1] != '\0') {
+            **(undefined1 **)(iVar1 + 8) = *puVar2;
+            puVar2[1] = 0;
           }
           goto _L0;
         }
         __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_zone.c",0xd9,
                       "ias_zone_initiate_normal_operation_mode_cmd_handler","attr_desc");
       }
-      uVar6 = 1;
+      uVar3 = 1;
     }
   }
 _L0:
-  eVar2 = zcl_packet_setup_default_response(rsp,packet,uVar6);
-  return eVar2;
+  zcl_packet_setup_default_response(param_2,param_1,uVar3);
+  return;
 }
 

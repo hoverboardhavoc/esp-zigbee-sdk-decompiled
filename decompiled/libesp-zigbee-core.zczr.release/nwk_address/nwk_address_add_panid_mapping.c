@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_add_panid_mapping
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_panid_ref_t nwk_address_add_panid_mapping(ezb_panid_t panid,ezb_extpanid_t *ext_panid)
+uint nwk_address_add_panid_mapping(undefined2 param_1,undefined4 *param_2)
 
 {
-  undefined4 *puVar1;
-  undefined2 uVar2;
+  undefined2 uVar1;
+  undefined4 uVar2;
   undefined4 uVar3;
-  undefined4 uVar4;
-  nwk_panid_ref_t nVar5;
-  _Bool _Var6;
-  int iVar7;
-  undefined3 extraout_var;
-  uint uVar8;
-  undefined3 extraout_var_00;
-  int iVar9;
+  int iVar4;
+  uint uVar5;
+  int iVar6;
   
-  iVar7 = core_globals_get();
-  nVar5 = nwk_address_get_panid_ref(ext_panid);
-  uVar8 = CONCAT31(extraout_var,nVar5);
-  if (0xf < uVar8) {
+  iVar4 = core_globals_get();
+  uVar5 = nwk_address_get_panid_ref(param_2);
+  if (0xf < uVar5) {
     do {
-      uVar8 = bitmap_find_first_zero_bit((bitmap_t *)(iVar7 + 0xc48),0x10);
-      if (0xf < uVar8) {
-        if (0xf < (uVar8 & 0xff)) {
-          uVar8 = 0xff;
-          goto _L0;
+      uVar5 = bitmap_find_first_zero_bit(iVar4 + 0xc48,0x10);
+      if (0xf < uVar5) {
+        if (0xf < (uVar5 & 0xff)) {
+          return 0xff;
         }
         break;
       }
-      _Var6 = test_and_set_bitmap(uVar8,(bitmap_t *)(iVar7 + 0xc48));
-    } while (CONCAT31(extraout_var_00,_Var6) != 0);
-    uVar8 = uVar8 & 0xff;
-    puVar1 = (undefined4 *)((int)&ext_panid->field_0 + 4);
-    uVar2 = *(undefined2 *)puVar1;
-    uVar3 = *(undefined4 *)&ext_panid->field_0;
-    uVar4 = *puVar1;
-    iVar9 = iVar7 + 0x1000 + uVar8 * 10;
-    *(undefined2 *)(iVar9 + -0x458) = *(undefined2 *)&ext_panid->field_0;
-    *(short *)(iVar9 + -0x456) = (short)((uint)uVar3 >> 0x10);
-    *(undefined2 *)(iVar9 + -0x454) = uVar2;
-    *(short *)(iVar9 + -0x452) = (short)((uint)uVar4 >> 0x10);
+      iVar6 = test_and_set_bitmap(iVar4 + 0xc48);
+    } while (iVar6 != 0);
+    uVar5 = uVar5 & 0xff;
+    uVar1 = *(undefined2 *)(param_2 + 1);
+    uVar2 = *param_2;
+    uVar3 = param_2[1];
+    iVar6 = iVar4 + 0x1000 + uVar5 * 10;
+    *(undefined2 *)(iVar6 + -0x458) = *(undefined2 *)param_2;
+    *(short *)(iVar6 + -0x456) = (short)((uint)uVar2 >> 0x10);
+    *(undefined2 *)(iVar6 + -0x454) = uVar1;
+    *(short *)(iVar6 + -0x452) = (short)((uint)uVar3 >> 0x10);
   }
-  *(ezb_panid_t *)(iVar7 + uVar8 * 10 + 0xbb0) = panid;
-_L0:
-  return (nwk_panid_ref_t)uVar8;
+  *(undefined2 *)(iVar4 + uVar5 * 10 + 0xbb0) = param_1;
+  return uVar5;
 }
 

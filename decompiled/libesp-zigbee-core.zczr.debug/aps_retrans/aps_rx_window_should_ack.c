@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_rx_window_should_ack
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool aps_rx_window_should_ack(aps_trx_window_t *w,uint8_t blk_idx)
+undefined4 aps_rx_window_should_ack(int param_1,int param_2)
 
 {
   uint uVar1;
   
-  uVar1 = (uint)blk_idx - (uint)w->blk_start;
-  if ((uVar1 & 0xff) == w->slot_nr - 1) {
-    return true;
+  uVar1 = param_2 - (uint)*(byte *)(param_1 + 1);
+  if ((uVar1 & 0xff) == *(byte *)(param_1 + 3) - 1) {
+    return 1;
   }
-  uVar1 = (1 << (((uint)w->blk_start - (uint)blk_idx) + (uint)w->slot_nr & 0x1f)) + -1 <<
-          (uVar1 & 0x1f);
-  if (uVar1 != (w->slot_done & uVar1)) {
-    return false;
+  uVar1 = (1 << (((uint)*(byte *)(param_1 + 1) - param_2) + (uint)*(byte *)(param_1 + 3) & 0x1f)) +
+          -1 << (uVar1 & 0x1f);
+  if (uVar1 != (*(byte *)(param_1 + 4) & uVar1)) {
+    return 0;
   }
-  return true;
+  return 1;
 }
 

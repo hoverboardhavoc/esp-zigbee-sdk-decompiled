@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_retrans_ent_set_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_retrans_ent_set_msg(aps_retrans_ent_t *ent,zmsg_t *msg)
+void aps_retrans_ent_set_msg(undefined4 *param_1,undefined4 param_2)
 
 {
-  uint8_t uVar1;
+  undefined1 uVar1;
   int iVar2;
   int iVar3;
   
-  ent->tx_msg = msg;
-  uVar1 = aps_frame_get_aps_cntr(msg);
-  ent->aps_cntr = uVar1;
-  zmsg_get_footer(ent->tx_msg,&ent->dst_addr,2);
-  zmsg_remove_footer(ent->tx_msg,2);
-  zmsg_get_footer(ent->tx_msg,&ent->blk_sz,1);
-  zmsg_remove_footer(ent->tx_msg,1);
-  iVar2 = zmsg_get_length(ent->tx_msg);
-  iVar3 = zmsg_get_offset(ent->tx_msg);
-  aps_tx_window_init(&ent->w,(uint8_t)((int)((iVar2 - iVar3) + (uint)ent->blk_sz + -1) /
-                                      (int)(uint)ent->blk_sz),(ent->w).slot_nr);
+  *param_1 = param_2;
+  uVar1 = aps_frame_get_aps_cntr(param_2);
+  *(undefined1 *)((int)param_1 + 6) = uVar1;
+  zmsg_get_footer(*param_1,param_1 + 1,2);
+  zmsg_remove_footer(*param_1,2);
+  zmsg_get_footer(*param_1,(int)param_1 + 0x19,1);
+  zmsg_remove_footer(*param_1,1);
+  iVar2 = zmsg_get_length(*param_1);
+  iVar3 = zmsg_get_offset(*param_1);
+  aps_tx_window_init((int)param_1 + 0x1a,
+                     (int)((iVar2 - iVar3) + (uint)*(byte *)((int)param_1 + 0x19) + -1) /
+                     (int)(uint)*(byte *)((int)param_1 + 0x19) & 0xff,
+                     *(undefined1 *)((int)param_1 + 0x1d));
   return;
 }
 

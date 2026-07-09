@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,112 +10,106 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_neighbor_table_init(uint16_t capacity)
+short * nwk_neighbor_table_init(uint param_1)
 
 {
   uint uVar1;
-  uint16_t uVar2;
-  undefined2 in_register_0000202a;
-  int iVar3;
-  undefined4 uVar4;
+  int iVar2;
+  undefined4 uVar3;
+  short *psVar4;
   int iVar5;
-  nwk_neighbor_t *pnVar6;
-  uint uVar7;
-  undefined2 extraout_var;
+  uint uVar6;
+  int iVar7;
   uint uVar8;
-  nwk_neighbor_t *pnVar9;
-  uint uVar10;
+  uint uVar9;
+  short *psVar10;
+  uint uVar11;
   
-  uVar1 = CONCAT22(in_register_0000202a,capacity);
-  iVar3 = core_globals_get();
-  if ((((*(short *)(iVar3 + 0xb24) == 0) || (*(int *)(iVar3 + 0xb20) == 0)) ||
-      (*(int *)(iVar3 + 0xb1c) == 0)) && (uVar1 != 0)) {
-    memset((void *)(iVar3 + 0xb1c),0,0x10);
-    *(uint16_t *)(iVar3 + 0xb24) = capacity;
-    uVar4 = mm_calloc(uVar1,0x1c);
-    *(undefined4 *)(iVar3 + 0xb20) = uVar4;
-    uVar4 = mm_calloc(*(ushort *)(iVar3 + 0xb24) + 7 >> 3,1);
-    *(short *)(iVar3 + 0xb26) = (short)(uVar1 >> 1);
-    *(undefined4 *)(iVar3 + 0xb1c) = uVar4;
-    return;
+  iVar2 = core_globals_get();
+  if ((((*(short *)(iVar2 + 0xb24) == 0) || (*(int *)(iVar2 + 0xb20) == 0)) ||
+      (*(int *)(iVar2 + 0xb1c) == 0)) && (param_1 != 0)) {
+    memset((void *)(iVar2 + 0xb1c),0,0x10);
+    *(short *)(iVar2 + 0xb24) = (short)param_1;
+    uVar3 = mm_calloc(param_1,0x1c);
+    *(undefined4 *)(iVar2 + 0xb20) = uVar3;
+    psVar4 = (short *)mm_calloc(*(ushort *)(iVar2 + 0xb24) + 7 >> 3,1);
+    *(short *)(iVar2 + 0xb26) = (short)(param_1 >> 1);
+    *(short **)(iVar2 + 0xb1c) = psVar4;
+    return psVar4;
   }
   __assert_func(0,0,0,0);
-  iVar3 = core_globals_get();
-  if (((*(short *)(iVar3 + 0xb24) != 0) && (*(int *)(iVar3 + 0xb20) != 0)) &&
-     (*(int *)(iVar3 + 0xb1c) != 0)) {
+  iVar2 = core_globals_get();
+  if (((*(short *)(iVar2 + 0xb24) != 0) && (*(int *)(iVar2 + 0xb20) != 0)) &&
+     (*(int *)(iVar2 + 0xb1c) != 0)) {
     mm_free();
-    *(undefined4 *)(iVar3 + 0xb20) = 0;
-    mm_free(*(undefined4 *)(iVar3 + 0xb1c));
-    *(undefined4 *)(iVar3 + 0xb1c) = 0;
-    return;
+    *(undefined4 *)(iVar2 + 0xb20) = 0;
+    psVar4 = (short *)mm_free(*(undefined4 *)(iVar2 + 0xb1c));
+    *(undefined4 *)(iVar2 + 0xb1c) = 0;
+    return psVar4;
   }
   iVar5 = __assert_func(0,0,0,0);
-  iVar3 = core_globals_get();
-  pnVar9 = (nwk_neighbor_t *)
-           ((int)(uint)*(ushort *)(iVar3 + 0xb24) - (uint)*(ushort *)(iVar3 + 0xb26) & 0xffff);
-  pnVar6 = (nwk_neighbor_t *)0x0;
+  iVar2 = core_globals_get();
+  psVar10 = (short *)((int)(uint)*(ushort *)(iVar2 + 0xb24) - (uint)*(ushort *)(iVar2 + 0xb26) &
+                     0xffff);
+  psVar4 = (short *)0x0;
   if (iVar5 == 0) {
-    pnVar6 = pnVar9;
-    pnVar9 = (nwk_neighbor_t *)(uint)*(ushort *)(iVar3 + 0xb24);
+    psVar4 = psVar10;
+    psVar10 = (short *)(uint)*(ushort *)(iVar2 + 0xb24);
   }
-  uVar1 = iVar3 + 0x1000;
-  pnVar6 = (nwk_neighbor_t *)bitmap_find_next_zero_bit(*(undefined4 *)(iVar3 + 0xb1c),pnVar6);
-  if (pnVar6 < pnVar9) {
-    uVar10 = 1 << ((uint)pnVar6 & 7) & 0xff;
-    uVar7 = __atomic_fetch_or_1(((uint)pnVar6 >> 3) + *(int *)(iVar3 + 0xb1c),uVar10,5);
-    if ((uVar10 & uVar7) == 0) goto _L0;
+  uVar1 = iVar2 + 0x1000;
+  psVar4 = (short *)bitmap_find_next_zero_bit(*(undefined4 *)(iVar2 + 0xb1c),psVar4);
+  if (psVar4 < psVar10) {
+    uVar11 = 1 << ((uint)psVar4 & 7) & 0xff;
+    uVar6 = __atomic_fetch_or_1(((uint)psVar4 >> 3) + *(int *)(iVar2 + 0xb1c),uVar11,5);
+    if ((uVar11 & uVar6) == 0) goto _L0;
     do {
       while( true ) {
         __assert_func(0,0,0,0);
 _L0:
-        pnVar6 = (nwk_neighbor_t *)(*(int *)(uVar1 - 0x4e0) + (int)pnVar6 * 0x1c);
+        psVar4 = (short *)(*(int *)(uVar1 - 0x4e0) + (int)psVar4 * 0x1c);
         if (iVar5 == 0) break;
         if ((int)(uint)*(ushort *)(uVar1 - 0x4d6) <
             (int)((uint)*(ushort *)(uVar1 - 0x4dc) - (uint)*(ushort *)(uVar1 - 0x4da))) {
           *(ushort *)(uVar1 - 0x4d6) = *(ushort *)(uVar1 - 0x4d6) + 1;
-          if (pnVar6 != (nwk_neighbor_t *)0x0) goto _L0;
+          if (psVar4 != (short *)0x0) goto _L0;
 _L0:
-          uVar7 = 0;
-          uVar1 = (uint)*(ushort *)(iVar3 + 0xb24) - (uint)*(ushort *)(iVar3 + 0xb26) & 0xffff;
+          uVar6 = 0;
+          uVar1 = (uint)*(ushort *)(iVar2 + 0xb24) - (uint)*(ushort *)(iVar2 + 0xb26) & 0xffff;
           iVar5 = 0x1c0003c0;
-          while (uVar7 = bitmap_find_next_bit(*(undefined4 *)(iVar3 + 0xb1c),uVar1,uVar7),
-                uVar7 < uVar1) {
-            pnVar6 = (nwk_neighbor_t *)(*(int *)(iVar3 + 0xb20) + uVar7 * 0x1c);
-            if (((*(uint *)&pnVar6->field_0xc & 3) < 2) &&
-               ((*(uint *)&pnVar6->field_0xc & 0x1c0003c0) == 0x80)) goto _L113;
-            uVar7 = uVar7 + 1 & 0xffff;
+          while (uVar6 = bitmap_find_next_bit(*(undefined4 *)(iVar2 + 0xb1c),uVar1,uVar6),
+                uVar6 < uVar1) {
+            psVar4 = (short *)(*(int *)(iVar2 + 0xb20) + uVar6 * 0x1c);
+            if (((*(uint *)(psVar4 + 6) & 3) < 2) && ((*(uint *)(psVar4 + 6) & 0x1c0003c0) == 0x80))
+            goto _L113;
+            uVar6 = uVar6 + 1 & 0xffff;
           }
-          uVar7 = 0xffff;
+          uVar6 = 0xffff;
           uVar8 = 0;
           iVar5 = 0x1c;
-          uVar10 = uVar1;
-          while (uVar8 = bitmap_find_next_bit(*(undefined4 *)(iVar3 + 0xb1c),uVar1,uVar8),
+          uVar11 = uVar1;
+          while (uVar8 = bitmap_find_next_bit(*(undefined4 *)(iVar2 + 0xb1c),uVar1,uVar8),
                 uVar8 < uVar1) {
-            pnVar6 = (nwk_neighbor_t *)(*(int *)(iVar3 + 0xb20) + uVar8 * 0x1c);
-            if ((((*(uint *)&pnVar6->field_0xc & 3) < 2) &&
-                ((*(uint *)&pnVar6->field_0xc & 0x3c0) == 0x80)) &&
-               (10 < (pnVar6->dev).r.router_age)) {
-              uVar2 = nwk_neighbor_get_router_rank(pnVar6);
-              if (CONCAT22(extraout_var,uVar2) < uVar7) {
-                uVar7 = CONCAT22(extraout_var,uVar2);
-                uVar10 = uVar8;
-              }
+            iVar7 = *(int *)(iVar2 + 0xb20) + uVar8 * 0x1c;
+            uVar9 = *(uint *)(iVar7 + 0xc);
+            if (((((uVar9 & 3) < 2) && ((uVar9 & 0x3c0) == 0x80)) &&
+                (10 < *(ushort *)(iVar7 + 0x12))) &&
+               (uVar9 = nwk_neighbor_get_router_rank(), uVar9 < uVar6)) {
+              uVar6 = uVar9;
+              uVar11 = uVar8;
             }
             uVar8 = uVar8 + 1 & 0xffff;
           }
-          if (uVar1 == uVar10) {
-            return;
+          if (uVar1 == uVar11) {
+            return (short *)0x0;
           }
-          pnVar6 = (nwk_neighbor_t *)(*(int *)(iVar3 + 0xb20) + uVar10 * 0x1c);
-          iVar3 = iVar3 + 0x1000;
-          if (pnVar6 == (nwk_neighbor_t *)0x0) {
-            return;
+          psVar4 = (short *)(*(int *)(iVar2 + 0xb20) + uVar11 * 0x1c);
+          iVar2 = iVar2 + 0x1000;
+          if (psVar4 == (short *)0x0) {
+            return (short *)0x0;
           }
 _L113:
-          if ((*(uint *)&pnVar6->field_0xc & 0x3c0) != 0x240) {
-            if (pnVar6->addr_ref != 0xffff) {
+          if ((*(uint *)(psVar4 + 6) & 0x3c0) != 0x240) {
+            if (*psVar4 != -1) {
               nwk_address_unlock_ref();
             }
             goto _L0;
@@ -124,15 +118,17 @@ _L113:
       }
     } while ((uint)*(ushort *)(uVar1 - 0x4da) <= (uint)*(ushort *)(uVar1 - 0x4d8));
     *(ushort *)(uVar1 - 0x4d8) = *(ushort *)(uVar1 - 0x4d8) + 1;
-    if (pnVar6 != (nwk_neighbor_t *)0x0) {
+    if (psVar4 != (short *)0x0) {
 _L0:
-      memset(pnVar6->lqa,0,0x1a);
-      pnVar6->addr_ref = 0xffff;
-      *(undefined4 *)&pnVar6->field_0xc = 0x1c0000c3;
-      nwk_neighbor_clear_lqa(pnVar6);
+      memset(psVar4 + 1,0,0x1a);
+      *psVar4 = -1;
+      psVar4[6] = 0xc3;
+      psVar4[7] = 0x1c00;
+      nwk_neighbor_clear_lqa(psVar4);
+      return psVar4;
     }
   }
   else if (iVar5 != 0) goto _L0;
-  return;
+  return (short *)0x0;
 }
 

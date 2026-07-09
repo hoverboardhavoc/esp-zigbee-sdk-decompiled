@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_management.o -> zdo_mgmt_req_set_user_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,46 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_mgmt_req_set_user_ctx(zdo_mgmt_req_handle_t handle,zdo_mgmt_req_user_ctx_t *ctx)
+int zdo_mgmt_req_set_user_ctx(int param_1,undefined4 *param_2)
 
 {
   int iVar1;
-  void *arg;
+  int iVar2;
   int extraout_a1;
-  int *piVar2;
+  int *piVar3;
   
-  if (handle != (zdo_mgmt_req_handle_t)0x0) {
-    *(zdo_mgmt_user_callback_t *)((int)handle + 0x18) = ctx->cb;
-    *(void **)((int)handle + 0x1c) = ctx->arg;
-    return;
+  if (param_1 != 0) {
+    *(undefined4 *)(param_1 + 0x18) = *param_2;
+    *(undefined4 *)(param_1 + 0x1c) = param_2[1];
+    return param_1;
   }
   iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_management.c",0x5f,
                         "zdo_mgmt_req_set_user_ctx","handle != ((void *)0)");
-  if (iVar1 == 0) {
-    arg = (void *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_management.c",
-                                0x66,"zdo_mgmt_req_get_param","handle != ((void *)0)");
-    if (arg != (void *)0x0) {
-      iVar1 = core_globals_get();
-      piVar2 = (int *)(iVar1 + 0xce0);
-      iVar1 = *piVar2;
-      while (iVar1 != 0) {
-        piVar2 = (int *)*piVar2;
-        iVar1 = *piVar2;
-      }
-      *(undefined4 *)((int)arg + 4) = 0;
-      *piVar2 = (int)arg + 4;
-      if (extraout_a1 == 0) {
-        iVar1 = core_globals_get();
-        tasklet_post(iVar1 + 0xce4);
-      }
-      else {
-        zdo_mgmt_task(arg);
-      }
-    }
-    return;
+  if (iVar1 != 0) {
+    return iVar1 + 8;
   }
-  return;
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_management.c",0x66,
+                        "zdo_mgmt_req_get_param","handle != ((void *)0)");
+  if (iVar1 == 0) {
+    iVar1 = 2;
+  }
+  else {
+    iVar2 = core_globals_get();
+    piVar3 = (int *)(iVar2 + 0xce0);
+    iVar2 = *piVar3;
+    while (iVar2 != 0) {
+      piVar3 = (int *)*piVar3;
+      iVar2 = *piVar3;
+    }
+    *(undefined4 *)(iVar1 + 4) = 0;
+    *piVar3 = iVar1 + 4;
+    if (extraout_a1 == 0) {
+      iVar1 = core_globals_get();
+      tasklet_post(iVar1 + 0xce4);
+      iVar1 = 0;
+    }
+    else {
+      zdo_mgmt_task(iVar1);
+      iVar1 = 0;
+    }
+  }
+  return iVar1;
 }
 

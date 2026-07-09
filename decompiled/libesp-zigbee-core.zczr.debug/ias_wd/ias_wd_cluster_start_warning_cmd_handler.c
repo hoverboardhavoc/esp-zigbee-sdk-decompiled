@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ias_wd.o -> ias_wd_cluster_start_warning_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,68 +10,57 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: warning_byte */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t ias_wd_cluster_start_warning_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void ias_wd_cluster_start_warning_cmd_handler(int param_1,int param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  uint uVar2;
-  undefined1 *offset_00;
+  uint uVar1;
   undefined4 uStack_2c;
-  ezb_zcl_ias_wd_start_warning_message_t message;
-  uint8_t warning_byte;
-  uint16_t offset;
+  undefined4 uStack_28;
+  int iStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  uint uStack_18;
+  byte bStack_13;
+  ushort uStack_12;
   
-  message._22_2_ = 0;
-  message._21_1_ = 0;
+  uStack_12 = 0;
+  bStack_13 = 0;
   uStack_2c = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.payload._0_2_ = 0;
-  message.in.payload.duration = 0;
-  message.in.payload.strobe_duty_cycle = '\0';
-  message.in.payload.strobe_level = '\0';
-  message.in._10_2_ = 0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  uStack_28 = 0;
+  iStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_wd.c",100,
                   "ias_wd_cluster_start_warning_cmd_handler","packet && rsp");
   }
   else {
-    offset_00 = &message.field_0x16;
-    af_read_le8(packet->payload,(uint16_t *)offset_00,&message.field_0x15);
-    af_read_le16(packet->payload,(uint16_t *)offset_00,(uint16_t *)((int)&message.in.header + 2));
-    af_read_le8(packet->payload,(uint16_t *)offset_00,(uint8_t *)&message.in.payload);
-    af_read_le8(packet->payload,(uint16_t *)offset_00,&message.in.payload.field_0x1);
-    uVar2 = zmsg_get_length(packet->payload);
-    if (uVar2 < (ushort)message._22_2_) {
-      uVar2 = 0x80;
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,&bStack_13);
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),&uStack_12,(int)&uStack_20 + 2);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_1c);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_12,(int)&uStack_1c + 1);
+    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    if (uVar1 < uStack_12) {
+      uVar1 = 0x80;
       goto _L0;
     }
   }
-  message.in.header =
-       (ezb_zcl_cmd_hdr_t *)
-       CONCAT31((int3)((uint)message.in.header >> 8),
-                (byte)(((byte)message._21_1_ & 3) << 6) |
-                (byte)message._21_1_ >> 4 | (byte)(((byte)message._21_1_ >> 2 & 3) << 4));
-  uVar2 = zcl_packet_to_message(&uStack_2c,packet);
-  if (uVar2 == 0) {
-    message.in.payload.strobe_duty_cycle = 0xfe;
-    message._4_4_ = packet;
-    zcl_core_action_schedule(0x2c,&uStack_2c);
-    uVar2 = message.in._8_4_ & 0xff;
-    if (uVar2 == 0xfe) {
-      uVar2 = 1;
+  uStack_20 = CONCAT31((int3)((uint)uStack_20 >> 8),
+                       (byte)((bStack_13 & 3) << 6) |
+                       bStack_13 >> 4 | (byte)((bStack_13 >> 2 & 3) << 4));
+  uVar1 = zcl_packet_to_message(&uStack_2c,param_1);
+  if (uVar1 == 0) {
+    uStack_18 = CONCAT31(uStack_18._1_3_,0xfe);
+    iStack_24 = param_1;
+    zcl_core_action_schedule(0x2d,&uStack_2c);
+    uVar1 = uStack_18 & 0xff;
+    if (uVar1 == 0xfe) {
+      uVar1 = 1;
     }
   }
 _L0:
-  eVar1 = zcl_packet_setup_default_response(rsp,packet,uVar2);
-  return eVar1;
+  zcl_packet_setup_default_response(param_2,param_1,uVar1);
+  return;
 }
 

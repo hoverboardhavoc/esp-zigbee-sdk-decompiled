@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_mesh_routing.o -> nwk_mesh_send_rrep
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_mesh_send_rrep(zmsg_t *rreq_msg,uint8_t rreq_id,uint8_t path_cost,
-                       ezb_shortaddr_t originator,ezb_shortaddr_t responder,ezb_shortaddr_t sender)
+void nwk_mesh_send_rrep(int param_1,undefined1 param_2,undefined1 param_3,undefined4 param_4,
+                       undefined2 param_5,undefined4 param_6)
 
 {
+  undefined4 *puVar1;
   int unaff_s0;
-  undefined4 uVar1;
-  int iVar2;
-  undefined1 *puVar3;
-  undefined2 in_register_00002036;
-  undefined2 in_register_0000203e;
+  undefined4 uVar2;
+  int iVar3;
   char cStack_39;
   uint uStack_38;
-  nwk_rrep_cmd_t rrep;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined2 uStack_24;
+  undefined1 uStack_22;
   
-  if (rreq_msg == (zmsg_t *)0x0) {
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_mesh_routing.c",0xc3,
                   "nwk_mesh_send_rrep","rreq_msg != ((void *)0)");
 _L0:
@@ -38,48 +39,44 @@ _L0:
     unaff_s0 = zmsg_alloc(0x2f);
     if (unaff_s0 == 0) goto _L0;
     zmsg_set_offset(0);
-    uVar1 = nwk_get_short_address();
-    nwk_frame_write_hdr(unaff_s0,uVar1,CONCAT22(in_register_0000203e,sender),0,1,0);
-    iVar2 = core_globals_get();
-    cStack_39 = *(char *)(iVar2 + 0x9d9);
-    *(char *)(iVar2 + 0x9d9) = cStack_39 + '\x01';
+    uVar2 = nwk_get_short_address();
+    nwk_frame_write_hdr(unaff_s0,uVar2,param_6,0,1,0);
+    iVar3 = core_globals_get();
+    cStack_39 = *(char *)(iVar3 + 0x9d9);
+    *(char *)(iVar3 + 0x9d9) = cStack_39 + '\x01';
     zmsg_write_bytes(unaff_s0,7,1,&cStack_39);
-    rrep._4_4_ = 0;
-    rrep.orig_ieee_addr.field_0.u64._1_4_ = 0;
-    rrep._12_4_ = 0;
-    rrep.resp_ieee_addr.field_0.u64._1_2_ = 0;
-    rrep.resp_ieee_addr.field_0.u8[3] = '\0';
-    uStack_38 = (uint)CONCAT21(originator,rreq_id) << 8;
-    rrep.orig_addr._0_1_ = path_cost;
-    rrep._0_2_ = responder;
-    rrep.orig_addr._1_1_ = 0;
-    iVar2 = nwk_address_extended_by_short
-                      (CONCAT22(in_register_00002036,originator),
-                       (undefined1 *)((int)&rrep.orig_addr + 1));
-    if (iVar2 == 0) {
+    uStack_30 = 0;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_24 = 0;
+    uStack_22 = 0;
+    uStack_38 = (uint)CONCAT21((short)param_4,param_2) << 8;
+    uStack_34 = (uint)CONCAT12(param_3,param_5);
+    iVar3 = nwk_address_extended_by_short(param_4,(int)&uStack_34 + 3);
+    if (iVar3 == 0) {
       uStack_38 = uStack_38 | 0x10;
-      puVar3 = (undefined1 *)((int)&rrep.orig_ieee_addr.field_0 + 4);
+      puVar1 = &uStack_2c;
       goto _L0;
     }
   }
-  puVar3 = (undefined1 *)((int)&rrep.orig_addr + 1);
+  puVar1 = &uStack_34;
 _L0:
-  iVar2 = nwk_address_extended_by_short(rrep._0_4_ & 0xffff,puVar3);
-  if (iVar2 == 0) {
+  iVar3 = nwk_address_extended_by_short(uStack_34 & 0xffff,(int)puVar1 + 3);
+  if (iVar3 == 0) {
     uStack_38 = uStack_38 | 0x20;
   }
   cStack_39 = '\x02';
   zmsg_append_bytes(unaff_s0,1,&cStack_39);
   if ((uStack_38 & 0x10) == 0) {
-    iVar2 = 7;
+    iVar3 = 7;
   }
   else {
-    iVar2 = 0xf;
+    iVar3 = 0xf;
   }
   if ((uStack_38 & 0x20) != 0) {
-    iVar2 = iVar2 + 8;
+    iVar3 = iVar3 + 8;
   }
-  zmsg_append_bytes(unaff_s0,iVar2,&uStack_38);
+  zmsg_append_bytes(unaff_s0,iVar3,&uStack_38);
   nwk_fwd_send_msg_delayed(unaff_s0,0);
   return;
 }

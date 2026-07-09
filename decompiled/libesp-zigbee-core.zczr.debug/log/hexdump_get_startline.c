@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> log.o -> hexdump_get_startline
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void hexdump_get_startline(char *line,uint16_t width,char *title,uint16_t data_len)
+void hexdump_get_startline(int param_1,int param_2,char *param_3)
 
 {
   size_t sVar1;
   int iVar2;
-  undefined2 in_register_0000202e;
   int iVar3;
-  int iVar4;
+  uint uVar4;
   
-  iVar3 = CONCAT22(in_register_0000202e,width);
-  sVar1 = strlen(title);
+  sVar1 = strlen(param_3);
   sVar1 = sVar1 & 0xffff;
-  iVar4 = (iVar3 - sVar1) + -10;
-  if (iVar4 < 6) {
-    sVar1 = (iVar4 + sVar1 & 0xffff) - 6 & 0xffff;
-    iVar4 = 6;
+  iVar3 = (param_2 - sVar1) + -10;
+  if (iVar3 < 6) {
+    sVar1 = (iVar3 + sVar1 & 0xffff) - 6 & 0xffff;
+    iVar3 = 6;
   }
-  iVar4 = iVar4 / 2;
-  write_nchar(line,'=',(uint16_t)iVar4);
-  line[iVar4] = '[';
-  memcpy(line + iVar4 + 1,title,sVar1);
-  iVar4 = sVar1 + iVar4 + 1;
-  iVar2 = snprintf(line + iVar4,iVar3 - iVar4," len=%03u]");
-  write_nchar(line + iVar2 + iVar4,'=',width - (short)(iVar2 + iVar4));
-  line[iVar3] = '\0';
+  uVar4 = iVar3 / 2;
+  write_nchar(param_1,0x3d,uVar4 & 0xffff);
+  *(undefined1 *)(uVar4 + param_1) = 0x5b;
+  memcpy((void *)(param_1 + uVar4 + 1),param_3,sVar1);
+  iVar3 = sVar1 + uVar4 + 1;
+  iVar2 = snprintf((char *)(param_1 + iVar3),param_2 - iVar3," len=%03u]");
+  write_nchar(iVar2 + iVar3 + param_1,0x3d,param_2 - (iVar2 + iVar3) & 0xffff);
+  *(undefined1 *)(param_1 + param_2) = 0;
   return;
 }
 

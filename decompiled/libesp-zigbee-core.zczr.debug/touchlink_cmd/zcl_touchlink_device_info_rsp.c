@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_cmd.o -> zcl_touchlink_device_info_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,86 +10,90 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_touchlink_device_info_rsp(zcl_touchlink_device_info_rsp_t *cmd_rsp)
+int zcl_touchlink_device_info_rsp(undefined4 *param_1)
 
 {
   int iVar1;
   uint uVar2;
-  uint32_t uStack_50;
+  int iVar3;
+  undefined4 local_60;
+  undefined4 uStack_5c;
+  undefined2 uStack_58;
+  undefined4 uStack_50;
   undefined4 uStack_4c;
-  undefined1 auStack_48 [4];
-  zcl_packet_t packet;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  uint uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
   
-  auStack_48 = (undefined1  [4])0x0;
-  packet.header.src_addr._0_4_ = 0;
-  packet.header.src_addr.u._2_4_ = 0;
-  packet.header._8_4_ = 0;
-  packet.header.dst_addr.u._0_2_ = 0;
-  packet.header.dst_addr.u._2_2_ = 0;
-  packet.header.dst_addr.u._4_4_ = 0;
-  packet.header.src_ep = '\0';
-  packet.header.dst_ep = '\0';
-  packet.header.cluster_id = 0;
-  packet.header.profile_id = 0;
-  packet.header.fc = '\0';
-  packet.header._27_1_ = 0;
-  packet.header.manuf_code = 0;
-  packet.header.tsn = '\0';
-  packet.header.rssi = '\0';
-  packet.header.cmd_id = '\0';
-  packet.header._33_1_ = 0;
-  packet._34_2_ = 0;
-  if (cmd_rsp == (zcl_touchlink_device_info_rsp_t *)0x0) {
+  uStack_48 = 0;
+  uStack_44 = 0;
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  if (param_1 == (undefined4 *)0x0) {
     iVar1 = -1;
   }
   else {
-    iVar1 = zcl_packet_init(auStack_48,0);
+    iVar1 = zcl_packet_init(&uStack_48,0);
     if (iVar1 == 0) {
-      iVar1 = zcl_touchlink_cmd_to_packet
-                        ((zcl_packet_t *)auStack_48,'\x01','\x03',(ezb_address_t *)cmd_rsp);
+      local_60 = *param_1;
+      uStack_5c = param_1[1];
+      uStack_58 = *(undefined2 *)(param_1 + 2);
+      iVar1 = zcl_touchlink_cmd_to_packet(&uStack_48,1,3,&local_60);
       if (iVar1 == 0) {
-        packet.header.fc = (cmd_rsp->cmd_ctrl).tsn;
-        packet.header._20_4_ = packet.header._20_4_ | 0x200000;
-        uStack_50 = cmd_rsp->transaction_id;
-        iVar1 = zmsg_append_bytes(packet._32_4_,4,&uStack_50);
+        uStack_2c._0_3_ = CONCAT12(*(undefined1 *)((int)param_1 + 10),(undefined2)uStack_2c);
+        uStack_30 = uStack_30 | 0x200000;
+        uStack_50 = param_1[3];
+        iVar1 = zmsg_append_bytes(uStack_24,4,&uStack_50);
         if (iVar1 == 0) {
-          uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->n_sub_devices);
-          iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+          uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)(param_1 + 4));
+          iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
           if (iVar1 == 0) {
-            uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->start_index);
-            iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+            uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)((int)param_1 + 0x11));
+            iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
             if (iVar1 == 0) {
-              uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->n_records);
-              iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+              uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)((int)param_1 + 0x12));
+              iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
               uVar2 = 0;
               if (iVar1 == 0) {
-                for (; uVar2 < cmd_rsp->n_records; uVar2 = uVar2 + 1 & 0xff) {
-                  uStack_50 = *(uint32_t *)&cmd_rsp->records[uVar2].ieee_addr.field_0;
-                  uStack_4c = *(undefined4 *)((int)&cmd_rsp->records[uVar2].ieee_addr.field_0 + 4);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,8,&uStack_50);
+                for (; uVar2 < *(byte *)((int)param_1 + 0x12); uVar2 = uVar2 + 1 & 0xff) {
+                  iVar3 = uVar2 * 0x12;
+                  uStack_50 = *(undefined4 *)(param_1[5] + iVar3);
+                  uStack_4c = ((undefined4 *)(param_1[5] + iVar3))[1];
+                  iVar1 = zmsg_append_bytes(uStack_24,8,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->records[uVar2].ep_id);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+                  uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)(param_1[5] + iVar3 + 8));
+                  iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT22(uStack_50._2_2_,cmd_rsp->records[uVar2].profile_id);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,2,&uStack_50);
+                  uStack_50 = CONCAT22(uStack_50._2_2_,*(undefined2 *)(param_1[5] + iVar3 + 10));
+                  iVar1 = zmsg_append_bytes(uStack_24,2,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT22(uStack_50._2_2_,cmd_rsp->records[uVar2].device_id);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,2,&uStack_50);
+                  uStack_50 = CONCAT22(uStack_50._2_2_,*(undefined2 *)(param_1[5] + iVar3 + 0xc));
+                  iVar1 = zmsg_append_bytes(uStack_24,2,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->records[uVar2].version);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+                  uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)(param_1[5] + iVar3 + 0xe));
+                  iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->records[uVar2].n_group_ids);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+                  uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)(param_1[5] + iVar3 + 0xf));
+                  iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
                   if (iVar1 != 0) goto _L0;
-                  uStack_50 = CONCAT31(uStack_50._1_3_,cmd_rsp->records[uVar2].sort);
-                  iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_50);
+                  uStack_50 = CONCAT31(uStack_50._1_3_,*(undefined1 *)(param_1[5] + iVar3 + 0x10));
+                  iVar1 = zmsg_append_bytes(uStack_24,1,&uStack_50);
                   if (iVar1 != 0) goto _L0;
                 }
-                zcl_packet_intrp_send(auStack_48,&cmd_rsp->cnf_ctx);
+                zcl_packet_intrp_send(&uStack_48,param_1 + 6);
                 iVar1 = zcl_status_to_err();
 _L0:
                 if (iVar1 == 0) {
@@ -105,7 +109,7 @@ _L0:
       iVar1 = -1;
     }
   }
-  zcl_packet_free(auStack_48);
+  zcl_packet_free(&uStack_48);
   return iVar1;
 }
 

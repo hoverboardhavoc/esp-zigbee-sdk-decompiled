@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> timer.o -> tm_sched_remove
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void tm_sched_remove(tm_sched_t *sched,timer_base *tm)
+void tm_sched_remove(int param_1,int *param_2)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  uint uVar4;
+  int *extraout_a1;
+  int *piVar1;
+  int *piVar2;
+  int *piVar3;
+  int *piVar4;
   
-  iVar2 = __assert_func(0,0,0,0);
-  iVar1 = *(int *)(iVar2 + 0x10);
-  if (iVar1 == 0) {
-                    /* WARNING: Could not recover jumptable at 0x0001002c. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (**(code **)(iVar2 + 0x1c))(*(code **)(iVar2 + 0x1c));
-    return;
+  if (param_2 == (int *)0x0) {
+    param_1 = timer_init_part_0();
+    param_2 = extraout_a1;
   }
-  iVar3 = (**(code **)(iVar2 + 0x14))(*(code **)(iVar2 + 0x14));
-  uVar4 = *(int *)(iVar1 + 0xc) - iVar3;
-                    /* WARNING: Could not recover jumptable at 0x00010048. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-  (**(code **)(iVar2 + 0x18))((int)~uVar4 >> 0x1f & uVar4,*(code **)(iVar2 + 0x18));
+  piVar1 = (int *)*param_2;
+  if (piVar1 != param_2) {
+    piVar2 = *(int **)(param_1 + 0x10);
+    piVar3 = (int *)(param_1 + 0x10);
+    if (piVar2 == param_2) {
+      *(int **)(param_1 + 0x10) = piVar1;
+      tm_sched_set_alarm();
+    }
+    else {
+      while (piVar2 != (int *)0x0) {
+        piVar4 = (int *)*piVar3;
+        if (piVar4 == param_2) {
+          *piVar3 = (int)piVar1;
+          break;
+        }
+        piVar3 = piVar4;
+        piVar2 = (int *)*piVar4;
+      }
+    }
+    *param_2 = (int)param_2;
+  }
   return;
 }
 

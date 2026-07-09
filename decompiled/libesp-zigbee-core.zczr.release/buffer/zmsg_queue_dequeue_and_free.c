@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_queue_dequeue_and_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-void zmsg_queue_dequeue_and_free(zmsg_queue_t *q,zmsg_t *msg)
+void zmsg_queue_dequeue_and_free(int param_1)
 
 {
-  buffer_t *pbVar1;
-  buffer_t *pbVar2;
+  undefined4 *puVar1;
+  undefined4 *puVar2;
   
-  zmsg_queue_dequeue(q,msg);
-  pbVar2 = msg->chunks;
-  while (pbVar2 != (buffer_t *)0x0) {
-    pbVar1 = *(buffer_t **)&pbVar2->field_0;
-    pbVar2->field_0 = (anon_union_4_2_77b2d3ce_for_buffer_s_0)0x0;
+  zmsg_queue_dequeue();
+  puVar2 = *(undefined4 **)(param_1 + 8);
+  while (puVar2 != (undefined4 *)0x0) {
+    puVar1 = (undefined4 *)*puVar2;
+    *puVar2 = 0;
     mempool_free(0);
-    pbVar2 = pbVar1;
+    puVar2 = puVar1;
   }
-  msg->chunks = (buffer_t *)0x0;
-  mempool_free(1,msg);
+  *(undefined4 *)(param_1 + 8) = 0;
+  mempool_free(1,param_1);
   return;
 }
 

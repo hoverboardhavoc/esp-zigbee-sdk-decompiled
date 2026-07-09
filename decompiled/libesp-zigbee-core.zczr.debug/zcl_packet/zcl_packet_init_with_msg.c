@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_packet.o -> zcl_packet_init_with_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_packet_init_with_msg(zcl_packet_t *packet,af_data_ind_t *ind)
+int zcl_packet_init_with_msg(undefined1 *param_1,undefined2 *param_2)
 
 {
-  zcl_status_t zVar1;
-  undefined3 extraout_var;
-  int iVar2;
+  int iVar1;
   
-  if (packet == (zcl_packet_t *)0x0) {
-    iVar2 = 0x87;
+  if (param_1 == (undefined1 *)0x0) {
+    iVar1 = 0x87;
   }
-  else if (ind == (af_data_ind_t *)0x0) {
-    iVar2 = 0x87;
+  else if (param_2 == (undefined2 *)0x0) {
+    iVar1 = 0x87;
   }
   else {
-    packet->payload = ind->asdu;
-    zVar1 = zcl_packet_load_header(packet);
-    iVar2 = CONCAT31(extraout_var,zVar1);
-    if (iVar2 == 0) {
-      (packet->header).src_ep = (ind->addr_info).src_ep;
-      (packet->header).dst_ep = (ind->addr_info).dst_ep;
-      (packet->header).cluster_id = (ind->addr_info).cluster_id;
-      (packet->header).profile_id = (ind->addr_info).profile_id;
-      (packet->header).src_addr.addr_mode = '\x02';
-      (packet->header).src_addr.u.short_addr = (ind->addr_info).src_addr;
-      (packet->header).dst_addr.addr_mode = '\x02';
-      (packet->header).dst_addr.u.short_addr = (ind->addr_info).dst_addr;
-      (packet->header).rssi = ind->rssi;
+    *(undefined4 *)(param_1 + 0x24) = *(undefined4 *)(param_2 + 8);
+    iVar1 = zcl_packet_load_header();
+    if (iVar1 == 0) {
+      param_1[0x14] = *(undefined1 *)(param_2 + 3);
+      param_1[0x15] = *(undefined1 *)((int)param_2 + 7);
+      *(undefined2 *)(param_1 + 0x16) = param_2[4];
+      *(undefined2 *)(param_1 + 0x18) = param_2[5];
+      *param_1 = 2;
+      *(undefined2 *)(param_1 + 2) = *param_2;
+      param_1[10] = 2;
+      *(undefined2 *)(param_1 + 0xc) = param_2[1];
+      param_1[0x1f] = *(undefined1 *)((int)param_2 + 0xd);
     }
   }
-  return (zcl_status_t)iVar2;
+  return iVar1;
 }
 

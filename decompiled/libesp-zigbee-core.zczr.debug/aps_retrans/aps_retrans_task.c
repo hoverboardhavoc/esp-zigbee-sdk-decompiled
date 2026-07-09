@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_retrans_task
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_retrans_task(aps_tx_context_t *tx_ctx)
+void aps_retrans_task(int param_1)
 
 {
-  zmsg_t *msg;
-  aps_retrans_ent_t *ent;
   int iVar1;
+  int iVar2;
+  int iVar3;
   
-  msg = (zmsg_t *)zmsg_queue_get_head(&tx_ctx->tx_q);
-  if ((msg != (zmsg_t *)0x0) && (ent = aps_retrans_ent_new(tx_ctx), ent != (aps_retrans_ent_t *)0x0)
-     ) {
-    zmsg_queue_dequeue(&tx_ctx->tx_q,msg);
-    iVar1 = core_globals_get();
-    aps_retrans_ent_init(ent,*(uint8_t *)(iVar1 + 2));
-    aps_retrans_ent_set_msg(ent,msg);
-    aps_retrans_send(ent);
-    tasklet_post(tx_ctx);
+  iVar1 = zmsg_queue_get_head(param_1 + 0x10);
+  if ((iVar1 != 0) && (iVar2 = aps_retrans_ent_new(param_1), iVar2 != 0)) {
+    zmsg_queue_dequeue(param_1 + 0x10,iVar1);
+    iVar3 = core_globals_get();
+    aps_retrans_ent_init(iVar2,*(undefined1 *)(iVar3 + 2));
+    aps_retrans_ent_set_msg(iVar2,iVar1);
+    aps_retrans_send(iVar2);
+    tasklet_post(param_1);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> time_server_get_time_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_time_server_time_ctx_t * time_server_get_time_ctx(uint8_t endpoint)
+int time_server_get_time_ctx(void)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  zcl_time_server_time_ctx_t *pzVar2;
+  int iVar1;
   
-  pzVar1 = time_server_get_manufacturer_attr_desc(endpoint,0xeffe);
-  if (pzVar1 == (zcl_attr_desc_t *)0x0) {
-    pzVar2 = (zcl_time_server_time_ctx_t *)0x0;
+  iVar1 = time_server_get_manufacturer_attr_desc(0xeffe);
+  if (iVar1 == 0) {
+    iVar1 = 0;
   }
   else {
-    pzVar2 = (zcl_time_server_time_ctx_t *)pzVar1->data_p;
-    if (pzVar2 == (zcl_time_server_time_ctx_t *)0x0) {
-      pzVar2 = (zcl_time_server_time_ctx_t *)0x0;
+    iVar1 = *(int *)(iVar1 + 8);
+    if (iVar1 == 0) {
+      iVar1 = 0;
     }
   }
-  return pzVar2;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_ctx_clear
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,18 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_secur_ctx_clear(void)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
+  int iVar1;
   
   aps_secur_key_pair_set_clear();
-  _Var1 = aps_secur_is_centralized();
-  if (CONCAT31(extraout_var,_Var1) != 0) {
-    aps_secur_set_distributed(false);
+  iVar1 = aps_secur_is_centralized();
+  if (iVar1 != 0) {
+    aps_secur_set_distributed(0);
   }
   return;
 }

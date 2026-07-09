@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> compat.o -> esp_zb_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-/* WARNING: Enum "soc_periph_uart_clk_src_legacy_t": Some values do not have unique names */
-
-void esp_zb_init(esp_zb_cfg_t *nwk_cfg)
+void esp_zb_init(void *param_1)
 
 {
-  undefined1 auStack_54 [4];
-  esp_zigbee_config_t config;
+  undefined1 auStack_54 [16];
+  char *pcStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   memset(auStack_54,0,0x44);
-  config.device_config.field_2.zed_config.keep_alive = (uint32_t)_L0;
-  memcpy(auStack_54,nwk_cfg,0x10);
-  config.platform_config.storage_partition_name = (char *)s_platform_config.radio_config.radio_mode;
-  config.platform_config.radio_config.radio_mode =
-       s_platform_config.radio_config.field_1.radio_uart_config.port;
-  config.platform_config.radio_config.field_1.radio_uart_config.port =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.baud_rate;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.baud_rate =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.data_bits;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.data_bits =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.parity;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.parity =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.stop_bits;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.stop_bits =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.flow_ctrl;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.flow_ctrl =
-       s_platform_config.radio_config.field_1._24_4_;
-  config.platform_config.radio_config.field_1._24_4_ =
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.field_6;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.field_6 =
-       (anon_union_4_1_5b3ddcbc_for_uart_config_t_6)
-       s_platform_config.radio_config.field_1.radio_uart_config.uart_config.flags;
-  config.platform_config.radio_config.field_1.radio_uart_config.uart_config.flags =
-       (anon_struct_4_2_0e332f8d_for_flags)
-       s_platform_config.radio_config.field_1.radio_uart_config.rx_pin;
-  config.platform_config.radio_config.field_1.radio_uart_config.rx_pin =
-       s_platform_config.radio_config.field_1.radio_uart_config.tx_pin;
+  pcStack_44 = "zb_storage";
+  memcpy(auStack_54,param_1,0x10);
+  uStack_40 = s_platform_config;
+  uStack_3c = DAT_00010480;
+  uStack_38 = DAT_00010484;
+  uStack_34 = DAT_00010488;
+  uStack_30 = DAT_0001048c;
+  uStack_2c = DAT_00010490;
+  uStack_28 = DAT_00010494;
+  uStack_24 = DAT_00010498;
+  uStack_20 = DAT_0001049c;
+  uStack_1c = DAT_000104a0;
+  uStack_18 = DAT_000104a4;
+  uStack_14 = DAT_000104a8;
   esp_zigbee_init(auStack_54);
   return;
 }

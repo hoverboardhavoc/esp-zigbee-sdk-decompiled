@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> af_desc.o -> af_device_remove_endpoint_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-af_ep_desc_t * af_device_remove_endpoint_desc(af_device_desc_t *dev_desc,uint8_t ep_id)
+int af_device_remove_endpoint_desc(byte *param_1,uint param_2)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  undefined3 in_register_0000202d;
-  af_ep_desc_s *paVar2;
-  af_ep_desc_t *paVar3;
+  int iVar1;
+  byte *pbVar2;
   
-  _Var1 = af_device_desc_is_registered();
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    if (dev_desc == (af_device_desc_t *)0x0) {
-      paVar3 = (af_ep_desc_t *)0x0;
+  iVar1 = af_device_desc_is_registered();
+  if (iVar1 == 0) {
+    if (param_1 == (byte *)0x0) {
+      iVar1 = 0;
     }
     else {
-      paVar2 = dev_desc->ep_list;
-      while ((paVar2 != (af_ep_desc_s *)0x0 &&
-             ((paVar3 = dev_desc->ep_list, paVar3 == (af_ep_desc_t *)0x0 ||
-              ((uint)paVar3->ep_id != CONCAT31(in_register_0000202d,ep_id)))))) {
-        dev_desc = (af_device_desc_t *)&paVar3->next;
-        paVar2 = paVar3->next;
+      iVar1 = *(int *)param_1;
+      while ((iVar1 != 0 &&
+             ((pbVar2 = *(byte **)param_1, pbVar2 == (byte *)0x0 || (*pbVar2 != param_2))))) {
+        iVar1 = *(int *)(pbVar2 + 0x1c);
+        param_1 = pbVar2 + 0x1c;
       }
-      if (dev_desc == (af_device_desc_t *)0x0) {
-        paVar3 = (af_ep_desc_t *)0x0;
+      if (param_1 == (byte *)0x0) {
+        iVar1 = 0;
       }
       else {
-        paVar3 = dev_desc->ep_list;
-        if (paVar3 != (af_ep_desc_t *)0x0) {
-          dev_desc->ep_list = paVar3->next;
-          paVar3->next = (af_ep_desc_s *)0x0;
+        iVar1 = *(int *)param_1;
+        if (iVar1 != 0) {
+          *(undefined4 *)param_1 = *(undefined4 *)(iVar1 + 0x1c);
+          *(undefined4 *)(iVar1 + 0x1c) = 0;
         }
       }
     }
   }
   else {
-    paVar3 = (af_ep_desc_t *)0x0;
+    iVar1 = 0;
   }
-  return paVar3;
+  return iVar1;
 }
 

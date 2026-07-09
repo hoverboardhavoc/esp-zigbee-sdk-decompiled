@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_network_status_to_str
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,55 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-char * nwk_network_status_to_str(nwk_network_status_t status)
+char * nwk_network_status_to_str(uint param_1)
 
 {
-  undefined3 in_register_00002029;
-  uint uVar1;
-  
-  uVar1 = CONCAT31(in_register_00002029,status);
-  if (uVar1 == 0xc) {
+  if (param_1 == 0xc) {
     return "MTO-Route failure";
   }
-  if (uVar1 < 0xd) {
-    if (uVar1 == 2) {
+  if (param_1 < 0xd) {
+    if (param_1 == 2) {
       return "Link failure";
     }
-    if (2 < uVar1) {
-      if (uVar1 == 9) {
+    if (2 < param_1) {
+      if (param_1 == 9) {
         return "ParentLink failure";
       }
-      if (uVar1 == 0xb) {
+      if (param_1 == 0xb) {
         return "SourceRoute failure";
       }
       return "Unknown";
     }
-    if (uVar1 == 0) {
+    if (param_1 == 0) {
       return "Legacy no route";
     }
-    if (uVar1 == 1) {
+    if (param_1 == 1) {
       return "Legacy link failure";
     }
     return "Unknown";
   }
-  if (uVar1 == 0x10) {
+  if (param_1 == 0x10) {
     return "Address update";
   }
-  if (0x10 < uVar1) {
-    if (uVar1 == 0x13) {
+  if (0x10 < param_1) {
+    if (param_1 == 0x13) {
       return "Command unknown";
     }
-    if (uVar1 == 0x14) {
+    if (param_1 == 0x14) {
       return "PANID conflict";
     }
     return "Unknown";
   }
-  if (uVar1 == 0xd) {
+  if (param_1 == 0xd) {
     return "Address conflict";
   }
-  if (uVar1 == 0xf) {
+  if (param_1 == 0xf) {
     return "PANID update";
   }
   return "Unknown";

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_op_match_desc_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t
-zdo_op_match_desc_req(zdo_packet_payload_t *payload,zdp_match_desc_req_field_t *req,_Bool is_write)
+undefined4 zdo_op_match_desc_req(int param_1,ushort *param_2,int param_3)
 
 {
   uint uVar1;
-  zdp_status_t zVar2;
-  int iVar3;
+  int iVar2;
+  undefined4 uVar3;
   uint uVar4;
-  uint16_t *puVar5;
-  undefined3 in_register_00002031;
-  uint16_t auStack_22 [2];
-  uint16_t offset;
+  void *pvVar5;
+  ushort auStack_22 [7];
   
-  if ((payload == (zdo_packet_payload_t *)0x0) || (req == (zdp_match_desc_req_field_t *)0x0)) {
+  if ((param_1 == 0) || (param_2 == (ushort *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_dev_srv_disc.c",0x1f1,
                   "zdo_op_match_desc_req","payload && req");
   }
   else {
-    if (CONCAT31(in_register_00002031,is_write) == 0) {
+    if (param_3 == 0) {
       auStack_22[0] = 0;
       uVar4 = zmsg_get_length();
-      af_read_le16(payload,auStack_22,&req->nwk_addr_of_interest);
-      af_read_le16(payload,auStack_22,&req->profile_id);
-      af_read_le8(payload,auStack_22,&req->num_in_clusters);
-      uVar1 = (uint)req->num_in_clusters;
-      puVar5 = (uint16_t *)calloc(uVar1,2);
-      req->cluster_list = puVar5;
-      if (puVar5 == (uint16_t *)0x0) {
+      af_read_le16(param_1,auStack_22,param_2);
+      af_read_le16(param_1,auStack_22,param_2 + 1);
+      af_read_le8(param_1,auStack_22,param_2 + 2);
+      uVar1 = (uint)(byte)param_2[2];
+      pvVar5 = calloc(uVar1,2);
+      *(void **)(param_2 + 4) = pvVar5;
+      if (pvVar5 == (void *)0x0) {
         if (uVar1 != 0) {
           return 0x8a;
         }
@@ -47,66 +42,64 @@ zdo_op_match_desc_req(zdo_packet_payload_t *payload,zdp_match_desc_req_field_t *
       else {
         uVar1 = 0;
       }
-      for (; uVar1 < req->num_in_clusters; uVar1 = uVar1 + 1 & 0xff) {
-        af_read_le16(payload,auStack_22,req->cluster_list + uVar1);
+      for (; uVar1 < (byte)param_2[2]; uVar1 = uVar1 + 1 & 0xff) {
+        af_read_le16(param_1,auStack_22,*(int *)(param_2 + 4) + uVar1 * 2);
       }
-      af_read_le8(payload,auStack_22,&req->num_out_clusters);
-      puVar5 = (uint16_t *)
-               mm_realloc(req->cluster_list,(uint)req->num_in_clusters + (uint)req->num_out_clusters
-                          ,2);
-      req->cluster_list = puVar5;
-      if ((puVar5 == (uint16_t *)0x0) &&
-         ((uint)req->num_in_clusters + (uint)req->num_out_clusters != 0)) {
+      af_read_le8(param_1,auStack_22,(int)param_2 + 5);
+      iVar2 = mm_realloc(*(undefined4 *)(param_2 + 4),
+                         (uint)(byte)param_2[2] + (uint)*(byte *)((int)param_2 + 5),2);
+      *(int *)(param_2 + 4) = iVar2;
+      if ((iVar2 == 0) && ((uint)(byte)param_2[2] + (uint)*(byte *)((int)param_2 + 5) != 0)) {
         return 0x8a;
       }
-      for (uVar1 = (uint)req->num_in_clusters;
-          uVar1 < (uint)req->num_in_clusters + (uint)req->num_out_clusters; uVar1 = uVar1 + 1 & 0xff
-          ) {
-        af_read_le16(payload,auStack_22,req->cluster_list + uVar1);
+      for (uVar1 = (uint)(byte)param_2[2];
+          uVar1 < (uint)(byte)param_2[2] + (uint)*(byte *)((int)param_2 + 5);
+          uVar1 = uVar1 + 1 & 0xff) {
+        af_read_le16(param_1,auStack_22,*(int *)(param_2 + 4) + uVar1 * 2);
       }
       if (auStack_22[0] <= uVar4) {
-        return '\0';
+        return 0;
       }
       return 0xfe;
     }
-    auStack_22[0] = req->nwk_addr_of_interest;
-    iVar3 = zmsg_append_bytes(2,auStack_22);
-    if (iVar3 != 0) {
+    auStack_22[0] = *param_2;
+    iVar2 = zmsg_append_bytes(2,auStack_22);
+    if (iVar2 != 0) {
       return 0x8a;
     }
-    auStack_22[0] = req->profile_id;
-    iVar3 = zmsg_append_bytes(payload,2,auStack_22);
-    if (iVar3 != 0) {
+    auStack_22[0] = param_2[1];
+    iVar2 = zmsg_append_bytes(param_1,2,auStack_22);
+    if (iVar2 != 0) {
       return 0x8a;
     }
-    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,req->num_in_clusters);
-    iVar3 = zmsg_append_bytes(payload,1,auStack_22);
-    if (iVar3 != 0) {
+    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,(char)param_2[2]);
+    iVar2 = zmsg_append_bytes(param_1,1,auStack_22);
+    if (iVar2 != 0) {
       return 0x8a;
     }
-    for (uVar1 = 0; uVar1 < req->num_in_clusters; uVar1 = uVar1 + 1 & 0xff) {
-      auStack_22[0] = req->cluster_list[uVar1];
-      iVar3 = zmsg_append_bytes(payload,2,auStack_22);
-      if (iVar3 != 0) {
+    for (uVar1 = 0; uVar1 < (byte)param_2[2]; uVar1 = uVar1 + 1 & 0xff) {
+      auStack_22[0] = *(ushort *)(*(int *)(param_2 + 4) + uVar1 * 2);
+      iVar2 = zmsg_append_bytes(param_1,2,auStack_22);
+      if (iVar2 != 0) {
         return 0x8a;
       }
     }
   }
-  auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,req->num_out_clusters);
-  iVar3 = zmsg_append_bytes(payload,1,auStack_22);
-  if (iVar3 == 0) {
-    for (uVar1 = 0; uVar1 < req->num_out_clusters; uVar1 = uVar1 + 1 & 0xff) {
-      auStack_22[0] = req->cluster_list[req->num_in_clusters + uVar1];
-      iVar3 = zmsg_append_bytes(payload,2,auStack_22);
-      if (iVar3 != 0) {
+  auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,*(undefined1 *)((int)param_2 + 5));
+  iVar2 = zmsg_append_bytes(param_1,1,auStack_22);
+  if (iVar2 == 0) {
+    for (uVar1 = 0; uVar1 < *(byte *)((int)param_2 + 5); uVar1 = uVar1 + 1 & 0xff) {
+      auStack_22[0] = *(ushort *)(((byte)param_2[2] + uVar1) * 2 + *(int *)(param_2 + 4));
+      iVar2 = zmsg_append_bytes(param_1,2,auStack_22);
+      if (iVar2 != 0) {
         return 0x8a;
       }
     }
-    zVar2 = '\0';
+    uVar3 = 0;
   }
   else {
-    zVar2 = 0x8a;
+    uVar3 = 0x8a;
   }
-  return zVar2;
+  return uVar3;
 }
 

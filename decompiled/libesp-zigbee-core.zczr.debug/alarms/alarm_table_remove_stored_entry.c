@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> alarms.o -> alarm_table_remove_stored_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,28 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void alarm_table_remove_stored_entry
-               (uint8_t ep_id,uint8_t alarm_code,uint16_t cluster_id,uint32_t time_stamp)
+void alarm_table_remove_stored_entry(uint param_1,uint param_2,uint param_3,int param_4)
 
 {
-  undefined3 in_register_00002029;
-  undefined3 in_register_0000202d;
-  undefined2 in_register_00002032;
-  undefined1 auStack_2c [4];
-  ds_alarm_log_iterator_t itor;
+  int iStack_2c;
+  ushort uStack_28;
+  byte bStack_26;
+  byte bStack_25;
+  undefined2 uStack_24;
+  char cStack_22;
   
-  itor.data.cluster_id = 0;
-  itor.data.alarm_code = '\0';
-  ds_alarm_log_itor_read((ds_alarm_log_iterator_t *)auStack_2c);
+  uStack_24 = 0;
+  cStack_22 = '\0';
+  ds_alarm_log_itor_read(&iStack_2c);
   while( true ) {
-    if (itor.data.alarm_code != '\0') {
+    if (cStack_22 != '\0') {
       return;
     }
-    if (((((uint)itor.data.time_stamp._3_1_ == CONCAT31(in_register_00002029,ep_id)) &&
-         ((uint)itor.data.time_stamp._2_1_ == CONCAT31(in_register_0000202d,alarm_code))) &&
-        ((uint)(ushort)itor.data.time_stamp == CONCAT22(in_register_00002032,cluster_id))) &&
-       (auStack_2c == (undefined1  [4])time_stamp)) break;
-    ds_alarm_log_next((ds_alarm_log_iterator_t *)auStack_2c);
+    if ((((bStack_25 == param_1) && (bStack_26 == param_2)) && (uStack_28 == param_3)) &&
+       (iStack_2c == param_4)) break;
+    ds_alarm_log_next(&iStack_2c);
   }
-  ds_alarm_log_delete((ds_alarm_log_iterator_t *)auStack_2c);
+  ds_alarm_log_delete(&iStack_2c);
   return;
 }
 

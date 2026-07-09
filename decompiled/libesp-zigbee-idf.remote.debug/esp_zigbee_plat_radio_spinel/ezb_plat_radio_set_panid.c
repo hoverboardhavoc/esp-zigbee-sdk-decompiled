@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_radio_spinel.o -> ezb_plat_radio_set_panid
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,15 +11,13 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void ezb_plat_radio_set_panid(ezb_panid_t panid)
+void ezb_plat_radio_set_panid(void)
 
 {
-  undefined2 in_register_0000202a;
   int iVar1;
   
-  iVar1 = esp_radio_spinel_set_panid(CONCAT22(in_register_0000202a,panid),0);
+  iVar1 = esp_radio_spinel_set_panid(0);
   if (iVar1 == 0) {
     return;
   }

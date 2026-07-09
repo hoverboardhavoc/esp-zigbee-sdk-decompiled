@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_downloading_upgrade_end_is_accepted
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool ota_upgrade_downloading_upgrade_end_is_accepted
-                (ota_upgrade_downloading_context_t *context,ota_upgrade_upgrade_end_rsp_t *payload)
+undefined4 ota_upgrade_downloading_upgrade_end_is_accepted(int param_1,short *param_2)
 
 {
-  if ((*(context->attr).manuf_code != payload->manuf_code) && (payload->manuf_code != 0xffff)) {
-    return false;
+  if ((**(short **)(param_1 + 0x1c) != *param_2) && (*param_2 != -1)) {
+    return 0;
   }
-  if ((*(context->attr).image_type != payload->image_type) && (payload->image_type != 0xffff)) {
-    return false;
+  if ((**(short **)(param_1 + 0x20) != param_2[1]) && (param_2[1] != -1)) {
+    return 0;
   }
-  if (((context->file).downloading_version != payload->file_version) &&
-     (payload->file_version != 0xffffffff)) {
-    return false;
+  if ((*(int *)(param_1 + 0x2c) != *(int *)(param_2 + 2)) && (*(int *)(param_2 + 2) != -1)) {
+    return 0;
   }
-  if (payload->upgrade_time == 0xffffffff) {
-    return true;
+  if (*(uint *)(param_2 + 6) == 0xffffffff) {
+    return 1;
   }
-  if (payload->upgrade_time < payload->current_time) {
-    return false;
+  if (*(uint *)(param_2 + 6) < *(uint *)(param_2 + 4)) {
+    return 0;
   }
-  return true;
+  return 1;
 }
 

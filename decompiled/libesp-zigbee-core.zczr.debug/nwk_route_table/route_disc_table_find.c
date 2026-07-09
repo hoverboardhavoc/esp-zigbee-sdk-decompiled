@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> route_disc_table_find
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_route_disc_t *
-route_disc_table_find(nwk_route_disc_table_t *tbl,ezb_shortaddr_t src_addr,uint8_t rreq_id)
+ushort * route_disc_table_find(int *param_1,uint param_2,uint param_3)
 
 {
-  undefined2 in_register_0000202e;
-  undefined3 in_register_00002031;
   uint uVar1;
-  nwk_route_disc_t *pnVar2;
+  ushort *puVar2;
   
   uVar1 = 0;
   while( true ) {
-    uVar1 = bitmap_find_next_bit(tbl->ent_in_use,tbl->ent_nr,uVar1);
-    if (tbl->ent_nr <= uVar1) {
-      return (nwk_route_disc_t *)0x0;
+    uVar1 = bitmap_find_next_bit(param_1[1],(short)param_1[2],uVar1);
+    if (*(ushort *)(param_1 + 2) <= uVar1) {
+      return (ushort *)0x0;
     }
-    pnVar2 = tbl->ents + uVar1;
-    if (((uint)pnVar2->src_addr == CONCAT22(in_register_0000202e,src_addr)) &&
-       ((uint)pnVar2->rreq_id == CONCAT31(in_register_00002031,rreq_id))) break;
+    puVar2 = (ushort *)(*param_1 + uVar1 * 0x10);
+    if ((*puVar2 == param_2) && ((byte)puVar2[5] == param_3)) break;
     uVar1 = uVar1 + 1 & 0xffff;
   }
-  return pnVar2;
+  return puVar2;
 }
 

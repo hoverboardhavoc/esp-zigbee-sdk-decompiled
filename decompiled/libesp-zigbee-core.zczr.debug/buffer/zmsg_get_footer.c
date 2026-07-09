@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_get_footer
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,34 +11,31 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void zmsg_get_footer(zmsg_t *msg,void *obj,uint16_t len)
+void zmsg_get_footer(int param_1,void *param_2,uint param_3)
 
 {
   ushort uVar1;
-  buffer_t *pbVar2;
-  uint8_t *puVar3;
-  int iVar4;
+  void *pvVar2;
+  int iVar3;
   void *__src;
-  undefined2 in_register_00002032;
   char *__n;
   
-  uVar1 = msg->tail;
-  if (CONCAT22(in_register_00002032,len) <= (uint)uVar1) {
-    pbVar2 = buffers_get_last(msg->chunks);
-    puVar3 = buffer_get_tail(pbVar2,uVar1);
-    memcpy(obj,puVar3,CONCAT22(in_register_00002032,len));
+  uVar1 = *(ushort *)(param_1 + 0x10);
+  if (param_3 <= uVar1) {
+    buffers_get_last(*(undefined4 *)(param_1 + 8));
+    pvVar2 = (void *)buffer_get_tail((uint)uVar1);
+    memcpy(param_2,pvVar2,param_3);
     return;
   }
   __n = "zmsg_get_footer";
-  iVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x180,
+  iVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x180,
                         "len <= msg->tail");
-  uVar1 = *(ushort *)(iVar4 + 0x10);
+  uVar1 = *(ushort *)(iVar3 + 0x10);
   if (__n <= (char *)(uint)uVar1) {
-    pbVar2 = buffers_get_last(*(buffer_t **)(iVar4 + 8));
-    puVar3 = buffer_get_tail(pbVar2,uVar1);
-    memcpy(puVar3,__src,(size_t)__n);
+    buffers_get_last(*(undefined4 *)(iVar3 + 8));
+    pvVar2 = (void *)buffer_get_tail((char *)(uint)uVar1);
+    memcpy(pvVar2,__src,(size_t)__n);
     return;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x188,

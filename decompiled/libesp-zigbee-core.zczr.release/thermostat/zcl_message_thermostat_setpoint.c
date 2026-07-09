@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> thermostat.o -> zcl_message_thermostat_setpoint
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_thermostat_setpoint(uint8_t ep_id,uint8_t mode,int16_t heat,int16_t cool)
+char zcl_message_thermostat_setpoint
+               (byte param_1,byte param_2,undefined2 param_3,undefined2 param_4)
 
 {
   short local_20;
   undefined2 uStack_1e;
-  ezb_zcl_thermostat_setpoint_message_t message;
+  int iStack_1c;
+  undefined2 uStack_18;
+  undefined2 uStack_16;
+  undefined2 uStack_14;
   
-  _local_20 = CONCAT22(0x201,(ushort)ep_id << 8);
-  message.info._0_4_ = (uint)mode << 0x10;
-  message.in.setpoint_cool = 0xfe;
-  message.info._4_2_ = cool;
-  message.in._0_2_ = heat;
-  zcl_core_action_schedule(0x37,&local_20);
-  if ((ezb_zcl_status_t)message.in.setpoint_cool == 0xfe) {
-    message.in.setpoint_cool._0_1_ = '\0';
+  _local_20 = CONCAT22(0x201,(ushort)param_1 << 8);
+  iStack_1c = (uint)param_2 << 0x10;
+  uStack_14 = 0xfe;
+  uStack_18 = param_4;
+  uStack_16 = param_3;
+  zcl_core_action_schedule(0x38,&local_20);
+  if ((char)uStack_14 == -2) {
+    uStack_14._0_1_ = '\0';
   }
-  return (ezb_zcl_status_t)message.in.setpoint_cool;
+  return (char)uStack_14;
 }
 

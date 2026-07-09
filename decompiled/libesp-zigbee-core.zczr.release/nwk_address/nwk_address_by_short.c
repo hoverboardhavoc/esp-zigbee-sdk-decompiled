@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_by_short
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,34 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_address_by_short
-                    (ezb_shortaddr_t shortaddr,_Bool create,_Bool lock,nwk_addr_ref_t *ref_p)
+undefined4 nwk_address_by_short(uint param_1,int param_2,int param_3,undefined2 *param_4)
 
 {
-  uint uVar1;
-  nwk_addr_ref_t nVar2;
-  undefined2 in_register_0000202a;
+  int iVar1;
+  uint uVar2;
   int iVar3;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  undefined3 in_register_0000202d;
-  undefined3 in_register_00002031;
-  nwk_addr_table_t *tbl;
   
-  iVar3 = core_globals_get();
-  if (0xfff7 < CONCAT22(in_register_0000202a,shortaddr)) {
+  iVar1 = core_globals_get();
+  if (0xfff7 < param_1) {
     return 2;
   }
-  tbl = (nwk_addr_table_t *)(iVar3 + 0xc4c);
-  nVar2 = search_short(tbl,shortaddr);
-  uVar1 = CONCAT22(extraout_var,nVar2);
-  if (uVar1 < *(ushort *)(iVar3 + 0xc54)) {
-    addr_table_lru_update(tbl,nVar2);
+  iVar3 = iVar1 + 0xc4c;
+  uVar2 = search_short(iVar3,param_1);
+  if (uVar2 < *(ushort *)(iVar1 + 0xc54)) {
+    addr_table_lru_update(iVar3,uVar2);
   }
   else {
-    if (CONCAT31(in_register_0000202d,create) == 0) {
+    if (param_2 == 0) {
       return 5;
     }
-    nVar2 = addr_table_add(tbl,shortaddr,(ezb_extaddr_t *)0x0);
-    uVar1 = CONCAT22(extraout_var_00,nVar2);
-    if (*(ushort *)(iVar3 + 0xc54) <= uVar1) {
+    uVar2 = addr_table_add(iVar3,param_1,0);
+    if (*(ushort *)(iVar1 + 0xc54) <= uVar2) {
       return 1;
     }
   }
-  *ref_p = (nwk_addr_ref_t)uVar1;
-  if (CONCAT31(in_register_00002031,lock) != 0) {
-    nwk_address_lock_ref((nwk_addr_ref_t)uVar1);
+  *param_4 = (short)uVar2;
+  if (param_3 != 0) {
+    nwk_address_lock_ref(uVar2);
   }
   return 0;
 }

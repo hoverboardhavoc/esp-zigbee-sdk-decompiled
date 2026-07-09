@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zdo_cmd_compat.o -> esp_zb_zdo_active_ep_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_active_ep_rsp_wrapper(ezb_zdo_active_ep_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_active_ep_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
   byte bVar1;
   void *__dest;
-  ezb_zdp_active_ep_rsp_field_t *peVar2;
+  undefined1 *puVar2;
   code *pcVar3;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar3 = *user_ctx;
+  pcVar3 = (code *)*param_2;
   if (pcVar3 != (code *)0x0) {
-    if (result->error == 0) {
-      peVar2 = result->rsp;
-      if (peVar2 == (ezb_zdp_active_ep_rsp_field_t *)0x0) {
+    if (*param_1 == 0) {
+      puVar2 = (undefined1 *)param_1[1];
+      if (puVar2 == (undefined1 *)0x0) {
         __assert_func(0,0,0,0);
       }
-      bVar1 = peVar2->active_ep_count;
+      bVar1 = puVar2[4];
       __dest = calloc((uint)bVar1,1);
       if (__dest != (void *)0x0) {
-        memcpy(__dest,peVar2->active_ep_list,(uint)bVar1);
+        memcpy(__dest,*(void **)(puVar2 + 8),(uint)bVar1);
       }
-      (*pcVar3)(peVar2->status,peVar2->active_ep_count,__dest,*(undefined4 *)((int)user_ctx + 4));
+      (*pcVar3)(*puVar2,puVar2[4],__dest,param_2[1]);
       if (__dest != (void *)0x0) {
         free(__dest);
       }
     }
-    else if (result->error == 7) {
-      (*pcVar3)(0x85,0xff,0,*(undefined4 *)((int)user_ctx + 4));
+    else if (*param_1 == 7) {
+      (*pcVar3)(0x85,0xff,0,param_2[1]);
     }
   }
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

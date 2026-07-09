@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> price.o -> ezb_zcl_price_publish_tier_labels_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,139 +10,127 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: packet */
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_price_publish_tier_labels_cmd_req
-                    (ezb_zcl_price_publish_tier_labels_cmd_t *cmd_req)
+int ezb_zcl_price_publish_tier_labels_cmd_req(int param_1)
 
 {
-  uint8_t uVar1;
-  ezb_err_t eVar2;
-  int iVar3;
-  uint uVar4;
-  ezb_zcl_price_tier_label_entry_t *peVar5;
-  uint uVar6;
-  uint32_t auStack_3c [2];
-  zcl_packet_t packet;
+  int iVar1;
+  uint uVar2;
+  uint uVar3;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  auStack_3c[1] = 0;
-  packet.header.src_addr._0_4_ = 0;
-  packet.header.src_addr.u._2_4_ = 0;
-  packet.header._8_4_ = 0;
-  packet.header.dst_addr.u._0_2_ = 0;
-  packet.header.dst_addr.u._2_2_ = 0;
-  packet.header.dst_addr.u._4_4_ = 0;
-  packet.header.src_ep = '\0';
-  packet.header.dst_ep = '\0';
-  packet.header.cluster_id = 0;
-  packet.header.profile_id = 0;
-  packet.header.fc = '\0';
-  packet.header._27_1_ = 0;
-  packet.header.manuf_code = 0;
-  packet.header.tsn = '\0';
-  packet.header.rssi = '\0';
-  packet.header.cmd_id = '\0';
-  packet.header._33_1_ = 0;
-  packet._34_2_ = 0;
-  if (cmd_req == (ezb_zcl_price_publish_tier_labels_cmd_t *)0x0) {
-    eVar2 = -1;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 == 0) {
+    iVar1 = -1;
   }
   else {
-    iVar3 = zcl_packet_init(auStack_3c + 1,0);
-    if (iVar3 == 0) {
-      eVar2 = zcl_cmd_to_packet(auStack_3c + 1,0,1,(cmd_req->cmd_ctrl).dis_default_rsp,0,8,0x700);
-      if (eVar2 == 0) {
-        auStack_3c[0] = (cmd_req->payload).provider_id;
-        iVar3 = zmsg_append_bytes(packet._32_4_,4,auStack_3c);
-        if (iVar3 == 0) {
-          auStack_3c[0] = (cmd_req->payload).issuer_event_id;
-          iVar3 = zmsg_append_bytes(packet._32_4_,4,auStack_3c);
-          if (iVar3 == 0) {
-            auStack_3c[0] = (cmd_req->payload).issuer_tariff_id;
-            iVar3 = zmsg_append_bytes(packet._32_4_,4,auStack_3c);
-            if (iVar3 == 0) {
-              auStack_3c[0] = CONCAT31(auStack_3c[0]._1_3_,(cmd_req->payload).command_index);
-              iVar3 = zmsg_append_bytes(packet._32_4_,1,auStack_3c);
-              if (iVar3 == 0) {
-                auStack_3c[0] =
-                     CONCAT31(auStack_3c[0]._1_3_,(cmd_req->payload).total_number_of_commands);
-                iVar3 = zmsg_append_bytes(packet._32_4_,1,auStack_3c);
-                if (iVar3 == 0) {
-                  uVar1 = (cmd_req->payload).number_of_labels;
-                  if (uVar1 == '\0') {
-                    eVar2 = 2;
+    iVar1 = zcl_packet_init(&uStack_38,0);
+    if (iVar1 == 0) {
+      iVar1 = zcl_cmd_to_packet(&uStack_38,0,1,*(undefined1 *)(param_1 + 0xc),0,8,0x700);
+      if (iVar1 == 0) {
+        uStack_3c = *(undefined4 *)(param_1 + 0x18);
+        iVar1 = zmsg_append_bytes(uStack_14,4,&uStack_3c);
+        if (iVar1 == 0) {
+          uStack_3c = *(undefined4 *)(param_1 + 0x1c);
+          iVar1 = zmsg_append_bytes(uStack_14,4,&uStack_3c);
+          if (iVar1 == 0) {
+            uStack_3c = *(undefined4 *)(param_1 + 0x20);
+            iVar1 = zmsg_append_bytes(uStack_14,4,&uStack_3c);
+            if (iVar1 == 0) {
+              uStack_3c = CONCAT31(uStack_3c._1_3_,*(undefined1 *)(param_1 + 0x24));
+              iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3c);
+              if (iVar1 == 0) {
+                uStack_3c = CONCAT31(uStack_3c._1_3_,*(undefined1 *)(param_1 + 0x25));
+                iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3c);
+                if (iVar1 == 0) {
+                  if (*(char *)(param_1 + 0x26) == '\0') {
+                    iVar1 = 2;
                   }
-                  else if ((cmd_req->payload).tier_labels == (ezb_zcl_price_tier_label_entry_t *)0x0
-                          ) {
-                    eVar2 = 2;
+                  else if (*(int *)(param_1 + 0x28) == 0) {
+                    iVar1 = 2;
                   }
                   else {
-                    auStack_3c[0] = CONCAT31(auStack_3c[0]._1_3_,uVar1);
-                    iVar3 = zmsg_append_bytes(packet._32_4_,1,auStack_3c);
-                    uVar6 = 0;
-                    if (iVar3 == 0) {
-                      for (; uVar6 < (cmd_req->payload).number_of_labels; uVar6 = uVar6 + 1 & 0xff)
-                      {
-                        auStack_3c[0] =
-                             CONCAT31(auStack_3c[0]._1_3_,
-                                      (cmd_req->payload).tier_labels[uVar6].tier_id);
-                        iVar3 = zmsg_append_bytes(packet._32_4_,1,auStack_3c);
-                        if (iVar3 != 0) {
-                          eVar2 = 1;
+                    uStack_3c = CONCAT31(uStack_3c._1_3_,*(char *)(param_1 + 0x26));
+                    iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3c);
+                    uVar3 = 0;
+                    if (iVar1 == 0) {
+                      for (; uVar3 < *(byte *)(param_1 + 0x26); uVar3 = uVar3 + 1 & 0xff) {
+                        uStack_3c = CONCAT31(uStack_3c._1_3_,
+                                             *(undefined1 *)(*(int *)(param_1 + 0x28) + uVar3 * 0xe)
+                                            );
+                        iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3c);
+                        if (iVar1 != 0) {
+                          iVar1 = 1;
                           goto _L0;
                         }
-                        peVar5 = (cmd_req->payload).tier_labels;
-                        uVar4 = (uint)peVar5[uVar6].tier_label[0];
-                        if (0xc < uVar4) {
-                          eVar2 = 2;
+                        iVar1 = *(int *)(param_1 + 0x28) + uVar3 * 0xe;
+                        uVar2 = (uint)*(byte *)(iVar1 + 1);
+                        if (0xc < uVar2) {
+                          iVar1 = 2;
                           goto _L0;
                         }
-                        iVar3 = zmsg_append_bytes(packet._32_4_,uVar4 + 1,peVar5[uVar6].tier_label);
-                        if (iVar3 != 0) {
-                          eVar2 = 1;
+                        iVar1 = zmsg_append_bytes(uStack_14,uVar2 + 1,iVar1 + 1);
+                        if (iVar1 != 0) {
+                          iVar1 = 1;
                           goto _L0;
                         }
                       }
-                      zcl_packet_send(auStack_3c + 1,&(cmd_req->cmd_ctrl).cnf_ctx);
-                      eVar2 = zcl_status_to_err();
-                      if (eVar2 == 0) {
+                      zcl_packet_send(&uStack_38,param_1 + 0x10);
+                      iVar1 = zcl_status_to_err();
+                      if (iVar1 == 0) {
                         return 0;
                       }
                     }
                     else {
-                      eVar2 = 1;
+                      iVar1 = 1;
                     }
                   }
                 }
                 else {
-                  eVar2 = 1;
+                  iVar1 = 1;
                 }
               }
               else {
-                eVar2 = 1;
+                iVar1 = 1;
               }
             }
             else {
-              eVar2 = 1;
+              iVar1 = 1;
             }
           }
           else {
-            eVar2 = 1;
+            iVar1 = 1;
           }
         }
         else {
-          eVar2 = 1;
+          iVar1 = 1;
         }
       }
     }
     else {
-      eVar2 = -1;
+      iVar1 = -1;
     }
   }
 _L0:
-  zcl_packet_free(auStack_3c + 1);
-  return eVar2;
+  zcl_packet_free(&uStack_38);
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_set_mac_permit_joining
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_set_mac_permit_joining(_Bool permitted)
+void nwk_set_mac_permit_joining(undefined1 param_1)
 
 {
   code *pcVar1;
@@ -23,7 +21,7 @@ void nwk_set_mac_permit_joining(_Bool permitted)
   code *pcStack_24;
   undefined1 auStack_11 [13];
   
-  auStack_11[0] = permitted;
+  auStack_11[0] = param_1;
   iVar3 = nwk_mm_set_pib_attr(0xff,0x41,auStack_11);
   if (iVar3 == 0) {
     return;

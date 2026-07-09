@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_comm.o -> bdb_comm_network_steering_handle_node_desc_req_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void bdb_comm_network_steering_handle_node_desc_req_result
-               (ezb_zdo_node_desc_req_result_t *result,void *unused)
+void bdb_comm_network_steering_handle_node_desc_req_result(int *param_1)
 
 {
   int iVar1;
   
-  if ((result->error == 0) && (result->rsp->status == '\0')) {
-    if ((result->rsp->node_desc).server_mask >> 9 < 0x15) {
-      iVar1 = core_globals_get();
-      *(undefined1 *)(iVar1 + 0xd4c) = 0;
-      zdo_dev_set_joined(1);
-    }
-    else {
-      iVar1 = core_globals_get();
-      *(undefined1 *)(iVar1 + 0xd4c) = 1;
-      zdo_initiate_commissioning(0x200);
+  if (*param_1 == 0) {
+    if (*(char *)param_1[1] == '\0') {
+      if (*(ushort *)((char *)param_1[1] + 0xe) >> 9 < 0x15) {
+        iVar1 = core_globals_get();
+        *(undefined1 *)(iVar1 + 0xd4c) = 0;
+        zdo_dev_set_joined(1);
+      }
+      else {
+        iVar1 = core_globals_get();
+        *(undefined1 *)(iVar1 + 0xd4c) = 1;
+        zdo_initiate_commissioning(0x200);
+      }
+      goto _L0;
     }
   }
-  else {
-    iVar1 = core_globals_get();
-    *(undefined1 *)(iVar1 + 0xd4c) = 10;
-  }
+  iVar1 = core_globals_get();
+  *(undefined1 *)(iVar1 + 0xd4c) = 10;
+_L0:
   iVar1 = core_globals_get();
   if (*(char *)(iVar1 + 0xd4c) != '\x01') {
     bdb_comm_finish_network_steering_with_leave();

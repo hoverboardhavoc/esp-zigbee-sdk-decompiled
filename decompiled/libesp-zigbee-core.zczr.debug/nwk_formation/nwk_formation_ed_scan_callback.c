@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_formation.o -> nwk_formation_ed_scan_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,60 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_formation_ed_scan_callback(ed_scan_result_t *scan_result,void *user_ctx)
+void nwk_formation_ed_scan_callback(undefined1 *param_1)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  int8_t iVar3;
-  int iVar4;
-  uint uVar5;
+  byte bVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  int iVar5;
   uint uVar6;
+  uint uVar7;
   undefined4 local_20;
-  mac_scan_req_t scan_req;
+  undefined4 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  iVar4 = core_globals_get();
-  if (scan_result == (ed_scan_result_t *)0x0) {
-    if (((*(uint *)(iVar4 + 0xac8) & 0x7ffffff) == 0) && (*(byte *)(iVar4 + 0xace) != 0xff)) {
-      uVar5 = (uint)*(byte *)(iVar4 + 0xace) << 0x1b;
-      uVar6 = *(uint *)(iVar4 + 0xac8) & 0x7ffffff;
-      *(uint *)(iVar4 + 0xac8) = uVar6 | uVar5;
-      *(uint *)(iVar4 + 0xac8) = uVar5 | uVar6 | 1 << (*(byte *)(iVar4 + 0xacf) & 0x1f) & 0x7ffffffU
+  iVar5 = core_globals_get();
+  if (param_1 == (undefined1 *)0x0) {
+    if (((*(uint *)(iVar5 + 0xac8) & 0x7ffffff) == 0) && (*(byte *)(iVar5 + 0xace) != 0xff)) {
+      uVar6 = (uint)*(byte *)(iVar5 + 0xace) << 0x1b;
+      uVar7 = *(uint *)(iVar5 + 0xac8) & 0x7ffffff;
+      *(uint *)(iVar5 + 0xac8) = uVar7 | uVar6;
+      *(uint *)(iVar5 + 0xac8) = uVar6 | uVar7 | 1 << (*(byte *)(iVar5 + 0xacf) & 0x1f) & 0x7ffffffU
       ;
     }
-    if ((*(uint *)(iVar4 + 0xac8) & 0x7ffffff) != 0) {
+    if ((*(uint *)(iVar5 + 0xac8) & 0x7ffffff) != 0) {
       nwk_disc_table_lite_init();
-      scan_req.cb_u.active_scan_cb = (active_scan_callback)0x0;
-      local_20 = (uint)CONCAT11(*(undefined1 *)(iVar4 + 0xacc),1);
-      scan_req._0_4_ = *(undefined4 *)(iVar4 + 0xac8);
-      scan_req.scan_channels.u32 = (uint32_t)nwk_formation_active_scan_callback;
-      iVar4 = nwk_mm_scan_request(0,&local_20);
-      if (iVar4 == 0) {
+      uStack_14 = 0;
+      local_20 = (uint)CONCAT11(*(undefined1 *)(iVar5 + 0xacc),1);
+      uStack_1c = *(undefined4 *)(iVar5 + 0xac8);
+      pcStack_18 = nwk_formation_active_scan_callback;
+      iVar5 = nwk_mm_scan_request(0,&local_20);
+      if (iVar5 == 0) {
         return;
       }
     }
-    iVar4 = core_globals_get();
-    *(undefined1 *)(iVar4 + 0xac0) = 0;
+    iVar5 = core_globals_get();
+    *(undefined1 *)(iVar5 + 0xac0) = 0;
     nwk_network_formation_confirm(0xc4);
   }
   else {
-    if (scan_result->max_rssi < -0x3b) {
-      uVar5 = (uint)scan_result->channel_page << 0x1b;
-      uVar6 = *(uint *)(iVar4 + 0xac8) & 0x7ffffff;
-      *(uint *)(iVar4 + 0xac8) = uVar6 | uVar5;
-      *(uint *)(iVar4 + 0xac8) =
-           uVar5 | uVar6 | 1 << (scan_result->channel_number & 0x1f) & 0x7ffffffU;
+    if ((char)param_1[3] < -0x3b) {
+      bVar1 = param_1[1];
+      uVar6 = *(uint *)(iVar5 + 0xac8) & 0x7ffffff;
+      *(uint *)(iVar5 + 0xac8) = uVar6 | (uint)bVar1 << 0x1b;
+      *(uint *)(iVar5 + 0xac8) =
+           (uint)bVar1 << 0x1b | uVar6 | 1 << ((byte)param_1[2] & 0x1f) & 0x7ffffffU;
     }
-    if (scan_result->max_rssi < *(char *)(iVar4 + 0xad0)) {
-      uVar1 = scan_result->channel_page;
-      uVar2 = scan_result->channel_number;
-      iVar3 = scan_result->max_rssi;
-      *(uint8_t *)(iVar4 + 0xacd) = scan_result->iface_id;
-      *(uint8_t *)(iVar4 + 0xace) = uVar1;
-      *(uint8_t *)(iVar4 + 0xacf) = uVar2;
-      *(int8_t *)(iVar4 + 0xad0) = iVar3;
+    if ((char)param_1[3] < *(char *)(iVar5 + 0xad0)) {
+      uVar2 = param_1[1];
+      uVar3 = param_1[2];
+      uVar4 = param_1[3];
+      *(undefined1 *)(iVar5 + 0xacd) = *param_1;
+      *(undefined1 *)(iVar5 + 0xace) = uVar2;
+      *(undefined1 *)(iVar5 + 0xacf) = uVar3;
+      *(undefined1 *)(iVar5 + 0xad0) = uVar4;
     }
   }
   return;

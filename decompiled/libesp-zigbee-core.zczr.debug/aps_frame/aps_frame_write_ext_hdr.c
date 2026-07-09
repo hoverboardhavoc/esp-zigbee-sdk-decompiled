@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_frame.o -> aps_frame_write_ext_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_frame_write_ext_hdr(zmsg_t *msg,uint8_t block_nr,uint8_t block_idx)
+void aps_frame_write_ext_hdr(undefined4 param_1,int param_2,int param_3)
 
 {
-  uint16_t unaff_s0;
-  uint uVar1;
-  undefined3 in_register_00002031;
+  int unaff_s0;
   undefined1 uStack_22;
-  uint8_t auStack_21 [4];
-  uint8_t fcf;
+  char acStack_21 [13];
   
-  uVar1 = CONCAT31(in_register_00002031,block_idx);
-  zmsg_read_bytes(0,1,auStack_21);
-  if ((char)auStack_21[0] < '\0') {
-    unaff_s0 = aps_fcf_get_hdr_size(auStack_21[0]);
-    if (uVar1 == 0) {
+  zmsg_read_bytes(0,1,acStack_21);
+  if (acStack_21[0] < '\0') {
+    unaff_s0 = aps_fcf_get_hdr_size();
+    if (param_3 == 0) {
       uStack_22 = 1;
       goto _L51;
     }
@@ -37,12 +31,12 @@ void aps_frame_write_ext_hdr(zmsg_t *msg,uint8_t block_nr,uint8_t block_idx)
   }
   uStack_22 = 2;
 _L51:
-  zmsg_write_bytes(msg,unaff_s0,1,&uStack_22);
-  if (uVar1 == 0) {
-    uVar1 = (uint)block_nr;
+  zmsg_write_bytes(param_1,unaff_s0,1,&uStack_22);
+  if (param_3 == 0) {
+    param_3 = param_2;
   }
-  uStack_22 = (undefined1)uVar1;
-  zmsg_write_bytes(msg,unaff_s0 + 1,1,&uStack_22);
+  uStack_22 = (undefined1)param_3;
+  zmsg_write_bytes(param_1,unaff_s0 + 1U & 0xffff,1,&uStack_22);
   return;
 }
 

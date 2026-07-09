@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> alarms.o -> ezb_zcl_alarms_cluster_server_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,109 +10,105 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ezb_zcl_alarms_cluster_server_init(uint8_t ep_id)
+void ezb_zcl_alarms_cluster_server_init(uint param_1)
 
 {
   byte bVar1;
   bool bVar2;
-  undefined3 in_register_00002029;
-  uint uVar3;
-  int iVar4;
-  undefined4 *puVar5;
-  void *pvVar6;
-  alarms_alarm_table_t *paVar7;
-  uint uVar8;
-  alarms_alarm_table_entry_t *paVar9;
-  uint uVar10;
-  undefined1 local_40 [4];
-  ds_alarm_log_iterator_t itor;
-  zcl_cluster_template_t template;
+  int iVar3;
+  undefined4 *puVar4;
+  void *pvVar5;
+  int *piVar6;
+  uint uVar7;
+  int *piVar8;
+  uint uVar9;
+  undefined4 local_40;
+  undefined2 uStack_3c;
+  undefined1 uStack_3a;
+  byte bStack_39;
+  short sStack_38;
+  char cStack_36;
+  undefined1 auStack_34 [32];
   
-  uVar3 = CONCAT31(in_register_00002029,ep_id);
-  memcpy(&itor.index,&_LANCHOR0,0x14);
-  iVar4 = ezb_zcl_get_attr_desc(uVar3,9,1,0xeffe,0x131b);
-  if (iVar4 == 0) goto _L0;
-  if (*(byte **)(iVar4 + 8) == (byte *)0x0) goto _L0;
-  bVar1 = **(byte **)(iVar4 + 8);
-  uVar10 = (uint)bVar1;
-  if (uVar10 == 0) goto _L0;
-  iVar4 = ezb_zcl_get_attr_desc(uVar3,9,1,0xefff,0x131b);
-  if (iVar4 == 0) goto _L0;
-  puVar5 = (undefined4 *)calloc(1,0x10);
-  if (puVar5 == (undefined4 *)0x0) goto _L0;
-  pvVar6 = calloc(uVar10,0xc);
-  *puVar5 = pvVar6;
-  if (pvVar6 == (void *)0x0) goto _L0;
-  *(byte *)(puVar5 + 3) = bVar1;
-  *(undefined1 *)((int)puVar5 + 0xd) = 0;
-  puVar5[2] = 0;
-  puVar5[1] = 0;
-  uVar8 = 0;
+  memcpy(auStack_34,&_LANCHOR0,0x14);
+  iVar3 = ezb_zcl_get_attr_desc(param_1,9,1,0xeffe,0x131b);
+  if (iVar3 == 0) goto _L0;
+  if (*(byte **)(iVar3 + 8) == (byte *)0x0) goto _L0;
+  bVar1 = **(byte **)(iVar3 + 8);
+  uVar9 = (uint)bVar1;
+  if (uVar9 == 0) goto _L0;
+  iVar3 = ezb_zcl_get_attr_desc(param_1,9,1,0xefff,0x131b);
+  if (iVar3 == 0) goto _L0;
+  puVar4 = (undefined4 *)calloc(1,0x10);
+  if (puVar4 == (undefined4 *)0x0) goto _L0;
+  pvVar5 = calloc(uVar9,0xc);
+  *puVar4 = pvVar5;
+  if (pvVar5 == (void *)0x0) goto _L0;
+  *(byte *)(puVar4 + 3) = bVar1;
+  *(undefined1 *)((int)puVar4 + 0xd) = 0;
+  puVar4[2] = 0;
+  puVar4[1] = 0;
+  uVar7 = 0;
   do {
-    *(void **)pvVar6 = pvVar6;
-    uVar8 = uVar8 + 1 & 0xff;
-    pvVar6 = (void *)((int)pvVar6 + 0xc);
-  } while (uVar10 != uVar8);
-  *(undefined4 **)(iVar4 + 8) = puVar5;
+    *(void **)pvVar5 = pvVar5;
+    uVar7 = uVar7 + 1 & 0xff;
+    pvVar5 = (void *)((int)pvVar5 + 0xc);
+  } while (uVar9 != uVar7);
+  *(undefined4 **)(iVar3 + 8) = puVar4;
   do {
-    paVar7 = get_alarm_table(ep_id);
-    if (paVar7 != (alarms_alarm_table_t *)0x0) {
-      itor.data.cluster_id = 0;
-      itor.data.alarm_code = '\0';
-      ds_alarm_log_itor_read((ds_alarm_log_iterator_t *)local_40);
-      uVar10 = 0;
-      while (itor.data.alarm_code == '\0') {
-        uVar8 = uVar10;
-        if (itor.data.time_stamp._3_1_ == uVar3) {
-          if (paVar7->total <= uVar10) {
+    piVar6 = (int *)get_alarm_table(param_1);
+    if (piVar6 != (int *)0x0) {
+      sStack_38 = 0;
+      cStack_36 = '\0';
+      uVar9 = 0;
+      ds_alarm_log_itor_read(&local_40);
+      while (cStack_36 == '\0') {
+        if (bStack_39 == param_1) {
+          if (*(byte *)(piVar6 + 3) <= uVar9) {
             bVar2 = true;
-            if (uVar10 != 0) goto _L0;
+            if (uVar9 != 0) goto _L0;
             goto _L0;
           }
-          paVar9 = paVar7->entries;
-          uVar8 = uVar10 + 1 & 0xff;
-          paVar9[uVar10].alarm_code = itor.data.time_stamp._2_1_;
-          paVar9[uVar10].cluster_id = (uint16_t)itor.data.time_stamp;
-          paVar9[uVar10].time_stamp = (uint32_t)local_40;
+          iVar3 = uVar9 * 0xc;
+          uVar9 = uVar9 + 1 & 0xff;
+          iVar3 = *piVar6 + iVar3;
+          *(undefined1 *)(iVar3 + 4) = uStack_3a;
+          *(undefined2 *)(iVar3 + 6) = uStack_3c;
+          *(undefined4 *)(iVar3 + 8) = local_40;
         }
-        itor.data.cluster_id = itor.data.cluster_id + 1;
-        ds_alarm_log_itor_read((ds_alarm_log_iterator_t *)local_40);
-        uVar10 = uVar8;
+        sStack_38 = sStack_38 + 1;
+        ds_alarm_log_itor_read(&local_40);
       }
       bVar2 = false;
-      if (uVar10 != 0) {
+      if (uVar9 != 0) {
 _L0:
-        qsort(paVar7->entries,uVar10,0xc,alarm_log_compare_by_time);
-        paVar9 = paVar7->entries;
-        (paVar9->node).next = (paVar7->active_alarms).head;
-        (paVar7->active_alarms).head = &paVar9->node;
-        uVar8 = 1;
+        qsort((void *)*piVar6,uVar9,0xc,alarm_log_compare_by_time);
+        piVar8 = (int *)*piVar6;
+        *piVar8 = piVar6[1];
+        piVar6[1] = (int)piVar8;
+        uVar7 = 1;
         while( true ) {
-          paVar7->tail = &paVar9->node;
-          paVar9 = paVar9 + 1;
-          if (uVar10 == uVar8) break;
-          (paVar9->node).next = (list_node_s *)0x0;
-          uVar8 = uVar8 + 1 & 0xff;
-          paVar7->tail->next = &paVar9->node;
+          piVar6[2] = (int)piVar8;
+          piVar8 = piVar8 + 3;
+          if (uVar9 == uVar7) break;
+          *piVar8 = 0;
+          uVar7 = uVar7 + 1 & 0xff;
+          *(int **)piVar6[2] = piVar8;
         }
-        paVar7->count = (uint8_t)uVar10;
+        *(char *)((int)piVar6 + 0xd) = (char)uVar9;
         if (bVar2) {
 _L0:
-          alarm_table_remove_stored_all(ep_id);
-          paVar7 = get_alarm_table(ep_id);
-          if (paVar7 != (alarms_alarm_table_t *)0x0) {
-            for (paVar9 = (alarms_alarm_table_entry_t *)(paVar7->active_alarms).head;
-                paVar9 != (alarms_alarm_table_entry_t *)0x0;
-                paVar9 = (alarms_alarm_table_entry_t *)(paVar9->node).next) {
-              alarm_table_store_entry(ep_id,paVar9);
+          alarm_table_remove_stored_all(param_1);
+          iVar3 = get_alarm_table(param_1);
+          if (iVar3 != 0) {
+            for (piVar6 = *(int **)(iVar3 + 4); piVar6 != (int *)0x0; piVar6 = (int *)*piVar6) {
+              alarm_table_store_entry(param_1,piVar6);
             }
           }
         }
       }
-      iVar4 = zcl_cluster_template_add(&itor.index);
-      if (iVar4 == 0) {
+      iVar3 = zcl_cluster_template_add(auStack_34);
+      if (iVar3 == 0) {
         return;
       }
     }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink.o -> touchlink_commissioning_select_suitable_device
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-touchlink_disc_dev_info_t * touchlink_commissioning_select_suitable_device(void)
+int touchlink_commissioning_select_suitable_device(void)
 
 {
   uint uVar1;
-  _Bool _Var2;
-  touchlink_transaction_t *ptVar3;
-  uint uVar4;
-  undefined3 extraout_var;
-  int iVar5;
-  byte bVar6;
+  int iVar2;
+  uint uVar3;
+  int iVar4;
+  byte bVar5;
+  int iVar6;
   int iVar7;
-  touchlink_disc_dev_info_t *ptVar8;
+  int iVar8;
   byte bVar9;
   
   bVar9 = 0;
   iVar7 = -0x80;
-  ptVar8 = (touchlink_disc_dev_info_t *)0x0;
-  for (uVar1 = 0; ptVar3 = touchlink_transaction_get(),
-      uVar1 < (ptVar3->field_2).cli.disc_table_count; uVar1 = uVar1 + 1 & 0xff) {
-    ptVar3 = touchlink_transaction_get();
-    if ((((*(ushort *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 0xc) & 3) == 1) ||
-        (iVar5 = touchlink_is_factory_new(), iVar5 == 0)) ||
-       (((*(ushort *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 0xc) & 3) == 2 &&
-        (uVar4 = touchlink_zigbee_info(), (uVar4 & 3) == 1)))) {
-      iVar5 = (int)(((uint)*(byte *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 0x12) +
-                    (uint)*(byte *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 0xc0)) * 0x1000000) >>
+  iVar8 = 0;
+  for (uVar1 = 0; iVar2 = touchlink_transaction_get(), uVar1 < *(byte *)(iVar2 + 8);
+      uVar1 = uVar1 + 1 & 0xff) {
+    iVar2 = touchlink_transaction_get();
+    iVar6 = uVar1 * 0xc0 + iVar2;
+    if ((((*(ushort *)(iVar6 + 0x14) & 3) == 1) || (iVar4 = touchlink_is_factory_new(), iVar4 == 0))
+       || (((*(ushort *)(uVar1 * 0xc0 + iVar2 + 0x14) & 3) == 2 &&
+           (uVar3 = touchlink_zigbee_info(), (uVar3 & 3) == 1)))) {
+      iVar4 = uVar1 * 0xc0 + iVar2;
+      iVar4 = (int)(((uint)*(byte *)(iVar4 + 0x1a) + (uint)*(byte *)(iVar4 + 200)) * 0x1000000) >>
               0x18;
-      bVar6 = *(byte *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 0xe) & 1;
-      if ((iVar7 < iVar5) && (bVar9 <= bVar6)) {
-        iVar7 = iVar5;
-        ptVar8 = (touchlink_disc_dev_info_t *)((int)&ptVar3->field_2 + uVar1 * 0xc0 + 4);
-        bVar9 = bVar6;
+      bVar5 = *(byte *)(iVar2 + uVar1 * 0xc0 + 0x16) & 1;
+      if ((iVar7 < iVar4) && (bVar9 <= bVar5)) {
+        iVar7 = iVar4;
+        iVar8 = iVar6 + 0xc;
+        bVar9 = bVar5;
       }
     }
   }
-  if ((ptVar8 == (touchlink_disc_dev_info_t *)0x0) ||
-     (_Var2 = touchlink_commissioning_action_permission
-                        (TOUCHLINK_ACTION_SELECTED_TARGET,&(ptVar8->basic).ieee_addr),
-     CONCAT31(extraout_var,_Var2) == 0)) {
-    ptVar8 = (touchlink_disc_dev_info_t *)0x0;
+  if ((iVar8 == 0) || (iVar7 = touchlink_commissioning_action_permission(0,iVar8 + 0xf), iVar7 == 0)
+     ) {
+    iVar8 = 0;
   }
-  return ptVar8;
+  return iVar8;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_core_compat.o -> convert_to_esp_zb_zcl_cmd_info
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,46 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void convert_to_esp_zb_zcl_cmd_info(esp_zb_zcl_cmd_info_t *dst,ezb_zcl_cmd_hdr_t *src)
+void convert_to_esp_zb_zcl_cmd_info(int param_1,undefined1 *param_2)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  uint8_t uVar3;
-  uint8_t uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
-  uint8_t uVar7;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined1 uVar5;
+  undefined1 uVar6;
+  undefined1 uVar7;
   
-  (dst->src_address).addr_type = (src->src_addr).addr_mode;
-  uVar1 = *(uint8_t *)((int)&(src->src_addr).u + 1);
-  uVar2 = *(uint8_t *)((int)&(src->src_addr).u + 2);
-  uVar3 = *(uint8_t *)((int)&(src->src_addr).u + 3);
-  uVar4 = *(uint8_t *)((int)&(src->src_addr).u + 4);
-  uVar5 = *(uint8_t *)((int)&(src->src_addr).u + 5);
-  uVar6 = *(uint8_t *)((int)&(src->src_addr).u + 6);
-  uVar7 = *(uint8_t *)((int)&(src->src_addr).u + 7);
-  (dst->src_address).u.ieee_addr[0] = *(uint8_t *)&(src->src_addr).u;
-  (dst->src_address).u.ieee_addr[1] = uVar1;
-  (dst->src_address).u.ieee_addr[2] = uVar2;
-  (dst->src_address).u.ieee_addr[3] = uVar3;
-  (dst->src_address).u.ieee_addr[4] = uVar4;
-  (dst->src_address).u.ieee_addr[5] = uVar5;
-  (dst->src_address).u.ieee_addr[6] = uVar6;
-  (dst->src_address).u.ieee_addr[7] = uVar7;
-  dst->src_endpoint = src->src_ep;
-  dst->dst_endpoint = src->dst_ep;
-  dst->cluster = src->cluster_id;
-  dst->profile = src->profile_id;
-  (dst->header).fc = src->fc;
-  (dst->header).manuf_code = src->manuf_code;
-  (dst->header).tsn = src->tsn;
-  (dst->header).rssi = src->rssi;
-  (dst->command).id = src->cmd_id;
-  (dst->command).direction = src->fc >> 3 & 1;
-  (dst->command).is_common = (src->fc & 3) == 0;
+  *(undefined1 *)(param_1 + 8) = *param_2;
+  uVar1 = param_2[3];
+  uVar2 = param_2[4];
+  uVar3 = param_2[5];
+  uVar4 = param_2[6];
+  uVar5 = param_2[7];
+  uVar6 = param_2[8];
+  uVar7 = param_2[9];
+  *(undefined1 *)(param_1 + 0xc) = param_2[2];
+  *(undefined1 *)(param_1 + 0xd) = uVar1;
+  *(undefined1 *)(param_1 + 0xe) = uVar2;
+  *(undefined1 *)(param_1 + 0xf) = uVar3;
+  *(undefined1 *)(param_1 + 0x10) = uVar4;
+  *(undefined1 *)(param_1 + 0x11) = uVar5;
+  *(undefined1 *)(param_1 + 0x12) = uVar6;
+  *(undefined1 *)(param_1 + 0x13) = uVar7;
+  *(undefined1 *)(param_1 + 0x16) = param_2[0x14];
+  *(undefined1 *)(param_1 + 0x17) = param_2[0x15];
+  *(undefined2 *)(param_1 + 0x18) = *(undefined2 *)(param_2 + 0x16);
+  *(undefined2 *)(param_1 + 0x1a) = *(undefined2 *)(param_2 + 0x18);
+  *(undefined1 *)(param_1 + 2) = param_2[0x1a];
+  *(undefined2 *)(param_1 + 4) = *(undefined2 *)(param_2 + 0x1c);
+  *(undefined1 *)(param_1 + 6) = param_2[0x1e];
+  *(undefined1 *)(param_1 + 7) = param_2[0x1f];
+  *(undefined1 *)(param_1 + 0x1c) = param_2[0x20];
+  *(byte *)(param_1 + 0x1d) = (byte)param_2[0x1a] >> 3 & 1;
+  *(bool *)(param_1 + 0x1e) = (param_2[0x1a] & 3) == 0;
   return;
 }
 

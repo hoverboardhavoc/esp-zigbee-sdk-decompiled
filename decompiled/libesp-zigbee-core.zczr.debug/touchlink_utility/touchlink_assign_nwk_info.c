@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_utility.o -> touchlink_assign_nwk_info
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_assign_nwk_info(void)
+void touchlink_assign_nwk_info(void)
 
 {
-  byte bVar1;
-  char *pcVar2;
-  ezb_err_t eVar3;
+  char *pcVar1;
+  uint uVar2;
   
-  pcVar2 = (char *)touchlink_device_info_get();
-  if (*pcVar2 != '\0') {
+  pcVar1 = (char *)touchlink_device_info_get();
+  if (*pcVar1 != '\0') {
     touchlink_assign_short_addr();
     nwk_set_short_address();
     nwk_secur_set_key(0,0);
   }
   touchlink_assign_pan_id();
   nwk_set_panid();
-  bVar1 = touchlink_get_logical_channel();
-  eVar3 = nwk_set_pan_channel(1 << (bVar1 & 0x1f) & 0x7ffffff);
-  return eVar3;
+  uVar2 = touchlink_get_logical_channel();
+  nwk_set_pan_channel(1 << (uVar2 & 0x1f) & 0x7ffffff);
+  return;
 }
 

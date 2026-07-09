@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_disc_table.o -> nwk_disc_table_find_weakest_pan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,54 +10,62 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: max_lqa */
-/* WARNING: Unknown calling convention */
-
-nwk_panid_ref_t nwk_disc_table_find_weakest_pan(uint8_t min_lqa)
+uint nwk_disc_table_find_weakest_pan(uint param_1)
 
 {
   byte bVar1;
-  uint uVar2;
-  undefined3 in_register_00002029;
+  byte bVar2;
   int iVar3;
   uint uVar4;
   uint uVar5;
   byte bVar6;
-  bitmap_t abStack_24 [4];
-  bitmap_t pan_ref_in_use [2];
-  uint8_t max_lqa [16];
+  undefined2 auStack_24 [2];
+  byte abStack_20 [16];
   
-  uVar2 = CONCAT31(in_register_00002029,min_lqa);
   iVar3 = core_globals_get();
-  _pan_ref_in_use = 0;
-  abStack_24[0] = '\0';
-  abStack_24[1] = '\0';
-  uVar5 = 0;
-  while( true ) {
-    uVar5 = bitmap_find_next_bit(iVar3 + 0xba4,6,uVar5);
-    if (5 < uVar5) break;
-    uVar4 = (uint)*(byte *)(uVar5 * 0x14 + iVar3 + 0x1000 + -0x4cc);
-    bVar1 = *(byte *)(iVar3 + 0x1000 + uVar5 * 0x14 + -0x4cb);
-    bVar6 = pan_ref_in_use[uVar4];
-    if (pan_ref_in_use[uVar4] < bVar1) {
-      bVar6 = bVar1;
-    }
-    pan_ref_in_use[uVar4] = bVar6;
-    test_and_set_bitmap(uVar4,abStack_24);
-    uVar5 = uVar5 + 1 & 0xffff;
-  }
-  uVar5 = 0xff;
+  abStack_20[0] = 0;
+  abStack_20[1] = 0;
+  abStack_20[2] = 0;
+  abStack_20[3] = 0;
+  abStack_20[4] = 0;
+  abStack_20[5] = 0;
+  abStack_20[6] = 0;
+  abStack_20[7] = 0;
+  abStack_20[8] = 0;
+  abStack_20[9] = 0;
+  abStack_20[10] = 0;
+  abStack_20[0xb] = 0;
+  abStack_20[0xc] = 0;
+  abStack_20[0xd] = 0;
+  abStack_20[0xe] = 0;
+  abStack_20[0xf] = 0;
+  auStack_24[0] = 0;
   uVar4 = 0;
   while( true ) {
-    uVar4 = bitmap_find_next_bit(abStack_24,0x10,uVar4);
-    uVar4 = uVar4 & 0xff;
-    if (0xf < uVar4) break;
-    if (pan_ref_in_use[uVar4] < uVar2) {
-      uVar5 = uVar4;
-      uVar2 = (uint)pan_ref_in_use[uVar4];
+    uVar4 = bitmap_find_next_bit(iVar3 + 0xba4,6,uVar4);
+    if (5 < uVar4) break;
+    bVar1 = *(byte *)(uVar4 * 0x14 + iVar3 + 0x1000 + -0x4cc);
+    bVar2 = *(byte *)(iVar3 + 0x1000 + uVar4 * 0x14 + -0x4cb);
+    bVar6 = abStack_20[bVar1];
+    if (abStack_20[bVar1] < bVar2) {
+      bVar6 = bVar2;
     }
-    uVar4 = uVar4 + 1 & 0xff;
+    abStack_20[bVar1] = bVar6;
+    test_and_set_bitmap(auStack_24);
+    uVar4 = uVar4 + 1 & 0xffff;
   }
-  return (nwk_panid_ref_t)uVar5;
+  uVar4 = 0xff;
+  uVar5 = 0;
+  while( true ) {
+    uVar5 = bitmap_find_next_bit(auStack_24,0x10,uVar5);
+    uVar5 = uVar5 & 0xff;
+    if (0xf < uVar5) break;
+    if (abStack_20[uVar5] < param_1) {
+      uVar4 = uVar5;
+      param_1 = (uint)abStack_20[uVar5];
+    }
+    uVar5 = uVar5 + 1 & 0xff;
+  }
+  return uVar4;
 }
 

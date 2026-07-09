@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_active_ep_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,46 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_active_ep_rsp_wrapper(ezb_zdo_active_ep_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_active_ep_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
   byte bVar1;
-  void *pvVar2;
+  void *__dest;
+  undefined4 *puVar2;
   int iVar3;
   code *pcVar4;
-  ezb_zdp_active_ep_rsp_field_t *peVar5;
+  int iVar5;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar4 = *user_ctx;
+  pcVar4 = (code *)*param_2;
   if (pcVar4 != (code *)0x0) {
-    iVar3 = result->error;
-    pvVar2 = user_ctx;
+    iVar3 = *param_1;
+    puVar2 = param_2;
     if (iVar3 == 0) {
-      peVar5 = result->rsp;
-      if (peVar5 != (ezb_zdp_active_ep_rsp_field_t *)0x0) {
-        bVar1 = peVar5->active_ep_count;
-        pvVar2 = calloc((uint)bVar1,1);
-        if (pvVar2 != (void *)0x0) {
-          memcpy(pvVar2,peVar5->active_ep_list,(uint)bVar1);
+      iVar5 = param_1[1];
+      if (iVar5 != 0) {
+        bVar1 = *(byte *)(iVar5 + 4);
+        __dest = calloc((uint)bVar1,1);
+        if (__dest != (void *)0x0) {
+          memcpy(__dest,*(void **)(iVar5 + 8),(uint)bVar1);
         }
-        (*pcVar4)(result->rsp->status,result->rsp->active_ep_count,pvVar2,
-                  *(undefined4 *)((int)user_ctx + 4));
-        if (pvVar2 != (void *)0x0) {
-          free(pvVar2);
+        (*pcVar4)(*(undefined1 *)param_1[1],((undefined1 *)param_1[1])[4],__dest,param_2[1]);
+        if (__dest != (void *)0x0) {
+          free(__dest);
         }
         goto _L0;
       }
-      pvVar2 = (void *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
-                                     ,0x162,"esp_zb_zdo_active_ep_rsp_wrapper","result->rsp");
+      puVar2 = (undefined4 *)
+               __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
+                             ,0x162,"esp_zb_zdo_active_ep_rsp_wrapper","result->rsp");
     }
     if (iVar3 == 7) {
-      (*pcVar4)(0x85,0xff,0,*(undefined4 *)((int)pvVar2 + 4));
+      (*pcVar4)(0x85,0xff,0,puVar2[1]);
     }
   }
 _L0:
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

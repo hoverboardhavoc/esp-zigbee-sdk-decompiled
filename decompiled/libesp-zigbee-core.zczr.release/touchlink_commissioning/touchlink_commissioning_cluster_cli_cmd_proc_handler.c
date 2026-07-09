@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> touchlink_commissioning.o -> touchlink_commissioning_cluster_cli_cmd_proc_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,188 +10,172 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: resp */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t touchlink_commissioning_cluster_cli_cmd_proc_handler(void *arg)
+int touchlink_commissioning_cluster_cli_cmd_proc_handler(int param_1)
 
 {
   char cVar1;
-  int iVar2;
-  uint uVar3;
+  uint uVar2;
+  int iVar3;
   uint uVar4;
   uint uVar5;
   undefined4 uVar6;
-  uint16_t uStack_72;
-  undefined1 auStack_70 [2];
-  uint16_t offset;
-  ezb_zcl_touchlink_ep_info_t ep_info;
-  uint16_t uStack_5a;
-  ezb_zcl_touchlink_ep_info_message_t message;
-  zcl_packet_t resp;
+  ushort uStack_72;
+  undefined4 uStack_70;
+  void *pvStack_6c;
+  undefined4 uStack_68;
+  undefined4 uStack_64;
+  undefined2 auStack_60 [2];
+  undefined4 uStack_5c;
+  undefined4 uStack_58;
+  int iStack_54;
+  undefined4 *puStack_50;
+  uint uStack_4c;
+  undefined1 auStack_48 [40];
   
-  iVar2 = 1;
-  memset(&message.out,0,0x28);
-  if (arg == (void *)0x0) goto _L0;
-  iVar2 = 1;
-  if (((*(byte *)((int)arg + 0x1a) & 8) == 0) ||
-     (iVar2 = zcl_packet_init(&message.out,*(byte *)((int)arg + 0x1a) >> 2 & 1), iVar2 != 0))
-  goto _L0;
-  cVar1 = *(char *)((int)arg + 0x20);
+  memset(auStack_48,0,0x28);
+  if (param_1 == 0) {
+    return 1;
+  }
+  if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+    return 1;
+  }
+  iVar3 = zcl_packet_init(auStack_48,*(byte *)(param_1 + 0x1a) >> 2 & 1);
+  if (iVar3 != 0) {
+    return iVar3;
+  }
+  cVar1 = *(char *)(param_1 + 0x20);
   if (cVar1 == 'A') {
     uStack_72 = 0;
-    _auStack_70 = 0;
-    ep_info.ieee_addr.field_0.u64._0_4_ = 0;
-    uVar4 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,auStack_70);
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,auStack_70 + 1);
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,(uint8_t *)&offset);
+    uStack_70 = 0;
+    pvStack_6c = (void *)0x0;
+    uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,&uStack_70);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_70 + 1);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_70 + 2);
     if (uVar4 < uStack_72) goto _L0;
     uVar5 = 0x89;
-    ep_info.ieee_addr.field_0.u64._0_4_ = calloc(_auStack_70 >> 0x10 & 0xff,2);
-    uVar3 = 0;
-    if ((void *)ep_info.ieee_addr.field_0.u64._0_4_ != (void *)0x0) {
-      for (; uVar3 < (_auStack_70 >> 0x10 & 0xff); uVar3 = uVar3 + 1 & 0xff) {
-        af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                     (uint16_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + uVar3 * 2));
+    pvStack_6c = calloc(uStack_70 >> 0x10 & 0xff,2);
+    uVar2 = 0;
+    if (pvStack_6c != (void *)0x0) {
+      for (; uVar2 < (uStack_70 >> 0x10 & 0xff); uVar2 = uVar2 + 1 & 0xff) {
+        af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,
+                            (void *)((int)pvStack_6c + uVar2 * 2));
       }
       if (uVar4 < uStack_72) goto _L0;
-      ep_info.version = '\0';
-      ep_info._17_1_ = '\0';
-      uStack_5a = 0;
-      message.info.status = '\0';
-      message.info.dst_ep = '\0';
-      message.info.cluster_id = 0;
-      message.info.cluster_role = '\0';
-      message.info._5_1_ = 0;
-      message._6_2_ = 0;
-      message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-      message.in.ep_info = (ezb_zcl_touchlink_ep_info_t *)0x0;
-      uVar5 = zcl_packet_to_message(&ep_info.version,arg);
+      uStack_5c = 0;
+      uStack_58 = 0;
+      iStack_54 = 0;
+      puStack_50 = (undefined4 *)0x0;
+      uStack_4c = 0;
+      uVar5 = zcl_packet_to_message(&uStack_5c,param_1);
       if (uVar5 == 0) {
-        uVar6 = 0x51;
+        uVar6 = 0x52;
 _L0:
-        message.in.header = (ezb_zcl_cmd_hdr_t *)auStack_70;
-        message.in.ep_info = (ezb_zcl_touchlink_ep_info_t *)CONCAT31(message.in.ep_info._1_3_,0xfe);
-        message._4_4_ = arg;
-        zcl_core_action_schedule(uVar6,&ep_info.version);
-        if (((uint)message.in.ep_info & 0xff) != 0xfe) {
-          uVar5 = (uint)message.in.ep_info & 0xff;
+        puStack_50 = &uStack_70;
+        uStack_4c = CONCAT31(uStack_4c._1_3_,0xfe);
+        iStack_54 = param_1;
+        zcl_core_action_schedule(uVar6,&uStack_5c);
+        if ((uStack_4c & 0xff) != 0xfe) {
+          uVar5 = uStack_4c & 0xff;
         }
       }
-    }
-_L0:
-    if (ep_info.ieee_addr.field_0.u64._0_4_ != 0) {
-      mm_free();
     }
   }
   else {
-    if (cVar1 == 'B') {
-      uStack_72 = 0;
-      _auStack_70 = 0;
-      ep_info.ieee_addr.field_0.u64._0_4_ = 0;
-      uVar4 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-      af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,auStack_70);
-      af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,auStack_70 + 1);
-      af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,(uint8_t *)&offset);
-      if (uStack_72 <= uVar4) {
-        ep_info.ieee_addr.field_0.u64._0_4_ = calloc(_auStack_70 >> 0x10 & 0xff,10);
-        uVar3 = 0;
-        uVar5 = 0x89;
-        if ((void *)ep_info.ieee_addr.field_0.u64._0_4_ != (void *)0x0) {
-          for (; uVar3 < (_auStack_70 >> 0x10 & 0xff); uVar3 = uVar3 + 1 & 0xff) {
-            iVar2 = uVar3 * 10;
-            af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                         (uint16_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + iVar2));
-            af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                        (uint8_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + iVar2 + 2));
-            af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                         (uint16_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + iVar2 + 4));
-            af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                         (uint16_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + iVar2 + 6));
-            af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                        (uint8_t *)(ep_info.ieee_addr.field_0.u64._0_4_ + iVar2 + 8));
-          }
-          if (uVar4 < uStack_72) goto _L0;
-          ep_info.version = '\0';
-          ep_info._17_1_ = '\0';
-          uStack_5a = 0;
-          message.info.status = '\0';
-          message.info.dst_ep = '\0';
-          message.info.cluster_id = 0;
-          message.info.cluster_role = '\0';
-          message.info._5_1_ = 0;
-          message._6_2_ = 0;
-          message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-          message.in.ep_info = (ezb_zcl_touchlink_ep_info_t *)0x0;
-          uVar5 = zcl_packet_to_message(&ep_info.version,arg);
+    if (cVar1 != 'B') {
+      uVar5 = 0x81;
+      if (cVar1 == '@') {
+        uStack_70 = 0;
+        pvStack_6c = (void *)0x0;
+        uStack_68 = 0;
+        uStack_64 = 0;
+        auStack_60[0] = 0;
+        uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24),0x81);
+        iVar3 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),0,8,&uStack_70);
+        if (iVar3 == 0) {
+          iVar3 = 0xffff;
+        }
+        uStack_72 = (ushort)iVar3;
+        af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,&uStack_68);
+        af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_68 + 2);
+        af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,&uStack_64);
+        af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_64 + 2);
+        af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,auStack_60);
+        uVar5 = 0x80;
+        if (uStack_72 <= uVar4) {
+          uStack_5c = 0;
+          uStack_58 = 0;
+          iStack_54 = 0;
+          puStack_50 = (undefined4 *)0x0;
+          uStack_4c = 0;
+          uVar5 = zcl_packet_to_message(&uStack_5c,param_1,0x80);
           if (uVar5 == 0) {
-            uVar6 = 0x52;
-            goto _L0;
+            uStack_4c = CONCAT31(uStack_4c._1_3_,0xfe);
+            iStack_54 = param_1;
+            puStack_50 = &uStack_70;
+            zcl_core_action_schedule(0x51,&uStack_5c,0);
+            if ((uStack_4c & 0xff) != 0xfe) {
+              uVar5 = uStack_4c & 0xff;
+            }
           }
         }
-        goto _L0;
       }
-_L0:
-      uVar5 = 0x80;
       goto _L0;
     }
-    uVar5 = 0x81;
-    if (cVar1 == '@') {
-      _auStack_70 = 0;
-      ep_info.ieee_addr.field_0.u64._0_4_ = 0;
-      ep_info.ieee_addr.field_0.u64._4_4_ = 0;
-      ep_info.nwk_addr = 0;
-      ep_info.ep_id = '\0';
-      ep_info._11_1_ = 0;
-      ep_info.profile_id = 0;
-      uVar4 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24),0x81);
-      iVar2 = zmsg_read_bytes(*(undefined4 *)((int)arg + 0x24),0,8,(ezb_zcl_cmd_hdr_t *)auStack_70);
-      if (iVar2 == 0) {
-        iVar2 = 0xffff;
-      }
-      uStack_72 = (uint16_t)iVar2;
-      af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,
-                   (uint16_t *)(ep_info.ieee_addr.field_0.u8 + 4));
-      af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,ep_info.ieee_addr.field_0.u8 + 6);
-      af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,&ep_info.nwk_addr);
-      af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_72,(uint16_t *)&ep_info.ep_id);
-      af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_72,(uint8_t *)&ep_info.profile_id);
-      uVar5 = 0x80;
-      if (uStack_72 <= uVar4) {
-        ep_info.version = '\0';
-        ep_info._17_1_ = '\0';
-        uStack_5a = 0;
-        message.info.status = '\0';
-        message.info.dst_ep = '\0';
-        message.info.cluster_id = 0;
-        message.info.cluster_role = '\0';
-        message.info._5_1_ = 0;
-        message._6_2_ = 0;
-        message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-        message.in.ep_info = (ezb_zcl_touchlink_ep_info_t *)0x0;
-        uVar5 = zcl_packet_to_message(&ep_info.version,arg,0x80);
+    uStack_72 = 0;
+    uStack_70 = 0;
+    pvStack_6c = (void *)0x0;
+    uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,&uStack_70);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_70 + 1);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)&uStack_70 + 2);
+    if (uStack_72 <= uVar4) {
+      pvStack_6c = calloc(uStack_70 >> 0x10 & 0xff,10);
+      uVar2 = 0;
+      uVar5 = 0x89;
+      if (pvStack_6c != (void *)0x0) {
+        for (; uVar2 < (uStack_70 >> 0x10 & 0xff); uVar2 = uVar2 + 1 & 0xff) {
+          iVar3 = uVar2 * 10;
+          af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,
+                              (void *)((int)pvStack_6c + iVar3));
+          af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)pvStack_6c + iVar3 + 2)
+          ;
+          af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)pvStack_6c + iVar3 + 4
+                             );
+          af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)pvStack_6c + iVar3 + 6
+                             );
+          af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_72,(int)pvStack_6c + iVar3 + 8)
+          ;
+        }
+        if (uVar4 < uStack_72) goto _L0;
+        uStack_5c = 0;
+        uStack_58 = 0;
+        iStack_54 = 0;
+        puStack_50 = (undefined4 *)0x0;
+        uStack_4c = 0;
+        uVar5 = zcl_packet_to_message(&uStack_5c,param_1);
         if (uVar5 == 0) {
-          message.in.ep_info =
-               (ezb_zcl_touchlink_ep_info_t *)CONCAT31(message.in.ep_info._1_3_,0xfe);
-          message._4_4_ = arg;
-          message.in.header = (ezb_zcl_cmd_hdr_t *)auStack_70;
-          zcl_core_action_schedule(0x50,&ep_info.version,0);
-          if (((uint)message.in.ep_info & 0xff) != 0xfe) {
-            uVar5 = (uint)message.in.ep_info & 0xff;
-          }
+          uVar6 = 0x53;
+          goto _L0;
         }
       }
+      goto _L0;
     }
-  }
-  iVar2 = zcl_packet_setup_default_response(&message.out,arg,uVar5);
-  if (iVar2 == 0) {
-    zcl_packet_send(&message.out,0);
-  }
-  else {
-    zcl_packet_free(&message.out);
+_L0:
+    uVar5 = 0x80;
   }
 _L0:
-  return (ezb_zcl_status_t)iVar2;
+  if (pvStack_6c != (void *)0x0) {
+    mm_free();
+  }
+_L0:
+  iVar3 = zcl_packet_setup_default_response(auStack_48,param_1,uVar5);
+  if (iVar3 == 0) {
+    zcl_packet_send(auStack_48,0);
+  }
+  else {
+    zcl_packet_free(auStack_48);
+  }
+  return iVar3;
 }
 

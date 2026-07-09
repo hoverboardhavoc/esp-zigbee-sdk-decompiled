@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> simple_measurement.o -> check_value_simple_s16_measurement_server
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,37 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
+undefined4
 check_value_simple_s16_measurement_server
-          (uint16_t cluster_id,uint16_t attr_id,uint8_t endpoint,uint8_t *value,
-          simple_measurement_ranges_t *attr_limits)
+          (undefined4 param_1,uint param_2,undefined4 param_3,short *param_4,short *param_5)
 
 {
   short sVar1;
-  uint16_t uVar2;
-  zcl_attr_desc_t *pzVar3;
-  undefined2 in_register_0000202e;
-  uint uVar4;
-  uint16_t uVar5;
-  uint16_t uVar6;
+  short sVar2;
+  int iVar3;
+  short sVar4;
+  short sVar5;
   
-  uVar4 = CONCAT22(in_register_0000202e,attr_id);
-  sVar1 = *(short *)value;
-  if (3 < uVar4) {
-    return '\0';
+  sVar1 = *param_4;
+  if (3 < param_2) {
+    return 0;
   }
   if (sVar1 == -0x8000) {
-    return '\0';
+    return 0;
   }
-  if (uVar4 == 3) {
-    uVar5 = (attr_limits->tolerance).min;
-    uVar6 = (attr_limits->tolerance).max;
+  if (param_2 == 3) {
+    sVar4 = param_5[2];
+    sVar5 = param_5[3];
     goto _L0;
   }
-  uVar5 = (attr_limits->measurement_value).min;
-  uVar6 = (attr_limits->measurement_value).max;
-  if ((uVar4 == 0) || (uVar4 == 2)) {
-    pzVar3 = simple_measurement_srv_get_attr_desc(endpoint,cluster_id,1);
-    if ((pzVar3 != (zcl_attr_desc_t *)0x0) && ((uint16_t *)pzVar3->data_p != (uint16_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-      uVar2 = *pzVar3->data_p;
-      if (uVar2 != 0x8000) {
-        uVar5 = uVar2;
+  sVar4 = *param_5;
+  sVar5 = param_5[1];
+  if ((param_2 == 0) || (param_2 == 2)) {
+    iVar3 = simple_measurement_srv_get_attr_desc(param_3,param_1,1);
+    if ((iVar3 != 0) && (*(short **)(iVar3 + 8) != (short *)0x0)) {
+      sVar2 = **(short **)(iVar3 + 8);
+      if (sVar2 != -0x8000) {
+        sVar4 = sVar2;
       }
       goto _L0;
     }
@@ -57,27 +50,26 @@ check_value_simple_s16_measurement_server
   }
   else {
 _L0:
-    if (1 < uVar4) goto _L0;
+    if (1 < param_2) goto _L0;
   }
-  pzVar3 = simple_measurement_srv_get_attr_desc(endpoint,cluster_id,2);
-  if ((pzVar3 == (zcl_attr_desc_t *)0x0) || ((uint16_t *)pzVar3->data_p == (uint16_t *)0x0)) {
+  iVar3 = simple_measurement_srv_get_attr_desc(param_3,param_1,2);
+  if ((iVar3 == 0) || (*(short **)(iVar3 + 8) == (short *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/simple_measurement.c",
                   0x99,"check_value_simple_s16_measurement_server",
                   "attr_desc != ((void *)0) && attr_desc->data_p != ((void *)0)");
-    return '\x01';
+    return 1;
   }
-                    /* WARNING: Load size is inaccurate */
-  uVar2 = *pzVar3->data_p;
-  if (uVar2 != 0x8000) {
-    uVar6 = uVar2;
+  sVar2 = **(short **)(iVar3 + 8);
+  if (sVar2 != -0x8000) {
+    sVar5 = sVar2;
   }
 _L0:
-  if (sVar1 < (short)uVar5) {
-    return '\x01';
+  if (sVar1 < sVar4) {
+    return 1;
   }
-  if (sVar1 <= (short)uVar6) {
-    return '\0';
+  if (sVar1 <= sVar5) {
+    return 0;
   }
-  return '\x01';
+  return 1;
 }
 

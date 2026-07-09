@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_intrp.o -> nwk_handle_received_intrp_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_handle_received_intrp_msg(zmsg_t *msg,nwk_intrp_rx_info_t *rx_info)
+undefined4 nwk_handle_received_intrp_msg(undefined4 param_1,void *param_2)
 
 {
   ushort uStack_32;
-  undefined1 auStack_30 [2];
-  uint16_t nwk_fcf;
-  nwk_intrp_data_ind_t ind;
+  undefined2 uStack_30;
+  undefined1 auStack_2e [10];
+  undefined2 uStack_24;
+  undefined1 auStack_22 [10];
+  undefined4 uStack_18;
+  undefined1 uStack_14;
+  undefined1 uStack_13;
   
   zmsg_read_bytes(0,2,&uStack_32);
   if ((uStack_32 & 3) != 3) {
     __assert_func(0,0,0,0);
   }
-  zmsg_remove_header(msg,2);
-  auStack_30 = (undefined1  [2])rx_info->src_panid;
-  memcpy(&nwk_fcf,&rx_info->mac_src_addr,10);
-  ind.src_addr.u._4_2_ = rx_info->dst_panid;
-  memcpy((void *)((int)&ind.src_addr.u + 6),rx_info,10);
-  ind.nsdu._0_1_ = rx_info->lqi;
-  ind.nsdu._1_1_ = rx_info->rssi;
-  ind.dst_addr.u._4_4_ = msg;
-  nwk_intrp_data_indication((nwk_intrp_data_ind_t *)auStack_30);
+  zmsg_remove_header(param_1,2);
+  uStack_30 = *(undefined2 *)((int)param_2 + 0x16);
+  memcpy(auStack_2e,(void *)((int)param_2 + 10),10);
+  uStack_24 = *(undefined2 *)((int)param_2 + 0x14);
+  memcpy(auStack_22,param_2,10);
+  uStack_14 = *(undefined1 *)((int)param_2 + 0x19);
+  uStack_13 = *(undefined1 *)((int)param_2 + 0x1a);
+  uStack_18 = param_1;
+  nwk_intrp_data_indication(&uStack_30);
   return 0;
 }
 

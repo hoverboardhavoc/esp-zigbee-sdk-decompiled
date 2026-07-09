@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_reporting.o -> zcl_reporting_sync_attr_change
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_reporting_sync_attr_change(zcl_reporting_info_t *info)
+void zcl_reporting_sync_attr_change(int param_1)
 
 {
   int iVar1;
   int iVar2;
   undefined4 uVar3;
   
-  if ((info != (zcl_reporting_info_t *)0x0) &&
-     (iVar1 = zcl_get_attr_desc(info->ep_id,info->cluster_id,info->cluster_role,info->attr_id,
-                                info->manuf_code), iVar1 != 0)) {
+  if ((param_1 != 0) &&
+     (iVar1 = zcl_get_attr_desc(*(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 4),
+                                *(undefined1 *)(param_1 + 8),*(undefined2 *)(param_1 + 6),
+                                *(undefined2 *)(param_1 + 0x30)), iVar1 != 0)) {
     iVar2 = zcl_attr_type_is_analog(*(undefined1 *)(iVar1 + 2));
     if (iVar2 == 0) {
       iVar2 = zcl_get_attr_value_size(*(undefined1 *)(iVar1 + 2),*(undefined4 *)(iVar1 + 8));
       if (iVar2 == 0xffff) {
-        *(undefined4 *)((int)&info->u + 0x10) = 0;
+        *(undefined4 *)(param_1 + 0x20) = 0;
       }
       else {
         uVar3 = crc32_next(0,*(undefined4 *)(iVar1 + 8),iVar2);
-        *(undefined4 *)((int)&info->u + 0x10) = uVar3;
+        *(undefined4 *)(param_1 + 0x20) = uVar3;
       }
     }
     else {
-      zcl_read_attr_value((undefined1 *)((int)&info->u + 0x10),*(undefined4 *)(iVar1 + 8),
-                          *(undefined1 *)(iVar1 + 2));
+      zcl_read_attr_value(param_1 + 0x20,*(undefined4 *)(iVar1 + 8),*(undefined1 *)(iVar1 + 2));
     }
-    info->field_0x9 =
-         (byte)((*(uint *)&info->cluster_role >> 0xc & 0xe) << 4) | info->field_0x9 & 0xf;
+    *(byte *)(param_1 + 9) =
+         (byte)((*(uint *)(param_1 + 8) >> 0xc & 0xe) << 4) | *(byte *)(param_1 + 9) & 0xf;
   }
   return;
 }

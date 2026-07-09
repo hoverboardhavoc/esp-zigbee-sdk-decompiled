@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> af_desc.o -> af_endpoint_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t af_endpoint_reset(uint8_t ep_id,
-                           af_endpoint_get_default_attr_value_callback_t get_default_value)
+undefined4 af_endpoint_reset(code *param_1)
 
 {
-  uint16_t *puVar1;
-  zcl_cluster_desc_t *cluster_desc;
-  af_ep_desc_t *ep_desc;
-  ezb_err_t eVar2;
+  short *psVar1;
+  undefined2 *puVar2;
+  undefined1 *puVar3;
+  undefined4 uVar4;
   
-  ep_desc = af_get_ep_desc(ep_id);
-  if (ep_desc == (af_ep_desc_t *)0x0) {
-    eVar2 = 5;
+  puVar3 = (undefined1 *)af_get_ep_desc();
+  if (puVar3 == (undefined1 *)0x0) {
+    uVar4 = 5;
   }
   else {
-    puVar1 = (uint16_t *)0x0;
-    cluster_desc = (zcl_cluster_desc_t *)0x0;
-    while (cluster_desc = af_endpoint_get_next_cluster_desc(ep_desc,cluster_desc),
-          cluster_desc != (zcl_cluster_desc_t *)0x0) {
-      if (get_default_value == (af_endpoint_get_default_attr_value_callback_t)0x0) {
+    psVar1 = (short *)0x0;
+    puVar2 = (undefined2 *)0x0;
+    while (puVar2 = (undefined2 *)af_endpoint_get_next_cluster_desc(puVar3,puVar2),
+          puVar2 != (undefined2 *)0x0) {
+      if (param_1 == (code *)0x0) {
         return 0;
       }
-      while (puVar1 = (uint16_t *)zcl_cluster_get_next_attr_desc(cluster_desc,puVar1),
-            puVar1 != (uint16_t *)0x0) {
-        if ((*(char *)((int)puVar1 + 3) != '@') && (*puVar1 != 0xfffd)) {
-          (*get_default_value)
-                    (ep_desc->ep_id,cluster_desc->cluster_id,cluster_desc->role_mask,*puVar1,
-                     *(void **)(puVar1 + 4));
-          zcl_write_attr_value(*(undefined4 *)(puVar1 + 4),(char)puVar1[1]);
+      while (psVar1 = (short *)zcl_cluster_get_next_attr_desc(puVar2,psVar1), psVar1 != (short *)0x0
+            ) {
+        if ((*(char *)((int)psVar1 + 3) != '@') && (*psVar1 != -3)) {
+          (*param_1)(*puVar3,*puVar2,*(undefined1 *)(puVar2 + 1),*(undefined4 *)(psVar1 + 4));
+          zcl_write_attr_value(*(undefined4 *)(psVar1 + 4),(char)psVar1[1]);
         }
       }
     }
-    eVar2 = 0;
+    uVar4 = 0;
   }
-  return eVar2;
+  return uVar4;
 }
 

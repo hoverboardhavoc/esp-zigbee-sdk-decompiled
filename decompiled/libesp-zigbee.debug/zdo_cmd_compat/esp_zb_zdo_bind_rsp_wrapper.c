@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_bind_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_bind_rsp_wrapper(ezb_zdp_bind_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_bind_rsp_wrapper(undefined4 *param_1,undefined4 *param_2)
 
 {
-  void *pvVar1;
-  ezb_zdp_bind_rsp_field_t *peVar2;
+  undefined4 *puVar1;
+  undefined1 *puVar2;
   code *pcVar3;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar3 = *user_ctx;
+  pcVar3 = (code *)*param_2;
   if (pcVar3 != (code *)0x0) {
-    peVar2 = (ezb_zdp_bind_rsp_field_t *)result->error;
-    pvVar1 = user_ctx;
-    if (peVar2 == (ezb_zdp_bind_rsp_field_t *)0x0) {
-      peVar2 = result->rsp;
-      if (peVar2 != (ezb_zdp_bind_rsp_field_t *)0x0) {
-        (*pcVar3)(peVar2->status,*(undefined4 *)((int)user_ctx + 4));
+    puVar2 = (undefined1 *)*param_1;
+    puVar1 = param_2;
+    if (puVar2 == (undefined1 *)0x0) {
+      puVar2 = (undefined1 *)param_1[1];
+      if (puVar2 != (undefined1 *)0x0) {
+        (*pcVar3)(*puVar2,param_2[1]);
         goto _L0;
       }
-      pvVar1 = (void *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
-                                     ,0x96,"esp_zb_zdo_bind_rsp_wrapper","result->rsp");
+      puVar1 = (undefined4 *)
+               __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
+                             ,0x96,"esp_zb_zdo_bind_rsp_wrapper","result->rsp");
     }
-    if (peVar2 == (ezb_zdp_bind_rsp_field_t *)0x7) {
-      (*pcVar3)(0x85,*(undefined4 *)((int)pvVar1 + 4));
+    if (puVar2 == (undefined1 *)0x7) {
+      (*pcVar3)(0x85,puVar1[1]);
     }
   }
 _L0:
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

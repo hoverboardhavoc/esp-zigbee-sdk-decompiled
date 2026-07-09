@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> crypto_platform_psa.o -> ezb_plat_crypto_aes_encrypt
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_plat_crypto_aes_encrypt(ezb_crypto_context_t *ctx,uint8_t *input,uint8_t *output)
+undefined4 ezb_plat_crypto_aes_encrypt(undefined4 *param_1,int param_2,int param_3)
 
 {
-  psa_status_t psa_status;
-  ezb_err_t eVar1;
-  undefined1 auStack_14 [4];
-  size_t cipher_len;
+  undefined4 uVar1;
+  undefined1 auStack_14 [16];
   
-  if (ctx != (ezb_crypto_context_t *)0x0) {
-    if (ctx->ctx_size < 4) {
-      return -1;
+  if (param_1 != (undefined4 *)0x0) {
+    if (*(ushort *)(param_1 + 1) < 4) {
+      return 0xffffffff;
     }
-    if ((input != (uint8_t *)0x0) && (output != (uint8_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-      psa_status = psa_cipher_encrypt(*ctx->ctx,0x4404400,input,0x10,output,auStack_14);
-      eVar1 = psa_to_ezb_error(psa_status);
-      return eVar1;
+    if ((param_2 != 0) && (param_3 != 0)) {
+      psa_cipher_encrypt(*(undefined4 *)*param_1,0x4404400,param_2,0x10,param_3,auStack_14);
+      uVar1 = psa_to_ezb_error();
+      return uVar1;
     }
   }
   return 2;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_table_store_child
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,34 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_neighbor_table_store_child(nwk_neighbor_t *child)
+void nwk_neighbor_table_store_child(int param_1)
 
 {
-  ezb_shortaddr_t eVar1;
-  ezb_err_t eVar2;
+  undefined2 uVar1;
   undefined4 uStack_24;
-  dataset_child_info_t child_info;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  uint uStack_18;
+  undefined4 uStack_14;
   
-  if ((*(uint *)&child->field_0xc & 0x3c3) != 0x42) {
-    child = (nwk_neighbor_t *)__assert_func(0,0,0,0);
+  if ((*(uint *)(param_1 + 0xc) & 0x3c3) != 0x42) {
+    param_1 = __assert_func(0,0,0,0);
   }
   uStack_24 = 0;
-  child_info.version = 0;
-  child_info.shortaddr = 0;
-  child_info.extaddr.field_0.u64._0_4_ = 0;
-  child_info.extaddr.field_0.u64._4_4_ = 0;
-  child_info.ed_configuration = 0;
-  child_info.mac_iface_idx = '\0';
-  child_info.key_seq = '\0';
-  nwk_neighbor_table_remove_stored_child(child);
-  eVar1 = nwk_neighbor_get_shortaddr(child);
-  uStack_24 = CONCAT22(eVar1,(undefined2)uStack_24);
-  nwk_neighbor_get_extaddr(child,(ezb_extaddr_t *)&child_info);
-  child_info.ed_configuration._0_1_ =
-       (byte)(*(uint *)&child->field_0xc >> 6) & 0x10 |
-       (byte)(*(uint *)((int)&child->dev + 4) >> 0x14) & 0xf | (byte)child_info._12_4_ & 0xe0;
-  child_info.extaddr.field_0.u64._4_4_ =
-       CONCAT22(CONCAT11(child->key_seq,(char)(*(uint *)&child->field_0xc >> 0xd)),
-                (child->dev).r.router_info) & 0xff1fffff;
-  eVar2 = ds_internal_add_entry(4,&uStack_24,0x14);
-  return eVar2;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  nwk_neighbor_table_remove_stored_child();
+  uVar1 = nwk_neighbor_get_shortaddr(param_1);
+  uStack_24 = CONCAT22(uVar1,(undefined2)uStack_24);
+  nwk_neighbor_get_extaddr(param_1,&uStack_20);
+  uStack_14 = CONCAT31(uStack_14._1_3_,
+                       (byte)(*(uint *)(param_1 + 0xc) >> 6) & 0x10 |
+                       (byte)(*(uint *)(param_1 + 0x14) >> 0x14) & 0xf | (byte)uStack_14 & 0xe0);
+  uStack_18 = CONCAT22(CONCAT11(*(undefined1 *)(param_1 + 7),(char)(*(uint *)(param_1 + 0xc) >> 0xd)
+                               ),*(undefined2 *)(param_1 + 0x10)) & 0xff1fffff;
+  ds_internal_add_entry(4,&uStack_24,0x14);
+  return;
 }
 

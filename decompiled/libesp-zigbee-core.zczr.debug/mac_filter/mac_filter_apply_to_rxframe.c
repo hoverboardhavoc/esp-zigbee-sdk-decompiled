@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac_filter.o -> mac_filter_apply_to_rxframe
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,59 +10,54 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: extaddr */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_filter_apply_to_rxframe(mac_frame_t *frame)
+int mac_filter_apply_to_rxframe(int *param_1)
 
 {
-  ezb_addr_mode_t eVar1;
-  ezb_err_t unaff_s1;
-  uint8_t uVar2;
+  char cVar1;
+  int unaff_s1;
+  undefined1 uVar2;
   int iVar3;
-  ezb_radio_frame_t *peVar4;
-  uint8_t uStack_19;
-  undefined1 auStack_18 [3];
-  uint8_t fixed_lqa;
-  ezb_extaddr_t extaddr;
+  char cStack_19;
+  int iStack_18;
+  int iStack_14;
   
-  _auStack_18 = (frame->mhr).src_addr.u.group_addr;
-  extaddr.field_0.u64._0_4_ = *(undefined4 *)((int)&(frame->mhr).src_addr.u + 4);
-  uStack_19 = '\0';
-  eVar1 = (frame->mhr).src_addr.addr_mode;
-  if (eVar1 == '\x02') {
-    iVar3 = nwk_address_extended_by_short((frame->mhr).src_addr.u.short_addr,auStack_18);
+  iStack_18 = param_1[4];
+  iStack_14 = param_1[5];
+  cStack_19 = '\0';
+  cVar1 = *(char *)((int)param_1 + 0xe);
+  if (cVar1 == '\x02') {
+    iVar3 = nwk_address_extended_by_short((short)param_1[4],&iStack_18);
     if (iVar3 != 0) {
       return 0;
     }
 _L0:
-    unaff_s1 = mac_filter_apply((ezb_extaddr_t *)auStack_18,&uStack_19);
+    unaff_s1 = mac_filter_apply(&iStack_18,&cStack_19);
     if (unaff_s1 != 0) {
       return unaff_s1;
     }
   }
   else {
-    if (eVar1 == '\x03') goto _L0;
-    if (eVar1 != '\0') {
+    if (cVar1 == '\x03') goto _L0;
+    if (cVar1 != '\0') {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_filter.c",0x107,
                     "mac_filter_apply_to_rxframe",&_LC0);
       goto _L0;
     }
-    if (s_restrict_addressless) {
+    if (s_restrict_addressless != '\0') {
       return 0x12;
     }
     unaff_s1 = 0;
   }
-  if (uStack_19 == '\0') {
+  if (cStack_19 == '\0') {
     return unaff_s1;
   }
 _L0:
-  peVar4 = frame->from;
+  iVar3 = *param_1;
   uVar2 = nwk_lqa_to_lqi();
-  (peVar4->info).tx.max_csma_backoffs = uVar2;
-  peVar4 = frame->from;
-  uVar2 = nwk_lqa_to_rssi(uStack_19);
-  (peVar4->info).tx.max_frame_retries = uVar2;
+  *(undefined1 *)(iVar3 + 0x11) = uVar2;
+  iVar3 = *param_1;
+  uVar2 = nwk_lqa_to_rssi(cStack_19);
+  *(undefined1 *)(iVar3 + 0x10) = uVar2;
   return unaff_s1;
 }
 

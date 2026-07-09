@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_delete_header
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_delete_header(zmsg_t *msg,uint16_t offset,uint16_t length)
+void zmsg_delete_header(int param_1,undefined4 param_2,uint param_3)
 
 {
   short sVar1;
-  zmsg_t *extraout_a0;
   uint extraout_a1;
-  uint uVar2;
-  undefined2 in_register_00002032;
-  uint16_t uVar3;
-  ushort uVar4;
-  uint uVar5;
+  short sVar2;
+  ushort uVar3;
+  uint uVar4;
   
-  uVar2 = CONCAT22(in_register_00002032,length);
-  zmsg_write_bytes_from_msg(msg,length,msg,0,offset);
-  uVar4 = msg->length;
-  uVar5 = (uint)uVar4;
-  if (uVar5 < uVar2) {
-    zmsg_remove_header(msg,length);
-    uVar4 = (ushort)uVar5;
-    msg = extraout_a0;
-    uVar2 = extraout_a1;
+  zmsg_write_bytes_from_msg(param_1,0,param_2);
+  uVar3 = *(ushort *)(param_1 + 0xe);
+  uVar4 = (uint)uVar3;
+  if (uVar4 < param_3) {
+    param_1 = zmsg_get_next_chunk_part_0();
+    uVar3 = (ushort)uVar4;
+    param_3 = extraout_a1;
   }
-  sVar1 = (short)uVar2;
-  msg->length = uVar4 - sVar1;
-  msg->header = msg->header + sVar1;
-  uVar3 = 0;
-  if (uVar2 < msg->offset) {
-    uVar3 = msg->offset - sVar1;
+  sVar1 = (short)param_3;
+  *(ushort *)(param_1 + 0xe) = uVar3 - sVar1;
+  *(short *)(param_1 + 0xc) = *(short *)(param_1 + 0xc) + sVar1;
+  sVar2 = 0;
+  if (param_3 < *(ushort *)(param_1 + 0x12)) {
+    sVar2 = *(ushort *)(param_1 + 0x12) - sVar1;
   }
-  msg->offset = uVar3;
+  *(short *)(param_1 + 0x12) = sVar2;
   return;
 }
 

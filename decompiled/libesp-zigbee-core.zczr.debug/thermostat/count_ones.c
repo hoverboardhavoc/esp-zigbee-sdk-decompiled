@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> thermostat.o -> count_ones
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,19 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t count_ones(uint8_t x)
+char count_ones(uint param_1)
 
 {
-  uint8_t uVar1;
-  undefined3 in_register_00002029;
-  uint uVar2;
+  char cVar1;
   
-  uVar1 = '\0';
-  for (uVar2 = CONCAT31(in_register_00002029,x); uVar2 != 0; uVar2 = uVar2 & uVar2 - 1) {
-    uVar1 = uVar1 + '\x01';
+  cVar1 = '\0';
+  for (; param_1 != 0; param_1 = param_1 & param_1 - 1) {
+    cVar1 = cVar1 + '\x01';
   }
-  return uVar1;
+  return cVar1;
 }
 

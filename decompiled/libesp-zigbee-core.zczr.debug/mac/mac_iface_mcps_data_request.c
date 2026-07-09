@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_iface_mcps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_iface_mcps_data_request(mac_interface_t *iface,mac_data_req_t *req)
+int mac_iface_mcps_data_request(undefined4 *param_1,int *param_2)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  ezb_err_t eVar2;
-  uint uVar3;
-  mac_device *dev;
-  zmsg_t *msg;
+  int iVar1;
+  uint uVar2;
+  undefined4 uVar3;
+  int iVar4;
   
-  dev = (mac_device *)iface->dev;
-  _Var1 = mac_is_enabled(dev);
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    eVar2 = 3;
+  uVar3 = *param_1;
+  iVar1 = mac_is_enabled(uVar3);
+  if (iVar1 == 0) {
+    iVar1 = 3;
   }
-  else if (req == (mac_data_req_t *)0x0) {
-    eVar2 = 2;
+  else if (param_2 == (int *)0x0) {
+    iVar1 = 2;
   }
   else {
-    msg = req->msdu;
-    if (msg == (zmsg_t *)0x0) {
-      eVar2 = 2;
+    iVar4 = *param_2;
+    if (iVar4 == 0) {
+      iVar1 = 2;
     }
     else {
-      eVar2 = prepare_data_msg(dev,msg,req);
-      if (eVar2 == 0) {
-        uVar3 = zmsg_get_length(msg);
-        if (uVar3 < 0x7e) {
-          if ((req->field_0x1a & 2) == 0) {
-            mac_direct_transmit(dev,msg);
+      iVar1 = prepare_data_msg(uVar3,iVar4,param_2);
+      if (iVar1 == 0) {
+        uVar2 = zmsg_get_length(iVar4);
+        if (uVar2 < 0x7e) {
+          if ((*(byte *)((int)param_2 + 0x1a) & 2) == 0) {
+            mac_direct_transmit(uVar3,iVar4);
           }
           else {
-            mac_indirect_transmit(dev,&(req->addresses).destination,msg);
+            mac_indirect_transmit(uVar3,(int)param_2 + 0xe,iVar4);
           }
         }
         else {
-          eVar2 = 4;
+          iVar1 = 4;
         }
       }
     }
   }
-  return eVar2;
+  return iVar1;
 }
 

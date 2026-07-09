@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> secur_api.o -> ezb_secur_set_network_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_secur_set_network_key(uint8_t *key)
+undefined4 ezb_secur_set_network_key(undefined4 param_1)
 
 {
-  _Bool _Var1;
-  int iVar2;
-  undefined3 extraout_var;
-  undefined4 uVar3;
-  ezb_err_t eVar4;
+  int iVar1;
+  undefined4 uVar2;
   
-  iVar2 = zdo_dev_joined();
-  eVar4 = 3;
-  if (iVar2 == 0) {
-    _Var1 = secur_is_key_valid(key);
-    eVar4 = 2;
-    if (CONCAT31(extraout_var,_Var1) != 0) {
-      uVar3 = nwk_secur_get_current_key_seq();
-      nwk_secur_set_key(key,uVar3);
-      eVar4 = 0;
+  iVar1 = zdo_dev_joined();
+  uVar2 = 3;
+  if (iVar1 == 0) {
+    iVar1 = secur_is_key_valid(param_1);
+    uVar2 = 2;
+    if (iVar1 != 0) {
+      uVar2 = nwk_secur_get_current_key_seq();
+      nwk_secur_set_key(param_1,uVar2);
+      uVar2 = 0;
     }
   }
-  return eVar4;
+  return uVar2;
 }
 

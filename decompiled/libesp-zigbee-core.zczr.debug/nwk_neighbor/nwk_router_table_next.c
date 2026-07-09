@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nwk_router_table_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,28 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_neighbor_t * nwk_router_table_next(nwk_neighbor_t *nbr)
+int nwk_router_table_next(int param_1)
 
 {
   uint uVar1;
   int iVar2;
-  nwk_neighbor_t *pnVar3;
-  uint uVar4;
+  uint uVar3;
   
   iVar2 = core_globals_get();
-  if (nbr == (nwk_neighbor_t *)0x0) {
-    uVar4 = 0xffff;
+  if (param_1 == 0) {
+    uVar3 = 0xffff;
   }
   else {
-    uVar4 = ((int)nbr - *(int *)(iVar2 + 0xb20) >> 2) * -0x49249249 & 0xffff;
+    uVar3 = (param_1 - *(int *)(iVar2 + 0xb20) >> 2) * -0x49249249 & 0xffff;
   }
   uVar1 = (uint)*(ushort *)(iVar2 + 0xb24) - (uint)*(ushort *)(iVar2 + 0xb26) & 0xffff;
-  uVar4 = bitmap_find_next_bit(*(undefined4 *)(iVar2 + 0xb1c),uVar1,uVar4 + 1 & 0xffff);
-  if (uVar4 < uVar1) {
-    pnVar3 = (nwk_neighbor_t *)(*(int *)(iVar2 + 0xb20) + uVar4 * 0x1c);
+  uVar3 = bitmap_find_next_bit(*(undefined4 *)(iVar2 + 0xb1c),uVar1,uVar3 + 1 & 0xffff);
+  if (uVar3 < uVar1) {
+    iVar2 = *(int *)(iVar2 + 0xb20) + uVar3 * 0x1c;
   }
   else {
-    pnVar3 = (nwk_neighbor_t *)0x0;
+    iVar2 = 0;
   }
-  return pnVar3;
+  return iVar2;
 }
 

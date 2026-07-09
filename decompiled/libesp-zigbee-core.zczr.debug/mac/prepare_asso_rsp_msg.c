@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> prepare_asso_rsp_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: hdr */
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t prepare_asso_rsp_msg(mac_device *dev,zmsg_t *msg,mac_associate_rsp_t *rsp)
+void prepare_asso_rsp_msg(undefined2 *param_1,undefined4 param_2,undefined2 *param_3)
 
 {
   undefined4 uVar1;
-  ezb_err_t eVar2;
-  undefined1 *puVar3;
-  ezb_shortaddr_t aeStack_46 [2];
-  ezb_panid_t eStack_42;
-  mac_panids_t panids;
-  mac_addresses_t addresses;
-  uint8_t hdr [28];
+  int iVar2;
+  undefined2 uStack_46;
+  undefined2 uStack_44;
+  undefined2 uStack_42;
+  undefined1 auStack_40 [2];
+  undefined2 uStack_3e;
+  undefined2 uStack_3c;
+  undefined2 uStack_3a;
+  undefined2 uStack_38;
+  undefined1 uStack_36;
+  undefined2 uStack_34;
+  undefined2 uStack_32;
+  undefined2 uStack_30;
+  undefined2 uStack_2e;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  addresses.destination.u._4_4_ = 0;
-  panids.source._0_1_ = 3;
-  panids.destination = *(ezb_panid_t *)&(dev->pib).extended_address.field_0;
-  addresses.source._0_2_ = *(undefined2 *)((int)&(dev->pib).extended_address.field_0 + 2);
-  addresses.source.u.short_addr =
-       *(ezb_shortaddr_t *)((int)&(dev->pib).extended_address.field_0 + 4);
-  addresses.source.u.group_addr.bcast =
-       *(ezb_shortaddr_t *)((int)&(dev->pib).extended_address.field_0 + 6);
-  addresses.source.u._4_1_ = 3;
-  addresses.source.u._6_2_ = *(undefined2 *)&(rsp->device_address).field_0;
-  addresses.destination._0_2_ = *(undefined2 *)((int)&(rsp->device_address).field_0 + 2);
-  addresses.destination.u.short_addr = *(ezb_shortaddr_t *)((int)&(rsp->device_address).field_0 + 4)
-  ;
-  addresses.destination.u.group_addr.bcast =
-       *(ezb_shortaddr_t *)((int)&(rsp->device_address).field_0 + 6);
-  aeStack_46[1] = 0xffff;
-  eStack_42 = (dev->pib).panid;
-  puVar3 = (undefined1 *)((int)&addresses.destination.u + 4);
-  uVar1 = mac_frame_write_hdr(puVar3,&panids,aeStack_46 + 1,0,2);
-  eVar2 = zmsg_append_bytes(msg,uVar1,puVar3);
-  if (eVar2 == 0) {
-    aeStack_46[0] = rsp->asso_shortaddr;
-    eVar2 = zmsg_append_bytes(msg,2,aeStack_46);
-    if (eVar2 == 0) {
-      aeStack_46[0] = CONCAT11(aeStack_46[0]._1_1_,rsp->status);
-      eVar2 = zmsg_append_bytes(msg,1,aeStack_46);
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  auStack_40[0] = 3;
+  uStack_3e = *param_1;
+  uStack_3c = param_1[1];
+  uStack_3a = param_1[2];
+  uStack_38 = param_1[3];
+  uStack_36 = 3;
+  uStack_34 = *param_3;
+  uStack_32 = param_3[1];
+  uStack_30 = param_3[2];
+  uStack_2e = param_3[3];
+  uStack_44 = 0xffff;
+  uStack_42 = param_1[5];
+  uVar1 = mac_frame_write_hdr(&uStack_2c,auStack_40,&uStack_44,0,2);
+  iVar2 = zmsg_append_bytes(param_2,uVar1,&uStack_2c);
+  if (iVar2 == 0) {
+    uStack_46 = param_3[4];
+    iVar2 = zmsg_append_bytes(param_2,2,&uStack_46);
+    if (iVar2 == 0) {
+      uStack_46 = CONCAT11(uStack_46._1_1_,*(undefined1 *)(param_3 + 5));
+      zmsg_append_bytes(param_2,1,&uStack_46);
     }
   }
-  return eVar2;
+  return;
 }
 

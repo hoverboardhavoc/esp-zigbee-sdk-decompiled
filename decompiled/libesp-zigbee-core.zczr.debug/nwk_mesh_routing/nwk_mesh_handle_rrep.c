@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_mesh_routing.o -> nwk_mesh_handle_rrep
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,77 +10,73 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_mesh_handle_rrep(zmsg_t *msg,nwk_rx_info_t *rx_info)
+void nwk_mesh_handle_rrep(int param_1,int param_2)
 
 {
-  ezb_shortaddr_t eVar1;
-  ushort originator;
-  undefined2 responder;
-  nwk_route_disc_t *route_disc;
-  _Bool _Var2;
+  undefined2 uVar1;
+  uint uVar2;
   char cVar3;
   short sVar4;
-  undefined3 extraout_var;
   int iVar5;
   undefined4 uVar6;
-  nwk_neighbor_t *pnVar7;
+  int iVar7;
   uint uVar8;
-  ezb_shortaddr_t src_addr;
   uint uVar9;
   undefined1 uStack_39;
-  undefined4 uStack_38;
-  nwk_rrep_cmd_t rrep;
+  uint uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined2 uStack_24;
+  undefined1 uStack_22;
   
-  _Var2 = nwk_is_router_started();
-  if ((CONCAT31(extraout_var,_Var2) != 0) &&
-     (iVar5 = nwk_secur_get_seclevel(), ((msg->flags & 2) != 0) == (iVar5 != 0))) {
+  iVar5 = nwk_is_router_started();
+  if ((iVar5 != 0) &&
+     (iVar5 = nwk_secur_get_seclevel(), ((*(ushort *)(param_1 + 0x16) & 2) != 0) == (iVar5 != 0))) {
     uStack_38 = 0;
-    rrep.cmd_opt = '\0';
-    rrep.rreq_id = '\0';
-    rrep.orig_addr = 0;
-    rrep._4_4_ = 0;
-    rrep.orig_ieee_addr.field_0.u64._1_4_ = 0;
-    rrep._12_4_ = 0;
-    rrep.resp_ieee_addr.field_0.u64._1_2_ = 0;
-    rrep.resp_ieee_addr.field_0.u8[3] = '\0';
-    zmsg_move_offset(msg,1);
-    uVar6 = zmsg_get_offset(msg);
-    zmsg_read_bytes(msg,uVar6,0x17,&uStack_38);
-    eVar1 = rx_info->mac_src_addr;
-    pnVar7 = nwk_mesh_update_neighbor(rx_info);
-    originator = uStack_38._2_2_;
-    uVar9 = (uint)uStack_38._2_2_;
-    responder = rrep._0_2_;
-    iVar5 = nwk_route_disc_table_find(uVar9,uStack_38 >> 8 & 0xff);
-    if (((pnVar7 != (nwk_neighbor_t *)0x0) &&
-        (((iVar5 != 0 && (*(int *)(iVar5 + 4) != 0)) &&
-         ((*(ushort *)(*(int *)(iVar5 + 4) + 0xe) & 7) != 3)))) &&
-       ((byte)rrep.orig_addr < *(byte *)(iVar5 + 0xc))) {
-      *(byte *)(iVar5 + 0xc) = (byte)rrep.orig_addr;
-      nwk_route_table_update_route(eVar1);
+    uStack_34 = 0;
+    uStack_30 = 0;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_24 = 0;
+    uStack_22 = 0;
+    zmsg_move_offset(param_1,1);
+    uVar6 = zmsg_get_offset(param_1);
+    zmsg_read_bytes(param_1,uVar6,0x17,&uStack_38);
+    uVar1 = *(undefined2 *)(param_2 + 2);
+    iVar5 = nwk_mesh_update_neighbor(param_2);
+    uVar2 = uStack_38 >> 0x10;
+    uVar9 = uStack_34 & 0xffff;
+    iVar7 = nwk_route_disc_table_find(uVar2,uStack_38 >> 8 & 0xff);
+    if (((iVar5 != 0) &&
+        (((iVar7 != 0 && (*(int *)(iVar7 + 4) != 0)) &&
+         ((*(ushort *)(*(int *)(iVar7 + 4) + 0xe) & 7) != 3)))) &&
+       (uStack_34._2_1_ < *(byte *)(iVar7 + 0xc))) {
+      *(byte *)(iVar7 + 0xc) = uStack_34._2_1_;
+      nwk_route_table_update_route(uVar1);
       uVar8 = nwk_get_short_address();
-      if (uVar9 == uVar8) {
-        zmsg_free(msg);
+      if (uVar2 == uVar8) {
+        zmsg_free(param_1);
         return;
       }
-      pnVar7 = nwk_mesh_find_router_nbr(*(ezb_shortaddr_t *)(iVar5 + 2));
-      if (pnVar7 != (nwk_neighbor_t *)0x0) {
+      iVar5 = nwk_mesh_find_router_nbr(*(undefined2 *)(iVar7 + 2));
+      if (iVar5 != 0) {
         cVar3 = nwk_neighbor_get_link_cost();
-        rrep.orig_addr._0_1_ = SUB41(rrep._0_4_,2) + cVar3;
-        sVar4 = zmsg_get_offset(msg);
-        uStack_39 = (byte)rrep.orig_addr;
-        zmsg_write_bytes(msg,sVar4 + 6,1,&uStack_39);
-        nwk_mesh_send_rrep(msg,uStack_38._1_1_,(byte)rrep.orig_addr,originator,responder,
-                           *(ezb_shortaddr_t *)(iVar5 + 2));
-        nwk_route_table_add_rev_route(uVar9,*(undefined2 *)(iVar5 + 2),0);
+        uVar8 = uStack_34 >> 0x10;
+        uStack_34._0_3_ = CONCAT12((char)uVar8 + cVar3,(undefined2)uStack_34);
+        sVar4 = zmsg_get_offset(param_1);
+        uStack_39 = uStack_34._2_1_;
+        zmsg_write_bytes(param_1,sVar4 + 6,1,&uStack_39);
+        nwk_mesh_send_rrep(param_1,uStack_38 >> 8 & 0xff,uStack_34 >> 0x10 & 0xff,uVar2,uVar9,
+                           *(undefined2 *)(iVar7 + 2));
+        nwk_route_table_add_rev_route(uVar2,*(undefined2 *)(iVar7 + 2),0);
         return;
       }
     }
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (param_1 != 0) {
+    zmsg_free(param_1);
   }
   return;
 }

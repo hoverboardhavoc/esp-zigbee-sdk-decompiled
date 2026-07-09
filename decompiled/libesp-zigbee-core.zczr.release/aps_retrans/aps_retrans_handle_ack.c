@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_retrans.o -> aps_retrans_handle_ack
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,80 +10,67 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_retrans_handle_ack(aps_header_t *aps_hdr,zmsg_t *msg)
+void aps_retrans_handle_ack(short *param_1,undefined4 param_2)
 
 {
-  uint8_t uVar1;
-  byte bVar2;
-  ezb_shortaddr_t eVar3;
-  aps_retrans_ent_t *retrans;
-  _Bool _Var4;
+  char cVar1;
+  short sVar2;
+  int iVar3;
+  undefined4 extraout_a1;
+  uint uVar4;
   int iVar5;
-  undefined3 extraout_var;
-  zmsg_t *extraout_a1;
-  uint uVar6;
-  int iVar7;
-  byte bVar8;
+  byte bVar6;
   
-  if ((aps_hdr->fcf & 3) != 2) {
-    aps_hdr = (aps_header_t *)__assert_func(0,0,0,0);
-    msg = extraout_a1;
+  if ((*(byte *)(param_1 + 6) & 3) != 2) {
+    param_1 = (short *)__assert_func(0,0,0,0);
+    param_2 = extraout_a1;
   }
-  iVar5 = core_globals_get();
-  eVar3 = (aps_hdr->addr_info).src_addr;
-  uVar1 = aps_hdr->aps_cntr;
-  uVar6 = 0;
+  iVar3 = core_globals_get();
+  sVar2 = *param_1;
+  cVar1 = *(char *)((int)param_1 + 0xd);
+  uVar4 = 0;
   do {
-    uVar6 = bitmap_find_next_bit(iVar5 + 0x454,0x20,uVar6);
-    uVar6 = uVar6 & 0xff;
-    if (0x1f < uVar6) {
+    uVar4 = bitmap_find_next_bit(iVar3 + 0x454,0x20,uVar4);
+    uVar4 = uVar4 & 0xff;
+    if (0x1f < uVar4) {
 _L0:
-      zmsg_free(msg);
+      zmsg_free(param_2);
       return;
     }
-    iVar7 = iVar5 + uVar6 * 0x20;
-    if ((*(uint8_t *)(iVar7 + 0x5a) == uVar1) && (*(ezb_shortaddr_t *)(iVar7 + 0x58) == eVar3)) {
-      retrans = (aps_retrans_ent_t *)(iVar5 + uVar6 * 0x20 + 0x54);
-      bVar2 = (retrans->w).slot_done;
-      bVar8 = ~bVar2;
-      if (((char)aps_hdr->fcf < '\0') && ((byte)(((aps_hdr->ext_hdr).ext_fcf & 3) - 1) < 2)) {
-        if ((retrans->w).blk_start == (aps_hdr->ext_hdr).block_nr) {
-          bVar8 = bVar8 & (aps_hdr->ext_hdr).ack_bits;
+    iVar5 = iVar3 + uVar4 * 0x20;
+    if ((*(char *)(iVar5 + 0x5a) == cVar1) && (*(short *)(iVar5 + 0x58) == sVar2)) {
+      iVar3 = iVar3 + uVar4 * 0x20 + 0x54;
+      bVar6 = ~*(byte *)(iVar3 + 0x1e);
+      if (((char)param_1[6] < '\0') && ((byte)((*(byte *)((int)param_1 + 0x11) & 3) - 1) < 2)) {
+        if (*(char *)(iVar3 + 0x1b) == (char)param_1[9]) {
+          bVar6 = bVar6 & *(byte *)((int)param_1 + 0x13);
         }
       }
-      else {
-        uVar6._0_1_ = retrans->retry_cntr;
-        uVar6._1_1_ = retrans->blk_sz;
-        uVar6._2_1_ = (retrans->w).blk_nr;
-        uVar6._3_1_ = (retrans->w).blk_start;
-        if ((uVar6 & 0xffff0000) == 0x10000) {
-          bVar8 = bVar8 & 1;
-        }
+      else if ((*(uint *)(iVar3 + 0x18) & 0xffff0000) == 0x10000) {
+        bVar6 = bVar6 & 1;
       }
-      if (bVar8 != 0) {
-        retrans->retry_cntr = '\x01';
-        (retrans->w).slot_done = bVar2 | bVar8;
-        if ((retrans->w).slot_i == '\0') {
+      if (bVar6 != 0) {
+        *(undefined1 *)(iVar3 + 0x18) = 1;
+        *(byte *)(iVar3 + 0x1e) = *(byte *)(iVar3 + 0x1e) | bVar6;
+        if (*(char *)(iVar3 + 0x1c) == '\0') {
           milli_timer_stop();
-          milli_timer_start(&retrans->tm,0x640);
+          milli_timer_start(iVar3 + 8,0x640);
         }
       }
-      if ((retrans->w).slot_done == 0xff) {
-        milli_timer_stop(&retrans->tm);
-        _Var4 = aps_tx_window_move_next(&retrans->w);
-        if (CONCAT31(extraout_var,_Var4) == 0) {
-          aps_retrans_send_confirm(retrans,0);
+      if (*(char *)(iVar3 + 0x1e) == -1) {
+        milli_timer_stop(iVar3 + 8);
+        iVar5 = aps_tx_window_move_next(iVar3 + 0x1a);
+        if (iVar5 == 0) {
+          aps_retrans_send_confirm(iVar3,0);
         }
         else {
-          retrans->retry_cntr = '\0';
-          aps_retrans_send(retrans);
+          *(undefined1 *)(iVar3 + 0x18) = 0;
+          aps_retrans_send(iVar3);
         }
       }
       goto _L0;
     }
-    uVar6 = uVar6 + 1 & 0xff;
+    uVar4 = uVar4 + 1 & 0xff;
   } while( true );
 }
 

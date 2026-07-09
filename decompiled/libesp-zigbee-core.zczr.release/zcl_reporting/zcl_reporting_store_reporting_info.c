@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_store_reporting_info
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,47 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_reporting_store_reporting_info(zcl_reporting_info_t *info)
+void zcl_reporting_store_reporting_info(char *param_1)
 
 {
-  uint16_t uVar1;
-  undefined2 uVar2;
-  ezb_err_t eVar3;
-  undefined4 uVar4;
   undefined4 uStack_2c;
-  dataset_zcl_reporting_info_t report_info;
+  undefined2 uStack_28;
+  char cStack_26;
+  undefined1 uStack_25;
+  undefined1 uStack_24;
+  undefined1 uStack_23;
+  undefined1 uStack_22;
+  undefined1 uStack_21;
+  undefined1 uStack_20;
+  undefined1 uStack_1f;
+  undefined1 uStack_1e;
+  undefined1 uStack_1d;
+  undefined1 uStack_1c;
+  undefined1 uStack_1b;
+  undefined1 uStack_1a;
+  undefined1 auStack_19 [17];
   
   memset(&uStack_2c,0,0x1b);
-  zcl_reporting_remove_stored_reporting_info(info);
-  report_info._0_2_ = info->cluster_id;
-  uStack_2c._0_1_ = info->direction;
-  uStack_2c._1_1_ = info->ep_id;
-  uStack_2c._2_2_ = info->profile_id;
-  report_info.profile_id._0_1_ = info->cluster_role;
-  report_info.profile_id._1_1_ = (undefined1)info->attr_id;
-  report_info.cluster_id._0_1_ = (undefined1)(info->attr_id >> 8);
-  report_info.cluster_id._1_1_ = (undefined1)*(undefined4 *)&info->manuf_code;
-  report_info.cluster_role = (uint8_t)((uint)*(undefined4 *)&info->manuf_code >> 8);
-  uVar1 = (info->u).send_info.min_interval;
-  report_info.attr_id._0_1_ = (undefined1)uVar1;
-  report_info.attr_id._1_1_ = (undefined1)(uVar1 >> 8);
-  if (info->direction == '\0') {
-    uVar1 = (info->u).send_info.max_interval;
-    report_info.manuf_code._0_1_ = (undefined1)uVar1;
-    report_info.manuf_code._1_1_ = (undefined1)(uVar1 >> 8);
-    uVar4 = *(undefined4 *)((int)&info->u + 0x18);
-    report_info.field_7.send_info.min_interval._0_1_ = (undefined1)uVar4;
-    report_info.field_7.send_info.min_interval._1_1_ = (undefined1)((uint)uVar4 >> 8);
-    uVar2 = *(undefined2 *)((int)&info->u + 0x1a);
-    report_info.field_7.send_info.max_interval._0_1_ = (undefined1)uVar2;
-    report_info.field_7.send_info.max_interval._1_1_ = (undefined1)((ushort)uVar2 >> 8);
-    memcpy((void *)((int)&report_info.field_7 + 4),(void *)((int)&info->u + 8),8);
+  zcl_reporting_remove_stored_reporting_info(param_1);
+  uStack_28 = *(undefined2 *)(param_1 + 4);
+  uStack_2c = *(undefined4 *)param_1;
+  cStack_26 = param_1[8];
+  uStack_25 = (undefined1)*(undefined2 *)(param_1 + 6);
+  uStack_24 = (undefined1)((ushort)*(undefined2 *)(param_1 + 6) >> 8);
+  uStack_23 = (undefined1)*(undefined4 *)(param_1 + 0x30);
+  uStack_22 = (undefined1)((uint)*(undefined4 *)(param_1 + 0x30) >> 8);
+  uStack_21 = (undefined1)*(undefined2 *)(param_1 + 0x10);
+  uStack_20 = (undefined1)((ushort)*(undefined2 *)(param_1 + 0x10) >> 8);
+  if (*param_1 == '\0') {
+    uStack_1f = (undefined1)*(undefined2 *)(param_1 + 0x12);
+    uStack_1e = (undefined1)((ushort)*(undefined2 *)(param_1 + 0x12) >> 8);
+    uStack_1d = (undefined1)*(undefined4 *)(param_1 + 0x28);
+    uStack_1c = (undefined1)((uint)*(undefined4 *)(param_1 + 0x28) >> 8);
+    uStack_1b = (undefined1)*(undefined2 *)(param_1 + 0x2a);
+    uStack_1a = (undefined1)((ushort)*(undefined2 *)(param_1 + 0x2a) >> 8);
+    memcpy(auStack_19,param_1 + 0x18,8);
   }
-  eVar3 = ds_internal_add_entry(10,&uStack_2c,0x1b);
-  return eVar3;
+  ds_internal_add_entry(10,&uStack_2c,0x1b);
+  return;
 }
 

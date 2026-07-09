@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> ota_upgrade_srv.o -> ota_upgrade_cluster_srv_cmd_proc_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,280 +10,248 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: rsp */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t ota_upgrade_cluster_srv_cmd_proc_handler(void *arg)
+int ota_upgrade_cluster_srv_cmd_proc_handler(int param_1)
 
 {
   char cVar1;
-  uint16_t uVar2;
-  short sVar3;
-  int iVar4;
-  uint32_t val;
-  ezb_zcl_status_t eVar5;
-  uint uVar6;
-  ota_upgrade_file_table_t *poVar7;
-  undefined3 extraout_var;
-  ezb_err_t eVar8;
-  undefined4 uVar9;
-  uint8_t *puVar10;
-  uint uVar11;
-  ota_upgrade_file_t *poVar12;
-  uint32_t val_00;
+  short sVar2;
+  int iVar3;
+  uint uVar4;
+  byte *pbVar5;
+  undefined4 uVar6;
+  undefined2 *puVar7;
+  int iVar8;
+  uint uVar9;
   undefined2 uStack_76;
-  uint16_t uStack_74;
-  uint16_t offset;
-  ota_upgrade_query_next_image_req_payload_t payload;
-  ezb_zcl_ota_upgrade_server_progress_start_t start;
+  undefined4 uStack_74;
+  uint uStack_70;
+  int iStack_6c;
+  uint uStack_68;
+  undefined4 uStack_64;
+  undefined4 uStack_60;
+  int iStack_5c;
+  uint uStack_58;
+  undefined4 uStack_54;
+  uint uStack_50;
   byte bStack_4c;
-  uint16_t uStack_4a;
-  undefined1 auStack_48 [4];
-  zcl_packet_t rsp;
+  undefined1 auStack_4a [2];
+  undefined1 auStack_48 [36];
+  undefined4 uStack_24;
   
-  iVar4 = 1;
   memset(auStack_48,0,0x28);
-  if (arg == (void *)0x0) goto _L0;
-  iVar4 = 1;
-  if (((*(byte *)((int)arg + 0x1a) >> 3 & 1) != 0) ||
-     (iVar4 = zcl_packet_init(auStack_48,*(byte *)((int)arg + 0x1a) >> 2 & 1), iVar4 != 0))
-  goto _L0;
-  cVar1 = *(char *)((int)arg + 0x20);
+  if (param_1 == 0) {
+    return 1;
+  }
+  if ((*(byte *)(param_1 + 0x1a) >> 3 & 1) != 0) {
+    return 1;
+  }
+  iVar3 = zcl_packet_init(auStack_48,*(byte *)(param_1 + 0x1a) >> 2 & 1);
+  if (iVar3 != 0) {
+    return iVar3;
+  }
+  cVar1 = *(char *)(param_1 + 0x20);
   if (cVar1 == '\x03') {
-    _uStack_74 = _uStack_74 & 0xffff0000;
-    memset(&payload.hw_version,0,0x1c);
-    uVar6 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,(uint8_t *)&payload.hw_version);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,(uint16_t *)&payload.field_0xe);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,(uint16_t *)&start);
-    af_read_le32(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,(uint32_t *)&start.query.manuf_code)
-    ;
-    af_read_le32(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,&start.query.file_version);
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,(uint8_t *)&start.query.hw_version);
-    if ((payload._12_4_ & 1) != 0) {
-      uVar2 = uStack_74;
-      iVar4 = zmsg_read_bytes(*(undefined4 *)((int)arg + 0x24),_uStack_74 & 0xffff,8,
-                              (undefined1 *)((int)&start.query.hw_version + 1));
-      if (iVar4 == 0) {
-        sVar3 = -1;
+    uStack_74 = uStack_74 & 0xffff0000;
+    memset(&uStack_64,0,0x1c);
+    uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,&uStack_64);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,(int)&uStack_64 + 2);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,&uStack_60);
+    af_read_le32_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,&iStack_5c);
+    af_read_le32_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,&uStack_58);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,&uStack_54);
+    if ((uStack_64 & 1) != 0) {
+      sVar2 = (short)uStack_74;
+      iVar3 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),uStack_74 & 0xffff,8,
+                              (int)&uStack_54 + 1);
+      if (iVar3 == 0) {
+        sVar2 = -1;
       }
       else {
-        sVar3 = uVar2 + (short)iVar4;
+        sVar2 = sVar2 + (short)iVar3;
       }
-      _uStack_74 = CONCAT22(offset,sVar3);
+      uStack_74 = CONCAT22(uStack_74._2_2_,sVar2);
     }
-    if ((payload._12_4_ & 2) != 0) {
-      af_read_le16(*(zmsg_t **)((int)arg + 0x24),&stack0xffffff8c,&uStack_4a);
+    if ((uStack_64 & 2) != 0) {
+      af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_74,auStack_4a);
     }
-    uVar9 = 0x80;
-    if ((_uStack_74 & 0xffff) <= uVar6) {
-      poVar12 = (ota_upgrade_file_t *)0x0;
-      poVar7 = ota_upgrade_get_file_table(*(uint8_t *)((int)arg + 0x15));
-      for (uVar6 = 0; (uVar6 & 0xff) < (uint)poVar7->size; uVar6 = uVar6 + 1) {
-        poVar12 = poVar7->entry + uVar6;
-        if ((((poVar12->header).manufacturer_code == payload._14_2_) &&
-            ((uint)(poVar12->header).image_type == (start.query._0_4_ & 0xffff))) &&
-           ((poVar12->header).file_version == start.query._4_4_)) {
-          if ((payload._12_4_ & 1) == 0) break;
-          if ((*(uint *)&(poVar12->optional).upgrade_file_destination.field_0 ==
-               (start.policy.file_version << 0x18 | (uint)start.query._12_4_ >> 8)) &&
-             (*(uint *)((int)&(poVar12->optional).upgrade_file_destination.field_0 + 4) ==
-              ((uint)bStack_4c << 0x18 | start.policy.file_version >> 8))) goto _L0;
+    uVar6 = 0x80;
+    if ((uStack_74 & 0xffff) <= uVar4) {
+      iVar3 = 0;
+      pbVar5 = (byte *)ota_upgrade_get_file_table(*(undefined1 *)(param_1 + 0x15),0x80);
+      for (uVar4 = 0; (uVar4 & 0xff) < (uint)*pbVar5; uVar4 = uVar4 + 1) {
+        iVar3 = *(int *)(pbVar5 + 4) + uVar4 * 0x4c;
+        if ((((uint)*(ushort *)(iVar3 + 10) == uStack_64 >> 0x10) &&
+            ((uint)*(ushort *)(iVar3 + 0xc) == (uStack_60 & 0xffff))) &&
+           (*(int *)(iVar3 + 0xe) == iStack_5c)) {
+          if ((uStack_64 & 1) == 0) break;
+          if ((*(uint *)(iVar3 + 0x39) == (uStack_50 << 0x18 | uStack_54 >> 8)) &&
+             (*(uint *)(iVar3 + 0x3d) == ((uint)bStack_4c << 0x18 | uStack_50 >> 8))) goto _L0;
         }
       }
-      if (poVar12 == (ota_upgrade_file_t *)0x0) {
-        uVar9 = 0x98;
+      if (iVar3 == 0) {
+        uVar6 = 0x98;
       }
       else {
 _L0:
-        zcl_message_ota_upgrade_server_progress
-                  ((zcl_packet_t *)arg,'\x02',&payload.hw_version,(void *)0x0);
-        uVar6 = (poVar12->header).total_image_size;
-        if (start.query.file_version < uVar6) {
-          if (uVar6 < (start.query._12_4_ & 0xff) + start.query.file_version) {
-            start.query.hw_version._0_1_ = (char)uVar6 - (char)start.query.file_version;
+        zcl_message_ota_upgrade_server_progress(param_1,2,&uStack_64,0);
+        uVar4 = *(uint *)(iVar3 + 0x34);
+        if (uStack_58 < uVar4) {
+          if (uVar4 < (uStack_54 & 0xff) + uStack_58) {
+            uStack_54 = CONCAT31(uStack_54._1_3_,(char)uVar4 - (char)uStack_58);
           }
           uStack_76 = (ushort)uStack_76._1_1_ << 8;
-          iVar4 = zmsg_append_bytes(rsp._32_4_,1,&uStack_76);
-          if (iVar4 == 0) {
-            eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,payload._14_2_);
-            if (eVar8 == 0) {
-              eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,start.query.short_address);
-              if (((eVar8 == 0) &&
-                  (eVar8 = zmsg_append_le32((zmsg_t *)rsp._32_4_,start.query._4_4_), eVar8 == 0)) &&
-                 (eVar8 = zmsg_append_le32((zmsg_t *)rsp._32_4_,start.query.file_version),
-                 eVar8 == 0)) {
-                uStack_76 = CONCAT11(uStack_76._1_1_,(char)start.query.hw_version);
-                iVar4 = zmsg_append_bytes(rsp._32_4_,1,&uStack_76);
-                if (iVar4 == 0) {
-                  uVar6 = start.query._12_4_ & 0xff;
-                  puVar10 = poVar12->data + start.query.file_version;
-                  goto _L0;
-                }
-              }
+          iVar8 = zmsg_append_bytes(uStack_24,1,&uStack_76);
+          if (((iVar8 == 0) && (iVar8 = zmsg_append_le16(uStack_24,uStack_64 >> 0x10), iVar8 == 0))
+             && ((iVar8 = zmsg_append_le16(uStack_24,uStack_60 & 0xffff), iVar8 == 0 &&
+                 ((iVar8 = zmsg_append_le32(uStack_24,iStack_5c), iVar8 == 0 &&
+                  (iVar8 = zmsg_append_le32(uStack_24,uStack_58), iVar8 == 0)))))) {
+            uStack_76 = CONCAT11(uStack_76._1_1_,(undefined1)uStack_54);
+            iVar8 = zmsg_append_bytes(uStack_24,1,&uStack_76);
+            if (iVar8 == 0) {
+              uVar4 = uStack_54 & 0xff;
+              puVar7 = (undefined2 *)(*(int *)(iVar3 + 0x48) + uStack_58);
+              goto _L0;
             }
           }
         }
         else {
           uStack_76 = CONCAT11(uStack_76._1_1_,0x98);
-          puVar10 = (uint8_t *)&uStack_76;
-          uVar6 = 1;
+          puVar7 = &uStack_76;
+          uVar4 = 1;
 _L0:
-          iVar4 = zmsg_append_bytes(rsp._32_4_,uVar6,puVar10);
-          if (iVar4 == 0) {
-            uVar9 = 5;
+          iVar3 = zmsg_append_bytes(uStack_24,uVar4,puVar7);
+          if (iVar3 == 0) {
+            uVar6 = 5;
             goto _L0;
           }
         }
-        uVar9 = 0x89;
+        uVar6 = 0x89;
       }
     }
     goto _L0;
   }
   if (cVar1 == '\x06') {
     uStack_76 = 0;
-    payload.hw_version = 0;
-    payload._14_2_ = 0;
-    start.query.short_address = 0;
-    start.query.ep_id = '\0';
-    start.query._3_1_ = 0;
-    start.query.manuf_code = 0;
-    start.query.image_type = 0;
-    uVar6 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint8_t *)&payload.hw_version);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint16_t *)&payload.field_0xe);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint16_t *)&start);
-    af_read_le32(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint32_t *)&start.query.manuf_code);
-    uVar9 = 0x80;
-    if (uVar6 < uStack_76) goto _L0;
-    _uStack_74 = 0;
-    zcl_message_ota_upgrade_server_progress
-              ((zcl_packet_t *)arg,'\x05',&payload.hw_version,&stack0xffffff8c);
-    if ((char)payload.hw_version == '\0') {
-      uVar11 = _uStack_74 & 0xffff;
-      uVar6 = _uStack_74 >> 0x10;
-      eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,payload._14_2_);
-      if (eVar8 == 0) {
-        eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,start.query.short_address);
-        if (((eVar8 == 0) &&
-            (eVar8 = zmsg_append_le32((zmsg_t *)rsp._32_4_,start.query._4_4_), eVar8 == 0)) &&
-           (eVar8 = zmsg_append_le32((zmsg_t *)rsp._32_4_,uVar11), eVar8 == 0)) {
-          zmsg_append_le32((zmsg_t *)rsp._32_4_,uVar6);
-        }
+    uStack_64 = 0;
+    uStack_60 = 0;
+    iStack_5c = 0;
+    uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&uStack_64);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,(int)&uStack_64 + 2);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&uStack_60);
+    af_read_le32_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&iStack_5c);
+    uVar6 = 0x80;
+    if (uVar4 < uStack_76) goto _L0;
+    uStack_74 = 0;
+    zcl_message_ota_upgrade_server_progress(param_1,5,&uStack_64,&uStack_74);
+    if ((uStack_64 & 0xff) == 0) {
+      uVar9 = uStack_74 & 0xffff;
+      uVar4 = uStack_74 >> 0x10;
+      iVar3 = zmsg_append_le16(uStack_24,uStack_64 >> 0x10);
+      if ((((iVar3 == 0) && (iVar3 = zmsg_append_le16(uStack_24,uStack_60 & 0xffff), iVar3 == 0)) &&
+          (iVar3 = zmsg_append_le32(uStack_24,iStack_5c), iVar3 == 0)) &&
+         (iVar3 = zmsg_append_le32(uStack_24,uVar9), iVar3 == 0)) {
+        zmsg_append_le32(uStack_24,uVar4);
       }
-      if ((char)payload.hw_version == '\0') {
-        uVar9 = 7;
+      if ((char)uStack_64 == '\0') {
+        uVar6 = 7;
         goto _L0;
       }
     }
-    uVar9 = 0;
+    uVar6 = 0;
+  }
+  else if (cVar1 == '\x01') {
+    uStack_76 = 0;
+    uStack_74 = 0;
+    uStack_70 = 0;
+    iStack_6c = 0;
+    uStack_68 = 0;
+    uVar4 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&uStack_74);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,(int)&uStack_74 + 2);
+    af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&uStack_70);
+    af_read_le32_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&iStack_6c);
+    if ((uStack_74 & 1) != 0) {
+      af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_76,&uStack_68);
+    }
+    if (uStack_76 <= uVar4) {
+      pbVar5 = (byte *)ota_upgrade_get_file_table(*(undefined1 *)(param_1 + 0x15));
+      if (pbVar5 == (byte *)0x0) {
 _L0:
-    iVar4 = zcl_packet_setup_default_response(auStack_48,arg,uVar9);
+        uStack_64 = CONCAT31(uStack_64._1_3_,0x98);
+        iVar3 = zmsg_append_bytes(uStack_24,1,&uStack_64);
+_L0:
+        if (iVar3 != 0) {
+_L0:
+          uVar6 = 0x89;
+          goto _L0;
+        }
+      }
+      else {
+        iVar3 = 1;
+        for (uVar4 = 0; uVar4 < *pbVar5; uVar4 = uVar4 + 1 & 0xff) {
+          iVar8 = *(int *)(pbVar5 + 4) + uVar4 * 0x4c;
+          if ((*(short *)(iVar8 + 10) == uStack_74._2_2_) &&
+             ((uint)*(ushort *)(iVar8 + 0xc) == (uStack_70 & 0xffff))) {
+            if ((((uStack_74 & 1) == 0) || ((*(ushort *)(iVar8 + 8) & 4) == 0)) ||
+               (((*(uint *)(iVar8 + 0x40) >> 8 & 0xffff) <= (uStack_68 & 0xffff) &&
+                ((uStack_68 & 0xffff) <=
+                 ((uint)*(byte *)(iVar8 + 0x44) << 8 | *(uint *)(iVar8 + 0x40) >> 0x18))))) {
+              uStack_60 = CONCAT22((undefined2)uStack_70,uStack_74._2_2_);
+              uStack_58 = CONCAT22(uStack_58._2_2_,(undefined2)uStack_68);
+              uStack_64._0_3_ =
+                   CONCAT12(*(undefined1 *)(param_1 + 0x14),*(undefined2 *)(param_1 + 2));
+              iStack_5c = iStack_6c;
+              uStack_54 = *(uint *)(iVar8 + 0xe);
+              iVar3 = zcl_message_ota_upgrade_server_progress(param_1,0,&uStack_64,0);
+              if (iVar3 == 0) {
+                uVar6 = *(undefined4 *)(iVar8 + 0xe);
+                iVar3 = *(int *)(iVar8 + 0x34);
+              }
+              else {
+                if (iVar3 != 0xfe) goto _L0;
+                uVar6 = 0;
+                iVar3 = 0;
+              }
+              if (iVar3 == 0) goto _L0;
+              uStack_64 = uStack_64 & 0xffffff00;
+              iVar8 = zmsg_append_bytes(uStack_24,1,&uStack_64);
+              if ((((iVar8 != 0) ||
+                   (iVar8 = zmsg_append_le16(uStack_24,uStack_74 >> 0x10), iVar8 != 0)) ||
+                  (iVar8 = zmsg_append_le16(uStack_24,uStack_70 & 0xffff), iVar8 != 0)) ||
+                 (iVar8 = zmsg_append_le32(uStack_24,uVar6), iVar8 != 0)) goto _L0;
+              iVar3 = zmsg_append_le32(uStack_24,iVar3);
+              goto _L0;
+            }
+          }
+_L0:
+        }
+        if (iVar3 != 0x7e) goto _L0;
+        uStack_64 = CONCAT31(uStack_64._1_3_,0x7e);
+        iVar3 = zmsg_append_bytes(uStack_24,1,&uStack_64);
+        uVar6 = 0x7e;
+        if (iVar3 != 0) goto _L0;
+      }
+      uVar6 = 2;
+_L0:
+      iVar3 = zcl_packet_setup_response_with_extension(auStack_48,param_1,uVar6,0,1);
+      goto _L0;
+    }
+    uVar6 = 0x80;
   }
   else {
-    if (cVar1 != '\x01') {
-      uVar9 = 0x81;
-      goto _L0;
-    }
-    uStack_76 = 0;
-    _uStack_74 = 0;
-    payload.fc = '\0';
-    payload._1_1_ = 0;
-    payload.manuf_code = 0;
-    payload.image_type = 0;
-    payload._6_2_ = 0;
-    payload.file_version = 0;
-    uVar6 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint8_t *)&stack0xffffff8c);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_76,&offset);
-    af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint16_t *)&payload);
-    af_read_le32(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint32_t *)&payload.image_type);
-    if ((_uStack_74 & 1) != 0) {
-      af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_76,(uint16_t *)&payload.file_version);
-    }
-    if (uVar6 < uStack_76) {
-      uVar9 = 0x80;
-      goto _L0;
-    }
-    poVar7 = ota_upgrade_get_file_table(*(uint8_t *)((int)arg + 0x15));
-    if (poVar7 == (ota_upgrade_file_table_t *)0x0) {
-_L0:
-      payload.hw_version._0_1_ = 0x98;
-      iVar4 = zmsg_append_bytes(rsp._32_4_,1,&payload.hw_version);
-_L0:
-      if (iVar4 != 0) {
-_L0:
-        uVar9 = 0x89;
-        goto _L0;
-      }
-    }
-    else {
-      iVar4 = 1;
-      for (uVar6 = 0; uVar9 = payload._0_4_, uVar6 < poVar7->size; uVar6 = uVar6 + 1 & 0xff) {
-        poVar12 = poVar7->entry;
-        if ((poVar12[uVar6].header.manufacturer_code == offset) &&
-           ((uint)poVar12[uVar6].header.image_type == (payload._0_4_ & 0xffff))) {
-          if ((((_uStack_74 & 1) == 0) || ((poVar12[uVar6].header.hdr_fc & 4) == 0)) ||
-             ((uVar11 = *(uint *)((int)&poVar12[uVar6].optional.upgrade_file_destination.field_0 + 7
-                                 ), (uVar11 >> 8 & 0xffff) <= (payload.file_version & 0xffff) &&
-              ((payload.file_version & 0xffff) <=
-               ((uint)*(byte *)((int)&poVar12[uVar6].optional.maximum_hardware_version + 1) << 8 |
-               uVar11 >> 0x18))))) {
-            start.query.ep_id = payload.fc;
-            start.query._3_1_ = payload._1_1_;
-            start.query.short_address = offset;
-            start.query.file_version =
-                 CONCAT22(start.query.file_version._2_2_,(undefined2)payload.file_version);
-            payload._14_1_ = *(undefined1 *)((int)arg + 0x14);
-            payload.hw_version = *(uint16_t *)((int)arg + 2);
-            start.query.manuf_code = payload.image_type;
-            start.query.image_type = payload._6_2_;
-            start.query._12_4_ = poVar12[uVar6].header.file_version;
-            payload._0_4_ = uVar9;
-            eVar5 = zcl_message_ota_upgrade_server_progress
-                              ((zcl_packet_t *)arg,'\0',&payload.hw_version,(void *)0x0);
-            iVar4 = CONCAT31(extraout_var,eVar5);
-            if (iVar4 == 0) {
-              val = poVar12[uVar6].header.file_version;
-              val_00 = poVar12[uVar6].header.total_image_size;
-            }
-            else {
-              if (iVar4 != 0xfe) goto _L0;
-              val = 0;
-              val_00 = 0;
-            }
-            if (val_00 == 0) goto _L0;
-            payload._12_4_ = payload._12_4_ & 0xffffff00;
-            iVar4 = zmsg_append_bytes(rsp._32_4_,1,&payload.hw_version);
-            if (iVar4 != 0) goto _L0;
-            eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,offset);
-            if (eVar8 != 0) goto _L0;
-            eVar8 = zmsg_append_le16((zmsg_t *)rsp._32_4_,payload._0_2_);
-            if ((eVar8 != 0) || (eVar8 = zmsg_append_le32((zmsg_t *)rsp._32_4_,val), eVar8 != 0))
-            goto _L0;
-            iVar4 = zmsg_append_le32((zmsg_t *)rsp._32_4_,val_00);
-            goto _L0;
-          }
-        }
-_L0:
-      }
-      if (iVar4 != 0x7e) goto _L0;
-      payload.hw_version._0_1_ = 0x7e;
-      iVar4 = zmsg_append_bytes(rsp._32_4_,1,&payload.hw_version);
-      uVar9 = 0x7e;
-      if (iVar4 != 0) goto _L0;
-    }
-    uVar9 = 2;
-_L0:
-    iVar4 = zcl_packet_setup_response_with_extension(auStack_48,arg,uVar9,0,1);
+    uVar6 = 0x81;
   }
-  if (iVar4 == 0) {
+_L0:
+  iVar3 = zcl_packet_setup_default_response(auStack_48,param_1,uVar6);
+_L0:
+  if (iVar3 == 0) {
     zcl_packet_send(auStack_48,0);
   }
   else {
     zcl_packet_free(auStack_48);
   }
-_L0:
-  return (ezb_zcl_status_t)iVar4;
+  return iVar3;
 }
 

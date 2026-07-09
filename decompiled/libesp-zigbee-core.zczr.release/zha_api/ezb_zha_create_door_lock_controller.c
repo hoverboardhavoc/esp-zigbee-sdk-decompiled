@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zha_api.o -> ezb_zha_create_door_lock_controller
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: ep_config */
-/* WARNING: Unknown calling convention */
-
-ezb_af_ep_desc_t
-ezb_zha_create_door_lock_controller(uint8_t ep_id,ezb_zha_door_lock_controller_config_t *cfg)
+undefined4 ezb_zha_create_door_lock_controller(undefined1 param_1,int param_2)
 
 {
-  ezb_af_ep_desc_t pvVar1;
+  undefined4 uVar1;
   undefined4 uVar2;
-  ezb_zcl_identify_cluster_server_config_t *peVar3;
-  uint8_t uStack_18;
+  int iVar3;
+  undefined1 uStack_18;
   undefined1 uStack_17;
   undefined2 uStack_16;
-  ezb_af_ep_config_t ep_config;
+  undefined2 uStack_14;
   
-  peVar3 = &cfg->identify_cfg;
-  if (cfg == (ezb_zha_door_lock_controller_config_t *)0x0) {
-    peVar3 = (ezb_zcl_identify_cluster_server_config_t *)0x0;
+  iVar3 = param_2 + 2;
+  if (param_2 == 0) {
+    iVar3 = 0;
   }
   memset(&uStack_17,0,7);
   uStack_16 = 0x104;
-  ep_config.ep_id = '\v';
-  ep_config._1_1_ = 0;
-  uStack_18 = ep_id;
-  pvVar1 = (ezb_af_ep_desc_t)ezb_af_create_endpoint_desc(&uStack_18);
-  uVar2 = ezb_zcl_basic_create_cluster_desc(cfg,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_identify_create_cluster_desc(peVar3,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
+  uStack_14 = 0xb;
+  uStack_18 = param_1;
+  uVar1 = ezb_af_create_endpoint_desc(&uStack_18);
+  uVar2 = ezb_zcl_basic_create_cluster_desc(param_2,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_identify_create_cluster_desc(iVar3,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
   uVar2 = ezb_zcl_door_lock_create_cluster_desc(0,2);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
   uVar2 = ezb_zcl_identify_create_cluster_desc(0,2);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
   uVar2 = ezb_zcl_groups_create_cluster_desc(0,2);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
   uVar2 = ezb_zcl_scenes_create_cluster_desc(0,2);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  return pvVar1;
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  return uVar1;
 }
 

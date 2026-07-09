@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_commissioning_set_role
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,18 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void touchlink_commissioning_set_role
-               (touchlink_commissioning_role_t role,touchlink_commissioning_callback_t cb)
+void touchlink_commissioning_set_role(undefined1 param_1,undefined4 param_2)
 
 {
   int iVar1;
   
   iVar1 = core_globals_get();
-  *(char *)(iVar1 + 0x13ad) = (char)role;
+  *(undefined1 *)(iVar1 + 0x13ad) = param_1;
   iVar1 = core_globals_get();
-  *(touchlink_commissioning_callback_t *)(iVar1 + 0x13e4) = cb;
+  *(undefined4 *)(iVar1 + 0x13e4) = param_2;
   return;
 }
 

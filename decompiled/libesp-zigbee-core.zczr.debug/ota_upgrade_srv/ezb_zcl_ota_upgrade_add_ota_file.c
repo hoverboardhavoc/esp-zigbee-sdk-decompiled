@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_srv.o -> ezb_zcl_ota_upgrade_add_ota_file
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,75 +10,68 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_ota_file_handle_t
-ezb_zcl_ota_upgrade_add_ota_file(uint8_t ep_id,void *image,uint32_t image_size)
+void * ezb_zcl_ota_upgrade_add_ota_file(void *param_1,int param_2)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  uint8_t uVar3;
-  uint8_t uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
-  uint8_t uVar7;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined1 uVar5;
+  undefined1 uVar6;
+  undefined1 uVar7;
   ushort uVar8;
-  ota_upgrade_file_table_t *file_table;
-  ota_upgrade_file_t *__dest;
-  uint8_t *puVar9;
-  int iVar10;
-  undefined1 *puVar11;
+  void *__dest;
+  int iVar9;
+  undefined1 *puVar10;
   
-  if (image == (void *)0x0) {
-    __dest = (ota_upgrade_file_t *)0x0;
+  if (param_1 == (void *)0x0) {
+    __dest = (void *)0x0;
   }
   else {
-    file_table = ota_upgrade_get_file_table(ep_id);
-    __dest = ota_upgrade_file_table_get_empty_entry(file_table);
-    if (__dest != (ota_upgrade_file_t *)0x0) {
-      memcpy(__dest,image,0x38);
-      uVar8 = (__dest->header).hdr_fc;
+    ota_upgrade_get_file_table();
+    __dest = (void *)ota_upgrade_file_table_get_empty_entry();
+    if (__dest != (void *)0x0) {
+      memcpy(__dest,param_1,0x38);
+      uVar8 = *(ushort *)((int)__dest + 8);
       if ((uVar8 & 1) == 0) {
-        iVar10 = 0x38;
+        iVar9 = 0x38;
       }
       else {
-        (__dest->optional).security_credential_version = *(uint8_t *)((int)image + 0x38);
-        iVar10 = 0x39;
+        *(undefined1 *)((int)__dest + 0x38) = *(undefined1 *)((int)param_1 + 0x38);
+        iVar9 = 0x39;
       }
       if ((uVar8 & 2) != 0) {
-        puVar9 = (uint8_t *)((int)image + iVar10);
-        uVar1 = puVar9[1];
-        uVar2 = puVar9[2];
-        uVar3 = puVar9[3];
-        uVar4 = puVar9[4];
-        uVar5 = puVar9[5];
-        uVar6 = puVar9[6];
-        uVar7 = puVar9[7];
-        (__dest->optional).upgrade_file_destination.field_0.u8[0] = *puVar9;
-        (__dest->optional).upgrade_file_destination.field_0.u8[1] = uVar1;
-        (__dest->optional).upgrade_file_destination.field_0.u8[2] = uVar2;
-        (__dest->optional).upgrade_file_destination.field_0.u8[3] = uVar3;
-        (__dest->optional).upgrade_file_destination.field_0.u8[4] = uVar4;
-        (__dest->optional).upgrade_file_destination.field_0.u8[5] = uVar5;
-        (__dest->optional).upgrade_file_destination.field_0.u8[6] = uVar6;
-        (__dest->optional).upgrade_file_destination.field_0.u8[7] = uVar7;
-        iVar10 = iVar10 + 8;
+        puVar10 = (undefined1 *)((int)param_1 + iVar9);
+        uVar1 = puVar10[1];
+        uVar2 = puVar10[2];
+        uVar3 = puVar10[3];
+        uVar4 = puVar10[4];
+        uVar5 = puVar10[5];
+        uVar6 = puVar10[6];
+        uVar7 = puVar10[7];
+        *(undefined1 *)((int)__dest + 0x39) = *puVar10;
+        *(undefined1 *)((int)__dest + 0x3a) = uVar1;
+        *(undefined1 *)((int)__dest + 0x3b) = uVar2;
+        *(undefined1 *)((int)__dest + 0x3c) = uVar3;
+        *(undefined1 *)((int)__dest + 0x3d) = uVar4;
+        *(undefined1 *)((int)__dest + 0x3e) = uVar5;
+        *(undefined1 *)((int)__dest + 0x3f) = uVar6;
+        *(undefined1 *)((int)__dest + 0x40) = uVar7;
+        iVar9 = iVar9 + 8;
       }
       if ((uVar8 & 4) != 0) {
-        *(undefined1 *)&(__dest->optional).minimum_hardware_version =
-             *(undefined1 *)((int)image + iVar10);
-        *(undefined1 *)((int)&(__dest->optional).minimum_hardware_version + 1) =
-             ((undefined1 *)((int)image + iVar10))[1];
-        puVar11 = (undefined1 *)(iVar10 + 2 + (int)image);
-        *(undefined1 *)&(__dest->optional).maximum_hardware_version = *puVar11;
-        *(undefined1 *)((int)&(__dest->optional).maximum_hardware_version + 1) = puVar11[1];
+        *(undefined1 *)((int)__dest + 0x41) = *(undefined1 *)((int)param_1 + iVar9);
+        *(undefined1 *)((int)__dest + 0x42) = ((undefined1 *)((int)param_1 + iVar9))[1];
+        puVar10 = (undefined1 *)(iVar9 + 2 + (int)param_1);
+        *(undefined1 *)((int)__dest + 0x43) = *puVar10;
+        *(undefined1 *)((int)__dest + 0x44) = puVar10[1];
       }
-      if ((__dest->header).total_image_size == image_size) {
-        __dest->data = (uint8_t *)image;
+      if (*(int *)((int)__dest + 0x34) == param_2) {
+        *(void **)((int)__dest + 0x48) = param_1;
       }
       else {
-        (__dest->header).total_image_size = 0;
+        *(undefined4 *)((int)__dest + 0x34) = 0;
       }
     }
   }

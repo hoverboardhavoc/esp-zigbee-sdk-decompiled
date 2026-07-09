@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_secur.o -> zdo_secur_request_tclk
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,47 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zdo_secur_request_tclk(zdo_secur_callback_t cb,void *user_ctx)
+int zdo_secur_request_tclk(undefined4 param_1,undefined4 param_2)
 
 {
-  ezb_err_t eVar1;
-  int iVar2;
-  undefined4 *puVar3;
+  int iVar1;
+  undefined4 *puVar2;
+  int iVar3;
   int iVar4;
   undefined4 uStack_34;
-  apsme_request_key_req_t rk_req;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined1 uStack_24;
   
-  iVar2 = core_globals_get();
-  if ((*(char *)(iVar2 + 0xcf8) == '\0') && (iVar2 = nwk_secur_is_authenticated(), iVar2 != 0)) {
-    iVar2 = core_globals_get();
-    *(undefined1 *)(iVar2 + 0x9b8) = 0;
-    rk_req.dst_address.field_0.u64._4_4_ = 4;
+  iVar1 = core_globals_get();
+  if ((*(char *)(iVar1 + 0xcf8) == '\0') && (iVar1 = nwk_secur_is_authenticated(), iVar1 != 0)) {
+    iVar1 = core_globals_get();
+    *(undefined1 *)(iVar1 + 0x9b8) = 0;
+    uStack_2c = 4;
     uStack_34 = 0;
-    rk_req.dst_address.field_0.u64._0_4_ = 0;
-    rk_req._8_4_ = 0;
-    rk_req.partner_address.field_0.u8[3] = '\0';
-    puVar3 = (undefined4 *)aps_secur_get_tc_address();
-    uStack_34 = *puVar3;
-    rk_req.dst_address.field_0.u64._0_4_ = puVar3[1];
-    eVar1 = apsme_request_key_request(&uStack_34);
-    if (eVar1 == 0) {
-      iVar2 = core_globals_get();
-      *(zdo_secur_callback_t *)(iVar2 + 0xd0c) = cb;
-      iVar2 = core_globals_get();
-      *(void **)(iVar2 + 0xd10) = user_ctx;
-      iVar2 = core_globals_get();
-      *(undefined1 *)(iVar2 + 0xcf8) = 2;
-      iVar2 = core_globals_get();
+    uStack_30 = 0;
+    uStack_28 = 0;
+    uStack_24 = 0;
+    puVar2 = (undefined4 *)aps_secur_get_tc_address();
+    uStack_34 = *puVar2;
+    uStack_30 = puVar2[1];
+    iVar1 = apsme_request_key_request(&uStack_34);
+    if (iVar1 == 0) {
+      iVar3 = core_globals_get();
+      *(undefined4 *)(iVar3 + 0xd0c) = param_1;
+      iVar3 = core_globals_get();
+      *(undefined4 *)(iVar3 + 0xd10) = param_2;
+      iVar3 = core_globals_get();
+      *(undefined1 *)(iVar3 + 0xcf8) = 2;
+      iVar3 = core_globals_get();
       iVar4 = core_globals_get();
-      milli_timer_start(iVar2 + 0xcfc,(*(ushort *)(iVar4 + 0x9ba) & 0x1f) * 1000);
+      milli_timer_start(iVar3 + 0xcfc,(*(ushort *)(iVar4 + 0x9ba) & 0x1f) * 1000);
       nwk_pim_start_fast_poll(0);
     }
   }
   else {
-    eVar1 = 3;
+    iVar1 = 3;
   }
-  return eVar1;
+  return iVar1;
 }
 

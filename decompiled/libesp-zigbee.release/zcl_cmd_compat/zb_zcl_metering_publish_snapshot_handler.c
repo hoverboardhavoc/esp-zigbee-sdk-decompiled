@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> zb_zcl_metering_publish_snapshot_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,277 +10,237 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_metering_publish_snapshot_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_metering_publish_snapshot_handler(undefined2 *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_zb_uint48_t *dst;
-  esp_err_t err;
+  undefined1 uVar1;
+  void *__ptr;
   uint uVar2;
   size_t __nmemb;
   undefined4 uVar3;
-  uint64_t *puVar4;
-  esp_zb_uint48_t *peVar5;
-  esp_zb_uint48_t *peVar6;
+  int iVar4;
+  void *pvVar5;
+  void *pvVar6;
   undefined2 uStack_58;
   undefined2 uStack_56;
-  esp_zb_zcl_metering_publish_snapshot_message_t app_message;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined2 uStack_4c;
+  undefined1 uStack_4a;
+  undefined1 uStack_49;
+  undefined4 uStack_48;
+  byte bStack_44;
+  undefined1 auStack_43 [6];
+  byte bStack_3d;
+  undefined4 uStack_3c;
+  byte bStack_38;
+  undefined1 uStack_37;
+  undefined1 uStack_36;
+  undefined1 uStack_35;
+  undefined1 uStack_34;
+  undefined1 uStack_33;
+  undefined1 uStack_32;
+  undefined1 uStack_31;
+  undefined1 uStack_30;
+  undefined1 uStack_2f;
+  undefined1 uStack_2e;
+  undefined1 uStack_2d;
+  byte bStack_2c;
+  undefined1 uStack_2b;
+  undefined1 uStack_2a;
+  undefined1 uStack_29;
+  undefined1 uStack_28;
+  byte bStack_27;
+  undefined2 uStack_26;
+  undefined2 uStack_24;
   
-  memset((void *)((int)&app_message.snapshot_time + 3),0,0x29);
-  uStack_56 = *(undefined2 *)((int)arg + 2);
-                    /* WARNING: Load size is inaccurate */
-  uStack_58 = *arg;
-  app_message.info = *(esp_zb_device_cb_common_info_t *)((int)arg + 0x10);
-  app_message.snapshot_time._2_1_ = *(undefined1 *)((int)arg + 0x1a);
-  app_message.snapshot_id = *(uint32_t *)((int)arg + 0x14);
-  app_message.snapshot_cause._0_1_ = *(byte *)((int)arg + 0x20);
-  app_message._12_4_ = *(undefined4 *)((int)arg + 0x1c);
-  app_message.snapshot_time._0_2_ = *(undefined2 *)((int)arg + 0x18);
-  if ((byte)app_message.snapshot_cause == 4) {
+  memset(&uStack_49,0,0x29);
+  uStack_56 = param_1[1];
+  uStack_58 = *param_1;
+  uStack_54 = *(undefined4 *)(param_1 + 8);
+  uStack_4a = *(undefined1 *)(param_1 + 0xd);
+  uStack_50 = *(undefined4 *)(param_1 + 10);
+  bStack_44 = *(byte *)(param_1 + 0x10);
+  uStack_48 = *(undefined4 *)(param_1 + 0xe);
+  uStack_4c = param_1[0xc];
+  if (bStack_44 == 4) {
 _L0:
-    array_copy_u64_to_u48
-              ((esp_zb_uint48_t *)((int)&app_message.snapshot_cause + 1),
-               (uint64_t *)((int)arg + 0x28),1);
-    app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.low._2_1_ =
-         *(byte *)((int)arg + 0x30);
-    uVar2 = (uint)(byte)app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.
-                        low._2_1_;
-    if ((uVar2 == 0) || (puVar4 = *(uint64_t **)((int)arg + 0x34), puVar4 == (uint64_t *)0x0)) {
+    array_copy_u64_to_u48(auStack_43,param_1 + 0x14,1);
+    bStack_3d = *(byte *)(param_1 + 0x18);
+    uVar2 = (uint)bStack_3d;
+    if ((uVar2 == 0) || (iVar4 = *(int *)(param_1 + 0x1a), iVar4 == 0)) {
 _L0:
-      if (cb == (esp_zb_core_action_callback_t)0x0) {
+      if (param_2 == (code *)0x0) {
         return;
       }
-      peVar5 = (esp_zb_uint48_t *)0x0;
-      dst = (esp_zb_uint48_t *)0x0;
+      pvVar5 = (void *)0x0;
+      __ptr = (void *)0x0;
 _L0:
-      err = (*cb)(ESP_ZB_CORE_METERING_PUBLISH_SNAPSHOT_CB_ID,&uStack_58);
-      eVar1 = esp_err_to_zcl_status(err);
-      *(ezb_zcl_status_t *)((int)arg + 0x50) = eVar1;
+      (*param_2)(0x48,&uStack_58);
+      uVar1 = esp_err_to_zcl_status();
+      *(undefined1 *)(param_1 + 0x28) = uVar1;
       goto _L0;
     }
-    dst = (esp_zb_uint48_t *)calloc(uVar2,6);
-    if (dst == (esp_zb_uint48_t *)0x0) goto _L0;
-    array_copy_u64_to_u48(dst,puVar4,uVar2);
-    app_message.snapshot_sub_payload._3_4_ = dst;
+    __ptr = calloc(uVar2,6);
+    if (__ptr == (void *)0x0) goto _L0;
+    array_copy_u64_to_u48(iVar4,uVar2);
+    uStack_3c = __ptr;
 _L0:
-    peVar5 = (esp_zb_uint48_t *)0x0;
-    if (cb != (esp_zb_core_action_callback_t)0x0) goto _L0;
+    pvVar5 = (void *)0x0;
+    if (param_2 != (code *)0x0) goto _L0;
   }
   else {
-    if ((byte)app_message.snapshot_cause < 5) {
-      if (((byte)app_message.snapshot_cause != 2) && ((byte)app_message.snapshot_cause != 3)) {
-        array_copy_u64_to_u48
-                  ((esp_zb_uint48_t *)((int)&app_message.snapshot_cause + 1),
-                   (uint64_t *)((int)arg + 0x28),1);
-        app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.low._2_1_ =
-             (undefined1)*(undefined4 *)((int)arg + 0x30);
-        app_message.snapshot_sub_payload._3_3_ =
-             (undefined3)((uint)*(undefined4 *)((int)arg + 0x30) >> 8);
-        uVar3 = *(undefined4 *)((int)arg + 0x34);
-        app_message.snapshot_sub_payload.tou_delivered_no_billing.number_of_tiers_in_use =
-             (char)uVar3;
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._1_1_ =
-             (undefined1)((uint)uVar3 >> 8);
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._2_1_ =
-             (undefined1)((uint)uVar3 >> 0x10);
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._3_1_ =
-             (undefined1)((uint)uVar3 >> 0x18);
-        uVar3 = *(undefined4 *)((int)arg + 0x38);
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._0_1_ =
-             (undefined1)uVar3;
-        app_message.snapshot_sub_payload.block_tier_delivered_no_billing.
-        number_of_tiers_and_block_thresholds_in_use = (uint8_t)((uint)uVar3 >> 8);
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._2_1_ =
-             (undefined1)((uint)uVar3 >> 0x10);
-        app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._3_1_ =
-             (undefined1)((uint)uVar3 >> 0x18);
-        uVar3 = *(undefined4 *)((int)arg + 0x3c);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._0_1_ =
-             (undefined1)uVar3;
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._1_1_ =
-             (undefined1)((uint)uVar3 >> 8);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._2_1_ =
-             (undefined1)((uint)uVar3 >> 0x10);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._3_1_ =
-             (undefined1)((uint)uVar3 >> 0x18);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._0_1_ =
-             *(undefined1 *)((int)arg + 0x40);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._1_1_ =
-             *(byte *)((int)arg + 0x41);
-        uVar2 = (uint)(byte)app_message.snapshot_sub_payload.tou_delivered.
-                            projected_bill_time_stamp_delivered._1_1_;
-        if ((uVar2 == 0) || (puVar4 = *(uint64_t **)((int)arg + 0x44), puVar4 == (uint64_t *)0x0))
-        goto _L0;
-        dst = (esp_zb_uint48_t *)calloc(uVar2,6);
-        if (dst == (esp_zb_uint48_t *)0x0) goto _L0;
-        array_copy_u64_to_u48(dst,puVar4,uVar2);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._3_1_ =
-             (undefined1)((uint)dst >> 8);
-        app_message.snapshot_sub_payload.tou_delivered.bill_delivered_trailing_digit =
-             (uint8_t)((uint)dst >> 0x10);
-        app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._2_1_ =
-             SUB41(dst,0);
-        app_message.snapshot_sub_payload.tou_delivered.number_of_tiers_in_use =
-             (uint8_t)((uint)dst >> 0x18);
+    if (bStack_44 < 5) {
+      if ((bStack_44 != 2) && (bStack_44 != 3)) {
+        array_copy_u64_to_u48(auStack_43,1);
+        bStack_3d = (byte)*(undefined4 *)(param_1 + 0x18);
+        uStack_3c._0_3_ = (undefined3)((uint)*(undefined4 *)(param_1 + 0x18) >> 8);
+        uVar3 = *(undefined4 *)(param_1 + 0x1a);
+        uStack_3c = (void *)CONCAT13((char)uVar3,(undefined3)uStack_3c);
+        bStack_38 = (byte)((uint)uVar3 >> 8);
+        uStack_37 = (undefined1)((uint)uVar3 >> 0x10);
+        uStack_36 = (undefined1)((uint)uVar3 >> 0x18);
+        uVar3 = *(undefined4 *)(param_1 + 0x1c);
+        uStack_35 = (undefined1)uVar3;
+        uStack_34 = (undefined1)((uint)uVar3 >> 8);
+        uStack_33 = (undefined1)((uint)uVar3 >> 0x10);
+        uStack_32 = (undefined1)((uint)uVar3 >> 0x18);
+        uVar3 = *(undefined4 *)(param_1 + 0x1e);
+        uStack_31 = (undefined1)uVar3;
+        uStack_30 = (undefined1)((uint)uVar3 >> 8);
+        uStack_2f = (undefined1)((uint)uVar3 >> 0x10);
+        uStack_2e = (undefined1)((uint)uVar3 >> 0x18);
+        uStack_2d = *(undefined1 *)(param_1 + 0x20);
+        bStack_2c = *(byte *)((int)param_1 + 0x41);
+        uVar2 = (uint)bStack_2c;
+        if ((uVar2 == 0) || (iVar4 = *(int *)(param_1 + 0x22), iVar4 == 0)) goto _L0;
+        __ptr = calloc(uVar2,6);
+        if (__ptr == (void *)0x0) goto _L0;
+        array_copy_u64_to_u48(iVar4,uVar2);
+        uStack_2a = (undefined1)((uint)__ptr >> 8);
+        uStack_29 = (undefined1)((uint)__ptr >> 0x10);
+        uStack_2b = SUB41(__ptr,0);
+        uStack_28 = (undefined1)((uint)__ptr >> 0x18);
         goto _L0;
       }
-      array_copy_u64_to_u48
-                ((esp_zb_uint48_t *)((int)&app_message.snapshot_cause + 1),
-                 (uint64_t *)((int)arg + 0x28),1);
-      app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.low._2_1_ =
-           (undefined1)*(undefined4 *)((int)arg + 0x30);
-      app_message.snapshot_sub_payload._3_3_ =
-           (undefined3)((uint)*(undefined4 *)((int)arg + 0x30) >> 8);
-      uVar3 = *(undefined4 *)((int)arg + 0x34);
-      app_message.snapshot_sub_payload.tou_delivered_no_billing.number_of_tiers_in_use = (char)uVar3
-      ;
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._1_1_ =
-           (undefined1)((uint)uVar3 >> 8);
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._2_1_ =
-           (undefined1)((uint)uVar3 >> 0x10);
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._3_1_ =
-           (undefined1)((uint)uVar3 >> 0x18);
-      uVar3 = *(undefined4 *)((int)arg + 0x38);
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._0_1_ =
-           (undefined1)uVar3;
-      app_message.snapshot_sub_payload.block_tier_delivered_no_billing.
-      number_of_tiers_and_block_thresholds_in_use = (uint8_t)((uint)uVar3 >> 8);
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._2_1_ =
-           (undefined1)((uint)uVar3 >> 0x10);
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._3_1_ =
-           (undefined1)((uint)uVar3 >> 0x18);
-      uVar3 = *(undefined4 *)((int)arg + 0x3c);
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._0_1_ =
-           (undefined1)uVar3;
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._1_1_ =
-           (undefined1)((uint)uVar3 >> 8);
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._2_1_ =
-           (undefined1)((uint)uVar3 >> 0x10);
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_delivered._3_1_ =
-           (undefined1)((uint)uVar3 >> 0x18);
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._0_1_ =
-           *(undefined1 *)((int)arg + 0x40);
-      app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._1_1_ =
-           *(byte *)((int)arg + 0x41);
-      uVar2 = (uint)(byte)app_message.snapshot_sub_payload.tou_delivered.
-                          projected_bill_time_stamp_delivered._1_1_;
+      array_copy_u64_to_u48(auStack_43,param_1 + 0x14,1);
+      bStack_3d = (byte)*(undefined4 *)(param_1 + 0x18);
+      uStack_3c._0_3_ = (undefined3)((uint)*(undefined4 *)(param_1 + 0x18) >> 8);
+      uVar3 = *(undefined4 *)(param_1 + 0x1a);
+      uStack_3c = (void *)CONCAT13((char)uVar3,(undefined3)uStack_3c);
+      bStack_38 = (byte)((uint)uVar3 >> 8);
+      uStack_37 = (undefined1)((uint)uVar3 >> 0x10);
+      uStack_36 = (undefined1)((uint)uVar3 >> 0x18);
+      uVar3 = *(undefined4 *)(param_1 + 0x1c);
+      uStack_35 = (undefined1)uVar3;
+      uStack_34 = (undefined1)((uint)uVar3 >> 8);
+      uStack_33 = (undefined1)((uint)uVar3 >> 0x10);
+      uStack_32 = (undefined1)((uint)uVar3 >> 0x18);
+      uVar3 = *(undefined4 *)(param_1 + 0x1e);
+      uStack_31 = (undefined1)uVar3;
+      uStack_30 = (undefined1)((uint)uVar3 >> 8);
+      uStack_2f = (undefined1)((uint)uVar3 >> 0x10);
+      uStack_2e = (undefined1)((uint)uVar3 >> 0x18);
+      uStack_2d = *(undefined1 *)(param_1 + 0x20);
+      bStack_2c = *(byte *)((int)param_1 + 0x41);
+      uVar2 = (uint)bStack_2c;
       if (uVar2 == 0) {
-        dst = (esp_zb_uint48_t *)0x0;
+        __ptr = (void *)0x0;
       }
       else {
-        peVar5 = *(esp_zb_uint48_t **)((int)arg + 0x44);
-        dst = peVar5;
-        if (peVar5 != (esp_zb_uint48_t *)0x0) {
-          dst = (esp_zb_uint48_t *)calloc(uVar2,6);
-          if (dst == (esp_zb_uint48_t *)0x0) goto _L0;
-          array_copy_u64_to_u48(dst,(uint64_t *)peVar5,uVar2);
-          app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._3_1_ =
-               (undefined1)((uint)dst >> 8);
-          app_message.snapshot_sub_payload.tou_delivered.bill_delivered_trailing_digit =
-               (uint8_t)((uint)dst >> 0x10);
-          app_message.snapshot_sub_payload.tou_delivered.projected_bill_time_stamp_delivered._2_1_ =
-               SUB41(dst,0);
-          app_message.snapshot_sub_payload.tou_delivered.number_of_tiers_in_use =
-               (uint8_t)((uint)dst >> 0x18);
+        pvVar5 = *(void **)(param_1 + 0x22);
+        __ptr = pvVar5;
+        if (pvVar5 != (void *)0x0) {
+          __ptr = calloc(uVar2,6);
+          if (__ptr == (void *)0x0) goto _L0;
+          array_copy_u64_to_u48(pvVar5,uVar2);
+          uStack_2a = (undefined1)((uint)__ptr >> 8);
+          uStack_29 = (undefined1)((uint)__ptr >> 0x10);
+          uStack_2b = SUB41(__ptr,0);
+          uStack_28 = (undefined1)((uint)__ptr >> 0x18);
         }
       }
-      app_message.snapshot_sub_payload._24_1_ = *(byte *)((int)arg + 0x48);
-      uVar2 = (uint)(byte)app_message.snapshot_sub_payload._24_1_;
+      bStack_27 = *(byte *)(param_1 + 0x24);
+      uVar2 = (uint)bStack_27;
       if (uVar2 == 0) goto _L0;
-      peVar6 = *(esp_zb_uint48_t **)((int)arg + 0x4c);
-      peVar5 = peVar6;
-      if (peVar6 != (esp_zb_uint48_t *)0x0) {
-        peVar5 = (esp_zb_uint48_t *)calloc(uVar2,6);
-        if (peVar5 == (esp_zb_uint48_t *)0x0) goto _L0;
-        array_copy_u64_to_u48(peVar5,(uint64_t *)peVar6,uVar2);
-        app_message.snapshot_sub_payload._25_2_ = SUB42(peVar5,0);
-        app_message.snapshot_sub_payload._27_2_ = (undefined2)((uint)peVar5 >> 0x10);
+      pvVar6 = *(void **)(param_1 + 0x26);
+      pvVar5 = pvVar6;
+      if (pvVar6 != (void *)0x0) {
+        pvVar5 = calloc(uVar2,6);
+        if (pvVar5 == (void *)0x0) goto _L0;
+        array_copy_u64_to_u48(pvVar6,uVar2);
+        uStack_26 = SUB42(pvVar5,0);
+        uStack_24 = (undefined2)((uint)pvVar5 >> 0x10);
       }
     }
     else {
-      if ((byte)app_message.snapshot_cause == 6) {
-        array_copy_u64_to_u48
-                  ((esp_zb_uint48_t *)((int)&app_message.snapshot_cause + 1),
-                   (uint64_t *)((int)arg + 0x28),1);
-        app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.low._2_1_ =
-             *(byte *)((int)arg + 0x30);
-        __nmemb = (size_t)(byte)app_message.snapshot_sub_payload.tou_delivered.
-                                current_summation_delivered.low._2_1_;
+      if (bStack_44 == 6) {
+        array_copy_u64_to_u48(auStack_43,param_1 + 0x14,1);
+        bStack_3d = *(byte *)(param_1 + 0x18);
+        __nmemb = (size_t)bStack_3d;
         if (__nmemb != 0) {
-          peVar5 = *(esp_zb_uint48_t **)((int)arg + 0x34);
+          pvVar5 = *(void **)(param_1 + 0x1a);
           goto joined_r0x00013332;
         }
 _L0:
-        dst = (esp_zb_uint48_t *)0x0;
+        __ptr = (void *)0x0;
       }
       else {
-        if ((byte)app_message.snapshot_cause != 7) {
-          if ((byte)app_message.snapshot_cause != 5) {
-            *(undefined1 *)((int)arg + 0x50) = 0x87;
+        if (bStack_44 != 7) {
+          if (bStack_44 != 5) {
+            *(undefined1 *)(param_1 + 0x28) = 0x87;
             return;
           }
           goto _L0;
         }
-        array_copy_u64_to_u48
-                  ((esp_zb_uint48_t *)((int)&app_message.snapshot_cause + 1),
-                   (uint64_t *)((int)arg + 0x28),1);
-        app_message.snapshot_sub_payload.tou_delivered.current_summation_delivered.low._2_1_ =
-             *(byte *)((int)arg + 0x30);
-        __nmemb = (size_t)(byte)app_message.snapshot_sub_payload.tou_delivered.
-                                current_summation_delivered.low._2_1_;
+        array_copy_u64_to_u48(auStack_43,param_1 + 0x14,1);
+        bStack_3d = *(byte *)(param_1 + 0x18);
+        __nmemb = (size_t)bStack_3d;
         if (__nmemb == 0) goto _L0;
-        peVar5 = *(esp_zb_uint48_t **)((int)arg + 0x34);
+        pvVar5 = *(void **)(param_1 + 0x1a);
 joined_r0x00013332:
-        dst = peVar5;
-        if (peVar5 != (esp_zb_uint48_t *)0x0) {
-          dst = (esp_zb_uint48_t *)calloc(__nmemb,6);
-          if (dst == (esp_zb_uint48_t *)0x0) goto _L0;
-          array_copy_u64_to_u48(dst,(uint64_t *)peVar5,__nmemb);
-          app_message.snapshot_sub_payload._3_4_ = dst;
+        __ptr = pvVar5;
+        if (pvVar5 != (void *)0x0) {
+          __ptr = calloc(__nmemb,6);
+          if (__ptr == (void *)0x0) goto _L0;
+          array_copy_u64_to_u48(pvVar5,__nmemb);
+          uStack_3c = __ptr;
         }
       }
-      app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._1_1_ =
-           *(byte *)((int)arg + 0x38);
-      uVar2 = (uint)(byte)app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered.
-                          _1_1_;
+      bStack_38 = *(byte *)(param_1 + 0x1c);
+      uVar2 = (uint)bStack_38;
       if (uVar2 == 0) {
 _L0:
-        peVar5 = (esp_zb_uint48_t *)0x0;
+        pvVar5 = (void *)0x0;
       }
       else {
-        peVar6 = *(esp_zb_uint48_t **)((int)arg + 0x3c);
-        peVar5 = peVar6;
-        if (peVar6 != (esp_zb_uint48_t *)0x0) {
-          peVar5 = (esp_zb_uint48_t *)calloc(uVar2,6);
-          if (peVar5 == (esp_zb_uint48_t *)0x0) {
+        pvVar6 = *(void **)(param_1 + 0x1e);
+        pvVar5 = pvVar6;
+        if (pvVar6 != (void *)0x0) {
+          pvVar5 = calloc(uVar2,6);
+          if (pvVar5 == (void *)0x0) {
 _L0:
             esp_log(0x11,"ZCL_CMD_COMPAT","no memory");
             return;
           }
-          array_copy_u64_to_u48(peVar5,(uint64_t *)peVar6,uVar2);
-          app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._3_1_ =
-               (undefined1)((uint)peVar5 >> 8);
-          app_message.snapshot_sub_payload.tou_delivered.bill_to_date_time_stamp_delivered._0_1_ =
-               (undefined1)((uint)peVar5 >> 0x10);
-          app_message.snapshot_sub_payload.tou_delivered.bill_to_date_delivered._2_1_ =
-               SUB41(peVar5,0);
-          app_message.snapshot_sub_payload.block_tier_delivered_no_billing.
-          number_of_tiers_and_block_thresholds_in_use = (uint8_t)((uint)peVar5 >> 0x18);
+          array_copy_u64_to_u48(pvVar6,uVar2);
+          uStack_36 = (undefined1)((uint)pvVar5 >> 8);
+          uStack_35 = (undefined1)((uint)pvVar5 >> 0x10);
+          uStack_37 = SUB41(pvVar5,0);
+          uStack_34 = (undefined1)((uint)pvVar5 >> 0x18);
         }
       }
     }
-    if (cb != (esp_zb_core_action_callback_t)0x0) goto _L0;
+    if (param_2 != (code *)0x0) goto _L0;
 _L0:
-    if (dst == (esp_zb_uint48_t *)0x0) goto _L0;
+    if (__ptr == (void *)0x0) goto _L0;
   }
-  free(dst);
+  free(__ptr);
 _L0:
-  if (peVar5 == (esp_zb_uint48_t *)0x0) {
+  if (pvVar5 == (void *)0x0) {
     return;
   }
-  free(peVar5);
+  free(pvVar5);
   return;
 }
 

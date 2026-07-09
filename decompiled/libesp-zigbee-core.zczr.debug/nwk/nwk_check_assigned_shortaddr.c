@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk.o -> nwk_check_assigned_shortaddr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,37 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool nwk_check_assigned_shortaddr(ezb_shortaddr_t short_addr)
+undefined4 nwk_check_assigned_shortaddr(uint param_1)
 
 {
-  _Bool _Var1;
-  ezb_shortaddr_t eVar2;
-  undefined2 in_register_0000202a;
-  uint uVar3;
-  undefined2 extraout_var;
-  int iVar4;
-  undefined1 auStack_12 [4];
-  nwk_addr_ref_t ref;
+  undefined4 uVar1;
+  uint uVar2;
+  int iVar3;
+  undefined1 auStack_12 [10];
   
-  uVar3 = CONCAT22(in_register_0000202a,short_addr);
-  if (uVar3 < 0xfff8) {
-    if (uVar3 == 0) {
-      _Var1 = false;
+  if (param_1 < 0xfff8) {
+    if (param_1 == 0) {
+      uVar1 = 0;
     }
     else {
-      eVar2 = nwk_get_short_address();
-      if (CONCAT22(extraout_var,eVar2) == uVar3) {
-        _Var1 = false;
+      uVar2 = nwk_get_short_address();
+      if (uVar2 == param_1) {
+        uVar1 = 0;
       }
       else {
-        iVar4 = nwk_address_ref_by_short(uVar3,auStack_12);
-        if (iVar4 == 0) {
-          _Var1 = true;
+        iVar3 = nwk_address_ref_by_short(param_1,auStack_12);
+        if (iVar3 == 0) {
+          uVar1 = 1;
         }
         else {
-          _Var1 = false;
+          uVar1 = 0;
         }
       }
     }
   }
   else {
-    _Var1 = false;
+    uVar1 = 0;
   }
-  return _Var1;
+  return uVar1;
 }
 

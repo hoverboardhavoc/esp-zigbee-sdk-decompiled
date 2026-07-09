@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_bind_trans_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_bind_trans_confirm(zmsg_t *bt_msg,ezb_err_t error)
+void aps_bind_trans_confirm(undefined4 param_1,int param_2)
 
 {
   uint uVar1;
-  aps_bind_src_t *paStack_24;
-  aps_bind_ctx_t bind;
-  aps_bind_trans_ctx_t bind_trans;
+  undefined4 uStack_24;
+  int iStack_20;
+  int iStack_1c;
+  uint uStack_18;
+  int aiStack_14 [2];
   
-  bind.cnt = '\0';
-  bind._13_3_ = 0;
-  zmsg_get_footer(&bind.cnt,4);
-  zmsg_free(bt_msg);
-  if ((*(ushort *)(bind._12_4_ + 0x16) & 0x20) == 0) {
-    paStack_24 = (aps_bind_src_t *)0x0;
-    bind.src = (aps_bind_src_t *)0x0;
-    bind.dst = (aps_bind_dst_t *)0x0;
-    bind.error = 0;
-    zmsg_get_footer(&paStack_24,0x10);
-    if ((bind.error & 0xffU) != 0) {
-      uVar1 = (bind.error & 0xffU) - 1;
-      bind.error = CONCAT31(bind.error._1_3_,(char)uVar1);
-      if (error != 0) {
-        bind.dst = (aps_bind_dst_t *)error;
+  aiStack_14[0] = 0;
+  zmsg_get_footer(aiStack_14,4);
+  zmsg_free(param_1);
+  if ((*(ushort *)(aiStack_14[0] + 0x16) & 0x20) == 0) {
+    uStack_24 = 0;
+    iStack_20 = 0;
+    iStack_1c = 0;
+    uStack_18 = 0;
+    zmsg_get_footer(&uStack_24,0x10);
+    if ((uStack_18 & 0xff) != 0) {
+      uVar1 = (uStack_18 & 0xff) - 1;
+      uStack_18 = CONCAT31(uStack_18._1_3_,(char)uVar1);
+      if (param_2 != 0) {
+        iStack_1c = param_2;
       }
-      if ((((uVar1 & 0xff) == 0) && (bind.src != (aps_bind_src_t *)0x0)) &&
-         (error = aps_bind_trans_schedule_next_nmsg
-                            (paStack_24,(aps_bind_dst_t *)bind.src,(zmsg_t *)bind._12_4_,
-                             (uint8_t *)&bind.error),
-         (aps_bind_dst_t *)error != (aps_bind_dst_t *)0x0)) {
-        bind.dst = (aps_bind_dst_t *)error;
+      if ((((uVar1 & 0xff) == 0) && (iStack_20 != 0)) &&
+         (param_2 = aps_bind_trans_schedule_next_nmsg(uStack_24,aiStack_14[0],&uStack_18),
+         param_2 != 0)) {
+        iStack_1c = param_2;
       }
-      if ((bind.error & 0xffU) != 0) {
-        zmsg_update_footer(bind._12_4_,&paStack_24,0x10);
+      if ((uStack_18 & 0xff) != 0) {
+        zmsg_update_footer(aiStack_14[0],&uStack_24,0x10);
         return;
       }
       goto _L0;
@@ -59,8 +56,8 @@ void aps_bind_trans_confirm(zmsg_t *bt_msg,ezb_err_t error)
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_main.c",0x15a,
                 "aps_bind_trans_confirm","bind.cnt > 0");
 _L0:
-  zmsg_remove_footer(bind._12_4_,0x10);
-  aps_send_data_confirm((zmsg_t *)bind._12_4_,error);
+  zmsg_remove_footer(aiStack_14[0],0x10);
+  aps_send_data_confirm(aiStack_14[0],param_2);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_api.o -> ezb_nwk_get_next_route
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_nwk_get_next_route(ezb_nwk_info_iterator_t *iterator,ezb_nwk_route_info_t *route_info)
+undefined4 ezb_nwk_get_next_route(undefined4 *param_1,undefined2 *param_2)
 
 {
-  ezb_err_t eVar1;
-  ezb_shortaddr_t *peVar2;
+  undefined4 uVar1;
+  undefined2 *puVar2;
   
-  if (iterator != (ezb_nwk_info_iterator_t *)0x0) {
-    eVar1 = 2;
-    if (route_info != (ezb_nwk_route_info_t *)0x0) {
-      peVar2 = (ezb_shortaddr_t *)nwk_route_table_next(*iterator);
-      *iterator = peVar2;
-      eVar1 = 5;
-      if (peVar2 != (ezb_shortaddr_t *)0x0) {
-        eVar1 = 0;
-        route_info->dest_addr = *peVar2;
-        route_info->next_hop_addr = peVar2[1];
-        route_info->expiry = *(uint8_t *)((int)peVar2 + 0xb);
-        route_info->flags =
-             (anon_struct_1_5_11cf52dc_for_flags)
-             ((byte)route_info->flags & 0xc0 | (byte)peVar2[7] & 7 | (byte)peVar2[7] & 8 |
-              (byte)peVar2[7] & 0x10 | (byte)peVar2[7] & 0x20);
+  if (param_1 != (undefined4 *)0x0) {
+    uVar1 = 2;
+    if (param_2 != (undefined2 *)0x0) {
+      puVar2 = (undefined2 *)nwk_route_table_next(*param_1);
+      *param_1 = puVar2;
+      uVar1 = 5;
+      if (puVar2 != (undefined2 *)0x0) {
+        uVar1 = 0;
+        *param_2 = *puVar2;
+        param_2[1] = puVar2[1];
+        *(undefined1 *)(param_2 + 2) = *(undefined1 *)((int)puVar2 + 0xb);
+        *(byte *)((int)param_2 + 5) =
+             *(byte *)((int)param_2 + 5) & 0xc0 | (byte)puVar2[7] & 7 | (byte)puVar2[7] & 8 |
+             (byte)puVar2[7] & 0x10 | (byte)puVar2[7] & 0x20;
       }
     }
-    return eVar1;
+    return uVar1;
   }
   return 2;
 }

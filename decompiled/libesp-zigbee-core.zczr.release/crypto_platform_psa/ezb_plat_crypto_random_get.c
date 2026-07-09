@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> crypto_platform_psa.o -> ezb_plat_crypto_random_get
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,16 +10,11 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_plat_crypto_random_get(uint8_t *output,uint16_t output_length)
+void ezb_plat_crypto_random_get(void)
 
 {
-  psa_status_t psa_status;
-  ezb_err_t eVar1;
-  
-  psa_status = psa_generate_random();
-  eVar1 = psa_to_ezb_error(psa_status);
-  return eVar1;
+  psa_generate_random();
+  psa_to_ezb_error();
+  return;
 }
 

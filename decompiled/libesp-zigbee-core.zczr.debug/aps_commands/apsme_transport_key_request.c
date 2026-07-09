@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> apsme_transport_key_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,196 +10,191 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t apsme_transport_key_request(apsme_transport_key_req_t *req)
+int apsme_transport_key_request(uint *param_1)
 
 {
-  undefined4 *puVar1;
-  byte bVar2;
+  byte bVar1;
+  uint uVar2;
   uint uVar3;
   uint uVar4;
-  int iVar5;
-  undefined4 uVar6;
-  zmsg_t *msg;
-  undefined4 *puVar7;
-  int *piVar8;
-  char *pcVar9;
-  undefined4 uVar10;
-  int iVar11;
-  bool bVar12;
-  undefined4 uVar13;
+  uint uVar5;
+  int iVar6;
+  undefined4 uVar7;
+  int iVar8;
+  undefined4 *puVar9;
+  int *piVar10;
+  char *pcVar11;
+  undefined4 uVar12;
+  bool bVar13;
+  undefined4 uVar14;
   undefined1 uStack_58;
   char cStack_57;
-  aps_cmd_hdr_t aps_hdr;
-  aps_cmd_transport_key_t cmd_pl;
+  undefined4 uStack_54;
+  undefined4 uStack_50;
+  undefined4 uStack_4c;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined2 uStack_34;
+  undefined1 auStack_31 [13];
   
-  iVar5 = *(int *)&(req->tunnel_address).field_0;
-  iVar11 = *(int *)((int)&(req->tunnel_address).field_0 + 4);
-  if (iVar5 == 0 && iVar11 == 0) {
-    bVar12 = true;
+  if (*(int *)((int)param_1 + 0x22) == 0 && *(int *)((int)param_1 + 0x26) == 0) {
+    bVar13 = true;
   }
-  else if ((iVar5 == -1) && (iVar11 == -1)) {
-    bVar12 = true;
+  else if ((*(int *)((int)param_1 + 0x22) == -1) && (*(int *)((int)param_1 + 0x26) == -1)) {
+    bVar13 = true;
   }
   else {
-    bVar12 = false;
+    bVar13 = false;
   }
-  uVar3 = *(uint *)&(req->dst_address).field_0;
-  uVar4 = *(uint *)((int)&(req->dst_address).field_0 + 4);
-  if (bVar12) {
-    if ((uVar3 == 0xffffffff) && (uVar4 == 0xffffffff)) {
-      uVar13 = 0;
+  uVar2 = *param_1;
+  uVar3 = param_1[1];
+  if (bVar13) {
+    if ((uVar2 == 0xffffffff) && (uVar3 == 0xffffffff)) {
+      uVar14 = 0;
     }
     else {
-      uVar13 = 1;
+      uVar14 = 1;
     }
-    if (req == (apsme_transport_key_req_t *)0x0) {
-      iVar5 = 2;
-      msg = (zmsg_t *)0x0;
+    if (param_1 == (uint *)0x0) {
+      iVar6 = 2;
+      iVar8 = 0;
       goto _L0;
     }
   }
   else {
-    uVar13 = 0;
+    uVar14 = 0;
   }
-  if (uVar3 == 0 && uVar4 == 0) {
-    msg = (zmsg_t *)0x0;
-    iVar5 = 2;
+  if (uVar2 == 0 && uVar3 == 0) {
+    iVar8 = 0;
+    iVar6 = 2;
     goto _L0;
   }
-  if ((uVar3 == 0xffffffff) && (uVar4 == 0xffffffff)) {
-    iVar5 = 0x27;
-    iVar11 = 0;
+  if ((uVar2 == 0xffffffff) && (uVar3 == 0xffffffff)) {
+    iVar8 = 0x27;
+    iVar6 = 0;
   }
   else {
-    iVar5 = 0x2f;
-    iVar11 = 0xd;
+    iVar8 = 0x2f;
+    iVar6 = 0xd;
   }
-  msg = (zmsg_t *)zmsg_alloc(iVar5 + iVar11);
-  if (msg == (zmsg_t *)0x0) {
-    iVar5 = 1;
+  iVar8 = zmsg_alloc(iVar8 + iVar6);
+  if (iVar8 == 0) {
+    iVar6 = 1;
     goto _L0;
   }
-  cmd_pl._0_4_ = 0;
-  cmd_pl.field_1._3_4_ = 0;
-  cmd_pl.field_1._7_4_ = 0;
-  cmd_pl.field_1._11_4_ = 0;
-  cmd_pl.field_1._15_4_ = 0;
-  cmd_pl.field_1._19_4_ = 0;
-  cmd_pl.field_1._23_4_ = 0;
-  cmd_pl.field_1._27_2_ = 0;
-  bVar2 = req->key_type;
-  _aps_hdr = (uint)bVar2;
-  if (bVar2 == 3) {
-    memcpy(&aps_hdr.aps_cntr,&req->field_2,0x10);
-    puVar7 = (undefined4 *)((int)&req->field_2 + 0x10);
-    uVar6 = *puVar7;
-    puVar1 = (undefined4 *)((int)&req->field_2 + 0x14);
-    uVar10 = *puVar1;
-    cmd_pl.field_1.nwk.key[0xc] = (char)*(undefined2 *)puVar7;
-    cmd_pl.field_1.nwk.key[0xd] = (char)((uint)uVar6 >> 8);
-    cmd_pl.field_1.nwk.key[0xe] = (char)((uint)uVar6 >> 0x10);
-    cmd_pl.field_1.nwk.key_seq = (char)*(undefined2 *)puVar1;
-    cmd_pl.field_1.nwk.key[0xf] = (char)((uint)uVar6 >> 0x18);
-    cmd_pl.field_1._17_1_ = (char)((uint)uVar10 >> 8);
-    cmd_pl.field_1._18_1_ = (char)((uint)uVar10 >> 0x10);
-    cmd_pl.field_1._20_1_ = (req->field_2).app.initiator != false;
-    cmd_pl.field_1._19_1_ = (char)((uint)uVar10 >> 0x18);
-    uVar10 = 0x18;
-    uVar6 = 0x1a;
+  uStack_50 = 0;
+  uStack_4c = 0;
+  uStack_48 = 0;
+  uStack_44 = 0;
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  bVar1 = (byte)param_1[2];
+  uStack_54 = (uint)bVar1;
+  if (bVar1 == 3) {
+    memcpy((void *)((int)&uStack_54 + 1),(void *)((int)param_1 + 9),0x10);
+    uVar7 = *(undefined4 *)((int)param_1 + 0x19);
+    uVar12 = *(undefined4 *)((int)param_1 + 0x1d);
+    uStack_44._0_2_ = CONCAT11((char)*(undefined2 *)((int)param_1 + 0x19),(undefined1)uStack_44);
+    uStack_44._0_3_ = CONCAT12((char)((uint)uVar7 >> 8),(undefined2)uStack_44);
+    uStack_44 = CONCAT13((char)((uint)uVar7 >> 0x10),(undefined3)uStack_44);
+    uStack_40._0_2_ =
+         CONCAT11((char)*(undefined2 *)((int)param_1 + 0x1d),(char)((uint)uVar7 >> 0x18));
+    uStack_40._0_3_ = CONCAT12((char)((uint)uVar12 >> 8),(undefined2)uStack_40);
+    uStack_40 = CONCAT13((char)((uint)uVar12 >> 0x10),(undefined3)uStack_40);
+    uStack_3c._0_2_ = CONCAT11(*(char *)((int)param_1 + 0x21) != '\0',(char)((uint)uVar12 >> 0x18));
+    uVar12 = 0x18;
+    uVar7 = 0x1a;
   }
-  else if (bVar2 == 4) {
-    memcpy(&aps_hdr.aps_cntr,&req->field_2,0x10);
-    uVar6 = *(undefined4 *)&(req->dst_address).field_0;
-    puVar7 = (undefined4 *)((int)&(req->dst_address).field_0 + 4);
-    uVar10 = *puVar7;
-    cmd_pl.field_1.nwk.key[0xc] = (char)*(undefined2 *)&(req->dst_address).field_0;
-    cmd_pl.field_1.nwk.key[0xd] = (char)((uint)uVar6 >> 8);
-    cmd_pl.field_1.nwk.key[0xe] = (char)((uint)uVar6 >> 0x10);
-    cmd_pl.field_1.nwk.key_seq = (char)*(undefined2 *)puVar7;
-    cmd_pl.field_1.nwk.key[0xf] = (char)((uint)uVar6 >> 0x18);
-    cmd_pl.field_1._17_1_ = (char)((uint)uVar10 >> 8);
-    cmd_pl.field_1._18_1_ = (char)((uint)uVar10 >> 0x10);
-    cmd_pl.field_1._19_1_ = (char)((uint)uVar10 >> 0x18);
-    puVar7 = (undefined4 *)nwk_get_extended_address();
-    uVar6 = *puVar7;
-    uVar10 = puVar7[1];
-    cmd_pl.field_1._20_1_ = (char)*(undefined3 *)puVar7;
-    cmd_pl.field_1._21_1_ = (char)((uint)uVar6 >> 8);
-    cmd_pl.field_1._22_1_ = (char)((uint)uVar6 >> 0x10);
-    cmd_pl.field_1.app.initiator = (char)*(undefined3 *)(puVar7 + 1);
-    cmd_pl.field_1._23_1_ = (char)((uint)uVar6 >> 0x18);
-    cmd_pl.field_1._25_1_ = (char)((uint)uVar10 >> 8);
-    cmd_pl.field_1._26_1_ = (char)((uint)uVar10 >> 0x10);
-    cmd_pl.field_1._27_1_ = (char)((uint)uVar10 >> 0x18);
-    uVar10 = 0x18;
-    uVar6 = 0x21;
+  else if (bVar1 == 4) {
+    memcpy((void *)((int)&uStack_54 + 1),(void *)((int)param_1 + 9),0x10);
+    uVar4 = *param_1;
+    uVar5 = param_1[1];
+    uStack_44._0_2_ = CONCAT11((char)(short)*param_1,(undefined1)uStack_44);
+    uStack_44._0_3_ = CONCAT12((char)(uVar4 >> 8),(undefined2)uStack_44);
+    uStack_44 = CONCAT13((char)(uVar4 >> 0x10),(undefined3)uStack_44);
+    uStack_40._0_2_ = CONCAT11((char)(short)param_1[1],(char)(uVar4 >> 0x18));
+    uStack_40._0_3_ = CONCAT12((char)(uVar5 >> 8),(undefined2)uStack_40);
+    uStack_40 = CONCAT13((char)(uVar5 >> 0x10),(undefined3)uStack_40);
+    uStack_3c = CONCAT31(uStack_3c._1_3_,(char)(uVar5 >> 0x18));
+    puVar9 = (undefined4 *)nwk_get_extended_address();
+    uVar7 = *puVar9;
+    uVar12 = puVar9[1];
+    uStack_3c._0_2_ = CONCAT11((char)*(undefined3 *)puVar9,(undefined1)uStack_3c);
+    uStack_3c = CONCAT13((char)((uint)uVar7 >> 0x10),
+                         CONCAT12((char)((uint)uVar7 >> 8),(undefined2)uStack_3c));
+    uStack_38 = CONCAT13((char)((uint)uVar12 >> 0x10),
+                         CONCAT12((char)((uint)uVar12 >> 8),
+                                  CONCAT11((char)*(undefined3 *)(puVar9 + 1),
+                                           (char)((uint)uVar7 >> 0x18))));
+    uStack_34 = CONCAT11(uStack_34._1_1_,(char)((uint)uVar12 >> 0x18));
+    uVar12 = 0x18;
+    uVar7 = 0x21;
   }
   else {
-    if (bVar2 != 1) {
-      iVar5 = 2;
+    if (bVar1 != 1) {
+      iVar6 = 2;
       goto _L0;
     }
-    memcpy(&aps_hdr.aps_cntr,&req->field_2,0x10);
-    cmd_pl.field_1.nwk.key[0xc] = (req->field_2).nwk.key_seq;
-    if ((uVar3 != 0xffffffff) || (uVar4 != 0xffffffff)) {
-      cmd_pl.field_1._13_2_ = *(undefined2 *)&(req->dst_address).field_0;
-      puVar7 = (undefined4 *)((int)&(req->dst_address).field_0 + 4);
-      cmd_pl.field_1._17_2_ = *(undefined2 *)puVar7;
-      cmd_pl.field_1._15_2_ = (short)((uint)*(undefined4 *)&(req->dst_address).field_0 >> 0x10);
-      cmd_pl.field_1._19_2_ = (short)((uint)*puVar7 >> 0x10);
+    memcpy((void *)((int)&uStack_54 + 1),(void *)((int)param_1 + 9),0x10);
+    uStack_44._0_2_ = CONCAT11(*(undefined1 *)((int)param_1 + 0x19),(undefined1)uStack_44);
+    if ((uVar2 != 0xffffffff) || (uVar3 != 0xffffffff)) {
+      uStack_44._2_2_ = (undefined2)*param_1;
+      uStack_40 = CONCAT22((short)param_1[1],(short)(*param_1 >> 0x10));
+      uStack_3c = CONCAT22(uStack_3c._2_2_,(short)(param_1[1] >> 0x10));
     }
-    puVar7 = (undefined4 *)aps_secur_get_tc_address();
-    cmd_pl.field_1._21_2_ = (short)*(undefined3 *)puVar7;
-    cmd_pl.field_1._25_2_ = (short)*(undefined3 *)(puVar7 + 1);
-    cmd_pl.field_1._23_2_ = (short)((uint)*puVar7 >> 0x10);
-    cmd_pl.field_1._27_2_ = (undefined2)((uint)puVar7[1] >> 0x10);
-    uVar10 = 0x10;
-    uVar6 = 0x22;
+    puVar9 = (undefined4 *)aps_secur_get_tc_address();
+    uStack_3c = CONCAT22((short)*(undefined3 *)puVar9,(undefined2)uStack_3c);
+    uStack_38 = CONCAT22((short)*(undefined3 *)(puVar9 + 1),(short)((uint)*puVar9 >> 0x10));
+    uStack_34 = (undefined2)((uint)puVar9[1] >> 0x10);
+    uVar12 = 0x10;
+    uVar7 = 0x22;
   }
   aps_frame_append_cmd_hdr
-            (msg,(uVar3 & uVar4) == 0xffffffff,uVar13,(uVar3 & uVar4) != 0xffffffff,uVar10);
+            (iVar8,(uVar2 & uVar3) == 0xffffffff,uVar14,(uVar2 & uVar3) != 0xffffffff,uVar12);
   uStack_58 = 5;
-  zmsg_append_bytes(msg,1,&uStack_58);
-  zmsg_append_bytes(msg,uVar6,&aps_hdr);
-  if (bVar12) {
-    if (req->key_type == '\x01') {
-      iVar5 = *(int *)((int)&req->field_2 + 0x11);
-      iVar11 = *(int *)((int)&req->field_2 + 0x15);
-      if ((iVar5 != 0 || iVar11 != 0) && ((iVar5 != -1 || (iVar11 != -1)))) {
-        req = (apsme_transport_key_req_t *)&(req->field_2).nwk.parent_address;
+  zmsg_append_bytes(iVar8,1,&uStack_58);
+  zmsg_append_bytes(iVar8,uVar7,&uStack_54);
+  if (bVar13) {
+    if ((char)param_1[2] == '\x01') {
+      if ((*(int *)((int)param_1 + 0x1a) != 0 || *(int *)((int)param_1 + 0x1e) != 0) &&
+         ((*(int *)((int)param_1 + 0x1a) != -1 || (*(int *)((int)param_1 + 0x1e) != -1)))) {
+        param_1 = (uint *)((int)param_1 + 0x1a);
       }
     }
 _L0:
-    iVar5 = aps_send_cmd(msg,&req->dst_address);
+    iVar6 = aps_send_cmd(iVar8,param_1);
   }
   else {
-    iVar5 = aps_process_transmit_security(req,msg);
-    if (iVar5 != 0) goto _L0;
-    piVar8 = (int *)nwk_get_extended_address();
-    if ((*(int *)&(req->tunnel_address).field_0 != *piVar8) ||
-       (*(int *)((int)&(req->tunnel_address).field_0 + 4) != piVar8[1])) {
+    iVar6 = aps_process_transmit_security(param_1,iVar8);
+    if (iVar6 != 0) goto _L0;
+    piVar10 = (int *)nwk_get_extended_address();
+    if ((*(int *)((int)param_1 + 0x22) != *piVar10) || (*(int *)((int)param_1 + 0x26) != piVar10[1])
+       ) {
       uStack_58 = 1;
-      pcVar9 = (char *)core_globals_get();
-      cStack_57 = *pcVar9;
-      *pcVar9 = cStack_57 + '\x01';
-      zmsg_prepend_bytes(msg,8,req);
-      cmd_pl.field_1._30_1_ = 0xe;
-      zmsg_prepend_bytes(msg,1,(undefined1 *)((int)&cmd_pl.field_1 + 0x1e));
-      zmsg_prepend_bytes(msg,2,&uStack_58);
-      req = (apsme_transport_key_req_t *)&req->tunnel_address;
+      pcVar11 = (char *)core_globals_get();
+      cStack_57 = *pcVar11;
+      *pcVar11 = cStack_57 + '\x01';
+      zmsg_prepend_bytes(iVar8,8,param_1);
+      auStack_31[0] = 0xe;
+      zmsg_prepend_bytes(iVar8,1,auStack_31);
+      zmsg_prepend_bytes(iVar8,2,&uStack_58);
+      param_1 = (uint *)((int)param_1 + 0x22);
       goto _L0;
     }
-    iVar5 = aps_relay_cmd(msg,&req->dst_address);
+    iVar6 = aps_relay_cmd(iVar8,param_1);
   }
-  if (iVar5 == 0) {
+  if (iVar6 == 0) {
     return 0;
   }
 _L0:
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (iVar8 != 0) {
+    zmsg_free(iVar8);
   }
-  return iVar5;
+  return iVar6;
 }
 

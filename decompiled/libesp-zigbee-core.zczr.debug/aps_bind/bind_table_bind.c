@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_table_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void bind_table_bind(aps_bind_src_t *src,aps_bind_dst_t *dst)
+void bind_table_bind(int param_1,int param_2)
 
 {
   uint uVar1;
-  _Bool _Var2;
-  int iVar3;
-  undefined3 extraout_var;
+  int iVar2;
   
-  iVar3 = core_globals_get();
-  uVar1 = ((int)dst - *(int *)(iVar3 + 0x974) >> 1) * -0x55555555;
-  iVar3 = core_globals_get();
-  if ((uVar1 & 0xffff) < (uint)*(ushort *)(iVar3 + 0x97c)) {
-    _Var2 = test_and_set_bitmap(uVar1 & 0xffff,(bitmap_t *)(src + 1));
-    if (CONCAT31(extraout_var,_Var2) != 0) {
+  iVar2 = core_globals_get();
+  uVar1 = (param_2 - *(int *)(iVar2 + 0x974) >> 1) * -0x55555555;
+  iVar2 = core_globals_get();
+  if ((uVar1 & 0xffff) < (uint)*(ushort *)(iVar2 + 0x97c)) {
+    iVar2 = test_and_set_bitmap(uVar1 & 0xffff,param_1 + 6);
+    if (iVar2 != 0) {
       return;
     }
   }
@@ -33,10 +29,10 @@ void bind_table_bind(aps_bind_src_t *src,aps_bind_dst_t *dst)
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x76,"bind_table_bind"
                   ,&_LC10);
   }
-  dst->ref_cnt = dst->ref_cnt + '\x01';
-  iVar3 = core_globals_get();
-  if ((*(uint *)(iVar3 + 0x980) & 1) == 0) {
-    aps_bind_table_store_bind(src,dst);
+  *(char *)(param_2 + 4) = *(char *)(param_2 + 4) + '\x01';
+  iVar2 = core_globals_get();
+  if ((*(uint *)(iVar2 + 0x980) & 1) == 0) {
+    aps_bind_table_store_bind(param_1,param_2);
   }
   return;
 }

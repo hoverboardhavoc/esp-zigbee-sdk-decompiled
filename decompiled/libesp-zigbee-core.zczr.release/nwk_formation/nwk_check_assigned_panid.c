@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_formation.o -> nwk_check_assigned_panid
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,34 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool nwk_check_assigned_panid(ezb_panid_t panid)
+undefined4 nwk_check_assigned_panid(uint param_1)
 
 {
   ushort uVar1;
-  _Bool _Var2;
-  undefined2 in_register_0000202a;
-  int iVar3;
-  nwk_disc_table_lite_ent_t *pnVar4;
-  uint8_t uVar5;
-  ezb_panid_t *peVar6;
+  int iVar2;
+  undefined4 uVar3;
+  char cVar4;
+  ushort *puVar5;
   
-  iVar3 = core_globals_get();
-  pnVar4 = nwk_disc_table_lite_get_slot(*(uint8_t *)(iVar3 + 0xba4));
-  if ((CONCAT22(in_register_0000202a,panid) - 1 & 0xffff) < 0xfffe) {
-    peVar6 = pnVar4->panids;
-    for (uVar5 = '\0'; pnVar4->pan_cnt != uVar5; uVar5 = uVar5 + '\x01') {
-      uVar1 = *peVar6;
-      peVar6 = peVar6 + 1;
-      if ((uint)uVar1 == CONCAT22(in_register_0000202a,panid)) goto _L0;
+  iVar2 = core_globals_get();
+  iVar2 = nwk_disc_table_lite_get_slot(*(undefined1 *)(iVar2 + 0xba4));
+  if ((param_1 - 1 & 0xffff) < 0xfffe) {
+    puVar5 = (ushort *)(iVar2 + 4);
+    for (cVar4 = '\0'; *(char *)(iVar2 + 2) != cVar4; cVar4 = cVar4 + '\x01') {
+      uVar1 = *puVar5;
+      puVar5 = puVar5 + 1;
+      if (uVar1 == param_1) goto _L0;
     }
-    _Var2 = true;
+    uVar3 = 1;
   }
   else {
 _L0:
-    _Var2 = false;
+    uVar3 = 0;
   }
-  return _Var2;
+  return uVar3;
 }
 

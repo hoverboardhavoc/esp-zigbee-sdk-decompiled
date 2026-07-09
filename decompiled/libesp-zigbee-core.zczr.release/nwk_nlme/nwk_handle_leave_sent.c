@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_nlme.o -> nwk_handle_leave_sent
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,10 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: cnf */
-/* WARNING: Unknown calling convention */
-
-void nwk_handle_leave_sent(zmsg_t *msg,ezb_err_t error)
+void nwk_handle_leave_sent(int param_1,int param_2)
 
 {
   byte bVar1;
@@ -21,13 +18,15 @@ void nwk_handle_leave_sent(zmsg_t *msg,ezb_err_t error)
   short sVar3;
   int iVar4;
   byte bStack_21;
-  undefined1 auStack_20 [3];
-  uint8_t cmd_opt;
-  nwk_leave_cnf_t cnf;
+  undefined1 uStack_20;
+  undefined1 uStack_1f;
+  undefined1 auStack_1e [2];
+  undefined1 auStack_1c [8];
+  byte bStack_14;
   
   bStack_21 = 0;
   sVar3 = zmsg_get_offset();
-  zmsg_read_bytes(msg,sVar3 + 1,1,&bStack_21);
+  zmsg_read_bytes(param_1,sVar3 + 1,1,&bStack_21);
   bVar1 = bStack_21;
   uVar2 = (uint)bStack_21;
   if ((bStack_21 & 0x40) == 0) {
@@ -35,24 +34,24 @@ void nwk_handle_leave_sent(zmsg_t *msg,ezb_err_t error)
     if (*(char *)(iVar4 + 0xac0) != '\x04') {
       __assert_func(0,0,0,0);
     }
-    nwk_do_leave_continue(error,(_Bool)(bStack_21 >> 5 & 1),(_Bool)(bStack_21 >> 7));
+    nwk_do_leave_continue_constprop_0(bStack_21 >> 5 & 1,bStack_21 >> 7);
   }
   else {
-    if (error == 0x1f0) {
-      error = 0;
+    if (param_2 == 0x1f0) {
+      param_2 = 0;
     }
-    memset(auStack_20 + 1,0,0xd);
-    cnf.field_1._6_1_ = (byte)((uVar2 & 1) << 1) | bVar1 >> 5 & 1;
-    auStack_20[0] = (nwk_status_t)error;
-    iVar4 = nwk_frame_get_dst_extaddr(msg,&cnf);
+    memset(&uStack_1f,0,0xd);
+    bStack_14 = (byte)((uVar2 & 1) << 1) | bVar1 >> 5 & 1;
+    uStack_20 = (undefined1)param_2;
+    iVar4 = nwk_frame_get_dst_extaddr(param_1,auStack_1c);
     if (iVar4 == 0) {
-      zmsg_read_bytes(msg,2,auStack_20 + 2);
-      nwk_handle_device_leave((nwk_leave_ind_t *)(auStack_20 + 2));
-      nwk_leave_confirm((nwk_leave_cnf_t *)auStack_20);
+      zmsg_read_bytes(param_1,2,auStack_1e);
+      nwk_handle_device_leave(auStack_1e);
+      nwk_leave_confirm(&uStack_20);
     }
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (param_1 != 0) {
+    zmsg_free(param_1);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> touchlink.o -> touchlink_schedule_transaction_event
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_schedule_transaction_event(touchlink_transaction_event_t *event)
+int touchlink_schedule_transaction_event(byte *param_1)
 
 {
   byte bVar1;
-  touchlink_disc_dev_info_t *action;
-  _Bool _Var2;
+  undefined4 uVar2;
   int iVar3;
-  undefined3 extraout_var;
-  code *timer_func;
-  uint uVar4;
-  uint32_t delay_ms;
-  anon_union_36_11_e71becce_for_comm *arg;
+  code *pcVar4;
+  uint uVar5;
+  undefined2 uVar6;
+  byte *pbVar7;
   
   iVar3 = core_globals_get();
   if (*(char *)(iVar3 + 0x13ad) == '\x02') {
-    bVar1 = event->type;
+    bVar1 = *param_1;
     if (bVar1 != 6) {
       if (6 < bVar1) {
         if (bVar1 == 9) {
-          uVar4 = touchlink_zigbee_info();
-          if ((uVar4 & 3) != 2) {
+          uVar5 = touchlink_zigbee_info();
+          if ((uVar5 & 3) != 2) {
             return 3;
           }
-          if ((event->comm).transaction.status == '\0') {
-            touchlink_target_transaction_timeout((void *)0x0);
-            touchlink_commissioning_set_task('\x06');
-            if ((event->comm).start_network.factory_new != '\0') {
-              touchlink_zdo_rejoin_network(&event->comm);
+          if (param_1[4] == 0) {
+            touchlink_target_transaction_timeout(0);
+            touchlink_commissioning_set_task(6);
+            if (param_1[0x24] != 0) {
+              touchlink_zdo_rejoin_network(param_1 + 4);
               return 0;
             }
             goto _L0;
@@ -56,21 +52,20 @@ ezb_err_t touchlink_schedule_transaction_event(touchlink_transaction_event_t *ev
             if (bVar1 != 0xd) {
               return 3;
             }
-            action = (event->comm).add_sub_device.curr_device;
+            uVar2 = *(undefined4 *)(param_1 + 4);
             iVar3 = core_globals_get();
-            _Var2 = touchlink_commissioning_action_permission
-                              ((touchlink_action_t)action,(ezb_extaddr_t *)(iVar3 + 0xd80));
-            return CONCAT31(extraout_var,_Var2) + -1;
+            iVar3 = touchlink_commissioning_action_permission(uVar2,iVar3 + 0xd80);
+            return iVar3 + -1;
           }
         }
 _L0:
-        touchlink_commissioning_set_task('\0');
+        touchlink_commissioning_set_task(0);
         return 0;
       }
       if (bVar1 == 3) {
-        if ((event->comm).transaction.status == '\0') {
-          touchlink_commissioning_set_task('\x04');
-          touchlink_commissioning_set_logic_channel((event->comm).start_network.channel);
+        if (param_1[4] == 0) {
+          touchlink_commissioning_set_task(4);
+          touchlink_commissioning_set_logic_channel(param_1[0x10]);
           touchlink_zdo_network_discovery();
           return 0;
         }
@@ -79,12 +74,12 @@ _L0:
       if (bVar1 < 4) {
         if (bVar1 == 1) {
           touchlink_disable_timer();
-          if ((event->comm).transaction.status == '\0') {
-            touchlink_commissioning_set_task('\x01');
-            touchlink_set_intrp_channel((event->comm).transaction.channel);
-            delay_ms = (uint32_t)(event->comm).transaction.transaction_time;
-            arg = (anon_union_36_11_e71becce_for_comm *)0x0;
-            timer_func = touchlink_target_transaction_timeout;
+          if (param_1[4] == 0) {
+            touchlink_commissioning_set_task(1);
+            touchlink_set_intrp_channel(param_1[0xe]);
+            uVar6 = *(undefined2 *)(param_1 + 0xc);
+            pbVar7 = (byte *)0x0;
+            pcVar4 = touchlink_target_transaction_timeout;
             goto _L261;
           }
         }
@@ -94,20 +89,20 @@ _L0:
         goto _L0;
       }
       if (bVar1 == 4) {
-        if ((event->comm).transaction.status != '\0') goto _L0;
-        touchlink_target_transaction_timeout((void *)0x0);
-        touchlink_commissioning_set_task('\x04');
-        if ((event->comm).start_network.factory_new != '\0') {
+        if (param_1[4] != 0) goto _L0;
+        touchlink_target_transaction_timeout(0);
+        touchlink_commissioning_set_task(4);
+        if (param_1[0x24] != 0) {
           touchlink_zdo_start_network();
           return 0;
         }
       }
       else {
-        if ((event->comm).transaction.status != '\0') goto _L0;
-        touchlink_target_transaction_timeout((void *)0x0);
-        touchlink_commissioning_set_task('\x05');
-        if ((event->comm).start_network.factory_new != '\0') {
-          touchlink_zdo_start_router(&event->comm);
+        if (param_1[4] != 0) goto _L0;
+        touchlink_target_transaction_timeout(0);
+        touchlink_commissioning_set_task(5);
+        if (param_1[0x24] != 0) {
+          touchlink_zdo_start_router(param_1 + 4);
           return 0;
         }
       }
@@ -119,13 +114,13 @@ _L0:
     if (*(char *)(iVar3 + 0x13ad) != '\x01') {
       return 3;
     }
-    bVar1 = event->type;
+    bVar1 = *param_1;
     if (bVar1 == 8) {
 _L0:
-      if ((event->comm).transaction.status != '\0') {
+      if (param_1[4] != 0) {
         return 0;
       }
-      touchlink_commissioning_start_identify((event->comm).rsp_window.duration);
+      touchlink_commissioning_start_identify(*(undefined2 *)(param_1 + 6));
       return 0;
     }
     if (8 < bVar1) {
@@ -134,39 +129,39 @@ _L0:
         bVar1 = *(byte *)(iVar3 + 0x13ac);
         if (bVar1 == 2) {
           touchlink_disable_timer();
-          if ((event->comm).transaction.status != '\0') {
-            touchlink_commissioning_add_sub_device_timeout((void *)0x0);
+          if (param_1[4] != 0) {
+            touchlink_commissioning_add_sub_device_timeout(0);
             return 0;
           }
-          arg = (anon_union_36_11_e71becce_for_comm *)(event->comm).rsp_window.arg;
-          delay_ms = (uint32_t)(event->comm).rsp_window.duration;
-          timer_func = touchlink_commissioning_add_sub_device_timeout;
+          pbVar7 = *(byte **)(param_1 + 8);
+          uVar6 = *(undefined2 *)(param_1 + 6);
+          pcVar4 = touchlink_commissioning_add_sub_device_timeout;
         }
         else if (bVar1 < 3) {
           if (bVar1 != 1) {
             return 3;
           }
           touchlink_disable_timer();
-          if ((event->comm).transaction.status != '\0') {
-            touchlink_commissioning_scan_req_timeout((void *)0x0);
+          if (param_1[4] != 0) {
+            touchlink_commissioning_scan_req_timeout(0);
             return 0;
           }
-          arg = (anon_union_36_11_e71becce_for_comm *)(event->comm).rsp_window.arg;
-          delay_ms = (uint32_t)(event->comm).rsp_window.duration;
-          timer_func = touchlink_commissioning_scan_req_timeout;
+          pbVar7 = *(byte **)(param_1 + 8);
+          uVar6 = *(undefined2 *)(param_1 + 6);
+          pcVar4 = touchlink_commissioning_scan_req_timeout;
         }
         else {
           if (2 < (byte)(bVar1 - 4)) {
             return 3;
           }
           touchlink_disable_timer();
-          if ((event->comm).transaction.status != '\0') {
+          if (param_1[4] != 0) {
             touchlink_reset_intrp_channel();
             goto _L0;
           }
-          delay_ms = (uint32_t)(event->comm).rsp_window.duration;
-          arg = (anon_union_36_11_e71becce_for_comm *)0x0;
-          timer_func = touchlink_initiator_transaction_timeout;
+          uVar6 = *(undefined2 *)(param_1 + 6);
+          pbVar7 = (byte *)0x0;
+          pcVar4 = touchlink_initiator_transaction_timeout;
         }
       }
       else if (bVar1 == 0xb) {
@@ -175,12 +170,12 @@ _L0:
           return 3;
         }
         touchlink_disable_timer();
-        if ((event->comm).transaction.status != '\0') goto _L0;
-        touchlink_initiator_transaction_timeout(&event->comm);
-        touchlink_zdo_permit_join((event->comm).permit_join.duration);
-        arg = (anon_union_36_11_e71becce_for_comm *)0x0;
-        delay_ms = 2000;
-        timer_func = touchlink_initiator_check_commissioning_device;
+        if (param_1[4] != 0) goto _L0;
+        touchlink_initiator_transaction_timeout(param_1 + 4);
+        touchlink_zdo_permit_join(param_1[5]);
+        pbVar7 = (byte *)0x0;
+        uVar6 = 2000;
+        pcVar4 = touchlink_initiator_check_commissioning_device;
       }
       else {
         if ((bVar1 != 9) ||
@@ -189,18 +184,18 @@ _L0:
           return 3;
         }
         touchlink_disable_timer();
-        if ((event->comm).transaction.status != '\0') {
+        if (param_1[4] != 0) {
 _L0:
-          touchlink_commissioning_task_result('\x01');
+          touchlink_commissioning_task_result(1);
           return 0;
         }
-        arg = &event->comm;
-        touchlink_initiator_transaction_timeout(arg);
-        delay_ms = 2000;
-        timer_func = touchlink_zdo_rejoin_network;
+        pbVar7 = param_1 + 4;
+        touchlink_initiator_transaction_timeout(pbVar7);
+        uVar6 = 2000;
+        pcVar4 = touchlink_zdo_rejoin_network;
       }
 _L261:
-      touchlink_enable_timer(timer_func,delay_ms,arg);
+      touchlink_enable_timer(pcVar4,uVar6,pbVar7);
       return 0;
     }
     if (bVar1 != 6) {
@@ -214,7 +209,7 @@ _L261:
       if (*(char *)(iVar3 + 0x13ac) != '\x02') {
         return 3;
       }
-      iVar3 = *(int *)&event->comm;
+      iVar3 = *(int *)(param_1 + 4);
       if (iVar3 == 0) {
         return 0;
       }
@@ -225,11 +220,11 @@ _L261:
       return 0;
     }
   }
-  if ((event->comm).transaction.status != '\0') {
+  if (param_1[4] != 0) {
     return 0;
   }
 _L0:
-  touchlink_zdo_leave_network(&event->comm);
+  touchlink_zdo_leave_network(param_1 + 4);
   return 0;
 }
 

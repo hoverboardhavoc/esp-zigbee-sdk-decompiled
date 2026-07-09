@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_packet_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_reporting_packet_confirm_handler(zcl_packet_cnf_t *info,void *ctx)
+void zcl_reporting_packet_confirm_handler(int param_1,int param_2)
 
 {
-  int *piVar1;
-  int iVar2;
-  zcl_reporting_info_t *info_00;
+  byte bVar1;
+  int *piVar2;
+  int iVar3;
   
-  if ((info == (zcl_packet_cnf_t *)0x0) || (ctx != (void *)0x0)) {
+  if ((param_1 == 0) || (param_2 != 0)) {
     __assert_func(0,0,0,0);
   }
-  iVar2 = core_globals_get();
-  for (piVar1 = *(int **)(iVar2 + 0xd34); piVar1 + -1 != (undefined4 *)0xfffffffc;
-      piVar1 = (int *)*piVar1) {
-    info_00 = (zcl_reporting_info_t *)piVar1[-1];
-    if ((info_00->field_0x9 & 0xf) == 4) {
-      info_00->field_0x9 = info_00->field_0x9 & 0xf0 | 1;
-      process_attr_report(info_00);
+  iVar3 = core_globals_get();
+  for (piVar2 = *(int **)(iVar3 + 0xd34); piVar2 + -1 != (int *)0xfffffffc; piVar2 = (int *)*piVar2)
+  {
+    iVar3 = piVar2[-1];
+    bVar1 = *(byte *)(iVar3 + 9);
+    if ((bVar1 & 0xf) == 4) {
+      *(byte *)(iVar3 + 9) = bVar1 & 0xf0 | 1;
+      process_attr_report();
     }
   }
   return;

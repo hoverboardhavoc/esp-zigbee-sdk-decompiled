@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> ezb_zcl_scenes_table_store
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,65 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_scenes_table_store
-                    (uint8_t ep_id,uint16_t group_id,uint8_t scene_id,uint16_t transition_time,
-                    ezb_zcl_scenes_extension_field_t *field)
+undefined4
+ezb_zcl_scenes_table_store
+          (undefined4 param_1,undefined2 param_2,undefined1 param_3,undefined2 param_4,
+          undefined4 *param_5)
 
 {
   byte bVar1;
-  _Bool _Var2;
-  zcl_scene_table_entry_t *entry;
-  ezb_zcl_scenes_extension_field_t *peVar3;
-  uint8_t *__dest;
-  undefined3 extraout_var;
-  ezb_err_t eVar4;
-  undefined3 in_register_00002031;
+  int iVar2;
+  undefined4 *puVar3;
+  void *__dest;
+  undefined4 uVar4;
   
-  entry = scene_table_find_entry(ep_id,group_id,(uint16_t)CONCAT31(in_register_00002031,scene_id));
-  if (entry == (zcl_scene_table_entry_t *)0x0) {
-    entry = scene_table_get_unused_entry(ep_id);
+  iVar2 = scene_table_find_entry();
+  if (iVar2 == 0) {
+    iVar2 = scene_table_get_unused_entry(param_1);
   }
   else {
-    scene_entry_free_scene_extension_field(entry);
+    scene_entry_free_scene_extension_field();
   }
-  if (entry == (zcl_scene_table_entry_t *)0x0) {
-    eVar4 = 1;
+  if (iVar2 == 0) {
+    uVar4 = 1;
   }
   else {
-    entry->group_id = group_id;
-    entry->scene_id = scene_id;
-    entry->scene_name[0] = '\0';
-    entry->transition_time = transition_time;
-    entry->transition_time_100ms = '\0';
-    for (; field != (ezb_zcl_scenes_extension_field_t *)0x0; field = field->next) {
-      peVar3 = (ezb_zcl_scenes_extension_field_t *)calloc(1,0xc);
-      if (peVar3 == (ezb_zcl_scenes_extension_field_t *)0x0) {
+    *(undefined2 *)(iVar2 + 2) = param_2;
+    *(undefined1 *)(iVar2 + 4) = param_3;
+    *(undefined1 *)(iVar2 + 8) = 0;
+    *(undefined2 *)(iVar2 + 6) = param_4;
+    *(undefined1 *)(iVar2 + 0x19) = 0;
+    for (; param_5 != (undefined4 *)0x0; param_5 = (undefined4 *)*param_5) {
+      puVar3 = (undefined4 *)calloc(1,0xc);
+      if (puVar3 == (undefined4 *)0x0) {
         return 1;
       }
-      peVar3->cluster_id = field->cluster_id;
-      bVar1 = field->length;
-      peVar3->length = bVar1;
-      __dest = (uint8_t *)calloc(1,(uint)bVar1);
-      peVar3->value = __dest;
-      if (__dest == (uint8_t *)0x0) {
+      *(undefined2 *)(puVar3 + 1) = *(undefined2 *)(param_5 + 1);
+      bVar1 = *(byte *)((int)param_5 + 6);
+      *(byte *)((int)puVar3 + 6) = bVar1;
+      __dest = calloc(1,(uint)bVar1);
+      puVar3[2] = __dest;
+      if (__dest == (void *)0x0) {
         return 1;
       }
-      if (field->length != '\0') {
-        memcpy(__dest,field->value,(uint)bVar1);
+      if (*(char *)((int)param_5 + 6) != '\0') {
+        memcpy(__dest,(void *)param_5[2],(uint)bVar1);
       }
-      peVar3->next = entry->extension_field;
-      entry->extension_field = peVar3;
+      *puVar3 = *(undefined4 *)(iVar2 + 0x1c);
+      *(undefined4 **)(iVar2 + 0x1c) = puVar3;
     }
-    _Var2 = scene_table_add_entry(ep_id,entry,true);
-    if (CONCAT31(extraout_var,_Var2) == 0) {
-      eVar4 = 1;
+    iVar2 = scene_table_add_entry(param_1,iVar2,1);
+    if (iVar2 == 0) {
+      uVar4 = 1;
     }
     else {
-      eVar4 = 0;
+      uVar4 = 0;
     }
   }
-  return eVar4;
+  return uVar4;
 }
 

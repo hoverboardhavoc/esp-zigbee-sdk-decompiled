@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_reasm_ent_input
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,123 +10,111 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: blk */
-/* WARNING: Unknown calling convention */
-
-void aps_reasm_ent_input(aps_reasm_ent_t *ent,aps_header_t *aps_hdr,zmsg_t *frag_msg)
+void aps_reasm_ent_input(undefined4 *param_1,int param_2,undefined4 *param_3)
 
 {
-  aps_reasm_ent_t *paVar1;
-  _Bool _Var2;
+  undefined4 *puVar1;
+  short sVar2;
   short sVar3;
-  short sVar4;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  int *piVar5;
-  undefined3 extraout_var_01;
-  undefined4 uVar6;
-  int iVar7;
-  uint uVar8;
-  uint uVar9;
-  dlist_node_s *pdVar10;
-  byte bVar11;
-  aps_trx_window_t *w;
+  int iVar4;
+  undefined4 uVar5;
+  uint uVar6;
+  undefined4 *puVar7;
+  byte bVar8;
+  int iVar9;
   byte bStack_22;
-  byte abStack_21 [3];
-  uint8_t blk;
-  uint8_t blk_idx;
+  byte bStack_21;
   
-  if (((aps_hdr->ext_hdr).ext_fcf & 3) == 1) {
-    uVar8 = 0;
+  if ((*(byte *)(param_2 + 0x11) & 3) == 1) {
+    uVar6 = 0;
   }
   else {
-    uVar8 = (uint)(aps_hdr->ext_hdr).block_nr;
+    uVar6 = (uint)*(byte *)(param_2 + 0x12);
   }
-  abStack_21[0] = (byte)uVar8;
-  uVar9 = (uint)(ent->w).blk_start;
-  if (uVar8 < uVar9) goto _L0;
-  if (uVar9 + (ent->w).slot_nr <= uVar8) {
-    if (((ent->w).slot_done != 0xff) ||
-       (_Var2 = aps_tx_window_move_next(&ent->w), CONCAT31(extraout_var,_Var2) == 0)) goto _L0;
-    ent->retry_cntr = '\0';
-    milli_timer_start(&ent->tm,0x640);
-    if ((uint)abStack_21[0] < (uint)(ent->w).blk_start + (uint)(ent->w).slot_nr) goto _L0;
+  bStack_21 = (byte)uVar6;
+  if (uVar6 < *(byte *)((int)param_1 + 0x22)) goto _L0;
+  if ((uint)*(byte *)((int)param_1 + 0x22) + (uint)*(byte *)(param_1 + 9) <= uVar6) {
+    if ((*(char *)((int)param_1 + 0x25) != -1) ||
+       (iVar4 = aps_tx_window_move_next((int)param_1 + 0x21), iVar4 == 0)) goto _L0;
+    *(undefined1 *)(param_1 + 8) = 0;
+    milli_timer_start(param_1 + 4,0x640);
+    if ((uint)bStack_21 < (uint)*(byte *)((int)param_1 + 0x22) + (uint)*(byte *)(param_1 + 9))
+    goto _L0;
   }
-  uVar9 = (uint)(ent->w).blk_start;
-  uVar8 = abStack_21[0] - uVar9;
-  w = &ent->w;
-  _Var2 = aps_rx_window_should_ack(w,abStack_21[0]);
-  if (CONCAT31(extraout_var_00,_Var2) != 0) {
-    aps_send_ack(aps_hdr,frag_msg,uVar9,(uint)(ent->w).slot_done | 1 << (uVar8 & 0x1f) & 0xffU);
+  bVar8 = *(byte *)((int)param_1 + 0x22);
+  uVar6 = (uint)bStack_21 - (uint)bVar8;
+  iVar9 = (int)param_1 + 0x21;
+  iVar4 = aps_rx_window_should_ack(iVar9);
+  if (iVar4 != 0) {
+    aps_send_ack(param_2,param_3,(uint)bVar8,
+                 (uint)*(byte *)((int)param_1 + 0x25) | 1 << (uVar6 & 0x1f) & 0xffU);
   }
-  bVar11 = (ent->w).slot_done;
-  uVar8 = uVar8 & 0x1f;
-  if (((int)(uint)bVar11 >> uVar8 & 1U) == 0) {
-    (ent->w).slot_done = bVar11 | (byte)(1 << uVar8);
-    if (abStack_21[0] == 0) {
-      aps_rx_window_set_blk_nr(w,(aps_hdr->ext_hdr).block_nr);
-      (ent->w).slot_i = '\x01';
+  uVar6 = uVar6 & 0x1f;
+  if (((int)(uint)*(byte *)((int)param_1 + 0x25) >> uVar6 & 1U) == 0) {
+    *(byte *)((int)param_1 + 0x25) = *(byte *)((int)param_1 + 0x25) | (byte)(1 << uVar6);
+    if (bStack_21 == 0) {
+      aps_rx_window_set_blk_nr(iVar9,*(undefined1 *)(param_2 + 0x12));
+      *(undefined1 *)((int)param_1 + 0x23) = 1;
     }
-    for (paVar1 = (aps_reasm_ent_t *)(ent->frag_q).list.next; paVar1 != ent;
-        paVar1 = (aps_reasm_ent_t *)(paVar1->frag_q).list.next) {
+    for (puVar1 = (undefined4 *)*param_1; puVar1 != param_1; puVar1 = (undefined4 *)*puVar1) {
       bStack_22 = 0;
-      zmsg_get_footer(paVar1,&bStack_22,1);
-      if (abStack_21[0] < bStack_22) break;
+      zmsg_get_footer(puVar1,&bStack_22,1);
+      if (bStack_21 < bStack_22) break;
     }
-    zmsg_add_footer(frag_msg,abStack_21,1);
-    pdVar10 = (paVar1->frag_q).list.prev;
-    (paVar1->frag_q).list.prev = &frag_msg->node;
-    (frag_msg->node).next = (dlist_node_s *)paVar1;
-    (frag_msg->node).prev = pdVar10;
-    pdVar10->next = &frag_msg->node;
-    (ent->frag_q).length = (ent->frag_q).length + 1;
-    piVar5 = (int *)zmsg_queue_get_head(ent);
-    while (paVar1 = (aps_reasm_ent_t *)*piVar5, ent != paVar1) {
+    zmsg_add_footer(param_3,&bStack_21,1);
+    puVar7 = (undefined4 *)puVar1[1];
+    puVar1[1] = param_3;
+    *param_3 = puVar1;
+    param_3[1] = puVar7;
+    *puVar7 = param_3;
+    *(short *)(param_1 + 2) = *(short *)(param_1 + 2) + 1;
+    puVar1 = (undefined4 *)zmsg_queue_get_head(param_1);
+    while (puVar7 = (undefined4 *)*puVar1, param_1 != puVar7) {
       bStack_22 = 0;
-      bVar11 = (ent->w).blk_start + (ent->w).slot_i;
-      zmsg_get_footer(paVar1,&bStack_22,1);
-      if (bStack_22 == bVar11) {
-        (ent->w).slot_i = (ent->w).slot_i + '\x01';
-        zmsg_queue_dequeue(ent,paVar1);
-        uVar6 = zmsg_get_offset(paVar1);
-        sVar3 = zmsg_get_length(paVar1);
-        sVar4 = zmsg_get_offset(paVar1);
-        iVar7 = zmsg_append_bytes_from_msg(piVar5,paVar1,uVar6,sVar3 - sVar4);
-        if (iVar7 != 0) {
-          log_write(1,"aps_retrans.c","Failed to merge frag queue: %d",iVar7);
+      bVar8 = *(char *)((int)param_1 + 0x22) + *(char *)((int)param_1 + 0x23);
+      zmsg_get_footer(puVar7,&bStack_22,1);
+      if (bStack_22 == bVar8) {
+        *(char *)((int)param_1 + 0x23) = *(char *)((int)param_1 + 0x23) + '\x01';
+        zmsg_queue_dequeue(param_1,puVar7);
+        uVar5 = zmsg_get_offset(puVar7);
+        sVar2 = zmsg_get_length(puVar7);
+        sVar3 = zmsg_get_offset(puVar7);
+        iVar4 = zmsg_append_bytes_from_msg(puVar1,puVar7,uVar5,sVar2 - sVar3);
+        if (iVar4 != 0) {
+          log_write(1,"aps_retrans.c","Failed to merge frag queue: %d",iVar4);
         }
       }
       else {
-        if (bVar11 < bStack_22) break;
+        if (bVar8 < bStack_22) break;
         __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x22f,
                       "aps_reasm_ent_input","frag_blk > next_blk");
       }
-      zmsg_free(paVar1);
+      zmsg_free(puVar7);
     }
-    if ((ent->w).slot_done != 0xff) {
+    if (*(char *)((int)param_1 + 0x25) != -1) {
       return;
     }
-    _Var2 = aps_tx_window_move_next(w);
-    if (CONCAT31(extraout_var_01,_Var2) != 0) {
+    iVar4 = aps_tx_window_move_next(iVar9);
+    if (iVar4 != 0) {
       return;
     }
-    if ((ent->frag_q).length == 1) {
-      uVar6 = zmsg_queue_get_head(ent);
-      zmsg_queue_dequeue(ent,uVar6);
-      ent->retry_cntr = '\x03';
-      milli_timer_start(&ent->tm,0x640);
-      aps_handle_data(aps_hdr,uVar6);
+    if (*(short *)(param_1 + 2) == 1) {
+      uVar5 = zmsg_queue_get_head(param_1);
+      zmsg_queue_dequeue(param_1,uVar5);
+      *(undefined1 *)(param_1 + 8) = 3;
+      milli_timer_start(param_1 + 4,0x640);
+      aps_handle_data(param_2,uVar5);
       return;
     }
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x247,
                   "aps_reasm_ent_input","ent->frag_q.length == 1");
-    uVar8 = nwk_pim_get_fast_poll_interval();
-    nwk_pim_start_fast_poll(0x1900 / uVar8);
+    uVar6 = nwk_pim_get_fast_poll_interval();
+    nwk_pim_start_fast_poll(0x1900 / uVar6);
     return;
   }
 _L0:
-  if (frag_msg != (zmsg_t *)0x0) {
-    zmsg_free(frag_msg);
+  if (param_3 != (undefined4 *)0x0) {
+    zmsg_free(param_3);
   }
   return;
 }

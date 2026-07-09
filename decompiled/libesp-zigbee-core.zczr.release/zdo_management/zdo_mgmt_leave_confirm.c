@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_management.o -> zdo_mgmt_leave_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_mgmt_leave_confirm(nwk_leave_cnf_t *cnf)
+void zdo_mgmt_leave_confirm(undefined1 *param_1)
 
 {
   int iVar1;
@@ -27,14 +25,13 @@ void zdo_mgmt_leave_confirm(nwk_leave_cnf_t *cnf)
       return;
     }
     if (((*(byte *)(puVar3 + 7) & 1) != 0) && (*(short *)(puVar3 + -1) == 0x34)) {
-      if ((puVar3[1] == *(int *)((int)&cnf->field_1 + 2)) &&
-         (puVar3[2] == *(int *)((int)&cnf->field_1 + 6))) {
+      if ((puVar3[1] == *(int *)(param_1 + 4)) && (puVar3[2] == *(int *)(param_1 + 8))) {
         *puVar2 = *puVar3;
         if (puVar3 == (undefined4 *)0x4) {
           return;
         }
         if ((code *)puVar3[5] != (code *)0x0) {
-          (*(code *)puVar3[5])(cnf->status,puVar3[6]);
+          (*(code *)puVar3[5])(*param_1,puVar3[6]);
         }
         if (puVar3 == (undefined4 *)0x4) {
           return;

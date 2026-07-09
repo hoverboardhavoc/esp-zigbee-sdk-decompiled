@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> random.o -> noncrypto_prng_get_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint32_t noncrypto_prng_get_next(void)
+void noncrypto_prng_get_next(void)
 
 {
   int iVar1;
-  uint32_t p;
   
-  if ((noncrypto_prng_get_next::s_next == 0) &&
-     (iVar1 = ezb_plat_crypto_entropy_get(&noncrypto_prng_get_next::s_next,4), iVar1 != 0)) {
+  if ((s_next_0 == 0) && (iVar1 = ezb_plat_crypto_entropy_get(&s_next_0,4), iVar1 != 0)) {
     __assert_func(0,0,0,0);
   }
-  noncrypto_prng_get_next::s_next =
-       (noncrypto_prng_get_next::s_next * 0x834e >> 1) +
-       (int)((ulonglong)noncrypto_prng_get_next::s_next * 0x834e >> 0x20);
-  if ((int)noncrypto_prng_get_next::s_next < 0) {
-    noncrypto_prng_get_next::s_next = (noncrypto_prng_get_next::s_next & 0x7fffffff) + 1;
+  s_next_0 = (s_next_0 * 0x834e >> 1) + (int)((ulonglong)s_next_0 * 0x834e >> 0x20);
+  if ((int)s_next_0 < 0) {
+    s_next_0 = (s_next_0 & 0x7fffffff) + 1;
   }
-  return noncrypto_prng_get_next::s_next;
+  return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aes_ccm.o -> crypto_aes_ccm_star
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,69 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t crypto_aes_ccm_star(int mode,uint8_t *key,uint8_t *nonce,uint8_t *ad,size_t ad_len,
-                             uint8_t *input,size_t ilen,uint8_t *output,size_t output_len,
-                             size_t *olen,uint8_t *tag,size_t tag_len)
+void crypto_aes_ccm_star(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+                        undefined4 param_5,undefined4 param_6,undefined4 param_7,undefined4 param_8)
 
 {
-  int psa_status;
-  ezb_err_t eVar1;
-  psa_key_usage_t usage;
-  uint alg;
-  size_t in_stack_00000000;
+  int iVar1;
+  undefined4 uVar2;
+  uint uVar3;
+  undefined4 in_stack_00000000;
+  undefined4 in_stack_00000004;
+  undefined4 in_stack_00000008;
+  uint in_stack_0000000c;
   undefined4 local_1f0;
-  size_t tag_olen;
-  size_t finish_len;
-  psa_aead_operation_t op;
-  psa_key_id_t pStack_34;
-  psa_key_id_t key_id;
+  undefined4 uStack_1ec;
+  undefined1 auStack_1e8 [436];
+  int aiStack_34 [2];
   
-  if (tag == (uint8_t *)0x0) {
-    eVar1 = crypto_psa_ccm_no_tag
-                      (mode,key,nonce,input,ilen,output,in_stack_00000000,(size_t *)output_len);
+  if (in_stack_0000000c == 0) {
+    crypto_psa_ccm_no_tag(param_6,param_7,param_8,in_stack_00000000,in_stack_00000004);
   }
   else {
-    pStack_34 = 0;
-    memset(&finish_len,0,0x1b0);
-    alg = ((uint)tag & 0x3f) << 0x10 | 0x5400100;
-    if (mode == 0) {
-      usage = 0x100;
+    aiStack_34[0] = 0;
+    memset(auStack_1e8,0,0x1b0);
+    uVar3 = (in_stack_0000000c & 0x3f) << 0x10 | 0x5400100;
+    if (param_1 == 0) {
+      uVar2 = 0x100;
     }
     else {
-      usage = 0x200;
+      uVar2 = 0x200;
     }
-    tag_olen = 0;
-    psa_status = crypto_psa_import_aes_key(key,alg,usage,&pStack_34);
-    if (psa_status == 0) {
-      if (mode == 0) {
-        psa_status = psa_aead_encrypt_setup(&finish_len,pStack_34,alg);
+    uStack_1ec = 0;
+    iVar1 = crypto_psa_import_aes_key(param_2,uVar3,uVar2,aiStack_34);
+    if (iVar1 == 0) {
+      if (param_1 == 0) {
+        iVar1 = psa_aead_encrypt_setup(auStack_1e8,aiStack_34[0],uVar3);
       }
       else {
-        psa_status = psa_aead_decrypt_setup(&finish_len,pStack_34,alg);
+        iVar1 = psa_aead_decrypt_setup(auStack_1e8,aiStack_34[0],uVar3);
       }
-      if ((((psa_status == 0) &&
-           (psa_status = psa_aead_set_lengths(&finish_len,ad_len,ilen), psa_status == 0)) &&
-          (psa_status = psa_aead_set_nonce(&finish_len,nonce,0xd), psa_status == 0)) &&
-         ((psa_status = psa_aead_update_ad(&finish_len,ad,ad_len), psa_status == 0 &&
-          (psa_status = psa_aead_update(&finish_len,input,ilen,output,in_stack_00000000,output_len),
-          psa_status == 0)))) {
-        if (mode == 0) {
+      if ((((iVar1 == 0) && (iVar1 = psa_aead_set_lengths(auStack_1e8,param_5,param_7), iVar1 == 0))
+          && (iVar1 = psa_aead_set_nonce(auStack_1e8,param_3,0xd), iVar1 == 0)) &&
+         ((iVar1 = psa_aead_update_ad(auStack_1e8,param_4,param_5), iVar1 == 0 &&
+          (iVar1 = psa_aead_update(auStack_1e8,param_6,param_7,param_8,in_stack_00000000,
+                                   in_stack_00000004), iVar1 == 0)))) {
+        if (param_1 == 0) {
           local_1f0 = 0;
-          psa_status = psa_aead_finish(&finish_len,0,0,&tag_olen,olen,tag,&local_1f0);
+          iVar1 = psa_aead_finish(auStack_1e8,0,0,&uStack_1ec,in_stack_00000008,in_stack_0000000c,
+                                  &local_1f0);
         }
         else {
-          psa_status = psa_aead_verify(&finish_len,0,0,&tag_olen,olen,tag);
+          iVar1 = psa_aead_verify(auStack_1e8,0,0,&uStack_1ec,in_stack_00000008,in_stack_0000000c);
         }
       }
     }
-    psa_aead_abort(&finish_len);
-    if (pStack_34 != 0) {
+    psa_aead_abort(auStack_1e8);
+    if (aiStack_34[0] != 0) {
       psa_destroy_key();
     }
-    eVar1 = psa_to_ezb_error(psa_status);
+    psa_to_ezb_error(iVar1);
   }
-  return eVar1;
+  return;
 }
 

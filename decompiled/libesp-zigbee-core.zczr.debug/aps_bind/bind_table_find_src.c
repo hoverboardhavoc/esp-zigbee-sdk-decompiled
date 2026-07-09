@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_table_find_src
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-aps_bind_src_t * bind_table_find_src(ezb_extaddr_t *src_addr,uint8_t src_ep,uint16_t cluster_id)
+undefined2 * bind_table_find_src(int *param_1,uint param_2,uint param_3)
 
 {
   int iVar1;
-  aps_bind_src_t *paVar2;
+  undefined2 *puVar2;
   int iVar3;
-  size_t sVar4;
-  undefined3 in_register_0000202d;
-  undefined2 in_register_00002032;
+  uint uVar4;
   uint uVar5;
   int iStack_28;
-  ezb_extaddr_t tmp_src_addr;
+  int iStack_24;
   
   iVar3 = core_globals_get();
   uVar5 = 0;
@@ -31,18 +27,16 @@ aps_bind_src_t * bind_table_find_src(ezb_extaddr_t *src_addr,uint8_t src_ep,uint
     uVar5 = bitmap_find_next_bit
                       (*(undefined4 *)(iVar3 + 0x96c),*(undefined2 *)(iVar3 + 0x970),uVar5);
     if (*(ushort *)(iVar3 + 0x970) <= uVar5) {
-      return (aps_bind_src_t *)0x0;
+      return (undefined2 *)0x0;
     }
     iVar1 = *(int *)(iVar3 + 0x968);
-    sVar4 = bind_src_size();
-    paVar2 = (aps_bind_src_t *)(iVar1 + (sVar4 & 0xffff) * uVar5);
-    if (((uint)paVar2->src_ep == CONCAT31(in_register_0000202d,src_ep)) &&
-       ((uint)paVar2->cluster_id == CONCAT22(in_register_00002032,cluster_id))) {
-      iVar1 = nwk_address_extended_by_ref(paVar2->addr_ref,&iStack_28);
+    uVar4 = bind_src_size();
+    puVar2 = (undefined2 *)(iVar1 + (uVar4 & 0xffff) * uVar5);
+    if ((*(byte *)(puVar2 + 1) == param_2) && ((ushort)puVar2[2] == param_3)) {
+      iVar1 = nwk_address_extended_by_ref(*puVar2,&iStack_28);
       if (iVar1 == 0) {
-        if ((*(int *)&src_addr->field_0 == iStack_28) &&
-           (*(int *)((int)&src_addr->field_0 + 4) == tmp_src_addr.field_0.u64._0_4_)) {
-          return paVar2;
+        if ((*param_1 == iStack_28) && (param_1[1] == iStack_24)) {
+          return puVar2;
         }
       }
       else {

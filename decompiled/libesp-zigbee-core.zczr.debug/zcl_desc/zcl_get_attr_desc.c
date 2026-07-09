@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_desc.o -> zcl_get_attr_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_attr_desc_t *
-zcl_get_attr_desc(uint8_t ep_id,uint16_t cluster_id,uint8_t role,uint16_t attr_id,
-                 uint16_t manuf_code)
+void zcl_get_attr_desc(uint param_1,uint param_2)
 
 {
-  zcl_cluster_desc_t *pzVar1;
-  undefined2 in_register_00002036;
-  undefined2 in_register_0000203a;
+  int iVar1;
+  ushort *puVar2;
   
-  pzVar1 = zcl_get_cluster_desc(ep_id,cluster_id,role);
-  if (pzVar1 != (zcl_cluster_desc_t *)0x0) {
-    for (pzVar1 = (zcl_cluster_desc_t *)pzVar1->attr_list;
-        (pzVar1 != (zcl_cluster_desc_t *)0x0 &&
-        (((uint)pzVar1->cluster_id != CONCAT22(in_register_00002036,attr_id) ||
-         ((CONCAT22(in_register_0000203a,manuf_code) != 0 &&
-          (((pzVar1->field_0x3 & 0x20) == 0 ||
-           ((uint)pzVar1->manuf_code != CONCAT22(in_register_0000203a,manuf_code)))))))));
-        pzVar1 = (zcl_cluster_desc_t *)pzVar1->attr_list) {
+  iVar1 = zcl_get_cluster_desc();
+  if (iVar1 != 0) {
+    for (puVar2 = *(ushort **)(iVar1 + 0xc);
+        (puVar2 != (ushort *)0x0 &&
+        ((*puVar2 != param_1 ||
+         ((param_2 != 0 && (((*(byte *)((int)puVar2 + 3) & 0x20) == 0 || (puVar2[2] != param_2))))))
+        )); puVar2 = *(ushort **)(puVar2 + 6)) {
     }
   }
-  return (zcl_attr_desc_t *)pzVar1;
+  return;
 }
 

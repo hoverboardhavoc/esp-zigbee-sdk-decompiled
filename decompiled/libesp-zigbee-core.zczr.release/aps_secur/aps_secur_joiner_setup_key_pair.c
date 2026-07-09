@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_joiner_setup_key_pair
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_secur_joiner_setup_key_pair(aps_device_key_pair_t *key_pair)
+undefined4 aps_secur_joiner_setup_key_pair(int param_1)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  int iVar2;
+  int iVar1;
+  void *extraout_a1;
+  void *__src;
   
-  if ((((key_pair->field_8).flags & 6) != 0) ||
-     (_Var1 = secur_is_key_valid(key_pair->link_key), CONCAT31(extraout_var,_Var1) == 0)) {
-    _Var1 = aps_secur_is_centralized();
-    if (CONCAT31(extraout_var_00,_Var1) != 0) {
-      iVar2 = secur_ic_get_tclk(key_pair->link_key);
-      if (iVar2 == 0) {
-        memcpy(key_pair->passphrase,key_pair->link_key,0x10);
-        key_pair->incoming_frame_cntr = 0;
-        key_pair->outgoing_frame_cntr = 0;
-        *(byte *)&key_pair->field_8 = *(byte *)&key_pair->field_8 & 0x38 | 0x40;
-        key_pair->timeout = 0xffff;
+  if (((*(ushort *)(param_1 + 0x34) & 6) != 0) ||
+     (iVar1 = secur_is_key_valid(param_1 + 0x12), iVar1 == 0)) {
+    iVar1 = aps_secur_is_centralized();
+    __src = extraout_a1;
+    if (iVar1 != 0) {
+      __src = (void *)(param_1 + 0x12);
+      iVar1 = secur_ic_get_tclk(__src);
+      if (iVar1 == 0) {
+        memcpy((void *)(param_1 + 0x22),__src,0x10);
+        *(undefined4 *)(param_1 + 0xc) = 0;
+        *(undefined4 *)(param_1 + 8) = 0;
+        *(byte *)(param_1 + 0x34) = *(byte *)(param_1 + 0x34) & 0x38 | 0x40;
+        *(undefined2 *)(param_1 + 0x10) = 0xffff;
         return 0;
       }
     }
-    aps_secur_key_pair_setup_global_tclk(key_pair);
+    aps_secur_key_pair_setup_global_tclk(param_1,__src);
   }
   return 0;
 }

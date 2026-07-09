@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> addr_table_lru_reuse
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_addr_ref_t addr_table_lru_reuse(nwk_addr_table_t *tbl)
+undefined2 addr_table_lru_reuse(int param_1)
 
 {
-  nwk_addr_ref_t ref;
+  undefined2 uVar1;
   
-  if ((uint)tbl->lru_head < (uint)tbl->ent_nr) {
-    ref = tbl->ents[tbl->lru_head].lru.prev;
-    addr_table_lru_update(tbl,ref);
+  if ((uint)*(ushort *)(param_1 + 10) < (uint)*(ushort *)(param_1 + 8)) {
+    uVar1 = *(undefined2 *)((uint)*(ushort *)(param_1 + 10) * 0x12 + *(int *)(param_1 + 4) + 10);
+    addr_table_lru_update(uVar1);
   }
   else {
-    ref = 0xffff;
+    uVar1 = 0xffff;
   }
-  return ref;
+  return uVar1;
 }
 

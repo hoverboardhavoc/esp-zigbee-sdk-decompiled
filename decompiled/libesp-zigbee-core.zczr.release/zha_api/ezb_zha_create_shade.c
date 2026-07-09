@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zha_api.o -> ezb_zha_create_shade
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,60 +10,57 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_af_ep_desc_t ezb_zha_create_shade(uint8_t ep_id,ezb_zha_shade_config_t *cfg)
+undefined4 ezb_zha_create_shade(undefined1 param_1,int param_2)
 
 {
-  ezb_af_ep_desc_t pvVar1;
+  undefined4 uVar1;
   undefined4 uVar2;
-  ezb_zcl_level_cluster_server_config_t *peVar3;
-  ezb_zcl_on_off_cluster_server_config_t *peVar4;
-  ezb_zcl_scenes_cluster_server_config_t *peVar5;
-  ezb_zcl_groups_cluster_server_config_t *peVar6;
-  ezb_zcl_shade_config_cluster_server_config_t *peVar7;
-  ezb_zcl_identify_cluster_server_config_t *peVar8;
-  uint8_t uStack_38;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+  undefined1 uStack_38;
   undefined1 uStack_37;
   undefined2 uStack_36;
-  ezb_af_ep_config_t ep_config;
+  undefined2 uStack_34;
   
-  if (cfg == (ezb_zha_shade_config_t *)0x0) {
-    peVar4 = (ezb_zcl_on_off_cluster_server_config_t *)0x0;
-    peVar5 = (ezb_zcl_scenes_cluster_server_config_t *)0x0;
-    peVar6 = (ezb_zcl_groups_cluster_server_config_t *)0x0;
-    peVar7 = (ezb_zcl_shade_config_cluster_server_config_t *)0x0;
-    peVar8 = (ezb_zcl_identify_cluster_server_config_t *)0x0;
-    peVar3 = (ezb_zcl_level_cluster_server_config_t *)0x0;
+  if (param_2 == 0) {
+    iVar4 = 0;
+    iVar5 = 0;
+    iVar6 = 0;
+    iVar7 = 0;
+    iVar8 = 0;
+    iVar3 = 0;
   }
   else {
-    peVar8 = &cfg->identify_cfg;
-    peVar7 = &cfg->shade_cfg;
-    peVar6 = &cfg->groups_cfg;
-    peVar5 = &cfg->scenes_cfg;
-    peVar4 = &cfg->on_off_cfg;
-    peVar3 = &cfg->level_cfg;
+    iVar8 = param_2 + 2;
+    iVar7 = param_2 + 4;
+    iVar6 = param_2 + 10;
+    iVar5 = param_2 + 0xc;
+    iVar4 = param_2 + 0x14;
+    iVar3 = param_2 + 0x15;
   }
   memset(&uStack_37,0,7);
   uStack_36 = 0x104;
-  ep_config.ep_id = '\0';
-  ep_config._1_1_ = 2;
-  uStack_38 = ep_id;
-  pvVar1 = (ezb_af_ep_desc_t)ezb_af_create_endpoint_desc(&uStack_38);
-  uVar2 = ezb_zcl_basic_create_cluster_desc(cfg,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_identify_create_cluster_desc(peVar8,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_shade_config_create_cluster_desc(peVar7,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_groups_create_cluster_desc(peVar6,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_scenes_create_cluster_desc(peVar5,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_on_off_create_cluster_desc(peVar4,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  uVar2 = ezb_zcl_level_create_cluster_desc(peVar3,1);
-  ezb_af_endpoint_add_cluster_desc(pvVar1,uVar2);
-  return pvVar1;
+  uStack_34 = 0x200;
+  uStack_38 = param_1;
+  uVar1 = ezb_af_create_endpoint_desc(&uStack_38);
+  uVar2 = ezb_zcl_basic_create_cluster_desc(param_2,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_identify_create_cluster_desc(iVar8,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_shade_config_create_cluster_desc(iVar7,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_groups_create_cluster_desc(iVar6,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_scenes_create_cluster_desc(iVar5,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_on_off_create_cluster_desc(iVar4,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  uVar2 = ezb_zcl_level_create_cluster_desc(iVar3,1);
+  ezb_af_endpoint_add_cluster_desc(uVar1,uVar2);
+  return uVar1;
 }
 

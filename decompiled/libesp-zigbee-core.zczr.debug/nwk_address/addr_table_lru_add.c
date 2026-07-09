@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> addr_table_lru_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void addr_table_lru_add(nwk_addr_table_t *tbl,nwk_addr_ref_t ref)
+void addr_table_lru_add(int param_1,int param_2)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  undefined2 in_register_0000202e;
+  undefined2 uVar1;
+  int iVar2;
   
-  _Var1 = lru_queue_is_present(tbl,ref);
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    if ((uint)tbl->lru_head < (uint)tbl->ent_nr) {
-      lru_queue_insert(tbl,tbl->ents[tbl->lru_head].lru.prev,ref);
+  iVar2 = lru_queue_is_present();
+  if (iVar2 == 0) {
+    uVar1 = (undefined2)param_2;
+    if ((uint)*(ushort *)(param_1 + 10) < (uint)*(ushort *)(param_1 + 8)) {
+      lru_queue_insert(param_1,*(undefined2 *)
+                                ((uint)*(ushort *)(param_1 + 10) * 0x12 + *(int *)(param_1 + 4) + 10
+                                ),param_2);
     }
     else {
-      tbl->ents[CONCAT22(in_register_0000202e,ref)].lru.prev = ref;
-      tbl->ents[CONCAT22(in_register_0000202e,ref)].lru.next = ref;
+      *(undefined2 *)(*(int *)(param_1 + 4) + param_2 * 0x12 + 10) = uVar1;
+      *(undefined2 *)(param_2 * 0x12 + *(int *)(param_1 + 4) + 0xc) = uVar1;
     }
-    tbl->lru_head = ref;
+    *(undefined2 *)(param_1 + 10) = uVar1;
   }
   return;
 }

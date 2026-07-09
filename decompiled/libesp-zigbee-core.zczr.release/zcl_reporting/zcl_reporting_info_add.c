@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_info_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_reporting_info_add(zcl_reporting_info_t *info)
+undefined4 zcl_reporting_info_add(char *param_1)
 
 {
-  uint8_t uVar1;
-  uint16_t uVar2;
-  int iVar3;
-  undefined4 *puVar4;
-  zcl_reporting_info_t *info_00;
-  ezb_err_t eVar5;
-  undefined4 uVar6;
+  char cVar1;
+  int iVar2;
+  undefined4 *puVar3;
+  char *pcVar4;
+  undefined4 uVar5;
   undefined4 uStack_2c;
-  uint16_t uStack_28;
-  uint8_t uStack_26;
+  undefined2 uStack_28;
+  char cStack_26;
   undefined1 uStack_25;
   undefined1 uStack_24;
   undefined1 uStack_23;
@@ -39,59 +35,53 @@ ezb_err_t zcl_reporting_info_add(zcl_reporting_info_t *info)
   undefined1 uStack_1a;
   undefined1 auStack_19 [9];
   
-  if (info == (zcl_reporting_info_t *)0x0) {
+  if (param_1 == (char *)0x0) {
     return 2;
   }
-  iVar3 = af_get_ep_desc(info->ep_id);
-  if (iVar3 == 0) {
-    eVar5 = 5;
+  iVar2 = af_get_ep_desc(param_1[1]);
+  if (iVar2 == 0) {
+    uVar5 = 5;
   }
   else {
-    puVar4 = (undefined4 *)calloc(1,8);
-    if (puVar4 != (undefined4 *)0x0) {
-      info->next = *(zcl_reporting_info_s **)(iVar3 + 8);
-      *(zcl_reporting_info_t **)(iVar3 + 8) = info;
-      uVar1 = info->direction;
-      *puVar4 = info;
-      if (uVar1 == '\0') {
-        info->field_0x9 = info->field_0x9 & 0xf0 | 0x11;
+    puVar3 = (undefined4 *)calloc(1,8);
+    if (puVar3 != (undefined4 *)0x0) {
+      *(undefined4 *)(param_1 + 0x34) = *(undefined4 *)(iVar2 + 8);
+      *(char **)(iVar2 + 8) = param_1;
+      cVar1 = *param_1;
+      *puVar3 = param_1;
+      if (cVar1 == '\0') {
+        param_1[9] = param_1[9] & 0xf0U | 0x11;
       }
-      puVar4[1] = puVar4 + 1;
-      iVar3 = core_globals_get();
-      puVar4[1] = *(undefined4 *)(iVar3 + 0xd34);
-      *(undefined4 **)(iVar3 + 0xd34) = puVar4 + 1;
-      info_00 = (zcl_reporting_info_t *)*puVar4;
+      puVar3[1] = puVar3 + 1;
+      iVar2 = core_globals_get();
+      puVar3[1] = *(undefined4 *)(iVar2 + 0xd34);
+      *(undefined4 **)(iVar2 + 0xd34) = puVar3 + 1;
+      pcVar4 = (char *)*puVar3;
       memset(&uStack_2c,0,0x1b);
-      zcl_reporting_remove_stored_reporting_info(info_00);
-      uStack_28 = info_00->cluster_id;
-      uStack_2c._0_1_ = info_00->direction;
-      uStack_2c._1_1_ = info_00->ep_id;
-      uStack_2c._2_2_ = info_00->profile_id;
-      uStack_26 = info_00->cluster_role;
-      uStack_25 = (undefined1)info_00->attr_id;
-      uStack_24 = (undefined1)(info_00->attr_id >> 8);
-      uStack_23 = (undefined1)*(undefined4 *)&info_00->manuf_code;
-      uStack_22 = (undefined1)((uint)*(undefined4 *)&info_00->manuf_code >> 8);
-      uVar2 = (info_00->u).send_info.min_interval;
-      uStack_21 = (undefined1)uVar2;
-      uStack_20 = (undefined1)(uVar2 >> 8);
-      if (info_00->direction == '\0') {
-        uVar2 = (info_00->u).send_info.max_interval;
-        uStack_1f = (undefined1)uVar2;
-        uStack_1e = (undefined1)(uVar2 >> 8);
-        uVar6 = *(undefined4 *)((int)&info_00->u + 0x18);
-        uStack_1d = (undefined1)uVar6;
-        uStack_1c = (undefined1)((uint)uVar6 >> 8);
-        uVar2 = (info_00->u).send_info.def_max_interval;
-        uStack_1b = (undefined1)uVar2;
-        uStack_1a = (undefined1)(uVar2 >> 8);
-        memcpy(auStack_19,(void *)((int)&info_00->u + 8),8);
+      zcl_reporting_remove_stored_reporting_info(pcVar4);
+      uStack_28 = *(undefined2 *)(pcVar4 + 4);
+      uStack_2c = *(undefined4 *)pcVar4;
+      cStack_26 = pcVar4[8];
+      uStack_25 = (undefined1)*(undefined2 *)(pcVar4 + 6);
+      uStack_24 = (undefined1)((ushort)*(undefined2 *)(pcVar4 + 6) >> 8);
+      uStack_23 = (undefined1)*(undefined4 *)(pcVar4 + 0x30);
+      uStack_22 = (undefined1)((uint)*(undefined4 *)(pcVar4 + 0x30) >> 8);
+      uStack_21 = (undefined1)*(undefined2 *)(pcVar4 + 0x10);
+      uStack_20 = (undefined1)((ushort)*(undefined2 *)(pcVar4 + 0x10) >> 8);
+      if (*pcVar4 == '\0') {
+        uStack_1f = (undefined1)*(undefined2 *)(pcVar4 + 0x12);
+        uStack_1e = (undefined1)((ushort)*(undefined2 *)(pcVar4 + 0x12) >> 8);
+        uStack_1d = (undefined1)*(undefined4 *)(pcVar4 + 0x28);
+        uStack_1c = (undefined1)((uint)*(undefined4 *)(pcVar4 + 0x28) >> 8);
+        uStack_1b = (undefined1)*(undefined2 *)(pcVar4 + 0x2a);
+        uStack_1a = (undefined1)((ushort)*(undefined2 *)(pcVar4 + 0x2a) >> 8);
+        memcpy(auStack_19,pcVar4 + 0x18,8);
       }
-      eVar5 = ds_internal_add_entry(10,&uStack_2c,0x1b);
-      return eVar5;
+      uVar5 = ds_internal_add_entry(10,&uStack_2c,0x1b);
+      return uVar5;
     }
-    eVar5 = 1;
+    uVar5 = 1;
   }
-  return eVar5;
+  return uVar5;
 }
 

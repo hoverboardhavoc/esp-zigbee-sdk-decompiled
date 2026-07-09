@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> mempool_free_ent
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,17 +11,12 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void mempool_free_ent(void *blk_base,bitmap_t *blk_busy,uint16_t blk_size,uint16_t blk_nr,void *obj)
+void mempool_free_ent(uint param_1,undefined4 param_2,int param_3,undefined4 param_4,uint param_5)
 
 {
-  undefined2 in_register_00002032;
-  
-  if (blk_base <= obj) {
-    mempool_free_idx(blk_busy,blk_nr,
-                     (uint16_t)
-                     (((int)obj - (int)blk_base) / CONCAT22(in_register_00002032,blk_size)));
+  if (param_1 <= param_5) {
+    mempool_free_idx(param_2,param_4,(int)(param_5 - param_1) / param_3 & 0xffff);
     return;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.h",0x69,

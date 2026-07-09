@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> zb_zcl_report_attr_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
+/* WARNING: Type propagation algorithm not settling */
 
-void zb_zcl_report_attr_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_report_attr_handler(byte *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
+  byte bVar1;
   undefined2 uVar2;
-  esp_err_t err;
   int iVar3;
-  uint local_30;
-  esp_zb_zcl_report_attr_message_t app_message;
+  uint local_30 [5];
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  app_message.status = '\0';
-  app_message._1_3_ = 0;
-  app_message.src_address.addr_type = '\0';
-  app_message.src_address._1_3_ = 0;
-  app_message.src_address.u.src_id = 0;
-  app_message.src_address.u._4_4_ = 0;
-  app_message.src_endpoint = '\0';
-  app_message.dst_endpoint = '\0';
-  app_message.cluster = 0;
-  app_message.attribute.id = 0;
-  app_message.attribute._2_2_ = 0;
-  app_message.attribute.data.type = '\0';
-  app_message.attribute.data._1_1_ = 0;
-  app_message.attribute.data.size = 0;
-                    /* WARNING: Load size is inaccurate */
-  local_30 = (uint)*arg;
-  convert_ezb_address_to_esp_zb_zcl_addr
-            ((esp_zb_zcl_addr_t *)&app_message,*(ezb_address_t **)((int)arg + 8));
-  app_message.src_address.u._4_4_ = *(undefined4 *)(*(int *)((int)arg + 8) + 0x14);
-  if (*(undefined2 **)((int)arg + 0xc) != (undefined2 *)0x0) {
-    app_message._16_2_ = **(undefined2 **)((int)arg + 0xc);
-    iVar3 = *(int *)((int)arg + 0xc);
-    app_message.attribute.id._0_1_ = *(undefined1 *)(iVar3 + 2);
-    app_message.attribute.data._0_4_ = *(undefined4 *)(iVar3 + 4);
+  local_30[1] = 0;
+  local_30[2] = 0;
+  local_30[3] = 0;
+  local_30[4] = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  local_30[0] = (uint)*param_1;
+  convert_ezb_address_to_esp_zb_zcl_addr(local_30 + 1,*(undefined4 *)(param_1 + 8));
+  local_30[4] = *(undefined4 *)(*(int *)(param_1 + 8) + 0x14);
+  if (*(undefined2 **)(param_1 + 0xc) != (undefined2 *)0x0) {
+    uStack_1c = CONCAT22(uStack_1c._2_2_,**(undefined2 **)(param_1 + 0xc));
+    iVar3 = *(int *)(param_1 + 0xc);
+    uStack_18 = CONCAT31(uStack_18._1_3_,*(undefined1 *)(iVar3 + 2));
+    uStack_14 = *(undefined4 *)(iVar3 + 4);
     uVar2 = ezb_zcl_get_attr_value_size(*(undefined1 *)(iVar3 + 2),*(undefined4 *)(iVar3 + 4));
-    app_message.attribute._2_2_ = uVar2;
+    uStack_18 = CONCAT22(uVar2,(undefined2)uStack_18);
   }
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_REPORT_ATTR_CB_ID,&local_30);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x10) = eVar1;
+  if (param_2 != (code *)0x0) {
+    (*param_2)(5,local_30);
+    bVar1 = esp_err_to_zcl_status();
+    param_1[0x10] = bVar1;
   }
   return;
 }

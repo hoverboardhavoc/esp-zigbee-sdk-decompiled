@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> af_desc.o -> af_device_get_next_endpoint_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -14,23 +14,21 @@
 /* WARNING: Removing unreachable block (ram,0x00010c78) */
 /* WARNING: Removing unreachable block (ram,0x00010c8c) */
 /* WARNING: Removing unreachable block (ram,0x00010c5e) */
-/* WARNING: Unknown calling convention */
 
-af_ep_desc_t * af_device_get_next_endpoint_desc(af_ep_desc_t *ep_desc)
+undefined4 af_device_get_next_endpoint_desc(int param_1)
 
 {
   bool bVar1;
   int iVar2;
-  af_ep_desc_t *paVar3;
   
-  if (ep_desc == (af_ep_desc_t *)0x0) {
+  if (param_1 == 0) {
     bVar1 = false;
     while (!bVar1) {
       iVar2 = core_globals_get();
       if ((*(int *)(iVar2 + 0xca0) != 0) &&
          (iVar2 = core_globals_get(), **(int **)(iVar2 + 0xca0) != 0)) {
         iVar2 = core_globals_get();
-        return (af_ep_desc_t *)**(undefined4 **)(iVar2 + 0xca0);
+        return **(undefined4 **)(iVar2 + 0xca0);
       }
       bVar1 = true;
     }
@@ -42,16 +40,15 @@ af_ep_desc_t * af_device_get_next_endpoint_desc(af_ep_desc_t *ep_desc)
       if ((*(int *)(iVar2 + 0xca0) != 0) &&
          (iVar2 = core_globals_get(), **(int **)(iVar2 + 0xca0) != 0)) {
         iVar2 = core_globals_get();
-        for (paVar3 = (af_ep_desc_t *)**(undefined4 **)(iVar2 + 0xca0);
-            paVar3 != (af_ep_desc_t *)0x0; paVar3 = paVar3->next) {
-          if (paVar3 == ep_desc) {
-            return paVar3->next;
+        for (iVar2 = **(int **)(iVar2 + 0xca0); iVar2 != 0; iVar2 = *(int *)(iVar2 + 0x1c)) {
+          if (iVar2 == param_1) {
+            return *(undefined4 *)(iVar2 + 0x1c);
           }
         }
       }
       bVar1 = true;
     }
   }
-  return (af_ep_desc_t *)0x0;
+  return 0;
 }
 

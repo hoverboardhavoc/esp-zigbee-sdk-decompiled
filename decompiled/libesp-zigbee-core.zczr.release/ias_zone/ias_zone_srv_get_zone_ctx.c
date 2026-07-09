@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> ias_zone.o -> ias_zone_srv_get_zone_ctx
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-ias_zone_srv_zone_ctx_t * ias_zone_srv_get_zone_ctx(uint8_t ep_id)
+undefined4 ias_zone_srv_get_zone_ctx(void)
 
 {
   int iVar1;
-  ias_zone_srv_zone_ctx_t *piVar2;
-  ushort *puVar3;
-  undefined4 uVar4;
   
-  uVar4 = 0;
-  puVar3 = (ushort *)__assert_func(0,0,0,0);
-  iVar1 = zmsg_read_bytes(*puVar3,2,uVar4);
+  iVar1 = ezb_zcl_get_attr_desc(0x500,1,0xeff0,0x131b);
   if (iVar1 == 0) {
-    piVar2 = (ias_zone_srv_zone_ctx_t *)0xffff;
+    iVar1 = ias_zone_cluster_srv_write_attr_hook_part_0();
   }
-  else {
-    piVar2 = (ias_zone_srv_zone_ctx_t *)(iVar1 + (uint)*puVar3 & 0xffff);
-  }
-  *puVar3 = (ushort)piVar2;
-  return piVar2;
+  return *(undefined4 *)(iVar1 + 8);
 }
 

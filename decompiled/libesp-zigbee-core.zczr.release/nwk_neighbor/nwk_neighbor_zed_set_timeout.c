@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_zed_set_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_neighbor_zed_set_timeout(nwk_neighbor_t *nbr,uint8_t timeout)
+void nwk_neighbor_zed_set_timeout(int param_1,uint param_2)
 
 {
-  ezb_shortaddr_t eVar1;
-  undefined2 extraout_var;
-  undefined3 in_register_0000202d;
-  uint uVar2;
   uint extraout_a1;
-  uint uVar3;
+  uint uVar1;
   
-  uVar2 = CONCAT31(in_register_0000202d,timeout);
-  if (((*(uint *)&nbr->field_0xc & 3) != 2) && ((*(uint *)&nbr->field_0xc & 0x3c0) != 0)) {
-    eVar1 = nwk_neighbor_get_shortaddr(nbr);
-    nbr = (nwk_neighbor_t *)CONCAT22(extraout_var,eVar1);
-    uVar2 = extraout_a1;
+  if (((*(uint *)(param_1 + 0xc) & 3) != 2) && ((*(uint *)(param_1 + 0xc) & 0x3c0) != 0)) {
+    param_1 = nwk_neighbor_get_extaddr_part_0();
+    param_2 = extraout_a1;
   }
-  *(uint *)((int)&nbr->dev + 4) = *(uint *)((int)&nbr->dev + 4) & 0xff0fffff | (uVar2 & 0xf) << 0x14
-  ;
-  uVar3 = 10;
-  if (uVar2 != 0) {
-    uVar3 = 0x3c << (uVar2 & 0x1f);
+  *(uint *)(param_1 + 0x14) = *(uint *)(param_1 + 0x14) & 0xff0fffff | (param_2 & 0xf) << 0x14;
+  uVar1 = 10;
+  if (param_2 != 0) {
+    uVar1 = 0x3c << (param_2 & 0x1f);
   }
-  *(uint *)((int)&nbr->dev + 4) = uVar3 & 0xfffff | *(uint *)((int)&nbr->dev + 4) & 0xfff00000;
+  *(uint *)(param_1 + 0x14) = uVar1 & 0xfffff | *(uint *)(param_1 + 0x14) & 0xfff00000;
   return;
 }
 

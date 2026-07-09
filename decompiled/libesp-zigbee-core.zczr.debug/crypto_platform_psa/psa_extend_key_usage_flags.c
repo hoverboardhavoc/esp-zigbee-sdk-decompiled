@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> crypto_platform_psa.o -> psa_extend_key_usage_flags
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,16 +10,14 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void psa_extend_key_usage_flags(psa_key_usage_t *usage_flags)
+void psa_extend_key_usage_flags(uint *param_1)
 
 {
-  if ((int)(*usage_flags << 0x13) < 0) {
-    *usage_flags = *usage_flags | 0x400;
+  if ((int)(*param_1 << 0x13) < 0) {
+    *param_1 = *param_1 | 0x400;
   }
-  if ((int)(*usage_flags << 0x12) < 0) {
-    *usage_flags = *usage_flags | 0x800;
+  if ((int)(*param_1 << 0x12) < 0) {
+    *param_1 = *param_1 | 0x800;
   }
   return;
 }

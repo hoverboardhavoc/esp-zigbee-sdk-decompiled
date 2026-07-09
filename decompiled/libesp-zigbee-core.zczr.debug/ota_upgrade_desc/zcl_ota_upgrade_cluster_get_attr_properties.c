@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_desc.o -> zcl_ota_upgrade_cluster_get_attr_properties
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,86 +10,77 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_ota_upgrade_cluster_get_attr_properties
-                    (uint16_t cluster_role,uint16_t attr_id,uint8_t *type,uint8_t *access)
+undefined4
+zcl_ota_upgrade_cluster_get_attr_properties(int param_1,uint param_2,char *param_3,char *param_4)
 
 {
-  undefined2 in_register_0000202a;
-  ezb_err_t eVar1;
-  undefined2 in_register_0000202e;
-  char *pcVar2;
-  char *pcVar3;
-  uint uVar4;
+  undefined4 uVar1;
+  uint uVar2;
   
-  uVar4 = CONCAT22(in_register_0000202e,attr_id);
-  if (type == (uint8_t *)0x0) {
-    eVar1 = 2;
+  if (param_3 == (char *)0x0) {
+    uVar1 = 2;
   }
-  else if (access == (uint8_t *)0x0) {
-    eVar1 = 2;
+  else if (param_4 == (char *)0x0) {
+    uVar1 = 2;
   }
   else {
-    if ((CONCAT22(in_register_0000202a,cluster_role) - 1U & 0xffff) < 2) {
-      if (CONCAT22(in_register_0000202a,cluster_role) != 1) {
-        if (0xc < uVar4) {
-          if (uVar4 == 0xeff0) {
-            *access = '@';
-            *type = '\0';
+    if ((param_1 - 1U & 0xffff) < 2) {
+      if (param_1 != 1) {
+        if (0xc < param_2) {
+          if (param_2 == 0xeff0) {
+            *param_4 = '@';
+            *param_3 = '\0';
             return 0;
           }
           return 6;
         }
-        if (attr_id == 0) {
-          if (uVar4 == 0) {
-            *access = '\x01';
-            *type = 0xf0;
+        if ((short)param_2 == 0) {
+          if (param_2 == 0) {
+            *param_4 = '\x01';
+            *param_3 = -0x10;
             return 0;
           }
           return 6;
         }
-        uVar4 = 1 << (attr_id & 0x1f);
-        if ((uVar4 & 0x3a8) != 0) {
-          *access = '\x01';
-          *type = '!';
+        uVar2 = 1 << (param_2 & 0x1f);
+        if ((uVar2 & 0x3a8) != 0) {
+          *param_4 = '\x01';
+          *param_3 = '!';
           return 0;
         }
-        if ((uVar4 & 0x416) == 0) {
-          if ((uVar4 >> 6 & 0x61) == 0) {
+        if ((uVar2 & 0x416) == 0) {
+          if ((uVar2 >> 6 & 0x61) == 0) {
             return 6;
           }
-          *access = '\x01';
-          *type = '0';
+          *param_4 = '\x01';
+          *param_3 = '0';
           return 0;
         }
-        *access = '\x01';
-        *type = '#';
+        *param_4 = '\x01';
+        *param_3 = '#';
         return 0;
       }
     }
     else {
-      pcVar3 = "cluster_role == 0x01U || cluster_role == 0x02U";
-      pcVar2 = "zcl_ota_upgrade_cluster_get_attr_properties";
-      uVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_desc.c"
-                            ,0x19);
-      type = (uint8_t *)pcVar2;
-      access = (uint8_t *)pcVar3;
+      param_4 = "cluster_role == 0x01U || cluster_role == 0x02U";
+      param_3 = "zcl_ota_upgrade_cluster_get_attr_properties";
+      param_2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_desc.c"
+                              ,0x19);
     }
-    if (uVar4 == 0xeff0) {
-      *access = '@';
-      *type = ' ';
-      eVar1 = 0;
+    if (param_2 == 0xeff0) {
+      *param_4 = '@';
+      *param_3 = ' ';
+      uVar1 = 0;
     }
-    else if (uVar4 == 0xeff1) {
-      *access = '@';
-      *type = '\0';
-      eVar1 = 0;
+    else if (param_2 == 0xeff1) {
+      *param_4 = '@';
+      *param_3 = '\0';
+      uVar1 = 0;
     }
     else {
-      eVar1 = 6;
+      uVar1 = 6;
     }
   }
-  return eVar1;
+  return uVar1;
 }
 

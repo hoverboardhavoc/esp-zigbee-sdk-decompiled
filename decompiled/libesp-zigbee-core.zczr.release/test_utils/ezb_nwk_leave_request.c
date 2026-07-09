@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> test_utils.o -> ezb_nwk_leave_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,19 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_nwk_leave_request(ezb_nwk_leave_req_t *req)
+void ezb_nwk_leave_request(void *param_1)
 
 {
-  ezb_err_t eVar1;
-  undefined1 auStack_1c [4];
-  nwk_leave_req_t nwk_req;
+  undefined1 auStack_1c [8];
+  byte bStack_14;
   
-  memcpy(auStack_1c,req,8);
-  nwk_req.device_address.field_0.u8[4] =
-       nwk_req.device_address.field_0.u8[4] & 0xfc | req->field_0x8 & 3;
-  eVar1 = nwk_leave_request(auStack_1c);
-  return eVar1;
+  memcpy(auStack_1c,param_1,8);
+  bStack_14 = bStack_14 & 0xfc | *(byte *)((int)param_1 + 8) & 3;
+  nwk_leave_request(auStack_1c);
+  return;
 }
 

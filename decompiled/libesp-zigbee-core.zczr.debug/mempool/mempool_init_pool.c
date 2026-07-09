@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mempool.o -> mempool_init_pool
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mempool_init_pool(mem_pool_t *pool)
+void mempool_init_pool(int param_1)
 
 {
-  uint8_t *puVar1;
-  bitmap_t *pbVar2;
+  undefined4 uVar1;
   
-  if (pool == (mem_pool_t *)0x0) {
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.c",0x52,
                   "mempool_init_pool",0x10000);
   }
-  else if ((pool->blk_nr == 0) || (pool->blk_size == 0)) {
-    pool->base_mem = (uint8_t *)0x0;
-    pool->blk_busy_map = (bitmap_t *)0x0;
+  else if ((*(short *)(param_1 + 4) == 0) || (*(short *)(param_1 + 2) == 0)) {
+    *(undefined4 *)(param_1 + 0xc) = 0;
+    *(undefined4 *)(param_1 + 8) = 0;
     return;
   }
-  puVar1 = (uint8_t *)mm_calloc();
-  pool->base_mem = puVar1;
-  pbVar2 = (bitmap_t *)mm_calloc(pool->blk_nr + 7 >> 3,1);
-  pool->blk_busy_map = pbVar2;
+  uVar1 = mm_calloc();
+  *(undefined4 *)(param_1 + 0xc) = uVar1;
+  uVar1 = mm_calloc(*(ushort *)(param_1 + 4) + 7 >> 3,1);
+  *(undefined4 *)(param_1 + 8) = uVar1;
   return;
 }
 

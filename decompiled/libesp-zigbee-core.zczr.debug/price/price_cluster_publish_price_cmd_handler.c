@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> price.o -> price_cluster_publish_price_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,164 +10,174 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t price_cluster_publish_price_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+undefined4 price_cluster_publish_price_cmd_handler(int param_1,int param_2)
 
 {
   byte bVar1;
-  uint16_t *unaff_s1;
+  ushort *unaff_s1;
   uint uVar2;
-  ezb_zcl_status_t eVar3;
-  uint16_t uVar4;
-  undefined2 extraout_var;
-  int iVar5;
-  ezb_zcl_cmd_hdr_t *peStack_7c;
-  uint16_t uStack_76;
-  ezb_zcl_cmd_hdr_t *peStack_74;
-  uint16_t temp_u16;
-  uint32_t temp_u32;
-  undefined1 uStack_6c;
-  uint8_t map_value;
-  uint16_t offset;
-  ezb_zcl_price_publish_price_message_t message;
+  int iVar3;
+  undefined4 uVar4;
+  uint uStack_7c;
+  undefined2 uStack_76;
+  uint uStack_74;
+  byte bStack_6f;
+  ushort uStack_6e;
+  undefined1 auStack_6c [8];
+  int iStack_64;
+  uint uStack_60;
+  byte local_5c;
+  undefined1 auStack_5b [11];
+  undefined4 uStack_50;
+  undefined4 uStack_4c;
+  byte bStack_48;
+  undefined1 uStack_47;
+  undefined2 uStack_46;
+  ushort uStack_44;
+  undefined2 uStack_42;
+  undefined2 uStack_40;
+  undefined2 uStack_3e;
+  uint uStack_3c;
+  undefined1 uStack_38;
+  undefined1 uStack_37;
+  undefined1 uStack_36;
+  undefined1 uStack_35;
+  undefined1 uStack_34;
+  undefined1 uStack_33;
+  undefined2 uStack_32;
+  undefined2 uStack_30;
+  undefined1 uStack_2e;
+  undefined1 uStack_2d;
+  undefined1 uStack_2c;
+  byte bStack_2b;
+  undefined1 uStack_2a;
+  undefined1 uStack_29;
+  undefined1 uStack_28;
+  undefined1 uStack_27;
+  undefined1 auStack_26 [2];
+  byte bStack_24;
   
-  memset(&uStack_6c,0,0x4c);
-  temp_u32._2_2_ = 0;
-  temp_u32._1_1_ = 0;
-  peStack_74 = (ezb_zcl_cmd_hdr_t *)0x0;
+  memset(auStack_6c,0,0x4c);
+  uStack_6e = 0;
+  bStack_6f = 0;
+  uStack_74 = 0;
   uStack_76 = 0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
-    uVar4 = 0x1644;
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/price.c",0xcd,
-                  "packet && rsp");
+                  "price_cluster_publish_price_cmd_handler","packet && rsp");
   }
   else {
-    unaff_s1 = (uint16_t *)((int)&temp_u32 + 2);
-    af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-    message.in.header = peStack_74;
-    uVar4 = af_read_le8(packet->payload,unaff_s1,(uint8_t *)&message.in.payload);
-    if (CONCAT22(extraout_var,uVar4) == 0) {
+    unaff_s1 = &uStack_6e;
+    af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+    uStack_60 = uStack_74;
+    iVar3 = af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&local_5c);
+    if (iVar3 == 0) {
       uVar2 = 0x80;
       goto _L0;
     }
-    uVar4 = (uint16_t)(byte)message.in.payload.provider_id;
-    if (0xc < (byte)message.in.payload.provider_id) {
+    if (0xc < local_5c) {
       uVar2 = 0x87;
       goto _L0;
     }
   }
-  af_read_bytes(packet->payload,unaff_s1,uVar4,(uint8_t *)((int)&message.in.payload.provider_id + 1)
-               );
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload.rate_label[9] = (uint8_t)peStack_74;
-  message.in.payload.rate_label[10] = (uint8_t)((uint)peStack_74 >> 8);
-  message.in.payload.rate_label[0xb] = (uint8_t)((uint)peStack_74 >> 0x10);
-  message.in.payload.rate_label[0xc] = (uint8_t)((uint)peStack_74 >> 0x18);
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload.issuer_event_id._0_1_ = (char)peStack_74;
-  message.in.payload.issuer_event_id._1_1_ = (char)((uint)peStack_74 >> 8);
-  message.in.payload.issuer_event_id._2_1_ = (char)((uint)peStack_74 >> 0x10);
-  message.in.payload.issuer_event_id._3_1_ = (byte)((uint)peStack_74 >> 0x18);
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)&message.in.payload.current_time);
-  af_read_le16(packet->payload,unaff_s1,&uStack_76);
-  message.in.payload.current_time._1_2_ = uStack_76;
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)((int)&temp_u32 + 1));
-  message.in.payload._24_2_ =
-       (ushort)((temp_u32._1_1_ & 0xf) << 4) |
-       message.in.payload._24_2_ & 0xff00 | (ushort)(temp_u32._1_1_ >> 4);
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)((int)&temp_u32 + 1));
-  message.in.payload._24_2_ =
-       (ushort)((temp_u32._1_1_ & 0xf) << 0xc) |
-       message.in.payload._24_2_ & 0xff | (ushort)(temp_u32._1_1_ >> 4) << 8;
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload.currency = (uint16_t)peStack_74;
-  message.in.payload._28_2_ = (undefined2)((uint)peStack_74 >> 0x10);
-  af_read_le16(packet->payload,unaff_s1,&uStack_76);
-  message.in.payload.start_time._0_2_ = uStack_76;
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload._32_4_ = peStack_74;
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)&message.in.payload.price);
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload.price._1_1_ = SUB41(peStack_74,0);
-  message.in.payload.price._2_1_ = (undefined1)((uint)peStack_74 >> 8);
-  message.in.payload.price._3_1_ = (undefined1)((uint)peStack_74 >> 0x10);
-  message.in.payload.price_ratio = (uint8_t)((uint)peStack_74 >> 0x18);
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)&message.in.payload.generation_price);
-  af_read_le32(packet->payload,unaff_s1,(uint32_t *)&stack0xffffff8c);
-  message.in.payload.generation_price._1_2_ = SUB42(peStack_74,0);
-  message.in.payload._44_2_ = (undefined2)((uint)peStack_74 >> 0x10);
-  af_read_le8(packet->payload,unaff_s1,(uint8_t *)&message.in.payload.alternate_cost_delivered);
-  af_read_le8(packet->payload,unaff_s1,
-              (uint8_t *)((int)&message.in.payload.alternate_cost_delivered + 1));
-  af_read_le8(packet->payload,unaff_s1,
-              (uint8_t *)((int)&message.in.payload.alternate_cost_delivered + 2));
-  af_read_le8(packet->payload,unaff_s1,
-              (uint8_t *)((int)&message.in.payload.alternate_cost_delivered + 3));
-  af_read_le8(packet->payload,unaff_s1,&message.in.payload.alternate_cost_unit);
-  af_read_le8(packet->payload,unaff_s1,&message.in.payload.alternate_cost_trailing_digit);
-  af_read_le8(packet->payload,unaff_s1,&message.in.payload.number_of_block_thresholds);
-  af_read_le8(packet->payload,unaff_s1,&message.in.payload.price_control);
-  af_read_le8(packet->payload,unaff_s1,&message.in.payload.number_of_generation_tiers);
-  uVar2 = zmsg_get_length(packet->payload);
-  if (uVar2 < temp_u32._2_2_) {
+  af_read_bytes(*(undefined4 *)(param_1 + 0x24),unaff_s1,auStack_5b);
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_50 = CONCAT13((char)(uStack_74 >> 0x10),
+                       CONCAT12((char)(uStack_74 >> 8),
+                                CONCAT11((char)uStack_74,(undefined1)uStack_50)));
+  uStack_4c = CONCAT31(uStack_4c._1_3_,(char)(uStack_74 >> 0x18));
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_4c = CONCAT13((char)(uStack_74 >> 0x10),
+                       CONCAT12((char)(uStack_74 >> 8),
+                                CONCAT11((char)uStack_74,(undefined1)uStack_4c)));
+  bStack_48 = (byte)(uStack_74 >> 0x18);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_47);
+  af_read_le16(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_76);
+  uStack_46 = uStack_76;
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&bStack_6f);
+  uStack_44 = (ushort)((bStack_6f & 0xf) << 4) | uStack_44 & 0xff00 | (ushort)(bStack_6f >> 4);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&bStack_6f);
+  uStack_44 = (ushort)((bStack_6f & 0xf) << 0xc) | uStack_44 & 0xff | (ushort)(bStack_6f >> 4) << 8;
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_42 = (undefined2)uStack_74;
+  uStack_40 = (undefined2)(uStack_74 >> 0x10);
+  af_read_le16(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_76);
+  uStack_3e = uStack_76;
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_3c = uStack_74;
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_38);
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_37 = (undefined1)uStack_74;
+  uStack_36 = (undefined1)(uStack_74 >> 8);
+  uStack_35 = (undefined1)(uStack_74 >> 0x10);
+  uStack_34 = (undefined1)(uStack_74 >> 0x18);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_33);
+  af_read_le32(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_74);
+  uStack_32 = (undefined2)uStack_74;
+  uStack_30 = (undefined2)(uStack_74 >> 0x10);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_2e);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_2d);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_2c);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&bStack_2b);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_2a);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_29);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_28);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,&uStack_27);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s1,auStack_26);
+  uVar2 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (uVar2 < uStack_6e) {
     uVar2 = 0x80;
   }
   else {
-    uVar2 = zcl_packet_to_message(&uStack_6c,packet);
+    uVar2 = zcl_packet_to_message(auStack_6c,param_1);
     if (uVar2 == 0) {
-      message.in.payload.extended_number_of_price_tiers = 0xfe;
-      message._4_4_ = packet;
-      zcl_core_action_schedule(0x4e,&uStack_6c);
-      uVar2 = (uint)message.in.payload.extended_number_of_price_tiers;
+      bStack_24 = 0xfe;
+      iStack_64 = param_1;
+      zcl_core_action_schedule(0x4f,auStack_6c);
+      uVar2 = (uint)bStack_24;
       if (uVar2 == 0xfe) {
         uVar2 = 1;
       }
       else {
-        bVar1 = message.in.payload.alternate_cost_delivered._3_1_ & 1;
-        if ((message.in.payload.alternate_cost_delivered._3_1_ & 1) != 0) {
-          peStack_7c = message.in.header;
-          iVar5 = zmsg_append_bytes(rsp->payload,4,&peStack_7c);
-          if (iVar5 != 0) {
+        bVar1 = bStack_2b & 1;
+        if ((bStack_2b & 1) != 0) {
+          uStack_7c = uStack_60;
+          iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),4,&uStack_7c);
+          if (iVar3 != 0) {
             uVar2 = 0x89;
             goto _L0;
           }
-          peStack_7c = (ezb_zcl_cmd_hdr_t *)
-                       (message.in.payload._16_4_ << 0x18 |
-                       (uint)message.in.payload.rate_label._8_4_ >> 8);
-          iVar5 = zmsg_append_bytes(rsp->payload,4,&peStack_7c);
-          if (iVar5 != 0) {
+          uStack_7c = uStack_4c << 0x18 | uStack_50 >> 8;
+          iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),4,&uStack_7c);
+          if (iVar3 != 0) {
             uVar2 = 0x89;
             goto _L0;
           }
-          peStack_7c = (ezb_zcl_cmd_hdr_t *)zcl_time_get_utc_time((packet->header).dst_ep);
-          if (peStack_7c == (ezb_zcl_cmd_hdr_t *)0xffffffff) {
-            peStack_7c = (ezb_zcl_cmd_hdr_t *)
-                         ((uint)message.in.payload.issuer_event_id._3_1_ << 0x18 |
-                         (uint)message.in.payload._16_4_ >> 8);
+          uStack_7c = zcl_time_get_utc_time(*(undefined1 *)(param_1 + 0x15));
+          if (uStack_7c == 0xffffffff) {
+            uStack_7c = (uint)bStack_48 << 0x18 | uStack_4c >> 8;
           }
-          iVar5 = zmsg_append_bytes(rsp->payload,4,&peStack_7c);
-          if (iVar5 != 0) {
+          iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),4,&uStack_7c);
+          if (iVar3 != 0) {
             uVar2 = 0x89;
             goto _L0;
           }
-          peStack_7c = (ezb_zcl_cmd_hdr_t *)
-                       CONCAT31(peStack_7c._1_3_,message.in.payload.alternate_cost_delivered._3_1_);
-          iVar5 = zmsg_append_bytes(rsp->payload,1,&peStack_7c);
-          if (iVar5 != 0) {
+          uStack_7c = CONCAT31(uStack_7c._1_3_,bStack_2b);
+          iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_7c);
+          if (iVar3 != 0) {
             uVar2 = 0x89;
             goto _L0;
           }
-          uVar2 = zcl_packet_setup_response(rsp,packet,2);
+          uVar2 = zcl_packet_setup_response(param_2,param_1,2);
         }
         if ((uVar2 == 0) && (bVar1 != 0)) {
-          return '\0';
+          return 0;
         }
       }
     }
   }
 _L0:
-  eVar3 = zcl_packet_setup_default_response(rsp,packet,uVar2);
-  return eVar3;
+  uVar4 = zcl_packet_setup_default_response(param_2,param_1,uVar2);
+  return uVar4;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> compat.o -> esp_zb_scheduler_user_alarm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_zb_user_cb_handle_t
-esp_zb_scheduler_user_alarm(esp_zb_user_callback_t cb,void *param,uint32_t time)
+undefined4 esp_zb_scheduler_user_alarm(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  esp_zb_alarm_t *local_20;
-  esp_zb_alarm_t *alarm;
-  esp_zb_alarm_params_t params;
+  undefined4 local_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  byte bStack_14;
   
-  params.field_1.param = params.field_1.param | 1;
-  local_20 = (esp_zb_alarm_t *)0x0;
-  alarm = (esp_zb_alarm_t *)cb;
-  params.field_0 = (anon_union_4_2_34b25e97_for_esp_zb_alarm_params_s_0)param;
-  esp_zb_run_alarm((esp_zb_alarm_params_t *)&alarm,time,&local_20);
+  bStack_14 = bStack_14 | 1;
+  local_20 = 0;
+  uStack_1c = param_1;
+  uStack_18 = param_2;
+  esp_zb_run_alarm_isra_0(&uStack_1c,param_3,&local_20);
   return local_20;
 }
 

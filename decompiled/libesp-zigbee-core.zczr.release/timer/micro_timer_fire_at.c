@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> timer.o -> micro_timer_fire_at
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,59 +10,56 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void micro_timer_fire_at(micro_timer_t *tm,time32_t fire_time)
+void micro_timer_fire_at(undefined4 *param_1,undefined4 param_2)
 
 {
-  uint32_t uVar1;
-  uint32_t uVar2;
-  tm_sched_t *sched;
-  uint uVar3;
-  timer_base *ptVar4;
-  uint32_t uVar5;
-  _func_uint32_t *p_Var6;
-  timer_base *ptVar7;
+  int iVar1;
+  int iVar2;
+  undefined1 *puVar3;
+  undefined4 *extraout_a1;
+  uint uVar4;
+  undefined4 *puVar5;
+  code *pcVar6;
+  undefined4 *puVar7;
   
-  sched = &s_tm_sched_micro;
-  if (tm == (micro_timer_t *)0x0) {
-    tm_sched_remove(&s_tm_sched_micro,(timer_base *)0x0);
+  puVar3 = s_tm_sched_micro;
+  if (param_1 == (undefined4 *)0x0) {
+    puVar3 = (undefined1 *)timer_init_part_0();
+    param_1 = extraout_a1;
   }
-  p_Var6 = sched->get_now;
-  (tm->fire_time).val = fire_time.val;
-  uVar1 = (*p_Var6)(p_Var6);
-  tm_sched_remove(sched,tm);
-  ptVar7 = (timer_base *)&sched->timer_list;
+  pcVar6 = *(code **)(puVar3 + 0x14);
+  param_1[3] = param_2;
+  iVar2 = (*pcVar6)(pcVar6);
+  tm_sched_remove(puVar3,param_1);
+  puVar7 = (undefined4 *)(puVar3 + 0x10);
   do {
     while( true ) {
-      ptVar4 = ptVar7;
-      ptVar7 = ptVar4->next;
-      if (ptVar7 == (timer_base *)0x0) goto _L0;
-      uVar5 = (tm->fire_time).val;
-      uVar2 = (ptVar7->fire_time).val;
-      uVar3 = uVar5 - uVar1;
-      if ((int)(uVar2 - uVar1 ^ uVar3) < 0) break;
-      if ((int)(uVar5 - uVar2) < 0) goto _L0;
+      puVar5 = puVar7;
+      puVar7 = (undefined4 *)*puVar5;
+      if (puVar7 == (undefined4 *)0x0) goto _L0;
+      uVar4 = param_1[3] - iVar2;
+      if ((int)(puVar7[3] - iVar2 ^ uVar4) < 0) break;
+      if ((int)(param_1[3] - puVar7[3]) < 0) goto _L0;
     }
-  } while (-1 < (int)uVar3);
+  } while (-1 < (int)uVar4);
 _L0:
-  tm->next = ptVar7;
-  ptVar4->next = tm;
-  if (tm != sched->timer_list) {
+  *param_1 = puVar7;
+  *puVar5 = param_1;
+  if (param_1 != *(undefined4 **)(puVar3 + 0x10)) {
     return;
   }
-  ptVar7 = sched->timer_list;
-  if (ptVar7 != (timer_base *)0x0) {
-    uVar1 = (*sched->get_now)(sched->get_now);
-    uVar3 = (ptVar7->fire_time).val - uVar1;
+  iVar2 = *(int *)(puVar3 + 0x10);
+  if (iVar2 != 0) {
+    iVar1 = (**(code **)(puVar3 + 0x14))(*(code **)(puVar3 + 0x14));
+    uVar4 = *(int *)(iVar2 + 0xc) - iVar1;
                     /* WARNING: Could not recover jumptable at 0x00010048. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    (*sched->alarm_start_at)(uVar1,(int)~uVar3 >> 0x1f & uVar3);
+    (**(code **)(puVar3 + 0x18))((int)~uVar4 >> 0x1f & uVar4,*(code **)(puVar3 + 0x18));
     return;
   }
                     /* WARNING: Could not recover jumptable at 0x0001002c. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-  (*sched->alarm_stop)(sched->alarm_stop);
+  (**(code **)(puVar3 + 0x1c))(*(code **)(puVar3 + 0x1c));
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_frame_parse
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,28 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_frame_parse(ezb_radio_frame_t *radio_frame,mac_frame_t *mac_frame)
+int mac_frame_parse(int *param_1,int *param_2)
 
 {
-  uint8_t uVar1;
-  ezb_err_t eVar2;
-  byte abStack_11 [4];
-  uint8_t mhr_len;
+  int iVar1;
+  int iVar2;
+  byte abStack_11 [5];
   
-  if (radio_frame != (ezb_radio_frame_t *)0x0) {
-    eVar2 = 2;
-    if ((mac_frame != (mac_frame_t *)0x0) &&
-       (eVar2 = mac_frame_parse_header(radio_frame,&mac_frame->mhr,abStack_11), eVar2 == 0)) {
+  if (param_1 != (int *)0x0) {
+    iVar2 = 2;
+    if ((param_2 != (int *)0x0) &&
+       (iVar2 = mac_frame_parse_header(param_2 + 1,abStack_11), iVar2 == 0)) {
       if ((abStack_11[0] - 3 & 0xff) < 0x7c) {
-        (mac_frame->mpl).buf = radio_frame->psdu + abStack_11[0];
-        uVar1 = radio_frame->length;
-        mac_frame->from = radio_frame;
-        (mac_frame->mpl).len = (-2 - abStack_11[0]) + uVar1;
+        param_2[9] = *param_1 + (uint)abStack_11[0];
+        iVar1 = param_1[1];
+        *param_2 = (int)param_1;
+        *(byte *)(param_2 + 8) = (-2 - abStack_11[0]) + (char)iVar1;
       }
       else {
-        eVar2 = 0x10;
+        iVar2 = 0x10;
       }
     }
-    return eVar2;
+    return iVar2;
   }
   return 2;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_send_cmd_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_send_cmd_confirm(zmsg_t *msg,ezb_err_t error)
+void aps_send_cmd_confirm(int param_1,undefined4 param_2)
 
 {
   undefined4 uVar1;
-  char acStack_11 [4];
-  aps_cmd_id_t cmd_id;
+  char acStack_11 [5];
   
   acStack_11[0] = '\0';
   uVar1 = zmsg_get_offset();
-  zmsg_read_bytes(msg,uVar1,1,acStack_11);
+  zmsg_read_bytes(param_1,uVar1,1,acStack_11);
   if (acStack_11[0] == '\x05') {
-    aps_cmd_handle_transport_key_sent(msg,error);
+    aps_cmd_handle_transport_key_sent(param_1,param_2);
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (param_1 != 0) {
+    zmsg_free(param_1);
   }
   return;
 }

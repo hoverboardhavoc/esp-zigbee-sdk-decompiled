@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_radio_spinel.o -> esp_zigbee_platform_radio_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,13 +10,10 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-/* WARNING: Enum "soc_periph_uart_clk_src_legacy_t": Some values do not have unique names */
-
-esp_err_t esp_zigbee_platform_radio_init(esp_zigbee_radio_config_t *config)
+undefined4 esp_zigbee_platform_radio_init(int *param_1)
 
 {
-  esp_err_t eVar1;
+  undefined4 uVar1;
   code *local_50;
   code *pcStack_4c;
   code *pcStack_48;
@@ -24,17 +21,21 @@ esp_err_t esp_zigbee_platform_radio_init(esp_zigbee_radio_config_t *config)
   code *pcStack_40;
   undefined4 uStack_3c;
   code *pcStack_28;
-  esp_radio_spinel_callbacks_t callbacks;
+  code *pcStack_24;
+  code *pcStack_20;
+  code *pcStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (config->radio_mode == ESP_ZIGBEE_RADIO_MODE_UART_RCP) {
+  if (*param_1 == 1) {
     if ((s_radio_ctx._176_4_ & 1) == 0) {
       radio_ctx_init();
-      callbacks.transmit_started = (_func_void_uint8_t_ptr *)0x0;
+      uStack_14 = 0;
       pcStack_28 = radio_spinel_receive_done;
-      callbacks.receive_done = radio_spinel_transmit_done;
-      callbacks.transmit_done = radio_spinel_transmit_failed;
-      callbacks.transmit_failed = radio_spinel_energy_detect_done;
-      callbacks.energy_scan_done = radio_spinel_transmit_started;
+      pcStack_24 = radio_spinel_transmit_done;
+      pcStack_20 = radio_spinel_transmit_failed;
+      pcStack_1c = radio_spinel_energy_detect_done;
+      pcStack_18 = radio_spinel_transmit_started;
       local_50 = radio_spinel_receive_done;
       pcStack_4c = radio_spinel_transmit_done;
       pcStack_48 = radio_spinel_transmit_failed;
@@ -42,17 +43,17 @@ esp_err_t esp_zigbee_platform_radio_init(esp_zigbee_radio_config_t *config)
       pcStack_40 = radio_spinel_transmit_started;
       uStack_3c = 0;
       esp_radio_spinel_set_callbacks(&local_50,0);
-      esp_zigbee_radio_spinel_config_uart(&config->field_1);
+      esp_zigbee_radio_spinel_config_uart(param_1 + 1);
       esp_radio_spinel_init(0);
       esp_radio_spinel_enable(0);
       s_radio_ctx._176_4_ = s_radio_ctx._176_4_ & 0xfffffffd;
       esp_radio_spinel_set_promiscuous_mode(0,0);
       esp_radio_spinel_set_pending_mode(0,0);
       esp_radio_spinel_sleep(0);
-      eVar1 = esp_zigbee_platform_workflow_register
+      uVar1 = esp_zigbee_platform_workflow_register
                         ("radio",esp_zigbee_platform_radio_update,esp_zigbee_platform_radio_process)
       ;
-      return eVar1;
+      return uVar1;
     }
   }
   else {

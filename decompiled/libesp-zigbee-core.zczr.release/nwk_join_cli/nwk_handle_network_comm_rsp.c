@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_cli.o -> nwk_handle_network_comm_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,81 +10,74 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_handle_network_comm_rsp(zmsg_t *msg,nwk_rx_info_t *rx_info)
+void nwk_handle_network_comm_rsp(int param_1,int param_2)
 
 {
-  ezb_shortaddr_t eVar1;
-  short sVar2;
-  int iVar3;
-  int *piVar4;
-  undefined2 extraout_var;
+  short sVar1;
+  int iVar2;
+  int *piVar3;
+  uint uVar4;
   ushort uVar5;
-  uint error;
-  ezb_shortaddr_t eStack_34;
+  undefined2 uStack_34;
   byte bStack_32;
-  nwk_rejoin_rsp_t rsp;
-  ezb_extaddr_t src_extaddr;
-  ezb_extaddr_t dst_extaddr;
+  undefined1 auStack_30 [8];
+  int iStack_28;
+  int iStack_24;
   
-  iVar3 = nwk_is_joined();
-  if ((iVar3 != 0) || (iVar3 = core_globals_get(), *(char *)(iVar3 + 0xac0) == '\x02')) {
-    iVar3 = nwk_secur_get_seclevel();
-    uVar5 = (ushort)(iVar3 != 0);
-    iVar3 = core_globals_get();
-    if (*(char *)(iVar3 + 0xac0) == '\x02') {
-      iVar3 = core_globals_get();
-      uVar5 = *(ushort *)(iVar3 + 0xad2) & 1;
+  iVar2 = nwk_is_joined();
+  if ((iVar2 != 0) || (iVar2 = core_globals_get(), *(char *)(iVar2 + 0xac0) == '\x02')) {
+    iVar2 = nwk_secur_get_seclevel();
+    uVar5 = (ushort)(iVar2 != 0);
+    iVar2 = core_globals_get();
+    if (*(char *)(iVar2 + 0xac0) == '\x02') {
+      iVar2 = core_globals_get();
+      uVar5 = *(ushort *)(iVar2 + 0xad2) & 1;
     }
-    if (rx_info->mac_src_addr == rx_info->nwk_src_addr) {
-      if (((uVar5 == (msg->flags >> 1 & 1)) &&
-          (iVar3 = nwk_frame_get_src_extaddr(msg,&rsp), iVar3 == 0)) &&
-         (iVar3 = nwk_frame_get_dst_extaddr(msg,(undefined1 *)((int)&src_extaddr.field_0 + 4)),
-         iVar3 == 0)) {
-        piVar4 = (int *)nwk_get_extended_address();
-        if (((src_extaddr.field_0.u64._4_4_ == *piVar4) &&
-            (dst_extaddr.field_0.u64._0_4_ == piVar4[1])) &&
-           (uVar5 = rx_info->nwk_src_addr, eVar1 = nwk_get_parent_shortaddr(),
-           (uint)uVar5 == CONCAT22(extraout_var,eVar1))) {
-          eStack_34 = 0;
+    if (*(short *)(param_2 + 2) == *(short *)(param_2 + 6)) {
+      if (((uVar5 == (*(ushort *)(param_1 + 0x16) >> 1 & 1)) &&
+          (iVar2 = nwk_frame_get_src_extaddr(param_1,auStack_30), iVar2 == 0)) &&
+         (iVar2 = nwk_frame_get_dst_extaddr(param_1,&iStack_28), iVar2 == 0)) {
+        piVar3 = (int *)nwk_get_extended_address();
+        if (((iStack_28 == *piVar3) && (iStack_24 == piVar3[1])) &&
+           (uVar5 = *(ushort *)(param_2 + 6), uVar4 = nwk_get_parent_shortaddr(), uVar5 == uVar4)) {
+          uStack_34 = 0;
           bStack_32 = 0;
-          sVar2 = zmsg_get_offset(msg);
-          zmsg_read_bytes(msg,sVar2 + 1,3,&eStack_34);
-          iVar3 = core_globals_get();
-          if (*(char *)(iVar3 + 0xac0) == '\0') {
-            iVar3 = nwk_is_device_zed();
-            if ((iVar3 != 0) && (iVar3 = nwk_is_joined(), iVar3 != 0)) {
-              nwk_change_network_address(eStack_34);
+          sVar1 = zmsg_get_offset(param_1);
+          zmsg_read_bytes(param_1,sVar1 + 1,3,&uStack_34);
+          iVar2 = core_globals_get();
+          if (*(char *)(iVar2 + 0xac0) == '\0') {
+            iVar2 = nwk_is_device_zed();
+            if ((iVar2 != 0) && (iVar2 = nwk_is_joined(), iVar2 != 0)) {
+              nwk_change_network_address(uStack_34);
             }
           }
-          else if (*(char *)(iVar3 + 0xac0) == '\x02') {
-            iVar3 = core_globals_get();
-            milli_timer_stop(iVar3 + 0xad4);
-            iVar3 = core_globals_get();
-            if (*(char *)(iVar3 + 0x9ee) == '\0') {
+          else if (*(char *)(iVar2 + 0xac0) == '\x02') {
+            iVar2 = core_globals_get();
+            milli_timer_stop(iVar2 + 0xad4);
+            iVar2 = core_globals_get();
+            if (*(char *)(iVar2 + 0x9ee) == '\0') {
               nwk_pim_stop_fast_poll();
               nwk_pim_stop_poll();
             }
             if (bStack_32 == 0) {
-              nwk_mm_set_pib_attr(rx_info->iface_id,0x4a,&rsp);
+              nwk_mm_set_pib_attr(*(undefined1 *)(param_2 + 8),0x4a,auStack_30);
             }
-            error = 0;
+            uVar4 = 0;
             if (bStack_32 != 0) {
-              error = bStack_32 | 0x200;
+              uVar4 = bStack_32 | 0x200;
             }
-            nwk_do_attach_done(error,eStack_34);
+            nwk_do_attach_done(uVar4,uStack_34);
           }
         }
       }
       goto _L0;
     }
   }
-  if (msg == (zmsg_t *)0x0) {
+  if (param_1 == 0) {
     return;
   }
 _L0:
-  zmsg_free(msg);
+  zmsg_free(param_1);
   return;
 }
 

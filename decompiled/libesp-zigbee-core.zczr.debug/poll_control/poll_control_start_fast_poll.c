@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> poll_control.o -> poll_control_start_fast_poll
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,25 +11,23 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void poll_control_start_fast_poll(uint8_t ep_id,uint32_t timeout_ms)
+void poll_control_start_fast_poll(uint param_1)
 
 {
   uint uVar1;
-  zcl_attr_desc_t *pzVar2;
+  int iVar2;
   
-  pzVar2 = poll_control_srv_get_attr_desc(ep_id,2);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+  iVar2 = poll_control_srv_get_attr_desc(2);
+  if (iVar2 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/poll_control.c",0x5b,
                   "poll_control_start_fast_poll","attr_desc");
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    uVar1 = (uint)*pzVar2->data_p * 0xfa;
+    uVar1 = (uint)**(ushort **)(iVar2 + 8) * 0xfa;
     if (uVar1 != 0) {
       nwk_pim_set_fast_poll_interval(uVar1);
-      nwk_pim_start_fast_poll(timeout_ms / uVar1 & 0xffff);
+      nwk_pim_start_fast_poll(param_1 / uVar1 & 0xffff);
       return;
     }
   }

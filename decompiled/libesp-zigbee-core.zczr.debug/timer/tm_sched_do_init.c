@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> timer.o -> tm_sched_do_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,17 +10,14 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void tm_sched_do_init(tm_sched_t *sched,_func_uint32_t *get_now,
-                     _func_void_uint32_t_uint32_t *alarm_start_at,_func_void *alarm_stop)
+void tm_sched_do_init(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4)
 
 {
-  sched->timer_list = (timer_base *)0x0;
-  tasklet_init(tm_sched_process_timers_task,sched);
-  sched->get_now = get_now;
-  sched->alarm_start_at = alarm_start_at;
-  sched->alarm_stop = alarm_stop;
+  *(undefined4 *)(param_1 + 0x10) = 0;
+  tasklet_init(tm_sched_process_timers_task,param_1);
+  *(undefined4 *)(param_1 + 0x14) = param_2;
+  *(undefined4 *)(param_1 + 0x18) = param_3;
+  *(undefined4 *)(param_1 + 0x1c) = param_4;
   return;
 }
 

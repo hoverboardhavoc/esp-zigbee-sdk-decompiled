@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> cvc_move_color_xy
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,64 +10,81 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: x_input */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-cvc_move_color_xy(uint8_t ep_id,ezb_zcl_color_control_move_color_cmd_payload_t *payload)
+undefined4 cvc_move_color_xy(undefined4 param_1,ushort *param_2,undefined4 param_3)
 
 {
-  ezb_zcl_status_t eVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  uint8_t in_a4;
+  int iVar1;
+  int iVar2;
+  undefined4 uVar3;
   undefined1 local_50 [4];
-  zcl_cvc_input_t y_input;
-  zcl_cvc_input_t x_input;
+  uint uStack_4c;
+  int iStack_48;
+  undefined2 uStack_44;
+  undefined4 uStack_40;
+  undefined1 uStack_3c;
+  code *pcStack_38;
+  undefined4 uStack_34;
+  undefined1 auStack_30 [4];
+  uint uStack_2c;
+  int iStack_28;
+  undefined2 uStack_24;
+  undefined4 uStack_20;
+  undefined1 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (payload == (ezb_zcl_color_control_move_color_cmd_payload_t *)0x0) {
-    ep_id = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/color_control.c"
-                          ,0x518,"cvc_move_color_xy","payload");
+  if (param_2 == (ushort *)0x0) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/color_control.c",0x518
+                  ,"cvc_move_color_xy","payload");
   }
   else {
-    in_a4 = '\x01';
-    y_input.ep_id = '\0';
-    y_input._1_3_ = 0;
-    y_input.begin = 0;
-    y_input.end._0_2_ = 1;
-    y_input.quant = 0;
-    y_input._14_2_ = 0;
-    y_input.duration._0_1_ = 1;
-    y_input._20_4_ = cvc_color_xy_output_handler;
-    y_input.cb = (zcl_cvc_output_callback_t)0x4;
-    local_50[0] = ep_id;
-    y_input.data._0_1_ = ep_id;
-    if ((payload->rate_x != 0) || (payload->rate_y != 0)) {
-      pzVar2 = color_control_srv_get_attr_desc(ep_id,3);
-      pzVar3 = color_control_srv_get_attr_desc(ep_id,4);
-      if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+    local_50[0] = (undefined1)param_1;
+    uStack_2c = 0;
+    iStack_28 = 0;
+    param_3 = 1;
+    uStack_24 = 1;
+    uStack_20 = 0;
+    uStack_1c = 1;
+    pcStack_18 = cvc_color_xy_output_handler;
+    uStack_14 = 3;
+    uStack_4c = 0;
+    iStack_48 = 0;
+    uStack_44 = 1;
+    uStack_40 = 0;
+    uStack_3c = 1;
+    pcStack_38 = cvc_color_xy_output_handler;
+    uStack_34 = 4;
+    auStack_30[0] = local_50[0];
+    if ((*param_2 != 0) || (param_2[1] != 0)) {
+      iVar1 = color_control_srv_get_attr_desc(param_1,3);
+      iVar2 = color_control_srv_get_attr_desc(param_1,4);
+      if (iVar1 == 0) {
         return 0x86;
       }
-      if (pzVar3 != (zcl_attr_desc_t *)0x0) {
-                    /* WARNING: Load size is inaccurate */
-        y_input._0_4_ = ZEXT24(*pzVar3->data_p);
-        y_input.begin = y_input._0_4_ + (uint)payload->rate_y;
-        if (payload->rate_y == 0) {
-          y_input.quant = 0;
-          y_input._14_2_ = 0;
+      if (iVar2 != 0) {
+        uStack_2c = (uint)**(ushort **)(iVar1 + 8);
+        uStack_4c = (uint)**(ushort **)(iVar2 + 8);
+        iStack_28 = uStack_2c + *param_2;
+        iStack_48 = uStack_4c + param_2[1];
+        if (*param_2 == 0) {
+          uStack_20 = 0;
         }
         else {
-          y_input.quant = 10;
-          y_input._14_2_ = 0;
+          uStack_20 = 10;
         }
-        eVar1 = schedule_cvc_color_space
-                          (ep_id,(zcl_cvc_input_t *)&y_input.data,(zcl_cvc_input_t *)local_50);
-        return eVar1;
+        if (param_2[1] == 0) {
+          uStack_40 = 0;
+        }
+        else {
+          uStack_40 = 10;
+        }
+        uVar3 = schedule_cvc_color_space(param_1,auStack_30,local_50);
+        return uVar3;
       }
       return 0x86;
     }
   }
-  stop_cvc_color(ep_id,in_a4);
+  stop_cvc_color(param_3);
   return 0xfe;
 }
 

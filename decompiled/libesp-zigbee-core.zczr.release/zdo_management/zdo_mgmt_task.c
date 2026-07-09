@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_management.o -> zdo_mgmt_task
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,52 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_mgmt_task(void *arg)
+void zdo_mgmt_task(void)
 
 {
-  uint16_t uVar1;
+  short sVar1;
   int *piVar2;
-  zdo_mgmt_req_t *req;
-  int iVar3;
+  short *psVar3;
   int iVar4;
+  uint uVar5;
   
-  iVar3 = core_globals_get();
-  piVar2 = *(int **)(iVar3 + 0xce0);
+  iVar4 = core_globals_get();
+  piVar2 = *(int **)(iVar4 + 0xce0);
   while( true ) {
-    req = (zdo_mgmt_req_t *)(piVar2 + -1);
-    if (req == (zdo_mgmt_req_t *)0xfffffffc) {
+    psVar3 = (short *)(piVar2 + -1);
+    if (psVar3 == (short *)0xfffffffc) {
       return;
     }
     if ((piVar2[7] & 1U) == 0) break;
     piVar2 = (int *)*piVar2;
   }
   *(byte *)(piVar2 + 7) = *(byte *)(piVar2 + 7) | 1;
-  uVar1 = req->cluster_id;
-  if (uVar1 == 0x36) {
+  sVar1 = *psVar3;
+  if (sVar1 == 0x36) {
     iVar4 = zdo_dev_joined();
-    iVar3 = 0xd;
+    uVar5 = 0xd;
     if (iVar4 != 0) {
-      iVar3 = nwk_permit_joining(*(undefined1 *)(piVar2 + 1));
+      uVar5 = nwk_permit_joining(*(undefined1 *)(piVar2 + 1));
     }
   }
   else {
-    if (uVar1 == 0x38) goto _L0;
-    if (uVar1 == 0x34) {
-      iVar3 = nwk_leave_request(piVar2 + 1);
-      if (iVar3 == 0) goto _L0;
+    if (sVar1 == 0x38) goto _L0;
+    if (sVar1 == 0x34) {
+      uVar5 = nwk_leave_request(piVar2 + 1);
+      if (uVar5 == 0) goto _L0;
     }
     else {
-      iVar3 = 6;
+      uVar5 = 6;
     }
   }
   iVar4 = core_globals_get();
   list_remove_node(iVar4 + 0xce0,piVar2);
-  zdo_mgmt_req_finish(req,(uint8_t)iVar3);
+  zdo_mgmt_req_finish(psVar3,uVar5 & 0xff);
 _L0:
-  iVar3 = core_globals_get();
-  tasklet_post(iVar3 + 0xce4);
+  iVar4 = core_globals_get();
+  tasklet_post(iVar4 + 0xce4);
   return;
 }
 

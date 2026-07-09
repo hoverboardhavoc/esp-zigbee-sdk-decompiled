@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_rtg_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,52 +10,47 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zdo_nwk_mgmt_rtg_req(zdo_nwk_mgmt_rtg_req_t *req)
+int zdo_nwk_mgmt_rtg_req(undefined2 *param_1)
 
 {
-  ezb_err_t eVar1;
-  zdp_status_t zVar2;
-  int iVar3;
-  undefined3 extraout_var;
+  int iVar1;
   undefined4 uStack_28;
-  zdo_packet_t packet;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_28 = 0;
-  packet.tsn = '\0';
-  packet._1_1_ = 0;
-  packet.dst_addr = 0;
-  packet.src_addr = 0;
-  packet.cluster_id = 0;
-  packet.ctx.mode = '\0';
-  packet.ctx._1_3_ = 0;
-  packet.ctx.req_ctx.cb = (zdo_packet_req_callback_t)0x0;
-  packet.ctx.req_ctx.arg = (zdo_packet_user_ctx_t)0x0;
-  if (req == (zdo_nwk_mgmt_rtg_req_t *)0x0) {
-    eVar1 = 2;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 == (undefined2 *)0x0) {
+    iVar1 = 2;
   }
   else {
-    iVar3 = zdo_packet_init(&uStack_28,0x32,req->dst_nwk_addr,req->cb,req->user_ctx);
-    if (iVar3 == 0) {
-      zVar2 = zdo_op_nwk_mgmt_rtg_req
-                        ((zdo_packet_payload_t *)packet.ctx.req_ctx.arg,&req->field,true);
-      if (CONCAT31(extraout_var,zVar2) == 0) {
+    iVar1 = zdo_packet_init(&uStack_28,0x32,*param_1,*(undefined4 *)(param_1 + 2),
+                            *(undefined4 *)(param_1 + 4));
+    if (iVar1 == 0) {
+      iVar1 = zdo_op_nwk_mgmt_rtg_req(uStack_14,param_1 + 1,1);
+      if (iVar1 == 0) {
         zdo_packet_send(&uStack_28);
-        eVar1 = zdp_status_to_err();
-        if (eVar1 == 0) {
+        iVar1 = zdp_status_to_err();
+        if (iVar1 == 0) {
           return 0;
         }
       }
       else {
-        eVar1 = 1;
+        iVar1 = 1;
       }
     }
     else {
-      eVar1 = -1;
+      iVar1 = -1;
     }
   }
   zdo_packet_free(&uStack_28);
-  return eVar1;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_cmd.o -> zcl_touchlink_network_start_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,67 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_touchlink_network_start_req_handler(zcl_packet_t *packet)
+undefined1 zcl_touchlink_network_start_req_handler(undefined4 *param_1)
 
 {
   undefined1 uVar1;
-  zcl_status_t zVar2;
-  uint uVar3;
-  uint16_t uStack_5e;
+  uint uVar2;
+  ushort uStack_5e;
   undefined4 uStack_5c;
-  uint16_t offset;
-  zcl_touchlink_network_start_req_t req;
+  undefined4 uStack_58;
+  undefined2 uStack_54;
+  undefined1 uStack_52;
+  undefined1 uStack_51;
+  undefined1 auStack_50 [4];
+  undefined1 auStack_4c [8];
+  undefined1 uStack_44;
+  undefined1 auStack_43 [16];
+  undefined1 uStack_33;
+  undefined1 auStack_32 [2];
+  undefined1 auStack_30 [2];
+  undefined1 auStack_2e [2];
+  undefined1 auStack_2c [2];
+  undefined1 auStack_2a [2];
+  undefined1 auStack_28 [2];
+  undefined1 auStack_26 [2];
+  undefined1 auStack_24 [24];
   
-  if (packet == (zcl_packet_t *)0x0) {
-    zVar2 = 0xfe;
+  if (param_1 == (undefined4 *)0x0) {
+    uVar1 = 0xfe;
   }
-  else if (packet->payload == (zcl_packet_payload_t *)0x0) {
-    zVar2 = 0xfe;
+  else if (param_1[9] == 0) {
+    uVar1 = 0xfe;
   }
   else {
-    memset(&stack0xffffffa4,0,0x4c);
-    uStack_5c = *(undefined4 *)&(packet->header).src_addr;
-    req.cmd_ctrl.peer_addr._0_4_ = *(undefined4 *)((int)&(packet->header).src_addr.u + 2);
-    req.cmd_ctrl.peer_addr.u.group_addr.bcast =
-         *(ezb_shortaddr_t *)((int)&(packet->header).src_addr.u + 6);
-    req.cmd_ctrl.peer_addr.u._4_1_ = (packet->header).tsn;
-    req.cmd_ctrl.peer_addr.u._5_1_ = (packet->header).rssi;
+    memset(&uStack_5c,0,0x4c);
+    uStack_5c = *param_1;
+    uStack_58 = param_1[1];
+    uStack_54 = *(undefined2 *)(param_1 + 2);
+    uStack_52 = *(undefined1 *)((int)param_1 + 0x1e);
+    uStack_51 = *(undefined1 *)((int)param_1 + 0x1f);
     uStack_5e = 0;
-    af_read_le32(packet->payload,&uStack_5e,(uint32_t *)((int)&req.cmd_ctrl.peer_addr.u + 6));
-    af_read_bytes(packet->payload,&uStack_5e,8,(uint8_t *)&req.transaction_id);
-    af_read_le8(packet->payload,&uStack_5e,req.ext_panid.field_0.u8 + 4);
-    af_read_bytes(packet->payload,&uStack_5e,0x10,req.ext_panid.field_0.u8 + 5);
-    af_read_le8(packet->payload,&uStack_5e,req.encrypted_nwk_key + 0xc);
-    af_read_le16(packet->payload,&uStack_5e,(uint16_t *)(req.encrypted_nwk_key + 0xd));
-    af_read_le16(packet->payload,&uStack_5e,(uint16_t *)(req.encrypted_nwk_key + 0xf));
-    af_read_le16(packet->payload,&uStack_5e,&req.pan_id);
-    af_read_le16(packet->payload,&uStack_5e,&req.nwk_addr);
-    af_read_le16(packet->payload,&uStack_5e,&req.group_id_begin);
-    af_read_le16(packet->payload,&uStack_5e,&req.group_id_end);
-    af_read_le16(packet->payload,&uStack_5e,&req.free_nwk_addr_begin);
-    af_read_le16(packet->payload,&uStack_5e,&req.free_nwk_addr_end);
-    uVar3 = zmsg_get_length(packet->payload);
-    if (uVar3 < uStack_5e) {
-      zVar2 = 0x80;
+    af_read_le32(param_1[9],&uStack_5e,auStack_50);
+    af_read_bytes(param_1[9],&uStack_5e,8,auStack_4c);
+    af_read_le8(param_1[9],&uStack_5e,&uStack_44);
+    af_read_bytes(param_1[9],&uStack_5e,0x10,auStack_43);
+    af_read_le8(param_1[9],&uStack_5e,&uStack_33);
+    af_read_le16(param_1[9],&uStack_5e,auStack_32);
+    af_read_le16(param_1[9],&uStack_5e,auStack_30);
+    af_read_le16(param_1[9],&uStack_5e,auStack_2e);
+    af_read_le16(param_1[9],&uStack_5e,auStack_2c);
+    af_read_le16(param_1[9],&uStack_5e,auStack_2a);
+    af_read_le16(param_1[9],&uStack_5e,auStack_28);
+    af_read_le16(param_1[9],&uStack_5e,auStack_26);
+    af_read_le16(param_1[9],&uStack_5e,auStack_24);
+    uVar2 = zmsg_get_length(param_1[9]);
+    if (uVar2 < uStack_5e) {
+      uVar1 = 0x80;
     }
     else {
-      uVar1 = touchlink_network_start_req_handler(&stack0xffffffa4);
-      zVar2 = zcl_status_to_err(uVar1);
+      uVar1 = touchlink_network_start_req_handler(&uStack_5c);
+      uVar1 = zcl_status_to_err(uVar1);
     }
   }
-  return zVar2;
+  return uVar1;
 }
 

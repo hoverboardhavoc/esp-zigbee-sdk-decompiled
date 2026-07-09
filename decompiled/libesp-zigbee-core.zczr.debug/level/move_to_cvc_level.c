@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> level.o -> move_to_cvc_level
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,85 +10,78 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: input */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-move_to_cvc_level(uint8_t ep_id,_Bool is_on_off,ezb_zcl_level_move_to_level_cmd_payload_t *payload)
+void move_to_cvc_level(undefined4 param_1,int param_2,byte *param_3)
 
 {
-  ezb_zcl_status_t eVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  undefined3 in_register_0000202d;
+  int iVar1;
+  int iVar2;
+  uint uVar3;
   uint uVar4;
-  uint uVar5;
-  code *pcVar6;
   undefined1 local_30 [4];
-  zcl_cvc_input_t input;
+  uint uStack_2c;
+  uint uStack_28;
+  undefined2 uStack_24;
+  uint uStack_20;
+  undefined1 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (payload == (ezb_zcl_level_move_to_level_cmd_payload_t *)0x0) {
+  if (param_3 == (byte *)0x0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/level.c",0x12a,
                   "move_to_cvc_level","payload");
   }
   else {
-    local_30[0] = ep_id;
-    pzVar2 = level_srv_get_attr_desc(ep_id,0);
-                    /* WARNING: Load size is inaccurate */
-    input._0_4_ = ZEXT14(*pzVar2->data_p);
-    input.begin = (int32_t)payload->level;
-    input.end._0_2_ = 1;
-    input._12_4_ = ZEXT24(payload->transition_time);
-    input.duration._0_1_ = 0;
-    if (CONCAT31(in_register_0000202d,is_on_off) != 0) {
-      pcVar6 = level_cvc_with_on_off_output_handler;
+    local_30[0] = (undefined1)param_1;
+    iVar1 = level_srv_get_attr_desc(0);
+    uStack_2c = (uint)**(byte **)(iVar1 + 8);
+    uStack_28 = (uint)*param_3;
+    uStack_24 = 1;
+    uStack_20 = (uint)*(ushort *)(param_3 + 2);
+    uStack_1c = 0;
+    if (param_2 != 0) {
+      pcStack_18 = level_cvc_with_on_off_output_handler;
       goto _L0;
     }
   }
-  pcVar6 = level_cvc_output_handler;
+  pcStack_18 = level_cvc_output_handler;
 _L0:
-  input.cb = (zcl_cvc_output_callback_t)0x0;
-  input._20_4_ = pcVar6;
-  pzVar2 = level_srv_get_attr_desc(ep_id,2);
-  pzVar3 = level_srv_get_attr_desc(ep_id,3);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
-    uVar5 = 0;
+  uStack_14 = 0;
+  iVar1 = level_srv_get_attr_desc(param_1,2);
+  iVar2 = level_srv_get_attr_desc(param_1,3);
+  if (iVar1 == 0) {
+    uVar4 = 0;
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    uVar5 = (uint)*pzVar2->data_p;
+    uVar4 = (uint)**(byte **)(iVar1 + 8);
   }
-  if (pzVar3 == (zcl_attr_desc_t *)0x0) {
-    uVar4 = 0xff;
+  if (iVar2 == 0) {
+    uVar3 = 0xff;
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    uVar4 = (uint)*pzVar3->data_p;
+    uVar3 = (uint)**(byte **)(iVar2 + 8);
   }
-  input.begin = (int32_t)payload->level;
-  if ((int)input._0_4_ < input.begin) {
-    if (uVar4 < (uint)input.begin) {
-      input.begin = uVar4;
+  uStack_28 = (uint)*param_3;
+  if ((int)uStack_2c < (int)uStack_28) {
+    if (uVar3 < uStack_28) {
+      uStack_28 = uVar3;
     }
   }
-  else if ((uint)input.begin < uVar5) {
-    input.begin = uVar5;
+  else if (uStack_28 < uVar4) {
+    uStack_28 = uVar4;
   }
-  uVar5 = (uint)payload->transition_time;
-  if (payload->transition_time == 0xffff) {
-    pzVar2 = level_srv_get_attr_desc(ep_id,0x10);
-    if (pzVar2 == (zcl_attr_desc_t *)0x0) {
-      input.quant = 0xffff;
-      input._14_2_ = 0;
-      uVar5 = input._12_4_;
+  uVar4 = (uint)*(ushort *)(param_3 + 2);
+  if (*(ushort *)(param_3 + 2) == 0xffff) {
+    iVar1 = level_srv_get_attr_desc(param_1,0x10);
+    if (iVar1 == 0) {
+      uStack_20 = 0xffff;
+      uVar4 = uStack_20;
     }
     else {
-                    /* WARNING: Load size is inaccurate */
-      uVar5 = (uint)*pzVar2->data_p;
+      uVar4 = (uint)**(ushort **)(iVar1 + 8);
     }
   }
-  input._12_4_ = uVar5;
-  eVar1 = schedule_cvc_level(ep_id,(zcl_cvc_input_t *)local_30);
-  return eVar1;
+  uStack_20 = uVar4;
+  schedule_cvc_level(param_1,local_30);
+  return;
 }
 

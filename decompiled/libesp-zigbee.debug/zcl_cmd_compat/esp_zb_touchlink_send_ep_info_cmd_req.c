@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> esp_zb_touchlink_send_ep_info_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_touchlink_send_ep_info_cmd_req
-               (esp_zb_touchlink_send_endpoint_information_cmd_t *cmd_req)
+void esp_zb_touchlink_send_ep_info_cmd_req(int param_1)
 
 {
   undefined2 uVar1;
-  undefined1 auStack_3c [4];
-  ezb_zcl_touchlink_ep_info_cmd_req_t req;
+  uint auStack_3c [8];
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  auStack_3c = (undefined1  [4])0x0;
-  req.cmd_ctrl.dst_addr._0_4_ = 0;
-  req.cmd_ctrl.dst_addr.u._2_4_ = 0;
-  req.cmd_ctrl._8_4_ = 0;
-  req.cmd_ctrl.dis_default_rsp = false;
-  req.cmd_ctrl._13_3_ = 0;
-  req.cmd_ctrl.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-  req.cmd_ctrl.cnf_ctx.user_ctx = (void *)0x0;
-  req.ieee_addr.field_0.u64._0_4_ = 0;
-  req.ieee_addr.field_0.u64._4_4_ = 0;
-  req.nwk_addr = 0;
-  req.ep_id = '\0';
-  req._35_1_ = 0;
-  req.profile_id = 0;
-  req.device_id = 0;
-  if (cmd_req != (esp_zb_touchlink_send_endpoint_information_cmd_t *)0x0) {
-    convert_to_ezb_specific_cmd_ctrl
-              ((ezb_zcl_cluster_cmd_ctrl_t *)auStack_3c,(esp_zb_zcl_specific_cmd_header_t *)cmd_req)
-    ;
-    auStack_3c = (undefined1  [4])((uint)auStack_3c & 0xffffff00);
+  auStack_3c[0] = 0;
+  auStack_3c[1] = 0;
+  auStack_3c[2] = 0;
+  auStack_3c[3] = 0;
+  auStack_3c[4] = 0;
+  auStack_3c[5] = 0;
+  auStack_3c[6] = 0;
+  auStack_3c[7] = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 != 0) {
+    convert_to_ezb_specific_cmd_ctrl(auStack_3c,param_1);
+    auStack_3c[0] = auStack_3c[0] & 0xffffff00;
     uVar1 = ezb_nwk_get_short_address();
-    req.ieee_addr.field_0.u64._4_2_ = uVar1;
-    ezb_nwk_get_extended_address(&req.cmd_ctrl.cnf_ctx.user_ctx);
-    req.ieee_addr.field_0.u8[6] = cmd_req->endpoint_id;
-    req._32_4_ = *(undefined4 *)&cmd_req->profile_id;
-    req.profile_id._0_1_ = cmd_req->device_version;
-    ezb_zcl_touchlink_ep_info_cmd_req((ezb_zcl_cluster_cmd_ctrl_t *)auStack_3c);
+    uStack_1c = CONCAT22(uStack_1c._2_2_,uVar1);
+    ezb_nwk_get_extended_address(auStack_3c + 6);
+    uStack_1c._0_3_ = CONCAT12(*(undefined1 *)(param_1 + 10),(undefined2)uStack_1c);
+    uStack_18 = *(undefined4 *)(param_1 + 0xc);
+    uStack_14 = CONCAT31(uStack_14._1_3_,*(undefined1 *)(param_1 + 0x10));
+    ezb_zcl_touchlink_ep_info_cmd_req(auStack_3c);
   }
   return;
 }

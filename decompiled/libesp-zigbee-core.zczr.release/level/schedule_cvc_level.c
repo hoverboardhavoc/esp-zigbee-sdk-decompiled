@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> level.o -> schedule_cvc_level
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t schedule_cvc_level(uint8_t ep_id,zcl_cvc_input_t *input)
+undefined4 schedule_cvc_level(undefined4 param_1)
 
 {
-  zcl_attr_desc_t *pzVar1;
+  int iVar1;
   int iVar2;
-  ezb_zcl_status_t eVar3;
+  undefined4 uVar3;
   
-  pzVar1 = level_srv_get_attr_desc(ep_id,(uint16_t)input);
-  eVar3 = 0x86;
-  if (pzVar1 != (zcl_attr_desc_t *)0x0) {
-    zcl_cvc_stop(pzVar1->data_p);
-    iVar2 = zcl_cvc_ctx_create(input,&pzVar1->data_p);
-    eVar3 = '\x01';
+  iVar1 = level_srv_get_attr_desc_part_0();
+  uVar3 = 0x86;
+  if (iVar1 != 0) {
+    zcl_cvc_stop(*(undefined4 *)(iVar1 + 8));
+    iVar2 = zcl_cvc_ctx_create(param_1,iVar1 + 8);
+    uVar3 = 1;
     if (iVar2 != 0) {
-      zcl_cvc_start(pzVar1->data_p);
-      eVar3 = '\0';
+      zcl_cvc_start(*(undefined4 *)(iVar1 + 8));
+      uVar3 = 0;
     }
   }
-  return eVar3;
+  return uVar3;
 }
 

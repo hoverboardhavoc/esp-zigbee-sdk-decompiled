@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> nwk_route_disc_table_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,52 +10,51 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_route_disc_table_delete(nwk_route_disc_t *route_disc)
+void nwk_route_disc_table_delete(ushort *param_1)
 
 {
   ushort uVar1;
-  uint uVar2;
-  int iVar3;
-  nwk_route_disc_t *route_disc_00;
-  nwk_route_t *route;
-  void *blk_base;
-  bitmap_t *blk_busy;
+  short sVar2;
+  uint uVar3;
+  int iVar4;
+  int iVar5;
+  undefined4 uVar6;
+  undefined4 uVar7;
   
-  route = route_disc->route;
-  uVar1 = route_disc->src_addr;
-  uVar2 = nwk_get_short_address();
-  iVar3 = core_globals_get();
-  blk_base = *(void **)(iVar3 + 0xc64);
-  iVar3 = core_globals_get();
-  blk_busy = *(bitmap_t **)(iVar3 + 0xc68);
-  iVar3 = core_globals_get();
-  mempool_free_ent(blk_base,blk_busy,0x10,*(uint16_t *)(iVar3 + 0xc6c),route_disc);
-  if (route != (nwk_route_t *)0x0) {
-    if (uVar1 == uVar2) {
-      if (route->initiator == '\0') {
+  iVar5 = *(int *)(param_1 + 2);
+  uVar1 = *param_1;
+  uVar3 = nwk_get_short_address();
+  iVar4 = core_globals_get();
+  uVar6 = *(undefined4 *)(iVar4 + 0xc64);
+  iVar4 = core_globals_get();
+  uVar7 = *(undefined4 *)(iVar4 + 0xc68);
+  iVar4 = core_globals_get();
+  mempool_free_ent(uVar6,uVar7,0x10,*(undefined2 *)(iVar4 + 0xc6c),param_1);
+  if (iVar5 != 0) {
+    if (uVar1 == uVar3) {
+      if (*(char *)(iVar5 + 0xd) == '\0') {
         __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_route_table.c",0x1a0,
                       "nwk_route_disc_table_delete","route->initiator > 0");
-        iVar3 = core_globals_get();
-        uVar2 = 0;
-        while (uVar2 = bitmap_find_next_bit
-                                 (*(undefined4 *)(iVar3 + 0xc68),*(undefined2 *)(iVar3 + 0xc6c),
-                                  uVar2), uVar2 < *(ushort *)(iVar3 + 0xc6c)) {
-          route_disc_00 = (nwk_route_disc_t *)(*(int *)(iVar3 + 0xc64) + uVar2 * 0x10);
-          if (route_disc_00->expiry == 0) {
-            nwk_route_disc_table_delete(route_disc_00);
+        iVar4 = core_globals_get();
+        uVar3 = 0;
+        while (uVar3 = bitmap_find_next_bit
+                                 (*(undefined4 *)(iVar4 + 0xc68),*(undefined2 *)(iVar4 + 0xc6c),
+                                  uVar3), uVar3 < *(ushort *)(iVar4 + 0xc6c)) {
+          iVar5 = *(int *)(iVar4 + 0xc64) + uVar3 * 0x10;
+          sVar2 = *(short *)(iVar5 + 8);
+          if (sVar2 == 0) {
+            nwk_route_disc_table_delete();
           }
           else {
-            route_disc_00->expiry = route_disc_00->expiry - 1;
+            *(short *)(iVar5 + 8) = sVar2 + -1;
           }
-          uVar2 = uVar2 + 1 & 0xffff;
+          uVar3 = uVar3 + 1 & 0xffff;
         }
         return;
       }
-      route->initiator = route->initiator + 0xff;
+      *(char *)(iVar5 + 0xd) = *(char *)(iVar5 + 0xd) + -1;
     }
-    nwk_route_finish_discovery(route);
+    nwk_route_finish_discovery(iVar5);
   }
   return;
 }

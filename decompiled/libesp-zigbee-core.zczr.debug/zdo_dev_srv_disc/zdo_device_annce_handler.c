@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_device_annce_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: offset */
-/* WARNING: Unknown calling convention */
+/* WARNING: Type propagation algorithm not settling */
 
-zdp_status_t zdo_device_annce_handler(zdo_packet_t *packet)
+undefined4 zdo_device_annce_handler(int param_1)
 
 {
   uint uVar1;
   int *piVar2;
-  int extraout_a0;
-  int extraout_a0_00;
-  uint16_t *offset_00;
-  anon_union_8_2_c961180f_for_ezb_eui64_s_0 ieee_addr;
+  int iVar3;
   int local_20;
-  zdp_device_annce_t annce;
-  uint16_t offset;
+  int iStack_1c;
+  undefined4 uStack_18;
+  ushort auStack_14 [2];
   
-  annce.nwk_addr = 0;
+  auStack_14[0] = 0;
   local_20 = 0;
-  annce.ieee_addr.field_0.u64._0_4_ = 0;
-  annce.ieee_addr.field_0.u64._4_4_ = 0;
-  if ((packet != (zdo_packet_t *)0x0) && (packet->payload != (zdo_packet_payload_t *)0x0)) {
+  iStack_1c = 0;
+  uStack_18 = 0;
+  if ((param_1 != 0) && (*(int *)(param_1 + 0x14) != 0)) {
     uVar1 = zmsg_get_length();
-    offset_00 = &annce.nwk_addr;
-    af_read_le16(packet->payload,offset_00,(uint16_t *)(annce.ieee_addr.field_0.u8 + 4));
-    af_read_bytes(packet->payload,offset_00,8,(uint8_t *)&local_20);
-    af_read_le8(packet->payload,offset_00,annce.ieee_addr.field_0.u8 + 6);
-    if (annce.nwk_addr <= uVar1) {
+    af_read_le16(*(undefined4 *)(param_1 + 0x14),auStack_14,&uStack_18);
+    af_read_bytes(*(undefined4 *)(param_1 + 0x14),auStack_14,8,&local_20);
+    af_read_le8(*(undefined4 *)(param_1 + 0x14),auStack_14,(int)&uStack_18 + 2);
+    if (auStack_14[0] <= uVar1) {
       piVar2 = (int *)nwk_get_extended_address();
-      if ((*piVar2 != local_20) || (piVar2[1] != annce.ieee_addr.field_0.u64._0_4_)) {
-        ieee_addr.u64 = nwk_is_device_zczr();
-        if (extraout_a0 != 0) {
-          annce.capability = '\0';
-          annce._11_1_ = 0;
-          ieee_addr.u64 =
-               nwk_address_update(&local_20,annce.ieee_addr.field_0.u64._4_4_ & 0xffff,
-                                  &annce.capability);
-          if (extraout_a0_00 == 0xd) {
-            nwk_raise_address_conflict(annce.ieee_addr.field_0.u64._4_2_);
+      if ((*piVar2 != local_20) || (piVar2[1] != iStack_1c)) {
+        iVar3 = nwk_is_device_zczr();
+        if (iVar3 != 0) {
+          auStack_14[1] = 0;
+          iVar3 = nwk_address_update(&local_20,uStack_18 & 0xffff,auStack_14 + 1);
+          if (iVar3 == 0xd) {
+            nwk_raise_address_conflict(uStack_18 & 0xffff);
             return 0xfe;
           }
         }
-        zdo_device_annce_indication
-                  ((ezb_extaddr_t)ieee_addr,(uint16_t)local_20,
-                   (uint8_t)annce.ieee_addr.field_0.u64._0_4_);
+        zdo_device_annce_indication(local_20,iStack_1c,uStack_18 & 0xffff,uStack_18 >> 0x10 & 0xff);
       }
     }
   }

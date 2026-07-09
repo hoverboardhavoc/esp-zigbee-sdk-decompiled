@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> buffer_get_tail_const
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t * buffer_get_tail_const(buffer_t *buf,uint16_t tail_size)
+void * buffer_get_tail_const(int param_1,uint param_2)
 
 {
-  buffer_t *buf_00;
-  uint8_t *__dest;
-  uint8_t *__src;
-  undefined2 in_register_0000202e;
-  buffer_t *buf_01;
+  void *pvVar1;
+  void *__src;
+  undefined4 extraout_a1;
   char *__n;
   
-  if (CONCAT22(in_register_0000202e,tail_size) < 0xad) {
-    return (uint8_t *)((int)buf + (0xb0 - CONCAT22(in_register_0000202e,tail_size)));
+  if (param_2 < 0xad) {
+    return (void *)((param_1 - param_2) + 0xb0);
   }
   __n = "buffer_get_tail_const";
-  buf_00 = (buffer_t *)
-           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x46,
-                         "tail_size <= (176 - sizeof(struct buf_hdr_s))");
+  pvVar1 = (void *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x46,
+                                 "tail_size <= (176 - sizeof(struct buf_hdr_s))");
   if (__n != (char *)0x0) {
-    __dest = buffer_get_tail(buf_00,(uint16_t)__n);
-    __src = buffer_get_tail_const(buf_01,(uint16_t)__n);
-    buf_00 = (buffer_t *)memmove(__dest,__src,(size_t)__n);
+    pvVar1 = (void *)buffer_get_tail(__n);
+    __src = (void *)buffer_get_tail_const(extraout_a1,__n);
+    pvVar1 = memmove(pvVar1,__src,(size_t)__n);
   }
-  return (uint8_t *)buf_00;
+  return pvVar1;
 }
 

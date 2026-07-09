@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> ha_compat.o -> esp_zb_door_lock_clusters_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_zb_cluster_list_t * esp_zb_door_lock_clusters_create(esp_zb_door_lock_cfg_t *door_lock)
+undefined4 esp_zb_door_lock_clusters_create(int param_1)
 
 {
-  esp_zb_cluster_list_t *peVar1;
+  undefined4 uVar1;
   undefined4 uVar2;
-  esp_zb_door_lock_cluster_cfg_t *peVar3;
-  esp_zb_scenes_cluster_cfg_t *peVar4;
-  esp_zb_groups_cluster_cfg_t *peVar5;
-  esp_zb_identify_cluster_cfg_t *peVar6;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
   
-  if (door_lock == (esp_zb_door_lock_cfg_t *)0x0) {
-    peVar4 = (esp_zb_scenes_cluster_cfg_t *)0x0;
-    peVar5 = (esp_zb_groups_cluster_cfg_t *)0x0;
-    peVar6 = (esp_zb_identify_cluster_cfg_t *)0x0;
-    peVar3 = (esp_zb_door_lock_cluster_cfg_t *)0x0;
+  if (param_1 == 0) {
+    iVar4 = 0;
+    iVar5 = 0;
+    iVar6 = 0;
+    iVar3 = 0;
   }
   else {
-    peVar6 = &door_lock->identify_cfg;
-    peVar5 = &door_lock->groups_cfg;
-    peVar4 = &door_lock->scenes_cfg;
-    peVar3 = &door_lock->door_lock_cfg;
+    iVar6 = param_1 + 2;
+    iVar5 = param_1 + 4;
+    iVar4 = param_1 + 6;
+    iVar3 = param_1 + 0xe;
   }
-  peVar1 = (esp_zb_cluster_list_t *)esp_zb_zcl_cluster_list_create();
-  uVar2 = esp_zb_basic_cluster_create(door_lock);
-  esp_zb_cluster_list_add_basic_cluster(peVar1,uVar2,1);
-  uVar2 = esp_zb_identify_cluster_create(peVar6);
-  esp_zb_cluster_list_add_identify_cluster(peVar1,uVar2,1);
-  uVar2 = esp_zb_groups_cluster_create(peVar5);
-  esp_zb_cluster_list_add_groups_cluster(peVar1,uVar2,1);
-  uVar2 = esp_zb_scenes_cluster_create(peVar4);
-  esp_zb_cluster_list_add_scenes_cluster(peVar1,uVar2,1);
-  uVar2 = esp_zb_door_lock_cluster_create(peVar3);
-  esp_zb_cluster_list_add_door_lock_cluster(peVar1,uVar2,1);
-  return peVar1;
+  uVar1 = esp_zb_zcl_cluster_list_create();
+  uVar2 = esp_zb_basic_cluster_create(param_1);
+  esp_zb_cluster_list_add_basic_cluster(uVar1,uVar2,1);
+  uVar2 = esp_zb_identify_cluster_create(iVar6);
+  esp_zb_cluster_list_add_identify_cluster(uVar1,uVar2,1);
+  uVar2 = esp_zb_groups_cluster_create(iVar5);
+  esp_zb_cluster_list_add_groups_cluster(uVar1,uVar2,1);
+  uVar2 = esp_zb_scenes_cluster_create(iVar4);
+  esp_zb_cluster_list_add_scenes_cluster(uVar1,uVar2,1);
+  uVar2 = esp_zb_door_lock_cluster_create(iVar3);
+  esp_zb_cluster_list_add_door_lock_cluster(uVar1,uVar2,1);
+  return uVar1;
 }
 

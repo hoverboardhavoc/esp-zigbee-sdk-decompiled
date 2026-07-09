@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> on_off.o -> on_off_process_transition
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,124 +10,108 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void on_off_process_transition(uint8_t ep_id,uint8_t cmd_id,uint8_t on_off,uint16_t x,uint16_t y)
+void on_off_process_transition
+               (undefined4 param_1,uint param_2,int param_3,short param_4,undefined2 param_5)
 
 {
   char cVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  zcl_attr_desc_t *pzVar4;
-  int iVar5;
-  undefined3 in_register_0000202d;
-  uint uVar6;
-  undefined3 in_register_00002031;
-  int iVar7;
-  uint16_t uStack_24;
-  uint16_t auStack_22 [5];
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  undefined2 uStack_24;
+  short asStack_22 [5];
   
-  iVar7 = CONCAT31(in_register_00002031,on_off);
-  uVar6 = CONCAT31(in_register_0000202d,cmd_id);
-  uStack_24 = y;
-  auStack_22[0] = x;
-  if ((uVar6 < 2) && (iVar5 = zcl_level_action_affect_by_on_off(iVar7 != 0), iVar5 != 0)) {
+  uStack_24 = param_5;
+  asStack_22[0] = param_4;
+  if ((param_2 < 2) && (iVar2 = zcl_level_action_affect_by_on_off(param_3 != 0), iVar2 != 0)) {
     return;
   }
-  pzVar2 = on_off_srv_get_attr_desc(ep_id,0);
-  pzVar3 = on_off_srv_get_attr_desc(ep_id,0x4001);
-  pzVar4 = on_off_srv_get_attr_desc(ep_id,0x4002);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+  iVar2 = on_off_srv_get_attr_desc(param_1,0);
+  iVar3 = on_off_srv_get_attr_desc(param_1,0x4001);
+  iVar4 = on_off_srv_get_attr_desc(param_1,0x4002);
+  if (iVar2 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/on_off.c",0xd9,
                   "on_off_process_transition","on_off_attr_desc");
   }
-  else if ((pzVar3 != (zcl_attr_desc_t *)0x0) && (pzVar4 != (zcl_attr_desc_t *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-    cVar1 = *pzVar2->data_p;
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-    if ((cVar1 != '\x01') || ((*pzVar3->data_p == 0 || (*pzVar4->data_p == 0)))) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-      if ((cVar1 != '\x01') || ((*pzVar3->data_p != 0 || (*pzVar4->data_p != 0)))) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-        if ((cVar1 != '\0') || ((*pzVar3->data_p != 0 || (*pzVar4->data_p == 0)))) {
-                    /* WARNING: Load size is inaccurate */
-                    /* WARNING: Load size is inaccurate */
-          if ((cVar1 != '\0') || ((*pzVar3->data_p != 0 || (*pzVar4->data_p != 0)))) {
-            zcl_message_on_off_set_attr_value(ep_id,iVar7 != 0);
-            on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-            on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+  else if ((iVar3 != 0) && (iVar4 != 0)) {
+    cVar1 = **(char **)(iVar2 + 8);
+    if ((cVar1 != '\x01') || ((**(short **)(iVar3 + 8) == 0 || (**(short **)(iVar4 + 8) == 0)))) {
+      if ((cVar1 != '\x01') || ((**(short **)(iVar3 + 8) != 0 || (**(short **)(iVar4 + 8) != 0)))) {
+        if ((cVar1 != '\0') || ((**(short **)(iVar3 + 8) != 0 || (**(short **)(iVar4 + 8) == 0)))) {
+          if ((cVar1 != '\0') || ((**(short **)(iVar3 + 8) != 0 || (**(short **)(iVar4 + 8) != 0))))
+          {
+            zcl_message_on_off_set_attr_value(param_1,param_3 != 0);
+            on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+            on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
             return;
           }
-          if (uVar6 != 0x41) {
-            if (uVar6 == 0x42) {
-              zcl_message_on_off_set_attr_value(ep_id,iVar7 != 0);
-              on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-              on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+          if (param_2 != 0x41) {
+            if (param_2 == 0x42) {
+              zcl_message_on_off_set_attr_value(param_1,param_3 != 0);
+              on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+              on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
               return;
             }
-            if (uVar6 != 1) {
+            if (param_2 != 1) {
               return;
             }
           }
-          zcl_message_on_off_set_attr_value(ep_id,true);
+          zcl_message_on_off_set_attr_value(param_1,1);
           return;
         }
-        if (uVar6 != 0x41) {
-          if (uVar6 == 0x42) {
-            auStack_22[0] = 0;
-            on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-            on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+        if (param_2 != 0x41) {
+          if (param_2 == 0x42) {
+            asStack_22[0] = 0;
+            on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+            on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
             return;
           }
-          if (uVar6 != 1) {
+          if (param_2 != 1) {
             return;
           }
         }
         uStack_24 = 0;
-        zcl_message_on_off_set_attr_value(ep_id,true);
-        on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+        zcl_message_on_off_set_attr_value(param_1,1);
+        on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
         return;
       }
-      if (uVar6 != 0x40) {
-        if (uVar6 == 0x42) {
-          on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-          on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+      if (param_2 != 0x40) {
+        if (param_2 == 0x42) {
+          on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+          on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
           return;
         }
-        if (uVar6 != 0) {
+        if (param_2 != 0) {
           return;
         }
       }
-      zcl_message_on_off_set_attr_value(ep_id,false);
+      zcl_message_on_off_set_attr_value(param_1,0);
       return;
     }
-    if (uVar6 != 0x40) {
-      if (uVar6 == 0x42) {
-        if (auStack_22[0] == 0) {
-          auStack_22[0] = 0;
+    if (param_2 != 0x40) {
+      if (param_2 == 0x42) {
+        if (asStack_22[0] == 0) {
+          asStack_22[0] = 0;
           uStack_24 = 0;
-          zcl_message_on_off_set_attr_value(ep_id,false);
-          on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-          on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+          zcl_message_on_off_set_attr_value(param_1,0);
+          on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+          on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
           return;
         }
-        on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
-        on_off_srv_set_attr_value(ep_id,0x4002,(uint8_t *)&uStack_24);
+        on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
+        on_off_srv_set_attr_value(param_1,0x4002,&uStack_24);
         return;
       }
-      if (uVar6 != 0) {
+      if (param_2 != 0) {
         return;
       }
     }
-    auStack_22[0] = 0;
-    zcl_message_on_off_set_attr_value(ep_id,false);
-    on_off_srv_set_attr_value(ep_id,0x4001,(uint8_t *)auStack_22);
+    asStack_22[0] = 0;
+    zcl_message_on_off_set_attr_value(param_1,0);
+    on_off_srv_set_attr_value(param_1,0x4001,asStack_22);
     return;
   }
-  zcl_message_on_off_set_attr_value(ep_id,iVar7 != 0);
+  zcl_message_on_off_set_attr_value(param_1,param_3 != 0);
   return;
 }
 

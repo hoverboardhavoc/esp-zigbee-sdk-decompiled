@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> ota_upgrade_desc.o -> ezb_zcl_ota_upgrade_cluster_desc_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,73 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_ota_upgrade_cluster_desc_add_attr
-                    (ezb_zcl_cluster_desc_t cluster_desc,uint16_t attr_id,void *value)
+undefined4 ezb_zcl_ota_upgrade_cluster_desc_add_attr(short *param_1,uint param_2,undefined4 param_3)
 
 {
-  ezb_err_t eVar1;
-  undefined2 in_register_0000202e;
-  uint uVar2;
+  uint uVar1;
+  undefined4 uVar2;
   uint uVar3;
-  undefined4 uVar4;
-  uint uVar5;
   
-  uVar2 = CONCAT22(in_register_0000202e,attr_id);
-  if (cluster_desc == (ezb_zcl_cluster_desc_t)0x0) {
+  if (param_1 == (short *)0x0) {
     return 2;
   }
-                    /* WARNING: Load size is inaccurate */
-  if (*cluster_desc != 0x19) {
+  if (*param_1 != 0x19) {
     return 2;
   }
-  uVar3 = (uint)*(byte *)((int)cluster_desc + 2);
-  uVar5 = 1;
-  if (1 < (uVar3 - 1 & 0xffff)) {
-    uVar5 = 0;
+  uVar1 = (uint)*(byte *)(param_1 + 1);
+  uVar3 = 1;
+  if (1 < (uVar1 - 1 & 0xffff)) {
     uVar3 = 0;
-    uVar2 = __assert_func(0,0,value);
+    uVar1 = 0;
+    param_2 = __assert_func(0,0,param_3);
   }
-  if (uVar3 == uVar5) {
-    if (uVar2 == 0xeff0) {
-      uVar4 = 0x20;
+  if (uVar1 == uVar3) {
+    if (param_2 == 0xeff0) {
+      uVar2 = 0x20;
       goto _L0;
     }
-    uVar3 = 0xeff1;
+    uVar1 = 0xeff1;
   }
   else {
-    if (uVar2 < 0xd) {
-      if (uVar2 == 0) {
-        uVar4 = 0xf0;
+    if (param_2 < 0xd) {
+      if (param_2 == 0) {
+        uVar2 = 0xf0;
       }
       else {
-        uVar5 = uVar5 << (uVar2 & 0x1f);
-        if ((uVar5 & 0x3a8) == 0) {
-          if ((uVar5 & 0x416) == 0) {
-            if ((uVar5 >> 6 & 0x61) == 0) {
+        uVar3 = uVar3 << (param_2 & 0x1f);
+        if ((uVar3 & 0x3a8) == 0) {
+          if ((uVar3 & 0x416) == 0) {
+            if ((uVar3 >> 6 & 0x61) == 0) {
               return 6;
             }
-            uVar4 = 0x30;
+            uVar2 = 0x30;
           }
           else {
-            uVar4 = 0x23;
+            uVar2 = 0x23;
           }
         }
         else {
-          uVar4 = 0x21;
+          uVar2 = 0x21;
         }
       }
       goto _L0;
     }
-    uVar3 = 0xeff0;
+    uVar1 = 0xeff0;
   }
-  if (uVar2 != uVar3) {
+  if (param_2 != uVar1) {
     return 6;
   }
-  uVar4 = 0;
+  uVar2 = 0;
 _L0:
-  eVar1 = ezb_zcl_cluster_desc_add_manuf_attr(uVar4,0);
-  return eVar1;
+  uVar2 = ezb_zcl_cluster_desc_add_manuf_attr(uVar2,0);
+  return uVar2;
 }
 

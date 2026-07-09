@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_tx_window_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,27 +11,22 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void aps_tx_window_init(aps_trx_window_t *w,uint8_t blk_nr,uint8_t w_sz)
+void aps_tx_window_init(undefined1 *param_1,uint param_2,uint param_3)
 
 {
   undefined1 *puVar1;
-  undefined3 in_register_0000202d;
   uint extraout_a1;
-  undefined3 in_register_00002031;
-  uint uVar2;
   
-  uVar2 = CONCAT31(in_register_00002031,w_sz);
-  if ((uVar2 - 1 & 0xff) < 8) {
-    w->blk_nr = blk_nr;
-    w->blk_start = '\0';
-    w->slot_i = '\0';
-    if ((int)CONCAT31(in_register_0000202d,blk_nr) < (int)uVar2) {
-      uVar2 = CONCAT31(in_register_0000202d,blk_nr);
+  if ((param_3 - 1 & 0xff) < 8) {
+    *param_1 = (char)param_2;
+    param_1[1] = 0;
+    param_1[2] = 0;
+    if ((int)param_2 < (int)param_3) {
+      param_3 = param_2;
     }
-    w->slot_nr = (uint8_t)uVar2;
-    w->slot_done = -(char)(1 << (uVar2 & 0x1f));
+    param_1[3] = (char)param_3;
+    param_1[4] = -(char)(1 << (param_3 & 0x1f));
     return;
   }
   puVar1 = (undefined1 *)

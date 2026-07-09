@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_direct_tx_task
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_fwd_direct_tx_task(void *ctx)
+void nwk_fwd_direct_tx_task(void)
 
 {
-  zmsg_t *msg;
-  zmsg_t *msg_00;
-  undefined1 auStack_18 [4];
-  nwk_tx_info_t tx_info;
+  int iVar1;
+  int iVar2;
+  uint uStack_18;
+  uint uStack_14;
   
-  auStack_18 = (undefined1  [4])0x0;
-  tx_info.nwk_src_addr = 0;
-  tx_info.nwk_dst_addr = 0;
-  msg = nwk_fwd_prepare_next_direct_tx((nwk_tx_info_t *)auStack_18);
-  if (msg != (zmsg_t *)0x0) {
-    if (((tx_info._0_4_ & 0x1000000) != 0) &&
-       (msg_00 = (zmsg_t *)
-                 nwk_mesh_generate_rrec((uint)auStack_18 & 0xffff,(uint)auStack_18 >> 0x10),
-       msg_00 != (zmsg_t *)0x0)) {
-      nwk_fwd_mac_data_req(msg_00,(uint8_t)tx_info.nwk_dst_addr,tx_info.nwk_src_addr,false);
+  uStack_18 = 0;
+  uStack_14 = 0;
+  iVar1 = nwk_fwd_prepare_next_direct_tx(&uStack_18);
+  if (iVar1 != 0) {
+    if (((uStack_14 & 0x1000000) != 0) &&
+       (iVar2 = nwk_mesh_generate_rrec(uStack_18 & 0xffff,uStack_18 >> 0x10), iVar2 != 0)) {
+      nwk_fwd_mac_data_req(uStack_14 >> 0x10 & 0xff,uStack_14 & 0xffff,0);
     }
-    zmsg_queue_dequeue(&s_nwk_fwd,msg);
-    nwk_fwd_mac_data_req(msg,(uint8_t)tx_info.nwk_dst_addr,tx_info.nwk_src_addr,false);
+    zmsg_queue_dequeue(&s_nwk_fwd,iVar1);
+    nwk_fwd_mac_data_req(iVar1,uStack_14 >> 0x10 & 0xff,uStack_14 & 0xffff,0);
     tasklet_post(&s_nwk_fwd);
   }
   return;

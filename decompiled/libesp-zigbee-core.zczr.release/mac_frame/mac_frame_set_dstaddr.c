@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_frame_set_dstaddr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_frame_set_dstaddr(ezb_radio_frame_t *frame,ezb_address_t *address)
+void mac_frame_set_dstaddr(undefined4 *param_1,char *param_2)
 
 {
-  ezb_grpaddr_t eVar1;
+  undefined4 uVar1;
   ushort *puVar2;
-  uint8_t uVar3;
-  uint16_t extraout_a0;
-  ushort fcf;
-  undefined3 extraout_var;
-  ezb_grpaddr_t *peVar4;
+  int iVar3;
+  undefined4 *puVar4;
   
-  puVar2 = (ushort *)frame->psdu;
-  fcf = *puVar2;
-  if ((fcf >> 10 & 3) != 0) goto _L65;
+  puVar2 = (ushort *)*param_1;
+  if ((*puVar2 >> 10 & 3) != 0) goto _L65;
   while( true ) {
-    address = (ezb_address_t *)__assert_func(0,0,0,0);
-    fcf = extraout_a0;
+    param_2 = (char *)__assert_func(0,0,0,0);
 _L65:
-    uVar3 = mac_fcf_skip_dst_panid_index(fcf);
-    peVar4 = (ezb_grpaddr_t *)(CONCAT31(extraout_var,uVar3) + (int)puVar2);
-    if (address->addr_mode == '\x02') break;
-    if (address->addr_mode == '\x03') {
-      eVar1 = *(ezb_grpaddr_t *)((int)&address->u + 4);
-      *peVar4 = (address->u).group_addr;
-      peVar4[1] = eVar1;
+    iVar3 = mac_fcf_skip_dst_panid_index();
+    puVar4 = (undefined4 *)(iVar3 + (int)puVar2);
+    if (*param_2 == '\x02') break;
+    if (*param_2 == '\x03') {
+      uVar1 = *(undefined4 *)(param_2 + 6);
+      *puVar4 = *(undefined4 *)(param_2 + 2);
+      puVar4[1] = uVar1;
       return;
     }
   }
-  peVar4->group = (address->u).short_addr;
+  *(undefined2 *)puVar4 = *(undefined2 *)(param_2 + 2);
   return;
 }
 

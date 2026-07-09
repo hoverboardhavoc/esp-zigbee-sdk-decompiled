@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_formation.o -> nwk_disc_table_lite_add_pan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_disc_table_lite_add_pan(pan_descriptor_t *pan)
+void nwk_disc_table_lite_add_pan(int param_1)
 
 {
-  uint8_t slot;
-  short sVar1;
-  short sVar2;
-  int iVar3;
-  nwk_disc_table_lite_ent_t *pnVar4;
-  nwk_disc_table_lite_ent_t *ent;
-  byte slot_00;
+  undefined1 uVar1;
+  int iVar2;
+  short *psVar3;
+  byte bVar4;
   
-  iVar3 = core_globals_get();
-  slot = *(uint8_t *)(iVar3 + 0xba4);
-  iVar3 = core_globals_get();
-  slot_00 = *(char *)(iVar3 + 0xba4) + 1U & 1;
-  pnVar4 = nwk_disc_table_lite_get_slot(slot);
-  ent = nwk_disc_table_lite_get_slot(slot_00);
-  sVar1._0_1_ = ent->channel_page;
-  sVar1._1_1_ = ent->channel_number;
-  sVar2._0_1_ = pan->channel_page;
-  sVar2._1_1_ = pan->channel_number;
-  if (sVar1 != sVar2) {
-    if (ent->pan_cnt < pnVar4->pan_cnt) {
-      iVar3 = core_globals_get();
-      *(byte *)(iVar3 + 0xba4) = slot_00;
-      ent = nwk_disc_table_lite_get_slot(slot_00 ^ 1);
+  iVar2 = core_globals_get();
+  uVar1 = *(undefined1 *)(iVar2 + 0xba4);
+  iVar2 = core_globals_get();
+  bVar4 = *(char *)(iVar2 + 0xba4) + 1U & 1;
+  iVar2 = nwk_disc_table_lite_get_slot(uVar1);
+  psVar3 = (short *)nwk_disc_table_lite_get_slot(bVar4);
+  if (*psVar3 != *(short *)(param_1 + 0xc)) {
+    if (*(byte *)(psVar3 + 1) < *(byte *)(iVar2 + 2)) {
+      iVar2 = core_globals_get();
+      *(byte *)(iVar2 + 0xba4) = bVar4;
+      psVar3 = (short *)nwk_disc_table_lite_get_slot(bVar4 ^ 1);
     }
-    ent->pan_cnt = '\0';
+    *(undefined1 *)(psVar3 + 1) = 0;
   }
-  nwk_disc_table_lite_ent_add_pan(ent,pan);
+  nwk_disc_table_lite_ent_add_pan(param_1);
   return;
 }
 

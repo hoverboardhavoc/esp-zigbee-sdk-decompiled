@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_set_pan_coord
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_set_pan_coord(mac_device *dev,_Bool is_pan_coord)
+void mac_set_pan_coord(undefined4 *param_1,int param_2)
 
 {
-  undefined4 *puVar1;
+  undefined4 uVar1;
   undefined4 uVar2;
-  undefined3 uVar3;
-  undefined4 uVar4;
-  undefined3 in_register_0000202d;
   
-  if (CONCAT31(in_register_0000202d,is_pan_coord) != 0) {
-    (dev->pib).coord_shortaddr = (dev->pib).short_address;
-    uVar2 = *(undefined4 *)&(dev->pib).extended_address.field_0;
-    puVar1 = (undefined4 *)((int)&(dev->pib).extended_address.field_0 + 4);
-    uVar3 = *(undefined3 *)puVar1;
-    uVar4 = *puVar1;
-    (dev->pib).coord_extaddr.field_0.u8[0] =
-         (uint8_t)*(undefined3 *)&(dev->pib).extended_address.field_0;
-    (dev->pib).coord_extaddr.field_0.u8[1] = (uint8_t)((uint)uVar2 >> 8);
-    (dev->pib).coord_extaddr.field_0.u8[2] = (uint8_t)((uint)uVar2 >> 0x10);
-    (dev->pib).coord_extaddr.field_0.u8[3] = (uint8_t)((uint)uVar2 >> 0x18);
-    (dev->pib).coord_extaddr.field_0.u8[4] = (uint8_t)uVar3;
-    (dev->pib).coord_extaddr.field_0.u8[5] = (uint8_t)((uint)uVar4 >> 8);
-    (dev->pib).coord_extaddr.field_0.u8[6] = (uint8_t)((uint)uVar4 >> 0x10);
-    (dev->pib).coord_extaddr.field_0.u8[7] = (uint8_t)((uint)uVar4 >> 0x18);
+  if (param_2 != 0) {
+    *(undefined2 *)((int)param_1 + 0xe) = *(undefined2 *)(param_1 + 2);
+    uVar1 = *param_1;
+    uVar2 = param_1[1];
+    *(char *)(param_1 + 4) = (char)*(undefined3 *)param_1;
+    *(char *)((int)param_1 + 0x11) = (char)((uint)uVar1 >> 8);
+    *(char *)((int)param_1 + 0x12) = (char)((uint)uVar1 >> 0x10);
+    *(char *)((int)param_1 + 0x13) = (char)((uint)uVar1 >> 0x18);
+    *(char *)(param_1 + 5) = (char)*(undefined3 *)(param_1 + 1);
+    *(char *)((int)param_1 + 0x15) = (char)((uint)uVar2 >> 8);
+    *(char *)((int)param_1 + 0x16) = (char)((uint)uVar2 >> 0x10);
+    *(char *)((int)param_1 + 0x17) = (char)((uint)uVar2 >> 0x18);
     return;
   }
-  (dev->pib).coord_shortaddr = 0xffff;
-  (dev->pib).coord_extaddr.field_0.u8[0] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[1] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[2] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[3] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[4] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[5] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[6] = '\0';
-  (dev->pib).coord_extaddr.field_0.u8[7] = '\0';
+  *(undefined2 *)((int)param_1 + 0xe) = 0xffff;
+  *(undefined1 *)(param_1 + 4) = 0;
+  *(undefined1 *)((int)param_1 + 0x11) = 0;
+  *(undefined1 *)((int)param_1 + 0x12) = 0;
+  *(undefined1 *)((int)param_1 + 0x13) = 0;
+  *(undefined1 *)(param_1 + 5) = 0;
+  *(undefined1 *)((int)param_1 + 0x15) = 0;
+  *(undefined1 *)((int)param_1 + 0x16) = 0;
+  *(undefined1 *)((int)param_1 + 0x17) = 0;
   return;
 }
 

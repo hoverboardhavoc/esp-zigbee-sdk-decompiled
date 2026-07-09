@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> color_control.o -> step_cvc_color_temperature
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,82 +10,75 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: input */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-step_cvc_color_temperature
-          (uint8_t ep_id,ezb_zcl_color_control_step_color_temperature_cmd_payload_t *payload)
+int step_cvc_color_temperature(undefined4 param_1,char *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  zcl_attr_desc_t *pzVar2;
-  uint uVar3;
+  int iVar1;
   undefined1 local_30 [4];
-  zcl_cvc_input_t input;
+  uint uStack_2c;
+  uint uStack_28;
+  undefined2 uStack_24;
+  uint uStack_20;
+  undefined1 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (payload == (ezb_zcl_color_control_step_color_temperature_cmd_payload_t *)0x0) {
+  if (param_2 == (char *)0x0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/color_control.c",0x679
                   ,"step_cvc_color_temperature","payload");
   }
   else {
-    input.ep_id = '\0';
-    input._1_3_ = 0;
-    input.begin = 0;
-    input.end._0_2_ = 1;
-    input._12_4_ = ZEXT24(payload->transition_time);
-    input.duration._0_1_ = 0;
-    input._20_4_ = cvc_color_temperature_output_handler;
-    input.cb = (zcl_cvc_output_callback_t)0x7;
-    local_30[0] = ep_id;
-    pzVar2 = color_control_srv_get_attr_desc(ep_id,7);
-    if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+    local_30[0] = (undefined1)param_1;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_24 = 1;
+    uStack_20 = (uint)*(ushort *)(param_2 + 8);
+    uStack_1c = 0;
+    pcStack_18 = cvc_color_temperature_output_handler;
+    uStack_14 = 7;
+    iVar1 = color_control_srv_get_attr_desc();
+    if (iVar1 == 0) {
       return 0x86;
     }
-                    /* WARNING: Load size is inaccurate */
-    input._0_4_ = ZEXT24(*pzVar2->data_p);
-    if (payload->step_mode != '\x01') {
-      if (payload->step_mode == '\x03') {
-        pzVar2 = color_control_srv_get_attr_desc(ep_id,0x400b);
-        if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+    uStack_2c = (uint)**(ushort **)(iVar1 + 8);
+    if (*param_2 != '\x01') {
+      if (*param_2 == '\x03') {
+        iVar1 = color_control_srv_get_attr_desc(param_1,0x400b);
+        if (iVar1 == 0) {
           return 0x86;
         }
-        input.begin = (int32_t)payload->color_temperature_min_mireds;
-        if (input.begin == 0) {
-                    /* WARNING: Load size is inaccurate */
-          input.begin = (int32_t)*pzVar2->data_p;
+        uStack_28 = (uint)*(ushort *)(param_2 + 4);
+        if (uStack_28 == 0) {
+          uStack_28 = (uint)**(ushort **)(iVar1 + 8);
         }
-        uVar3 = input._0_4_ - (uint)payload->step_size;
-        if (input.begin < (int)uVar3) {
-          input.begin = uVar3;
+        if ((int)uStack_28 < (int)(uStack_2c - *(ushort *)(param_2 + 2))) {
+          uStack_28 = uStack_2c - *(ushort *)(param_2 + 2);
         }
-        eVar1 = '\0';
+        iVar1 = 0;
       }
       else {
-        eVar1 = 0x85;
+        iVar1 = 0x85;
       }
       goto _L0;
     }
   }
-  pzVar2 = color_control_srv_get_attr_desc(ep_id,0x400c);
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) {
+  iVar1 = color_control_srv_get_attr_desc(param_1,0x400c);
+  if (iVar1 == 0) {
     return 0x86;
   }
-  input.begin = (int32_t)payload->color_temperature_max_mireds;
-  if (input.begin == 0) {
-                    /* WARNING: Load size is inaccurate */
-    input.begin = (int32_t)*pzVar2->data_p;
+  uStack_28 = (uint)*(ushort *)(param_2 + 6);
+  if (uStack_28 == 0) {
+    uStack_28 = (uint)**(ushort **)(iVar1 + 8);
   }
-  uVar3 = input._0_4_ + (uint)payload->step_size;
-  if ((int)uVar3 < input.begin) {
-    input.begin = uVar3;
+  if ((int)(uStack_2c + *(ushort *)(param_2 + 2)) < (int)uStack_28) {
+    uStack_28 = uStack_2c + *(ushort *)(param_2 + 2);
   }
-  eVar1 = '\0';
+  iVar1 = 0;
 _L0:
-  color_control_set_remaining_time(ep_id,payload->transition_time);
-  if (eVar1 == '\0') {
-    eVar1 = schedule_cvc_color_line(ep_id,(zcl_cvc_input_t *)local_30);
+  color_control_set_remaining_time(param_1,*(undefined2 *)(param_2 + 8));
+  if (iVar1 == 0) {
+    iVar1 = schedule_cvc_color_line(param_1,local_30);
   }
-  return eVar1;
+  return iVar1;
 }
 

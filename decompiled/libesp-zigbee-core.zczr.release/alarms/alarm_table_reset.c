@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> alarms.o -> alarm_table_reset
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,31 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t alarm_table_reset(uint8_t ep_id)
+undefined4 alarm_table_reset(undefined4 param_1)
 
 {
   byte bVar1;
-  alarms_alarm_table_t *paVar2;
-  ezb_err_t eVar3;
-  uint uVar4;
+  int *piVar2;
+  undefined4 uVar3;
+  int iVar4;
+  uint uVar5;
   
-  paVar2 = get_alarm_table(ep_id);
-  if (paVar2 == (alarms_alarm_table_t *)0x0) {
-    eVar3 = 5;
+  piVar2 = (int *)get_alarm_table();
+  if (piVar2 == (int *)0x0) {
+    uVar3 = 5;
   }
   else {
-    alarm_table_remove_stored_all(ep_id);
-    bVar1 = paVar2->total;
-    for (uVar4 = 0; (uVar4 & 0xff) < (uint)bVar1; uVar4 = uVar4 + 1) {
-      paVar2->entries[uVar4].node.next = &paVar2->entries[uVar4].node;
+    alarm_table_remove_stored_all(param_1);
+    bVar1 = *(byte *)(piVar2 + 3);
+    for (uVar5 = 0; (uVar5 & 0xff) < (uint)bVar1; uVar5 = uVar5 + 1) {
+      iVar4 = *piVar2 + uVar5 * 0xc;
+      *(int *)iVar4 = iVar4;
     }
-    paVar2->count = '\0';
-    paVar2->tail = (list_node_t *)0x0;
-    (paVar2->active_alarms).head = (list_node_t *)0x0;
-    eVar3 = 0;
+    *(undefined1 *)((int)piVar2 + 0xd) = 0;
+    piVar2[2] = 0;
+    piVar2[1] = 0;
+    uVar3 = 0;
   }
-  return eVar3;
+  return uVar3;
 }
 

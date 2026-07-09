@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> timer.o -> tm_sched_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void tm_sched_add(tm_sched_t *sched,timer_base *tm)
+void tm_sched_add(int param_1,int *param_2)
 
 {
-  timer_base *unaff_s0;
-  timer_base *unaff_s1;
-  _Bool _Var1;
-  time32_t now;
-  undefined3 extraout_var;
+  undefined4 *unaff_s0;
+  undefined4 *unaff_s1;
+  undefined4 uVar1;
+  int iVar2;
   
-  if (tm == (timer_base *)0x0) {
+  if (param_2 == (int *)0x0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/timer.c",0x78,"tm_sched_add",
                   "tm != ((void *)0)");
   }
   else {
-    now.val = (*sched->get_now)(sched->get_now);
-    tm_sched_remove(sched,tm);
-    unaff_s0 = (timer_base *)&sched->timer_list;
+    uVar1 = (**(code **)(param_1 + 0x14))(*(code **)(param_1 + 0x14));
+    tm_sched_remove(param_1,param_2);
+    unaff_s0 = (undefined4 *)(param_1 + 0x10);
     do {
       unaff_s1 = unaff_s0;
-      unaff_s0 = unaff_s1->next;
-      if (unaff_s0 == (timer_base *)0x0) break;
-      _Var1 = timer_fire_before(tm,unaff_s0,now);
-    } while (CONCAT31(extraout_var,_Var1) == 0);
+      unaff_s0 = (undefined4 *)*unaff_s1;
+      if (unaff_s0 == (undefined4 *)0x0) break;
+      iVar2 = timer_fire_before(param_2,unaff_s0,uVar1);
+    } while (iVar2 == 0);
   }
-  tm->next = unaff_s0;
-  unaff_s1->next = tm;
-  if (sched->timer_list == tm) {
-    tm_sched_set_alarm(sched);
+  *param_2 = (int)unaff_s0;
+  *unaff_s1 = param_2;
+  if (*(int **)(param_1 + 0x10) == param_2) {
+    tm_sched_set_alarm(param_1);
   }
   return;
 }

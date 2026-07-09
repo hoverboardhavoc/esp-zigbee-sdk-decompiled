@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> prepare_indirect_frame
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,11 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t prepare_indirect_frame(mac_device *dev,ezb_radio_frame_t *tx_frame)
+void prepare_indirect_frame(int param_1,undefined4 param_2)
 
 {
   undefined1 uVar1;
-  zmsg_t *msg;
-  ezb_err_t eVar2;
+  int iVar2;
   undefined4 uVar3;
   char *pcVar4;
   undefined4 *puStack_58;
@@ -34,10 +31,10 @@ ezb_err_t prepare_indirect_frame(mac_device *dev,ezb_radio_frame_t *tx_frame)
   undefined4 uStack_28;
   undefined2 uStack_24;
   
-  msg = (zmsg_t *)zmsg_queue_get_head(&(dev->ctx).itx_q);
-  if (msg != (zmsg_t *)0x0) {
-    eVar2 = txframe_from_zmsg(msg,tx_frame);
-    return eVar2;
+  iVar2 = zmsg_queue_get_head(param_1 + 0x54);
+  if (iVar2 != 0) {
+    txframe_from_zmsg(param_2);
+    return;
   }
   pcVar4 = "prepare_indirect_frame";
   uVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x1ee,
@@ -57,7 +54,7 @@ ezb_err_t prepare_indirect_frame(mac_device *dev,ezb_radio_frame_t *tx_frame)
   puStack_58 = &uStack_3c;
   uVar1 = zmsg_read_bytes(0,0x1a);
   uStack_54 = CONCAT31(uStack_54._1_3_,uVar1);
-  eVar2 = mac_frame_parse_header(&puStack_58,uVar3,pcVar4);
-  return eVar2;
+  mac_frame_parse_header(&puStack_58,uVar3,pcVar4);
+  return;
 }
 

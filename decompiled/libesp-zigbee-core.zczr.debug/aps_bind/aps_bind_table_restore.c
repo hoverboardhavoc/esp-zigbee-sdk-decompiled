@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> aps_bind_table_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00011c46) */
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_bind_table_restore(void)
 
 {
   int iVar1;
-  ezb_extaddr_t *src_addr;
-  ezb_err_t eVar2;
-  undefined1 auStack_2c [4];
-  ezb_address_t dst_addr;
-  uint8_t uStack_1e;
-  uint8_t uStack_1d;
-  ds_bind_info_iterator_t itor;
+  undefined2 uStack_2c;
+  undefined2 uStack_2a;
+  undefined4 uStack_28;
+  undefined2 uStack_24;
+  undefined2 uStack_20;
+  undefined1 uStack_1e;
+  char cStack_1d;
+  undefined2 uStack_1c;
+  undefined2 uStack_1a;
+  undefined2 uStack_18;
+  undefined2 uStack_16;
+  undefined2 uStack_14;
+  char cStack_12;
   
   iVar1 = core_globals_get();
   *(byte *)(iVar1 + 0x980) = *(byte *)(iVar1 + 0x980) | 1;
-  ds_bind_info_itor_read((ds_bind_info_iterator_t *)((int)&dst_addr.u + 6));
+  uStack_14 = 0;
+  cStack_12 = '\0';
+  ds_bind_info_itor_read(&uStack_20);
   while( true ) {
-    if (uStack_1d == '\0') {
-      dst_addr._0_4_ = 0;
-      dst_addr.u.group_addr.bcast = 0;
-      auStack_2c._0_2_ = 1;
+    if (cStack_12 != '\0') {
+      iVar1 = core_globals_get();
+      *(byte *)(iVar1 + 0x980) = *(byte *)(iVar1 + 0x980) & 0xfe;
+      return;
+    }
+    if (cStack_1d == '\0') {
+      uStack_28 = 0;
+      uStack_24 = 0;
+      uStack_2c = 1;
     }
     else {
-      auStack_2c[0] = '\x03';
-      dst_addr.u.short_addr = itor.data.field_3.grpaddr;
-      dst_addr._0_2_ = itor.data._2_2_;
-      dst_addr.u.group_addr.bcast = itor.data.field_3._2_2_;
+      _uStack_2c = CONCAT31(stack0xffffffd5,3);
+      uStack_28 = CONCAT22(uStack_18,uStack_1a);
+      uStack_24 = uStack_16;
     }
-    auStack_2c._2_2_ = itor.data.cluster_id;
-    src_addr = (ezb_extaddr_t *)nwk_get_extended_address();
-    eVar2 = aps_bind_table_add(src_addr,uStack_1e,dst_addr.u._6_2_,(ezb_address_t *)auStack_2c,
-                               uStack_1d);
-    if (eVar2 != 0) break;
-    ds_bind_info_next((ds_bind_info_iterator_t *)((int)&dst_addr.u + 6));
+    _uStack_2c = CONCAT22(uStack_1c,uStack_2c);
+    nwk_get_extended_address();
+    iVar1 = aps_bind_table_add(uStack_1e,uStack_20,&uStack_2c,cStack_1d);
+    if (iVar1 != 0) break;
+    ds_bind_info_next(&uStack_20);
   }
   return;
 }

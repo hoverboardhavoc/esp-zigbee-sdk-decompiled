@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_datasets.o -> erase_all_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,19 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t erase_all_key(nvs_handle_t nvs_handle,uint16_t ds_key)
+int erase_all_key(int param_1)
 
 {
   bool bVar1;
   int iVar2;
-  undefined1 auStack_40 [4];
-  nvs_entry_info_t info;
-  char nvs_key [5];
-  nvs_iterator_t nvs_it;
+  undefined1 auStack_40 [16];
+  undefined1 auStack_30 [20];
+  char acStack_1c [8];
+  undefined4 auStack_14 [2];
   
-  if (nvs_handle == 0) {
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_datasets.c"
                   ,0x74,"erase_all_key",0x10000);
     iVar2 = 0;
@@ -30,24 +28,27 @@ _L0:
     bVar1 = false;
   }
   else {
-    stack0xffffffec = 0;
-    info.type = 0;
-    nvs_key[0] = '\0';
-    snprintf((char *)&info.type,5,"ZB%02x");
-    iVar2 = nvs_entry_find_in_handle(nvs_handle,0x42,nvs_key + 4);
+    auStack_14[0] = 0;
+    acStack_1c[0] = '\0';
+    acStack_1c[1] = '\0';
+    acStack_1c[2] = '\0';
+    acStack_1c[3] = '\0';
+    acStack_1c[4] = 0;
+    snprintf(acStack_1c,5,"ZB%02x");
+    iVar2 = nvs_entry_find_in_handle(param_1,0x42,auStack_14);
     bVar1 = false;
     while (iVar2 == 0) {
-      nvs_entry_info(stack0xffffffec,auStack_40);
-      iVar2 = memcmp(&info.type,info.namespace_name + 0xc,4);
+      nvs_entry_info(auStack_14[0],auStack_40);
+      iVar2 = memcmp(acStack_1c,auStack_30,4);
       if (iVar2 == 0) {
-        iVar2 = nvs_erase_key(s_nvs_handle,info.namespace_name + 0xc);
+        iVar2 = nvs_erase_key(s_nvs_handle,auStack_30);
         if (iVar2 != 0) goto _L0;
         bVar1 = true;
       }
-      iVar2 = nvs_entry_next(nvs_key + 4);
+      iVar2 = nvs_entry_next(auStack_14);
     }
   }
-  nvs_release_iterator(stack0xffffffec);
+  nvs_release_iterator(auStack_14[0]);
   if (bVar1) {
     iVar2 = 0;
   }

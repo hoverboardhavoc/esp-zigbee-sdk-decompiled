@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_intrp.o -> aps_intrp_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,67 +10,67 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_intrp_data_request(aps_intrp_data_req_t *req)
+void aps_intrp_data_request(int param_1,uint param_2)
 
 {
-  ezb_shortaddr_t eVar1;
-  uint16_t uVar2;
-  undefined4 uVar3;
-  ezb_err_t eVar4;
+  undefined2 uVar1;
+  undefined4 uVar2;
+  int iVar3;
   void *__src;
-  undefined1 *puVar5;
-  uint in_a4;
-  byte bVar6;
+  undefined1 *puVar4;
+  byte bVar5;
   undefined4 uStack_2c;
-  nwk_intrp_data_req_t nwk_req;
+  undefined2 uStack_28;
+  undefined1 uStack_26;
+  undefined2 uStack_22;
+  undefined1 auStack_20 [12];
+  undefined4 uStack_14;
   
   uStack_2c = 0;
-  nwk_req.src_addr.addr_mode = '\0';
-  nwk_req.src_addr._1_1_ = 0;
-  nwk_req.src_addr.u.short_addr._0_1_ = 0;
-  if (req->asdu == (zmsg_t *)0x0) {
+  uStack_28 = 0;
+  uStack_26 = 0;
+  if (*(int *)(param_1 + 0x14) == 0) {
     __assert_func(0,0,0,0);
   }
   else {
-    in_a4 = (uint)(req->dst_addr).addr_mode;
-    bVar6 = 0xf;
-    if (in_a4 == 1) goto _L0;
+    param_2 = (uint)*(byte *)(param_1 + 4);
+    bVar5 = 0xf;
+    if (param_2 == 1) goto _L0;
   }
-  bVar6 = 3;
-  if (in_a4 == 2) {
-    bVar6 = (0xfff7 < (req->dst_addr).u.short_addr) * '\b' + 3;
+  bVar5 = 3;
+  if (param_2 == 2) {
+    bVar5 = (0xfff7 < *(ushort *)(param_1 + 6)) * '\b' + 3;
   }
 _L0:
-  uVar3 = uStack_2c;
-  uStack_2c = CONCAT31(uStack_2c._1_3_,bVar6);
-  puVar5 = (undefined1 *)((int)&uStack_2c + 1);
-  if ((bVar6 & 0xc) == 0xc) {
-    eVar1 = (req->dst_addr).u.short_addr;
-    puVar5 = (undefined1 *)((int)&uStack_2c + 3);
-    uStack_2c._3_1_ = SUB41(uVar3,3);
-    uStack_2c._0_3_ = CONCAT12((char)(eVar1 >> 8),CONCAT11((char)eVar1,bVar6));
+  uVar2 = uStack_2c;
+  uStack_2c = CONCAT31(uStack_2c._1_3_,bVar5);
+  puVar4 = (undefined1 *)((int)&uStack_2c + 1);
+  if ((bVar5 & 0xc) == 0xc) {
+    puVar4 = (undefined1 *)((int)&uStack_2c + 3);
+    uStack_2c._3_1_ = SUB41(uVar2,3);
+    uStack_2c._0_3_ =
+         CONCAT12((char)((ushort)*(undefined2 *)(param_1 + 6) >> 8),
+                  CONCAT11((char)*(undefined2 *)(param_1 + 6),bVar5));
   }
-  uVar2 = req->cluster_id;
-  *puVar5 = (char)uVar2;
-  puVar5[1] = (char)(uVar2 >> 8);
-  uVar2 = req->profile_id;
-  puVar5[2] = (char)uVar2;
-  puVar5[3] = (char)(uVar2 >> 8);
-  eVar4 = zmsg_prepend_bytes((uint)(puVar5 + (4 - (int)&uStack_2c)) & 0xffff,&uStack_2c);
-  if (eVar4 == 0) {
+  uVar1 = *(undefined2 *)(param_1 + 0x10);
+  *puVar4 = (char)uVar1;
+  puVar4[1] = (char)((ushort)uVar1 >> 8);
+  uVar1 = *(undefined2 *)(param_1 + 0xe);
+  puVar4[2] = (char)uVar1;
+  puVar4[3] = (char)((ushort)uVar1 >> 8);
+  iVar3 = zmsg_prepend_bytes((uint)(puVar4 + (4 - (int)&uStack_2c)) & 0xffff,&uStack_2c);
+  if (iVar3 == 0) {
     uStack_2c = CONCAT31(uStack_2c._1_3_,3);
     __src = (void *)nwk_get_extended_address();
     memcpy((void *)((int)&uStack_2c + 2),__src,8);
-    nwk_req.src_addr.u._4_2_ = req->dst_pan_id;
-    memcpy((void *)((int)&nwk_req.src_addr.u + 6),&req->dst_addr,10);
-    nwk_req._20_4_ = req->asdu;
-    eVar4 = zmsg_add_footer(req,0x18);
-    if (eVar4 == 0) {
-      eVar4 = nwk_intrp_data_request(&uStack_2c);
+    uStack_22 = *(undefined2 *)(param_1 + 2);
+    memcpy(auStack_20,(void *)(param_1 + 4),10);
+    uStack_14 = *(undefined4 *)(param_1 + 0x14);
+    iVar3 = zmsg_add_footer(param_1,0x18);
+    if (iVar3 == 0) {
+      nwk_intrp_data_request(&uStack_2c);
     }
   }
-  return eVar4;
+  return;
 }
 

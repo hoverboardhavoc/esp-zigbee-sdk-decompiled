@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_cvc.o -> zcl_cvc_ctx_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,82 +10,79 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_cvc_ctx_create(zcl_cvc_input_t *input,zcl_cvc_ctx_t **cvc_ctx)
+undefined4 zcl_cvc_ctx_create(undefined1 *param_1,int *param_2)
 
 {
-  _Bool _Var1;
-  int8_t iVar2;
+  undefined1 uVar1;
+  undefined4 uVar2;
   int iVar3;
-  uint32_t uVar4;
+  uint uVar4;
   int iVar5;
-  uint uVar6;
   
-  if (input == (zcl_cvc_input_t *)0x0) {
-    _Var1 = false;
+  if (param_1 == (undefined1 *)0x0) {
+    uVar2 = 0;
   }
-  else if (input->quant == 0) {
-    _Var1 = false;
+  else if (*(short *)(param_1 + 0xc) == 0) {
+    uVar2 = 0;
   }
-  else if (cvc_ctx == (zcl_cvc_ctx_t **)0x0) {
-    _Var1 = false;
+  else if (param_2 == (int *)0x0) {
+    uVar2 = 0;
   }
   else {
-    (*cvc_ctx)->ep_id = input->ep_id;
-    (*cvc_ctx)->curr_tick = 0;
-    if (input->duration == 0xffff) {
-      uVar4 = 1;
+    *(undefined1 *)*param_2 = *param_1;
+    *(undefined4 *)(*param_2 + 0x14) = 0;
+    if (*(int *)(param_1 + 0x10) == 0xffff) {
+      iVar3 = 1;
     }
     else {
-      uVar4 = input->duration * (uint)input->quant;
+      iVar3 = *(int *)(param_1 + 0x10) * (uint)*(ushort *)(param_1 + 0xc);
     }
-    (*cvc_ctx)->total_tick = uVar4;
-    if (input->duration == 0) {
-      uVar4 = 1;
+    *(int *)(*param_2 + 0x10) = iVar3;
+    if (*(int *)(param_1 + 0x10) == 0) {
+      uVar2 = 1;
     }
     else {
-      uVar4 = (*cvc_ctx)->total_tick;
+      uVar2 = *(undefined4 *)(*param_2 + 0x10);
     }
-    (*cvc_ctx)->total_tick = uVar4;
-    uVar4 = input->duration;
+    *(undefined4 *)(*param_2 + 0x10) = uVar2;
+    uVar4 = *(uint *)(param_1 + 0x10);
     if (uVar4 != 0) {
-      uVar4 = 100 / input->quant;
+      uVar4 = 100 / *(ushort *)(param_1 + 0xc);
     }
-    (*cvc_ctx)->delay = uVar4;
-    if (input->end < input->begin) {
-      iVar2 = -1;
+    *(uint *)(*param_2 + 0x18) = uVar4;
+    if (*(int *)(param_1 + 8) < *(int *)(param_1 + 4)) {
+      uVar1 = 0xff;
     }
     else {
-      iVar2 = '\x01';
+      uVar1 = 1;
     }
-    (*cvc_ctx)->sign = iVar2;
-    iVar3 = input->end;
-    iVar5 = input->begin;
+    *(undefined1 *)(*param_2 + 1) = uVar1;
+    iVar3 = *(int *)(param_1 + 8);
+    iVar5 = *(int *)(param_1 + 4);
     if (iVar5 < iVar3) {
-      uVar6 = iVar3 - iVar5;
+      uVar4 = iVar3 - iVar5;
     }
     else {
-      uVar6 = iVar5 - iVar3;
+      uVar4 = iVar5 - iVar3;
     }
-    (*cvc_ctx)->base_inc = uVar6 / (*cvc_ctx)->total_tick;
-    iVar3 = input->end;
-    iVar5 = input->begin;
+    *(uint *)(*param_2 + 4) = uVar4 / *(uint *)(*param_2 + 0x10);
+    iVar3 = *(int *)(param_1 + 8);
+    iVar5 = *(int *)(param_1 + 4);
     if (iVar5 < iVar3) {
-      uVar6 = iVar3 - iVar5;
+      uVar4 = iVar3 - iVar5;
     }
     else {
-      uVar6 = iVar5 - iVar3;
+      uVar4 = iVar5 - iVar3;
     }
-    (*cvc_ctx)->remainder = uVar6 % (*cvc_ctx)->total_tick;
-    (*cvc_ctx)->err_acc = 0;
-    (*cvc_ctx)->mode = input->mode;
-    (*cvc_ctx)->output = input->begin;
-    (*cvc_ctx)->user_cb = input->cb;
-    (*cvc_ctx)->data = input->data;
-    milli_timer_init(&(*cvc_ctx)->timer,0x10000);
-    _Var1 = true;
+    *(uint *)(*param_2 + 8) = uVar4 % *(uint *)(*param_2 + 0x10);
+    *(undefined4 *)(*param_2 + 0xc) = 0;
+    *(undefined1 *)(*param_2 + 0x2c) = param_1[0x14];
+    *(undefined4 *)(*param_2 + 0x34) = *(undefined4 *)(param_1 + 4);
+    *(undefined4 *)(*param_2 + 0x38) = *(undefined4 *)(param_1 + 0x18);
+    *(undefined4 *)(*param_2 + 0x3c) = *(undefined4 *)(param_1 + 0x1c);
+    milli_timer_init(*param_2 + 0x1c,0x10000);
+    uVar2 = 1;
   }
-  return _Var1;
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_reasm_handle_frag
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_reasm_handle_frag(aps_header_t *aps_hdr,zmsg_t *msg)
+void aps_reasm_handle_frag(undefined2 *param_1,int param_2)
 
 {
-  byte bVar1;
+  int iVar1;
   int iVar2;
-  aps_reasm_ent_t *ent;
   
-  if ((char)aps_hdr->fcf < '\0') {
-    bVar1 = (aps_hdr->ext_hdr).block_nr;
-    if (bVar1 != 0) {
-      if ((((aps_hdr->ext_hdr).ext_fcf & 3) != 2) && (bVar1 < 2)) goto _L0;
-      if ((aps_hdr->fcf & 3) == 0) {
-        iVar2 = core_globals_get();
-        ent = aps_reasm_ent_find((aps_rx_context_t *)(iVar2 + 0x458),(aps_hdr->addr_info).src_addr,
-                                 aps_hdr->aps_cntr);
-        if (ent != (aps_reasm_ent_t *)0x0) {
+  if ((char)*(byte *)(param_1 + 6) < '\0') {
+    if (*(byte *)(param_1 + 9) != 0) {
+      if (((*(byte *)((int)param_1 + 0x11) & 3) != 2) && (*(byte *)(param_1 + 9) < 2)) goto _L0;
+      if ((*(byte *)(param_1 + 6) & 3) == 0) {
+        iVar1 = core_globals_get();
+        iVar1 = aps_reasm_ent_find(iVar1 + 0x458,*param_1,*(undefined1 *)((int)param_1 + 0xd));
+        if (iVar1 != 0) {
 _L0:
-          aps_reasm_ent_input(ent,aps_hdr,msg);
+          aps_reasm_ent_input(iVar1,param_1,param_2);
           return;
         }
-        iVar2 = core_globals_get();
-        ent = aps_reasm_ent_new((aps_rx_context_t *)(iVar2 + 0x458));
-        if (ent != (aps_reasm_ent_t *)0x0) {
+        iVar1 = core_globals_get();
+        iVar1 = aps_reasm_ent_new(iVar1 + 0x458);
+        if (iVar1 != 0) {
           iVar2 = core_globals_get();
-          aps_reasm_ent_init(ent,*(uint8_t *)(iVar2 + 2));
-          ent->src_addr = (aps_hdr->addr_info).src_addr;
-          ent->aps_cntr = aps_hdr->aps_cntr;
-          aps_rx_window_init(&ent->w,(ent->w).slot_nr);
-          milli_timer_start(&ent->tm,0x640);
+          aps_reasm_ent_init(iVar1,*(undefined1 *)(iVar2 + 2));
+          *(undefined2 *)(iVar1 + 0xc) = *param_1;
+          *(undefined1 *)(iVar1 + 0xe) = *(undefined1 *)((int)param_1 + 0xd);
+          aps_rx_window_init(iVar1 + 0x21,*(undefined1 *)(iVar1 + 0x24));
+          milli_timer_start(iVar1 + 0x10,0x640);
           goto _L0;
         }
       }
     }
-    if (msg != (zmsg_t *)0x0) {
-      zmsg_free(msg);
+    if (param_2 != 0) {
+      zmsg_free(param_2);
     }
   }
   else {

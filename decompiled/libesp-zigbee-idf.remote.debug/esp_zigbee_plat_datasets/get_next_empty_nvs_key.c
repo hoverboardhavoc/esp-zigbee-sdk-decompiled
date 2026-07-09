@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_datasets.o -> get_next_empty_nvs_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,11 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: info */
-/* WARNING: Unknown calling convention */
-
-esp_err_t get_next_empty_nvs_key
-                    (nvs_handle_t nvs_handle,uint16_t ds_key,char *nvs_key,size_t nvs_key_len)
+int get_next_empty_nvs_key(int param_1,char *param_2,size_t param_3)
 
 {
   bool bVar1;
@@ -22,10 +18,10 @@ esp_err_t get_next_empty_nvs_key
   int iVar2;
   char unaff_s2;
   undefined4 uStack_48;
-  nvs_iterator_t nvs_it;
-  nvs_entry_info_t info;
+  undefined1 auStack_44 [16];
+  char acStack_34 [20];
   
-  if (nvs_handle == 0) {
+  if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_datasets.c"
                   ,0x32,"get_next_empty_nvs_key",0x10000);
     goto _L0;
@@ -37,12 +33,12 @@ _L0:
     return unaff_s0;
   }
   uStack_48 = 0;
-  get_next_empty_nvs_key::s_unused_pos = get_next_empty_nvs_key::s_unused_pos + '\x01';
-  snprintf(nvs_key,nvs_key_len,"ZB%02x%02x");
-  unaff_s0 = nvs_entry_find_in_handle(nvs_handle,0x42,&uStack_48);
+  s_unused_pos_1 = s_unused_pos_1 + '\x01';
+  snprintf(param_2,param_3,"ZB%02x%02x");
+  unaff_s0 = nvs_entry_find_in_handle(param_1,0x42,&uStack_48);
   while (unaff_s0 == 0) {
-    nvs_entry_info(uStack_48,&nvs_it);
-    iVar2 = strncmp(nvs_key,info.namespace_name + 0xc,7);
+    nvs_entry_info(uStack_48,auStack_44);
+    iVar2 = strncmp(param_2,acStack_34,7);
     if (iVar2 == 0) goto _L0;
     unaff_s0 = nvs_entry_next(&uStack_48);
   }

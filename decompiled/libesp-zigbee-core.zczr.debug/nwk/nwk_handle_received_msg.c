@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk.o -> nwk_handle_received_msg
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,42 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_handle_received_msg(zmsg_t *msg,nwk_rx_info_t *rx_info)
+undefined4 nwk_handle_received_msg(int param_1,int param_2)
 
 {
-  undefined1 uVar1;
-  undefined1 uVar2;
-  ezb_err_t eVar3;
-  _Bool _Var4;
-  undefined3 extraout_var;
-  undefined4 uVar5;
-  ezb_shortaddr_t local_20;
-  ezb_shortaddr_t eStack_1e;
-  nwk_nlde_data_ind_t ind;
-  uint16_t nwk_fcf;
+  undefined4 uVar1;
+  int iVar2;
+  undefined2 local_20;
+  undefined2 uStack_1e;
+  uint uStack_1c;
+  int iStack_18;
+  ushort auStack_12 [3];
   
-  zmsg_read_bytes(0,2,(undefined1 *)((int)&ind.nsdu + 2));
-  if ((ind.nsdu._2_2_ & 3) == 0) {
-    _Var4 = nwk_is_joined();
-    if (CONCAT31(extraout_var,_Var4) != 0) {
-      ind.lqi = '\0';
-      ind.rssi = '\0';
-      ind._6_2_ = 0;
-      _local_20 = CONCAT22(rx_info->nwk_dst_addr,rx_info->nwk_src_addr);
-      uVar1 = rx_info->lqi;
-      uVar2 = rx_info->rssi;
-      ind.src_addr._1_1_ = uVar2;
-      ind.src_addr._0_1_ = uVar1;
-      ind.dst_addr = 0;
-      uVar5 = zmsg_get_offset(msg);
-      zmsg_remove_header(msg,uVar5);
-      ind._4_4_ = msg;
+  zmsg_read_bytes(0,2,auStack_12);
+  if ((auStack_12[0] & 3) == 0) {
+    iVar2 = nwk_is_joined();
+    if (iVar2 != 0) {
+      iStack_18 = 0;
+      _local_20 = CONCAT22(*(undefined2 *)(param_2 + 4),*(undefined2 *)(param_2 + 6));
+      uStack_1c = (uint)*(ushort *)(param_2 + 9);
+      uVar1 = zmsg_get_offset(param_1);
+      zmsg_remove_header(param_1,uVar1);
+      iStack_18 = param_1;
       nwk_nlde_data_indication(&local_20);
       return 0;
     }
-    eVar3 = 3;
+    uVar1 = 3;
   }
   else {
-    if ((ind.nsdu._2_2_ & 3) == 1) {
-      nwk_handle_received_cmd(msg,rx_info);
+    if ((auStack_12[0] & 3) == 1) {
+      nwk_handle_received_cmd(param_1,param_2);
       return 0;
     }
-    eVar3 = 0x10;
+    uVar1 = 0x10;
   }
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_free(msg);
+  if (param_1 != 0) {
+    zmsg_free(param_1);
   }
-  return eVar3;
+  return uVar1;
 }
 

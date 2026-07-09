@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> scenes.o -> scene_table_add_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool scene_table_add_entry(uint8_t ep_id,zcl_scene_table_entry_t *entry,_Bool is_flash)
+undefined4 scene_table_add_entry(undefined4 param_1,byte *param_2,int param_3)
 
 {
   uint uVar1;
-  zcl_scene_table_t *pzVar2;
-  ezb_err_t eVar3;
-  undefined3 in_register_00002031;
-  zcl_scene_table_entry_t *pzVar4;
+  byte *pbVar2;
+  int iVar3;
+  byte *pbVar4;
   
-  pzVar2 = scene_table_get(ep_id);
-  pzVar4 = (zcl_scene_table_entry_t *)(pzVar2 + 1);
+  pbVar2 = (byte *)scene_table_get();
+  pbVar4 = pbVar2 + 8;
   uVar1 = 0;
   while( true ) {
-    if ((uint)pzVar2->total <= (uVar1 & 0xff)) {
-      return false;
+    if ((uint)*pbVar2 <= (uVar1 & 0xff)) {
+      return 0;
     }
-    if (entry == pzVar4) break;
-    pzVar4 = pzVar4 + 1;
+    if (param_2 == pbVar4) break;
+    pbVar4 = pbVar4 + 0x20;
     uVar1 = uVar1 + 1;
   }
-  if ((CONCAT31(in_register_00002031,is_flash) != 0) &&
-     (eVar3 = scene_table_store_scene(ep_id,entry), eVar3 != 0)) {
-    return false;
+  if ((param_3 != 0) && (iVar3 = scene_table_store_scene(param_1), iVar3 != 0)) {
+    return 0;
   }
-  if (pzVar2[uVar1 * 4 + 1].total == '\0') {
-    *pzVar2->count = *pzVar2->count + '\x01';
-    pzVar2[uVar1 * 4 + 1].total = '\x01';
+  if (pbVar2[uVar1 * 0x20 + 8] == 0) {
+    **(char **)(pbVar2 + 4) = **(char **)(pbVar2 + 4) + '\x01';
+    pbVar2[uVar1 * 0x20 + 8] = 1;
   }
-  return true;
+  return 1;
 }
 

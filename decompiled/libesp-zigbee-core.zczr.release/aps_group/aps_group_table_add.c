@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_group.o -> aps_group_table_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,46 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_group_table_add(ezb_shortaddr_t group_addr,uint8_t endpoint)
+undefined4 aps_group_table_add(int param_1,uint param_2)
 
 {
-  ushort blk_nr;
-  uint uVar1;
-  uint16_t uVar2;
-  undefined2 in_register_0000202a;
-  aps_group_t *group;
+  ushort uVar1;
+  undefined2 *puVar2;
   int iVar3;
   int iVar4;
-  undefined2 extraout_var;
   uint uVar5;
-  undefined3 in_register_0000202d;
-  bitmap_t *blk_busy;
+  uint uVar6;
+  undefined4 uVar7;
   
-  if (0xfd < (CONCAT31(in_register_0000202d,endpoint) - 1 & 0xff)) {
+  if (0xfd < (param_2 - 1 & 0xff)) {
     return 2;
   }
-  if (CONCAT22(in_register_0000202a,group_addr) == 0) {
+  if (param_1 == 0) {
     return 2;
   }
-  group = group_table_find(group_addr);
-  if (group == (aps_group_t *)0x0) {
+  puVar2 = (undefined2 *)group_table_find();
+  if (puVar2 == (undefined2 *)0x0) {
     iVar3 = core_globals_get();
     iVar3 = *(int *)(iVar3 + 0x95c);
     iVar4 = core_globals_get();
-    blk_busy = *(bitmap_t **)(iVar4 + 0x960);
+    uVar7 = *(undefined4 *)(iVar4 + 0x960);
     iVar4 = core_globals_get();
-    blk_nr = *(ushort *)(iVar4 + 0x964);
-    uVar2 = mempool_alloc_idx(blk_busy,blk_nr);
-    if ((uint)blk_nr <= CONCAT22(extraout_var,uVar2)) {
+    uVar1 = *(ushort *)(iVar4 + 0x964);
+    uVar5 = mempool_alloc_idx(uVar7,(uint)uVar1);
+    if (uVar1 <= uVar5) {
       return 1;
     }
-    group = (aps_group_t *)(iVar3 + CONCAT22(extraout_var,uVar2) * 0x22);
-    if (group == (aps_group_t *)0x0) {
+    puVar2 = (undefined2 *)(iVar3 + uVar5 * 0x22);
+    if (puVar2 == (undefined2 *)0x0) {
       return 1;
     }
-    memset(group->ep_in_grp,0,0x20);
-    group->group_addr = group_addr;
+    memset(puVar2 + 1,0,0x20);
+    *puVar2 = (short)param_1;
   }
-  uVar1 = 1 << (endpoint & 7) & 0xff;
-  uVar5 = __atomic_fetch_or_1(group->ep_in_grp + (CONCAT31(in_register_0000202d,endpoint) >> 3),
-                              uVar1,5);
-  if ((uVar1 & uVar5) == 0) {
-    aps_group_table_store_group(group);
+  uVar5 = 1 << (param_2 & 7) & 0xff;
+  uVar6 = __atomic_fetch_or_1((int)puVar2 + (param_2 >> 3) + 2,uVar5,5);
+  if ((uVar5 & uVar6) == 0) {
+    aps_group_table_store_group(puVar2);
   }
   return 0;
 }

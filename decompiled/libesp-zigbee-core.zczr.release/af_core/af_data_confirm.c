@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_core.o -> af_data_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,37 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void af_data_confirm(aps_apsde_data_cnf_t *cnf)
+void af_data_confirm(int param_1)
 
 {
-  uint16_t uVar1;
+  short sVar1;
   int *piVar2;
-  undefined4 *puVar3;
-  aps_apsde_data_cnf_t *extraout_a0;
+  int *piVar3;
   int iVar4;
   
-  if (cnf == (aps_apsde_data_cnf_t *)0x0) {
-    af_data_indication_deliver_ep_handler((void *)0x0);
-    cnf = extraout_a0;
+  if (param_1 == 0) {
+    param_1 = af_data_confirm_part_0();
   }
   iVar4 = core_globals_get();
   piVar2 = *(int **)(iVar4 + 0xca4);
   if (piVar2 != (int *)0x0) {
-    for (; puVar3 = piVar2 + -3, puVar3 != (undefined4 *)0xfffffff4; piVar2 = (int *)*piVar2) {
-      if ((zmsg_t *)*puVar3 == cnf->asdu) {
+    for (; piVar3 = piVar2 + -3, piVar3 != (int *)0xfffffff4; piVar2 = (int *)*piVar2) {
+      if (*piVar3 == *(int *)(param_1 + 0x14)) {
         iVar4 = core_globals_get();
         list_remove_node(iVar4 + 0xca4,piVar2);
-        uVar1 = cnf->profile_id;
-        if ((uVar1 == 0x104) || (uVar1 == 0xc05e)) {
-          zcl_confirm_handler(cnf,piVar2 + -2);
+        sVar1 = *(short *)(param_1 + 0xe);
+        if ((sVar1 == 0x104) || (sVar1 == -0x3fa2)) {
+          zcl_confirm_handler(param_1,piVar2 + -2);
         }
-        else if (uVar1 == 0) {
-          zdo_confirm_handler(cnf,piVar2 + -2);
+        else if (sVar1 == 0) {
+          zdo_confirm_handler(param_1,piVar2 + -2);
         }
-        mm_free(puVar3);
+        mm_free(piVar3);
         break;
       }
     }
   }
-  zmsg_free(cnf->asdu);
+  zmsg_free(*(undefined4 *)(param_1 + 0x14));
   return;
 }
 

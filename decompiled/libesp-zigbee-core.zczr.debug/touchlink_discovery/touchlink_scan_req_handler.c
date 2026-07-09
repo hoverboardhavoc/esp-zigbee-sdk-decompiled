@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_discovery.o -> touchlink_scan_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,86 +10,78 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_scan_req_handler(touchlink_scan_req_t *req)
+undefined4 touchlink_scan_req_handler(int param_1)
 
 {
-  ezb_addr_t *peVar1;
-  undefined4 *puVar2;
-  ezb_grpaddr_t eVar3;
-  undefined2 uVar4;
-  undefined4 uVar5;
-  uint32_t uVar6;
-  undefined1 uVar7;
-  uint32_t *puVar8;
-  int iVar9;
-  ezb_err_t eVar10;
+  undefined2 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined1 uVar4;
+  int *piVar5;
+  undefined4 uVar6;
   
-  if (req == (touchlink_scan_req_t *)0x0) {
-    eVar10 = 0;
+  if (param_1 == 0) {
+    uVar6 = 0;
   }
   else {
-    uVar6 = req->transaction_id;
-    if (uVar6 == 0) {
-      eVar10 = 2;
+    iVar3 = *(int *)(param_1 + 0xc);
+    if (iVar3 == 0) {
+      uVar6 = 2;
     }
     else {
-      puVar8 = (uint32_t *)touchlink_transaction_get();
-      if (uVar6 == *puVar8) {
-        iVar9 = touchlink_transaction_get();
-        if (((req->cmd_ctrl).peer_addr.u.group_addr == *(ezb_grpaddr_t *)(iVar9 + 8)) &&
-           (*(int *)((int)&(req->cmd_ctrl).peer_addr.u + 4) == *(int *)(iVar9 + 0xc))) {
+      piVar5 = (int *)touchlink_transaction_get();
+      if (iVar3 == *piVar5) {
+        iVar3 = touchlink_transaction_get();
+        if ((*(int *)(param_1 + 2) == *(int *)(iVar3 + 8)) &&
+           (*(int *)(param_1 + 6) == *(int *)(iVar3 + 0xc))) {
           return 3;
         }
       }
-      touchlink_set_transaction_id(req->transaction_id);
-      iVar9 = touchlink_transaction_get();
-      peVar1 = &(req->cmd_ctrl).peer_addr.u;
-      eVar3 = peVar1->group_addr;
-      puVar2 = (undefined4 *)((int)&(req->cmd_ctrl).peer_addr.u + 4);
-      uVar4 = *(undefined2 *)puVar2;
-      uVar5 = *puVar2;
-      *(char *)(iVar9 + 8) = (char)(peVar1->group_addr).group;
-      *(char *)(iVar9 + 9) = eVar3.group._1_1_;
-      *(char *)(iVar9 + 10) = eVar3.bcast;
-      *(char *)(iVar9 + 0xb) = eVar3.bcast._1_1_;
-      *(char *)(iVar9 + 0xc) = (char)uVar4;
-      *(char *)(iVar9 + 0xd) = (char)((uint)uVar5 >> 8);
-      *(char *)(iVar9 + 0xe) = (char)((uint)uVar5 >> 0x10);
-      *(char *)(iVar9 + 0xf) = (char)((uint)uVar5 >> 0x18);
-      iVar9 = touchlink_transaction_get();
-      *(undefined1 *)(iVar9 + 0x60c) = 1;
-      iVar9 = touchlink_transaction_get();
-      *(undefined1 *)(iVar9 + 0x610) = 0;
-      iVar9 = touchlink_transaction_get();
-      *(uint32_t *)(iVar9 + 0x614) = req->transaction_id;
-      iVar9 = touchlink_transaction_get();
-      *(undefined2 *)(iVar9 + 0x618) = 0x1e46;
-      iVar9 = touchlink_transaction_get();
-      uVar7 = touchlink_current_channel();
-      *(undefined1 *)(iVar9 + 0x61a) = uVar7;
-      iVar9 = touchlink_transaction_get();
-      iVar9 = touchlink_schedule_transaction_event(iVar9 + 0x60c);
-      if (iVar9 == 0) {
-        iVar9 = touchlink_device_info_get();
-        if (*(char *)(iVar9 + 3) < (req->cmd_ctrl).rssi) {
-          if ((req->zigbee_info & 0x10) == 0) {
-            eVar10 = touchlink_send_scan_rsp((req->cmd_ctrl).tsn);
+      touchlink_set_transaction_id(*(undefined4 *)(param_1 + 0xc));
+      iVar3 = touchlink_transaction_get();
+      uVar6 = *(undefined4 *)(param_1 + 2);
+      uVar1 = *(undefined2 *)(param_1 + 6);
+      uVar2 = *(undefined4 *)(param_1 + 6);
+      *(char *)(iVar3 + 8) = (char)*(undefined2 *)(param_1 + 2);
+      *(char *)(iVar3 + 9) = (char)((uint)uVar6 >> 8);
+      *(char *)(iVar3 + 10) = (char)((uint)uVar6 >> 0x10);
+      *(char *)(iVar3 + 0xb) = (char)((uint)uVar6 >> 0x18);
+      *(char *)(iVar3 + 0xc) = (char)uVar1;
+      *(char *)(iVar3 + 0xd) = (char)((uint)uVar2 >> 8);
+      *(char *)(iVar3 + 0xe) = (char)((uint)uVar2 >> 0x10);
+      *(char *)(iVar3 + 0xf) = (char)((uint)uVar2 >> 0x18);
+      iVar3 = touchlink_transaction_get();
+      *(undefined1 *)(iVar3 + 0x60c) = 1;
+      iVar3 = touchlink_transaction_get();
+      *(undefined1 *)(iVar3 + 0x610) = 0;
+      iVar3 = touchlink_transaction_get();
+      *(undefined4 *)(iVar3 + 0x614) = *(undefined4 *)(param_1 + 0xc);
+      iVar3 = touchlink_transaction_get();
+      *(undefined2 *)(iVar3 + 0x618) = 0x1e46;
+      iVar3 = touchlink_transaction_get();
+      uVar4 = touchlink_current_channel();
+      *(undefined1 *)(iVar3 + 0x61a) = uVar4;
+      iVar3 = touchlink_transaction_get();
+      iVar3 = touchlink_schedule_transaction_event(iVar3 + 0x60c);
+      if (iVar3 == 0) {
+        iVar3 = touchlink_device_info_get();
+        if (*(char *)(iVar3 + 3) < *(char *)(param_1 + 0xb)) {
+          if ((*(byte *)(param_1 + 0x10) & 0x10) == 0) {
+            uVar6 = touchlink_send_scan_rsp(*(undefined1 *)(param_1 + 10));
           }
           else {
-            eVar10 = 2;
+            uVar6 = 2;
           }
         }
         else {
-          eVar10 = 2;
+          uVar6 = 2;
         }
       }
       else {
-        eVar10 = 0;
+        uVar6 = 0;
       }
     }
   }
-  return eVar10;
+  return uVar6;
 }
 

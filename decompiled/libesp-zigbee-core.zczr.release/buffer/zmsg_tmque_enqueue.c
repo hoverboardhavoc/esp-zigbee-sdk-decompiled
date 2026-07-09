@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_tmque_enqueue
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,34 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_tmque_enqueue(zmsg_tmque_t *q,zmsg_t *msg,uint32_t tmo_ms)
+void zmsg_tmque_enqueue(undefined4 *param_1,undefined4 *param_2,int param_3)
 
 {
-  uint16_t uVar1;
+  short sVar1;
   int iVar2;
-  zmsg_t *extraout_a1;
-  uint32_t uVar3;
-  dlist_node_s *pdVar4;
-  zmsg_tmque_t *pzVar5;
+  undefined4 *extraout_a1;
+  int *piVar3;
+  undefined4 *puVar4;
   
-  if (tmo_ms == 0) {
-    q = (zmsg_tmque_t *)__assert_func(0,0,0);
-    msg = extraout_a1;
+  if (param_3 == 0) {
+    param_1 = (undefined4 *)__assert_func(0,0,0);
+    param_2 = extraout_a1;
   }
   iVar2 = micro_timer_get_now();
-  pzVar5 = (zmsg_tmque_t *)(q->mq).list.next;
-  uVar3 = tmo_ms * 1000 + iVar2;
-  (msg->timestamp).val = uVar3;
-  while ((pzVar5 != q && ((int)((pzVar5->tm).fire_time.val - uVar3) < 0))) {
-    pzVar5 = (zmsg_tmque_t *)(pzVar5->mq).list.next;
+  puVar4 = (undefined4 *)*param_1;
+  iVar2 = param_3 * 1000 + iVar2;
+  param_2[6] = iVar2;
+  for (; (puVar4 != param_1 && (puVar4[6] - iVar2 < 0)); puVar4 = (undefined4 *)*puVar4) {
   }
-  pdVar4 = (pzVar5->mq).list.prev;
-  (pzVar5->mq).list.prev = &msg->node;
-  (msg->node).next = (dlist_node_s *)pzVar5;
-  uVar1 = (q->mq).length;
-  (msg->node).prev = pdVar4;
-  pdVar4->next = &msg->node;
-  (q->mq).length = uVar1 + 1;
-  if (msg == (zmsg_t *)(q->mq).list.next) {
-    micro_timer_fire_at(&q->tm);
+  piVar3 = (int *)puVar4[1];
+  puVar4[1] = param_2;
+  *param_2 = puVar4;
+  sVar1 = *(short *)(param_1 + 2);
+  param_2[1] = piVar3;
+  *piVar3 = (int)param_2;
+  *(short *)(param_1 + 2) = sVar1 + 1;
+  if (param_2 == (undefined4 *)*param_1) {
+    micro_timer_fire_at(param_1 + 3);
     return;
   }
   return;

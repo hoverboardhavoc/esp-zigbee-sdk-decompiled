@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_commands.o -> aps_cmd_handle_request_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: ind */
-/* WARNING: Unknown calling convention */
-
-void aps_cmd_handle_request_key(aps_header_t *aps_hdr,zmsg_t *msg)
+void aps_cmd_handle_request_key(undefined2 *param_1,int param_2)
 
 {
   short sVar1;
   short sVar2;
   int iVar3;
   uint uVar4;
-  undefined1 auStack_24 [4];
-  apsme_request_key_ind_t ind;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined1 uStack_14;
   
   iVar3 = aps_secur_is_tc();
   if (iVar3 != 0) {
-    if ((msg->flags & 4) == 0) goto _L0;
-    auStack_24 = (undefined1  [4])0x0;
-    ind.src_address.field_0.u64._0_4_ = 0;
-    ind.src_address.field_0.u64._4_4_ = 0;
-    ind._8_4_ = 0;
-    ind.partner_address.field_0.u8[3] = '\0';
-    sVar1 = zmsg_get_offset(msg);
-    iVar3 = nwk_address_extended_by_short((aps_hdr->addr_info).src_addr,auStack_24);
+    if ((*(ushort *)(param_2 + 0x16) & 4) == 0) goto _L0;
+    uStack_24 = 0;
+    uStack_20 = 0;
+    uStack_1c = 0;
+    uStack_18 = 0;
+    uStack_14 = 0;
+    sVar1 = zmsg_get_offset(param_2);
+    iVar3 = nwk_address_extended_by_short(*param_1,&uStack_24);
     if (iVar3 == 0) {
-      sVar2 = zmsg_read_bytes(msg,sVar1 + 1,1,(undefined1 *)((int)&ind.src_address.field_0 + 4));
+      sVar2 = zmsg_read_bytes(param_2,sVar1 + 1,1,&uStack_1c);
       uVar4 = (uint)(ushort)(sVar2 + sVar1 + 1);
-      if ((ind.src_address.field_0.u64._4_4_ & 0xff) == 2) {
-        iVar3 = zmsg_get_length(msg);
+      if ((uStack_1c & 0xff) == 2) {
+        iVar3 = zmsg_get_length(param_2);
         if (7 < (int)(iVar3 - uVar4)) {
-          zmsg_read_bytes(msg,uVar4,8,(undefined1 *)((int)&ind.src_address.field_0 + 5));
+          zmsg_read_bytes(param_2,uVar4,8,(int)&uStack_1c + 1);
           goto _L0;
         }
       }
-      else if ((ind.src_address.field_0.u64._4_4_ & 0xff) == 4) {
+      else if ((uStack_1c & 0xff) == 4) {
 _L0:
-        apsme_request_key_indication((apsme_request_key_ind_t *)auStack_24);
+        apsme_request_key_indication(&uStack_24);
       }
     }
   }
-  if (msg == (zmsg_t *)0x0) {
+  if (param_2 == 0) {
     return;
   }
 _L0:
-  zmsg_free(msg);
+  zmsg_free(param_2);
   return;
 }
 

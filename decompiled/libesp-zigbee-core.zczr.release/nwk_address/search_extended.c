@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> search_extended
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-nwk_addr_ref_t search_extended(nwk_addr_table_t *tbl,ezb_extaddr_t *extaddr)
+void search_extended(undefined4 *param_1,int *param_2)
 
 {
   uint uVar1;
-  nwk_addr_table_ent_t *pnVar2;
+  int *piVar2;
   
   uVar1 = 0;
-  while (uVar1 = bitmap_find_next_bit(tbl->ent_in_use,tbl->ent_nr,uVar1), uVar1 < tbl->ent_nr) {
-    pnVar2 = tbl->ents + uVar1;
-    if ((*(ushort *)&pnVar2->ref_cnt >> 10 & 1) == 0) {
-      if ((*(int *)&extaddr->field_0 == *(int *)&(pnVar2->extaddr).field_0) &&
-         (*(int *)((int)&extaddr->field_0 + 4) == *(int *)((int)&(pnVar2->extaddr).field_0 + 4)))
-      break;
+  do {
+    uVar1 = bitmap_find_next_bit(*param_1,*(undefined2 *)(param_1 + 2),uVar1);
+    if (*(ushort *)(param_1 + 2) <= uVar1) {
+      return;
+    }
+    piVar2 = (int *)(param_1[1] + uVar1 * 0x12);
+    if ((*(ushort *)(piVar2 + 4) >> 10 & 1) == 0) {
+      if ((*param_2 == *piVar2) && (param_2[1] == piVar2[1])) {
+        return;
+      }
     }
     uVar1 = uVar1 + 1 & 0xffff;
-  }
-  return (nwk_addr_ref_t)uVar1;
+  } while( true );
 }
 

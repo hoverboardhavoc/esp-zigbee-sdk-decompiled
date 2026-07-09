@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> groups.o -> groups_cluster_view_group_rsp_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t groups_cluster_view_group_rsp_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void groups_cluster_view_group_rsp_cmd_handler(int param_1,undefined4 param_2)
 
 {
-  uint16_t uVar1;
-  ezb_zcl_status_t eVar2;
-  uint16_t uVar3;
-  uint uVar4;
-  uint16_t uStack_26;
-  uint8_t uStack_23;
-  uint16_t group_id;
-  uint8_t status;
-  uint16_t offset;
+  ushort uVar1;
+  short sVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  undefined2 uStack_26;
+  undefined1 uStack_23;
+  ushort local_22 [7];
   
-  group_id = 0;
-  uStack_23 = '\0';
+  local_22[0] = 0;
+  uStack_23 = 0;
   uStack_26 = 0xffff;
-  uVar4 = zmsg_get_length(packet->payload);
-  af_read_le8(packet->payload,&group_id,&uStack_23);
-  af_read_le16(packet->payload,&group_id,&uStack_26);
-  uVar1 = group_id;
-  if (group_id <= uVar4) {
-    uVar3 = groups_read_group_name(packet->payload,group_id,(void *)0x0);
-    group_id = uVar1 + uVar3;
+  uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),local_22,&uStack_23);
+  af_read_le16(*(undefined4 *)(param_1 + 0x24),local_22,&uStack_26);
+  uVar1 = local_22[0];
+  if (local_22[0] <= uVar3) {
+    sVar2 = groups_read_group_name(*(undefined4 *)(param_1 + 0x24),(uint)local_22[0],0);
+    local_22[0] = uVar1 + sVar2;
   }
-  if (uVar4 < group_id) {
-    eVar2 = 0x80;
+  if (uVar3 < local_22[0]) {
+    uVar4 = 0x80;
   }
   else {
-    eVar2 = zcl_message_groups_view_group_resp(packet,uStack_23,uStack_26,(char *)0x0);
+    uVar4 = zcl_message_groups_view_group_resp(param_1,uStack_23,uStack_26,0);
   }
-  eVar2 = zcl_packet_setup_default_response(rsp,packet,eVar2);
-  return eVar2;
+  zcl_packet_setup_default_response(param_2,param_1,uVar4);
+  return;
 }
 

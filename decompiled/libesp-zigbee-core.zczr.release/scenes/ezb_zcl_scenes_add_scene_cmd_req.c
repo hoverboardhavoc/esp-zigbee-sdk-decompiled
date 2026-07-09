@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> scenes.o -> ezb_zcl_scenes_add_scene_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,48 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: packet */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_scenes_add_scene_cmd_req(ezb_zcl_scenes_add_scene_cmd_t *cmd_req)
+int ezb_zcl_scenes_add_scene_cmd_req(void *param_1)
 
 {
   undefined4 uVar1;
   int iVar2;
   undefined4 uVar3;
-  char *pcVar4;
-  ezb_zcl_scenes_extension_field_t *peVar5;
+  int *piVar4;
   undefined1 auStack_50 [24];
-  undefined1 auStack_38 [4];
-  zcl_packet_t packet;
+  undefined1 auStack_38 [36];
+  undefined4 uStack_14;
   
   memset(auStack_38,0,0x28);
-  if ((cmd_req == (ezb_zcl_scenes_add_scene_cmd_t *)0x0) ||
-     (iVar2 = zcl_packet_init(auStack_38,0), iVar2 != 0)) {
+  if ((param_1 == (void *)0x0) || (iVar2 = zcl_packet_init(auStack_38,0), iVar2 != 0)) {
     iVar2 = -1;
   }
   else {
-    memcpy(auStack_50,cmd_req,10);
-    iVar2 = zcl_cmd_to_packet(auStack_38,0,0,(cmd_req->cmd_ctrl).dis_default_rsp,0,0,5);
+    memcpy(auStack_50,param_1,10);
+    iVar2 = zcl_cmd_to_packet(auStack_38,0,0,*(undefined1 *)((int)param_1 + 0xc),0,0,5);
     if ((((iVar2 == 0) &&
-         (iVar2 = zmsg_append_le16((zmsg_t *)packet._32_4_,(cmd_req->payload).group_id), iVar2 == 0)
-         ) && (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,(cmd_req->payload).scene_id),
-              iVar2 == 0)) &&
-       (iVar2 = zmsg_append_le16((zmsg_t *)packet._32_4_,(cmd_req->payload).transition_time),
-       uVar1 = packet._32_4_, iVar2 == 0)) {
-      pcVar4 = (cmd_req->payload).scene_name;
-      uVar3 = ezb_zcl_get_attr_value_size(0x42,pcVar4);
-      iVar2 = zmsg_append_bytes(uVar1,uVar3,pcVar4);
+         (iVar2 = zmsg_append_le16(uStack_14,*(undefined2 *)((int)param_1 + 0x18)), iVar2 == 0)) &&
+        (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)param_1 + 0x1a)), iVar2 == 0)) &&
+       (iVar2 = zmsg_append_le16(uStack_14,*(undefined2 *)((int)param_1 + 0x1c)), uVar1 = uStack_14,
+       iVar2 == 0)) {
+      uVar3 = ezb_zcl_get_attr_value_size(0x42,(int)param_1 + 0x1e);
+      iVar2 = zmsg_append_bytes(uVar1,uVar3,(int)param_1 + 0x1e);
       if (iVar2 == 0) {
-        for (peVar5 = (cmd_req->payload).extension_field;
-            peVar5 != (ezb_zcl_scenes_extension_field_t *)0x0; peVar5 = peVar5->next) {
-          iVar2 = zmsg_append_le16((zmsg_t *)packet._32_4_,peVar5->cluster_id);
+        for (piVar4 = *(int **)((int)param_1 + 0x30); piVar4 != (int *)0x0; piVar4 = (int *)*piVar4)
+        {
+          iVar2 = zmsg_append_le16(uStack_14,*(undefined2 *)(piVar4 + 1));
           if (((iVar2 != 0) ||
-              (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,peVar5->length), iVar2 != 0)) ||
-             (iVar2 = zmsg_append_bytes(packet._32_4_,peVar5->length,peVar5->value), iVar2 != 0))
-          goto _L0;
+              (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)piVar4 + 6)), iVar2 != 0)) ||
+             (iVar2 = zmsg_append_bytes(uStack_14,*(undefined1 *)((int)piVar4 + 6),piVar4[2]),
+             iVar2 != 0)) goto _L0;
         }
-        zcl_packet_send(auStack_38,&(cmd_req->cmd_ctrl).cnf_ctx);
+        zcl_packet_send(auStack_38,(int)param_1 + 0x10);
         iVar2 = zcl_status_to_err();
         if (iVar2 == 0) {
           return 0;

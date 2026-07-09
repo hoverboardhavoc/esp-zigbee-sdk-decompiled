@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> list.o -> list_pop_all_ll
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,10 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-list_node_t * list_pop_all_ll(list_t *list)
+void list_pop_all_ll(void)
 
 {
-  list_node_t *plVar1;
-  
-  plVar1 = (list_node_t *)__atomic_exchange_4(0,5);
-  return plVar1;
+  __atomic_exchange_4(0,5);
+  return;
 }
 

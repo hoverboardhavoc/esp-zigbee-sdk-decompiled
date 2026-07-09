@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_srv.o -> nwk_permit_joining
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_permit_joining(uint8_t permit_duration)
+undefined4 nwk_permit_joining(uint param_1)
 
 {
-  _Bool _Var1;
-  undefined3 in_register_00002029;
-  undefined3 extraout_var;
-  int iVar2;
-  ezb_err_t eVar3;
+  int iVar1;
+  undefined4 uVar2;
   undefined1 uStack_18;
   undefined1 uStack_17;
-  uint8_t uStack_16;
-  nwk_nlme_event_ind_t ind;
+  undefined1 uStack_16;
   
-  _Var1 = nwk_is_router_started();
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    eVar3 = 0x2c2;
+  iVar1 = nwk_is_router_started();
+  if (iVar1 == 0) {
+    uVar2 = 0x2c2;
   }
   else {
-    iVar2 = core_globals_get();
-    if ((uint)*(byte *)(iVar2 + 0xb07) != CONCAT31(in_register_00002029,permit_duration)) {
-      nwk_set_mac_permit_joining(CONCAT31(in_register_00002029,permit_duration) != 0);
+    iVar1 = core_globals_get();
+    if (*(byte *)(iVar1 + 0xb07) != param_1) {
+      nwk_set_mac_permit_joining(param_1 != 0);
       memset(&uStack_17,0,7);
       uStack_18 = 1;
-      uStack_16 = permit_duration;
+      uStack_16 = (char)param_1;
       nwk_nlme_event_indication(&uStack_18);
-      iVar2 = core_globals_get();
-      *(uint8_t *)(iVar2 + 0xb07) = permit_duration;
+      iVar1 = core_globals_get();
+      *(char *)(iVar1 + 0xb07) = (char)param_1;
     }
-    eVar3 = 0;
+    uVar2 = 0;
   }
-  return eVar3;
+  return uVar2;
 }
 

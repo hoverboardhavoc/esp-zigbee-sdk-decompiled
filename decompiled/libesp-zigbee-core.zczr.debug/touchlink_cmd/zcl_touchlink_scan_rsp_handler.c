@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_cmd.o -> zcl_touchlink_scan_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,83 +10,84 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_touchlink_scan_rsp_handler(zcl_packet_t *packet)
+undefined1 zcl_touchlink_scan_rsp_handler(undefined4 *param_1)
 
 {
   undefined1 uVar1;
-  zcl_status_t zVar2;
-  uint uVar3;
-  uint16_t uStack_4e;
+  uint uVar2;
+  ushort uStack_4e;
   undefined4 uStack_4c;
-  uint16_t offset;
-  zcl_touchlink_scan_rsp_t rsp;
+  undefined4 uStack_48;
+  undefined2 uStack_44;
+  undefined1 uStack_42;
+  undefined1 uStack_41;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  if (packet == (zcl_packet_t *)0x0) {
-    zVar2 = 0xfe;
+  if (param_1 == (undefined4 *)0x0) {
+    uVar1 = 0xfe;
   }
-  else if (packet->payload == (zcl_packet_payload_t *)0x0) {
-    zVar2 = 0xfe;
+  else if (param_1[9] == 0) {
+    uVar1 = 0xfe;
   }
   else {
-    rsp.cmd_ctrl._8_4_ = 0;
-    rsp.transaction_id = 0;
-    rsp.response_id = 0;
-    rsp.zigbee_info = '\0';
-    rsp.touchlink_info = '\0';
-    rsp.key_bitmask = 0;
-    rsp._24_4_ = 0;
-    rsp.ext_panid.field_0.u64._3_4_ = 0;
-    rsp._32_4_ = 0;
-    rsp.pan_id = 0;
-    rsp.nwk_addr = 0;
-    rsp.n_subdevs = '\0';
-    rsp.total_group_ids = '\0';
-    rsp.sub_device.ep_id = '\0';
-    rsp.sub_device._1_1_ = 0;
-    rsp.sub_device.profile_id = 0;
-    rsp.sub_device.device_id = 0;
-    rsp.sub_device.version = '\0';
-    rsp.sub_device.n_group_ids = '\0';
-    rsp._50_2_ = 0;
-    rsp.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-    uStack_4c = *(undefined4 *)&(packet->header).src_addr;
-    rsp.cmd_ctrl.peer_addr._0_4_ = *(undefined4 *)((int)&(packet->header).src_addr.u + 2);
-    rsp.cmd_ctrl.peer_addr.u._4_1_ = (packet->header).tsn;
-    rsp.cmd_ctrl.peer_addr.u.group_addr.bcast =
-         *(undefined2 *)((int)&(packet->header).src_addr.u + 6);
-    rsp.cmd_ctrl.peer_addr.u._5_1_ = (packet->header).rssi;
+    uStack_40 = 0;
+    uStack_3c = 0;
+    uStack_38 = 0;
+    uStack_34 = 0;
+    uStack_30 = 0;
+    uStack_2c = 0;
+    uStack_28 = 0;
+    uStack_24 = 0;
+    uStack_20 = 0;
+    uStack_1c = 0;
+    uStack_18 = 0;
+    uStack_14 = 0;
+    uStack_4c = *param_1;
+    uStack_48 = param_1[1];
+    _uStack_44 = CONCAT13(*(undefined1 *)((int)param_1 + 0x1f),
+                          CONCAT12(*(undefined1 *)((int)param_1 + 0x1e),*(undefined2 *)(param_1 + 2)
+                                  ));
     uStack_4e = 0;
-    af_read_le32(packet->payload,&uStack_4e,(uint32_t *)((int)&rsp.cmd_ctrl.peer_addr.u + 6));
-    af_read_le8(packet->payload,&uStack_4e,&rsp.zigbee_info);
-    af_read_le8(packet->payload,&uStack_4e,(uint8_t *)&rsp.response_id);
-    af_read_le8(packet->payload,&uStack_4e,(uint8_t *)((int)&rsp.response_id + 1));
-    af_read_le16(packet->payload,&uStack_4e,(uint16_t *)((int)&rsp.response_id + 2));
-    af_read_le32(packet->payload,&uStack_4e,&rsp.transaction_id);
-    af_read_bytes(packet->payload,&uStack_4e,8,&rsp.touchlink_info);
-    af_read_le8(packet->payload,&uStack_4e,rsp.ext_panid.field_0.u8 + 4);
-    af_read_le8(packet->payload,&uStack_4e,rsp.ext_panid.field_0.u8 + 5);
-    af_read_le16(packet->payload,&uStack_4e,(uint16_t *)(rsp.ext_panid.field_0.u8 + 7));
-    af_read_le16(packet->payload,&uStack_4e,(uint16_t *)&rsp.channel);
-    af_read_le8(packet->payload,&uStack_4e,(uint8_t *)&rsp.pan_id);
-    af_read_le8(packet->payload,&uStack_4e,(uint8_t *)((int)&rsp.pan_id + 1));
-    if ((char)rsp.pan_id == '\x01') {
-      af_read_le8(packet->payload,&uStack_4e,(uint8_t *)&rsp.nwk_addr);
-      af_read_le16(packet->payload,&uStack_4e,(uint16_t *)&rsp.n_subdevs);
-      af_read_le16(packet->payload,&uStack_4e,(uint16_t *)&rsp.sub_device);
-      af_read_le8(packet->payload,&uStack_4e,(uint8_t *)&rsp.sub_device.profile_id);
-      af_read_le8(packet->payload,&uStack_4e,(uint8_t *)((int)&rsp.sub_device.profile_id + 1));
+    af_read_le32(param_1[9],&uStack_4e,&uStack_40);
+    af_read_le8(param_1[9],&uStack_4e,&uStack_34);
+    af_read_le8(param_1[9],&uStack_4e,&uStack_38);
+    af_read_le8(param_1[9],&uStack_4e,(int)&uStack_38 + 1);
+    af_read_le16(param_1[9],&uStack_4e,(int)&uStack_38 + 2);
+    af_read_le32(param_1[9],&uStack_4e,&uStack_3c);
+    af_read_bytes(param_1[9],&uStack_4e,8,(int)&uStack_34 + 1);
+    af_read_le8(param_1[9],&uStack_4e,(int)&uStack_2c + 1);
+    af_read_le8(param_1[9],&uStack_4e,(int)&uStack_2c + 2);
+    af_read_le16(param_1[9],&uStack_4e,&uStack_28);
+    af_read_le16(param_1[9],&uStack_4e,(int)&uStack_28 + 2);
+    af_read_le8(param_1[9],&uStack_4e,&uStack_24);
+    af_read_le8(param_1[9],&uStack_4e,(int)&uStack_24 + 1);
+    if ((uStack_24 & 0xff) == 1) {
+      af_read_le8(param_1[9],&uStack_4e,(int)&uStack_24 + 2);
+      af_read_le16(param_1[9],&uStack_4e,&uStack_20);
+      af_read_le16(param_1[9],&uStack_4e,(int)&uStack_20 + 2);
+      af_read_le8(param_1[9],&uStack_4e,&uStack_1c);
+      af_read_le8(param_1[9],&uStack_4e,(int)&uStack_1c + 1);
     }
-    uVar3 = zmsg_get_length(packet->payload);
-    if (uVar3 < uStack_4e) {
-      zVar2 = 0x80;
+    uVar2 = zmsg_get_length(param_1[9]);
+    if (uVar2 < uStack_4e) {
+      uVar1 = 0x80;
     }
     else {
-      uVar1 = touchlink_scan_rsp_handler(&stack0xffffffb4);
-      zVar2 = zcl_status_to_err(uVar1);
+      uVar1 = touchlink_scan_rsp_handler(&uStack_4c);
+      uVar1 = zcl_status_to_err(uVar1);
     }
   }
-  return zVar2;
+  return uVar1;
 }
 

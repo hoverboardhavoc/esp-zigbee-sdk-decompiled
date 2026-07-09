@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_dev_srv_disc.o -> zdo_op_nwk_addr_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,83 +10,78 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t
-zdo_op_nwk_addr_rsp(zdo_packet_payload_t *payload,uint8_t request_type,zdp_nwk_addr_rsp_field_t *rsp
-                   ,_Bool is_write)
+undefined4 zdo_op_nwk_addr_rsp(int param_1,uint param_2,char *param_3,int param_4)
 
 {
   int iVar1;
-  ezb_shortaddr_t *peVar2;
-  undefined3 in_register_0000202d;
-  undefined3 in_register_00002035;
-  uint uVar3;
+  uint uVar2;
+  void *pvVar3;
   uint uVar4;
-  zdp_status_t unaff_s3;
-  uint16_t auStack_22 [2];
-  uint16_t offset;
+  undefined4 unaff_s3;
+  ushort auStack_22 [7];
   
-  uVar3 = CONCAT31(in_register_0000202d,request_type);
-  if ((payload != (zdo_packet_payload_t *)0x0) && (rsp != (zdp_nwk_addr_rsp_field_t *)0x0)) {
-    if (CONCAT31(in_register_00002035,is_write) == 0) {
+  if ((param_1 != 0) && (param_3 != (char *)0x0)) {
+    if (param_4 == 0) {
       auStack_22[0] = 0;
-      uVar3 = zmsg_get_length();
-      af_read_le8(payload,auStack_22,&rsp->status);
-      af_read_bytes(payload,auStack_22,8,(uint8_t *)&rsp->ieee_addr_remote_dev);
-      af_read_le16(payload,auStack_22,&rsp->nwk_addr_remote_dev);
-      if ((rsp->status == '\0') && (auStack_22[0] < uVar3)) {
-        af_read_le8(payload,auStack_22,&rsp->num_assoc_dev);
-        if (rsp->num_assoc_dev != 0) {
-          peVar2 = (ezb_shortaddr_t *)calloc((uint)rsp->num_assoc_dev,2);
-          rsp->nwk_addr_assoc_dev_list = peVar2;
-          if (peVar2 == (ezb_shortaddr_t *)0x0) {
+      uVar2 = zmsg_get_length();
+      af_read_le8(param_1,auStack_22,param_3);
+      af_read_bytes(param_1,auStack_22,8,param_3 + 1);
+      af_read_le16(param_1,auStack_22,param_3 + 10);
+      if ((*param_3 == '\0') && (auStack_22[0] < uVar2)) {
+        af_read_le8(param_1,auStack_22,param_3 + 0xc);
+        if ((byte)param_3[0xc] != 0) {
+          pvVar3 = calloc((uint)(byte)param_3[0xc],2);
+          *(void **)(param_3 + 0x10) = pvVar3;
+          if (pvVar3 == (void *)0x0) {
             return 0x8a;
           }
-          af_read_le8(payload,auStack_22,&rsp->start_index);
-          for (uVar4 = 0; uVar4 < rsp->num_assoc_dev; uVar4 = uVar4 + 1 & 0xff) {
-            af_read_le16(payload,auStack_22,rsp->nwk_addr_assoc_dev_list + uVar4);
+          af_read_le8(param_1,auStack_22,param_3 + 0xd);
+          for (uVar4 = 0; uVar4 < (byte)param_3[0xc]; uVar4 = uVar4 + 1 & 0xff) {
+            af_read_le16(param_1,auStack_22,*(int *)(param_3 + 0x10) + uVar4 * 2);
           }
         }
       }
       else {
-        rsp->num_assoc_dev = '\0';
-        rsp->start_index = '\0';
-        rsp->nwk_addr_assoc_dev_list = (ezb_shortaddr_t *)0x0;
+        param_3[0xc] = '\0';
+        param_3[0xd] = '\0';
+        param_3[0x10] = '\0';
+        param_3[0x11] = '\0';
+        param_3[0x12] = '\0';
+        param_3[0x13] = '\0';
       }
-      if (uVar3 < auStack_22[0]) {
+      if (uVar2 < auStack_22[0]) {
         unaff_s3 = 0xfe;
       }
       else {
-        unaff_s3 = '\0';
+        unaff_s3 = 0;
       }
     }
     else {
-      auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,rsp->status);
+      auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,*param_3);
       iVar1 = zmsg_append_bytes(1,auStack_22);
       if (iVar1 == 0) {
-        iVar1 = zmsg_append_bytes(payload,8,&rsp->ieee_addr_remote_dev);
+        iVar1 = zmsg_append_bytes(param_1,8,param_3 + 1);
         if (iVar1 == 0) {
-          auStack_22[0] = rsp->nwk_addr_remote_dev;
-          iVar1 = zmsg_append_bytes(payload,2,auStack_22);
+          auStack_22[0] = *(ushort *)(param_3 + 10);
+          iVar1 = zmsg_append_bytes(param_1,2,auStack_22);
           if (iVar1 == 0) {
-            if (rsp->status == '\0') {
-              unaff_s3 = '\0';
-              if (uVar3 == 1) {
-                auStack_22[0]._0_1_ = rsp->num_assoc_dev;
-                iVar1 = zmsg_append_bytes(payload,1,auStack_22);
+            if (*param_3 == '\0') {
+              unaff_s3 = 0;
+              if (param_2 == 1) {
+                auStack_22[0]._0_1_ = param_3[0xc];
+                iVar1 = zmsg_append_bytes(param_1,1,auStack_22);
                 if (iVar1 == 0) {
-                  if (rsp->num_assoc_dev == '\0') {
-                    unaff_s3 = '\0';
+                  if (param_3[0xc] == '\0') {
+                    unaff_s3 = 0;
                   }
-                  else if (rsp->nwk_addr_assoc_dev_list != (ezb_shortaddr_t *)0x0) {
-                    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,rsp->start_index);
-                    iVar1 = zmsg_append_bytes(payload,1,auStack_22);
+                  else if (*(int *)(param_3 + 0x10) != 0) {
+                    auStack_22[0] = CONCAT11(auStack_22[0]._1_1_,param_3[0xd]);
+                    iVar1 = zmsg_append_bytes(param_1,1,auStack_22);
                     if (iVar1 == 0) {
-                      unaff_s3 = '\0';
-                      for (uVar3 = 0; uVar3 < rsp->num_assoc_dev; uVar3 = uVar3 + 1 & 0xff) {
-                        auStack_22[0] = rsp->nwk_addr_assoc_dev_list[uVar3];
-                        iVar1 = zmsg_append_bytes(payload,2,auStack_22);
+                      for (param_2 = 0; param_2 < (byte)param_3[0xc]; param_2 = param_2 + 1 & 0xff)
+                      {
+                        auStack_22[0] = *(ushort *)(*(int *)(param_3 + 0x10) + param_2 * 2);
+                        iVar1 = zmsg_append_bytes(param_1,2,auStack_22);
                         if (iVar1 != 0) {
                           return 0x8a;
                         }
@@ -104,7 +99,7 @@ _L0:
               }
             }
             else {
-              unaff_s3 = '\0';
+              unaff_s3 = 0;
             }
           }
           else {

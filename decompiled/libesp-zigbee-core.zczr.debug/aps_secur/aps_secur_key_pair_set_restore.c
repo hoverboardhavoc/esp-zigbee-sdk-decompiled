@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_key_pair_set_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,78 +10,78 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_secur_key_pair_set_restore(void)
 
 {
-  ushort blk_nr;
-  bool bVar1;
+  ushort uVar1;
   bool bVar2;
-  uint16_t uVar3;
+  int iVar3;
   int iVar4;
-  int iVar5;
-  undefined2 extraout_var;
-  aps_device_key_pair_t *__s;
-  bitmap_t *blk_busy;
-  undefined1 auStack_54 [4];
-  ds_aps_key_pair_iterator_t itor;
+  uint uVar5;
+  undefined1 *__s;
+  bool bVar6;
+  undefined4 uVar7;
+  undefined1 auStack_54 [8];
+  undefined1 auStack_4c [16];
+  undefined1 auStack_3c [16];
+  undefined4 uStack_2c;
+  undefined1 uStack_28;
+  undefined1 uStack_27;
+  undefined2 uStack_26;
+  undefined2 uStack_24;
+  char cStack_22;
   
-  itor.data.supported_kn_methods = '\0';
-  itor.data.supported_kn_secrets = '\0';
-  itor.data.flags._0_1_ = '\0';
-  ds_aps_key_pair_itor_read((ds_aps_key_pair_iterator_t *)auStack_54);
-  bVar1 = false;
+  uStack_24 = 0;
+  cStack_22 = '\0';
+  ds_aps_key_pair_itor_read(auStack_54);
+  bVar2 = false;
   do {
-    if ((char)itor.data.flags != '\0') {
-      bVar2 = false;
+    if (cStack_22 != '\0') {
+      bVar6 = false;
 _L0:
-      if ((bVar1) || (bVar2)) {
+      if ((bVar2) || (bVar6)) {
         aps_secur_key_pair_set_refresh_stored_key_pairs();
       }
       return;
     }
-    __s = aps_secur_get_key_pair_by_addr((ezb_extaddr_t *)auStack_54);
-    if (__s == (aps_device_key_pair_t *)0x0) {
+    __s = (undefined1 *)aps_secur_get_key_pair_by_addr(auStack_54);
+    if (__s == (undefined1 *)0x0) {
+      iVar3 = core_globals_get();
+      iVar3 = *(int *)(iVar3 + 0x9a0);
       iVar4 = core_globals_get();
-      iVar4 = *(int *)(iVar4 + 0x9a0);
-      iVar5 = core_globals_get();
-      blk_busy = *(bitmap_t **)(iVar5 + 0x9a4);
-      iVar5 = core_globals_get();
-      blk_nr = *(ushort *)(iVar5 + 0x9a8);
-      uVar3 = mempool_alloc_idx(blk_busy,blk_nr);
-      if ((uint)blk_nr <= CONCAT22(extraout_var,uVar3)) {
-        bVar2 = true;
+      uVar7 = *(undefined4 *)(iVar4 + 0x9a4);
+      iVar4 = core_globals_get();
+      uVar1 = *(ushort *)(iVar4 + 0x9a8);
+      uVar5 = mempool_alloc_idx(uVar7,(uint)uVar1);
+      if (uVar1 <= uVar5) {
+        bVar6 = true;
         goto _L0;
       }
-      __s = (aps_device_key_pair_t *)(iVar4 + CONCAT22(extraout_var,uVar3) * 0x38);
-      if (__s == (aps_device_key_pair_t *)0x0) {
-        bVar2 = true;
+      __s = (undefined1 *)(iVar3 + uVar5 * 0x38);
+      if (__s == (undefined1 *)0x0) {
+        bVar6 = true;
         goto _L0;
       }
     }
     else {
-      bVar1 = true;
+      bVar2 = true;
     }
     memset(__s,0,0x38);
-    (__s->device_address).field_0.u8[0] = auStack_54[0];
-    (__s->device_address).field_0.u8[1] = auStack_54[1];
-    (__s->device_address).field_0.u8[2] = auStack_54[2];
-    (__s->device_address).field_0.u8[3] = auStack_54[3];
-    (__s->device_address).field_0.u8[4] = (uint8_t)itor.data.device_address.field_0.u64._0_4_;
-    (__s->device_address).field_0.u8[5] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 8);
-    (__s->device_address).field_0.u8[6] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 0x10);
-    (__s->device_address).field_0.u8[7] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 0x18);
-    memcpy(__s->link_key,(void *)((int)&itor.data.device_address.field_0 + 4),0x10);
-    memcpy(__s->passphrase,itor.data.link_key + 0xc,0x10);
-    __s->outgoing_frame_cntr = itor.data.passphrase._12_4_;
-    __s->supported_kn_methods = (uint8_t)itor.data.outgoing_frame_cntr;
-    __s->supported_kn_secrets = itor.data.outgoing_frame_cntr._1_1_;
-    __s->field_8 = itor.data.outgoing_frame_cntr._2_2_;
-    ds_aps_key_pair_next((ds_aps_key_pair_iterator_t *)auStack_54);
+    *__s = (char)auStack_54._0_4_;
+    __s[1] = SUB41(auStack_54._0_4_,1);
+    __s[2] = SUB41(auStack_54._0_4_,2);
+    __s[3] = SUB41(auStack_54._0_4_,3);
+    __s[4] = (char)auStack_54._4_4_;
+    __s[5] = SUB41(auStack_54._4_4_,1);
+    __s[6] = SUB41(auStack_54._4_4_,2);
+    __s[7] = SUB41(auStack_54._4_4_,3);
+    memcpy(__s + 0x12,auStack_4c,0x10);
+    memcpy(__s + 0x22,auStack_3c,0x10);
+    *(undefined4 *)(__s + 8) = uStack_2c;
+    __s[0x32] = uStack_28;
+    __s[0x33] = uStack_27;
+    *(undefined2 *)(__s + 0x34) = uStack_26;
+    ds_aps_key_pair_next(auStack_54);
   } while( true );
 }
 

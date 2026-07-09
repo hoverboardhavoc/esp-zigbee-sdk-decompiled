@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_ctx_entry_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_packet_ctx_entry_timeout(zdo_packet_ctx_entry_t *ent)
+void zdo_packet_ctx_entry_timeout(int param_1)
 
 {
   int iVar1;
@@ -21,25 +19,24 @@ void zdo_packet_ctx_entry_timeout(zdo_packet_ctx_entry_t *ent)
   iVar1 = core_globals_get();
   piVar2 = *(int **)(iVar1 + 0xcac);
   if (piVar2 != (int *)0x0) {
-    for (; (zdo_packet_ctx_entry_t *)(piVar2 + -9) != (zdo_packet_ctx_entry_t *)0xffffffdc;
-        piVar2 = (int *)*piVar2) {
-      if ((zdo_packet_ctx_entry_t *)(piVar2 + -9) == ent) {
-        if ((*(uint *)&ent->field_0x14 & 1) == 0) {
-          zdo_packet_notify_result(&ent->ctx,7,(void *)0x0);
-          ent->field_0x14 = ent->field_0x14 | 1;
+    for (; piVar2 + -9 != (int *)0xffffffdc; piVar2 = (int *)*piVar2) {
+      if (piVar2 + -9 == (int *)param_1) {
+        if ((*(uint *)(param_1 + 0x14) & 1) == 0) {
+          zdo_packet_notify_result(param_1 + 0x18,7,0);
+          *(byte *)(param_1 + 0x14) = *(byte *)(param_1 + 0x14) | 1;
         }
-        else if ((ent->ctx).mode == '\x02') {
-          zdo_packet_notify_result(&ent->ctx,0,(void *)0x0);
+        else if (*(char *)(param_1 + 0x18) == '\x02') {
+          zdo_packet_notify_result(param_1 + 0x18,0,0);
         }
-        zdo_packet_ctx_list_remove_entry(ent);
-        if (ent == (zdo_packet_ctx_entry_t *)0x0) {
+        zdo_packet_ctx_list_remove_entry(param_1);
+        if (param_1 == 0) {
           return;
         }
-        if ((*(uint *)&ent->field_0x14 & 3) != 3) {
+        if ((*(uint *)(param_1 + 0x14) & 3) != 3) {
           return;
         }
-        milli_timer_stop(&ent->timer);
-        mm_free(ent);
+        milli_timer_stop(param_1 + 4);
+        mm_free(param_1);
         return;
       }
     }

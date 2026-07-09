@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_reporting.o -> check_attr_delta
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,10 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: attr_value */
-/* WARNING: Unknown calling convention */
-
-_Bool check_attr_delta(zcl_reporting_info_t *info)
+bool check_attr_delta(int param_1)
 
 {
   byte bVar1;
@@ -24,31 +21,31 @@ _Bool check_attr_delta(zcl_reporting_info_t *info)
   uint uVar6;
   uint uVar7;
   uint uVar8;
-  uint32_t uVar9;
-  bool bVar10;
+  bool bVar9;
   uint uStack_18;
-  zcl_attr_variable_t attr_value;
+  uint uStack_14;
   
-  if (info == (zcl_reporting_info_t *)0x0) {
-    bVar10 = false;
+  if (param_1 == 0) {
+    bVar9 = false;
   }
   else {
-    iVar4 = zcl_get_attr_desc(info->ep_id,info->cluster_id,info->cluster_role,info->attr_id,
-                              info->manuf_code);
+    iVar4 = zcl_get_attr_desc(*(undefined1 *)(param_1 + 1),*(undefined2 *)(param_1 + 4),
+                              *(undefined1 *)(param_1 + 8),*(undefined2 *)(param_1 + 6),
+                              *(undefined2 *)(param_1 + 0x30));
     if (iVar4 == 0) {
-      bVar10 = false;
+      bVar9 = false;
     }
     else {
-      uVar8 = *(uint *)&info->cluster_role >> 0xc;
-      if ((uVar8 & 1) == 0) {
+      uVar7 = *(uint *)(param_1 + 8) >> 0xc;
+      if ((uVar7 & 1) == 0) {
         iVar5 = zcl_attr_type_is_analog(*(undefined1 *)(iVar4 + 2));
         if (iVar5 == 0) {
           iVar5 = zcl_get_attr_value_size(*(undefined1 *)(iVar4 + 2),*(undefined4 *)(iVar4 + 8));
-          bVar10 = false;
+          bVar9 = false;
           if ((iVar5 != 0xff) &&
-             (iVar2 = *(int *)((int)&info->u + 0x10),
+             (iVar2 = *(int *)(param_1 + 0x20),
              iVar4 = crc32_next(0,*(undefined4 *)(iVar4 + 8),iVar5), iVar2 != iVar4)) {
-            bVar10 = true;
+            bVar9 = true;
           }
         }
         else {
@@ -56,177 +53,173 @@ _Bool check_attr_delta(zcl_reporting_info_t *info)
           bVar1 = *(byte *)(iVar4 + 2);
           if (bVar1 == 0x28) {
             iVar4 = (int)(char)uStack_18;
-            iVar5 = (int)*(char *)((int)&info->u + 0x10);
+            iVar5 = (int)*(char *)(param_1 + 0x20);
             if (iVar5 < iVar4) {
               iVar4 = iVar4 - iVar5;
             }
             else {
               iVar4 = iVar5 - iVar4;
             }
-            bVar10 = *(char *)((int)&info->u + 8) < iVar4;
+            bVar9 = *(char *)(param_1 + 0x18) < iVar4;
           }
           else if (bVar1 < 0x29) {
             if (bVar1 == 0x23) {
-              uVar8 = *(uint *)((int)&info->u + 0x10);
-              if (uVar8 < uStack_18) {
-                uStack_18 = uStack_18 - uVar8;
+              uVar7 = *(uint *)(param_1 + 0x20);
+              if (uVar7 < uStack_18) {
+                uStack_18 = uStack_18 - uVar7;
               }
               else {
-                uStack_18 = uVar8 - uStack_18;
+                uStack_18 = uVar7 - uStack_18;
               }
-              bVar10 = *(uint *)((int)&info->u + 8) < uStack_18;
+              bVar9 = *(uint *)(param_1 + 0x18) < uStack_18;
             }
             else if (bVar1 < 0x24) {
               if (bVar1 == 0x21) {
                 uStack_18 = uStack_18 & 0xffff;
-                uVar8 = (uint)*(ushort *)((int)&info->u + 0x10);
-                if (uVar8 < uStack_18) {
-                  iVar4 = uStack_18 - uVar8;
+                uVar7 = (uint)*(ushort *)(param_1 + 0x20);
+                if (uVar7 < uStack_18) {
+                  iVar4 = uStack_18 - uVar7;
                 }
                 else {
-                  iVar4 = uVar8 - uStack_18;
+                  iVar4 = uVar7 - uStack_18;
                 }
-                bVar10 = (int)(uint)*(ushort *)((int)&info->u + 8) < iVar4;
+                bVar9 = (int)(uint)*(ushort *)(param_1 + 0x18) < iVar4;
               }
               else if (bVar1 == 0x22) {
-                uVar8 = *(uint *)((int)&info->u + 0x10);
-                if (uVar8 < uStack_18) {
-                  uStack_18 = uStack_18 - uVar8;
+                uVar7 = *(uint *)(param_1 + 0x20);
+                if (uVar7 < uStack_18) {
+                  uStack_18 = uStack_18 - uVar7;
                 }
                 else {
-                  uStack_18 = uVar8 - uStack_18;
+                  uStack_18 = uVar7 - uStack_18;
                 }
-                bVar10 = *(uint *)((int)&info->u + 8) < uStack_18;
+                bVar9 = *(uint *)(param_1 + 0x18) < uStack_18;
               }
               else if (bVar1 == 0x20) {
                 uStack_18 = uStack_18 & 0xff;
-                uVar8 = (uint)*(byte *)((int)&info->u + 0x10);
-                if (uVar8 < uStack_18) {
-                  iVar4 = uStack_18 - uVar8;
+                uVar7 = (uint)*(byte *)(param_1 + 0x20);
+                if (uVar7 < uStack_18) {
+                  iVar4 = uStack_18 - uVar7;
                 }
                 else {
-                  iVar4 = uVar8 - uStack_18;
+                  iVar4 = uVar7 - uStack_18;
                 }
-                bVar10 = (int)(uint)*(byte *)((int)&info->u + 8) < iVar4;
+                bVar9 = (int)(uint)*(byte *)(param_1 + 0x18) < iVar4;
               }
               else {
-                bVar10 = false;
+                bVar9 = false;
               }
             }
             else if (bVar1 == 0x25) {
-              uVar8 = *(uint *)((int)&info->u + 0x10);
-              uVar7 = *(uint *)((int)&info->u + 0x14);
-              if ((uVar7 < attr_value.u24) || ((attr_value.u24 == uVar7 && (uVar8 < uStack_18)))) {
-                uVar6 = uStack_18 - uVar8;
-                uVar8 = (attr_value.u24 - uVar7) - (uint)(uStack_18 < uVar6);
+              uVar7 = *(uint *)(param_1 + 0x20);
+              uVar8 = *(uint *)(param_1 + 0x24);
+              if ((uVar8 < uStack_14) || ((uStack_14 == uVar8 && (uVar7 < uStack_18)))) {
+                uVar6 = uStack_18 - uVar7;
+                uVar7 = (uStack_14 - uVar8) - (uint)(uStack_18 < uVar6);
               }
               else {
-                uVar6 = uVar8 - uStack_18;
-                uVar8 = (uVar7 - attr_value._0_4_) - (uint)(uVar8 < uVar6);
+                uVar6 = uVar7 - uStack_18;
+                uVar7 = (uVar8 - uStack_14) - (uint)(uVar7 < uVar6);
               }
-              uVar7 = *(uint *)((int)&info->u + 0xc);
-              bVar10 = true;
-              if ((uVar8 <= uVar7) && ((uVar8 != uVar7 || (uVar6 <= *(uint *)((int)&info->u + 8)))))
-              {
-                bVar10 = false;
+              bVar9 = true;
+              if ((uVar7 <= *(uint *)(param_1 + 0x1c)) &&
+                 ((uVar7 != *(uint *)(param_1 + 0x1c) || (uVar6 <= *(uint *)(param_1 + 0x18))))) {
+                bVar9 = false;
               }
             }
             else if (bVar1 == 0x27) {
-              uVar8 = *(uint *)((int)&info->u + 0x10);
-              uVar7 = *(uint *)((int)&info->u + 0x14);
-              if ((uVar7 < attr_value.u24) || ((attr_value.u24 == uVar7 && (uVar8 < uStack_18)))) {
-                uVar6 = uStack_18 - uVar8;
-                uVar8 = (attr_value.u24 - uVar7) - (uint)(uStack_18 < uVar6);
+              uVar7 = *(uint *)(param_1 + 0x20);
+              uVar8 = *(uint *)(param_1 + 0x24);
+              if ((uVar8 < uStack_14) || ((uStack_14 == uVar8 && (uVar7 < uStack_18)))) {
+                uVar6 = uStack_18 - uVar7;
+                uVar7 = (uStack_14 - uVar8) - (uint)(uStack_18 < uVar6);
               }
               else {
-                uVar6 = uVar8 - uStack_18;
-                uVar8 = (uVar7 - attr_value._0_4_) - (uint)(uVar8 < uVar6);
+                uVar6 = uVar7 - uStack_18;
+                uVar7 = (uVar8 - uStack_14) - (uint)(uVar7 < uVar6);
               }
-              uVar7 = *(uint *)((int)&info->u + 0xc);
-              bVar10 = true;
-              if ((uVar8 <= uVar7) && ((uVar8 != uVar7 || (uVar6 <= *(uint *)((int)&info->u + 8)))))
-              {
-                bVar10 = false;
+              bVar9 = true;
+              if ((uVar7 <= *(uint *)(param_1 + 0x1c)) &&
+                 ((uVar7 != *(uint *)(param_1 + 0x1c) || (uVar6 <= *(uint *)(param_1 + 0x18))))) {
+                bVar9 = false;
               }
             }
             else {
-              bVar10 = false;
+              bVar9 = false;
             }
           }
           else if (bVar1 == 0x2d) {
-            uVar8 = *(uint *)((int)&info->u + 0x10);
-            uVar9 = *(uint32_t *)((int)&info->u + 0x14);
-            if (((int)uVar9 < attr_value.s24) || ((attr_value.u24 == uVar9 && (uVar8 < uStack_18))))
-            {
-              uVar7 = uStack_18 - uVar8;
-              iVar4 = (attr_value.u24 - uVar9) - (uint)(uStack_18 < uVar7);
+            uVar7 = *(uint *)(param_1 + 0x20);
+            uVar8 = *(uint *)(param_1 + 0x24);
+            if (((int)uVar8 < (int)uStack_14) || ((uStack_14 == uVar8 && (uVar7 < uStack_18)))) {
+              uVar6 = uStack_18 - uVar7;
+              iVar4 = (uStack_14 - uVar8) - (uint)(uStack_18 < uVar6);
             }
             else {
-              uVar7 = uVar8 - uStack_18;
-              iVar4 = (uVar9 - attr_value._0_4_) - (uint)(uVar8 < uVar7);
+              uVar6 = uVar7 - uStack_18;
+              iVar4 = (uVar8 - uStack_14) - (uint)(uVar7 < uVar6);
             }
-            iVar5 = *(int *)((int)&info->u + 0xc);
-            bVar10 = true;
-            if ((iVar4 <= iVar5) && ((iVar4 != iVar5 || (uVar7 <= *(uint *)((int)&info->u + 8))))) {
-              bVar10 = false;
+            bVar9 = true;
+            if ((iVar4 <= *(int *)(param_1 + 0x1c)) &&
+               ((iVar4 != *(int *)(param_1 + 0x1c) || (uVar6 <= *(uint *)(param_1 + 0x18))))) {
+              bVar9 = false;
             }
           }
           else if (bVar1 < 0x2e) {
             if (bVar1 == 0x2a) {
-              iVar4 = *(int *)((int)&info->u + 0x10);
+              iVar4 = *(int *)(param_1 + 0x20);
               if (iVar4 < (int)uStack_18) {
                 iVar4 = uStack_18 - iVar4;
               }
               else {
                 iVar4 = iVar4 - uStack_18;
               }
-              bVar10 = *(int *)((int)&info->u + 8) < iVar4;
+              bVar9 = *(int *)(param_1 + 0x18) < iVar4;
             }
             else if (bVar1 == 0x2b) {
-              iVar4 = *(int *)((int)&info->u + 0x10);
+              iVar4 = *(int *)(param_1 + 0x20);
               if (iVar4 < (int)uStack_18) {
                 iVar4 = uStack_18 - iVar4;
               }
               else {
                 iVar4 = iVar4 - uStack_18;
               }
-              bVar10 = *(int *)((int)&info->u + 8) < iVar4;
+              bVar9 = *(int *)(param_1 + 0x18) < iVar4;
             }
             else if (bVar1 == 0x29) {
               iVar4 = (int)(short)uStack_18;
-              iVar5 = (int)*(short *)((int)&info->u + 0x10);
+              iVar5 = (int)*(short *)(param_1 + 0x20);
               if (iVar5 < iVar4) {
                 iVar4 = iVar4 - iVar5;
               }
               else {
                 iVar4 = iVar5 - iVar4;
               }
-              bVar10 = *(short *)((int)&info->u + 8) < iVar4;
+              bVar9 = *(short *)(param_1 + 0x18) < iVar4;
             }
             else {
-              bVar10 = false;
+              bVar9 = false;
             }
           }
           else if (bVar1 == 0x2f) {
-            uVar8 = *(uint *)((int)&info->u + 0x10);
-            uVar9 = *(uint32_t *)((int)&info->u + 0x14);
-            if (((int)uVar9 < attr_value.s24) || ((attr_value.u24 == uVar9 && (uVar8 < uStack_18))))
-            {
-              uVar7 = uStack_18 - uVar8;
-              iVar4 = (attr_value.u24 - uVar9) - (uint)(uStack_18 < uVar7);
+            uVar7 = *(uint *)(param_1 + 0x20);
+            uVar8 = *(uint *)(param_1 + 0x24);
+            if (((int)uVar8 < (int)uStack_14) || ((uStack_14 == uVar8 && (uVar7 < uStack_18)))) {
+              uVar6 = uStack_18 - uVar7;
+              iVar4 = (uStack_14 - uVar8) - (uint)(uStack_18 < uVar6);
             }
             else {
-              uVar7 = uVar8 - uStack_18;
-              iVar4 = (uVar9 - attr_value._0_4_) - (uint)(uVar8 < uVar7);
+              uVar6 = uVar7 - uStack_18;
+              iVar4 = (uVar8 - uStack_14) - (uint)(uVar7 < uVar6);
             }
-            iVar5 = *(int *)((int)&info->u + 0xc);
-            bVar10 = true;
-            if ((iVar4 <= iVar5) && ((iVar4 != iVar5 || (uVar7 <= *(uint *)((int)&info->u + 8))))) {
-              bVar10 = false;
+            bVar9 = true;
+            if ((iVar4 <= *(int *)(param_1 + 0x1c)) &&
+               ((iVar4 != *(int *)(param_1 + 0x1c) || (uVar6 <= *(uint *)(param_1 + 0x18))))) {
+              bVar9 = false;
             }
           }
           else if (bVar1 == 0x39) {
-            uVar3 = *(undefined4 *)((int)&info->u + 0x10);
+            uVar3 = *(undefined4 *)(param_1 + 0x20);
             iVar4 = __gtsf2(uStack_18,uVar3);
             if (iVar4 < 1) {
               uVar3 = __subsf3(uVar3,uStack_18);
@@ -234,20 +227,20 @@ _Bool check_attr_delta(zcl_reporting_info_t *info)
             else {
               uVar3 = __subsf3(uStack_18,uVar3);
             }
-            iVar4 = __ltsf2(*(undefined4 *)((int)&info->u + 8),uVar3);
-            bVar10 = iVar4 < 0;
+            iVar4 = __ltsf2(*(undefined4 *)(param_1 + 0x18),uVar3);
+            bVar9 = iVar4 < 0;
           }
           else {
-            bVar10 = false;
+            bVar9 = false;
           }
         }
       }
       else {
-        info->field_0x9 = info->field_0x9 & 0xf | (byte)((uVar8 & 0xe) << 4);
-        bVar10 = true;
+        *(byte *)(param_1 + 9) = *(byte *)(param_1 + 9) & 0xf | (byte)((uVar7 & 0xe) << 4);
+        bVar9 = true;
       }
     }
   }
-  return bVar10;
+  return bVar9;
 }
 

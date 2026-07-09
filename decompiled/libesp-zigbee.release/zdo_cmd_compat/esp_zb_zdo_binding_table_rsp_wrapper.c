@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zdo_cmd_compat.o -> esp_zb_zdo_binding_table_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,69 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_binding_table_rsp_wrapper(ezb_zdo_nwk_mgmt_bind_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_binding_table_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
   byte bVar1;
-  uint8_t uVar2;
-  undefined4 uVar3;
-  ezb_zdp_nwk_mgmt_bind_rsp_field_t *peVar4;
+  char cVar2;
+  void *pvVar3;
+  undefined1 *puVar4;
   uint uVar5;
   int iVar6;
-  ezb_zdp_nwk_mgmt_bind_table_entry_t *peVar7;
-  int iVar8;
+  int iVar7;
+  code *pcVar8;
   int iVar9;
-  code *pcVar10;
   undefined4 uStack_48;
-  esp_zb_zdo_binding_table_info_t table_info;
+  void *pvStack_44;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar10 = *user_ctx;
+  pcVar8 = (code *)*param_2;
   uStack_48 = 0;
-  table_info.status = '\0';
-  table_info.index = '\0';
-  table_info.total = '\0';
-  table_info.count = '\0';
-  if (pcVar10 != (code *)0x0) {
-    if (result->error == 0) {
-      peVar4 = result->rsp;
-      if (peVar4 == (ezb_zdp_nwk_mgmt_bind_rsp_field_t *)0x0) {
+  pvStack_44 = (void *)0x0;
+  if (pcVar8 != (code *)0x0) {
+    if (*param_1 == 0) {
+      puVar4 = (undefined1 *)param_1[1];
+      if (puVar4 == (undefined1 *)0x0) {
         __assert_func(0,0,0,0);
       }
-      bVar1 = peVar4->binding_table_list_count;
-      uStack_48 = CONCAT13(bVar1,CONCAT12(peVar4->binding_table_entries,
-                                          CONCAT11(peVar4->start_index,peVar4->status)));
-      if ((peVar4->binding_table_list != (ezb_zdp_nwk_mgmt_bind_table_entry_t *)0x0) && (bVar1 != 0)
-         ) {
-        table_info._0_4_ = calloc((uint)bVar1,0x1c);
-        if ((void *)table_info._0_4_ != (void *)0x0) {
+      bVar1 = puVar4[3];
+      uStack_48 = CONCAT13(bVar1,CONCAT12(puVar4[1],CONCAT11(puVar4[2],*puVar4)));
+      if ((*(int *)(puVar4 + 4) != 0) && (bVar1 != 0)) {
+        pvStack_44 = calloc((uint)bVar1,0x1c);
+        if (pvStack_44 != (void *)0x0) {
           uVar5 = 0;
           do {
-            iVar9 = uVar5 * 0x1c;
-            memcpy((void *)(table_info._0_4_ + iVar9),peVar4->binding_table_list + uVar5,8);
-            uVar3 = table_info._0_4_;
-            peVar7 = result->rsp->binding_table_list;
-            iVar8 = table_info._0_4_ + iVar9;
-            *(uint8_t *)(iVar8 + 8) = peVar7[uVar5].src_ep;
-            *(uint16_t *)(iVar8 + 10) = peVar7[uVar5].cluster_id;
-            uVar2 = peVar7[uVar5].dst_addr_mode;
-            *(uint8_t *)(iVar8 + 0xc) = uVar2;
-            if (uVar2 == '\x01') {
-              *(ezb_shortaddr_t *)(iVar8 + 0xe) = peVar7[uVar5].dst_addr.short_addr;
+            iVar7 = uVar5 * 0x1c;
+            iVar9 = uVar5 * 0x18;
+            memcpy((void *)((int)pvStack_44 + iVar7),(void *)(*(int *)(puVar4 + 4) + iVar9),8);
+            pvVar3 = pvStack_44;
+            iVar6 = *(int *)(param_1[1] + 4) + iVar9;
+            *(undefined1 *)((int)pvStack_44 + iVar7 + 8) = *(undefined1 *)(iVar6 + 8);
+            *(undefined2 *)((int)pvStack_44 + iVar7 + 10) = *(undefined2 *)(iVar6 + 10);
+            cVar2 = *(char *)(iVar6 + 0xc);
+            *(char *)((int)pvStack_44 + iVar7 + 0xc) = cVar2;
+            if (cVar2 == '\x01') {
+              *(undefined2 *)((int)pvStack_44 + iVar7 + 0xe) = *(undefined2 *)(iVar6 + 0xe);
             }
             else {
-              memcpy((void *)(iVar8 + 0xe),&peVar7[uVar5].dst_addr,8);
+              memcpy((void *)((int)pvStack_44 + iVar7 + 0xe),(void *)(iVar6 + 0xe),8);
             }
-            peVar4 = result->rsp;
+            puVar4 = (undefined1 *)param_1[1];
             iVar6 = 0;
-            *(uint8_t *)(iVar8 + 0x16) = peVar4->binding_table_list[uVar5].dst_ep;
-            bVar1 = peVar4->binding_table_list_count;
+            *(undefined1 *)((int)pvVar3 + iVar7 + 0x16) =
+                 *(undefined1 *)(*(int *)(puVar4 + 4) + iVar9 + 0x16);
+            bVar1 = puVar4[3];
             if ((int)uVar5 < (int)(bVar1 - 1)) {
-              iVar6 = uVar3 + iVar9 + 0x1c;
+              iVar6 = (int)pvVar3 + iVar7 + 0x1c;
             }
-            *(int *)(iVar8 + 0x18) = iVar6;
+            *(int *)((int)pvVar3 + iVar7 + 0x18) = iVar6;
             uVar5 = uVar5 + 1 & 0xff;
           } while (uVar5 < bVar1);
         }
@@ -81,12 +73,12 @@ void esp_zb_zdo_binding_table_rsp_wrapper(ezb_zdo_nwk_mgmt_bind_req_result_t *re
     else {
       uStack_48 = 0x85;
     }
-    (*pcVar10)(&uStack_48,*(undefined4 *)((int)user_ctx + 4));
+    (*pcVar8)(&uStack_48,param_2[1]);
   }
-  if (table_info._0_4_ != 0) {
-    free((void *)table_info._0_4_);
+  if (pvStack_44 != (void *)0x0) {
+    free(pvStack_44);
   }
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

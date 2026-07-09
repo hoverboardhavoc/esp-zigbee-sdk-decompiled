@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_route_table.o -> mempool_alloc_idx
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint16_t mempool_alloc_idx(bitmap_t *blk_busy,uint16_t blk_nr)
+uint mempool_alloc_idx(undefined4 param_1,uint param_2)
 
 {
-  _Bool _Var1;
-  uint n;
-  undefined3 extraout_var;
-  undefined2 in_register_0000202e;
+  uint uVar1;
+  int iVar2;
   
   do {
-    n = bitmap_find_first_zero_bit(blk_busy,CONCAT22(in_register_0000202e,blk_nr));
-    if (CONCAT22(in_register_0000202e,blk_nr) <= n) break;
-    _Var1 = test_and_set_bitmap(n,blk_busy);
-  } while (CONCAT31(extraout_var,_Var1) != 0);
-  return (uint16_t)n;
+    uVar1 = bitmap_find_first_zero_bit(param_1,param_2);
+    if (param_2 <= uVar1) {
+      return uVar1;
+    }
+    iVar2 = test_and_set_bitmap(uVar1,param_1);
+  } while (iVar2 != 0);
+  return uVar1;
 }
 

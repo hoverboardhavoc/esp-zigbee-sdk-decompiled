@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_notify_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_packet_notify_result(zdo_packet_ctx_t *ctx,ezb_err_t error,void *rsp)
+void zdo_packet_notify_result(int param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  zdo_packet_req_callback_t p_Var1;
-  ezb_err_t eStack_18;
-  zdo_req_result_t result;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  p_Var1 = (ctx->req_ctx).cb;
-  if (p_Var1 != (zdo_packet_req_callback_t)0x0) {
-    eStack_18 = error;
-    result.error = (ezb_err_t)rsp;
-    (*p_Var1)(&eStack_18,(ctx->req_ctx).arg);
+  if (*(code **)(param_1 + 4) != (code *)0x0) {
+    uStack_18 = param_2;
+    uStack_14 = param_3;
+    (**(code **)(param_1 + 4))(&uStack_18,*(undefined4 *)(param_1 + 8));
     return;
   }
   return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_dst_table_free
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,18 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void bind_dst_table_free(aps_bind_dst_t *dst)
+void bind_dst_table_free(short *param_1)
 
 {
   int iVar1;
-  void *blk_base;
-  bitmap_t *blk_busy;
+  undefined4 uVar2;
+  undefined4 uVar3;
   
-  if (dst->ref_cnt == '\0') {
-    if (((*(ushort *)&dst->ref_cnt >> 8 & 1) != 0) || ((dst->field_0).extaddr.addr_ref == 0xffff))
-    goto _L0;
+  if ((char)param_1[2] == '\0') {
+    if ((((ushort)param_1[2] >> 8 & 1) != 0) || (*param_1 == -1)) goto _L0;
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x6c,
@@ -30,11 +27,11 @@ void bind_dst_table_free(aps_bind_dst_t *dst)
   nwk_address_unlock_ref();
 _L0:
   iVar1 = core_globals_get();
-  blk_base = *(void **)(iVar1 + 0x974);
+  uVar2 = *(undefined4 *)(iVar1 + 0x974);
   iVar1 = core_globals_get();
-  blk_busy = *(bitmap_t **)(iVar1 + 0x978);
+  uVar3 = *(undefined4 *)(iVar1 + 0x978);
   iVar1 = core_globals_get();
-  mempool_free_ent(blk_base,blk_busy,6,*(uint16_t *)(iVar1 + 0x97c),dst);
+  mempool_free_ent(uVar2,uVar3,6,*(undefined2 *)(iVar1 + 0x97c),param_1);
   return;
 }
 

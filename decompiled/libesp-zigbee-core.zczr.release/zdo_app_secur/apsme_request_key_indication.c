@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_secur.o -> apsme_request_key_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,28 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: tk_req */
-/* WARNING: Unknown calling convention */
-
-void apsme_request_key_indication(apsme_request_key_ind_t *ind)
+void apsme_request_key_indication(undefined4 *param_1)
 
 {
   int iVar1;
   int iVar2;
   undefined4 uStack_3c;
-  apsme_transport_key_req_t tk_req;
+  undefined4 uStack_38;
+  undefined1 uStack_34;
+  undefined1 auStack_33 [35];
   
-  if (ind->key_type == '\x04') {
+  if (*(char *)(param_1 + 2) == '\x04') {
     iVar1 = core_globals_get();
     if (((((*(ushort *)(iVar1 + 0x9bc) & 0x18) != 0) &&
-         (iVar1 = aps_secur_key_pair_find_or_create(ind), iVar1 != 0)) &&
+         (iVar1 = aps_secur_key_pair_find_or_create(param_1), iVar1 != 0)) &&
         ((*(ushort *)(iVar1 + 0x34) & 6) != 2)) &&
        ((iVar2 = core_globals_get(), (*(ushort *)(iVar2 + 0x9bc) & 0x18) == 8 ||
         ((*(ushort *)(iVar1 + 0x34) & 6) == 0)))) {
       memset(&uStack_3c,0,0x2a);
-      tk_req.dst_address.field_0.u8[4] = '\x04';
-      random_crypto_fill_buffer((undefined1 *)((int)&tk_req.dst_address.field_0 + 5),0x10);
-      uStack_3c = *(undefined4 *)&(ind->src_address).field_0;
-      tk_req.dst_address.field_0.u64._0_4_ = *(undefined4 *)((int)&(ind->src_address).field_0 + 4);
+      uStack_34 = 4;
+      random_crypto_fill_buffer(auStack_33,0x10);
+      uStack_3c = *param_1;
+      uStack_38 = param_1[1];
       apsme_transport_key_request(&uStack_3c);
     }
     return;

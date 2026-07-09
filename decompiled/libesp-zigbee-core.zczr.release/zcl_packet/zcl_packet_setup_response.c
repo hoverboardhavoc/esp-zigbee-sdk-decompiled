@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_setup_response
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,43 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010502) */
 /* WARNING: Removing unreachable block (ram,0x00010530) */
-/* WARNING: Unknown calling convention */
 
-zcl_status_t zcl_packet_setup_response(zcl_packet_t *rsp,zcl_packet_t *req,uint8_t cmd_id)
+undefined4 zcl_packet_setup_response(int param_1,undefined1 *param_2,undefined1 param_3)
 
 {
-  uint8_t uVar1;
-  byte bVar2;
-  zcl_status_t zVar3;
+  undefined1 uVar1;
+  ushort uVar2;
+  undefined4 uVar3;
   byte bVar4;
+  byte bVar5;
   
-  if (rsp != (zcl_packet_t *)0x0) {
-    zVar3 = 0x87;
-    if (req != (zcl_packet_t *)0x0) {
-      uVar1 = (req->header).tsn;
-      (rsp->header).cmd_id = cmd_id;
-      (rsp->header).tsn = uVar1;
-      (rsp->header).manuf_code = (req->header).manuf_code;
-      bVar2 = (req->header).fc;
-      bVar4 = bVar2 | 8;
-      if ((bVar2 & 8) != 0) {
-        bVar4 = bVar2 & 0xf7;
+  uVar2 = *(ushort *)(param_2 + 0x1a);
+  if (param_1 != 0) {
+    uVar3 = 0x87;
+    if (param_2 != (undefined1 *)0x0) {
+      uVar1 = param_2[0x1e];
+      *(undefined1 *)(param_1 + 0x20) = param_3;
+      *(undefined1 *)(param_1 + 0x1e) = uVar1;
+      *(undefined2 *)(param_1 + 0x1c) = *(undefined2 *)(param_2 + 0x1c);
+      bVar5 = param_2[0x1a];
+      bVar4 = bVar5 | 8;
+      if ((bVar5 & 8) != 0) {
+        bVar4 = bVar5 & 0xf7;
       }
-      (rsp->header).fc = bVar4 & 0xef;
+      bVar5 = bVar4 & 0xef;
+      if ((uVar2 >> 4 & 1) != 0) {
+        bVar5 = bVar4 | 0x10;
+      }
+      *(byte *)(param_1 + 0x1a) = bVar5;
       zcl_packet_setup_stamp
-                (rsp,(req->header).dst_ep,(req->header).src_ep,(req->header).cluster_id,
-                 (req->header).profile_id,(req->header).src_addr.addr_mode,
-                 (uint8_t *)&(req->header).src_addr.u.short_addr);
-      (rsp->header).tsn = (req->header).tsn;
-      (rsp->header).fc = bVar4 & 0xef | 0x20;
-      zVar3 = '\0';
+                (param_1,param_2[0x15],param_2[0x14],*(undefined2 *)(param_2 + 0x16),
+                 *(undefined2 *)(param_2 + 0x18),*param_2,param_2 + 2);
+      *(undefined1 *)(param_1 + 0x1e) = param_2[0x1e];
+      *(byte *)(param_1 + 0x1a) = bVar5 | 0x20;
+      uVar3 = 0;
     }
-    return zVar3;
+    return uVar3;
   }
   return 0x87;
 }

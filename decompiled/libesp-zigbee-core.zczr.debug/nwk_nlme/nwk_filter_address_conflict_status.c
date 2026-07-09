@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_filter_address_conflict_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,34 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool nwk_filter_address_conflict_status(zmsg_t *msg,void *ctx)
+undefined4 nwk_filter_address_conflict_status(undefined4 param_1,undefined4 param_2)
 
 {
-  _Bool _Var1;
-  short sVar2;
-  undefined4 uVar3;
-  int iVar4;
-  char acStack_11 [4];
-  uint8_t cmd_id;
+  short sVar1;
+  undefined4 uVar2;
+  int iVar3;
+  char acStack_11 [5];
   
   acStack_11[0] = '\0';
-  uVar3 = zmsg_get_offset();
-  zmsg_read_bytes(msg,uVar3,1,acStack_11);
+  uVar2 = zmsg_get_offset();
+  zmsg_read_bytes(param_1,uVar2,1,acStack_11);
   if (acStack_11[0] == '\x03') {
-    sVar2 = zmsg_get_offset(msg);
-    iVar4 = zmsg_compare_bytes(msg,sVar2 + 1,ctx,3);
-    if (iVar4 == 0) {
-      _Var1 = false;
+    sVar1 = zmsg_get_offset(param_1);
+    iVar3 = zmsg_compare_bytes(param_1,sVar1 + 1,param_2,3);
+    if (iVar3 == 0) {
+      uVar2 = 0;
     }
     else {
-      _Var1 = true;
+      uVar2 = 1;
     }
   }
   else {
-    _Var1 = false;
+    uVar2 = 0;
   }
-  return _Var1;
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_report_attr_now
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zcl_report_attr_now(zcl_reporting_info_t *info)
+void zcl_report_attr_now(int param_1)
 
 {
   int iVar1;
-  undefined1 auStack_30 [4];
-  zcl_report_attr_cmd_t cmd_req;
+  undefined1 auStack_30 [11];
+  undefined1 uStack_25;
+  undefined2 uStack_24;
+  short sStack_22;
+  byte bStack_20;
+  code *pcStack_1c;
+  undefined2 uStack_14;
   
-  if (info == (zcl_reporting_info_t *)0x0) {
+  if (param_1 == 0) {
     return;
   }
   memset(auStack_30,0,0x20);
-  cmd_req.cmd_ctrl.dst_addr.u._5_1_ = info->ep_id;
-  cmd_req.cmd_ctrl._10_2_ = info->manuf_code;
-  cmd_req.cmd_ctrl.dst_addr.u._6_2_ = info->cluster_id;
-  cmd_req.cmd_ctrl.cluster_id._0_1_ =
-       cmd_req.cmd_ctrl._10_2_ != 0 | (info->cluster_role == '\x01') << 1;
-  cmd_req.cmd_ctrl._16_4_ = zcl_reporting_packet_confirm_handler;
-  cmd_req.cmd_ctrl.cnf_ctx.user_ctx._0_2_ = info->attr_id;
+  uStack_25 = *(undefined1 *)(param_1 + 1);
+  sStack_22 = *(short *)(param_1 + 0x30);
+  uStack_24 = *(undefined2 *)(param_1 + 4);
+  bStack_20 = sStack_22 != 0 | (*(char *)(param_1 + 8) == '\x01') << 1;
+  pcStack_1c = zcl_reporting_packet_confirm_handler;
+  uStack_14 = *(undefined2 *)(param_1 + 6);
   iVar1 = zdo_dev_joined();
   if ((iVar1 == 0) || (iVar1 = zcl_report_attr_cmd_req(auStack_30), iVar1 != 0)) {
-    info->field_0x9 = info->field_0x9 & 0xf0 | 1;
-    process_attr_report(info);
+    *(byte *)(param_1 + 9) = *(byte *)(param_1 + 9) & 0xf0 | 1;
+    process_attr_report(param_1);
   }
   return;
 }

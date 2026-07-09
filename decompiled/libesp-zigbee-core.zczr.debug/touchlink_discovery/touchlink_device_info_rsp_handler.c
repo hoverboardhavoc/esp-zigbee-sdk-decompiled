@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_discovery.o -> touchlink_device_info_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,88 +10,81 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_device_info_rsp_handler(touchlink_device_info_rsp_t *rsp)
+undefined4 touchlink_device_info_rsp_handler(int param_1)
 
 {
-  undefined4 *puVar1;
+  undefined3 uVar1;
   undefined4 uVar2;
-  undefined3 uVar3;
-  undefined4 uVar4;
-  uint32_t uVar5;
-  uint32_t *puVar6;
-  int iVar7;
-  int iVar8;
-  ezb_err_t eVar9;
-  uint uVar10;
-  uint uVar11;
-  zcl_touchlink_sub_device_info_record_t *pzVar12;
-  undefined1 *puVar13;
+  int iVar3;
+  int *piVar4;
+  int iVar5;
+  undefined4 uVar6;
+  uint uVar7;
+  undefined4 *puVar8;
+  undefined1 *puVar9;
   
-  if (rsp == (touchlink_device_info_rsp_t *)0x0) {
-    eVar9 = 2;
+  if (param_1 == 0) {
+    uVar6 = 2;
   }
   else {
-    uVar5 = rsp->transaction_id;
-    if ((uVar5 == 0) || (puVar6 = (uint32_t *)touchlink_transaction_get(), uVar5 != *puVar6)) {
-      eVar9 = 3;
+    iVar3 = *(int *)(param_1 + 0xc);
+    if ((iVar3 == 0) || (piVar4 = (int *)touchlink_transaction_get(), iVar3 != *piVar4)) {
+      uVar6 = 3;
     }
-    else if (rsp->start_index < 9) {
-      iVar7 = touchlink_disc_table_find(&(rsp->cmd_ctrl).peer_addr.u);
-      if (iVar7 == 0) {
-        eVar9 = 5;
+    else if (*(byte *)(param_1 + 0x11) < 9) {
+      iVar3 = touchlink_disc_table_find(param_1 + 2);
+      if (iVar3 == 0) {
+        uVar6 = 5;
       }
       else {
-        uVar10 = (uint)rsp->start_index;
+        uVar7 = (uint)*(byte *)(param_1 + 0x11);
         while( true ) {
-          if (((int)(uint)rsp->n_records <= (int)(uVar10 - rsp->start_index)) || (7 < uVar10))
-          break;
-          uVar11 = uVar10 - rsp->start_index & 0xff;
-          puVar13 = (undefined1 *)(uVar10 * 0x12 + iVar7 + 0x2a);
-          pzVar12 = rsp->records + uVar11;
-          uVar2 = *(undefined4 *)&(pzVar12->ieee_addr).field_0;
-          puVar1 = (undefined4 *)((int)&(pzVar12->ieee_addr).field_0 + 4);
-          uVar3 = *(undefined3 *)puVar1;
-          uVar4 = *puVar1;
-          *puVar13 = (char)*(undefined3 *)&(pzVar12->ieee_addr).field_0;
-          puVar13[1] = (char)((uint)uVar2 >> 8);
-          puVar13[2] = (char)((uint)uVar2 >> 0x10);
-          puVar13[3] = (char)((uint)uVar2 >> 0x18);
-          puVar13[4] = (char)uVar3;
-          puVar13[5] = (char)((uint)uVar4 >> 8);
-          puVar13[6] = (char)((uint)uVar4 >> 0x10);
-          puVar13[7] = (char)((uint)uVar4 >> 0x18);
-          puVar13[8] = rsp->records[uVar11].ep_id;
-          *(uint16_t *)(puVar13 + 10) = rsp->records[uVar11].profile_id;
-          *(uint16_t *)(puVar13 + 0xc) = rsp->records[uVar11].device_id;
-          puVar13[0xe] = rsp->records[uVar11].version;
-          puVar13[0xf] = rsp->records[uVar11].n_group_ids;
-          *(char *)(iVar7 + 0x28) = *(char *)(iVar7 + 0x28) + '\x01';
-          uVar10 = uVar10 + 1 & 0xff;
+          if (((int)(uint)*(byte *)(param_1 + 0x12) <= (int)(uVar7 - *(byte *)(param_1 + 0x11))) ||
+             (7 < uVar7)) break;
+          puVar9 = (undefined1 *)(uVar7 * 0x12 + iVar3 + 0x2a);
+          iVar5 = (uVar7 - *(byte *)(param_1 + 0x11) & 0xff) * 0x12;
+          puVar8 = (undefined4 *)(*(int *)(param_1 + 0x14) + iVar5);
+          uVar6 = *puVar8;
+          uVar1 = *(undefined3 *)(puVar8 + 1);
+          uVar2 = puVar8[1];
+          *puVar9 = (char)*(undefined3 *)puVar8;
+          puVar9[1] = (char)((uint)uVar6 >> 8);
+          puVar9[2] = (char)((uint)uVar6 >> 0x10);
+          puVar9[3] = (char)((uint)uVar6 >> 0x18);
+          puVar9[4] = (char)uVar1;
+          puVar9[5] = (char)((uint)uVar2 >> 8);
+          puVar9[6] = (char)((uint)uVar2 >> 0x10);
+          puVar9[7] = (char)((uint)uVar2 >> 0x18);
+          puVar9[8] = *(undefined1 *)(*(int *)(param_1 + 0x14) + iVar5 + 8);
+          *(undefined2 *)(puVar9 + 10) = *(undefined2 *)(*(int *)(param_1 + 0x14) + iVar5 + 10);
+          *(undefined2 *)(puVar9 + 0xc) = *(undefined2 *)(*(int *)(param_1 + 0x14) + iVar5 + 0xc);
+          puVar9[0xe] = *(undefined1 *)(*(int *)(param_1 + 0x14) + iVar5 + 0xe);
+          puVar9[0xf] = *(undefined1 *)(iVar5 + *(int *)(param_1 + 0x14) + 0xf);
+          *(char *)(iVar3 + 0x28) = *(char *)(iVar3 + 0x28) + '\x01';
+          uVar7 = uVar7 + 1 & 0xff;
         }
         touchlink_print_disc_device();
-        if (rsp->n_records == 0) {
-          eVar9 = 0;
+        if (*(byte *)(param_1 + 0x12) == 0) {
+          uVar6 = 0;
         }
-        else if ((uint)rsp->n_records + (uint)rsp->start_index < 8) {
-          iVar8 = touchlink_transaction_get();
-          *(undefined1 *)(iVar8 + 0x60c) = 2;
-          iVar8 = touchlink_transaction_get();
-          *(int *)(iVar8 + 0x610) = iVar7;
-          iVar7 = touchlink_transaction_get();
-          touchlink_schedule_transaction_event(iVar7 + 0x60c);
-          eVar9 = 0;
+        else if ((uint)*(byte *)(param_1 + 0x12) + (uint)*(byte *)(param_1 + 0x11) < 8) {
+          iVar5 = touchlink_transaction_get();
+          *(undefined1 *)(iVar5 + 0x60c) = 2;
+          iVar5 = touchlink_transaction_get();
+          *(int *)(iVar5 + 0x610) = iVar3;
+          iVar3 = touchlink_transaction_get();
+          touchlink_schedule_transaction_event(iVar3 + 0x60c);
+          uVar6 = 0;
         }
         else {
-          eVar9 = 0;
+          uVar6 = 0;
         }
       }
     }
     else {
-      eVar9 = 2;
+      uVar6 = 2;
     }
   }
-  return eVar9;
+  return uVar6;
 }
 

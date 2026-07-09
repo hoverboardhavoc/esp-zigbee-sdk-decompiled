@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_accept_child_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,59 +10,52 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: join_ind */
-/* WARNING: Unknown calling convention */
-
-void nwk_accept_child_done
-               (ezb_err_t error,ezb_extaddr_t *joiner_extaddr,nwk_join_method_t join_method)
+void nwk_accept_child_done(int param_1,undefined4 param_2,uint param_3)
 
 {
   undefined2 uVar1;
   int iVar2;
-  undefined3 in_register_00002031;
-  uint uVar3;
   undefined4 local_20;
-  nwk_join_ind_t join_ind;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  uVar3 = CONCAT31(in_register_00002031,join_method);
-  iVar2 = nwk_neighbor_table_get_by_extended(joiner_extaddr);
+  iVar2 = nwk_neighbor_table_get_by_extended(param_2);
   if (iVar2 == 0) {
     return;
   }
   if (-1 < *(int *)(iVar2 + 0xc) << 0x14) {
     return;
   }
-  if (error != 0) {
+  if (param_1 != 0) {
     nwk_neighbor_table_delete();
     return;
   }
   *(uint *)(iVar2 + 0xc) = *(uint *)(iVar2 + 0xc) & 0xfffff7ff;
-  if (uVar3 < 5) {
-    if ((uVar3 < 3) && (1 < uVar3)) {
-      if (uVar3 != 2) goto _L0;
+  if (param_3 < 5) {
+    if ((param_3 < 3) && (1 < param_3)) {
+      if (param_3 != 2) goto _L0;
 _L0:
       nwk_neighbor_set_auth(iVar2);
       goto _L0;
     }
   }
   else {
-    if (uVar3 == 5) goto _L0;
+    if (param_3 == 5) goto _L0;
 _L0:
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_join_srv.c",0xdc,
                   "nwk_accept_child_done",&_L0);
   }
   nwk_neighbor_set_unauth(iVar2,10);
 _L0:
-  join_ind.iface_id = '\0';
-  join_ind.join_method = '\0';
-  join_ind.network_address = 0;
-  join_ind.extended_address.field_0.u64._0_4_ = 0;
-  join_ind.extended_address.field_0.u64._4_4_ = 0;
-  local_20._0_2_ = CONCAT11(join_method,(char)(*(uint *)(iVar2 + 0xc) >> 0xd)) & 0xff1f;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  local_20._0_2_ = CONCAT11((char)param_3,(char)(*(uint *)(iVar2 + 0xc) >> 0xd)) & 0xff1f;
   local_20 = (uint)(ushort)local_20;
   uVar1 = nwk_neighbor_get_shortaddr(iVar2);
   local_20 = CONCAT22(uVar1,(ushort)local_20);
-  nwk_neighbor_get_extaddr(iVar2,&join_ind);
+  nwk_neighbor_get_extaddr(iVar2,&uStack_1c);
   nwk_join_indication(&local_20);
   return;
 }

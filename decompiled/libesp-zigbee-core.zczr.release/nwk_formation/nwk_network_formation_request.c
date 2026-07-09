@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_formation.o -> nwk_network_formation_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_network_formation_request(nwk_network_formation_req_t *req)
+undefined4 nwk_network_formation_request(undefined4 *param_1)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
-  undefined4 uVar3;
+  undefined4 uVar2;
   int local_20;
-  mac_scan_req_t scan_req;
+  undefined4 uStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (req != (nwk_network_formation_req_t *)0x0) {
+  if (param_1 != (undefined4 *)0x0) {
     iVar1 = core_globals_get();
-    eVar2 = 3;
+    uVar2 = 3;
     if (*(char *)(iVar1 + 0xac0) == '\0') {
-      iVar1 = nwk_is_joined();
+      iVar1 = nwk_is_joined(3);
       if (((iVar1 == 0) && (iVar1 = nwk_is_device_zczr(), iVar1 != 0)) &&
-         ((iVar1._0_1_ = req->scan_duration, iVar1._1_1_ = req->bo, iVar1._2_1_ = req->so,
-          iVar1._3_1_ = req->field_0x7, iVar1 << 6 < 0 || (iVar1 = nwk_is_device_zc(), iVar1 != 0)))
-         ) {
+         (((int)(param_1[1] << 6) < 0 || (iVar1 = nwk_is_device_zc(), iVar1 != 0)))) {
         iVar1 = core_globals_get();
         *(undefined1 *)(iVar1 + 0xac0) = 3;
         iVar1 = core_globals_get();
@@ -38,25 +35,21 @@ ezb_err_t nwk_network_formation_request(nwk_network_formation_req_t *req)
         *(undefined1 *)(iVar1 + 0xad0) = 0x7f;
         *(undefined4 *)(iVar1 + 0xac8) = 0;
         iVar1 = core_globals_get();
-        *(uint8_t *)(iVar1 + 0xacc) = req->scan_duration;
+        *(undefined1 *)(iVar1 + 0xacc) = *(undefined1 *)(param_1 + 1);
         iVar1 = core_globals_get();
-        uVar3._0_1_ = req->scan_duration;
-        uVar3._1_1_ = req->bo;
-        uVar3._2_1_ = req->so;
-        uVar3._3_1_ = req->field_0x7;
-        *(byte *)(iVar1 + 0xad1) = *(byte *)(iVar1 + 0xad1) & 0xfe | (byte)((uint)uVar3 >> 0x19) & 1
-        ;
-        local_20 = (uint)req->scan_duration << 8;
-        scan_req._0_4_ = req->scan_channels;
-        scan_req.cb_u.active_scan_cb = (active_scan_callback)0x0;
-        scan_req.scan_channels.u32 = (uint32_t)nwk_formation_ed_scan_callback;
-        eVar2 = nwk_mm_scan_request(0,&local_20);
+        *(byte *)(iVar1 + 0xad1) =
+             *(byte *)(iVar1 + 0xad1) & 0xfe | (byte)((uint)param_1[1] >> 0x19) & 1;
+        local_20 = (uint)*(byte *)(param_1 + 1) << 8;
+        uStack_1c = *param_1;
+        uStack_14 = 0;
+        pcStack_18 = nwk_formation_ed_scan_callback;
+        uVar2 = nwk_mm_scan_request(0,&local_20);
       }
       else {
-        eVar2 = 0x2c2;
+        uVar2 = 0x2c2;
       }
     }
-    return eVar2;
+    return uVar2;
   }
   return 2;
 }

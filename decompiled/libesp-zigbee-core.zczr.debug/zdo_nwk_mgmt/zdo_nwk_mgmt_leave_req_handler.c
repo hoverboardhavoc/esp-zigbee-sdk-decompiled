@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_leave_req_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,112 +10,104 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_nwk_mgmt_leave_req_handler(zdo_packet_t *packet,zdo_packet_t *resp)
+uint zdo_nwk_mgmt_leave_req_handler(int param_1,int param_2)
 
 {
   ushort uVar1;
   bool bVar2;
-  zdp_status_t zVar3;
-  _Bool _Var4;
-  byte bVar5;
-  undefined3 extraout_var;
-  uint uVar6;
-  int iVar7;
-  zdo_packet_user_ctx_t pvVar8;
-  undefined1 *puVar9;
-  undefined3 extraout_var_00;
-  int *piVar10;
-  undefined3 extraout_var_01;
-  undefined3 extraout_var_02;
+  int iVar3;
+  uint uVar4;
+  undefined1 *puVar5;
+  int iVar6;
+  int *piVar7;
   code *pcStack_38;
-  zdo_mgmt_req_user_ctx_t user_ctx;
-  zdp_nwk_mgmt_leave_rsp_field_t rsp;
-  zdp_nwk_mgmt_leave_req_field_t req;
+  void *pvStack_34;
+  undefined1 auStack_30 [4];
+  int iStack_2c;
+  int iStack_28;
+  undefined2 uStack_24;
   
-  _rsp = 0;
-  user_ctx.arg._0_1_ = 0;
+  iStack_2c = 0;
+  iStack_28 = 0;
+  uStack_24 = 0;
+  auStack_30[0] = 0;
   pcStack_38 = (code *)0x0;
-  user_ctx.cb = (zdo_mgmt_user_callback_t)0x0;
-  if (packet == (zdo_packet_t *)0x0) {
-    uVar6 = 0xfe;
+  pvStack_34 = (void *)0x0;
+  if (param_1 == 0) {
+    uVar4 = 0xfe;
   }
-  else if (packet->payload == (zdo_packet_payload_t *)0x0) {
-    uVar6 = 0xfe;
+  else if (*(int *)(param_1 + 0x14) == 0) {
+    uVar4 = 0xfe;
   }
-  else if (resp == (zdo_packet_t *)0x0) {
-    uVar6 = 0xfe;
+  else if (param_2 == 0) {
+    uVar4 = 0xfe;
   }
   else {
-    zVar3 = zdo_op_nwk_mgmt_leave_req(packet->payload,(zdp_nwk_mgmt_leave_req_field_t *)&rsp,false);
-    if (CONCAT31(extraout_var,zVar3) == 0) {
-      uVar1 = packet->src_addr;
-      uVar6 = nwk_get_short_address();
-      if (_rsp == 0) {
+    iVar3 = zdo_op_nwk_mgmt_leave_req(&iStack_2c,0);
+    if (iVar3 == 0) {
+      uVar1 = *(ushort *)(param_1 + 4);
+      uVar4 = nwk_get_short_address();
+      if (iStack_2c == 0 && iStack_28 == 0) {
         bVar2 = true;
       }
       else {
-        piVar10 = (int *)nwk_get_extended_address();
-        if ((_rsp == *piVar10) && (piVar10[1] == 0)) {
+        piVar7 = (int *)nwk_get_extended_address();
+        if ((iStack_2c == *piVar7) && (iStack_28 == piVar7[1])) {
           bVar2 = true;
         }
         else {
           bVar2 = false;
         }
       }
-      if (((uVar1 == uVar6) ||
-          (iVar7 = nwk_validate_leave_request(packet->src_addr,packet->dst_addr,0), iVar7 != 0)) ||
-         (_Var4 = zdo_nwk_mgmt_leave_is_own_child((ezb_extaddr_t *)&rsp),
-         CONCAT31(extraout_var_01,_Var4) != 0)) {
-        pvVar8 = (zdo_packet_user_ctx_t)zdo_create_mgmt_req(0x34);
-        if (pvVar8 == (zdo_packet_user_ctx_t)0x0) {
-          uVar6 = 0xfe;
+      if (((uVar1 == uVar4) ||
+          (iVar3 = nwk_validate_leave_request
+                             (*(undefined2 *)(param_1 + 4),*(undefined2 *)(param_1 + 2),
+                              uStack_24._1_1_), iVar3 != 0)) ||
+         (iVar3 = zdo_nwk_mgmt_leave_is_own_child(&iStack_2c), iVar3 != 0)) {
+        iVar3 = zdo_create_mgmt_req(0x34);
+        if (iVar3 == 0) {
+          uVar4 = 0xfe;
         }
         else {
-          puVar9 = (undefined1 *)zdo_mgmt_req_get_param();
-          *puVar9 = (char)_rsp;
-          puVar9[1] = (char)((uint)_rsp >> 8);
-          puVar9[2] = (char)((uint)_rsp >> 0x10);
-          puVar9[3] = (char)((uint)_rsp >> 0x18);
-          puVar9[4] = 0;
-          puVar9[5] = 0;
-          puVar9[6] = 0;
-          puVar9[7] = 0;
-          iVar7 = zdo_mgmt_req_get_param(pvVar8);
-          *(byte *)(iVar7 + 8) = *(byte *)(iVar7 + 8) & 0xfd;
-          iVar7 = zdo_mgmt_req_get_param(pvVar8);
-          *(byte *)(iVar7 + 8) = *(byte *)(iVar7 + 8) & 0xfe;
+          puVar5 = (undefined1 *)zdo_mgmt_req_get_param();
+          *puVar5 = (char)iStack_2c;
+          puVar5[1] = (char)((uint)iStack_2c >> 8);
+          puVar5[2] = (char)((uint)iStack_2c >> 0x10);
+          puVar5[3] = (char)((uint)iStack_2c >> 0x18);
+          puVar5[4] = (char)iStack_28;
+          puVar5[5] = (char)((uint)iStack_28 >> 8);
+          puVar5[6] = (char)((uint)iStack_28 >> 0x10);
+          puVar5[7] = (char)((uint)iStack_28 >> 0x18);
+          iVar6 = zdo_mgmt_req_get_param(iVar3);
+          *(byte *)(iVar6 + 8) = *(byte *)(iVar6 + 8) & 0xfd | (byte)(((byte)uStack_24 & 1) << 1);
+          iVar6 = zdo_mgmt_req_get_param(iVar3);
+          *(byte *)(iVar6 + 8) = *(byte *)(iVar6 + 8) & 0xfe | uStack_24._1_1_ & 1;
           if (bVar2) {
-            zVar3 = zdo_op_nwk_mgmt_leave_rsp
-                              (resp->payload,(zdp_nwk_mgmt_leave_rsp_field_t *)&user_ctx.arg,true);
-            uVar6 = CONCAT31(extraout_var_02,zVar3);
-            if (uVar6 == 0) {
-              (resp->ctx).req_ctx.cb = zdo_mgmt_leave_rsp_confirm;
-              (resp->ctx).req_ctx.arg = pvVar8;
-              (resp->ctx).mode = '\0';
+            uVar4 = zdo_op_nwk_mgmt_leave_rsp(*(undefined4 *)(param_2 + 0x14),auStack_30,1);
+            if (uVar4 == 0) {
+              *(code **)(param_2 + 0xc) = zdo_mgmt_leave_rsp_confirm;
+              *(int *)(param_2 + 0x10) = iVar3;
+              *(undefined1 *)(param_2 + 8) = 0;
             }
           }
           else {
-            zVar3 = zdo_op_nwk_mgmt_leave_rsp
-                              (resp->payload,(zdp_nwk_mgmt_leave_rsp_field_t *)&user_ctx.arg,true);
-            uVar6 = CONCAT31(extraout_var_00,zVar3);
-            if (uVar6 == 0) {
-              user_ctx.cb = (zdo_mgmt_user_callback_t)calloc(1,0x18);
-              if (user_ctx.cb == (zdo_mgmt_user_callback_t)0x0) {
-                uVar6 = 0x8a;
+            uVar4 = zdo_op_nwk_mgmt_leave_rsp(*(undefined4 *)(param_2 + 0x14),auStack_30,1);
+            if (uVar4 == 0) {
+              pvStack_34 = calloc(1,0x18);
+              if (pvStack_34 == (void *)0x0) {
+                uVar4 = 0x8a;
               }
               else {
-                uVar6 = zdo_packet_move(resp);
-                uVar6 = uVar6 & 0xff;
-                if (uVar6 == 0) {
+                uVar4 = zdo_packet_move(param_2);
+                uVar4 = uVar4 & 0xff;
+                if (uVar4 == 0) {
                   pcStack_38 = zdo_mgmt_leave_sync_rsp_cb;
-                  zdo_mgmt_req_set_user_ctx(pvVar8,&pcStack_38);
-                  zdo_send_mgmt_req(pvVar8,0);
-                  uVar6 = 0xfe;
+                  zdo_mgmt_req_set_user_ctx(iVar3,&pcStack_38);
+                  zdo_send_mgmt_req(iVar3,0);
+                  uVar4 = 0xfe;
                 }
                 else {
-                  mm_free(user_ctx.cb);
+                  mm_free(pvStack_34);
                 }
               }
             }
@@ -123,16 +115,14 @@ zdp_status_t zdo_nwk_mgmt_leave_req_handler(zdo_packet_t *packet,zdo_packet_t *r
         }
       }
       else {
-        user_ctx.arg._0_1_ = 0x84;
-        bVar5 = zdo_op_nwk_mgmt_leave_rsp
-                          (resp->payload,(zdp_nwk_mgmt_leave_rsp_field_t *)&user_ctx.arg,true);
-        uVar6 = (uint)bVar5;
+        auStack_30[0] = 0x84;
+        uVar4 = zdo_op_nwk_mgmt_leave_rsp(*(undefined4 *)(param_2 + 0x14),auStack_30,1);
       }
     }
     else {
-      uVar6 = 0xfe;
+      uVar4 = 0xfe;
     }
   }
-  return (zdp_status_t)uVar6;
+  return uVar4;
 }
 

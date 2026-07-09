@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_packet_confirm_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,27 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ota_upgrade_packet_confirm_handler
-               (zcl_packet_cnf_t *cnf,ota_upgrade_downloading_context_t *context)
+void ota_upgrade_packet_confirm_handler(char *param_1,int param_2)
 
 {
-  milli_timer_t *pmVar1;
-  ota_upgrade_downloading_context_t *poVar2;
+  int iVar1;
   
-  if (cnf == (zcl_packet_cnf_t *)0x0) {
-    poVar2 = (ota_upgrade_downloading_context_t *)
-             __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c"
-                           ,0x15c,"ota_upgrade_packet_confirm_handler",&_L0);
+  if (param_1 == (char *)0x0) {
+    iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c"
+                          ,0x15c,"ota_upgrade_packet_confirm_handler",&_L0);
   }
   else {
-    if (context == (ota_upgrade_downloading_context_t *)0x0) {
+    if (param_2 == 0) {
       return;
     }
-    poVar2 = context;
-    if (cnf->status != '\0') {
-      ota_upgrade_download_retry(context);
+    iVar1 = param_2;
+    if (*param_1 != '\0') {
+      ota_upgrade_download_retry(param_2);
       return;
     }
   }
-  pmVar1 = &(poVar2->error).req.timer;
-  milli_timer_stop(pmVar1);
-  milli_timer_start(pmVar1,(context->config).retry_timeout);
+  milli_timer_stop(iVar1 + 0x3c);
+  milli_timer_start(iVar1 + 0x3c,*(undefined4 *)(param_2 + 0x34));
   return;
 }
 

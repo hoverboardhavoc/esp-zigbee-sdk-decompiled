@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> poll_control_desc.o -> zcl_poll_control_cluster_get_attr_properties
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_poll_control_cluster_get_attr_properties
-                    (uint16_t cluster_role,uint16_t attr_id,uint8_t *type,uint8_t *access)
+undefined4
+zcl_poll_control_cluster_get_attr_properties(int param_1,uint param_2,char *param_3,char *param_4)
 
 {
-  undefined2 in_register_0000202a;
-  undefined2 in_register_0000202e;
-  uint uVar1;
-  char *pcVar2;
-  char *pcVar3;
-  
-  uVar1 = CONCAT22(in_register_0000202e,attr_id);
-  if (type == (uint8_t *)0x0) {
+  if (param_3 == (char *)0x0) {
     return 2;
   }
-  if (access == (uint8_t *)0x0) {
+  if (param_4 == (char *)0x0) {
     return 2;
   }
-  if ((CONCAT22(in_register_0000202a,cluster_role) - 1U & 0xffff) < 2) {
-    if (CONCAT22(in_register_0000202a,cluster_role) != 1) {
+  if ((param_1 - 1U & 0xffff) < 2) {
+    if (param_1 != 1) {
       return 6;
     }
   }
   else {
-    pcVar3 = "cluster_role == 0x01U || cluster_role == 0x02U";
-    pcVar2 = "zcl_poll_control_cluster_get_attr_properties";
-    uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/poll_control_desc.c"
-                          ,0x19);
-    type = (uint8_t *)pcVar2;
-    access = (uint8_t *)pcVar3;
+    param_4 = "cluster_role == 0x01U || cluster_role == 0x02U";
+    param_3 = "zcl_poll_control_cluster_get_attr_properties";
+    param_2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/poll_control_desc.c"
+                            ,0x19);
   }
-  if (uVar1 == 3) {
-    *access = '\x03';
-    *type = '!';
+  if (param_2 == 3) {
+    *param_4 = '\x03';
+    *param_3 = '!';
     return 0;
   }
-  if (uVar1 < 4) {
-    if (uVar1 != 1) {
-      if (uVar1 != 2) {
-        if (uVar1 == 0) {
-          *access = '\x03';
-          *type = '#';
+  if (param_2 < 4) {
+    if (param_2 != 1) {
+      if (param_2 != 2) {
+        if (param_2 == 0) {
+          *param_4 = '\x03';
+          *param_3 = '#';
           return 0;
         }
         return 6;
@@ -61,26 +50,26 @@ ezb_err_t zcl_poll_control_cluster_get_attr_properties
     }
   }
   else {
-    if (uVar1 == 6) {
+    if (param_2 == 6) {
 _L0:
-      *access = '\x01';
-      *type = '!';
+      *param_4 = '\x01';
+      *param_3 = '!';
       return 0;
     }
-    if (6 < uVar1) {
-      if (uVar1 == 0xeff0) {
-        *access = '@';
-        *type = '\0';
+    if (6 < param_2) {
+      if (param_2 == 0xeff0) {
+        *param_4 = '@';
+        *param_3 = '\0';
         return 0;
       }
       return 6;
     }
-    if (1 < (uVar1 - 4 & 0xffff)) {
+    if (1 < (param_2 - 4 & 0xffff)) {
       return 6;
     }
   }
-  *access = '\x01';
-  *type = '#';
+  *param_4 = '\x01';
+  *param_3 = '#';
   return 0;
 }
 

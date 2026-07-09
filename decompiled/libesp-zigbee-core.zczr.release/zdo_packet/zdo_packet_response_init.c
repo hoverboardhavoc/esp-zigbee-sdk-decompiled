@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_response_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_packet_response_init(zdo_packet_t *resp,zdo_packet_t *req,uint16_t cluster_id)
+byte zdo_packet_response_init(undefined1 *param_1,undefined1 *param_2,undefined2 param_3)
 
 {
-  uint8_t uVar1;
-  uint16_t uVar2;
+  undefined1 uVar1;
+  undefined2 uVar2;
   byte bVar3;
-  zdo_packet_payload_t *pzVar4;
+  int iVar4;
   
-  if (resp != (zdo_packet_t *)0x0) {
+  if (param_1 != (undefined1 *)0x0) {
     bVar3 = 0x80;
-    if (req != (zdo_packet_t *)0x0) {
-      uVar2 = req->src_addr;
-      resp->cluster_id = cluster_id;
-      resp->dst_addr = uVar2;
-      resp->src_addr = req->dst_addr;
-      uVar1 = req->tsn;
-      (resp->ctx).mode = '\0';
-      (resp->ctx).req_ctx.cb = (zdo_packet_req_callback_t)0x0;
-      resp->tsn = uVar1;
-      (resp->ctx).req_ctx.arg = (zdo_packet_user_ctx_t)0x0;
-      pzVar4 = (zdo_packet_payload_t *)zmsg_alloc(1);
-      resp->payload = pzVar4;
-      bVar3 = -(pzVar4 == (zdo_packet_payload_t *)0x0) & 0x8a;
+    if (param_2 != (undefined1 *)0x0) {
+      uVar2 = *(undefined2 *)(param_2 + 4);
+      *(undefined2 *)(param_1 + 6) = param_3;
+      *(undefined2 *)(param_1 + 2) = uVar2;
+      *(undefined2 *)(param_1 + 4) = *(undefined2 *)(param_2 + 2);
+      uVar1 = *param_2;
+      param_1[8] = 0;
+      *(undefined4 *)(param_1 + 0xc) = 0;
+      *param_1 = uVar1;
+      *(undefined4 *)(param_1 + 0x10) = 0;
+      iVar4 = zmsg_alloc(1);
+      *(int *)(param_1 + 0x14) = iVar4;
+      bVar3 = -(iVar4 == 0) & 0x8a;
     }
     return bVar3;
   }

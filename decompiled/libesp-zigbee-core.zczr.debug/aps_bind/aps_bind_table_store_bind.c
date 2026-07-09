@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> aps_bind_table_store_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,36 +11,40 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-ezb_err_t aps_bind_table_store_bind(aps_bind_src_t *src,aps_bind_dst_t *dst)
+void aps_bind_table_store_bind(int param_1,undefined2 *param_2)
 
 {
-  ezb_err_t eVar1;
-  int iVar2;
-  undefined1 auStack_24 [4];
-  ezb_extaddr_t dst_addr;
-  dataset_bind_info_t bind_info;
+  int iVar1;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  dst_addr.field_0.u64._4_4_ = 0;
-  aps_bind_table_remove_stored_bind(src,dst);
-  dst_addr.field_0.u8[6] = src->src_ep;
-  dst_addr.field_0.u64._4_2_ = src->cluster_id;
-  if ((dst->field_0x5 & 1) == 0) {
-    iVar2 = nwk_address_extended_by_ref((dst->field_0).extaddr.addr_ref,auStack_24);
-    if (iVar2 != 0) {
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  aps_bind_table_remove_stored_bind();
+  uStack_1c._0_3_ = CONCAT12(*(undefined1 *)(param_1 + 2),*(undefined2 *)(param_1 + 4));
+  if ((*(byte *)((int)param_2 + 5) & 1) == 0) {
+    iVar1 = nwk_address_extended_by_ref(*param_2,&uStack_24);
+    if (iVar1 != 0) {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x21a,
                     "aps_bind_table_store_bind",
                     "(nwk_address_extended_by_ref(dst->extaddr.addr_ref, &dst_addr)) == 0");
                     /* WARNING: Bad instruction - Truncating control flow here */
       halt_baddata();
     }
-    dst_addr.field_0.u8[7] = (dst->field_0).extaddr.endpoint;
+    uStack_1c = CONCAT13(*(undefined1 *)(param_2 + 1),(uint3)uStack_1c);
+    uStack_18 = uStack_24;
+    uStack_14 = uStack_20;
   }
   else {
-    dst_addr.field_0.u8[7] = 0;
+    uStack_1c = (uint)(uint3)uStack_1c;
+    uStack_18 = CONCAT22(uStack_18._2_2_,*param_2);
   }
-  eVar1 = ds_internal_add_entry(6,(undefined1 *)((int)&dst_addr.field_0 + 4),0xc);
-  return eVar1;
+  ds_internal_add_entry(6,&uStack_1c,0xc);
+  return;
 }
 

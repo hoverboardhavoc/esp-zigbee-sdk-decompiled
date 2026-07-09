@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> esp_zigbee.o -> esp_zigbee_lock_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,17 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zigbee_lock_init(void)
+uint esp_zigbee_lock_init(void)
 
 {
   uint uVar1;
   
   uVar1 = 0x103;
-  if (s_esp_zigbee_task_mutex == (SemaphoreHandle_t)0x0) {
-    s_esp_zigbee_task_mutex = (SemaphoreHandle_t)xQueueCreateMutex(4);
-    uVar1 = -(uint)(s_esp_zigbee_task_mutex == (SemaphoreHandle_t)0x0) & 0x101;
+  if (s_esp_zigbee_task_mutex == 0) {
+    s_esp_zigbee_task_mutex = xQueueCreateMutex(4);
+    uVar1 = -(uint)(s_esp_zigbee_task_mutex == 0) & 0x101;
   }
   return uVar1;
 }

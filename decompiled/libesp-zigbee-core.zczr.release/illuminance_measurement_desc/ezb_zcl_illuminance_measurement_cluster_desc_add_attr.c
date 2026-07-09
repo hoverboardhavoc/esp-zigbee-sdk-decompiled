@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> illuminance_measurement_desc.o -> ezb_zcl_illuminance_measurement_cluster_desc_add_attr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_illuminance_measurement_cluster_desc_add_attr
-                    (ezb_zcl_cluster_desc_t cluster_desc,uint16_t attr_id,void *value)
+undefined4
+ezb_zcl_illuminance_measurement_cluster_desc_add_attr
+          (short *param_1,uint param_2,undefined4 param_3)
 
 {
-  undefined2 in_register_0000202e;
   uint uVar1;
   uint uVar2;
   undefined4 uVar3;
-  uint uVar4;
-  ezb_err_t eVar5;
   
-  uVar1 = CONCAT22(in_register_0000202e,attr_id);
-  if (cluster_desc == (ezb_zcl_cluster_desc_t)0x0) {
-    eVar5 = 2;
+  if (param_1 == (short *)0x0) {
+    uVar3 = 2;
   }
   else {
-                    /* WARNING: Load size is inaccurate */
-    eVar5 = 2;
-    if (*cluster_desc == 0x400) {
-      uVar4 = (uint)*(byte *)((int)cluster_desc + 2);
-      uVar2 = 1;
-      if (1 < (uVar4 - 1 & 0xffff)) {
-        uVar4 = 0;
+    uVar3 = 2;
+    if (*param_1 == 0x400) {
+      uVar2 = (uint)*(byte *)(param_1 + 1);
+      uVar1 = 1;
+      if (1 < (uVar2 - 1 & 0xffff)) {
         uVar2 = 0;
-        uVar1 = __assert_func(0,0,value);
+        uVar1 = 0;
+        param_2 = __assert_func(0,0,param_3);
       }
-      eVar5 = 6;
-      if (uVar4 == uVar2) {
-        if (uVar1 < 4) {
+      uVar3 = 6;
+      if (uVar2 == uVar1) {
+        if (param_2 < 4) {
           uVar3 = 0x21;
         }
         else {
-          if (uVar1 != 4) {
+          if (param_2 != 4) {
             return 6;
           }
           uVar3 = 0x30;
         }
-        eVar5 = ezb_zcl_cluster_desc_add_manuf_attr(uVar3,0);
-        return eVar5;
+        uVar3 = ezb_zcl_cluster_desc_add_manuf_attr(uVar3,0);
+        return uVar3;
       }
     }
   }
-  return eVar5;
+  return uVar3;
 }
 

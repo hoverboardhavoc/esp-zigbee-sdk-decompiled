@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> timer.o -> milli_timer_stop
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void milli_timer_stop(milli_timer_t *tm)
+void milli_timer_stop(undefined4 *param_1)
 
 {
-  tm_sched_t *extraout_a0;
-  tm_sched_t *sched;
-  milli_timer_t *extraout_a1;
-  milli_timer_t *pmVar1;
-  milli_timer_t *pmVar2;
-  milli_timer_t *pmVar3;
-  milli_timer_t *pmVar4;
+  undefined1 *puVar1;
+  undefined4 *extraout_a1;
+  undefined4 *puVar2;
+  undefined4 *puVar3;
+  undefined4 *puVar4;
+  undefined4 *puVar5;
   
-  sched = &s_tm_sched_milli;
-  if (tm == (milli_timer_t *)0x0) {
-    tm_sched_remove(&s_tm_sched_milli,(timer_base *)0x0);
-    sched = extraout_a0;
-    tm = extraout_a1;
+  puVar1 = s_tm_sched_milli;
+  if (param_1 == (undefined4 *)0x0) {
+    puVar1 = (undefined1 *)timer_init_part_0();
+    param_1 = extraout_a1;
   }
-  pmVar1 = tm->next;
-  if (pmVar1 != tm) {
-    pmVar2 = sched->timer_list;
-    pmVar3 = (milli_timer_t *)&sched->timer_list;
-    if (pmVar2 == tm) {
-      sched->timer_list = pmVar1;
-      tm_sched_set_alarm(sched);
+  puVar2 = (undefined4 *)*param_1;
+  if (puVar2 != param_1) {
+    puVar3 = *(undefined4 **)(puVar1 + 0x10);
+    puVar4 = (undefined4 *)(puVar1 + 0x10);
+    if (puVar3 == param_1) {
+      *(undefined4 **)(puVar1 + 0x10) = puVar2;
+      tm_sched_set_alarm();
     }
     else {
-      while (pmVar2 != (milli_timer_t *)0x0) {
-        pmVar4 = pmVar3->next;
-        if (pmVar4 == tm) {
-          pmVar3->next = pmVar1;
+      while (puVar3 != (undefined4 *)0x0) {
+        puVar5 = (undefined4 *)*puVar4;
+        if (puVar5 == param_1) {
+          *puVar4 = puVar2;
           break;
         }
-        pmVar3 = pmVar4;
-        pmVar2 = pmVar4->next;
+        puVar4 = puVar5;
+        puVar3 = (undefined4 *)*puVar5;
       }
     }
-    tm->next = tm;
+    *param_1 = param_1;
   }
   return;
 }

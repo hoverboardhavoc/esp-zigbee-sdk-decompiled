@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_set_tc_address
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_set_tc_address(ezb_extaddr_t *tc_address)
+void aps_secur_set_tc_address(int *param_1)
 
 {
-  undefined4 *puVar1;
-  undefined2 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  int iVar5;
-  undefined2 auStack_12 [2];
-  nwk_addr_ref_t ref;
+  int iVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  undefined2 auStack_12 [5];
   
-  iVar5 = core_globals_get();
-  if ((*(int *)(iVar5 + 0x9ac) != *(int *)&tc_address->field_0) ||
-     (*(int *)(iVar5 + 0x9b0) != *(int *)((int)&tc_address->field_0 + 4))) {
+  iVar3 = core_globals_get();
+  if ((*(int *)(iVar3 + 0x9ac) != *param_1) || (*(int *)(iVar3 + 0x9b0) != param_1[1])) {
     auStack_12[0] = 0xffff;
-    iVar5 = core_globals_get();
-    iVar5 = nwk_address_ref_by_extended(iVar5 + 0x9ac,auStack_12);
-    if (iVar5 == 0) {
+    iVar3 = core_globals_get();
+    iVar3 = nwk_address_ref_by_extended(iVar3 + 0x9ac,auStack_12);
+    if (iVar3 == 0) {
       nwk_address_unlock_ref(auStack_12[0]);
     }
-    nwk_address_by_extended(tc_address,1,auStack_12);
-    iVar5 = core_globals_get();
-    puVar1 = (undefined4 *)((int)&tc_address->field_0 + 4);
-    uVar2 = *(undefined2 *)puVar1;
-    uVar3 = *(undefined4 *)&tc_address->field_0;
-    uVar4 = *puVar1;
-    *(char *)(iVar5 + 0x9ac) = (char)*(undefined2 *)&tc_address->field_0;
-    *(char *)(iVar5 + 0x9ad) = (char)((uint)uVar3 >> 8);
-    *(char *)(iVar5 + 0x9af) = (char)((uint)uVar3 >> 0x18);
-    *(char *)(iVar5 + 0x9b1) = (char)((uint)uVar4 >> 8);
-    *(char *)(iVar5 + 0x9ae) = (char)((uint)uVar3 >> 0x10);
-    *(char *)(iVar5 + 0x9b0) = (char)uVar2;
-    *(char *)(iVar5 + 0x9b2) = (char)((uint)uVar4 >> 0x10);
-    *(char *)(iVar5 + 0x9b3) = (char)((uint)uVar4 >> 0x18);
+    nwk_address_by_extended(param_1,1,auStack_12);
+    iVar4 = core_globals_get();
+    iVar2 = param_1[1];
+    iVar3 = *param_1;
+    iVar1 = param_1[1];
+    *(char *)(iVar4 + 0x9ac) = (char)(short)*param_1;
+    *(char *)(iVar4 + 0x9ad) = (char)((uint)iVar3 >> 8);
+    *(char *)(iVar4 + 0x9af) = (char)((uint)iVar3 >> 0x18);
+    *(char *)(iVar4 + 0x9b1) = (char)((uint)iVar1 >> 8);
+    *(char *)(iVar4 + 0x9ae) = (char)((uint)iVar3 >> 0x10);
+    *(char *)(iVar4 + 0x9b0) = (char)(short)iVar2;
+    *(char *)(iVar4 + 0x9b2) = (char)((uint)iVar1 >> 0x10);
+    *(char *)(iVar4 + 0x9b3) = (char)((uint)iVar1 >> 0x18);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_dm_compat.o -> esp_zb_thermostat_cluster_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_zb_attribute_list_t * esp_zb_thermostat_cluster_create(esp_zb_thermostat_cluster_cfg_t *cfg)
+int esp_zb_thermostat_cluster_create(int param_1)
 
 {
-  esp_zb_attribute_list_t *peVar1;
-  int16_t iStack_14;
-  int16_t iStack_12;
-  int16_t occupied_cooling_setpoint;
-  int16_t occupied_heating_setpoint;
+  int iVar1;
+  undefined2 uStack_14;
+  undefined2 auStack_12 [3];
   
-  peVar1 = (esp_zb_attribute_list_t *)thermostat_cluster_create();
-  if (peVar1 != (esp_zb_attribute_list_t *)0x0) {
-    iStack_14 = 0xa28;
-    iStack_12 = 2000;
-    if (cfg != (esp_zb_thermostat_cluster_cfg_t *)0x0) {
-      iStack_14 = cfg->occupied_cooling_setpoint;
-      iStack_12 = cfg->occupied_heating_setpoint;
+  iVar1 = thermostat_cluster_create();
+  if (iVar1 != 0) {
+    uStack_14 = 0xa28;
+    auStack_12[0] = 2000;
+    if (param_1 != 0) {
+      uStack_14 = *(undefined2 *)(param_1 + 4);
+      auStack_12[0] = *(undefined2 *)(param_1 + 6);
     }
-    thermostat_cluster_add_attr(peVar1,0x11,&iStack_14);
-    thermostat_cluster_add_attr(peVar1,0x12,&iStack_12);
+    thermostat_cluster_add_attr(iVar1,0x11,&uStack_14);
+    thermostat_cluster_add_attr(iVar1,0x12,auStack_12);
   }
-  return peVar1;
+  return iVar1;
 }
 

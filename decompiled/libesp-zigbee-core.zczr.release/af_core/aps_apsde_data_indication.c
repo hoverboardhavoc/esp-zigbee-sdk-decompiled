@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_core.o -> aps_apsde_data_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_apsde_data_indication(aps_apsde_data_ind_t *ind)
+void aps_apsde_data_indication(int param_1)
 
 {
-  ezb_shortaddr_t eVar1;
+  short sVar1;
+  int unaff_s0;
   int iVar2;
   undefined4 uVar3;
-  uint32_t uVar4;
-  uint8_t *puVar5;
+  undefined4 uVar4;
+  char *pcVar5;
   
-  eVar1 = (ind->addr_info).grp_addr;
   iVar2 = 0xff;
-  if (eVar1 != 0) {
-    uVar3 = aps_group_table_find(eVar1);
+  if (*(short *)(param_1 + 4) != 0) {
+    uVar3 = aps_group_table_find(*(short *)(param_1 + 4));
     while (iVar2 = aps_group_next_endpoint(uVar3,iVar2 + 1U & 0xff), iVar2 != 0xff) {
       uVar4 = random_add_jitter(0,10);
-      af_data_indication_deliver_ep(ind,(uint8_t)iVar2,uVar4);
+      af_data_indication_deliver_ep(param_1,iVar2,uVar4);
     }
     return;
   }
-  if ((ind->addr_info).dst_ep != 0xff) {
-    af_data_indication_handler(ind);
+  if (*(char *)(param_1 + 7) != -1) {
+    if ((param_1 == 0) || (unaff_s0 = param_1, *(char *)(param_1 + 7) == -1)) {
+      param_1 = __assert_func(0,0,0,0);
+    }
+    sVar1 = *(short *)(param_1 + 10);
+    if ((sVar1 == 0x104) || (sVar1 == -0x3fa2)) {
+      zcl_indication_handler(unaff_s0);
+    }
+    else if (sVar1 == 0) {
+      zdo_indication_handler();
+    }
+    zmsg_free(*(undefined4 *)(unaff_s0 + 0x10));
     return;
   }
-  uVar4 = 0;
-  puVar5 = (uint8_t *)0x0;
-  while (puVar5 = (uint8_t *)af_device_get_next_endpoint_desc(puVar5), puVar5 != (uint8_t *)0x0) {
-    if ((*puVar5 != 0xff) && (*(uint16_t *)(puVar5 + 2) == (ind->addr_info).profile_id)) {
-      af_data_indication_deliver_ep(ind,*puVar5,uVar4);
-      uVar4 = random_add_jitter(uVar4,10);
+  uVar3 = 0;
+  pcVar5 = (char *)0x0;
+  while (pcVar5 = (char *)af_device_get_next_endpoint_desc(pcVar5), pcVar5 != (char *)0x0) {
+    if ((*pcVar5 != -1) && (*(short *)(pcVar5 + 2) == *(short *)(param_1 + 10))) {
+      af_data_indication_deliver_ep(param_1,uVar3);
+      uVar3 = random_add_jitter(uVar3,10);
     }
   }
-  zmsg_free(ind->asdu);
+  zmsg_free(*(undefined4 *)(param_1 + 0x10));
   return;
 }
 

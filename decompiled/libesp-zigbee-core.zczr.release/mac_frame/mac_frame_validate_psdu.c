@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_frame_validate_psdu
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_frame_validate_psdu(ezb_radio_frame_t *frame)
+int mac_frame_validate_psdu(undefined4 *param_1)
 
 {
-  uint8_t uVar1;
-  undefined3 extraout_var;
-  uint uVar2;
-  ezb_err_t eVar3;
+  uint uVar1;
+  int iVar2;
   
-  uVar1 = mac_frame_find_payload_index(frame);
-  uVar2 = CONCAT31(extraout_var,uVar1);
-  if (uVar2 == 0xff) {
-    eVar3 = 0;
+  uVar1 = mac_frame_find_payload_index();
+  if (uVar1 == 0xff) {
+    iVar2 = 0;
   }
   else {
-    if ((*(ushort *)frame->psdu & 7) == 3) {
-      uVar2 = uVar2 + 1 & 0xff;
+    if ((*(ushort *)*param_1 & 7) == 3) {
+      uVar1 = uVar1 + 1 & 0xff;
     }
-    eVar3 = (uint)((uint)frame->length < (uVar2 + 2 & 0xff)) << 4;
+    iVar2 = (uint)((uint)*(byte *)(param_1 + 1) < (uVar1 + 2 & 0xff)) << 4;
   }
-  return eVar3;
+  return iVar2;
 }
 

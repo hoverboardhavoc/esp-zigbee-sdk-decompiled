@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_general_report_attr_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,104 +10,95 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: message */
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_general_report_attr_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void zcl_general_report_attr_handler(int param_1,int param_2)
 
 {
-  zcl_status_t zVar1;
-  int iVar2;
-  ezb_zcl_cmd_hdr_t *peVar3;
+  int iVar1;
+  undefined2 *puVar2;
   size_t __size;
-  void *pvVar4;
-  undefined4 uVar5;
-  uint uVar6;
+  void *pvVar3;
+  undefined4 uVar4;
+  uint uVar5;
   uint unaff_s3;
   uint unaff_s5;
-  uint16_t uVar7;
-  uint16_t local_36;
+  undefined2 uVar6;
+  ushort local_36;
   undefined4 uStack_34;
-  uint16_t offset;
-  zcl_cmd_report_attr_message_t message;
+  undefined4 uStack_30;
+  int iStack_2c;
+  undefined2 *puStack_28;
+  uint uStack_24;
   
   uStack_34 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.variables = (ezb_zcl_report_attr_variable_t *)0x0;
+  uStack_30 = 0;
+  iStack_2c = 0;
+  puStack_28 = (undefined2 *)0x0;
+  uStack_24 = 0;
   local_36 = 0;
-  if ((((packet == (zcl_packet_t *)0x0) || (packet->payload == (zcl_packet_payload_t *)0x0)) ||
-      (rsp == (zcl_packet_t *)0x0)) || (rsp->payload == (zcl_packet_payload_t *)0x0)) {
+  if ((((param_1 == 0) || (*(int *)(param_1 + 0x24) == 0)) || (param_2 == 0)) ||
+     (*(int *)(param_2 + 0x24) == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_general_cmd.c",0x34c,
                   "zcl_general_report_attr_handler",
                   "packet && packet->payload && rsp && rsp->payload");
 _L0:
-    uVar7 = 0;
+    uVar6 = 0;
   }
   else {
     unaff_s3 = zmsg_get_length();
-    message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-    iVar2 = zcl_packet_to_message(&stack0xffffffcc,packet);
-    if (iVar2 != 0) {
-      uVar6 = 0x80;
+    puStack_28 = (undefined2 *)0x0;
+    iVar1 = zcl_packet_to_message(&uStack_34,param_1);
+    if (iVar1 != 0) {
+      uVar5 = 0x80;
       goto _L0;
     }
     unaff_s5 = 0;
-    message._4_4_ = packet;
-    if (((packet->header).fc & 4) == 0) goto _L0;
-    uVar7 = (packet->header).manuf_code;
+    iStack_2c = param_1;
+    if ((*(byte *)(param_1 + 0x1a) & 4) == 0) goto _L0;
+    uVar6 = *(undefined2 *)(param_1 + 0x1c);
   }
-  while (peVar3 = message.in.header, local_36 < unaff_s3) {
-    peVar3 = (ezb_zcl_cmd_hdr_t *)calloc(1,0xc);
-    *(ezb_zcl_cmd_hdr_t **)((int)&(peVar3->src_addr).u + 6) = message.in.header;
-    message.in.header = peVar3;
-    af_read_le16(packet->payload,&local_36,(uint16_t *)peVar3);
-    af_read_le8(packet->payload,&local_36,(uint8_t *)&(peVar3->src_addr).u.short_addr);
+  while (puVar2 = puStack_28, local_36 < unaff_s3) {
+    puVar2 = (undefined2 *)calloc(1,0xc);
+    *(undefined2 **)(puVar2 + 4) = puStack_28;
+    puStack_28 = puVar2;
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),&local_36,puVar2);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&local_36,puVar2 + 1);
     if (unaff_s3 < local_36) {
-      uVar6 = 0x80;
+      uVar5 = 0x80;
       goto _L0;
     }
     __size = zcl_packet_read_variable_attr_size
-                       (packet->payload,*(undefined1 *)&(peVar3->src_addr).u);
-    pvVar4 = calloc(1,__size);
-    *(void **)((int)&(peVar3->src_addr).u + 2) = pvVar4;
+                       (*(undefined4 *)(param_1 + 0x24),*(undefined1 *)(puVar2 + 1));
+    pvVar3 = calloc(1,__size);
+    *(void **)(puVar2 + 2) = pvVar3;
     zcl_packet_read_variable_attr_value
-              (packet->payload,&local_36,*(undefined1 *)&(peVar3->src_addr).u,pvVar4);
+              (*(undefined4 *)(param_1 + 0x24),&local_36,*(undefined1 *)(puVar2 + 1),pvVar3);
   }
-  for (; peVar3 != (ezb_zcl_cmd_hdr_t *)0x0;
-      peVar3 = *(ezb_zcl_cmd_hdr_t **)((int)&(peVar3->src_addr).u + 6)) {
-    if (((packet->header).fc & 8) == 0) {
-      uVar5 = 1;
+  for (; puVar2 != (undefined2 *)0x0; puVar2 = *(undefined2 **)(puVar2 + 4)) {
+    if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+      uVar4 = 1;
     }
     else {
-      uVar5 = 2;
+      uVar4 = 2;
     }
     zcl_reporting_mark_recv_attr_report
-              ((packet->header).dst_ep,(packet->header).cluster_id,uVar5,
-               *(undefined2 *)&peVar3->src_addr,uVar7);
+              (*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16),uVar4,*puVar2,uVar6);
   }
-  message.in.variables = (ezb_zcl_report_attr_variable_t *)CONCAT31(message.in.variables._1_3_,0xfe)
-  ;
-  zcl_core_action_schedule(5,&stack0xffffffcc);
-  uVar6 = (uint)message.in.variables & 0xff;
-  if (((uint)message.in.variables & 0xff) == 0xfe) {
-    uVar6 = unaff_s5;
+  uStack_24 = CONCAT31(uStack_24._1_3_,0xfe);
+  zcl_core_action_schedule(5,&uStack_34);
+  uVar5 = uStack_24 & 0xff;
+  if ((uStack_24 & 0xff) == 0xfe) {
+    uVar5 = unaff_s5;
   }
 _L0:
-  while (message.in.header != (ezb_zcl_cmd_hdr_t *)0x0) {
-    peVar3 = *(ezb_zcl_cmd_hdr_t **)((int)&((message.in.header)->src_addr).u + 6);
-    if (*(int *)((int)&((message.in.header)->src_addr).u + 2) != 0) {
+  while (puStack_28 != (undefined2 *)0x0) {
+    puVar2 = *(undefined2 **)(puStack_28 + 4);
+    if (*(int *)(puStack_28 + 2) != 0) {
       mm_free();
     }
-    mm_free(message.in.header);
-    message.in.header = peVar3;
+    mm_free(puStack_28);
+    puStack_28 = puVar2;
   }
-  zVar1 = zcl_packet_setup_default_response(rsp,packet,uVar6);
-  return zVar1;
+  zcl_packet_setup_default_response(param_2,param_1,uVar5);
+  return;
 }
 

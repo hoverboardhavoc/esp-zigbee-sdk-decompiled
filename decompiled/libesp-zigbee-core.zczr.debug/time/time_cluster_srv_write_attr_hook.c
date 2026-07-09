@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> time.o -> time_cluster_srv_write_attr_hook
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,31 +11,25 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void time_cluster_srv_write_attr_hook
-               (uint8_t ep_id,uint16_t attr_id,void *new_value,uint16_t manuf_code)
+void time_cluster_srv_write_attr_hook(undefined4 param_1,int param_2,undefined4 *param_3)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  ezb_zcl_time_interface_t *peVar2;
-  undefined2 in_register_0000202e;
+  int iVar1;
   
-  if (CONCAT22(in_register_0000202e,attr_id) == 0) {
-    pzVar1 = time_server_get_attr_desc(ep_id,8);
-    if ((pzVar1 != (zcl_attr_desc_t *)0x0) && ((undefined4 *)pzVar1->data_p != (undefined4 *)0x0)) {
-                    /* WARNING: Load size is inaccurate */
-      *(undefined4 *)pzVar1->data_p = *new_value;
+  if (param_2 == 0) {
+    iVar1 = time_server_get_attr_desc(8);
+    if ((iVar1 != 0) && (*(undefined4 **)(iVar1 + 8) != (undefined4 *)0x0)) {
+      **(undefined4 **)(iVar1 + 8) = *param_3;
     }
-    peVar2 = time_server_get_interface(ep_id);
-    if (peVar2->set_utc_time == (_func_void_uint32_t *)0x0) {
+    iVar1 = time_server_get_interface(param_1);
+    if (*(code **)(iVar1 + 4) == (code *)0x0) {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/time.c",0x116,
                     "time_cluster_srv_write_attr_hook","interface->set_utc_time != ((void *)0)");
                     /* WARNING: Bad instruction - Truncating control flow here */
       halt_baddata();
     }
-                    /* WARNING: Load size is inaccurate */
-    (*peVar2->set_utc_time)(*new_value);
+    (**(code **)(iVar1 + 4))(*param_3);
   }
   return;
 }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_remove_footer
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_remove_footer(zmsg_t *msg,uint16_t len)
+void zmsg_remove_footer(int param_1,uint param_2)
 
 {
-  ezb_err_t eVar1;
-  undefined2 in_register_0000202e;
-  uint uVar2;
+  int iVar1;
   uint extraout_a1;
-  uint uVar3;
+  uint uVar2;
   
-  uVar2 = CONCAT22(in_register_0000202e,len);
-  uVar3 = (uint)msg->tail;
-  if (uVar2 <= uVar3) goto _L0;
+  uVar2 = (uint)*(ushort *)(param_1 + 0x10);
+  if (param_2 <= uVar2) goto _L0;
   do {
-    msg = (zmsg_t *)__assert_func(0,0,0,0);
-    uVar2 = extraout_a1;
+    param_1 = __assert_func(0,0,0,0);
+    param_2 = extraout_a1;
 _L0:
-    uVar3 = uVar3 - uVar2;
-    msg->tail = (uint16_t)uVar3;
-    eVar1 = zmsg_resize(msg,msg->length);
-  } while (eVar1 == 1);
+    uVar2 = uVar2 - param_2;
+    *(short *)(param_1 + 0x10) = (short)uVar2;
+    iVar1 = zmsg_resize(*(undefined2 *)(param_1 + 0xe));
+  } while (iVar1 == 1);
   return;
 }
 

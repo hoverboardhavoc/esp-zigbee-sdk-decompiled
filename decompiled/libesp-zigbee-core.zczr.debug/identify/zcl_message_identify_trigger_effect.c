@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> identify.o -> zcl_message_identify_trigger_effect
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_identify_trigger_effect(zcl_packet_t *packet,uint8_t effect_id,uint8_t effect_variant)
+uint zcl_message_identify_trigger_effect(undefined4 param_1,undefined1 param_2,undefined1 param_3)
 
 {
   int iVar1;
   undefined4 uStack_34;
-  ezb_zcl_identify_effect_message_t message;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  uint uStack_24;
   
   uStack_34 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.effect_id = '\0';
-  message.in.effect_variant = '\0';
-  message.in._6_2_ = 0;
-  iVar1 = zcl_packet_to_message(&uStack_34,packet);
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  iVar1 = zcl_packet_to_message(&uStack_34,param_1);
   if (iVar1 == 0) {
-    message.in.header._0_2_ = CONCAT11(effect_variant,effect_id);
-    message.in.effect_id = 0xfe;
-    message._4_4_ = packet;
-    zcl_core_action_schedule(10,&uStack_34);
-    if (message.in.effect_id == 0xfe) {
-      message.in.effect_id = (ezb_zcl_status_t)iVar1;
+    uStack_28._0_2_ = CONCAT11(param_3,param_2);
+    uStack_24 = CONCAT31(uStack_24._1_3_,0xfe);
+    uStack_2c = param_1;
+    zcl_core_action_schedule(0xb,&uStack_34);
+    uStack_24 = uStack_24 & 0xff;
+    if (uStack_24 == 0xfe) {
+      uStack_24 = 0;
     }
   }
   else {
-    message.in.effect_id = '\0';
+    uStack_24 = 0;
   }
-  return message.in.effect_id;
+  return uStack_24;
 }
 

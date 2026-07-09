@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nwk_neighbor_zed_set_timeout
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_neighbor_zed_set_timeout(nwk_neighbor_t *nbr,uint8_t timeout)
+void nwk_neighbor_zed_set_timeout(int param_1,uint param_2)
 
 {
-  undefined3 in_register_0000202d;
   uint uVar1;
   
-  if (((*(uint *)&nbr->field_0xc & 3) == 2) || ((*(uint *)&nbr->field_0xc & 0x3c0) == 0)) {
-    *(uint *)((int)&nbr->dev + 4) =
-         *(uint *)((int)&nbr->dev + 4) & 0xff0fffff | (timeout & 0xf) << 0x14;
-    if (CONCAT31(in_register_0000202d,timeout) != 0) {
-      uVar1 = 0x3c << (timeout & 0x1f);
+  if (((*(uint *)(param_1 + 0xc) & 3) == 2) || ((*(uint *)(param_1 + 0xc) & 0x3c0) == 0)) {
+    *(uint *)(param_1 + 0x14) = *(uint *)(param_1 + 0x14) & 0xff0fffff | (param_2 & 0xf) << 0x14;
+    if (param_2 != 0) {
+      uVar1 = 0x3c << (param_2 & 0x1f);
       goto _L0;
     }
   }
   else {
-    nbr = (nwk_neighbor_t *)
-          __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xab,
-                        "nwk_neighbor_zed_set_timeout",0x10844);
+    param_1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xab,
+                            "nwk_neighbor_zed_set_timeout",0x10844);
   }
   uVar1 = 10;
 _L0:
-  *(uint *)((int)&nbr->dev + 4) = *(uint *)((int)&nbr->dev + 4) & 0xfff00000 | uVar1 & 0xfffff;
+  *(uint *)(param_1 + 0x14) = *(uint *)(param_1 + 0x14) & 0xfff00000 | uVar1 & 0xfffff;
   return;
 }
 

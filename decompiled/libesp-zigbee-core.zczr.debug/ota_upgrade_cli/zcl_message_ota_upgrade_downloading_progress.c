@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> zcl_message_ota_upgrade_downloading_progress
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,84 +10,95 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_ota_upgrade_downloading_progress(zcl_packet_t *packet,uint8_t progress,void *info)
+uint zcl_message_ota_upgrade_downloading_progress(int param_1,uint param_2,int *param_3)
 
 {
   uint uVar1;
-  ota_upgrade_downloading_context_t *context;
-  undefined3 in_register_0000202d;
-  ezb_zcl_cmd_hdr_t *peVar2;
   undefined4 local_40;
-  ezb_zcl_ota_upgrade_client_progress_message_t message;
+  undefined4 uStack_3c;
+  int iStack_38;
+  uint uStack_34;
+  int iStack_30;
+  int iStack_2c;
+  int iStack_28;
+  uint uStack_24;
   
-  peVar2 = (ezb_zcl_cmd_hdr_t *)CONCAT31(in_register_0000202d,progress);
   local_40 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.progress = EZB_ZCL_OTA_UPGRADE_PROGRESS_START;
-  message.in.field_2.receiving.file_offset = 0;
-  message.in.field_2.start.file_version = 0;
-  message.in.field_2.start.image_size = 0;
-  uVar1 = zcl_packet_to_message(&local_40,packet);
-  if (uVar1 != 0) goto _L0;
-  message._4_4_ = packet;
-  message.in.header = peVar2;
-  if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x4) {
-    if (info == (void *)0x0) goto _L0;
-                    /* WARNING: Load size is inaccurate */
-    message.in.progress = *info;
-    message.in.field_2.receiving.file_offset = *(uint32_t *)((int)info + 4);
+  uStack_3c = 0;
+  iStack_38 = 0;
+  uStack_34 = 0;
+  iStack_30 = 0;
+  iStack_2c = 0;
+  iStack_28 = 0;
+  uStack_24 = 0;
+  uVar1 = zcl_packet_to_message(&local_40,param_1);
+  if (uVar1 != 0) {
+    return uVar1;
   }
-  else if (peVar2 < (ezb_zcl_cmd_hdr_t *)0x5) {
-    if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x1) {
-      if (info == (void *)0x0) goto _L0;
-      message.in.progress = *(ezb_zcl_ota_upgrade_progress_t *)((int)info + 0xc);
-      message.in.field_2.start.manuf_code._0_1_ = *(undefined1 *)((int)info + 0x10);
-      message.in.field_2.start.file_version = *(uint32_t *)((int)info + 0x14);
+  iStack_38 = param_1;
+  uStack_34 = param_2;
+  if (param_2 == 4) {
+    if (param_3 == (int *)0x0) {
+      return 0;
     }
-    else if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x3) {
-      if (info == (void *)0x0) goto _L0;
-      message.in.progress = *(ezb_zcl_ota_upgrade_progress_t *)((int)info + 4);
-      message.in.field_2.receiving.file_offset = *(uint32_t *)((int)info + 8);
-    }
-    else {
-      if (peVar2 != (ezb_zcl_cmd_hdr_t *)0x0) goto _L0;
-      if (info == (void *)0x0) goto _L0;
-      message.in.progress = *(ezb_zcl_ota_upgrade_progress_t *)((int)info + 2);
-      message.in.field_2.receiving.file_offset = *(uint32_t *)((int)info + 8);
-      message.in.field_2.start.file_version = *(uint32_t *)((int)info + 0xc);
-    }
+    iStack_30 = *param_3;
+    iStack_2c = param_3[1];
+    goto _L0;
   }
-  else if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x5) {
-    if (info == (void *)0x0) goto _L0;
-    message.in.progress = *(int *)((int)info + 0xc) - *(int *)((int)info + 8);
-  }
-  else if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x6) {
-    context = ota_upgrade_downloading_context_get((packet->header).dst_ep);
-    ota_upgrade_set_upgrade_status_normal(context);
+  if (param_2 < 5) {
+    if (param_2 == 1) {
+      if (param_3 == (int *)0x0) {
+        return 0;
+      }
+      iStack_30 = param_3[3];
+      iStack_2c = CONCAT31(iStack_2c._1_3_,(char)param_3[4]);
+      iStack_28 = param_3[5];
+      goto _L0;
+    }
+    if (param_2 == 3) {
+      if (param_3 == (int *)0x0) {
+        return 0;
+      }
+      iStack_30 = param_3[1];
+      iStack_2c = param_3[2];
+      goto _L0;
+    }
+    if (param_2 == 0) {
+      if (param_3 == (int *)0x0) {
+        return 0;
+      }
+      iStack_30 = *(int *)((int)param_3 + 2);
+      iStack_2c = param_3[2];
+      iStack_28 = param_3[3];
+      goto _L0;
+    }
   }
   else {
+    if (param_2 == 5) {
+      if (param_3 == (int *)0x0) {
+        return 0;
+      }
+      iStack_30 = param_3[3] - param_3[2];
+      goto _L0;
+    }
+    if (param_2 == 6) {
+      ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
+      ota_upgrade_set_upgrade_status_normal();
+      goto _L0;
+    }
+  }
+  local_40 = CONCAT31(local_40._1_3_,0x87);
 _L0:
-    local_40 = CONCAT31(local_40._1_3_,0x87);
+  uStack_24 = CONCAT31(uStack_24._1_3_,0xfe);
+  zcl_core_action_schedule(0x3b,&local_40);
+  uVar1 = 0;
+  if ((uStack_24 & 0xff) != 0xfe) {
+    uVar1 = uStack_24 & 0xff;
   }
-  message.in.field_2.start.image_size._0_1_ = 0xfe;
-  zcl_core_action_schedule(0x3a,&local_40);
-  if ((message.in.field_2.start.image_size & 0xff) != 0xfe) {
-    uVar1 = message.in.field_2.start.image_size & 0xff;
-  }
-  if ((message.in.header != (ezb_zcl_cmd_hdr_t *)0x6) && (uVar1 == 0x95)) {
-    zcl_message_ota_upgrade_downloading_progress(packet,'\x06',(void *)0x0);
+  if ((uStack_34 != 6) && (uVar1 == 0x95)) {
+    zcl_message_ota_upgrade_downloading_progress(param_1,6,0);
     uVar1 = 0xfe;
   }
-_L0:
-  return (ezb_zcl_status_t)uVar1;
+  return uVar1;
 }
 

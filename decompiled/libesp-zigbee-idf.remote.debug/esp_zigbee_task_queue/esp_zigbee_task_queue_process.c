@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_task_queue.o -> esp_zigbee_task_queue_process
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,19 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zigbee_task_queue_process(esp_zigbee_mainloop_context_t *ctx)
+undefined4 esp_zigbee_task_queue_process(int param_1)
 
 {
-  esp_err_t eVar1;
+  undefined4 uVar1;
   ssize_t sVar2;
   int iVar3;
-  undefined1 auStack_20 [4];
-  uint64_t val;
-  esp_zigbee_task_t task;
+  undefined1 auStack_20 [8];
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  if (((uint)s_task_queue_event_fd < 0x40) &&
-     (((ctx->read_fds).__fds_bits
-       [(int)((s_task_queue_event_fd >> 0x1f & 0x1fU) + s_task_queue_event_fd) >> 5] &
-      1 << (s_task_queue_event_fd & 0x1fU)) != 0)) {
+  if ((s_task_queue_event_fd < 0x40) &&
+     ((*(uint *)(((int)(((int)s_task_queue_event_fd >> 0x1f & 0x1fU) + s_task_queue_event_fd) >> 5)
+                 * 4 + param_1) & 1 << (s_task_queue_event_fd & 0x1f)) != 0)) {
     sVar2 = read(s_task_queue_event_fd,auStack_20,8);
     if (sVar2 != 8) {
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_task_queue.c"
@@ -34,18 +31,18 @@ esp_err_t esp_zigbee_task_queue_process(esp_zigbee_mainloop_context_t *ctx)
     }
   }
   ezb_tasklet_process();
-  if (s_task_queue == (QueueHandle_t)0x0) {
+  if (s_task_queue == 0) {
     esp_log(0x11,"ESP-ZIGBEE","%s(%d): Zigbee task queue not initialized",
             "esp_zigbee_task_queue_process",0x69);
-    eVar1 = 0x103;
+    uVar1 = 0x103;
   }
   else {
-    while (iVar3 = xQueueReceive(s_task_queue,(int)&val + 4,0), iVar3 == 1) {
+    while (iVar3 = xQueueReceive(s_task_queue,&pcStack_18,0), iVar3 == 1) {
 _L0:
-      (*val._4_4_)(task.cb,val._4_4_);
+      (*pcStack_18)(uStack_14,pcStack_18);
     }
-    eVar1 = 0;
+    uVar1 = 0;
   }
-  return eVar1;
+  return uVar1;
 }
 

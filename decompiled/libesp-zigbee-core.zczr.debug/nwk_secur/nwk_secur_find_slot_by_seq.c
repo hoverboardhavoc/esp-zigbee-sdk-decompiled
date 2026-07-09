@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_secur.o -> nwk_secur_find_slot_by_seq
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t nwk_secur_find_slot_by_seq(nwk_secur_context_t *secur_ctx,uint8_t key_seq)
+void nwk_secur_find_slot_by_seq(int param_1,uint param_2)
 
 {
-  byte bVar1;
-  undefined3 in_register_0000202d;
-  uint uVar2;
-  byte abStack_11 [4];
-  bitmap_t valid_slots;
+  uint uVar1;
+  byte abStack_11 [5];
   
-  abStack_11[0] = (byte)((uint)*(undefined4 *)(secur_ctx->material_set[1].key + 0xf) >> 0x1d) & 3;
-  uVar2 = 0;
+  abStack_11[0] = (byte)((uint)*(undefined4 *)(param_1 + 0x24) >> 0x1d) & 3;
+  uVar1 = 0;
   while( true ) {
-    bVar1 = bitmap_find_next_bit(abStack_11,2,uVar2);
-    uVar2 = (uint)bVar1;
-    if ((1 < uVar2) ||
-       ((uint)secur_ctx->material_set[uVar2].key_seq == CONCAT31(in_register_0000202d,key_seq)))
-    break;
-    uVar2 = uVar2 + 1 & 0xff;
+    uVar1 = bitmap_find_next_bit(abStack_11,2,uVar1);
+    uVar1 = uVar1 & 0xff;
+    if ((1 < uVar1) || (*(byte *)(uVar1 * 0x11 + param_1 + 0x14) == param_2)) break;
+    uVar1 = uVar1 + 1 & 0xff;
   }
-  return bVar1;
+  return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_core_compat.o -> esp_zb_device_register
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-esp_err_t esp_zb_device_register(esp_zb_ep_list_t *ep_list)
+undefined4 esp_zb_device_register(int param_1)
 
 {
   int iVar1;
-  esp_err_t eVar2;
+  undefined4 uVar2;
   
-  if (ep_list == (esp_zb_ep_list_t *)0x0) {
-    eVar2 = 0x102;
+  if (param_1 == 0) {
+    uVar2 = 0x102;
   }
   else {
     iVar1 = ezb_af_device_desc_register();
     if (iVar1 == 0) {
       ezb_zcl_core_action_handler_register(zcl_core_action_handler);
-      esp_zb_time_iface_register_for_device(ep_list);
-      eVar2 = 0;
+      esp_zb_time_iface_register_for_device(param_1);
+      uVar2 = 0;
     }
     else {
-      eVar2 = esp_zigbee_err_to_esp();
+      uVar2 = esp_zigbee_err_to_esp();
     }
   }
-  return eVar2;
+  return uVar2;
 }
 

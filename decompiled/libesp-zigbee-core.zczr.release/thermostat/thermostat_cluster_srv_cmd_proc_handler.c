@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> thermostat.o -> thermostat_cluster_srv_cmd_proc_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,383 +10,365 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t thermostat_cluster_srv_cmd_proc_handler(void *arg)
+int thermostat_cluster_srv_cmd_proc_handler(int param_1)
 
 {
-  uint8_t uVar1;
-  short sVar2;
-  uint8_t uVar3;
-  _Bool _Var4;
-  ezb_zcl_status_t eVar5;
+  short sVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  int iVar4;
+  uint uVar5;
   int iVar6;
-  uint uVar7;
-  undefined3 extraout_var;
-  zcl_attr_desc_t *pzVar8;
-  zcl_attr_desc_t *pzVar9;
-  undefined3 extraout_var_00;
-  int iVar10;
-  undefined3 extraout_var_01;
-  ezb_zcl_thermostat_weekly_schedule_transition_t *peVar11;
-  weekly_schedule_context_t *pwVar12;
-  uint16_t attr_id;
-  weekly_schedule_graph_t **ppwVar13;
-  uint8_t uVar14;
-  weekly_schedule_graph_t *pwVar15;
-  int iVar16;
-  char cVar17;
+  void *__dest;
+  undefined1 *puVar7;
+  undefined4 uVar8;
+  int *piVar9;
+  short *psVar10;
+  int iVar11;
+  char cVar12;
+  uint uVar13;
+  int iVar14;
+  uint uVar15;
+  short *psVar16;
+  undefined1 uVar17;
   uint uVar18;
-  int iVar19;
-  ezb_zcl_thermostat_weekly_schedule_transition_t *peVar20;
-  undefined1 uVar21;
-  ezb_zcl_thermostat_setpoint_raise_or_lower_payload_t cool;
-  weekly_schedule_graph_t *pwVar22;
-  uint uVar23;
-  weekly_schedule_graph_t **src;
-  uint16_t uStack_92;
+  int *piVar19;
+  ushort uStack_92;
   undefined2 uStack_90;
-  uint16_t offset_1;
-  ezb_zcl_thermostat_setpoint_raise_or_lower_payload_t payload;
-  uint16_t offset;
-  int16_t min_value;
+  ushort uStack_8e;
+  undefined4 uStack_8c;
+  void *pvStack_88;
   undefined4 uStack_84;
-  int16_t max_value;
-  void *pvStack_7c;
-  ezb_zcl_thermostat_setpoint_raise_or_lower_payload_t *peStack_78;
+  undefined4 uStack_80;
+  int iStack_7c;
+  undefined4 *puStack_78;
   uint uStack_74;
-  undefined1 auStack_68 [4];
-  zcl_packet_t rsp;
+  undefined1 auStack_68 [36];
+  undefined4 uStack_44;
   
   memset(auStack_68,0,0x28);
-  if (arg == (void *)0x0) {
-    iVar6 = 1;
-    goto _L0;
+  if (param_1 == 0) {
+    return 1;
   }
-  iVar6 = 1;
-  if (((*(byte *)((int)arg + 0x1a) >> 3 & 1) != 0) ||
-     (iVar6 = zcl_packet_init(auStack_68,*(byte *)((int)arg + 0x1a) >> 2 & 1), iVar6 != 0))
-  goto _L0;
-  uVar18 = (uint)*(byte *)((int)arg + 0x20);
-  if (uVar18 == 2) {
-    uStack_84 = (weekly_schedule_graph_t *)((uint)uStack_84._2_2_ << 0x10);
-    _payload = (uint)offset << 0x10;
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),(uint16_t *)&uStack_84,&payload.mode);
-    af_read_le8(*(zmsg_t **)((int)arg + 0x24),(uint16_t *)&uStack_84,(uint8_t *)&payload.amount);
-    uVar18 = zmsg_get_length(*(undefined4 *)((int)arg + 0x24));
-    if (uVar18 < ((uint)uStack_84 & 0xffff)) {
-      iVar10 = 0x80;
+  if ((*(byte *)(param_1 + 0x1a) >> 3 & 1) != 0) {
+    return 1;
+  }
+  iVar4 = zcl_packet_init(auStack_68,*(byte *)(param_1 + 0x1a) >> 2 & 1);
+  if (iVar4 != 0) {
+    return iVar4;
+  }
+  uVar13 = (uint)*(byte *)(param_1 + 0x20);
+  if (uVar13 == 2) {
+    uStack_84 = (uint)uStack_84._2_2_ << 0x10;
+    uStack_8c = (uint)uStack_8c._2_2_ << 0x10;
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_84,&uStack_8c);
+    af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_84,(int)&uStack_8c + 1);
+    uVar13 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    if (uVar13 < (uStack_84 & 0xffff)) {
+      iVar4 = 0x80;
     }
     else {
-      cVar17 = '\0';
-      for (uVar18 = _payload & 0xff; uVar18 != 0; uVar18 = uVar18 & uVar18 - 1) {
-        cVar17 = cVar17 + '\x01';
+      cVar12 = '\0';
+      for (uVar13 = uStack_8c & 0xff; uVar13 != 0; uVar13 = uVar13 & uVar13 - 1) {
+        cVar12 = cVar12 + '\x01';
       }
-      iVar10 = 0x85;
-      if (cVar17 == '\x01') {
-        pwVar12 = thermostat_weekly_schedule_context_get(*(uint8_t *)((int)arg + 0x15));
-        zmsg_append_u8((zmsg_t *)rsp._32_4_,'\0');
-        zmsg_append_u8((zmsg_t *)rsp._32_4_,payload.mode);
-        zmsg_append_u8((zmsg_t *)rsp._32_4_,payload.amount);
-        uVar18 = 0;
+      iVar4 = 0x85;
+      if (cVar12 == '\x01') {
+        iVar4 = thermostat_weekly_schedule_context_get(*(undefined1 *)(param_1 + 0x15));
+        zmsg_append_u8(uStack_44,0);
+        zmsg_append_u8(uStack_44,uStack_8c & 0xff);
+        zmsg_append_u8(uStack_44,uStack_8c >> 8 & 0xff);
+        uVar13 = 0;
         do {
-          uVar21 = 0;
-          if (((int)(_payload & 0xff) >> (uVar18 & 0x1f) & 1U) != 0) {
-            pwVar15 = pwVar12->graph[uVar18];
-            uVar18 = 0;
-            if (pwVar15 != (weekly_schedule_graph_t *)0x0) goto _L0;
+          uVar17 = 0;
+          if (((int)(uStack_8c & 0xff) >> (uVar13 & 0x1f) & 1U) != 0) {
+            iVar4 = *(int *)(iVar4 + uVar13 * 4 + 8);
+            uVar13 = 0;
+            if (iVar4 != 0) goto _L0;
             break;
           }
-          uVar18 = uVar18 + 1;
-        } while (uVar18 != 7);
+          uVar13 = uVar13 + 1;
+        } while (uVar13 != 7);
 _L0:
-        offset_1 = CONCAT11(offset_1._1_1_,uVar21);
-        zmsg_write_bytes(rsp._32_4_,0,1,&offset_1);
-        zcl_packet_setup_response(auStack_68,arg,0);
+        uStack_8e = CONCAT11(uStack_8e._1_1_,uVar17);
+        zmsg_write_bytes(uStack_44,0,1,&uStack_8e);
+        zcl_packet_setup_response(auStack_68,param_1,0);
         goto _L0;
       }
     }
-    zcl_packet_setup_default_response(auStack_68,arg,iVar10);
+    zcl_packet_setup_default_response(auStack_68,param_1,iVar4);
+    goto _L0;
   }
-  else {
-    if (uVar18 < 3) {
-      if (uVar18 == 0) {
-        offset_1 = 0;
-        _payload = (uint)offset << 0x10;
-        uStack_84 = (weekly_schedule_graph_t *)((uint)uStack_84._2_2_ << 0x10);
-        uStack_90 = 0;
-        af_read_le8(*(zmsg_t **)((int)arg + 0x24),&offset_1,(uint8_t *)&uStack_90);
-        af_read_le8(*(zmsg_t **)((int)arg + 0x24),&offset_1,(uint8_t *)((int)&uStack_90 + 1));
-        uVar23 = 0x80;
-        uVar7 = zcl_packet_payload_get_length(*(undefined4 *)((int)arg + 0x24));
-        uVar18 = (uint)offset_1;
-        if (uVar7 < uVar18) goto _L0;
-        uVar1 = *(uint8_t *)((int)arg + 0x15);
-        _Var4 = thermostat_is_occupied(uVar1);
-        if (CONCAT31(extraout_var,_Var4) == 0) {
-          pzVar8 = thermostat_srv_get_attr_desc(uVar1,0x14);
-          attr_id = 0x13;
-        }
-        else {
-          pzVar8 = thermostat_srv_get_attr_desc(uVar1,0x12);
-          attr_id = 0x11;
-        }
-        pzVar9 = thermostat_srv_get_attr_desc(uVar1,attr_id);
-        if (pzVar8 == (zcl_attr_desc_t *)0x0) {
-          uVar23 = 0;
-          iVar10 = 0;
-          if (pzVar9 == (zcl_attr_desc_t *)0x0) {
-            __assert_func(0,0,0);
-            goto _L0;
-          }
-_L0:
-                    /* WARNING: Load size is inaccurate */
-          uVar18 = (uint)*pzVar9->data_p;
-        }
-        else {
-          uVar18 = 0;
-                    /* WARNING: Load size is inaccurate */
-          uVar23 = (uint)*pzVar8->data_p;
-          iVar10 = (int)(short)*pzVar8->data_p;
-          if (pzVar9 != (zcl_attr_desc_t *)0x0) goto _L0;
-        }
-        cool = SUB42(uVar18,0);
-        if ((uint8_t)uStack_90 == '\x01') {
-          thermostat_get_cool_setpoint_limit(uVar1,(int16_t *)&payload,(int16_t *)&uStack_84);
-          iVar19 = uStack_90._1_1_ * 10;
-          iVar16 = iVar19 + (short)cool;
-          cool = uStack_84._0_2_;
-          if ((iVar16 <= (short)uStack_84._0_2_) && (cool = payload, (short)payload <= iVar16)) {
-_L0:
-            cool = SUB42((uVar18 + iVar19) * 0x10000 >> 0x10,0);
-          }
-        }
-        else if ((uint8_t)uStack_90 == '\x02') {
-          thermostat_get_heat_setpoint_limit(uVar1,(int16_t *)&payload,(int16_t *)&uStack_84);
-          iVar16 = uStack_90._1_1_ * 10 + iVar10;
-          iVar10 = (int)(short)uStack_84._0_2_;
-          if (iVar16 <= iVar10) {
-            iVar10 = (int)(short)payload;
-            if (iVar10 <= iVar16) {
-              iVar10 = (int)((uVar23 + uStack_90._1_1_ * 10) * 0x10000) >> 0x10;
-            }
-          }
-          thermostat_get_cool_setpoint_limit(uVar1,(int16_t *)&payload,(int16_t *)&uStack_84);
-          iVar19 = uStack_90._1_1_ * 10;
-          iVar16 = iVar19 + (short)cool;
-          cool = uStack_84._0_2_;
-          if ((iVar16 <= (short)uStack_84._0_2_) && (cool = payload, (short)payload <= iVar16))
-          goto _L0;
-        }
-        else if ((uint8_t)uStack_90 == '\0') {
-          thermostat_get_heat_setpoint_limit(uVar1,(int16_t *)&payload,(int16_t *)&uStack_84);
-          iVar16 = uStack_90._1_1_ * 10 + iVar10;
-          iVar10 = (int)(short)uStack_84._0_2_;
-          if (iVar16 <= iVar10) {
-            iVar10 = (int)(short)payload;
-            if (iVar10 <= iVar16) {
-              iVar10 = (int)((uVar23 + uStack_90._1_1_ * 10) * 0x10000) >> 0x10;
-            }
-          }
-        }
-        eVar5 = zcl_message_thermostat_setpoint
-                          (uVar1,(uint8_t)uStack_90,(int16_t)iVar10,(int16_t)cool);
-        uVar23 = CONCAT31(extraout_var_00,eVar5);
-        if (uVar23 == 0) {
-          thermostat_set_heat_cool_value(uVar1,(uint8_t)uStack_90,(int16_t)iVar10,(int16_t)cool);
-        }
+  if (uVar13 < 3) {
+    if (uVar13 == 0) {
+      uStack_8e = 0;
+      uStack_8c = (uint)uStack_8c._2_2_ << 0x10;
+      uStack_84 = (uint)uStack_84._2_2_ << 0x10;
+      uStack_90 = 0;
+      af_read_le8_isra_0(&uStack_8e,&uStack_90);
+      af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_8e,(int)&uStack_90 + 1);
+      uVar18 = 0x80;
+      uVar5 = zcl_packet_payload_get_length(*(undefined4 *)(param_1 + 0x24));
+      uVar13 = (uint)uStack_8e;
+      if (uVar5 < uVar13) goto _L0;
+      uVar17 = *(undefined1 *)(param_1 + 0x15);
+      iVar4 = thermostat_is_occupied(uVar17);
+      if (iVar4 == 0) {
+        iVar4 = thermostat_srv_get_attr_desc(uVar17,0x14);
+        uVar8 = 0x13;
       }
       else {
-        uVar1 = *(uint8_t *)((int)arg + 0x15);
-        uStack_92 = 0;
-        _payload = 0;
-        _min_value = (void *)0x0;
-        uVar18 = zmsg_get_length();
-        af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_92,&payload.mode);
-        af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_92,(uint8_t *)&payload.amount);
-        af_read_le8(*(zmsg_t **)((int)arg + 0x24),&uStack_92,(uint8_t *)&offset);
-        uVar23 = 0x87;
-        if (payload.mode < 0xb) {
-          _min_value = calloc(1,0x3c);
-          uVar23 = 0x89;
-          if (_min_value != (void *)0x0) {
-            for (uVar23 = 0; (uStack_92 < uVar18 && (uVar23 < (_payload & 0xff)));
-                uVar23 = uVar23 + 1 & 0xff) {
-              iVar10 = uVar23 * 6;
-              af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_92,
-                           (uint16_t *)((int)_min_value + iVar10));
-              if ((_payload & 0x10000) != 0) {
-                af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_92,
-                             (uint16_t *)((int)_min_value + iVar10 + 2));
-              }
-              if ((_payload & 0x20000) != 0) {
-                af_read_le16(*(zmsg_t **)((int)arg + 0x24),&uStack_92,
-                             (uint16_t *)((int)_min_value + iVar10 + 4));
-              }
-            }
-            uStack_84 = (weekly_schedule_graph_t *)0x0;
-            _max_value = 0;
-            pvStack_7c = (void *)0x0;
-            peStack_78 = (ezb_zcl_thermostat_setpoint_raise_or_lower_payload_t *)0x0;
-            uStack_74 = 0;
-            uVar23 = zcl_packet_to_message(&uStack_84,arg);
-            if (uVar23 == 0) {
-              uStack_74 = CONCAT31(uStack_74._1_3_,0xfe);
-              pvStack_7c = arg;
-              peStack_78 = &payload;
-              zcl_core_action_schedule(0x38,&uStack_84);
-              uVar23 = uStack_74 & 0xff;
-              if ((uVar23 == 0xfe) || (uVar23 == 0)) {
-                pwVar15 = (weekly_schedule_graph_t *)0x1c;
-                memset(&uStack_84,0,0x1c);
-                pwVar12 = thermostat_weekly_schedule_context_get(uVar1);
-                src = pwVar12->graph;
-                eVar5 = thermostat_weekly_schedule_graphs_copy
-                                  ((weekly_schedule_graph_t **)&uStack_84,src,(uint8_t)pwVar15);
-                if (CONCAT31(extraout_var_01,eVar5) == 0) {
-                  for (pwVar22 = (weekly_schedule_graph_t *)0x0;
-                      pwVar15 = (weekly_schedule_graph_t *)(_payload & 0xff), pwVar22 < pwVar15;
-                      pwVar22 = (weekly_schedule_graph_t *)
-                                ((uint)&pwVar22->num_of_transition & 0xff)) {
-                    if ((_payload & 0x10000) != 0) {
-                      pwVar15 = (weekly_schedule_graph_t *)&offset_1;
-                      sVar2 = *(short *)((int)_min_value + (int)pwVar22 * 6 + 2);
-                      thermostat_get_heat_setpoint_limit(uVar1,&uStack_90,(int16_t *)pwVar15);
-                      if ((uStack_90 <= sVar2) && (sVar2 <= (short)offset_1)) goto _L0;
+        iVar4 = thermostat_srv_get_attr_desc(uVar17,0x12);
+        uVar8 = 0x11;
+      }
+      iVar6 = thermostat_srv_get_attr_desc(uVar17,uVar8);
+      if (iVar4 == 0) {
+        uVar18 = 0;
+        iVar4 = 0;
+        if (iVar6 == 0) {
+          __assert_func(0,0,0);
+          goto _L0;
+        }
 _L0:
-                      uVar23 = 0x87;
-                      goto _L0;
-                    }
+        uVar13 = (uint)**(ushort **)(iVar6 + 8);
+      }
+      else {
+        uVar13 = 0;
+        uVar18 = (uint)**(ushort **)(iVar4 + 8);
+        iVar4 = (int)(short)**(ushort **)(iVar4 + 8);
+        if (iVar6 != 0) goto _L0;
+      }
+      iVar6 = (int)(short)uVar13;
+      if ((char)uStack_90 == '\x01') {
+        thermostat_get_cool_setpoint_limit_part_0(uVar17,&uStack_8c,&uStack_84);
+        iVar14 = uStack_90._1_1_ * 10;
+        iVar11 = iVar14 + iVar6;
+        iVar6 = (int)(short)uStack_84;
+        if (iVar11 <= iVar6) {
+          iVar6 = (int)(short)uStack_8c;
+          if (iVar6 <= iVar11) {
 _L0:
-                    if ((_payload & 0x20000) != 0) {
-                      pwVar15 = (weekly_schedule_graph_t *)&offset_1;
-                      sVar2 = *(short *)((int)_min_value + (int)pwVar22 * 6 + 4);
-                      thermostat_get_cool_setpoint_limit(uVar1,&uStack_90,(int16_t *)pwVar15);
-                      if (((sVar2 < uStack_90) || ((short)offset_1 < sVar2)) ||
-                         (*(short *)((int)_min_value + (int)pwVar22 * 6 + 4) != sVar2)) goto _L0;
-                    }
-                  }
-                  uVar7 = 0;
-                  uVar23 = 0;
-                  uVar18 = 0;
-                  ppwVar13 = src;
-                  do {
-                    if (*ppwVar13 == (weekly_schedule_graph_t *)0x0) break;
-                    if (((int)(_payload >> 8 & 0xff) >> (uVar18 & 0x1f) & 1U) != 0) {
-                      uVar7 = uVar7 + 1 & 0xff;
-                      uVar23 = uVar23 + (*ppwVar13)->num_of_transition & 0xff;
-                    }
-                    uVar18 = uVar18 + 1;
-                    ppwVar13 = ppwVar13 + 1;
-                  } while (uVar18 != 7);
-                  if (((weekly_schedule_graph_t *)(uint)pwVar12->daily_limit < pwVar15) ||
-                     ((uint)pwVar12->weekly_limit < uVar7 * (int)pwVar15 + uVar23)) goto _L0;
-                  uVar18 = 0;
-                  ppwVar13 = src;
-                  do {
-                    if (((int)(_payload >> 8 & 0xff) >> (uVar18 & 0x1f) & 1U) != 0) {
-                      thermostat_weekly_schedule_graphs_free(ppwVar13,'\x01');
-                      uVar3 = (uint8_t)offset;
-                      uVar14 = payload.mode;
-                      uVar23 = _payload & 0xff;
-                      pwVar22 = (weekly_schedule_graph_t *)calloc(1,8);
-                      if (pwVar22 == (weekly_schedule_graph_t *)0x0) {
-                        pwVar12->graph[uVar18] = (weekly_schedule_graph_t *)0x0;
-                        goto _L0;
-                      }
-                      pwVar22->num_of_transition = uVar14;
-                      pwVar22->mode_of_transition = uVar3;
-                      peVar11 = (ezb_zcl_thermostat_weekly_schedule_transition_t *)calloc(uVar23,6);
-                      pwVar22->transitions = peVar11;
-                      *ppwVar13 = pwVar22;
-                      memcpy(peVar11,_min_value,uVar23 * 6);
-                      qsort((*ppwVar13)->transitions,(uint)(*ppwVar13)->num_of_transition,6,
-                            compare_by_transition_start_time);
-                      pwVar15 = *ppwVar13;
-                      if (pwVar15 != (weekly_schedule_graph_t *)0x0) {
-                        for (uVar23 = 0;
-                            ((uVar23 & 0xff) < (uint)pwVar15->num_of_transition &&
-                            (((uVar23 & 0xff) + 1 & 0xff) < (uint)pwVar15->num_of_transition));
-                            uVar23 = uVar23 + 1) {
-                          peVar11 = pwVar15->transitions + uVar23;
-                          peVar20 = pwVar15->transitions + uVar23 + 1;
-                          if ((peVar11->start_time == peVar20->start_time) &&
-                             ((peVar11->heat_setpoint == peVar20->heat_setpoint &&
-                              (peVar11->cool_setpoint == peVar20->cool_setpoint)))) {
-                            uVar23 = 1;
-                            goto _L0;
-                          }
-                        }
-                      }
-                    }
-                    uVar18 = uVar18 + 1;
-                    ppwVar13 = ppwVar13 + 1;
-                    uVar23 = 0;
-                  } while (uVar18 != 7);
-                }
-                else {
-_L0:
-                  uVar23 = 0x89;
-_L0:
-                  uVar14 = (uint8_t)pwVar15;
-                  thermostat_weekly_schedule_graphs_free(src,'\a');
-                  thermostat_weekly_schedule_graphs_copy
-                            (src,(weekly_schedule_graph_t **)&uStack_84,uVar14);
-                }
-                thermostat_weekly_schedule_graphs_free((weekly_schedule_graph_t **)&uStack_84,'\a');
-                if (uVar23 == 0) {
-                  thermostat_weekly_schedule_loop_start(uVar1);
-                }
-              }
-            }
+            iVar6 = (int)((uVar13 + iVar14) * 0x10000) >> 0x10;
           }
         }
-        if (_min_value != (void *)0x0) {
-          mm_free();
+      }
+      else if ((char)uStack_90 == '\x02') {
+        thermostat_get_heat_setpoint_limit_part_0(uVar17,&uStack_8c,&uStack_84);
+        iVar11 = uStack_90._1_1_ * 10 + iVar4;
+        iVar4 = (int)(short)uStack_84;
+        if (iVar11 <= iVar4) {
+          iVar4 = (int)(short)uStack_8c;
+          if (iVar4 <= iVar11) {
+            iVar4 = (int)((uVar18 + uStack_90._1_1_ * 10) * 0x10000) >> 0x10;
+          }
         }
+        thermostat_get_cool_setpoint_limit_part_0(uVar17,&uStack_8c,&uStack_84);
+        iVar14 = uStack_90._1_1_ * 10;
+        iVar11 = iVar14 + iVar6;
+        iVar6 = (int)(short)uStack_84;
+        if (iVar11 <= iVar6) {
+          iVar6 = (int)(short)uStack_8c;
+          if (iVar6 <= iVar11) goto _L0;
+        }
+      }
+      else if ((char)uStack_90 == '\0') {
+        thermostat_get_heat_setpoint_limit_part_0(uVar17,&uStack_8c,&uStack_84);
+        iVar11 = uStack_90._1_1_ * 10 + iVar4;
+        iVar4 = (int)(short)uStack_84;
+        if (iVar11 <= iVar4) {
+          iVar4 = (int)(short)uStack_8c;
+          if (iVar4 <= iVar11) {
+            iVar4 = (int)((uVar18 + uStack_90._1_1_ * 10) * 0x10000) >> 0x10;
+          }
+        }
+      }
+      uVar18 = zcl_message_thermostat_setpoint(uVar17,(char)uStack_90,iVar4,iVar6);
+      if (uVar18 == 0) {
+        thermostat_set_heat_cool_value(uVar17,(char)uStack_90,iVar4,iVar6);
       }
     }
     else {
+      uVar17 = *(undefined1 *)(param_1 + 0x15);
+      uStack_92 = 0;
+      uStack_8c = 0;
+      pvStack_88 = (void *)0x0;
+      uVar13 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+      af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,&uStack_8c);
+      af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,(int)&uStack_8c + 1);
+      af_read_le8_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,(int)&uStack_8c + 2);
+      uVar18 = 0x87;
+      if ((byte)uStack_8c < 0xb) {
+        pvStack_88 = calloc(1,0x3c);
+        uVar18 = 0x89;
+        if (pvStack_88 != (void *)0x0) {
+          for (uVar18 = 0; (uStack_92 < uVar13 && (uVar18 < (uStack_8c & 0xff)));
+              uVar18 = uVar18 + 1 & 0xff) {
+            iVar4 = uVar18 * 6;
+            af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,
+                                (void *)((int)pvStack_88 + iVar4));
+            if ((uStack_8c & 0x10000) != 0) {
+              af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,
+                                  (int)pvStack_88 + iVar4 + 2);
+            }
+            if ((uStack_8c & 0x20000) != 0) {
+              af_read_le16_isra_0(*(undefined4 *)(param_1 + 0x24),&uStack_92,
+                                  (int)pvStack_88 + iVar4 + 4);
+            }
+          }
+          uStack_84 = 0;
+          uStack_80 = 0;
+          iStack_7c = 0;
+          puStack_78 = (undefined4 *)0x0;
+          uStack_74 = 0;
+          uVar18 = zcl_packet_to_message(&uStack_84,param_1);
+          if (uVar18 == 0) {
+            uStack_74 = CONCAT31(uStack_74._1_3_,0xfe);
+            iStack_7c = param_1;
+            puStack_78 = &uStack_8c;
+            zcl_core_action_schedule(0x39,&uStack_84);
+            uVar18 = uStack_74 & 0xff;
+            if ((uVar18 == 0xfe) || (uVar18 == 0)) {
+              memset(&uStack_84,0,0x1c);
+              iVar4 = thermostat_weekly_schedule_context_get(uVar17);
+              piVar19 = (int *)(iVar4 + 8);
+              iVar6 = thermostat_weekly_schedule_graphs_copy_constprop_0(&uStack_84,piVar19);
+              if (iVar6 == 0) {
+                for (uVar13 = 0; uVar18 = uStack_8c & 0xff, uVar13 < uVar18;
+                    uVar13 = uVar13 + 1 & 0xff) {
+                  if ((uStack_8c & 0x10000) != 0) {
+                    sVar1 = *(short *)((int)pvStack_88 + uVar13 * 6 + 2);
+                    thermostat_get_heat_setpoint_limit_part_0(uVar17,&uStack_90,&uStack_8e);
+                    if ((uStack_90 <= sVar1) && (sVar1 <= (short)uStack_8e)) goto _L0;
 _L0:
-      if (uVar18 == 3) {
-        pwVar12 = thermostat_weekly_schedule_context_get(*(uint8_t *)((int)arg + 0x15));
-        if (pwVar12 != (weekly_schedule_context_t *)0x0) {
-          thermostat_weekly_schedule_loop_stop(pwVar12->ep_id);
-          thermostat_weekly_schedule_graphs_free(pwVar12->graph,'\a');
+                    uVar18 = 0x87;
+                    goto _L0;
+                  }
+_L0:
+                  if ((uStack_8c & 0x20000) != 0) {
+                    sVar1 = *(short *)((int)pvStack_88 + uVar13 * 6 + 4);
+                    thermostat_get_cool_setpoint_limit_part_0(uVar17,&uStack_90,&uStack_8e);
+                    if (((sVar1 < uStack_90) || ((short)uStack_8e < sVar1)) ||
+                       (*(short *)((int)pvStack_88 + uVar13 * 6 + 4) != sVar1)) goto _L0;
+                  }
+                }
+                uVar15 = 0;
+                uVar5 = 0;
+                uVar13 = 0;
+                piVar9 = piVar19;
+                do {
+                  if (*piVar9 == 0) break;
+                  if (((int)(uStack_8c >> 8 & 0xff) >> (uVar13 & 0x1f) & 1U) != 0) {
+                    uVar15 = uVar15 + 1 & 0xff;
+                    uVar5 = uVar5 + *(byte *)(*piVar9 + 1) & 0xff;
+                  }
+                  uVar13 = uVar13 + 1;
+                  piVar9 = piVar9 + 1;
+                } while (uVar13 != 7);
+                if ((*(byte *)(iVar4 + 4) < uVar18) ||
+                   ((uint)*(byte *)(iVar4 + 3) < uVar15 * uVar18 + uVar5)) goto _L0;
+                uVar13 = 0;
+                piVar9 = piVar19;
+                do {
+                  if (((int)(uStack_8c >> 8 & 0xff) >> (uVar13 & 0x1f) & 1U) != 0) {
+                    thermostat_weekly_schedule_graphs_free(piVar9,1);
+                    uVar3 = uStack_8c._2_1_;
+                    uVar2 = (byte)uStack_8c;
+                    uVar18 = uStack_8c & 0xff;
+                    puVar7 = (undefined1 *)calloc(1,8);
+                    if (puVar7 == (undefined1 *)0x0) {
+                      *(undefined4 *)(uVar13 * 4 + iVar4 + 8) = 0;
+                      goto _L0;
+                    }
+                    puVar7[1] = uVar2;
+                    *puVar7 = uVar3;
+                    __dest = calloc(uVar18,6);
+                    *(void **)(puVar7 + 4) = __dest;
+                    *piVar9 = (int)puVar7;
+                    memcpy(__dest,pvStack_88,uVar18 * 6);
+                    qsort(*(void **)(*piVar9 + 4),(uint)*(byte *)(*piVar9 + 1),6,
+                          compare_by_transition_start_time);
+                    iVar6 = *piVar9;
+                    if (iVar6 != 0) {
+                      for (uVar18 = 0;
+                          ((uVar18 & 0xff) < (uint)*(byte *)(iVar6 + 1) &&
+                          (((uVar18 & 0xff) + 1 & 0xff) < (uint)*(byte *)(iVar6 + 1)));
+                          uVar18 = uVar18 + 1) {
+                        psVar10 = (short *)(*(int *)(iVar6 + 4) + uVar18 * 6);
+                        psVar16 = (short *)(*(int *)(iVar6 + 4) + uVar18 * 6 + 6);
+                        if ((*psVar10 == *psVar16) &&
+                           ((psVar10[1] == psVar16[1] && (psVar10[2] == psVar16[2])))) {
+                          uVar18 = 1;
+                          goto _L0;
+                        }
+                      }
+                    }
+                  }
+                  uVar13 = uVar13 + 1;
+                  piVar9 = piVar9 + 1;
+                  uVar18 = 0;
+                } while (uVar13 != 7);
+              }
+              else {
+_L0:
+                uVar18 = 0x89;
+_L0:
+                thermostat_weekly_schedule_graphs_free(piVar19,7);
+                thermostat_weekly_schedule_graphs_copy_constprop_0(piVar19,&uStack_84);
+              }
+              thermostat_weekly_schedule_graphs_free(&uStack_84,7);
+              if (uVar18 == 0) {
+                thermostat_weekly_schedule_loop_start(uVar17);
+              }
+            }
+          }
         }
-        uVar23 = 0;
       }
-      else {
-        uVar23 = 0x81;
+      if (pvStack_88 != (void *)0x0) {
+        mm_free();
       }
-    }
-_L0:
-    iVar10 = zcl_packet_setup_default_response(auStack_68,arg,uVar23);
-    if (iVar10 == 0) {
-_L0:
-      zcl_packet_send(auStack_68,0);
-      goto _L0;
     }
   }
+  else {
+_L0:
+    if (uVar13 == 3) {
+      puVar7 = (undefined1 *)thermostat_weekly_schedule_context_get(*(undefined1 *)(param_1 + 0x15))
+      ;
+      if (puVar7 != (undefined1 *)0x0) {
+        thermostat_weekly_schedule_loop_stop(*puVar7);
+        thermostat_weekly_schedule_graphs_free(puVar7 + 8,7);
+      }
+      uVar18 = 0;
+    }
+    else {
+      uVar18 = 0x81;
+    }
+  }
+_L0:
+  iVar4 = zcl_packet_setup_default_response(auStack_68,param_1,uVar18);
+  if (iVar4 == 0) {
+_L0:
+    zcl_packet_send(auStack_68,0);
+    return 0;
+  }
+_L0:
   zcl_packet_free(auStack_68);
-  iVar6 = iVar10;
+  return iVar4;
 _L0:
-  return (ezb_zcl_status_t)iVar6;
-_L0:
-  uVar21 = (undefined1)uVar18;
-  if ((uint)pwVar15->num_of_transition <= (uVar18 & 0xff)) goto _L0;
-  if (uVar18 == 10) {
-    uVar21 = 10;
+  uVar17 = (undefined1)uVar13;
+  if ((uint)*(byte *)(iVar4 + 1) <= (uVar13 & 0xff)) goto _L0;
+  if (uVar13 == 10) {
+    uVar17 = 10;
     goto _L0;
   }
-  zmsg_append_le16((zmsg_t *)rsp._32_4_,pwVar15->transitions[uVar18].start_time);
-  if ((_payload & 0x100) != 0) {
-    zmsg_append_le16((zmsg_t *)rsp._32_4_,pwVar15->transitions[uVar18].heat_setpoint);
+  iVar6 = uVar13 * 6;
+  zmsg_append_le16(uStack_44,*(undefined2 *)(*(int *)(iVar4 + 4) + iVar6));
+  if ((uStack_8c & 0x100) != 0) {
+    zmsg_append_le16(uStack_44,*(undefined2 *)(*(int *)(iVar4 + 4) + iVar6 + 2));
   }
-  if ((_payload & 0x200) != 0) {
-    zmsg_append_le16((zmsg_t *)rsp._32_4_,pwVar15->transitions[uVar18].cool_setpoint);
+  if ((uStack_8c & 0x200) != 0) {
+    zmsg_append_le16(uStack_44,*(undefined2 *)(*(int *)(iVar4 + 4) + iVar6 + 4));
   }
-  uVar18 = uVar18 + 1;
+  uVar13 = uVar13 + 1;
   goto _L0;
 }
 

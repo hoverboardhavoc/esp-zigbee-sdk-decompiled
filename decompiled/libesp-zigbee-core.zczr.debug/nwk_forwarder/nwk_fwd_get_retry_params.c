@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_get_retry_params
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,64 +10,57 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: dst_addr */
-/* WARNING: Unknown calling convention */
-
-void nwk_fwd_get_retry_params(zmsg_t *msg,uint8_t *retry_count,uint32_t *retry_delay)
+void nwk_fwd_get_retry_params(int param_1,undefined1 *param_2,undefined4 *param_3)
 
 {
   short sVar1;
   undefined4 uVar2;
-  uint32_t uVar3;
-  int iVar4;
+  int iVar3;
   byte bStack_16;
   char cStack_15;
   ushort uStack_14;
-  uint8_t rreq_cmd_opt;
-  nwk_cmd_id_t cmd;
-  ezb_shortaddr_t dst_addr;
-  uint16_t fcf;
+  ushort uStack_12;
   
   cStack_15 = '\0';
-  zmsg_read_bytes(0,2,&rreq_cmd_opt);
-  zmsg_read_bytes(msg,2,&uStack_14);
-  if ((_rreq_cmd_opt & 3) == 1) {
-    uVar2 = zmsg_get_offset(msg);
-    zmsg_read_bytes(msg,uVar2,1,&cStack_15);
+  zmsg_read_bytes(0,2,&uStack_12);
+  zmsg_read_bytes(param_1,2,&uStack_14);
+  if ((uStack_12 & 3) == 1) {
+    uVar2 = zmsg_get_offset(param_1);
+    zmsg_read_bytes(param_1,uVar2,1,&cStack_15);
   }
   if ((cStack_15 == '\b') || (cStack_15 == '\r')) {
-    *retry_count = '\0';
-    *retry_delay = 0;
+    *param_2 = 0;
+    *param_3 = 0;
   }
   else if (cStack_15 == '\x01') {
-    sVar1 = zmsg_get_offset(msg);
-    zmsg_read_bytes(msg,sVar1 + 1,1,&bStack_16);
+    sVar1 = zmsg_get_offset(param_1);
+    zmsg_read_bytes(param_1,sVar1 + 1,1,&bStack_16);
     if ((bStack_16 & 0x18) == 0) {
-      if ((msg->flags & 8) == 0) {
-        *retry_count = '\x03';
-        *retry_delay = 0xfe;
+      if ((*(ushort *)(param_1 + 0x16) & 8) == 0) {
+        *param_2 = 3;
+        *param_3 = 0xfe;
       }
       else {
-        *retry_count = '\x02';
-        uVar3 = random_add_jitter(0x7e);
-        *retry_delay = uVar3;
+        *param_2 = 2;
+        uVar2 = random_add_jitter(0x7e);
+        *param_3 = uVar2;
       }
     }
     else {
-      *retry_count = '\0';
-      *retry_delay = 0;
+      *param_2 = 0;
+      *param_3 = 0;
     }
   }
   else if (uStack_14 < 0xfff8) {
-    *retry_count = '\x03';
-    *retry_delay = 0x32;
+    *param_2 = 3;
+    *param_3 = 0x32;
   }
   else {
-    iVar4 = core_globals_get();
-    *retry_count = *(uint8_t *)(iVar4 + 0x9d8);
-    iVar4 = core_globals_get();
-    uVar3 = random_add_jitter(*(undefined2 *)(iVar4 + 0x9d6),0x40);
-    *retry_delay = uVar3;
+    iVar3 = core_globals_get();
+    *param_2 = *(undefined1 *)(iVar3 + 0x9d8);
+    iVar3 = core_globals_get();
+    uVar2 = random_add_jitter(*(undefined2 *)(iVar3 + 0x9d6),0x40);
+    *param_3 = uVar2;
   }
   return;
 }

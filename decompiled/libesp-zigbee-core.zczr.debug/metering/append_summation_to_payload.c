@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> metering.o -> append_summation_to_payload
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-append_summation_to_payload(zcl_packet_payload_t *payload,uint8_t num,uint64_t *summation)
+undefined4 append_summation_to_payload(undefined4 param_1,uint param_2,int param_3)
 
 {
   uint uVar1;
   int iVar2;
-  undefined3 in_register_0000202d;
   
-  if (CONCAT31(in_register_0000202d,num) == 0) {
+  if (param_2 == 0) {
     uVar1 = 0;
   }
   else {
-    if (summation == (uint64_t *)0x0) {
-      return '\x01';
+    if (param_3 == 0) {
+      return 1;
     }
     uVar1 = 0;
   }
   while( true ) {
-    if (CONCAT31(in_register_0000202d,num) <= uVar1) {
-      return '\0';
+    if (param_2 <= uVar1) {
+      return 0;
     }
-    iVar2 = zcl_packet_append_variable_attr_value(payload,0x25,summation + uVar1);
+    iVar2 = zcl_packet_append_variable_attr_value(param_1,0x25,uVar1 * 8 + param_3);
     if (iVar2 != 0) break;
     uVar1 = uVar1 + 1 & 0xff;
   }

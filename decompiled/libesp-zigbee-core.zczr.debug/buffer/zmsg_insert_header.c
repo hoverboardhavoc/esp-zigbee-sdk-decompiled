@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_insert_header
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,17 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zmsg_insert_header(zmsg_t *msg,uint16_t offset,uint16_t length)
+int zmsg_insert_header(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  ezb_err_t eVar1;
+  int iVar1;
   
-  eVar1 = zmsg_prepend_bytes(msg,length,(void *)0x0);
-  if (eVar1 == 0) {
-    zmsg_write_bytes_from_msg(msg,0,msg,length,offset);
+  iVar1 = zmsg_prepend_bytes(param_3,0);
+  if (iVar1 == 0) {
+    zmsg_write_bytes_from_msg(param_1,0,param_1,param_3,param_2);
   }
-  return eVar1;
+  return iVar1;
 }
 

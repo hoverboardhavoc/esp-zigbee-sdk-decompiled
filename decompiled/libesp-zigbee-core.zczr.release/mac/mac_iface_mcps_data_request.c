@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_iface_mcps_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_iface_mcps_data_request(mac_interface_t *iface,mac_data_req_t *req)
+int mac_iface_mcps_data_request(int *param_1,int *param_2)
 
 {
-  ezb_panid_t eVar1;
+  undefined2 uVar1;
   int iVar2;
   undefined4 uVar3;
   uint uVar4;
-  mac_device *dev;
-  zmsg_t *msg;
-  ezb_panid_t local_40;
-  ezb_panid_t eStack_3e;
-  mac_panids_t panids;
-  uint8_t hdr [28];
+  int iVar5;
+  int iVar6;
+  undefined2 local_40;
+  undefined2 uStack_3e;
+  undefined1 auStack_3c [40];
   
-  dev = (mac_device *)iface->dev;
+  iVar5 = *param_1;
   iVar2 = 3;
-  if ((((*(uint *)&(dev->ctx).field_0x70 & 1) != 0) && (iVar2 = 2, req != (mac_data_req_t *)0x0)) &&
-     (msg = req->msdu, msg != (zmsg_t *)0x0)) {
-    eVar1 = (dev->pib).panid;
-    memset(&panids,0,0x1c);
-    eStack_3e = req->dst_panid;
-    local_40 = eVar1;
-    uVar3 = mac_frame_write_hdr(&panids,&req->addresses,&local_40,0,1,0);
-    iVar2 = zmsg_prepend_bytes(msg,uVar3,&panids);
+  if ((((*(uint *)(iVar5 + 0x9c) & 1) != 0) && (iVar2 = 2, param_2 != (int *)0x0)) &&
+     (iVar6 = *param_2, iVar6 != 0)) {
+    uVar1 = *(undefined2 *)(iVar5 + 10);
+    memset(auStack_3c,0,0x1c);
+    uStack_3e = (undefined2)param_2[6];
+    local_40 = uVar1;
+    uVar3 = mac_frame_write_hdr(auStack_3c,param_2 + 1,&local_40,0,1,0);
+    iVar2 = zmsg_prepend_bytes(iVar6,uVar3,auStack_3c);
     if (iVar2 == 0) {
-      uVar4 = zmsg_get_length(msg);
+      uVar4 = zmsg_get_length(iVar6);
       if (uVar4 < 0x7e) {
-        if ((req->field_0x1a & 2) == 0) {
-          zmsg_queue_enqueue(&(dev->ctx).tx_q,msg);
-          if (((dev->ctx).cur_op != '\x04') && (((dev->ctx).pending_ops & 0x10) == 0)) {
-            mac_start_op(dev,MAC_OPERATION_TRANSMIT_DATA_DIRECT);
+        if ((*(byte *)((int)param_2 + 0x1a) & 2) == 0) {
+          zmsg_queue_enqueue(iVar5 + 0x48,iVar6);
+          if ((*(char *)(iVar5 + 0x2e) != '\x04') && ((*(ushort *)(iVar5 + 0x30) & 0x10) == 0)) {
+            mac_start_op(iVar5);
           }
         }
         else {
-          mac_indirect_transmit(dev,&(req->addresses).destination,msg);
+          mac_indirect_transmit(iVar5,(int)param_2 + 0xe,iVar6);
         }
       }
       else {

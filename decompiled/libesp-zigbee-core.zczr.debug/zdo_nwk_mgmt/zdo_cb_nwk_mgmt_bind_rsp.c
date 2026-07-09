@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_cb_nwk_mgmt_bind_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_cb_nwk_mgmt_bind_rsp(zdp_nwk_mgmt_bind_rsp_field_t *rsp,zdo_packet_ctx_t *ctx)
+undefined4 zdo_cb_nwk_mgmt_bind_rsp(int param_1,int param_2)
 
 {
-  zdp_status_t zVar1;
+  int iVar1;
   int iVar2;
-  undefined3 extraout_var;
-  zdp_nwk_mgmt_bind_rsp_field_t azStack_28 [2];
+  undefined4 uVar3;
+  undefined4 uStack_28;
+  int iStack_24;
   
-  if ((rsp != (zdp_nwk_mgmt_bind_rsp_field_t *)0x0) && (ctx != (zdo_packet_ctx_t *)0x0)) {
-    zdo_packet_notify_result(ctx,0);
-    return '\0';
+  if ((param_1 != 0) && (param_2 != 0)) {
+    zdo_packet_notify_result(param_2,0);
+    return 0;
   }
-  iVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x4bd,
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x4bd,
                         "zdo_cb_nwk_mgmt_bind_rsp","rsp && ctx");
-  azStack_28[0].status = '\0';
-  azStack_28[0].binding_table_entries = '\0';
-  azStack_28[0].start_index = '\0';
-  azStack_28[0].binding_table_list_count = '\0';
-  azStack_28[0].binding_table_list = (ezb_zdp_nwk_mgmt_bind_table_entry_t *)0x0;
-  if (iVar2 == 0) {
-    zVar1 = 0xfe;
+  uStack_28 = 0;
+  iStack_24 = 0;
+  if (iVar1 == 0) {
+    uVar3 = 0xfe;
   }
-  else if (*(zdo_packet_payload_t **)(iVar2 + 0x14) == (zdo_packet_payload_t *)0x0) {
-    zVar1 = 0xfe;
+  else if (*(int *)(iVar1 + 0x14) == 0) {
+    uVar3 = 0xfe;
   }
   else {
-    zVar1 = zdo_op_nwk_mgmt_bind_rsp(*(zdo_packet_payload_t **)(iVar2 + 0x14),azStack_28,false);
-    if (CONCAT31(extraout_var,zVar1) == 0) {
-      zVar1 = zdo_cb_nwk_mgmt_bind_rsp(azStack_28,(zdo_packet_ctx_t *)(iVar2 + 8));
+    iVar2 = zdo_op_nwk_mgmt_bind_rsp(&uStack_28,0);
+    if (iVar2 == 0) {
+      uVar3 = zdo_cb_nwk_mgmt_bind_rsp(&uStack_28,iVar1 + 8);
     }
     else {
-      zVar1 = 0xfe;
+      uVar3 = 0xfe;
     }
   }
-  if (azStack_28[0].binding_table_list != (ezb_zdp_nwk_mgmt_bind_table_entry_t *)0x0) {
+  if (iStack_24 != 0) {
     mm_free();
   }
-  return zVar1;
+  return uVar3;
 }
 

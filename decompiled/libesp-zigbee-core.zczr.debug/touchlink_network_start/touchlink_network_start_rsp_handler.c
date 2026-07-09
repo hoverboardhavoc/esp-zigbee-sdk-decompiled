@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_network_start.o -> touchlink_network_start_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_network_start_rsp_handler(touchlink_network_start_rsp_t *rsp)
+undefined4 touchlink_network_start_rsp_handler(int param_1)
 
 {
-  undefined4 *puVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  uint32_t uVar4;
-  undefined1 uVar5;
-  undefined2 uVar6;
-  uint32_t uVar7;
-  ezb_err_t eVar8;
-  int iVar9;
+  undefined4 uVar1;
+  int iVar2;
+  undefined1 uVar3;
+  undefined2 uVar4;
+  int iVar5;
+  undefined4 uVar6;
   
-  if (((rsp == (touchlink_network_start_rsp_t *)0x0) || (uVar4 = rsp->transaction_id, uVar4 == 0))
-     || (uVar7 = touchlink_transaction_id(0), uVar4 != uVar7)) {
-    eVar8 = 3;
+  if (((param_1 == 0) || (iVar2 = *(int *)(param_1 + 0xc), iVar2 == 0)) ||
+     (iVar5 = touchlink_transaction_id(0), iVar2 != iVar5)) {
+    uVar6 = 3;
   }
   else {
-    iVar9 = touchlink_transaction_get();
-    *(undefined1 *)(iVar9 + 0x60c) = 9;
-    iVar9 = touchlink_transaction_get();
-    *(uint8_t *)(iVar9 + 0x610) = rsp->status;
-    uVar5 = touchlink_is_factory_new();
-    *(undefined1 *)(iVar9 + 0x630) = uVar5;
-    *(ezb_panid_t *)(iVar9 + 0x61a) = rsp->pan_id;
-    *(uint8_t *)(iVar9 + 0x61c) = rsp->channel;
-    uVar6 = touchlink_short_address();
-    *(undefined2 *)(iVar9 + 0x61e) = uVar6;
-    uVar2 = *(undefined4 *)&(rsp->ext_panid).field_0;
-    puVar1 = (undefined4 *)((int)&(rsp->ext_panid).field_0 + 4);
-    uVar6 = *(undefined2 *)puVar1;
-    uVar3 = *puVar1;
-    *(char *)(iVar9 + 0x611) = (char)*(undefined2 *)&(rsp->ext_panid).field_0;
-    *(char *)(iVar9 + 0x612) = (char)((uint)uVar2 >> 8);
-    *(char *)(iVar9 + 0x613) = (char)((uint)uVar2 >> 0x10);
-    *(char *)(iVar9 + 0x614) = (char)((uint)uVar2 >> 0x18);
-    *(char *)(iVar9 + 0x615) = (char)uVar6;
-    *(char *)(iVar9 + 0x616) = (char)((uint)uVar3 >> 8);
-    *(char *)(iVar9 + 0x617) = (char)((uint)uVar3 >> 0x10);
-    *(char *)(iVar9 + 0x618) = (char)((uint)uVar3 >> 0x18);
-    iVar9 = touchlink_transaction_get();
-    eVar8 = touchlink_schedule_transaction_event(iVar9 + 0x60c);
+    iVar2 = touchlink_transaction_get();
+    *(undefined1 *)(iVar2 + 0x60c) = 9;
+    iVar2 = touchlink_transaction_get();
+    *(undefined1 *)(iVar2 + 0x610) = *(undefined1 *)(param_1 + 0x10);
+    uVar3 = touchlink_is_factory_new();
+    *(undefined1 *)(iVar2 + 0x630) = uVar3;
+    *(undefined2 *)(iVar2 + 0x61a) = *(undefined2 *)(param_1 + 0x1c);
+    *(undefined1 *)(iVar2 + 0x61c) = *(undefined1 *)(param_1 + 0x1a);
+    uVar4 = touchlink_short_address();
+    *(undefined2 *)(iVar2 + 0x61e) = uVar4;
+    uVar6 = *(undefined4 *)(param_1 + 0x11);
+    uVar4 = *(undefined2 *)(param_1 + 0x15);
+    uVar1 = *(undefined4 *)(param_1 + 0x15);
+    *(char *)(iVar2 + 0x611) = (char)*(undefined2 *)(param_1 + 0x11);
+    *(char *)(iVar2 + 0x612) = (char)((uint)uVar6 >> 8);
+    *(char *)(iVar2 + 0x613) = (char)((uint)uVar6 >> 0x10);
+    *(char *)(iVar2 + 0x614) = (char)((uint)uVar6 >> 0x18);
+    *(char *)(iVar2 + 0x615) = (char)uVar4;
+    *(char *)(iVar2 + 0x616) = (char)((uint)uVar1 >> 8);
+    *(char *)(iVar2 + 0x617) = (char)((uint)uVar1 >> 0x10);
+    *(char *)(iVar2 + 0x618) = (char)((uint)uVar1 >> 0x18);
+    iVar2 = touchlink_transaction_get();
+    uVar6 = touchlink_schedule_transaction_event(iVar2 + 0x60c);
   }
-  return eVar8;
+  return uVar6;
 }
 

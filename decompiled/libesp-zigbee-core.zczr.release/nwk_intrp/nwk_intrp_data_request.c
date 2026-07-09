@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_intrp.o -> nwk_intrp_data_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_intrp_data_request(nwk_intrp_data_req_t *req)
+void nwk_intrp_data_request(void *param_1)
 
 {
-  ezb_err_t eVar1;
-  zmsg_t *pzStack_2c;
-  mac_data_req_t mac_req;
+  int iVar1;
+  undefined4 uStack_2c;
+  undefined1 auStack_28 [10];
+  undefined1 auStack_1e [10];
+  undefined2 uStack_14;
+  undefined2 uStack_12;
   
-  pzStack_2c = (zmsg_t *)CONCAT22(pzStack_2c._2_2_,0xb);
-  eVar1 = zmsg_prepend_bytes(req->nsdu,2,&pzStack_2c);
-  if (eVar1 == 0) {
-    pzStack_2c = req->nsdu;
-    mac_req.addresses.destination.u._6_2_ = 0;
-    memcpy(&mac_req,req,10);
-    memcpy((void *)((int)&mac_req.addresses.source.u + 4),&req->dst_addr,10);
-    mac_req.addresses.destination.u._4_2_ = req->dst_panid;
-    eVar1 = nwk_mm_data_request(0,&pzStack_2c);
+  uStack_2c = CONCAT22(uStack_2c._2_2_,0xb);
+  iVar1 = zmsg_prepend_bytes(*(undefined4 *)((int)param_1 + 0x18),2,&uStack_2c);
+  if (iVar1 == 0) {
+    uStack_2c = *(undefined4 *)((int)param_1 + 0x18);
+    uStack_12 = 0;
+    memcpy(auStack_28,param_1,10);
+    memcpy(auStack_1e,(void *)((int)param_1 + 0xc),10);
+    uStack_14 = *(undefined2 *)((int)param_1 + 10);
+    nwk_mm_data_request(0,&uStack_2c);
   }
-  return eVar1;
+  return;
 }
 

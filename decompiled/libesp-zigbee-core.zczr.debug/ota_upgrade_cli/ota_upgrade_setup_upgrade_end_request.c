@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_setup_upgrade_end_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-ota_upgrade_setup_upgrade_end_request
-          (zcl_packet_t *sent_packet,ota_upgrade_downloading_context_t *context,
-          zcl_packet_t *recv_packet,uint8_t status)
+int ota_upgrade_setup_upgrade_end_request(int param_1,int param_2,int param_3,undefined1 param_4)
 
 {
   int iVar1;
   int unaff_s2;
-  uint32_t auStack_24 [4];
+  undefined4 auStack_24 [4];
   
-  if (((sent_packet == (zcl_packet_t *)0x0) || (recv_packet == (zcl_packet_t *)0x0)) ||
-     (context == (ota_upgrade_downloading_context_t *)0x0)) {
+  if (((param_1 == 0) || (param_3 == 0)) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",
                   0x272,"ota_upgrade_setup_upgrade_end_request",
                   "sent_packet && recv_packet && context");
   }
   else {
-    unaff_s2 = zcl_packet_setup_response_with_extension(recv_packet,6,1,0);
-    if (unaff_s2 != 0) goto _L0;
+    unaff_s2 = zcl_packet_setup_response_with_extension(param_3,6,1,0);
+    if (unaff_s2 != 0) {
+      return unaff_s2;
+    }
   }
-  auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,status);
-  iVar1 = zmsg_append_bytes(sent_packet->payload,1,auStack_24);
+  auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,param_4);
+  iVar1 = zmsg_append_bytes(*(undefined4 *)(param_1 + 0x24),1,auStack_24);
   if (iVar1 == 0) {
-    auStack_24[0]._0_2_ = *(context->attr).manuf_code;
-    iVar1 = zmsg_append_bytes(sent_packet->payload,2,auStack_24);
+    auStack_24[0]._0_2_ = **(undefined2 **)(param_2 + 0x1c);
+    iVar1 = zmsg_append_bytes(*(undefined4 *)(param_1 + 0x24),2,auStack_24);
     if (iVar1 == 0) {
-      auStack_24[0] = CONCAT22(auStack_24[0]._2_2_,*(context->attr).image_type);
-      iVar1 = zmsg_append_bytes(sent_packet->payload,2,auStack_24);
+      auStack_24[0] = CONCAT22(auStack_24[0]._2_2_,**(undefined2 **)(param_2 + 0x20));
+      iVar1 = zmsg_append_bytes(*(undefined4 *)(param_1 + 0x24),2,auStack_24);
       if (iVar1 == 0) {
-        auStack_24[0] = (context->file).downloading_version;
-        iVar1 = zmsg_append_bytes(sent_packet->payload,4,auStack_24);
+        auStack_24[0] = *(undefined4 *)(param_2 + 0x2c);
+        iVar1 = zmsg_append_bytes(*(undefined4 *)(param_1 + 0x24),4,auStack_24);
         if (iVar1 != 0) {
           unaff_s2 = 0x89;
         }
@@ -58,7 +54,6 @@ ota_upgrade_setup_upgrade_end_request
   else {
     unaff_s2 = 0x89;
   }
-_L0:
-  return (ezb_zcl_status_t)unaff_s2;
+  return unaff_s2;
 }
 

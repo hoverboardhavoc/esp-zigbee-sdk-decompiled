@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_group.o -> aps_group_table_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,67 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_group_table_restore(void)
 
 {
-  ushort blk_nr;
-  bool bVar1;
-  uint16_t uVar2;
-  aps_group_t *__s;
+  ushort uVar1;
+  bool bVar2;
+  undefined2 *__s;
   int iVar3;
-  undefined2 extraout_var;
   int iVar4;
-  ezb_err_t eVar5;
-  uint uVar6;
-  bitmap_t *blk_busy;
-  undefined1 local_48 [4];
-  ds_group_info_iterator_t itor;
+  uint uVar5;
+  undefined4 uVar6;
+  undefined2 uStack_48;
+  undefined1 auStack_46 [32];
+  short sStack_26;
+  char cStack_24;
   
-  itor.data.ep_in_grp[0x1c] = '\0';
-  itor.data.ep_in_grp[0x1d] = '\0';
-  itor.data.ep_in_grp[0x1e] = '\0';
-  bVar1 = false;
-  ds_group_info_itor_read((ds_group_info_iterator_t *)local_48);
-  while (itor.data.ep_in_grp[0x1e] == '\0') {
-    __s = group_table_find(local_48._0_2_);
-    if (__s == (aps_group_t *)0x0) {
+  sStack_26 = 0;
+  cStack_24 = '\0';
+  bVar2 = false;
+  ds_group_info_itor_read(&uStack_48);
+  while (cStack_24 == '\0') {
+    __s = (undefined2 *)group_table_find(uStack_48);
+    if (__s == (undefined2 *)0x0) {
+      iVar3 = core_globals_get();
+      iVar3 = *(int *)(iVar3 + 0x95c);
       iVar4 = core_globals_get();
-      iVar4 = *(int *)(iVar4 + 0x95c);
-      iVar3 = core_globals_get();
-      blk_busy = *(bitmap_t **)(iVar3 + 0x960);
-      iVar3 = core_globals_get();
-      blk_nr = *(ushort *)(iVar3 + 0x964);
-      uVar2 = mempool_alloc_idx(blk_busy,blk_nr);
-      if (((uint)blk_nr <= CONCAT22(extraout_var,uVar2)) ||
-         (__s = (aps_group_t *)(iVar4 + CONCAT22(extraout_var,uVar2) * 0x22),
-         __s == (aps_group_t *)0x0)) goto _L0;
+      uVar6 = *(undefined4 *)(iVar4 + 0x960);
+      iVar4 = core_globals_get();
+      uVar1 = *(ushort *)(iVar4 + 0x964);
+      uVar5 = mempool_alloc_idx(uVar6,(uint)uVar1);
+      if ((uVar1 <= uVar5) || (__s = (undefined2 *)(iVar3 + uVar5 * 0x22), __s == (undefined2 *)0x0)
+         ) goto _L0;
     }
     else {
-      bVar1 = true;
+      bVar2 = true;
     }
     memset(__s,0,0x22);
-    __s->group_addr = local_48._0_2_;
-    memcpy(__s->ep_in_grp,local_48 + 2,0x20);
-    if (itor.data.ep_in_grp[0x1e] == '\0') {
-      itor.data.ep_in_grp._28_2_ = itor.data.ep_in_grp._28_2_ + 1;
-      ds_group_info_itor_read((ds_group_info_iterator_t *)local_48);
+    *__s = uStack_48;
+    memcpy(__s + 1,auStack_46,0x20);
+    if (cStack_24 == '\0') {
+      sStack_26 = sStack_26 + 1;
+      ds_group_info_itor_read(&uStack_48);
     }
   }
-  if (bVar1) {
+  if (bVar2) {
 _L0:
-    iVar4 = ds_internal_remove_entry(5,0xffffffff,0);
-    if (iVar4 == 0) {
-      iVar4 = core_globals_get();
-      uVar6 = 0;
-      while ((uVar6 = bitmap_find_next_bit
-                                (*(undefined4 *)(iVar4 + 0x960),*(undefined2 *)(iVar4 + 0x964),uVar6
-                                ), uVar6 < *(ushort *)(iVar4 + 0x964) &&
-             (eVar5 = aps_group_table_store_group
-                                ((aps_group_t *)(uVar6 * 0x22 + *(int *)(iVar4 + 0x95c))),
-             eVar5 == 0))) {
-        uVar6 = uVar6 + 1 & 0xffff;
+    iVar3 = ds_internal_remove_entry(5,0xffffffff,0);
+    if (iVar3 == 0) {
+      iVar3 = core_globals_get();
+      uVar5 = 0;
+      while ((uVar5 = bitmap_find_next_bit
+                                (*(undefined4 *)(iVar3 + 0x960),*(undefined2 *)(iVar3 + 0x964),uVar5
+                                ), uVar5 < *(ushort *)(iVar3 + 0x964) &&
+             (iVar4 = aps_group_table_store_group(uVar5 * 0x22 + *(int *)(iVar3 + 0x95c)),
+             iVar4 == 0))) {
+        uVar5 = uVar5 + 1 & 0xffff;
       }
     }
   }

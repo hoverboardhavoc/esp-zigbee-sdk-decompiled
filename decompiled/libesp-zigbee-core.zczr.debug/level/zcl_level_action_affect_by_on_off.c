@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> level.o -> zcl_level_action_affect_by_on_off
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,99 +10,90 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_level_action_affect_by_on_off(uint8_t ep_id,_Bool is_on)
+bool zcl_level_action_affect_by_on_off(undefined4 param_1,int param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  bool bVar2;
-  undefined3 in_register_00002029;
+  bool bVar1;
+  int iVar2;
   int iVar3;
-  zcl_attr_desc_t *pzVar4;
-  zcl_attr_desc_t *pzVar5;
-  zcl_attr_desc_t *pzVar6;
-  zcl_attr_desc_t *pzVar7;
-  undefined3 extraout_var;
-  undefined3 in_register_0000202d;
-  zcl_cvc_output_callback_t p_Var8;
-  zcl_cvc_output_callback_t p_Var9;
+  int iVar4;
+  int iVar5;
+  uint uVar6;
+  uint uVar7;
   undefined1 auStack_44 [4];
-  zcl_cvc_input_t input;
-  uint8_t min_level;
+  uint uStack_40;
+  uint uStack_3c;
+  undefined2 uStack_38;
+  uint uStack_34;
+  undefined1 uStack_30;
+  code *pcStack_2c;
+  uint uStack_28;
+  byte abStack_21 [5];
   
-  input.data._3_1_ = 0;
-  input.ep_id = '\0';
-  input._1_3_ = 0;
-  input.begin = 0;
-  input.end._0_2_ = 1;
-  input.quant = 0;
-  input._14_2_ = 0;
-  input.duration._0_1_ = 0;
-  input._20_4_ = level_cvc_affect_with_on_off_output_handler;
-  input.cb = (zcl_cvc_output_callback_t)0x0;
-  auStack_44[0] = ep_id;
-  iVar3 = ezb_af_get_ep_desc();
-  if (iVar3 == 0) {
-    bVar2 = false;
+  abStack_21[0] = 0;
+  auStack_44[0] = (undefined1)param_1;
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 1;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  pcStack_2c = level_cvc_affect_with_on_off_output_handler;
+  uStack_28 = 0;
+  iVar2 = ezb_af_get_ep_desc();
+  if (iVar2 == 0) {
+    bVar1 = false;
   }
   else {
-    iVar3 = ezb_zcl_get_cluster_desc(CONCAT31(in_register_00002029,ep_id),8,1);
-    if (iVar3 == 0) {
-      bVar2 = false;
+    iVar2 = ezb_zcl_get_cluster_desc(param_1,8,1);
+    if (iVar2 == 0) {
+      bVar1 = false;
     }
     else {
-      pzVar4 = level_srv_get_attr_desc(ep_id,0x11);
-      pzVar5 = level_srv_get_attr_desc(ep_id,0);
-      pzVar6 = level_srv_get_attr_desc(ep_id,2);
-      pzVar7 = level_srv_get_attr_desc(ep_id,0x10);
-      if (pzVar6 == (zcl_attr_desc_t *)0x0) {
-        p_Var8 = (zcl_cvc_output_callback_t)0x0;
+      iVar2 = level_srv_get_attr_desc(param_1,0x11);
+      iVar3 = level_srv_get_attr_desc(param_1,0);
+      iVar4 = level_srv_get_attr_desc(param_1,2);
+      iVar5 = level_srv_get_attr_desc(param_1,0x10);
+      if (iVar4 == 0) {
+        uVar6 = 0;
       }
       else {
-                    /* WARNING: Load size is inaccurate */
-        p_Var8 = (zcl_cvc_output_callback_t)(uint)*pzVar6->data_p;
+        uVar6 = (uint)**(byte **)(iVar4 + 8);
       }
-      input.data._3_1_ = (byte)p_Var8;
-                    /* WARNING: Load size is inaccurate */
-      p_Var9 = (zcl_cvc_output_callback_t)(uint)*pzVar5->data_p;
-      if (CONCAT31(in_register_0000202d,is_on) == 0) {
-        input._0_4_ = p_Var9;
-        input.begin = (int32_t)p_Var8;
-        input.cb = p_Var9;
-                    /* WARNING: Load size is inaccurate */
-        if ((pzVar4 != (zcl_attr_desc_t *)0x0) && (*pzVar4->data_p != -1)) {
-          input.cb = p_Var8;
+      abStack_21[0] = (byte)uVar6;
+      uVar7 = (uint)**(byte **)(iVar3 + 8);
+      if (param_2 == 0) {
+        uStack_40 = uVar7;
+        uStack_3c = uVar6;
+        uStack_28 = uVar7;
+        if ((iVar2 != 0) && (**(char **)(iVar2 + 8) != -1)) {
+          uStack_28 = uVar6;
         }
       }
       else {
-        level_srv_set_attr_value(ep_id,0,(uint8_t *)((int)&input.data + 3));
-        input._0_4_ = ZEXT14(input.data._3_1_);
-        input.begin = (int32_t)p_Var9;
-        input.cb = p_Var9;
-                    /* WARNING: Load size is inaccurate */
-        if ((pzVar4 != (zcl_attr_desc_t *)0x0) && (*pzVar4->data_p != 0xff)) {
-                    /* WARNING: Load size is inaccurate */
-          input.begin = (uint)*pzVar4->data_p;
-          input.cb = (zcl_cvc_output_callback_t)(uint)*pzVar4->data_p;
+        level_srv_set_attr_value(param_1,0,abStack_21);
+        uStack_40 = (uint)abStack_21[0];
+        uStack_3c = uVar7;
+        uStack_28 = uVar7;
+        if ((iVar2 != 0) && (**(byte **)(iVar2 + 8) != 0xff)) {
+          uStack_3c = (uint)**(byte **)(iVar2 + 8);
+          uStack_28 = (uint)**(byte **)(iVar2 + 8);
         }
       }
-      if (input._0_4_ == input.begin) {
-        bVar2 = false;
+      if (uStack_40 == uStack_3c) {
+        bVar1 = false;
       }
       else {
-        if (pzVar7 == (zcl_attr_desc_t *)0x0) {
-          input._12_4_ = 0xffff;
+        if (iVar5 == 0) {
+          uStack_34 = 0xffff;
         }
         else {
-                    /* WARNING: Load size is inaccurate */
-          input._12_4_ = ZEXT24(*pzVar7->data_p);
+          uStack_34 = (uint)**(ushort **)(iVar5 + 8);
         }
-        eVar1 = schedule_cvc_level(ep_id,(zcl_cvc_input_t *)auStack_44);
-        bVar2 = CONCAT31(extraout_var,eVar1) == 0;
+        iVar2 = schedule_cvc_level(param_1,auStack_44);
+        bVar1 = iVar2 == 0;
       }
     }
   }
-  return bVar2;
+  return bVar1;
 }
 

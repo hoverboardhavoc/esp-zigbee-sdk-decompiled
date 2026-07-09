@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> esp_zb_zdo_ieee_addr_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,67 +10,62 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_ieee_addr_rsp_wrapper(ezb_zdo_ieee_addr_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_ieee_addr_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
-  uint8_t *puVar1;
+  undefined1 *puVar1;
   void *pvVar2;
-  ezb_zdp_address_rsp_field_t *peVar3;
+  int iVar3;
   code *pcVar4;
   undefined4 local_30;
-  esp_zb_zdo_ieee_addr_rsp_t ieee_addr_rsp;
+  undefined4 uStack_2c;
+  uint uStack_28;
+  undefined1 *puStack_24;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar4 = *user_ctx;
+  pcVar4 = (code *)*param_2;
   if (pcVar4 == (code *)0x0) goto _L0;
-  if (result->error != 0) {
-    if (result->error == 7) {
-      (*pcVar4)(0x85,0,*(undefined4 *)((int)user_ctx + 4));
+  if (*param_1 != 0) {
+    if (*param_1 == 7) {
+      (*pcVar4)(0x85,0,param_2[1]);
     }
     goto _L0;
   }
-  if (result->rsp == (ezb_zdp_address_rsp_field_t *)0x0) {
+  if (param_1[1] == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/compat/src/zdo_cmd_compat.c"
                   ,0xc3,"esp_zb_zdo_ieee_addr_rsp_wrapper","result->rsp");
 _L0:
-    puVar1 = (uint8_t *)calloc(1,8);
-    ieee_addr_rsp._8_4_ = puVar1;
-    if (puVar1 != (uint8_t *)0x0) {
-      peVar3 = result->rsp;
-      *puVar1 = peVar3->start_index;
-      puVar1[1] = peVar3->num_assoc_dev;
-      puVar1[2] = result->rsp->num_assoc_dev;
-      pvVar2 = calloc((uint)result->rsp->num_assoc_dev,2);
+    puVar1 = (undefined1 *)calloc(1,8);
+    puStack_24 = puVar1;
+    if (puVar1 != (undefined1 *)0x0) {
+      iVar3 = param_1[1];
+      *puVar1 = *(undefined1 *)(iVar3 + 0xd);
+      puVar1[1] = *(undefined1 *)(iVar3 + 0xc);
+      puVar1[2] = *(undefined1 *)(param_1[1] + 0xc);
+      pvVar2 = calloc((uint)*(byte *)(param_1[1] + 0xc),2);
       *(void **)(puVar1 + 4) = pvVar2;
-      if (*(void **)(ieee_addr_rsp._8_4_ + 4) != (void *)0x0) {
-        memcpy(*(void **)(ieee_addr_rsp._8_4_ + 4),result->rsp->nwk_addr_assoc_dev_list,
-               (uint)result->rsp->num_assoc_dev << 1);
+      if (*(void **)(puStack_24 + 4) != (void *)0x0) {
+        memcpy(*(void **)(puStack_24 + 4),*(void **)(param_1[1] + 0x10),
+               (uint)*(byte *)(param_1[1] + 0xc) << 1);
       }
     }
   }
   else {
-    ieee_addr_rsp.nwk_addr = 0;
-    ieee_addr_rsp._10_2_ = 0;
-    peVar3 = result->rsp;
-    local_30 = *(undefined4 *)&(peVar3->ieee_addr_remote_dev).field_0;
-    ieee_addr_rsp.ieee_addr._0_4_ =
-         *(undefined4 *)((int)&(peVar3->ieee_addr_remote_dev).field_0 + 4);
-    ieee_addr_rsp.ieee_addr[6] = '\0';
-    ieee_addr_rsp.ieee_addr[7] = '\0';
-    ieee_addr_rsp.ieee_addr._4_2_ = peVar3->nwk_addr_remote_dev;
-    if (peVar3->num_assoc_dev != '\0') goto _L0;
+    puStack_24 = (undefined1 *)0x0;
+    iVar3 = param_1[1];
+    local_30 = *(undefined4 *)(iVar3 + 1);
+    uStack_2c = *(undefined4 *)(iVar3 + 5);
+    uStack_28 = (uint)*(ushort *)(iVar3 + 10);
+    if (*(char *)(iVar3 + 0xc) != '\0') goto _L0;
   }
-  (*pcVar4)(result->rsp->status,&local_30,*(undefined4 *)((int)user_ctx + 4));
-  if (ieee_addr_rsp._8_4_ != 0) {
-    if (*(void **)(ieee_addr_rsp._8_4_ + 4) != (void *)0x0) {
-      free(*(void **)(ieee_addr_rsp._8_4_ + 4));
+  (*pcVar4)(*(undefined1 *)param_1[1],&local_30,param_2[1]);
+  if (puStack_24 != (undefined1 *)0x0) {
+    if (*(void **)(puStack_24 + 4) != (void *)0x0) {
+      free(*(void **)(puStack_24 + 4));
     }
-    free((void *)ieee_addr_rsp._8_4_);
+    free(puStack_24);
   }
 _L0:
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

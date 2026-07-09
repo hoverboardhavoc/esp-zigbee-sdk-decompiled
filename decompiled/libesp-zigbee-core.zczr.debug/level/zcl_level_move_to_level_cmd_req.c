@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> level.o -> zcl_level_move_to_level_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,62 +10,58 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_level_move_to_level_cmd_req(_Bool is_on_off,ezb_zcl_level_move_to_level_cmd_t *req)
+int zcl_level_move_to_level_cmd_req(int param_1,int param_2)
 
 {
-  undefined3 in_register_00002029;
   int iVar1;
   undefined4 uVar2;
-  uint16_t uStack_3a;
+  undefined2 uStack_3a;
   undefined4 uStack_38;
-  zcl_packet_t packet;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_38 = 0;
-  packet.header.src_addr._0_4_ = 0;
-  packet.header.src_addr.u._2_4_ = 0;
-  packet.header._8_4_ = 0;
-  packet.header.dst_addr.u._0_2_ = 0;
-  packet.header.dst_addr.u._2_2_ = 0;
-  packet.header.dst_addr.u._4_4_ = 0;
-  packet.header.src_ep = '\0';
-  packet.header.dst_ep = '\0';
-  packet.header.cluster_id = 0;
-  packet.header.profile_id = 0;
-  packet.header.fc = '\0';
-  packet.header._27_1_ = 0;
-  packet.header.manuf_code = 0;
-  packet.header.tsn = '\0';
-  packet.header.rssi = '\0';
-  packet.header.cmd_id = '\0';
-  packet.header._33_1_ = 0;
-  packet._34_2_ = 0;
-  if (req == (ezb_zcl_level_move_to_level_cmd_t *)0x0) {
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_2 == 0) {
     iVar1 = 2;
   }
   else {
     iVar1 = zcl_packet_init(&uStack_38,0);
     if (iVar1 == 0) {
       uVar2 = 0;
-      if (CONCAT31(in_register_00002029,is_on_off) != 0) {
+      if (param_1 != 0) {
         uVar2 = 4;
       }
-      iVar1 = zcl_cmd_to_packet(&uStack_38,0,0,(req->cmd_ctrl).dis_default_rsp,0,uVar2,8);
+      iVar1 = zcl_cmd_to_packet(&uStack_38,0,0,*(undefined1 *)(param_2 + 0xc),0,uVar2,8);
       if (iVar1 == 0) {
-        uStack_3a = CONCAT11(uStack_3a._1_1_,(req->payload).level);
-        iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_3a);
+        uStack_3a = CONCAT11(uStack_3a._1_1_,*(undefined1 *)(param_2 + 0x18));
+        iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3a);
         if (iVar1 == 0) {
-          uStack_3a = (req->payload).transition_time;
-          iVar1 = zmsg_append_bytes(packet._32_4_,2,&uStack_3a);
+          uStack_3a = *(undefined2 *)(param_2 + 0x1a);
+          iVar1 = zmsg_append_bytes(uStack_14,2,&uStack_3a);
           if (iVar1 == 0) {
-            uStack_3a = CONCAT11(uStack_3a._1_1_,(req->payload).options_mask);
-            iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_3a);
+            uStack_3a = CONCAT11(uStack_3a._1_1_,*(undefined1 *)(param_2 + 0x1c));
+            iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3a);
             if (iVar1 == 0) {
-              uStack_3a = CONCAT11(uStack_3a._1_1_,(req->payload).options_override);
-              iVar1 = zmsg_append_bytes(packet._32_4_,1,&uStack_3a);
+              uStack_3a = CONCAT11(uStack_3a._1_1_,*(undefined1 *)(param_2 + 0x1d));
+              iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3a);
               if (iVar1 == 0) {
-                zcl_packet_send(&uStack_38,&(req->cmd_ctrl).cnf_ctx);
+                zcl_packet_send(&uStack_38,param_2 + 0x10);
                 iVar1 = zcl_status_to_err();
                 if (iVar1 == 0) {
                   return 0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_process_transmit_security_by_key_pair
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,118 +10,116 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_process_transmit_security_by_key_pair(aps_device_key_pair_t *key_pair,zmsg_t *msg)
+int aps_process_transmit_security_by_key_pair(int param_1,int param_2)
 
 {
   undefined4 uVar1;
-  undefined4 uVar2;
-  undefined1 uVar3;
-  uint16_t uVar4;
-  short sVar5;
-  int iVar6;
-  uint32_t uVar7;
-  undefined4 *puVar8;
-  short sVar9;
-  uint uVar10;
-  aps_device_key_pair_t *apaStack_64 [4];
+  byte bVar2;
+  int iVar3;
+  uint uVar4;
+  undefined4 uVar5;
+  undefined4 *puVar6;
+  int iVar7;
+  uint uVar8;
+  int iVar9;
+  int aiStack_64 [4];
   byte bStack_51;
   uint uStack_50;
-  uint8_t ext_fcf;
-  secur_ccm_nonce_t ccm_nonce;
-  uint8_t key [16];
-  secur_aux_hdr_t aux_hdr;
-  uint8_t aps_fcf;
+  uint uStack_4c;
+  uint uStack_48;
+  undefined1 uStack_44;
+  char acStack_40 [16];
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  byte bStack_24;
+  byte abStack_21 [13];
   
-  apaStack_64[0] = key_pair;
-  iVar6 = nwk_secur_get_seclevel();
-  zmsg_read_bytes(msg,0,1,(undefined1 *)((int)&aux_hdr.src_address.field_0 + 6));
-  uVar3 = aux_hdr.src_address.field_0.u8[6];
-  uVar4 = aps_fcf_get_hdr_size(aux_hdr.src_address.field_0.u8[6]);
-  if ((char)uVar3 < '\0') {
-    sVar5 = zmsg_read_bytes(msg,uVar4,1,&bStack_51);
+  aiStack_64[0] = param_1;
+  iVar3 = nwk_secur_get_seclevel();
+  zmsg_read_bytes(param_2,0,1,abStack_21);
+  bVar2 = abStack_21[0];
+  uVar4 = aps_fcf_get_hdr_size(abStack_21[0]);
+  if ((char)bVar2 < '\0') {
+    iVar9 = zmsg_read_bytes(param_2,uVar4,1,&bStack_51);
     if ((bStack_51 & 3) == 1) {
-      sVar9 = 1;
+      iVar7 = 1;
     }
     else if ((bStack_51 & 3) == 2) {
-      sVar9 = 1;
+      iVar7 = 1;
     }
     else {
-      sVar9 = 0;
+      iVar7 = 0;
     }
-    uVar4 = uVar4 + sVar5 + sVar9;
+    uVar4 = (uVar4 + iVar9 & 0xffff) + iVar7 & 0xffff;
   }
-  if ((aux_hdr.src_address.field_0.u8[6] & 0x20) == 0) {
-    iVar6 = 0;
+  if ((abStack_21[0] & 0x20) == 0) {
+    iVar3 = 0;
   }
-  else if (iVar6 == 0) {
-    iVar6 = 0x13;
+  else if (iVar3 == 0) {
+    iVar3 = 0x13;
   }
-  else if (apaStack_64[0] == (aps_device_key_pair_t *)0x0) {
-    iVar6 = 0x13;
+  else if (aiStack_64[0] == 0) {
+    iVar3 = 0x13;
   }
   else {
-    zmsg_read_bytes(msg,uVar4,0xe,key + 0xc);
-    key[0xc] = key[0xc] | (byte)iVar6 & 7;
-    uVar7 = aps_secur_inc_frame_cntr(apaStack_64[0]);
-    key[0xd] = (uint8_t)uVar7;
-    key[0xe] = (uint8_t)(uVar7 >> 8);
-    key[0xf] = (uint8_t)(uVar7 >> 0x10);
-    aux_hdr.scf = (uint8_t)(uVar7 >> 0x18);
-    puVar8 = (undefined4 *)nwk_get_extended_address();
-    uVar1 = *puVar8;
-    uVar2 = puVar8[1];
-    aux_hdr.frame_cntr._0_1_ = (char)*(undefined3 *)puVar8;
-    aux_hdr.frame_cntr._1_1_ = (char)((uint)uVar1 >> 8);
-    aux_hdr.frame_cntr._2_1_ = (char)((uint)uVar1 >> 0x10);
-    aux_hdr.src_address.field_0.u8[0] = (char)*(undefined3 *)(puVar8 + 1);
-    aux_hdr.frame_cntr._3_1_ = (char)((uint)uVar1 >> 0x18);
-    aux_hdr.src_address.field_0.u8[1] = (char)((uint)uVar2 >> 8);
-    aux_hdr.src_address.field_0.u8[2] = (char)((uint)uVar2 >> 0x10);
-    aux_hdr.src_address.field_0.u8[3] = (uint8_t)((uint)uVar2 >> 0x18);
-    if ((key._12_4_ & 0x20) == 0) {
-      sVar5 = 5;
+    zmsg_read_bytes(param_2,uVar4,0xe,&uStack_30);
+    uStack_30 = CONCAT31(uStack_30._1_3_,(byte)uStack_30 | (byte)iVar3 & 7);
+    uVar5 = aps_secur_inc_frame_cntr(aiStack_64[0]);
+    uStack_30 = CONCAT13((char)((uint)uVar5 >> 0x10),
+                         CONCAT12((char)((uint)uVar5 >> 8),
+                                  CONCAT11((char)uVar5,(undefined1)uStack_30)));
+    uStack_2c = CONCAT31(uStack_2c._1_3_,(char)((uint)uVar5 >> 0x18));
+    puVar6 = (undefined4 *)nwk_get_extended_address();
+    uVar5 = *puVar6;
+    uVar1 = puVar6[1];
+    uStack_2c = CONCAT13((char)((uint)uVar5 >> 0x10),
+                         CONCAT12((char)((uint)uVar5 >> 8),
+                                  CONCAT11((char)*(undefined3 *)puVar6,(undefined1)uStack_2c)));
+    uStack_28 = CONCAT13((char)((uint)uVar1 >> 0x10),
+                         CONCAT12((char)((uint)uVar1 >> 8),
+                                  CONCAT11((char)*(undefined3 *)(puVar6 + 1),
+                                           (char)((uint)uVar5 >> 0x18))));
+    bStack_24 = (byte)((uint)uVar1 >> 0x18);
+    if ((uStack_30 & 0x20) == 0) {
+      iVar9 = 5;
     }
     else {
-      sVar5 = 0xd;
+      iVar9 = 0xd;
     }
-    if ((key._12_4_ & 0x18) == 8) {
-      sVar5 = sVar5 + 1;
+    if ((uStack_30 & 0x18) == 8) {
+      iVar9 = iVar9 + 1;
     }
-    zmsg_write_bytes(msg,uVar4,sVar5,key + 0xc);
-    if ((aux_hdr._0_4_ << 0x18 | (uint)key._12_4_ >> 8) == 0xffffffff) {
-      iVar6 = 0x13;
+    zmsg_write_bytes(param_2,uVar4,iVar9,&uStack_30);
+    if ((uStack_2c << 0x18 | uStack_30 >> 8) == 0xffffffff) {
+      iVar3 = 0x13;
     }
     else {
-      aps_secur_key_pair_get_key
-                (apaStack_64[0],&ccm_nonce.security_control,key._12_4_ & SECUR_SCF_KL_KEY);
-      uVar10 = 0x10;
+      aps_secur_key_pair_get_key(aiStack_64[0],acStack_40,uStack_30 & 0x18);
+      uVar8 = 0x10;
       do {
-        if (uVar10 == 0) break;
-        uVar10 = uVar10 - 1 & 0xff;
-      } while ((&ccm_nonce.security_control)[uVar10] == '\0');
-      if (uVar10 == 0) {
-        iVar6 = 0x13;
+        if (uVar8 == 0) break;
+        uVar8 = uVar8 - 1 & 0xff;
+      } while (acStack_40[uVar8] == '\0');
+      if (uVar8 == 0) {
+        iVar3 = 0x13;
       }
       else {
-        uStack_50 = aux_hdr._4_4_ << 0x18 | (uint)aux_hdr._0_4_ >> 8;
-        ccm_nonce.source_address.field_0.u64._0_4_ =
-             (uint)aux_hdr.src_address.field_0.u8[3] << 0x18 | (uint)aux_hdr._4_4_ >> 8;
-        ccm_nonce.source_address.field_0.u64._4_4_ = aux_hdr._0_4_ << 0x18 | (uint)key._12_4_ >> 8;
-        ccm_nonce.frame_counter._0_1_ = key[0xc];
-        iVar6 = secur_secure_msg(iVar6,&ccm_nonce.security_control,&stack0xffffffb0,msg,
-                                 sVar5 + uVar4);
-        if (iVar6 == 0) {
-          msg->flags = msg->flags | 4;
-          zmsg_add_footer(msg,apaStack_64,4);
-          bStack_51 = (byte)key._12_4_ & 0xf8;
-          key._12_4_ = key._12_4_ & 0xfffffff8;
-          zmsg_write_bytes(msg,uVar4,1,&bStack_51);
+        uStack_50 = uStack_28 << 0x18 | uStack_2c >> 8;
+        uStack_4c = (uint)bStack_24 << 0x18 | uStack_28 >> 8;
+        uStack_48 = uStack_2c << 0x18 | uStack_30 >> 8;
+        uStack_44 = (undefined1)uStack_30;
+        iVar3 = secur_secure_msg(iVar3,acStack_40,&uStack_50,param_2,iVar9 + uVar4 & 0xffff);
+        if (iVar3 == 0) {
+          *(ushort *)(param_2 + 0x16) = *(ushort *)(param_2 + 0x16) | 4;
+          zmsg_add_footer(param_2,aiStack_64,4);
+          bStack_51 = (byte)uStack_30 & 0xf8;
+          uStack_30 = uStack_30 & 0xfffffff8;
+          zmsg_write_bytes(param_2,uVar4,1,&bStack_51);
         }
       }
     }
   }
-  return iVar6;
+  return iVar3;
 }
 

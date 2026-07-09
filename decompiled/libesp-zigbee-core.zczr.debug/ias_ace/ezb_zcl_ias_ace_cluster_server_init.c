@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ias_ace.o -> ezb_zcl_ias_ace_cluster_server_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,58 +10,54 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ezb_zcl_ias_ace_cluster_server_init(uint8_t ep_id)
+undefined4 ezb_zcl_ias_ace_cluster_server_init(undefined4 param_1)
 
 {
-  ezb_err_t eVar1;
-  int iVar2;
-  ias_ace_zone_table_t *zone_table;
-  ezb_zcl_ias_ace_zone_table_ent_t *peVar3;
-  uint8_t *__src;
+  int iVar1;
+  int *piVar2;
+  char *__src;
+  void *__dest;
   undefined4 uStack_24;
-  zcl_cluster_template_t template;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  code *pcStack_18;
+  code *pcStack_14;
   
   uStack_24 = 0x10501;
-  template.cluster_id = 0;
-  template.cluster_role = '\0';
-  template._3_1_ = 0;
-  template.check_value_handler = (zcl_cluster_check_value_t)0x0;
-  template.write_attr_handler = ias_ace_cluster_srv_cmd_disc_handler;
-  template.cmd_disc_handler = ias_ace_cluster_srv_cmd_proc_handler;
-  eVar1 = zone_table_init(ep_id);
-  if (eVar1 == 0) {
-    zone_table_restore(ep_id);
-    iVar2 = zcl_cluster_template_add(&uStack_24);
-    if (iVar2 == 0) {
-      return;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  pcStack_18 = ias_ace_cluster_srv_cmd_disc_handler;
+  pcStack_14 = ias_ace_cluster_srv_cmd_proc_handler;
+  iVar1 = zone_table_init();
+  if (iVar1 == 0) {
+    zone_table_restore(param_1);
+    iVar1 = zcl_cluster_template_add(&uStack_24);
+    if (iVar1 == 0) {
+      return 0;
     }
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_ace.c",0x374,
                   "ezb_zcl_ias_ace_cluster_server_init","zone_table_init(ep_id) == 0");
   }
-  zone_table = (ias_ace_zone_table_t *)
-               __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_ace.c",
-                             0x376,"ezb_zcl_ias_ace_cluster_server_init",
-                             "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
-  if ((((zone_table != (ias_ace_zone_table_t *)0x0) && (__src != (uint8_t *)0x0)) &&
-      (*__src != 0xff)) && (*(short *)(__src + 2) != -1)) {
+  piVar2 = (int *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ias_ace.c"
+                                ,0x376,"ezb_zcl_ias_ace_cluster_server_init",
+                                "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
+  if ((((piVar2 != (int *)0x0) && (__src != (char *)0x0)) && (*__src != -1)) &&
+     (*(short *)(__src + 2) != -1)) {
     if (((*(int *)(__src + 4) != 0 || *(int *)(__src + 8) != 0) &&
         ((*(int *)(__src + 4) != -1 || (*(int *)(__src + 8) != -1)))) &&
-       (peVar3 = ias_ace_zone_table_get_zone(zone_table,*__src),
-       peVar3 == (ezb_zcl_ias_ace_zone_table_ent_t *)0x0)) {
-      for (iVar2 = 0; iVar2 < (int)(uint)zone_table->table_size; iVar2 = iVar2 + 1) {
-        peVar3 = zone_table->zone_entries + iVar2;
-        if (peVar3->zone_type == 0xffff) {
-          memcpy(peVar3,__src,0x1e);
-          zone_table_store_zone(zone_table->ep_id,peVar3);
-          return;
+       (iVar1 = ias_ace_zone_table_get_zone(piVar2), iVar1 == 0)) {
+      for (iVar1 = 0; iVar1 < (int)(uint)*(byte *)(piVar2 + 1); iVar1 = iVar1 + 1) {
+        __dest = (void *)(*piVar2 + iVar1 * 0x1e);
+        if (*(short *)((int)__dest + 2) == -1) {
+          memcpy(__dest,__src,0x1e);
+          zone_table_store_zone(*(undefined1 *)((int)piVar2 + 5),__dest);
+          return 0;
         }
       }
     }
   }
-  return;
+  return 2;
 }
 

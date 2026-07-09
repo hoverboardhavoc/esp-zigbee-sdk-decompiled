@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_mesh_routing.o -> nwk_mesh_generate_rrec
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,42 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zmsg_t * nwk_mesh_generate_rrec(ezb_shortaddr_t src_addr,ezb_shortaddr_t dst_addr)
+int nwk_mesh_generate_rrec(int param_1,uint param_2)
 
 {
   char cVar1;
-  undefined2 in_register_0000202a;
   int iVar2;
-  zmsg_t *msg;
   int iVar3;
-  undefined2 in_register_0000202e;
-  uint uVar4;
   uint extraout_a1;
-  undefined4 uVar5;
+  undefined4 uVar4;
   undefined2 uStack_12;
   
-  uVar4 = CONCAT22(in_register_0000202e,dst_addr);
-  iVar2 = CONCAT22(in_register_0000202a,src_addr);
-  if (0xfff7 < uVar4) {
-    iVar2 = __assert_func(0,0,0,0);
-    uVar4 = extraout_a1;
+  if (0xfff7 < param_2) {
+    param_1 = __assert_func(0,0,0,0);
+    param_2 = extraout_a1;
   }
-  msg = (zmsg_t *)zmsg_alloc(0x27);
-  if (msg != (zmsg_t *)0x0) {
-    zmsg_append_u8(msg,'\x05');
+  iVar2 = zmsg_alloc(0x27);
+  if (iVar2 != 0) {
+    zmsg_append_u8_isra_0(5);
     iVar3 = nwk_get_short_address();
-    if (iVar3 == iVar2) {
-      zmsg_append_u8(msg,'\0');
-      uVar5 = 0xf;
+    if (iVar3 == param_1) {
+      zmsg_append_u8_isra_0(iVar2,0);
+      uVar4 = 0xf;
     }
     else {
-      zmsg_append_u8(msg,'\x01');
+      zmsg_append_u8_isra_0(iVar2,1);
       uStack_12 = nwk_get_short_address();
-      zmsg_append_bytes(msg,2,&uStack_12);
-      uVar5 = 0xe;
+      zmsg_append_bytes(iVar2,2,&uStack_12);
+      uVar4 = 0xe;
     }
-    zmsg_set_offset(msg,0);
-    nwk_frame_write_hdr(msg,iVar2,uVar4,uVar5,1,0);
-    iVar2 = core_globals_get();
-    cVar1 = *(char *)(iVar2 + 0x9d9);
-    *(char *)(iVar2 + 0x9d9) = cVar1 + '\x01';
+    zmsg_set_offset(iVar2,0);
+    nwk_frame_write_hdr(iVar2,param_1,param_2,uVar4,1,0);
+    iVar3 = core_globals_get();
+    cVar1 = *(char *)(iVar3 + 0x9d9);
+    *(char *)(iVar3 + 0x9d9) = cVar1 + '\x01';
     uStack_12 = CONCAT11(uStack_12._1_1_,cVar1);
-    zmsg_write_bytes(msg,7,1,&uStack_12);
+    zmsg_write_bytes(iVar2,7,1,&uStack_12);
   }
-  return msg;
+  return iVar2;
 }
 

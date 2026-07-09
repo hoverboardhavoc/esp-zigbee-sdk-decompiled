@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_core.o -> ezb_err_to_zdp_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,26 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t ezb_err_to_zdp_status(ezb_err_t error)
+undefined4 ezb_err_to_zdp_status(int param_1)
 
 {
-  zdp_status_t zVar1;
+  undefined4 uVar1;
   
-  if (error == 6) {
-    zVar1 = 0x84;
+  if (param_1 == 6) {
+    uVar1 = 0x84;
   }
-  else if (error < 7) {
-    zVar1 = '\0';
-    if ((error != 0) && (zVar1 = 0x80, error == 1)) {
+  else if (param_1 < 7) {
+    uVar1 = 0;
+    if ((param_1 != 0) && (uVar1 = 0x80, param_1 == 1)) {
       return 0x8a;
     }
   }
   else {
-    zVar1 = 0x80;
-    if (error == 7) {
+    uVar1 = 0x80;
+    if (param_1 == 7) {
       return 0x85;
     }
   }
-  return zVar1;
+  return uVar1;
 }
 

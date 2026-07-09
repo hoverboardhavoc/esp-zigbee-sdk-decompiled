@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_reporting.o -> zcl_reporting_info_add
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,42 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_reporting_info_add(zcl_reporting_info_t *info)
+undefined4 zcl_reporting_info_add(char *param_1)
 
 {
   int iVar1;
   int *piVar2;
-  ezb_err_t eVar3;
+  undefined4 uVar3;
   
-  if (info == (zcl_reporting_info_t *)0x0) {
-    eVar3 = 2;
+  if (param_1 == (char *)0x0) {
+    uVar3 = 2;
   }
   else {
-    iVar1 = af_get_ep_desc(info->ep_id);
+    iVar1 = af_get_ep_desc(param_1[1]);
     if (iVar1 == 0) {
-      eVar3 = 5;
+      uVar3 = 5;
     }
     else {
       piVar2 = (int *)calloc(1,8);
       if (piVar2 == (int *)0x0) {
-        eVar3 = 1;
+        uVar3 = 1;
       }
       else {
-        info->next = *(zcl_reporting_info_s **)(iVar1 + 8);
-        *(zcl_reporting_info_t **)(iVar1 + 8) = info;
-        *piVar2 = (int)info;
-        if (info->direction == '\0') {
-          info->field_0x9 =
-               (byte)((*(uint *)&info->cluster_role >> 0xc & 0xf | 1) << 4) | info->field_0x9 & 0xf;
+        *(undefined4 *)(param_1 + 0x34) = *(undefined4 *)(iVar1 + 8);
+        *(char **)(iVar1 + 8) = param_1;
+        *piVar2 = (int)param_1;
+        if (*param_1 == '\0') {
+          param_1[9] = (byte)((*(uint *)(param_1 + 8) >> 0xc & 0xf | 1) << 4) | param_1[9] & 0xfU;
           *(byte *)(*piVar2 + 9) = *(byte *)(*piVar2 + 9) & 0xf0 | 1;
         }
         piVar2[1] = (int)(piVar2 + 1);
         iVar1 = core_globals_get();
         piVar2[1] = *(int *)(iVar1 + 0xd34);
         *(int **)(iVar1 + 0xd34) = piVar2 + 1;
-        eVar3 = zcl_reporting_store_reporting_info((zcl_reporting_info_t *)*piVar2);
+        uVar3 = zcl_reporting_store_reporting_info(*piVar2);
       }
     }
   }
-  return eVar3;
+  return uVar3;
 }
 

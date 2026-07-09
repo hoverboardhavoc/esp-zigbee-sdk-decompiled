@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_retrans_ent_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_retrans_ent_delete(aps_tx_context_t *ctx,aps_retrans_ent_t *ent)
+void aps_retrans_ent_delete(int param_1,int *param_2)
 
 {
   uint uVar1;
-  _Bool _Var2;
-  undefined3 extraout_var;
-  aps_retrans_ent_t *ent_00;
-  int iVar3;
+  int iVar2;
+  undefined4 *puVar3;
   undefined4 extraout_a1;
-  zmsg_t *pzVar4;
+  undefined4 uVar4;
   
-  uVar1 = (int)ent - (int)ctx->ents >> 5;
-  milli_timer_stop(&ent->tm);
-  if (ent->tx_msg == (zmsg_t *)0x0) {
+  uVar1 = (int)param_2 - (param_1 + 0x1c) >> 5;
+  milli_timer_stop(param_2 + 2);
+  if (*param_2 == 0) {
     if ((uVar1 & 0xff) < 0x20) {
-      _Var2 = test_and_clr_bitmap(uVar1 & 0xff,ctx->ent_in_use);
-      if (CONCAT31(extraout_var,_Var2) != 0) {
+      iVar2 = test_and_clr_bitmap(uVar1 & 0xff,param_1 + 0x41c);
+      if (iVar2 != 0) {
         aps_retrans_stop_fast_poll();
         return;
       }
@@ -42,16 +38,16 @@ void aps_retrans_ent_delete(aps_tx_context_t *ctx,aps_retrans_ent_t *ent)
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x9f,
                 "aps_retrans_ent_delete","idx < 32");
 _L0:
-  ent_00 = (aps_retrans_ent_t *)
+  puVar3 = (undefined4 *)
            __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xa0,
                          "aps_retrans_ent_delete","test_and_clr_bitmap(idx, ctx->ent_in_use)");
-  pzVar4 = ent_00->tx_msg;
-  ent_00->tx_msg = (zmsg_t *)0x0;
-  iVar3 = core_globals_get();
-  aps_retrans_ent_delete((aps_tx_context_t *)(iVar3 + 0x38),ent_00);
-  aps_send_frame_confirm(pzVar4,extraout_a1);
-  iVar3 = core_globals_get();
-  tasklet_post(iVar3 + 0x38);
+  uVar4 = *puVar3;
+  *puVar3 = 0;
+  iVar2 = core_globals_get();
+  aps_retrans_ent_delete(iVar2 + 0x38,puVar3);
+  aps_send_frame_confirm(uVar4,extraout_a1);
+  iVar2 = core_globals_get();
+  tasklet_post(iVar2 + 0x38);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_radio_spinel_uart.o -> radio_spinel_uart_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-/* WARNING: Enum "soc_periph_uart_clk_src_legacy_t": Some values do not have unique names */
-
-esp_err_t radio_spinel_uart_init
-                    (esp_radio_spinel_uart_config_t *config,esp_line_endings_t tx_mode,
-                    esp_line_endings_t rx_mode)
+int radio_spinel_uart_init(undefined4 *param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  esp_err_t eVar1;
+  int iVar1;
   
-  eVar1 = radio_spinel_uart_init_port(config);
-  if (eVar1 == 0) {
-    uart_vfs_dev_port_set_rx_line_endings(config->port,rx_mode);
-    uart_vfs_dev_port_set_tx_line_endings(config->port,tx_mode);
+  iVar1 = radio_spinel_uart_init_port();
+  if (iVar1 == 0) {
+    uart_vfs_dev_port_set_rx_line_endings(*param_1,param_3);
+    uart_vfs_dev_port_set_tx_line_endings(*param_1,param_2);
   }
   else {
     esp_log(0x11,"ESP_ZIGBEE_RADIO_SPINEL_UART","%s(%d): Failed to initialize uart port",
             "radio_spinel_uart_init",0x2e);
-    radio_spinel_uart_deinit(config);
+    radio_spinel_uart_deinit(param_1);
   }
-  return eVar1;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_general_write_attr_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,117 +10,104 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_general_write_attr_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void zcl_general_write_attr_handler(int param_1,int param_2)
 
 {
-  zcl_status_t zVar1;
-  int iVar2;
-  uint uVar3;
+  int iVar1;
+  uint uVar2;
   size_t __size;
-  zcl_attr_desc_t *attr_desc;
-  undefined3 extraout_var;
-  int iVar4;
+  int iVar3;
+  undefined4 uVar4;
   undefined4 uVar5;
-  zmsg_t *unaff_s2;
-  uint16_t uVar6;
-  uint16_t uStack_3c;
-  uint16_t local_3a;
-  undefined1 auStack_38 [2];
-  uint16_t offset;
-  zcl_write_attr_req_t write_attr_req;
+  int unaff_s2;
+  undefined2 uVar6;
+  undefined2 uStack_3c;
+  ushort local_3a;
+  undefined4 uStack_38;
+  void *pvStack_34;
   
-  _auStack_38 = 0;
-  write_attr_req.attr_id = 0;
-  write_attr_req.attr_type = '\0';
-  write_attr_req._3_1_ = 0;
-  if ((((packet == (zcl_packet_t *)0x0) ||
-       (unaff_s2 = packet->payload, unaff_s2 == (zcl_packet_payload_t *)0x0)) ||
-      (rsp == (zcl_packet_t *)0x0)) || (rsp->payload == (zcl_packet_payload_t *)0x0)) {
+  uStack_38 = 0;
+  pvStack_34 = (void *)0x0;
+  if ((((param_1 == 0) || (unaff_s2 = *(int *)(param_1 + 0x24), unaff_s2 == 0)) || (param_2 == 0))
+     || (*(int *)(param_2 + 0x24) == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_general_cmd.c",0x11a,
                   "zcl_general_write_attr_handler",
                   "packet && packet->payload && rsp && rsp->payload");
   }
-  else if (((packet->header).fc & 4) != 0) {
-    uVar6 = (packet->header).manuf_code;
+  else if ((*(byte *)(param_1 + 0x1a) & 4) != 0) {
+    uVar6 = *(undefined2 *)(param_1 + 0x1c);
     goto _L0;
   }
   uVar6 = 0;
 _L0:
-  iVar2 = af_get_ep_desc((packet->header).dst_ep);
-  if (iVar2 == 0) {
-    uVar5 = 0x81;
+  iVar1 = af_get_ep_desc(*(undefined1 *)(param_1 + 0x15));
+  if (iVar1 == 0) {
+    uVar4 = 0x81;
   }
   else {
-    if (((packet->header).fc & 8) == 0) {
-      uVar5 = 1;
+    if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+      uVar4 = 1;
     }
     else {
-      uVar5 = 2;
+      uVar4 = 2;
     }
-    iVar2 = af_endpoint_get_cluster_desc((packet->header).cluster_id,uVar5);
-    if (iVar2 == 0) {
-      uVar5 = 0xc3;
+    iVar1 = af_endpoint_get_cluster_desc(*(undefined2 *)(param_1 + 0x16),uVar4);
+    if (iVar1 == 0) {
+      uVar4 = 0xc3;
     }
     else {
-      uVar3 = zmsg_get_length(unaff_s2);
+      uVar2 = zmsg_get_length(unaff_s2);
       local_3a = 0;
-      while (local_3a < uVar3) {
-        _auStack_38 = 0;
-        write_attr_req.attr_id = 0;
-        write_attr_req.attr_type = '\0';
-        write_attr_req._3_1_ = 0;
-        af_read_le16(unaff_s2,&local_3a,(uint16_t *)auStack_38);
-        af_read_le8(unaff_s2,&local_3a,(uint8_t *)&offset);
+      while (local_3a < uVar2) {
+        uStack_38 = 0;
+        pvStack_34 = (void *)0x0;
+        af_read_le16(unaff_s2,&local_3a,&uStack_38);
+        af_read_le8(unaff_s2,&local_3a,(int)&uStack_38 + 2);
         __size = zcl_packet_read_variable_attr_size
-                           (packet->payload,local_3a,_auStack_38 >> 0x10 & 0xff);
-        write_attr_req._0_4_ = calloc(1,__size);
-        zcl_packet_read_variable_attr_value
-                  (unaff_s2,&local_3a,_auStack_38 >> 0x10 & 0xff,write_attr_req._0_4_);
-        attr_desc = (zcl_attr_desc_t *)zcl_cluster_get_attr_desc(iVar2,_auStack_38 & 0xffff,uVar6);
-        zVar1 = check_write_attr_filed((zcl_write_attr_req_t *)auStack_38,attr_desc);
-        iVar4 = CONCAT31(extraout_var,zVar1);
-        if (iVar4 == 0) {
-          if (((packet->header).fc & 8) == 0) {
+                           (*(undefined4 *)(param_1 + 0x24),local_3a,uStack_38 >> 0x10 & 0xff);
+        pvStack_34 = calloc(1,__size);
+        zcl_packet_read_variable_attr_value(unaff_s2,&local_3a,uStack_38 >> 0x10 & 0xff,pvStack_34);
+        uVar4 = zcl_cluster_get_attr_desc(iVar1,uStack_38 & 0xffff,uVar6);
+        iVar3 = check_write_attr_filed(&uStack_38,uVar4);
+        if (iVar3 == 0) {
+          if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
             uVar5 = 1;
           }
           else {
             uVar5 = 2;
           }
-          iVar4 = zcl_set_attr_value((packet->header).dst_ep,(packet->header).cluster_id,uVar5,
-                                     _auStack_38 & 0xffff,uVar6,write_attr_req._0_4_,0);
-          if (iVar4 == 0) {
-            if (((packet->header).cluster_id == 0x500) && (((packet->header).fc & 8) == 0)) {
-              ias_zone_cluster_srv_set_attr_val_post_proc
-                        (packet,_auStack_38 & 0xffff,write_attr_req._0_4_);
+          iVar3 = zcl_set_attr_value(*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16)
+                                     ,uVar5,uStack_38 & 0xffff,uVar6,pvStack_34,0);
+          if (iVar3 == 0) {
+            if ((*(short *)(param_1 + 0x16) == 0x500) && ((*(byte *)(param_1 + 0x1a) & 8) == 0)) {
+              ias_zone_cluster_srv_set_attr_val_post_proc(param_1,uStack_38 & 0xffff,pvStack_34);
             }
-            if (((packet->header).fc & 8) == 0) {
+            if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
               uVar5 = 1;
             }
             else {
               uVar5 = 2;
             }
             zcl_message_notify_attr_value
-                      ((packet->header).dst_ep,(packet->header).cluster_id,uVar5,attr_desc);
+                      (*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16),uVar5,uVar4);
           }
         }
-        uStack_3c = CONCAT11(uStack_3c._1_1_,(char)iVar4);
-        zmsg_append_bytes(rsp->payload,1,&uStack_3c);
-        if (iVar4 != 0) {
-          uStack_3c = (uint16_t)auStack_38;
-          zmsg_append_bytes(rsp->payload,2,&uStack_3c);
+        uStack_3c = CONCAT11(uStack_3c._1_1_,(char)iVar3);
+        zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_3c);
+        if (iVar3 != 0) {
+          uStack_3c = (undefined2)uStack_38;
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),2,&uStack_3c);
         }
-        mm_free(write_attr_req._0_4_);
+        mm_free(pvStack_34);
       }
-      if (local_3a == uVar3) {
-        zVar1 = zcl_packet_setup_response(rsp,packet,4);
-        return zVar1;
+      if (local_3a == uVar2) {
+        zcl_packet_setup_response(param_2,param_1,4);
+        return;
       }
-      uVar5 = 0x80;
+      uVar4 = 0x80;
     }
   }
-  zVar1 = zcl_packet_setup_default_response(rsp,packet,uVar5);
-  return zVar1;
+  zcl_packet_setup_default_response(param_2,param_1,uVar4);
+  return;
 }
 

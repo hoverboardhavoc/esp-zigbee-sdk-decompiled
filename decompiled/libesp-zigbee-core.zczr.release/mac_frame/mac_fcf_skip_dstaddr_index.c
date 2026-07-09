@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_fcf_skip_dstaddr_index
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t mac_fcf_skip_dstaddr_index(uint16_t fcf)
+uint mac_fcf_skip_dstaddr_index(uint param_1)
 
 {
-  char cVar1;
-  uint8_t uVar2;
+  uint uVar1;
   
-  uVar2 = mac_fcf_skip_dst_panid_index(fcf);
-  if ((fcf & 0xc00) != 0) {
-    if ((fcf & 0xc00) == 0x800) {
-      cVar1 = '\x02';
+  uVar1 = mac_fcf_skip_dst_panid_index();
+  param_1 = param_1 & 0xc00;
+  if (param_1 != 0) {
+    if (param_1 == 0x800) {
+      uVar1 = uVar1 + 2;
     }
     else {
-      if ((fcf & 0xc00) != 0xc00) {
-        return uVar2;
+      if (param_1 != 0xc00) {
+        return uVar1;
       }
-      cVar1 = '\b';
+      uVar1 = uVar1 + 8;
     }
-    uVar2 = uVar2 + cVar1;
+    uVar1 = uVar1 & 0xff;
   }
-  return uVar2;
+  return uVar1;
 }
 

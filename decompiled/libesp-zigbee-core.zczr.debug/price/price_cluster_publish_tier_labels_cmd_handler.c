@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> price.o -> price_cluster_publish_tier_labels_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,100 +10,86 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-price_cluster_publish_tier_labels_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void price_cluster_publish_tier_labels_cmd_handler(int param_1,int param_2)
 
 {
-  byte bVar1;
-  int iVar2;
-  ezb_zcl_status_t eVar3;
-  uint16_t uVar4;
-  undefined2 extraout_var;
-  uint uVar5;
-  uint16_t uStack_46;
+  int iVar1;
+  uint uVar2;
+  ushort uStack_46;
   undefined4 uStack_44;
-  uint16_t offset;
-  ezb_zcl_price_publish_tier_labels_message_t message;
+  undefined4 uStack_40;
+  int iStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  void *pvStack_28;
+  uint uStack_24;
   
   uStack_44 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.payload.provider_id = 0;
-  message.in.payload.issuer_event_id = 0;
-  message.in.payload.issuer_tariff_id = 0;
-  message.in.payload.command_index = '\0';
-  message.in.payload.total_number_of_commands = '\0';
-  message.in.payload.number_of_labels = '\0';
-  message.in.payload._15_1_ = 0;
-  message.in.payload.tier_labels = (ezb_zcl_price_tier_label_entry_t *)0x0;
+  uStack_40 = 0;
+  iStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  pvStack_28 = (void *)0x0;
+  uStack_24 = 0;
   uStack_46 = 0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/price.c",0x118,
                   "price_cluster_publish_tier_labels_cmd_handler","packet && rsp");
   }
   else {
-    af_read_le32(packet->payload,&uStack_46,(uint32_t *)&message.in);
-    af_read_le32(packet->payload,&uStack_46,&message.in.payload.provider_id);
-    af_read_le32(packet->payload,&uStack_46,&message.in.payload.issuer_event_id);
-    af_read_le8(packet->payload,&uStack_46,(uint8_t *)&message.in.payload.issuer_tariff_id);
-    af_read_le8(packet->payload,&uStack_46,
-                (uint8_t *)((int)&message.in.payload.issuer_tariff_id + 1));
-    uVar4 = af_read_le8(packet->payload,&uStack_46,
-                        (uint8_t *)((int)&message.in.payload.issuer_tariff_id + 2));
-    if (CONCAT22(extraout_var,uVar4) != 1) {
-      uVar5 = 0x80;
+    af_read_le32(*(undefined4 *)(param_1 + 0x24),&uStack_46,&uStack_38);
+    af_read_le32(*(undefined4 *)(param_1 + 0x24),&uStack_46,&uStack_34);
+    af_read_le32(*(undefined4 *)(param_1 + 0x24),&uStack_46,&uStack_30);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_46,&uStack_2c);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_46,(int)&uStack_2c + 1);
+    iVar1 = af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_46,(int)&uStack_2c + 2);
+    if (iVar1 != 1) {
+      uVar2 = 0x80;
       goto _L0;
     }
-    uVar5 = message.in.payload.issuer_tariff_id >> 0x10 & 0xff;
-    if (uVar5 != 0) {
-      message.in.payload._12_4_ = calloc(uVar5,0xe);
-      if ((void *)message.in.payload._12_4_ == (void *)0x0) {
-        uVar5 = 0x89;
+    uVar2 = uStack_2c >> 0x10 & 0xff;
+    if (uVar2 != 0) {
+      pvStack_28 = calloc(uVar2,0xe);
+      if (pvStack_28 == (void *)0x0) {
+        uVar2 = 0x89;
         goto _L0;
       }
-      for (uVar5 = 0; uVar5 < (message.in.payload.issuer_tariff_id >> 0x10 & 0xff);
-          uVar5 = uVar5 + 1 & 0xff) {
-        iVar2 = uVar5 * 0xe;
-        af_read_le8(packet->payload,&uStack_46,(uint8_t *)(message.in.payload._12_4_ + iVar2));
-        af_read_le8(packet->payload,&uStack_46,(uint8_t *)(message.in.payload._12_4_ + iVar2 + 1));
-        bVar1 = *(byte *)(message.in.payload._12_4_ + iVar2 + 1);
-        if (0xc < bVar1) {
-          uVar5 = 0x87;
+      for (uVar2 = 0; uVar2 < (uStack_2c >> 0x10 & 0xff); uVar2 = uVar2 + 1 & 0xff) {
+        iVar1 = uVar2 * 0xe;
+        af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_46,(void *)((int)pvStack_28 + iVar1));
+        af_read_le8(*(undefined4 *)(param_1 + 0x24),&uStack_46,(int)pvStack_28 + iVar1 + 1);
+        if (0xc < *(byte *)((int)pvStack_28 + iVar1 + 1)) {
+          uVar2 = 0x87;
           goto _L0;
         }
-        af_read_bytes(packet->payload,&uStack_46,(ushort)bVar1,
-                      (uint8_t *)(message.in.payload._12_4_ + iVar2 + 2));
+        af_read_bytes(*(undefined4 *)(param_1 + 0x24),&uStack_46,(int)pvStack_28 + iVar1 + 2);
       }
     }
   }
-  uVar5 = zmsg_get_length(packet->payload);
-  if (uVar5 < uStack_46) {
-    uVar5 = 0x80;
+  uVar2 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (uVar2 < uStack_46) {
+    uVar2 = 0x80;
   }
   else {
-    uVar5 = zcl_packet_to_message(&stack0xffffffbc,packet);
-    if (uVar5 == 0) {
-      message.in.payload.tier_labels =
-           (ezb_zcl_price_tier_label_entry_t *)CONCAT31(message.in.payload.tier_labels._1_3_,0xfe);
-      message._4_4_ = packet;
-      zcl_core_action_schedule(0x4f,&stack0xffffffbc);
-      if (((uint)message.in.payload.tier_labels & 0xff) != 0xfe) {
-        uVar5 = (uint)message.in.payload.tier_labels & 0xff;
+    uVar2 = zcl_packet_to_message(&uStack_44,param_1);
+    if (uVar2 == 0) {
+      uStack_24 = CONCAT31(uStack_24._1_3_,0xfe);
+      iStack_3c = param_1;
+      zcl_core_action_schedule(0x50,&uStack_44);
+      if ((uStack_24 & 0xff) != 0xfe) {
+        uVar2 = uStack_24 & 0xff;
       }
     }
   }
 _L0:
-  if (message.in.payload._12_4_ != 0) {
+  if (pvStack_28 != (void *)0x0) {
     mm_free();
   }
-  eVar3 = zcl_packet_setup_default_response(rsp,packet,uVar5);
-  return eVar3;
+  zcl_packet_setup_default_response(param_2,param_1,uVar2);
+  return;
 }
 

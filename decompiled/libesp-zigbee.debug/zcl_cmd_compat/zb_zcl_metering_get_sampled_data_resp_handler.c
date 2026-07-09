@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> zb_zcl_metering_get_sampled_data_resp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,46 +10,43 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_metering_get_sampled_data_resp_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_metering_get_sampled_data_resp_handler(undefined4 *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_zb_uint24_t *dst;
-  esp_err_t err;
+  undefined1 uVar1;
+  void *__ptr;
   uint __nmemb;
   undefined4 uStack_38;
-  esp_zb_zcl_metering_get_sampled_data_resp_message_t app_message;
+  uint uStack_34;
+  undefined4 uStack_30;
+  ushort uStack_2c;
+  undefined2 uStack_2a;
+  uint uStack_28;
+  void *pvStack_24;
   
-  app_message.number_of_samples = 0;
-  app_message._18_2_ = 0;
-                    /* WARNING: Load size is inaccurate */
-  uStack_38 = *arg;
-  app_message.info.cluster = 0;
-  app_message.info._0_2_ = *(ushort *)((int)arg + 0xc);
-  app_message._4_4_ = *(undefined4 *)((int)arg + 0x10);
-  app_message.sample_start_time =
-       CONCAT22(*(undefined2 *)((int)arg + 0x16),CONCAT11(0,*(byte *)((int)arg + 0x14)));
-  __nmemb = (uint)*(ushort *)((int)arg + 0x18);
-  app_message.sample_request_interval = 0;
-  app_message._12_2_ = *(ushort *)((int)arg + 0x18);
-  dst = (esp_zb_uint24_t *)calloc(__nmemb,3);
+  pvStack_24 = (void *)0x0;
+  uStack_38 = *param_1;
+  uStack_34 = (uint)*(ushort *)(param_1 + 3);
+  uStack_30 = param_1[4];
+  _uStack_2c = CONCAT22(*(undefined2 *)((int)param_1 + 0x16),(ushort)*(byte *)(param_1 + 5));
+  __nmemb = (uint)*(ushort *)(param_1 + 6);
+  uStack_28 = (uint)*(ushort *)(param_1 + 6);
+  __ptr = calloc(__nmemb,3);
   if (__nmemb != 0) {
-    if (dst == (esp_zb_uint24_t *)0x0) {
+    if (__ptr == (void *)0x0) {
       esp_log(0x11,"ZCL_CMD_COMPAT","no memory");
       return;
     }
-    array_copy_u32_to_u24(dst,*(uint32_t **)((int)arg + 0x1c),__nmemb);
-    app_message._16_4_ = dst;
+    array_copy_u32_to_u24(param_1[7],__nmemb);
+    pvStack_24 = __ptr;
   }
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_METERING_GET_SAMPLED_DATA_RESP_CB_ID,&uStack_38);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x20) = eVar1;
+  if (param_2 != (code *)0x0) {
+    (*param_2)(0x4a,&uStack_38);
+    uVar1 = esp_err_to_zcl_status();
+    *(undefined1 *)(param_1 + 8) = uVar1;
   }
-  if (dst != (esp_zb_uint24_t *)0x0) {
-    free(dst);
+  if (__ptr != (void *)0x0) {
+    free(__ptr);
   }
   return;
 }

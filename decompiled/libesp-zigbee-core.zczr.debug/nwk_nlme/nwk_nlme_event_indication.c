@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_nlme_event_indication
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,52 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
+void nwk_nlme_event_indication(char *param_1)
 
 {
-  nwk_network_status_t status;
-  byte bVar1;
-  code *pcVar2;
-  char *pcVar3;
-  byte *pbVar4;
+  char cVar1;
+  byte bVar2;
+  code *pcVar3;
+  undefined4 uVar4;
   byte *pbVar5;
-  nwk_nlme_event_ind_t anStack_28 [2];
-  nwk_nlme_event_ind_t *pnStack_18;
+  byte *pbVar6;
+  int iStack_28;
+  uint uStack_24;
+  char *pcStack_18;
   code *pcStack_14;
   
-  if (ind->event == '\0') {
-    status = (ind->field_1).network_status.status;
-    pcVar3 = nwk_network_status_to_str(status);
-    log_write(3,"nwk_nlme.c","NWK Status Indication: %s (0x%02x), addr 0x%04x",pcVar3,status,
-              (ind->field_1).network_status.network_addr);
+  if (*param_1 == '\0') {
+    cVar1 = param_1[2];
+    uVar4 = nwk_network_status_to_str(cVar1);
+    log_write(3,"nwk_nlme.c","NWK Status Indication: %s (0x%02x), addr 0x%04x",uVar4,cVar1,
+              *(undefined2 *)(param_1 + 4));
     return;
   }
-  if (ind->event == '\x01') {
-    log_write(3,"nwk_nlme.c","Permit Joining: duration %d",(ind->field_1).network_status.status);
+  if (*param_1 == '\x01') {
+    log_write(3,"nwk_nlme.c","Permit Joining: duration %d",param_1[2]);
     return;
   }
-  pcVar2 = nwk_handle_network_status_local;
-  pbVar4 = (byte *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x65,
+  pcVar3 = nwk_handle_network_status_local;
+  pbVar5 = (byte *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x65,
                                  "nwk_nlme_event_indication",&_LC18);
-  bVar1 = *pbVar4;
-  pnStack_18 = ind;
-  pcStack_14 = pcVar2;
-  if (bVar1 == 0xd) {
-    nwk_address_conflict_resolve(*(undefined2 *)(pbVar4 + 1));
+  bVar2 = *pbVar5;
+  pcStack_18 = param_1;
+  pcStack_14 = pcVar3;
+  if (bVar2 == 0xd) {
+    nwk_address_conflict_resolve(*(undefined2 *)(pbVar5 + 1));
     return;
   }
-  if (bVar1 < 0xe) {
-    pbVar5 = pbVar4;
-    if (bVar1 != 0xb) {
-      if (bVar1 < 0xc) {
-        if (bVar1 < 3) {
-          nwk_route_table_remove_by_dst(*(undefined2 *)(pbVar4 + 1));
+  if (bVar2 < 0xe) {
+    pbVar6 = pbVar5;
+    if (bVar2 != 0xb) {
+      if (bVar2 < 0xc) {
+        if (bVar2 < 3) {
+          nwk_route_table_remove_by_dst(*(undefined2 *)(pbVar5 + 1));
           return;
         }
-        if (bVar1 == 9) goto _L0;
+        if (bVar2 == 9) goto _L0;
       }
-      else if (bVar1 == 0xc) {
+      else if (bVar2 == 0xc) {
         nwk_concentrator_discovery();
         goto _L0;
       }
@@ -64,26 +63,25 @@ void nwk_nlme_event_indication(nwk_nlme_event_ind_t *ind)
     }
   }
   else {
-    if (bVar1 == 0x13) {
+    if (bVar2 == 0x13) {
       return;
     }
-    if (bVar1 < 0x14) {
-      if ((byte)(bVar1 - 0xf) < 2) {
+    if (bVar2 < 0x14) {
+      if ((byte)(bVar2 - 0xf) < 2) {
         ds_save_common_data();
         goto _L0;
       }
     }
-    else if (bVar1 == 0x14) goto _L0;
+    else if (bVar2 == 0x14) goto _L0;
 _L0:
-    pbVar5 = (byte *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0xb8,
+    pbVar6 = (byte *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0xb8,
                                    "nwk_handle_network_status_local",&_LC18);
   }
-  nwk_route_record_table_remove_by_dst(CONCAT11(pbVar4[2],pbVar5[1]));
+  nwk_route_record_table_remove_by_dst(CONCAT11(pbVar5[2],pbVar6[1]));
 _L0:
-  anStack_28[0]._0_4_ = (uint)*pbVar4 << 0x10;
-  anStack_28[0].field_1._4_2_ = 0;
-  anStack_28[0].field_1._2_2_ = *(ushort *)(pbVar4 + 1);
-  nwk_nlme_event_indication(anStack_28);
+  iStack_28 = (uint)*pbVar5 << 0x10;
+  uStack_24 = (uint)*(ushort *)(pbVar5 + 1);
+  nwk_nlme_event_indication(&iStack_28);
   return;
 }
 

@@ -1,16 +1,14 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk.o -> nwk_pib_reset
  *
  * (C) Espressif, Apache License 2.0.
  * Derivative work (this file): mechanical decompile via Ghidra (NSA, Apache 2.0).
  * Decompiler output may be incomplete or differ from original semantics.
  */
-
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
 void nwk_pib_reset(void)
 
@@ -24,7 +22,7 @@ void nwk_pib_reset(void)
   *(undefined2 *)(iVar3 + 0x9e2) = 0xffff;
   *(undefined2 *)(iVar3 + 0x9e4) = 0xffff;
   *(undefined2 *)(iVar3 + 0x9e0) = 0x1e00;
-  nwk_set_rx_on_when_idle(true);
+  nwk_set_rx_on_when_idle(1);
   nwk_mm_get_pib_attr(0,0x40,iVar3 + 0x9e6,8);
   *(undefined1 *)(iVar3 + 0x9ef) = 0;
   *(undefined1 *)(iVar3 + 0x9f0) = 0;
@@ -53,7 +51,7 @@ void nwk_pib_reset(void)
   *(undefined1 *)(iVar3 + 0xa3a) = 1;
   *(undefined1 *)(iVar3 + 0xa3b) = 3;
   *(undefined1 *)(iVar3 + 0x9db) = 0xff;
-  nwk_set_keepalive_mode('\x03');
+  nwk_set_keepalive_mode();
   return;
 }
 

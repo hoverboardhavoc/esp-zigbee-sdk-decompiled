@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> groups.o -> groups_cluster_get_group_membership_rsp_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-groups_cluster_get_group_membership_rsp_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void groups_cluster_get_group_membership_rsp_cmd_handler(int param_1,undefined4 param_2)
 
 {
   uint uVar1;
-  ezb_zcl_status_t eVar2;
-  uint16_t *group_list;
+  undefined4 uVar2;
+  void *pvVar3;
   byte local_24;
-  uint8_t uStack_23;
-  uint16_t uStack_22;
-  uint8_t group_count;
-  uint8_t capacity;
-  uint16_t offset;
+  undefined1 uStack_23;
+  ushort auStack_22 [7];
   
-  uStack_22 = 0;
-  uStack_23 = '\0';
+  auStack_22[0] = 0;
+  uStack_23 = 0;
   local_24 = 0;
-  af_read_le8(packet->payload,&uStack_22,&uStack_23);
-  af_read_le8(packet->payload,&uStack_22,&local_24);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_23);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&local_24);
   uVar1 = (uint)local_24;
-  group_list = (uint16_t *)calloc(uVar1,2);
+  pvVar3 = calloc(uVar1,2);
   if (uVar1 != 0) {
-    if (group_list == (uint16_t *)0x0) {
-      eVar2 = 0x89;
+    if (pvVar3 == (void *)0x0) {
+      uVar2 = 0x89;
       goto _L0;
     }
     uVar1 = 0;
   }
   for (; uVar1 < local_24; uVar1 = uVar1 + 1 & 0xff) {
-    af_read_le16(packet->payload,&uStack_22,group_list + uVar1);
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,(void *)(uVar1 * 2 + (int)pvVar3));
   }
-  uVar1 = zmsg_get_length(packet->payload);
-  if (uVar1 < uStack_22) {
-    eVar2 = 0x80;
+  uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (uVar1 < auStack_22[0]) {
+    uVar2 = 0x80;
   }
   else {
-    eVar2 = zcl_message_groups_get_group_membership_resp(packet,uStack_23,local_24,group_list);
+    uVar2 = zcl_message_groups_get_group_membership_resp(param_1,uStack_23,local_24,pvVar3);
   }
-  if (group_list != (uint16_t *)0x0) {
-    mm_free(group_list);
+  if (pvVar3 != (void *)0x0) {
+    mm_free(pvVar3);
   }
 _L0:
-  eVar2 = zcl_packet_setup_default_response(rsp,packet,eVar2);
-  return eVar2;
+  zcl_packet_setup_default_response(param_2,param_1,uVar2);
+  return;
 }
 

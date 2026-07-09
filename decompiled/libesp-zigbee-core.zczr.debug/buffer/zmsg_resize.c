@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_resize
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,46 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Type propagation algorithm not settling */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zmsg_resize(zmsg_t *msg,uint16_t length)
+undefined4 zmsg_resize(int param_1,short param_2)
 
 {
-  uint16_t uVar1;
-  uint16_t uVar2;
+  short sVar1;
+  short sVar2;
   ushort uVar3;
-  ezb_err_t eVar4;
-  buffer_t *bufs;
-  int iVar5;
-  buffer_t *src_buf;
+  undefined4 uVar4;
+  int *piVar5;
+  int iVar6;
+  int *piVar7;
   
-  bufs = (buffer_t *)&msg->chunks;
-  uVar1 = msg->header;
-  uVar2 = msg->tail;
+  piVar5 = (int *)(param_1 + 8);
+  sVar1 = *(short *)(param_1 + 0xc);
+  sVar2 = *(short *)(param_1 + 0x10);
   uVar3 = 0;
-  src_buf = bufs;
+  piVar7 = piVar5;
   do {
-    if ((ushort)(uVar2 + uVar1 + length) <= uVar3) {
-      if (bufs == src_buf) {
-        src_buf = buffers_get_last(bufs);
+    if ((ushort)(sVar2 + sVar1 + param_2) <= uVar3) {
+      if (piVar5 == piVar7) {
+        piVar7 = (int *)buffers_get_last(piVar5);
       }
-      buffer_move_tail(bufs,src_buf,msg->tail);
-      eVar4 = 0;
+      buffer_move_tail(piVar5,piVar7,*(undefined2 *)(param_1 + 0x10));
+      uVar4 = 0;
 _L0:
-      free_bufpool_buffers(*(buffer_t **)&bufs->field_0);
-      bufs->field_0 = (anon_union_4_2_77b2d3ce_for_buffer_s_0)0x0;
-      return eVar4;
+      free_bufpool_buffers(*piVar5);
+      *piVar5 = 0;
+      return uVar4;
     }
-    if (*(int *)&bufs->field_0 == 0) {
-      iVar5 = mempool_malloc(0);
-      bufs->field_0 = (anon_union_4_2_77b2d3ce_for_buffer_s_0)iVar5;
-      if (iVar5 == 0) {
-        eVar4 = 1;
+    if (*piVar5 == 0) {
+      iVar6 = mempool_malloc(0);
+      *piVar5 = iVar6;
+      if (iVar6 == 0) {
+        uVar4 = 1;
         goto _L0;
       }
     }
     else {
-      src_buf = *(buffer_t **)&src_buf->field_0;
+      piVar7 = (int *)*piVar7;
     }
-    bufs = *(buffer_t **)&bufs->field_0;
+    piVar5 = (int *)*piVar5;
     uVar3 = uVar3 + 0xac;
   } while( true );
 }

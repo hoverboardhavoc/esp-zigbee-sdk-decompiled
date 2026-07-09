@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_frame.o -> aps_frame_prepend_data_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_frame_prepend_data_hdr
-                    (zmsg_t *msg,aps_addr_t *addr,_Bool is_ack_required,_Bool is_secured,
-                    _Bool is_fragmented,_Bool inc_ext_nonce)
+void aps_frame_prepend_data_hdr
+               (undefined4 param_1,int param_2,int param_3,int param_4,int param_5,int param_6)
 
 {
-  char cVar1;
+  byte bVar1;
   byte bVar2;
   int iVar3;
-  char *pcVar4;
-  ezb_err_t eVar5;
-  undefined4 uVar6;
-  uint16_t *puVar7;
-  undefined3 in_register_00002031;
-  undefined3 in_register_00002035;
-  undefined3 in_register_00002039;
-  undefined3 in_register_0000203d;
-  uint16_t *puVar8;
+  byte *pbVar4;
+  undefined4 uVar5;
+  byte *pbVar6;
   undefined4 uStack_3c;
-  secur_aux_hdr_t aux_hdr;
-  undefined1 local_2a;
-  undefined1 uStack_29;
-  uint8_t aps_hdr [12];
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined2 uStack_30;
+  byte abStack_2c [20];
   
-  stack0xffffffd4 = 0;
-  aps_hdr[0] = '\0';
-  aps_hdr[1] = '\0';
-  aps_hdr[2] = '\0';
-  aps_hdr[3] = '\0';
-  aps_hdr[4] = '\0';
-  aps_hdr[5] = '\0';
-  aps_hdr[6] = '\0';
-  aps_hdr[7] = '\0';
-  if (addr->grp_addr == 0) {
-    if (addr->dst_addr < 0xfff8) {
+  abStack_2c[0] = 0;
+  abStack_2c[1] = 0;
+  abStack_2c[2] = 0;
+  abStack_2c[3] = 0;
+  abStack_2c[4] = 0;
+  abStack_2c[5] = 0;
+  abStack_2c[6] = 0;
+  abStack_2c[7] = 0;
+  abStack_2c[8] = 0;
+  abStack_2c[9] = 0;
+  abStack_2c[10] = 0;
+  abStack_2c[0xb] = 0;
+  if (*(short *)(param_2 + 4) == 0) {
+    if (*(ushort *)(param_2 + 2) < 0xfff8) {
       bVar2 = 0;
     }
     else {
@@ -55,62 +49,61 @@ ezb_err_t aps_frame_prepend_data_hdr
   else {
     bVar2 = 0xc;
   }
-  if (CONCAT31(in_register_00002035,is_secured) == 0) {
+  if (param_4 == 0) {
 _L0:
-    uVar6 = stack0xffffffd4;
-    if (((bVar2 & 0xc) == 0) && (CONCAT31(in_register_00002031,is_ack_required) != 0)) {
+    uVar5 = abStack_2c._0_4_;
+    if (((bVar2 & 0xc) == 0) && (param_3 != 0)) {
       bVar2 = bVar2 | 0x40;
     }
-    if (CONCAT31(in_register_00002039,is_fragmented) != 0) {
+    if (param_5 != 0) {
       bVar2 = bVar2 | 0x80;
     }
-    stack0xffffffd4 = CONCAT31(stack0xffffffd5,bVar2);
+    abStack_2c[0] = bVar2;
     if ((bVar2 & 0xc) != 0xc) {
-      _local_2a = SUB42(uVar6,2);
-      aux_hdr._12_2_ = CONCAT11(addr->dst_ep,bVar2);
-      puVar8 = (uint16_t *)&local_2a;
+      abStack_2c._2_2_ = SUB42(uVar5,2);
+      abStack_2c[1] = *(undefined1 *)(param_2 + 7);
+      pbVar6 = abStack_2c + 2;
       goto _L0;
     }
   }
   else {
     bVar2 = bVar2 | 0x20;
     uStack_3c = 0;
-    aux_hdr._0_4_ = 0;
-    aux_hdr._4_4_ = 0;
-    aux_hdr.src_address.field_0.u64._3_2_ = 0;
-    if (CONCAT31(in_register_0000203d,inc_ext_nonce) == 0) {
-      uVar6 = 5;
+    uStack_38 = 0;
+    uStack_34 = 0;
+    uStack_30 = 0;
+    if (param_6 == 0) {
+      uVar5 = 5;
     }
     else {
       uStack_3c = 0x20;
-      uVar6 = 0xd;
+      uVar5 = 0xd;
     }
-    iVar3 = zmsg_prepend_bytes(msg,uVar6,&uStack_3c);
+    iVar3 = zmsg_prepend_bytes(param_1,uVar5,&uStack_3c);
     if (iVar3 == 0) goto _L0;
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_frame.c",0xd9,
                   "aps_frame_prepend_data_hdr",
                   "(zmsg_prepend_bytes(msg, aux_hdr_size, &aux_hdr)) == 0");
   }
-  uVar6 = stack0xffffffd4;
-  aux_hdr._12_2_ = CONCAT11((uint8_t)addr->grp_addr,aux_hdr.src_address.field_0.u8[7]);
-  uStack_29 = SUB41(uVar6,3);
-  stack0xffffffd4 = CONCAT12((char)(addr->grp_addr >> 8),aux_hdr._12_2_);
-  puVar8 = (uint16_t *)&uStack_29;
+  uVar5 = abStack_2c._0_4_;
+  abStack_2c[1] = (char)*(undefined2 *)(param_2 + 4);
+  abStack_2c[3] = SUB41(uVar5,3);
+  abStack_2c[2] = (char)((ushort)*(undefined2 *)(param_2 + 4) >> 8);
+  pbVar6 = abStack_2c + 3;
 _L0:
-  *puVar8 = addr->cluster_id;
-  puVar8[1] = addr->profile_id;
-  *(uint8_t *)(puVar8 + 2) = addr->src_ep;
-  pcVar4 = (char *)core_globals_get();
-  cVar1 = *pcVar4;
-  *pcVar4 = cVar1 + '\x01';
-  *(char *)((int)puVar8 + 5) = cVar1;
-  puVar7 = puVar8 + 3;
+  *(undefined2 *)pbVar6 = *(undefined2 *)(param_2 + 8);
+  *(undefined2 *)(pbVar6 + 2) = *(undefined2 *)(param_2 + 10);
+  pbVar6[4] = *(byte *)(param_2 + 6);
+  pbVar4 = (byte *)core_globals_get();
+  bVar1 = *pbVar4;
+  *pbVar4 = bVar1 + 1;
+  pbVar6[5] = bVar1;
+  pbVar4 = pbVar6 + 6;
   if ((char)bVar2 < '\0') {
-    *(undefined1 *)(puVar8 + 3) = 1;
-    puVar7 = puVar8 + 4;
+    pbVar6[6] = 1;
+    pbVar4 = pbVar6 + 8;
   }
-  eVar5 = zmsg_prepend_bytes(msg,(int)puVar7 - (int)((int)&aux_hdr.src_address.field_0 + 7) & 0xffff
-                            );
-  return eVar5;
+  zmsg_prepend_bytes(param_1,(int)pbVar4 - (int)abStack_2c & 0xffff);
+  return;
 }
 

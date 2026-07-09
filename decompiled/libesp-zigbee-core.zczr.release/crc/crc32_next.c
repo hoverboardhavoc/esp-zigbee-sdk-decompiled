@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> crc.o -> crc32_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,35 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-uint32_t crc32_next(uint32_t crc,uint8_t *p,uint32_t len)
+uint crc32_next(uint param_1,int param_2,int param_3,int param_4,int param_5)
 
 {
-  uint uVar1;
-  int iVar2;
-  uint uVar3;
-  uint8_t *in_a4;
-  uint32_t in_a5;
+  int iVar1;
+  uint uVar2;
   
-  if (p == (uint8_t *)0x0) {
-    uVar3 = 0;
-    len = 0;
-    uVar1 = __assert_func(0);
+  if (param_2 == 0) {
+    uVar2 = 0;
+    param_3 = 0;
+    param_1 = __assert_func(0,0);
     do {
-      uVar1 = uVar1 ^ in_a4[in_a5];
-      iVar2 = 8;
+      param_1 = param_1 ^ *(byte *)(param_4 + param_5);
+      iVar1 = 8;
       do {
-        iVar2 = iVar2 + -1;
-        uVar1 = uVar1 >> 1 ^ -(uVar1 & 1) & uVar3;
-      } while (iVar2 != 0);
-      in_a5 = in_a5 + 1;
+        iVar1 = iVar1 + -1;
+        param_1 = param_1 >> 1 ^ -(param_1 & 1) & uVar2;
+      } while (iVar1 != 0);
+      param_5 = param_5 + 1;
 _L0:
-    } while (in_a5 != len);
-    return ~uVar1;
+    } while (param_5 != param_3);
+    return ~param_1;
   }
-  uVar1 = ~crc;
-  in_a5 = 0;
-  uVar3 = 0xedb88320;
-  in_a4 = p;
+  param_1 = ~param_1;
+  param_5 = 0;
+  uVar2 = 0xedb88320;
+  param_4 = param_2;
   goto _L0;
 }
 

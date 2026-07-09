@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> array_copy_u48_to_u64
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void array_copy_u48_to_u64(uint64_t *dst,esp_zb_uint48_t *src,size_t num)
+void array_copy_u48_to_u64(int param_1,int param_2,int param_3)
 
 {
-  uint32_t uVar1;
-  size_t sVar2;
-  size_t sVar3;
+  undefined4 uVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  int iVar4;
+  undefined4 *puVar5;
   
-  sVar2 = 0;
+  iVar3 = 0;
   do {
-    sVar3 = sVar2 + 1;
-    uVar1 = src[sVar2].low;
-    *(uint *)((int)(dst + sVar2) + 4) = (uint)src[sVar2].high;
-    *(uint32_t *)(dst + sVar2) = uVar1;
-    sVar2 = sVar3;
-  } while (num != sVar3);
+    iVar4 = iVar3 * 6;
+    puVar2 = (undefined4 *)(iVar3 * 8 + param_1);
+    iVar3 = iVar3 + 1;
+    puVar5 = (undefined4 *)(iVar4 + param_2);
+    uVar1 = *puVar5;
+    puVar2[1] = (uint)*(ushort *)(puVar5 + 1);
+    *puVar2 = uVar1;
+  } while (param_3 != iVar3);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_app_signal.o -> zdo_app_put_signal
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,9 +10,7 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_app_put_signal(zdo_app_signal_t *signal)
+void zdo_app_put_signal(undefined4 param_1)
 
 {
   uint uVar1;
@@ -33,7 +31,7 @@ void zdo_app_put_signal(zdo_app_signal_t *signal)
     }
     iVar3 = core_globals_get();
     pcVar4 = *(code **)(iVar3 + iVar2 + 0x10);
-    iVar2 = (*pcVar4)(signal,pcVar4);
+    iVar2 = (*pcVar4)(param_1,pcVar4);
     if (iVar2 != 0) break;
     uVar1 = uVar1 + 1 & 0xff;
   }

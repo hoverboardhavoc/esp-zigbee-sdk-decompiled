@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_radio_spinel.o -> radio_spinel_transmit_failed
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void radio_spinel_transmit_failed(esp_ieee802154_tx_error_t error)
+void radio_spinel_transmit_failed(uint param_1)
 
 {
-  uint8_t *data;
-  undefined4 uVar1;
-  char *frame_info;
+  int iVar1;
+  undefined4 uVar2;
+  char *pcVar3;
   
-  if (error < ESP_IEEE802154_TX_ERR_COEXIST) {
-    if (error < ESP_IEEE802154_TX_ERR_NO_ACK) {
-      if (1 < error - ESP_IEEE802154_TX_ERR_CCA_BUSY) goto _L0;
-      uVar1 = 0x1e1;
+  if (param_1 < 5) {
+    if (param_1 < 3) {
+      if (1 < param_1 - 1) goto _L0;
+      uVar2 = 0x1e1;
     }
     else {
-      uVar1 = 0x1e9;
+      uVar2 = 0x1e9;
     }
   }
   else {
-    if (error != ESP_IEEE802154_TX_ERR_COEXIST) {
+    if (param_1 != 5) {
 _L0:
-      frame_info = "radio_spinel_transmit_failed";
-      data = (uint8_t *)
-             __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_radio_spinel.c"
-                           ,0x11e,"radio_spinel_transmit_failed",&_L0);
-      if (data == (uint8_t *)0x0) {
-        ezb_plat_radio_transmit_done(&s_radio_ctx,0,0);
+      pcVar3 = "radio_spinel_transmit_failed";
+      iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_radio_spinel.c"
+                            ,0x11e,"radio_spinel_transmit_failed",&_L0);
+      if (iVar1 == 0) {
+        ezb_plat_radio_transmit_done(s_radio_ctx,0,0);
       }
       else {
-        convert_to_radio_frame
-                  (data,(esp_ieee802154_frame_info_t *)frame_info,(ezb_radio_frame_t *)&s_radio_ctx)
-        ;
-        ezb_plat_radio_transmit_done(&s_radio_ctx,&s_radio_ctx,0);
+        convert_to_radio_frame(pcVar3,s_radio_ctx);
+        ezb_plat_radio_transmit_done(s_radio_ctx,s_radio_ctx,0);
       }
       return;
     }
-    uVar1 = 0x1e1;
+    uVar2 = 0x1e1;
   }
-  ezb_plat_radio_transmit_done(&s_radio_ctx,0,uVar1);
+  ezb_plat_radio_transmit_done(s_radio_ctx,0,uVar2);
   return;
 }
 

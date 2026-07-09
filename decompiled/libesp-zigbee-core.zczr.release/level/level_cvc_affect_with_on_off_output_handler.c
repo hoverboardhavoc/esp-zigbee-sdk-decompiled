@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> level.o -> level_cvc_affect_with_on_off_output_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
 void level_cvc_affect_with_on_off_output_handler
-               (uint8_t ep_id,int32_t output,uint32_t remaining_time,uintptr_t user_ctx)
+               (undefined4 param_1,undefined1 param_2,int param_3,undefined4 param_4)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  uint8_t *value;
-  uintptr_t uStack_14;
+  int iVar1;
+  undefined4 uStack_14;
   
-  value = (uint8_t *)remaining_time;
-  uStack_14 = user_ctx;
-  zcl_message_level_set_attr_value(ep_id,(uint8_t)output);
-  pzVar1 = level_srv_get_attr_desc(ep_id,1);
-  if (pzVar1 != (zcl_attr_desc_t *)0x0) {
-    *(short *)pzVar1->data_p = (short)remaining_time;
+  uStack_14 = param_4;
+  zcl_message_level_set_attr_value_isra_0(param_2);
+  iVar1 = level_srv_get_attr_desc(param_1,1);
+  if (iVar1 != 0) {
+    **(undefined2 **)(iVar1 + 8) = (short)param_3;
   }
-  zcl_level_affect_on_off_action(ep_id,(uint8_t)output);
-  if (remaining_time == 0) {
-    level_srv_set_attr_value(ep_id,(uint16_t)&uStack_14,value);
+  zcl_level_affect_on_off_action(param_1,param_2);
+  if (param_3 == 0) {
+    level_srv_set_attr_value_constprop_0(param_1,&uStack_14);
   }
   return;
 }

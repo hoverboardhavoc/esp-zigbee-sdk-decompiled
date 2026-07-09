@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_frame_parse_header
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,59 +10,54 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_frame_parse_header(ezb_radio_frame_t *radio_frame,mac_header_t *mhr,uint8_t *mhr_len)
+undefined4 mac_frame_parse_header(undefined4 *param_1,int param_2,undefined1 *param_3)
 
 {
   ushort uVar1;
-  uint8_t uVar2;
-  ezb_err_t eVar3;
-  int iVar4;
-  undefined3 extraout_var;
-  ushort *puVar5;
+  int iVar2;
+  undefined4 uVar3;
+  ushort *puVar4;
   
-  if ((radio_frame == (ezb_radio_frame_t *)0x0) || (mhr == (mac_header_t *)0x0)) {
-    iVar4 = 0;
-    eVar3 = 2;
+  if ((param_1 == (undefined4 *)0x0) || (param_2 == 0)) {
+    iVar2 = 0;
+    uVar3 = 2;
   }
   else {
-    eVar3 = mac_frame_validate_psdu(radio_frame);
-    if (eVar3 == 0) {
-      puVar5 = (ushort *)radio_frame->psdu;
-      uVar1 = *puVar5;
-      mhr->fcf = uVar1;
-      eVar3 = mac_frame_get_seq_num(radio_frame,&mhr->seq_num);
-      if ((((eVar3 == 0) || ((uVar1 & 0x3000) == 0x2000)) &&
-          (eVar3 = mac_frame_get_dstaddr(radio_frame,&mhr->dst_addr), eVar3 == 0)) &&
-         (eVar3 = mac_frame_get_srcaddr(radio_frame,&mhr->src_addr), eVar3 == 0)) {
-        eVar3 = mac_frame_get_dst_panid(radio_frame,&mhr->dst_panid);
-        if (eVar3 != 0) {
-          mhr->dst_panid = 0xffff;
+    iVar2 = mac_frame_validate_psdu();
+    if (iVar2 == 0) {
+      puVar4 = (ushort *)*param_1;
+      uVar1 = *puVar4;
+      *(ushort *)(param_2 + 0x18) = uVar1;
+      iVar2 = mac_frame_get_seq_num(param_1,param_2 + 0x1a);
+      if ((((iVar2 == 0) || ((uVar1 & 0x3000) == 0x2000)) &&
+          (iVar2 = mac_frame_get_dstaddr(param_1,param_2), iVar2 == 0)) &&
+         (iVar2 = mac_frame_get_srcaddr(param_1,param_2 + 10), iVar2 == 0)) {
+        iVar2 = mac_frame_get_dst_panid(param_1,param_2 + 0x14);
+        if (iVar2 != 0) {
+          *(undefined2 *)(param_2 + 0x14) = 0xffff;
         }
-        eVar3 = mac_frame_get_src_panid(radio_frame,&mhr->src_panid);
-        if (eVar3 != 0) {
-          mhr->src_panid = mhr->dst_panid;
+        iVar2 = mac_frame_get_src_panid(param_1,param_2 + 0x16);
+        if (iVar2 != 0) {
+          *(undefined2 *)(param_2 + 0x16) = *(undefined2 *)(param_2 + 0x14);
         }
-        uVar2 = mac_frame_find_payload_index(radio_frame);
-        iVar4 = CONCAT31(extraout_var,uVar2);
-        eVar3 = 0;
+        iVar2 = mac_frame_find_payload_index(param_1);
+        uVar3 = 0;
         if ((uVar1 & 7) == 3) {
-          mhr->cmd_id = *(uint8_t *)((int)puVar5 + iVar4);
+          *(undefined1 *)(param_2 + 0x1b) = *(undefined1 *)((int)puVar4 + iVar2);
         }
         else {
-          mhr->cmd_id = '\0';
+          *(undefined1 *)(param_2 + 0x1b) = 0;
         }
         goto _L0;
       }
     }
-    iVar4 = 0;
-    eVar3 = 0x10;
+    iVar2 = 0;
+    uVar3 = 0x10;
   }
 _L0:
-  if (mhr_len != (uint8_t *)0x0) {
-    *mhr_len = (uint8_t)iVar4;
+  if (param_3 != (undefined1 *)0x0) {
+    *param_3 = (char)iVar2;
   }
-  return eVar3;
+  return uVar3;
 }
 

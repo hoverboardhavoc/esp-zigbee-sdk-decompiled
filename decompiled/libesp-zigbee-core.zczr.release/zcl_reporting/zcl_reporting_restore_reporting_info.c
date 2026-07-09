@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_restore_reporting_info
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,66 +10,66 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: itor */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_reporting_restore_reporting_info(uint8_t ep_id)
+undefined4 zcl_reporting_restore_reporting_info(uint param_1)
 
 {
-  uint8_t uVar1;
+  char cVar1;
   int *piVar2;
-  undefined3 in_register_00002029;
-  zcl_reporting_info_t *pzVar3;
-  ezb_err_t eVar4;
-  int iVar5;
-  ezb_err_t eVar6;
-  undefined1 local_30 [4];
-  ds_zcl_reporting_info_iterator_t itor;
+  undefined4 uVar3;
+  int iVar4;
+  char local_30;
+  byte bStack_2f;
+  undefined2 uStack_2e;
+  undefined2 uStack_2c;
+  undefined1 uStack_2a;
+  byte bStack_29;
+  undefined4 uStack_28;
+  undefined1 uStack_24;
+  undefined2 uStack_23;
+  undefined1 uStack_21;
+  undefined1 uStack_20;
+  undefined1 auStack_1d [9];
+  short sStack_14;
+  char cStack_12;
   
-  memset(local_30,0,0x20);
+  memset(&local_30,0,0x20);
   do {
-    ds_zcl_reporting_info_itor_read((ds_zcl_reporting_info_iterator_t *)local_30);
+    ds_zcl_reporting_info_itor_read(&local_30);
     do {
-      uVar1 = local_30[0];
-      if (itor.data.field_7.send_info.delta._7_1_ != '\0') {
+      cVar1 = local_30;
+      if (cStack_12 != '\0') {
         return 0;
       }
-      if ((uint)local_30[1] != CONCAT31(in_register_00002029,ep_id)) break;
-      pzVar3 = zcl_reporting_info_create
-                         (ep_id,local_30._2_2_,local_30[0] != '\0',itor.data._0_2_,
-                          (uint8_t)itor.data.profile_id,
-                          (ushort)itor.data.profile_id._1_1_ |
-                          (ushort)((itor.data._4_4_ & 0xff) << 8),SUB42(itor.data._4_4_,1));
-      if (pzVar3 == (zcl_reporting_info_t *)0x0) {
-        eVar4 = 1;
+      if (bStack_2f != param_1) break;
+      iVar4 = zcl_reporting_info_create
+                        (param_1,uStack_2e,local_30 != '\0',uStack_2c,uStack_2a,
+                         (uint)bStack_29 | (uStack_28 & 0xff) << 8,uStack_28 >> 8 & 0xffff);
+      if (iVar4 == 0) {
+        uVar3 = 1;
 _L0:
         ds_internal_remove_entry(10,0xffffffff,0);
-        iVar5 = core_globals_get();
-        piVar2 = *(int **)(iVar5 + 0xd34);
-        while ((piVar2 + -1 != (undefined4 *)0xfffffffc &&
-               ((pzVar3 = (zcl_reporting_info_t *)piVar2[-1], pzVar3 == (zcl_reporting_info_t *)0x0
-                || (eVar6 = zcl_reporting_store_reporting_info(pzVar3), eVar6 == 0))))) {
+        iVar4 = core_globals_get();
+        piVar2 = *(int **)(iVar4 + 0xd34);
+        while ((piVar2 + -1 != (int *)0xfffffffc &&
+               ((piVar2[-1] == 0 || (iVar4 = zcl_reporting_store_reporting_info(), iVar4 == 0))))) {
           piVar2 = (int *)*piVar2;
         }
-        return eVar4;
+        return uVar3;
       }
-      (pzVar3->u).send_info.min_interval =
-           CONCAT11(itor.data.attr_id._1_1_,(undefined1)itor.data.attr_id);
-      if (uVar1 == '\0') {
-        (pzVar3->u).send_info.max_interval = itor.data.manuf_code;
-        (pzVar3->u).send_info.def_min_interval =
-             CONCAT11(itor.data.field_7.send_info.min_interval._1_1_,
-                      itor.data.field_7.send_info.min_interval._0_1_);
-        (pzVar3->u).send_info.def_max_interval = (uint16_t)((uint)itor.data.field_7._1_4_ >> 8);
-        memcpy((void *)((int)&pzVar3->u + 8),(void *)((int)&itor.data.field_7 + 4),8);
+      *(ushort *)(iVar4 + 0x10) = CONCAT11(uStack_24,uStack_28._3_1_);
+      if (cVar1 == '\0') {
+        *(undefined2 *)(iVar4 + 0x12) = uStack_23;
+        *(ushort *)(iVar4 + 0x28) = CONCAT11(uStack_20,uStack_21);
+        *(short *)(iVar4 + 0x2a) = (short)((uint)_uStack_20 >> 8);
+        memcpy((void *)(iVar4 + 0x18),auStack_1d,8);
       }
-      eVar4 = zcl_reporting_info_add(pzVar3);
-      if (eVar4 != 0) {
-        eVar4 = -1;
+      iVar4 = zcl_reporting_info_add(iVar4);
+      if (iVar4 != 0) {
+        uVar3 = 0xffffffff;
         goto _L0;
       }
-    } while (itor.data.field_7.send_info.delta._7_1_ != '\0');
-    itor.data.field_7.send_info.delta._5_2_ = itor.data.field_7.send_info.delta._5_2_ + 1;
+    } while (cStack_12 != '\0');
+    sStack_14 = sStack_14 + 1;
   } while( true );
 }
 

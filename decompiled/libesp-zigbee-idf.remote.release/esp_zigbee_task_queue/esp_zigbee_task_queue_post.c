@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-idf.remote.release -> esp_zigbee_task_queue.o -> esp_zigbee_task_queue_post
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,38 +11,37 @@
  */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Unknown calling convention */
 
-esp_err_t esp_zigbee_task_queue_post(esp_zigbee_callback_t cb,void *ctx)
+undefined4 esp_zigbee_task_queue_post(undefined4 param_1,undefined4 param_2)
 
 {
   int iVar1;
-  esp_err_t eVar2;
+  undefined4 uVar2;
   int iStack_1c;
-  BaseType_t task_woken;
-  esp_zigbee_task_t task_storage;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  if (s_task_queue != (QueueHandle_t)0x0) {
+  if (s_task_queue != 0) {
     iStack_1c = 0;
-    task_woken = (BaseType_t)cb;
-    task_storage.cb = (esp_zigbee_callback_t)ctx;
+    uStack_18 = param_1;
+    uStack_14 = param_2;
     if (_DAT_600c2194 < 2) {
-      iVar1 = xQueueGenericSend(&task_woken,10,0);
+      iVar1 = xQueueGenericSend(&uStack_18,10,0);
     }
     else {
-      iVar1 = xQueueGenericSendFromISR(&task_woken,&iStack_1c);
+      iVar1 = xQueueGenericSendFromISR(&uStack_18,&iStack_1c);
     }
     if (iVar1 == 0) {
-      eVar2 = -1;
+      uVar2 = 0xffffffff;
     }
     else {
       ezb_tasklet_signal_pending();
       if (iStack_1c != 0) {
         vPortYieldFromISR();
       }
-      eVar2 = 0;
+      uVar2 = 0;
     }
-    return eVar2;
+    return uVar2;
   }
   return 0x103;
 }

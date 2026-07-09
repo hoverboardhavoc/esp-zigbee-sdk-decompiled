@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_ed_mngr.o -> nwk_ed_process_keepalive_result
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,17 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_ed_process_keepalive_result(_Bool success)
+void nwk_ed_process_keepalive_result(int param_1)
 
 {
   byte bVar1;
   uint uVar2;
   uint uVar3;
-  undefined3 in_register_00002029;
   int iVar4;
-  uint32_t uVar5;
+  undefined4 uVar5;
+  uint uVar6;
   
   iVar4 = core_globals_get();
   milli_timer_stop(iVar4 + 0xae4);
@@ -53,22 +51,22 @@ void nwk_ed_process_keepalive_result(_Bool success)
     nwk_pim_start_poll();
     uVar2 = 0;
   }
-  if (CONCAT31(in_register_00002029,success) == 0) {
+  if (param_1 == 0) {
     iVar4 = core_globals_get();
     if ((*(byte *)(iVar4 + 0xaf8) & 0x40) == 0) goto _L0;
     iVar4 = core_globals_get();
     uVar3 = *(uint *)(*(int *)(iVar4 + 0xac4) + 0x14);
-    uVar5 = nwk_ed_get_keepalive_interval();
-    if ((uVar3 & 0xfffff) <= uVar5 / 1000) {
+    uVar6 = nwk_ed_get_keepalive_interval();
+    if ((uVar3 & 0xfffff) <= uVar6 / 1000) {
       nwk_pim_stop_poll();
       nwk_raise_parent_link_failure();
       return;
     }
-    uVar5 = nwk_ed_get_keepalive_interval();
+    uVar3 = nwk_ed_get_keepalive_interval();
     iVar4 = core_globals_get();
-    uVar3 = *(uint *)(*(int *)(iVar4 + 0xac4) + 0x14);
+    uVar6 = *(uint *)(*(int *)(iVar4 + 0xac4) + 0x14);
     *(uint *)(*(int *)(iVar4 + 0xac4) + 0x14) =
-         uVar3 & 0xfff00000 | (uVar3 & 0xfffff) - uVar5 / 1000 & 0xfffff;
+         uVar6 & 0xfff00000 | (uVar6 & 0xfffff) - uVar3 / 1000 & 0xfffff;
   }
   else {
     iVar4 = core_globals_get();

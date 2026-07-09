@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_table_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,65 +10,69 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void nwk_neighbor_table_restore(void)
 
 {
   byte bVar1;
   bool bVar2;
-  nwk_neighbor_t *pnVar3;
+  int iVar3;
+  undefined2 *__s;
   int iVar4;
-  int iVar5;
-  undefined1 auStack_38 [4];
-  ds_child_info_iterator_t itor;
+  undefined1 auStack_38 [2];
+  undefined2 uStack_36;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined2 uStack_2c;
+  byte bStack_2a;
+  undefined1 uStack_29;
+  uint uStack_28;
+  short sStack_24;
+  char cStack_22;
   
-  itor.data._16_2_ = 0;
-  itor.data._18_1_ = 0;
+  sStack_24 = 0;
+  cStack_22 = '\0';
   bVar2 = false;
-  ds_child_info_itor_read((ds_child_info_iterator_t *)auStack_38);
-  iVar4 = 0;
-  while (itor.data._18_1_ == '\0') {
-    pnVar3 = nwk_neighbor_table_get_by_extended((ezb_extaddr_t *)&itor);
-    if (pnVar3 == (nwk_neighbor_t *)0x0) {
-      pnVar3 = nwk_neighbor_table_new(false);
-      if (pnVar3 == (nwk_neighbor_t *)0x0) goto _L0;
+  ds_child_info_itor_read(auStack_38);
+  iVar3 = 0;
+  while (cStack_22 == '\0') {
+    __s = (undefined2 *)nwk_neighbor_table_get_by_extended(&uStack_34);
+    if (__s == (undefined2 *)0x0) {
+      __s = (undefined2 *)nwk_neighbor_table_new();
+      if (__s == (undefined2 *)0x0) goto _L0;
     }
     else {
       bVar2 = true;
     }
-    memset(pnVar3,0,0x1c);
-    iVar4 = nwk_address_update(&itor,auStack_38._2_2_,pnVar3);
-    if (iVar4 == 0) {
-      nwk_address_lock_ref(pnVar3->addr_ref);
-      *(ushort *)&pnVar3->field_0xc = *(ushort *)&pnVar3->field_0xc & 0xfc3c | 0x42;
-      iVar5 = core_globals_get();
-      bVar1 = *(byte *)(iVar5 + 0xa3c);
-      pnVar3->key_seq = itor.data.extaddr.field_0.u8[7];
-      *(uint *)&pnVar3->field_0xc =
-           (itor.data._12_4_ & 0x10) << 6 | (bVar1 + 1 & 0xf) << 2 |
-           (itor.data.extaddr.field_0.u8[6] & 0x1f) << 0xd |
-           *(uint *)&pnVar3->field_0xc & 0xfffc1bc3;
-      (pnVar3->dev).r.router_info = itor.data.extaddr.field_0.u64._4_2_;
-      nwk_neighbor_zed_set_timeout(pnVar3,(byte)itor.data._12_4_ & 0xf);
+    memset(__s,0,0x1c);
+    iVar3 = nwk_address_update(&uStack_34,uStack_36,__s);
+    if (iVar3 == 0) {
+      nwk_address_lock_ref(*__s);
+      __s[6] = __s[6] & 0xfc3c | 0x42;
+      iVar4 = core_globals_get();
+      bVar1 = *(byte *)(iVar4 + 0xa3c);
+      *(undefined1 *)((int)__s + 7) = uStack_29;
+      *(uint *)(__s + 6) =
+           (uStack_28 & 0x10) << 6 | (bVar1 + 1 & 0xf) << 2 | (bStack_2a & 0x1f) << 0xd |
+           *(uint *)(__s + 6) & 0xfffc1bc3;
+      __s[8] = uStack_2c;
+      nwk_neighbor_zed_set_timeout(__s,uStack_28 & 0xf);
     }
     else {
-      if (iVar4 != 0xd) goto _L0;
-      log_write(1,"nwk_neighbor.c","Address conflicts on stored child 0x%016llx(0x%04hx)",
-                itor.data._0_4_,itor.data.extaddr.field_0.u64._0_4_,auStack_38._2_2_);
+      if (iVar3 != 0xd) goto _L0;
+      log_write(1,"nwk_neighbor.c","Address conflicts on stored child 0x%016llx(0x%04hx)",uStack_34,
+                uStack_30,uStack_36);
     }
-    if (itor.data._18_1_ == '\0') {
-      itor.data._16_2_ = itor.data._16_2_ + 1;
-      ds_child_info_itor_read((ds_child_info_iterator_t *)auStack_38);
+    if (cStack_22 == '\0') {
+      sStack_24 = sStack_24 + 1;
+      ds_child_info_itor_read(auStack_38);
     }
   }
-  if ((bVar2) || (iVar4 != 0)) {
+  if ((bVar2) || (iVar3 != 0)) {
 _L0:
     iVar4 = ds_internal_remove_entry(4,0xffffffff,0);
-    pnVar3 = (nwk_neighbor_t *)0x0;
-    while ((iVar4 == 0 && (pnVar3 = nwk_child_table_next(pnVar3), pnVar3 != (nwk_neighbor_t *)0x0)))
-    {
-      iVar4 = nwk_neighbor_table_store_child(pnVar3);
+    iVar3 = 0;
+    while ((iVar4 == 0 && (iVar3 = nwk_child_table_next(iVar3), iVar3 != 0))) {
+      iVar4 = nwk_neighbor_table_store_child();
     }
   }
   return;

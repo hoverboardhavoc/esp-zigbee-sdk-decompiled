@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_main.o -> aps_send_frame
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: nlde_req */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_send_frame(ezb_shortaddr_t dst_addr,aps_apsde_data_req_t *req)
+void aps_send_frame(undefined2 param_1,int *param_2)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
   undefined4 uStack_24;
-  ezb_extaddr_t dst_extaddr;
-  nwk_nlde_data_req_t nlde_req;
+  undefined4 uStack_20;
+  int iStack_1c;
+  undefined4 uStack_18;
+  uint uStack_14;
   
-  if ((req->asdu->flags & 4) == 0) {
+  if ((*(ushort *)(*param_2 + 0x16) & 4) == 0) {
     uStack_24 = 0;
-    dst_extaddr.field_0.u64._0_4_ = 0;
+    uStack_20 = 0;
     nwk_address_extended_by_short(&uStack_24);
-    iVar1 = aps_process_transmit_security(&uStack_24,req->asdu);
+    iVar1 = aps_process_transmit_security(&uStack_24,*param_2);
     if (iVar1 != 0) {
-      return iVar1;
+      return;
     }
   }
-  dst_extaddr.field_0.u64._4_4_ = req->asdu;
-  eVar2 = nwk_nlde_data_request((undefined1 *)((int)&dst_extaddr.field_0 + 4));
-  return eVar2;
+  iStack_1c = *param_2;
+  uStack_18 = CONCAT13(*(undefined1 *)((int)param_2 + 0x15),CONCAT12((char)param_2[5],param_1));
+  uStack_14 = CONCAT12((char)(((uint)param_2[6] >> 4 & 1) << 2),*(undefined2 *)((int)param_2 + 0x16)
+                      ) | 0x30000;
+  nwk_nlde_data_request(&iStack_1c);
+  return;
 }
 

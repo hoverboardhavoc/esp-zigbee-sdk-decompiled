@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_forwarder.o -> nwk_btt_deinit
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,18 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void nwk_btt_deinit(void)
 
 {
-  nwk_bt_record_t *pnVar1;
-  nwk_fwd_s *pnVar2;
+  undefined4 *puVar1;
+  undefined4 *puVar2;
   
-  pnVar2 = &s_nwk_fwd;
+  puVar2 = &s_nwk_fwd;
   do {
-    pnVar1 = pnVar2->btt;
-    pnVar2 = (nwk_fwd_s *)&(pnVar2->send_queue).length;
-    mm_free(pnVar1->passive_ack);
-  } while (pnVar2 != (nwk_fwd_s *)0x116b8);
+    puVar1 = puVar2 + 0x10;
+    puVar2 = puVar2 + 2;
+    mm_free(*puVar1);
+  } while (puVar2 != (undefined4 *)&DAT_000116b8);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_address.o -> nwk_address_short_by_ref
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,34 +11,27 @@
  */
 
 /* WARNING: Removing unreachable block (ram,0x000108c4) */
-/* WARNING: Unknown calling convention */
 
-ezb_err_t nwk_address_short_by_ref(nwk_addr_ref_t ref,ezb_shortaddr_t *shortaddr)
+undefined4 nwk_address_short_by_ref(uint param_1,undefined2 *param_2)
 
 {
-  uint uVar1;
-  _Bool _Var2;
-  int iVar3;
-  undefined3 extraout_var;
-  undefined2 in_register_0000202a;
-  int iVar4;
-  ezb_err_t eVar5;
+  int iVar1;
+  int iVar2;
+  undefined4 uVar3;
   
-  uVar1 = CONCAT22(in_register_0000202a,ref);
-  iVar3 = core_globals_get();
-  iVar4 = *(int *)(iVar3 + 0xc50) + uVar1 * 0x12;
-  if ((*(byte *)(iVar4 + 0x11) & 4) != 0) {
-    uVar1 = (uint)*(ushort *)(iVar4 + 0xe);
+  iVar1 = core_globals_get();
+  iVar2 = *(int *)(iVar1 + 0xc50) + param_1 * 0x12;
+  if ((*(byte *)(iVar2 + 0x11) & 4) != 0) {
+    param_1 = (uint)*(ushort *)(iVar2 + 0xe);
   }
-  _Var2 = check_table_ref((uint16_t)uVar1,*(bitmap_t **)(iVar3 + 0xc4c),*(uint16_t *)(iVar3 + 0xc54)
-                         );
-  eVar5 = 5;
-  if (CONCAT31(extraout_var,_Var2) != 0) {
-    if (shortaddr != (ezb_shortaddr_t *)0x0) {
-      *shortaddr = *(ezb_shortaddr_t *)(*(int *)(iVar3 + 0xc50) + uVar1 * 0x12 + 8);
+  iVar2 = check_table_ref(param_1,*(undefined4 *)(iVar1 + 0xc4c),*(undefined2 *)(iVar1 + 0xc54));
+  uVar3 = 5;
+  if (iVar2 != 0) {
+    if (param_2 != (undefined2 *)0x0) {
+      *param_2 = *(undefined2 *)(*(int *)(iVar1 + 0xc50) + param_1 * 0x12 + 8);
     }
-    eVar5 = 0;
+    uVar3 = 0;
   }
-  return eVar5;
+  return uVar3;
 }
 

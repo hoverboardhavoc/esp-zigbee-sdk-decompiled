@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_update_sroute
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,21 +10,15 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: sroute */
-/* WARNING: Unknown calling convention */
-
-void nwk_fwd_update_sroute(zmsg_t *msg,uint16_t fcf,nwk_tx_info_t *tx_info)
+void nwk_fwd_update_sroute(undefined4 param_1,uint param_2,int param_3)
 
 {
-  uint8_t uVar1;
-  undefined3 extraout_var;
+  int iVar1;
   byte bStack_15;
   byte bStack_14;
   byte bStack_13;
-  nwk_sroute_field_t sroute;
-  int iVar2;
   
-  if ((fcf & 0x400) == 0) {
+  if ((param_2 >> 10 & 1) == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_forwarder.c",0x149,
                   "nwk_fwd_update_sroute","nwk_fcf_is_source_routing(fcf)");
 _L0:
@@ -32,24 +26,22 @@ _L0:
                   "nwk_fwd_update_sroute","sroute.relay_index < sroute.relay_count");
   }
   else {
-    uVar1 = nwk_fcf_get_hdr_size(fcf);
-    iVar2 = CONCAT31(extraout_var,uVar1);
-    zmsg_read_bytes(msg,iVar2,2,&bStack_14);
+    iVar1 = nwk_fcf_get_hdr_size(param_2);
+    zmsg_read_bytes(param_1,iVar1,2,&bStack_14);
     if (bStack_13 != 0) {
       bStack_15 = bStack_13 - 1;
       bStack_13 = bStack_15;
       if (bStack_15 < bStack_14) {
-        zmsg_write_bytes(msg,iVar2 + 1U & 0xffff,1,&bStack_15);
-        zmsg_read_bytes(msg,(iVar2 + (uint)bStack_13 * 2 & 0xffff) + 2 & 0xffff,2,
-                        &tx_info->mac_dst_addr);
+        zmsg_write_bytes(param_1,iVar1 + 1U & 0xffff,1,&bStack_15);
+        zmsg_read_bytes(param_1,(iVar1 + (uint)bStack_13 * 2 & 0xffff) + 2 & 0xffff,2,param_3 + 4);
         goto _L0;
       }
       goto _L0;
     }
   }
-  zmsg_read_bytes(msg,2,&tx_info->mac_dst_addr);
+  zmsg_read_bytes(param_1,2,param_3 + 4);
 _L0:
-  tx_info->iface_id = '\0';
+  *(undefined1 *)(param_3 + 6) = 0;
   return;
 }
 

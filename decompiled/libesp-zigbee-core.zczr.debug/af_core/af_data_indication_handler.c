@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> af_core.o -> af_data_indication_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,27 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void af_data_indication_handler(af_data_ind_t *ind)
+void af_data_indication_handler(int param_1)
 
 {
-  uint16_t uVar1;
+  short sVar1;
   
-  if ((ind == (af_data_ind_t *)0x0) || ((ind->addr_info).dst_ep == 0xff)) {
+  if ((param_1 == 0) || (*(char *)(param_1 + 7) == -1)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/af/af_core.c",0x72,
                   "af_data_indication_handler","ind && ind->addr_info.dst_ep != 0xFFU");
   }
   else {
-    uVar1 = (ind->addr_info).profile_id;
-    if ((uVar1 != 0x104) && (uVar1 != 0xc05e)) {
-      if (uVar1 == 0) {
+    sVar1 = *(short *)(param_1 + 10);
+    if ((sVar1 != 0x104) && (sVar1 != -0x3fa2)) {
+      if (sVar1 == 0) {
         zdo_indication_handler();
       }
       goto _L0;
     }
   }
-  zcl_indication_handler(ind);
+  zcl_indication_handler(param_1);
 _L0:
-  zmsg_free(ind->asdu);
+  zmsg_free(*(undefined4 *)(param_1 + 0x10));
   return;
 }
 

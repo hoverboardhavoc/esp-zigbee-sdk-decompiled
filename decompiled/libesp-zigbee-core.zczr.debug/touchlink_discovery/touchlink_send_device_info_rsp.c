@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_discovery.o -> touchlink_send_device_info_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,73 +10,68 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: rsp */
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_send_device_info_rsp(uint8_t start_index,uint8_t tsn)
+undefined4 touchlink_send_device_info_rsp(uint param_1,undefined1 param_2)
 
 {
-  ezb_err_t eVar1;
+  undefined4 uVar1;
   uint uVar2;
-  undefined3 in_register_00002029;
-  uint uVar3;
-  int iVar4;
-  char cVar5;
+  int iVar3;
+  char cVar4;
   undefined4 local_30;
-  zcl_touchlink_device_info_rsp_t rsp;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  int iStack_1c;
+  code *pcStack_18;
+  undefined4 uStack_14;
   
-  uVar2 = CONCAT31(in_register_00002029,start_index);
   local_30 = 0;
-  rsp.cmd_ctrl.peer_addr._0_4_ = 0;
-  rsp.cmd_ctrl.peer_addr.u._2_4_ = 0;
-  rsp.cmd_ctrl._8_4_ = 0;
-  rsp.transaction_id = 0;
-  rsp.n_sub_devices = '\0';
-  rsp.start_index = '\0';
-  rsp.n_records = '\0';
-  rsp._19_1_ = 0;
-  rsp.records = (zcl_touchlink_sub_device_info_record_t *)0x0;
-  rsp.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-  rsp.cmd_ctrl._8_4_ = touchlink_transaction_id(0);
-  uVar3 = touchlink_n_sub_device_size();
-  rsp.transaction_id._0_2_ = CONCAT11(start_index,(char)uVar3);
-  if (uVar2 < uVar3) {
-    uVar3 = uVar3 - uVar2 & 0xff;
-    if (uVar3 == 0) {
-      rsp._16_4_ = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  iStack_1c = 0;
+  pcStack_18 = (code *)0x0;
+  uStack_14 = 0;
+  uStack_24 = touchlink_transaction_id(0);
+  uVar2 = touchlink_n_sub_device_size();
+  uStack_20._0_2_ = CONCAT11((char)param_1,(char)uVar2);
+  if (param_1 < uVar2) {
+    uVar2 = uVar2 - param_1 & 0xff;
+    if (uVar2 == 0) {
+      iStack_1c = 0;
     }
     else {
-      rsp._16_4_ = mm_alloc(uVar3,0x12);
+      iStack_1c = mm_alloc(uVar2,0x12);
     }
   }
   else {
-    uVar3 = 0;
-    rsp._16_4_ = 0;
+    uVar2 = 0;
+    iStack_1c = 0;
   }
-  if ((rsp._16_4_ == 0) && (uVar3 != 0)) {
-    eVar1 = 1;
+  if ((iStack_1c == 0) && (uVar2 != 0)) {
+    uVar1 = 1;
   }
   else {
-    while (iVar4 = touchlink_get_sub_device_info
-                             (uVar2,rsp._16_4_ + (rsp.transaction_id >> 0x10 & 0xff) * 0x12),
-          iVar4 == 0) {
-      uVar2 = uVar2 + 1 & 0xff;
-      cVar5 = rsp.transaction_id._2_1_ + '\x01';
-      rsp.transaction_id._0_3_ = CONCAT12(cVar5,(undefined2)rsp.transaction_id);
+    while (iVar3 = touchlink_get_sub_device_info
+                             (param_1,iStack_1c + (uStack_20 >> 0x10 & 0xff) * 0x12), iVar3 == 0) {
+      param_1 = param_1 + 1 & 0xff;
+      cVar4 = uStack_20._2_1_ + '\x01';
+      uStack_20._0_3_ = CONCAT12(cVar4,(undefined2)uStack_20);
     }
-    rsp.records = (zcl_touchlink_sub_device_info_record_t *)touchlink_device_info_rsp_confirm;
-    rsp.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
+    pcStack_18 = touchlink_device_info_rsp_confirm;
+    uStack_14 = 0;
     local_30 = CONCAT31(local_30._1_3_,3);
-    iVar4 = touchlink_transaction_get();
-    rsp.cmd_ctrl.peer_addr._0_4_ = *(undefined4 *)(iVar4 + 10);
-    local_30 = CONCAT22(*(undefined2 *)(iVar4 + 8),(undefined2)local_30);
-    rsp.cmd_ctrl.peer_addr.u._4_1_ = tsn;
-    rsp.cmd_ctrl.peer_addr.u.group_addr.bcast = *(undefined2 *)(iVar4 + 0xe);
-    eVar1 = zcl_touchlink_device_info_rsp(&local_30);
+    iVar3 = touchlink_transaction_get();
+    uStack_2c = *(undefined4 *)(iVar3 + 10);
+    local_30 = CONCAT22(*(undefined2 *)(iVar3 + 8),(undefined2)local_30);
+    uStack_28._0_3_ = CONCAT12(param_2,*(undefined2 *)(iVar3 + 0xe));
+    uVar1 = zcl_touchlink_device_info_rsp(&local_30);
   }
-  if (rsp._16_4_ != 0) {
+  if (iStack_1c != 0) {
     mm_free();
   }
-  return eVar1;
+  return uVar1;
 }
 

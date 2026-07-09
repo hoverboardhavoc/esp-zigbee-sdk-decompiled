@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_op_nwk_mgmt_nwk_update_notify
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,84 +10,64 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t
-zdo_op_nwk_mgmt_nwk_update_notify
-          (zdo_packet_payload_t *payload,zdp_nwk_mgmt_nwk_update_notify_field_t *notify,
-          _Bool is_write)
+undefined4 zdo_op_nwk_mgmt_nwk_update_notify(int param_1,undefined1 *param_2,int param_3)
 
 {
   int iVar1;
   uint uVar2;
-  undefined3 in_register_00002031;
-  uint32_t uStack_24;
-  uint16_t offset;
+  undefined4 uVar3;
+  uint auStack_24 [4];
   
-  if ((payload == (zdo_packet_payload_t *)0x0) ||
-     (notify == (zdp_nwk_mgmt_nwk_update_notify_field_t *)0x0)) {
+  if ((param_1 == 0) || (param_2 == (undefined1 *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x215,
                   "zdo_op_nwk_mgmt_nwk_update_notify","payload && notify");
   }
-  else if (CONCAT31(in_register_00002031,is_write) != 0) {
-    uStack_24 = CONCAT31(uStack_24._1_3_,notify->status);
-    iVar1 = zmsg_append_bytes(1,&uStack_24);
+  else if (param_3 != 0) {
+    auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,*param_2);
+    iVar1 = zmsg_append_bytes(1,auStack_24);
+    if (iVar1 != 0) {
+      return 0x8a;
+    }
+    auStack_24[0] = *(uint *)(param_2 + 4);
+    iVar1 = zmsg_append_bytes(param_1,4,auStack_24);
+    if (iVar1 != 0) {
+      return 0x8a;
+    }
+    auStack_24[0]._0_2_ = *(undefined2 *)(param_2 + 8);
+    iVar1 = zmsg_append_bytes(param_1,2,auStack_24);
+    if (iVar1 != 0) {
+      return 0x8a;
+    }
+    auStack_24[0] = CONCAT22(auStack_24[0]._2_2_,*(undefined2 *)(param_2 + 10));
+    iVar1 = zmsg_append_bytes(param_1,2,auStack_24);
     if (iVar1 == 0) {
-      uStack_24 = notify->scanned_channels;
-      iVar1 = zmsg_append_bytes(payload,4,&uStack_24);
+      auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,param_2[0xc]);
+      iVar1 = zmsg_append_bytes(param_1,1,auStack_24);
+      if (iVar1 != 0) {
+        return 0x8a;
+      }
+      iVar1 = zmsg_append_bytes(param_1,param_2[0xc],param_2 + 0xd);
       if (iVar1 == 0) {
-        uStack_24._0_2_ = notify->total_transmissions;
-        iVar1 = zmsg_append_bytes(payload,2,&uStack_24);
-        if (iVar1 == 0) {
-          uStack_24 = CONCAT22(uStack_24._2_2_,notify->transmissions_failure);
-          iVar1 = zmsg_append_bytes(payload,2,&uStack_24);
-          if (iVar1 == 0) {
-            uStack_24 = CONCAT31(uStack_24._1_3_,notify->scanned_channels_list_count);
-            iVar1 = zmsg_append_bytes(payload,1,&uStack_24);
-            if (iVar1 == 0) {
-              iVar1 = zmsg_append_bytes(payload,notify->scanned_channels_list_count,
-                                        notify->energy_values);
-              if (iVar1 != 0) {
-                iVar1 = 0x8a;
-              }
-            }
-            else {
-              iVar1 = 0x8a;
-            }
-          }
-          else {
-            iVar1 = 0x8a;
-          }
-        }
-        else {
-          iVar1 = 0x8a;
-        }
+        return 0;
       }
-      else {
-        iVar1 = 0x8a;
-      }
+      return 0x8a;
     }
-    else {
-      iVar1 = 0x8a;
-    }
-    goto _L0;
+    return 0x8a;
   }
-  uStack_24 = uStack_24 & 0xffff0000;
+  auStack_24[0] = auStack_24[0] & 0xffff0000;
   uVar2 = zmsg_get_length();
-  af_read_le8(payload,(uint16_t *)&uStack_24,&notify->status);
-  af_read_le32(payload,(uint16_t *)&uStack_24,&notify->scanned_channels);
-  af_read_le16(payload,(uint16_t *)&uStack_24,&notify->total_transmissions);
-  af_read_le16(payload,(uint16_t *)&uStack_24,&notify->transmissions_failure);
-  af_read_le8(payload,(uint16_t *)&uStack_24,&notify->scanned_channels_list_count);
-  af_read_bytes(payload,(uint16_t *)&uStack_24,(ushort)notify->scanned_channels_list_count,
-                (uint8_t *)notify->energy_values);
-  if (uVar2 < (uStack_24 & 0xffff)) {
-    iVar1 = 0xfe;
+  af_read_le8(param_1,auStack_24,param_2);
+  af_read_le32(param_1,auStack_24,param_2 + 4);
+  af_read_le16(param_1,auStack_24,param_2 + 8);
+  af_read_le16(param_1,auStack_24,param_2 + 10);
+  af_read_le8(param_1,auStack_24,param_2 + 0xc);
+  af_read_bytes(param_1,auStack_24,param_2[0xc],param_2 + 0xd);
+  if (uVar2 < (auStack_24[0] & 0xffff)) {
+    uVar3 = 0xfe;
   }
   else {
-    iVar1 = 0;
+    uVar3 = 0;
   }
-_L0:
-  return (zdp_status_t)iVar1;
+  return uVar3;
 }
 

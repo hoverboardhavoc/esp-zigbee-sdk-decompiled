@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_dst_is_matched
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,54 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool bind_dst_is_matched(aps_bind_dst_t *dst,ezb_address_t *dst_addr,uint8_t dst_ep)
+undefined4 bind_dst_is_matched(short *param_1,char *param_2,uint param_3)
 
 {
-  ezb_addr_mode_t eVar1;
+  char cVar1;
   int iVar2;
-  undefined3 in_register_00002031;
   char *pcVar3;
   char *pcVar4;
-  ezb_grpaddr_t eStack_18;
-  ezb_extaddr_t tmp_dst_addr;
+  int iStack_18;
+  char *pcStack_14;
   
-  eVar1 = dst_addr->addr_mode;
-  if ((ushort)(eVar1 == '\x01') != (*(ushort *)&dst->ref_cnt >> 8 & 1)) {
-    return false;
+  cVar1 = *param_2;
+  if ((ushort)(cVar1 == '\x01') != ((ushort)param_1[2] >> 8 & 1)) {
+    return 0;
   }
-  if (eVar1 == '\x01') {
-    if ((dst->field_0).extaddr.addr_ref == (dst_addr->u).short_addr) {
-      return true;
+  if (cVar1 == '\x01') {
+    if (*param_1 == *(short *)(param_2 + 2)) {
+      return 1;
     }
-    return false;
+    return 0;
   }
-  if (eVar1 != '\x03') {
+  if (cVar1 != '\x03') {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0xc6,
                   "bind_dst_is_matched",&_LC3);
-    return false;
+    return 0;
   }
-  if ((CONCAT31(in_register_00002031,dst_ep) != 0xff) &&
-     ((uint)(dst->field_0).extaddr.endpoint != CONCAT31(in_register_00002031,dst_ep))) {
-    return false;
+  if ((param_3 != 0xff) && (*(byte *)(param_1 + 1) != param_3)) {
+    return 0;
   }
-  iVar2 = nwk_address_extended_by_ref((dst->field_0).extaddr.addr_ref,&eStack_18);
+  iVar2 = nwk_address_extended_by_ref(*param_1,&iStack_18);
   if (iVar2 == 0) {
-    pcVar4 = *(char **)((int)&dst_addr->u + 4);
-    if ((dst_addr->u).group_addr != eStack_18) {
-      return false;
+    pcVar4 = *(char **)(param_2 + 6);
+    pcVar3 = pcStack_14;
+    if (*(int *)(param_2 + 2) != iStack_18) {
+      return 0;
     }
   }
   else {
     pcVar4 = "(nwk_address_extended_by_ref(dst->extaddr.addr_ref, &tmp_dst_addr)) == 0";
     pcVar3 = "bind_dst_is_matched";
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0xbe);
-    tmp_dst_addr.field_0.u64._0_4_ = pcVar3;
   }
-  if (pcVar4 != (char *)tmp_dst_addr.field_0.u64._0_4_) {
-    return false;
+  if (pcVar4 != pcVar3) {
+    return 0;
   }
-  return true;
+  return 1;
 }
 

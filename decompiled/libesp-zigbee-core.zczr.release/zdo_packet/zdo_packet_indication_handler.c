@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_packet.o -> zdo_packet_indication_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,79 +10,79 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_packet_indication_handler(zdo_packet_t *packet)
+int zdo_packet_indication_handler(char *param_1)
 
 {
-  uint8_t uVar1;
+  char cVar1;
   ushort uVar2;
   int *piVar3;
-  zdo_packet_ctx_entry_t *ent;
-  int iVar4;
-  zdp_status_t zVar5;
+  char *pcVar4;
+  int iVar5;
   
-  if (packet == (zdo_packet_t *)0x0) {
+  if (param_1 == (char *)0x0) {
     return 0x80;
   }
-  if (-1 < (short)packet->cluster_id) {
-    if (packet == (zdo_packet_t *)0x0) {
-      zVar5 = 0x80;
+  if (-1 < *(short *)(param_1 + 6)) {
+    if (param_1 == (char *)0x0) {
+      iVar5 = 0x80;
     }
     else {
-      uVar2 = packet->cluster_id;
+      uVar2 = *(ushort *)(param_1 + 6);
       if (uVar2 < 0x20) {
-        zVar5 = zdo_device_service_discovery_req_handler();
-        return zVar5;
+        iVar5 = zdo_device_service_discovery_req_handler();
+        return iVar5;
       }
       if (uVar2 < 0x30) {
-        zVar5 = zdo_bind_mgmt_req_handler();
-        return zVar5;
+        iVar5 = zdo_bind_mgmt_req_handler();
+        return iVar5;
       }
-      zVar5 = 0x84;
+      iVar5 = 0x84;
       if (uVar2 < 0x40) {
-        zVar5 = zdo_nwk_mgmt_req_handler();
-        return zVar5;
+        iVar5 = zdo_nwk_mgmt_req_handler();
+        return iVar5;
       }
     }
-    return zVar5;
+    return iVar5;
   }
-  iVar4 = 0x80;
-  if (packet != (zdo_packet_t *)0x0) {
-    uVar1 = packet->tsn;
-    iVar4 = core_globals_get();
-    piVar3 = *(int **)(iVar4 + 0xcac);
-    iVar4 = 0xfe;
+  iVar5 = 0x80;
+  if (param_1 != (char *)0x0) {
+    cVar1 = *param_1;
+    iVar5 = core_globals_get();
+    piVar3 = *(int **)(iVar5 + 0xcac);
+    iVar5 = 0xfe;
     if (piVar3 != (int *)0x0) {
-      for (; ent = (zdo_packet_ctx_entry_t *)(piVar3 + -9),
-          ent != (zdo_packet_ctx_entry_t *)0xffffffdc; piVar3 = (int *)*piVar3) {
-        if (ent->tsn == uVar1) {
-          memcpy(&packet->ctx,piVar3 + -3,0xc);
-          uVar2 = packet->cluster_id;
+      for (; pcVar4 = (char *)(piVar3 + -9), pcVar4 != (char *)0xffffffdc; piVar3 = (int *)*piVar3)
+      {
+        if (*pcVar4 == cVar1) {
+          memcpy(param_1 + 8,piVar3 + -3,0xc);
+          uVar2 = *(ushort *)(param_1 + 6);
           if (uVar2 < 0x8020) {
-            iVar4 = zdo_device_service_discovery_rsp_handler(packet);
+            iVar5 = zdo_device_service_discovery_rsp_handler(param_1);
           }
           else if (uVar2 < 0x8030) {
-            iVar4 = zdo_bind_mgmt_rsp_handler(packet);
+            iVar5 = zdo_bind_mgmt_rsp_handler(param_1);
           }
           else {
-            iVar4 = 0x84;
-            if (0x803f < uVar2) goto _L0;
-            iVar4 = zdo_nwk_mgmt_rsp_handler(packet);
+            if (0x803f < uVar2) {
+              return 0x84;
+            }
+            iVar5 = zdo_nwk_mgmt_rsp_handler(param_1);
           }
-          if ((iVar4 == 0) &&
-             (*(byte *)(piVar3 + -4) = *(byte *)(piVar3 + -4) | 1, *(char *)(piVar3 + -3) == '\x01')
-             ) {
-            zdo_packet_ctx_list_remove_entry(ent);
-            zdo_packet_ctx_free_entry(ent);
+          if (iVar5 != 0) {
+            return iVar5;
           }
-          goto _L0;
+          *(byte *)(piVar3 + -4) = *(byte *)(piVar3 + -4) | 1;
+          if (*(char *)(piVar3 + -3) != '\x01') {
+            return 0;
+          }
+          zdo_packet_ctx_list_remove_entry(pcVar4);
+          zdo_packet_ctx_free_entry(pcVar4);
+          return 0;
         }
       }
-      iVar4 = 0xfe;
+      iVar5 = 0xfe;
     }
   }
-_L0:
-  return (zdp_status_t)iVar4;
+  return iVar5;
 }
 

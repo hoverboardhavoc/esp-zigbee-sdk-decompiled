@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scene_table_add_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,39 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool scene_table_add_entry(uint8_t ep_id,zcl_scene_table_entry_t *entry,_Bool is_flash)
+bool scene_table_add_entry(undefined4 param_1,byte *param_2,int param_3)
 
 {
-  _Bool _Var1;
-  zcl_scene_table_t *pzVar2;
-  ezb_err_t eVar3;
-  undefined3 extraout_var;
-  undefined3 in_register_00002031;
-  uint uVar4;
-  bool bVar5;
+  byte *pbVar1;
+  int iVar2;
+  uint uVar3;
+  bool bVar4;
   
-  pzVar2 = scene_table_get(ep_id);
-  uVar4 = 0;
+  pbVar1 = (byte *)scene_table_get();
+  uVar3 = 0;
   while( true ) {
-    if (pzVar2->total <= uVar4) {
+    if (*pbVar1 <= uVar3) {
       return false;
     }
-    if ((zcl_scene_table_entry_t *)(pzVar2 + uVar4 * 4 + 1) == entry) break;
-    uVar4 = uVar4 + 1 & 0xff;
+    if (pbVar1 + uVar3 * 0x20 + 8 == param_2) break;
+    uVar3 = uVar3 + 1 & 0xff;
   }
-  if (CONCAT31(in_register_00002031,is_flash) == 0) {
-    bVar5 = true;
+  if (param_3 == 0) {
+    bVar4 = true;
   }
   else {
-    eVar3 = scene_table_store_scene(ep_id,entry);
-    bVar5 = eVar3 == 0;
-    if (eVar3 != 0) {
-      return bVar5;
+    iVar2 = scene_table_store_scene(param_1,param_2);
+    bVar4 = iVar2 == 0;
+    if (iVar2 != 0) {
+      return bVar4;
     }
   }
-  _Var1 = scene_entry_is_used((zcl_scene_table_entry_t *)(pzVar2 + uVar4 * 4 + 1));
-  if (CONCAT31(extraout_var,_Var1) != 0) {
-    return bVar5;
+  iVar2 = scene_entry_is_used(pbVar1 + uVar3 * 0x20 + 8);
+  if (iVar2 != 0) {
+    return bVar4;
   }
-  *pzVar2->count = *pzVar2->count + '\x01';
-  pzVar2[uVar4 * 4 + 1].total = '\x01';
-  return bVar5;
+  **(char **)(pbVar1 + 4) = **(char **)(pbVar1 + 4) + '\x01';
+  pbVar1[uVar3 * 0x20 + 8] = 1;
+  return bVar4;
 }
 

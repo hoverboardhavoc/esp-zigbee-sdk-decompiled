@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> timer.o -> tm_sched_remove
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void tm_sched_remove(tm_sched_t *sched,timer_base *tm)
+void tm_sched_remove(int param_1,int *param_2,int *param_3)
 
 {
-  timer_base *ptVar1;
-  timer_base *in_a4;
-  timer_base *ptVar2;
-  timer_base *ptVar3;
+  int *piVar1;
+  int *piVar2;
+  int *piVar3;
   
-  if (tm == (timer_base *)0x0) {
-    sched = (tm_sched_t *)
-            __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/timer.c",0x60,
-                          "tm_sched_remove","tm != ((void *)0)");
+  if (param_2 == (int *)0x0) {
+    param_1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/timer.c",0x60,
+                            "tm_sched_remove","tm != ((void *)0)");
   }
   else {
-    in_a4 = tm->next;
-    if (in_a4 == tm) {
+    param_3 = (int *)*param_2;
+    if (param_3 == param_2) {
       return;
     }
-    ptVar2 = sched->timer_list;
-    if (ptVar2 != tm) {
-      ptVar1 = (timer_base *)&sched->timer_list;
-      while (ptVar2 != (timer_base *)0x0) {
-        ptVar3 = ptVar1->next;
-        if (ptVar3 == tm) {
-          ptVar1->next = in_a4;
+    piVar2 = *(int **)(param_1 + 0x10);
+    if (piVar2 != param_2) {
+      piVar1 = (int *)(param_1 + 0x10);
+      while (piVar2 != (int *)0x0) {
+        piVar3 = (int *)*piVar1;
+        if (piVar3 == param_2) {
+          *piVar1 = (int)param_3;
           break;
         }
-        ptVar1 = ptVar3;
-        ptVar2 = ptVar3->next;
+        piVar1 = piVar3;
+        piVar2 = (int *)*piVar3;
       }
       goto _L0;
     }
   }
-  sched->timer_list = in_a4;
-  tm_sched_set_alarm(sched);
+  *(int **)(param_1 + 0x10) = param_3;
+  tm_sched_set_alarm();
 _L0:
-  tm->next = tm;
+  *param_2 = (int)param_2;
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_rx_window_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,17 +11,16 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-void aps_rx_window_init(aps_trx_window_t *w,uint8_t w_sz)
+void aps_rx_window_init(undefined1 *param_1,uint param_2)
 
 {
-  if ((byte)(w_sz - 1) < 8) {
-    w->blk_nr = 0xff;
-    w->blk_start = '\0';
-    w->slot_i = '\0';
-    w->slot_nr = w_sz;
-    w->slot_done = -(char)(1 << (w_sz & 0x1f));
+  if ((param_2 - 1 & 0xff) < 8) {
+    *param_1 = 0xff;
+    param_1[1] = 0;
+    param_1[2] = 0;
+    param_1[3] = (char)param_2;
+    param_1[4] = -(char)(1 << (param_2 & 0x1f));
     return;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x17d,

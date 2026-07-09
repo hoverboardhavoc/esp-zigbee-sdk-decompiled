@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_nlme.o -> nwk_handle_network_status_local
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,31 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_handle_network_status_local(nwk_network_status_cmd_t *status_cmd)
+void nwk_handle_network_status_local(byte *param_1)
 
 {
   uint uVar1;
   uint uVar2;
-  undefined1 auStack_18 [4];
-  nwk_nlme_event_ind_t ind;
+  int iStack_18;
+  uint uStack_14;
   
-  uVar2 = (uint)status_cmd->status_code;
+  uVar2 = (uint)*param_1;
   if (uVar2 == 0xd) {
-    nwk_address_conflict_resolve(status_cmd->target_addr);
+    nwk_address_conflict_resolve(*(undefined2 *)(param_1 + 1));
     return;
   }
   if (uVar2 < 0xe) {
     if (uVar2 == 0xb) {
-      nwk_route_record_table_remove_by_dst(status_cmd->target_addr);
+      nwk_route_record_table_remove_by_dst(*(undefined2 *)(param_1 + 1));
     }
     else if (uVar2 == 0xc) {
       nwk_concentrator_discovery();
     }
     else {
       if (uVar2 < 3) {
-        nwk_route_table_remove_by_dst(status_cmd->target_addr);
+        nwk_route_table_remove_by_dst(*(undefined2 *)(param_1 + 1));
         return;
       }
       uVar1 = 9;
@@ -55,10 +53,9 @@ _L0:
     if (1 < uVar2) goto _L0;
     ds_save_common_data();
   }
-  auStack_18 = (undefined1  [4])((uint)status_cmd->status_code << 0x10);
-  ind.field_1._0_2_ = 0;
-  ind._0_2_ = status_cmd->target_addr;
-  nwk_nlme_event_indication((nwk_nlme_event_ind_t *)auStack_18);
+  iStack_18 = (uint)*param_1 << 0x10;
+  uStack_14 = (uint)*(ushort *)(param_1 + 1);
+  nwk_nlme_event_indication(&iStack_18);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_handle_received_frame
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,64 +10,57 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_handle_received_frame(mac_device *dev,ezb_radio_frame_t *radio_frame,ezb_err_t rx_error)
+void mac_handle_received_frame(int param_1,int *param_2,int param_3)
 
 {
-  uint8_t uVar1;
-  _Bool _Var2;
-  undefined3 extraout_var;
-  int iVar3;
-  ezb_err_t eVar4;
-  undefined1 auStack_38 [4];
-  mac_frame_t mac_frame;
+  int iVar1;
+  undefined1 auStack_38 [28];
+  ushort uStack_1c;
   
-  if (rx_error != 0) {
+  if (param_3 != 0) {
     return;
   }
-  _Var2 = mac_is_enabled(dev);
-  if (CONCAT31(extraout_var,_Var2) == 0) {
+  iVar1 = mac_is_enabled();
+  if (iVar1 == 0) {
     return;
   }
-  if (radio_frame == (ezb_radio_frame_t *)0x0) {
+  if (param_2 == (int *)0x0) {
     return;
   }
-  if (radio_frame->psdu == (uint8_t *)0x0) {
+  if (*param_2 == 0) {
     return;
   }
-  iVar3 = mac_frame_parse(radio_frame,auStack_38);
-  if (iVar3 != 0) {
+  iVar1 = mac_frame_parse(param_2,auStack_38);
+  if (iVar1 != 0) {
     return;
   }
-  iVar3 = mac_filter_apply_to_rxframe(auStack_38);
-  if (iVar3 != 0) {
+  iVar1 = mac_filter_apply_to_rxframe(auStack_38);
+  if (iVar1 != 0) {
     return;
   }
-  eVar4 = mac_process_receive_security(dev,(mac_frame_t *)auStack_38);
-  if (eVar4 != 0) {
+  iVar1 = mac_process_receive_security(param_1,auStack_38);
+  if (iVar1 != 0) {
     return;
   }
-  uVar1 = (dev->ctx).cur_op;
-  if (uVar1 == '\x01') {
-    if ((mac_frame.mhr.dst_panid & 7) == 0) {
-      mac_report_active_scan_result(dev,(mac_frame_t *)auStack_38);
+  if (*(char *)(param_1 + 0x2e) == '\x01') {
+    if ((uStack_1c & 7) == 0) {
+      mac_report_active_scan_result(param_1,auStack_38);
       return;
     }
   }
-  else if (uVar1 != '\x02') goto _L0;
-  if ((dev->ctx).pan_channel != (dev->ctx).scan_channel) {
+  else if (*(char *)(param_1 + 0x2e) != '\x02') goto _L0;
+  if (*(char *)(param_1 + 0x43) != *(char *)(param_1 + 0x32)) {
     return;
   }
 _L0:
-  if ((mac_frame.mhr.dst_panid & 7) == 1) {
-    mac_handle_data(dev,(mac_frame_t *)auStack_38);
+  if ((uStack_1c & 7) == 1) {
+    mac_handle_data(param_1,auStack_38);
   }
-  else if ((mac_frame.mhr.dst_panid & 7) == 3) {
-    mac_handle_command(dev,(mac_frame_t *)auStack_38);
+  else if ((uStack_1c & 7) == 3) {
+    mac_handle_command(param_1,auStack_38);
   }
-  else if ((mac_frame.mhr.dst_panid & 7) == 0) {
-    mac_handle_beacon(dev,(mac_frame_t *)auStack_38);
+  else if ((uStack_1c & 7) == 0) {
+    mac_handle_beacon(param_1,auStack_38);
   }
   return;
 }

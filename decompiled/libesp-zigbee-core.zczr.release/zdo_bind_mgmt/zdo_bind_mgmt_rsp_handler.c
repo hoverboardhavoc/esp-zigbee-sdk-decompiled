@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_bind_mgmt.o -> zdo_bind_mgmt_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: rsp */
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_bind_mgmt_rsp_handler(void *arg)
+undefined4 zdo_bind_mgmt_rsp_handler(int param_1)
 
 {
-  zdp_status_t zVar1;
+  undefined4 uVar1;
   uint uVar2;
-  zmsg_t *payload;
-  uint8_t auStack_14 [2];
-  uint16_t uStack_12;
-  zdp_bind_rsp_field_t rsp;
-  uint16_t offset;
+  int iVar3;
+  undefined1 auStack_14 [2];
+  ushort uStack_12;
   
-  if (arg == (void *)0x0) {
+  if (param_1 == 0) {
     return 0x80;
   }
-  zVar1 = 0x84;
-  if (*(ushort *)((int)arg + 6) - 0x8021 < 2) {
-    payload = *(zmsg_t **)((int)arg + 0x14);
-    auStack_14[0] = '\0';
-    if (payload != (zmsg_t *)0x0) {
+  uVar1 = 0x84;
+  if (*(ushort *)(param_1 + 6) - 0x8021 < 2) {
+    iVar3 = *(int *)(param_1 + 0x14);
+    auStack_14[0] = 0;
+    if (iVar3 != 0) {
       uStack_12 = 0;
-      uVar2 = zmsg_get_length(payload);
-      af_read_le8(payload,&uStack_12,auStack_14);
+      uVar2 = zmsg_get_length(iVar3);
+      af_read_le8_isra_0(iVar3,&uStack_12,auStack_14);
       if (uStack_12 <= uVar2) {
-        zdo_packet_notify_result((int)arg + 8,0,auStack_14);
-        return '\0';
+        zdo_packet_notify_result(param_1 + 8,0,auStack_14);
+        return 0;
       }
     }
-    zVar1 = 0xfe;
+    uVar1 = 0xfe;
   }
-  return zVar1;
+  return uVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> level.o -> zcl_level_step_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,35 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_level_step_cmd_req(_Bool is_on_off,ezb_zcl_level_step_cmd_t *req)
+int zcl_level_step_cmd_req(int param_1,void *param_2)
 
 {
-  _Bool _Var1;
-  undefined3 in_register_00002029;
+  undefined1 uVar1;
   int iVar2;
   undefined1 auStack_50 [22];
-  uint16_t uStack_3a;
-  undefined1 auStack_38 [4];
-  zcl_packet_t packet;
+  undefined2 uStack_3a;
+  undefined1 auStack_38 [36];
+  undefined4 uStack_14;
   
   memset(auStack_38,0,0x28);
-  if (req == (ezb_zcl_level_step_cmd_t *)0x0) {
+  if (param_2 == (void *)0x0) {
     iVar2 = 2;
   }
   else {
     iVar2 = zcl_packet_init(auStack_38,0);
     if (iVar2 == 0) {
-      _Var1 = (req->cmd_ctrl).dis_default_rsp;
-      memcpy(auStack_50,req,10);
-      iVar2 = zcl_cmd_to_packet(auStack_38,0,0,_Var1,0,
-                                (-(uint)(CONCAT31(in_register_00002029,is_on_off) == 0) & 0xfffffffc
-                                ) + 6,8);
+      uVar1 = *(undefined1 *)((int)param_2 + 0xc);
+      memcpy(auStack_50,param_2,10);
+      iVar2 = zcl_cmd_to_packet(auStack_38,0,0,uVar1,0,(-(uint)(param_1 == 0) & 0xfffffffc) + 6,8);
       if (((iVar2 == 0) &&
-          (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,(req->payload).step_mode), iVar2 == 0)) &&
-         (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,(req->payload).step_size), iVar2 == 0)) {
-        uStack_3a = (req->payload).transition_time;
-        iVar2 = zmsg_append_bytes(packet._32_4_,2,&uStack_3a);
+          (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)param_2 + 0x18)), iVar2 == 0)) &&
+         (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)param_2 + 0x19)), iVar2 == 0)) {
+        uStack_3a = *(undefined2 *)((int)param_2 + 0x1a);
+        iVar2 = zmsg_append_bytes(uStack_14,2,&uStack_3a);
         if (((iVar2 == 0) &&
-            (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,(req->payload).options_mask), iVar2 == 0
-            )) && (iVar2 = zmsg_append_u8((zmsg_t *)packet._32_4_,(req->payload).options_override),
-                  iVar2 == 0)) {
-          zcl_packet_send(auStack_38,&(req->cmd_ctrl).cnf_ctx);
+            (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)param_2 + 0x1c)), iVar2 == 0)) &&
+           (iVar2 = zmsg_append_u8(uStack_14,*(undefined1 *)((int)param_2 + 0x1d)), iVar2 == 0)) {
+          zcl_packet_send(auStack_38,(int)param_2 + 0x10);
           iVar2 = zcl_status_to_err();
           if (iVar2 == 0) {
             return 0;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> on_off.o -> ezb_zcl_on_off_cluster_server_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,38 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ezb_zcl_on_off_cluster_server_init(uint8_t ep_id)
+void ezb_zcl_on_off_cluster_server_init(undefined4 param_1)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  zcl_attr_desc_t *pzVar2;
-  uint8_t *puVar3;
-  int iVar4;
-  uint16_t attr_id;
-  undefined1 auStack_24 [4];
-  zcl_cluster_template_t template;
+  int iVar1;
+  int iVar2;
+  undefined1 *puVar3;
+  undefined1 auStack_24 [24];
   
   memcpy(auStack_24,&_LANCHOR0,0x14);
-  pzVar1 = on_off_srv_get_attr_desc(ep_id,0x4001);
-  pzVar2 = on_off_srv_get_attr_desc(ep_id,0x4002);
-  if (pzVar1 == (zcl_attr_desc_t *)0x0) goto _L0;
-  if (pzVar2 == (zcl_attr_desc_t *)0x0) goto _L0;
-  pzVar1 = on_off_srv_get_attr_desc(ep_id,attr_id);
-  if (pzVar1 != (zcl_attr_desc_t *)0x0) goto _L0;
+  iVar1 = on_off_srv_get_attr_desc(param_1,0x4001);
+  iVar2 = on_off_srv_get_attr_desc(param_1,0x4002);
+  if (iVar1 == 0) goto _L0;
+  if (iVar2 == 0) goto _L0;
+  iVar1 = on_off_srv_get_attr_desc_part_0(param_1);
+  if (iVar1 != 0) goto _L0;
   do {
     do {
       __assert_func(0,0,0,0);
 _L0:
-      puVar3 = (uint8_t *)calloc(1,0x14);
-      pzVar1->data_p = puVar3;
-    } while (puVar3 == (uint8_t *)0x0);
-    *puVar3 = ep_id;
+      puVar3 = (undefined1 *)calloc(1,0x14);
+      *(undefined1 **)(iVar1 + 8) = puVar3;
+    } while (puVar3 == (undefined1 *)0x0);
+    *puVar3 = (char)param_1;
     milli_timer_init(puVar3 + 4,on_off_timer_handler,puVar3);
 _L0:
-    iVar4 = zcl_cluster_template_add(auStack_24);
-  } while (iVar4 != 0);
+    iVar2 = zcl_cluster_template_add(auStack_24);
+  } while (iVar2 != 0);
   return;
 }
 

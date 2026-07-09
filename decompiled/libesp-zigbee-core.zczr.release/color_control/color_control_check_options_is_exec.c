@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> color_control.o -> color_control_check_options_is_exec
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,36 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool color_control_check_options_is_exec(uint8_t ep_id,uint8_t mask,uint8_t override)
+byte color_control_check_options_is_exec(undefined4 param_1,uint param_2,uint param_3)
 
 {
   byte bVar1;
-  _Bool _Var2;
-  undefined3 in_register_00002029;
-  zcl_attr_desc_t *pzVar3;
-  int iVar4;
+  int iVar2;
   
-  pzVar3 = color_control_srv_get_attr_desc(ep_id,0xf);
+  iVar2 = color_control_srv_get_attr_desc(0xf);
   bVar1 = 0;
-                    /* WARNING: Load size is inaccurate */
-  if ((pzVar3 != (zcl_attr_desc_t *)0x0) && (bVar1 = *pzVar3->data_p, (mask & 1) != 0)) {
-    if ((override & 1) == 0) {
+  if ((iVar2 != 0) && (bVar1 = **(byte **)(iVar2 + 8), (param_2 & 1) != 0)) {
+    if ((param_3 & 1) == 0) {
       bVar1 = 0;
     }
     else {
       bVar1 = bVar1 | 1;
     }
   }
-  iVar4 = zcl_get_cluster_desc(CONCAT31(in_register_00002029,ep_id),6,1);
-  if ((iVar4 == 0) ||
-     (iVar4 = ezb_zcl_get_attr_desc(CONCAT31(in_register_00002029,ep_id),6,1,0,0), iVar4 == 0)) {
-    _Var2 = true;
+  iVar2 = zcl_get_cluster_desc(param_1,6,1);
+  if ((iVar2 == 0) || (iVar2 = ezb_zcl_get_attr_desc(param_1,6,1,0,0), iVar2 == 0)) {
+    bVar1 = 1;
   }
   else {
-    _Var2 = (_Bool)(**(char **)(iVar4 + 8) != '\0' | bVar1 & 1);
+    bVar1 = **(char **)(iVar2 + 8) != '\0' | bVar1 & 1;
   }
-  return _Var2;
+  return bVar1;
 }
 

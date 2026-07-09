@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> alarms.o -> ds_alarm_log_itor_read
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ds_alarm_log_itor_read(ds_alarm_log_iterator_t *itor)
+void ds_alarm_log_itor_read(undefined2 *param_1)
 
 {
-  uint16_t uVar1;
-  int iVar2;
+  int iVar1;
   
-  uVar1 = itor->index;
-  *(undefined2 *)&(itor->data).time_stamp = 0;
-  *(undefined2 *)((int)&(itor->data).time_stamp + 2) = 0;
-  (itor->data).cluster_id = 0;
-  (itor->data).alarm_code = '\0';
-  (itor->data).ep_id = '\0';
-  iVar2 = ds_internal_read_entry(0xc,uVar1,itor,8);
-  itor->is_done = iVar2 != 0;
+  *param_1 = 0;
+  param_1[1] = 0;
+  param_1[2] = 0;
+  param_1[3] = 0;
+  iVar1 = ds_internal_read_entry(0xc,param_1[4],param_1,8);
+  *(bool *)(param_1 + 5) = iVar1 != 0;
   return;
 }
 

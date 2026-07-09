@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> nwk_address_update
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,120 +10,102 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_address_update(ezb_extaddr_t *extaddr,ezb_shortaddr_t shortaddr,nwk_addr_ref_t *ref_p)
+undefined4 nwk_address_update(int *param_1,uint param_2,undefined2 *param_3)
 
 {
-  undefined4 *puVar1;
-  byte bVar2;
-  ushort uVar3;
+  byte bVar1;
+  ushort uVar2;
+  int iVar3;
   int iVar4;
-  undefined4 uVar5;
-  undefined2 uVar6;
-  undefined4 uVar7;
-  nwk_addr_table_t *tbl;
-  nwk_addr_ref_t nVar8;
-  nwk_addr_ref_t ref;
-  int iVar9;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  ezb_err_t eVar12;
-  undefined2 extraout_var_01;
-  undefined2 in_register_0000202e;
-  uint uVar13;
-  int *piVar14;
-  undefined1 *puVar15;
-  uint uVar16;
-  ezb_extaddr_t tmp_extaddr;
-  uint uVar10;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  uint uVar8;
+  uint uVar9;
+  undefined4 uVar10;
   uint uVar11;
+  uint uVar12;
+  int *piVar13;
+  undefined1 *puVar14;
   
-  iVar9 = core_globals_get();
-  tbl = (nwk_addr_table_t *)(iVar9 + 0xc4c);
-  if (CONCAT22(in_register_0000202e,shortaddr) < 0xfff8) {
-    if (extaddr == (ezb_extaddr_t *)0x0) {
-      eVar12 = 2;
+  iVar7 = core_globals_get();
+  iVar6 = iVar7 + 0xc4c;
+  if (param_2 < 0xfff8) {
+    if (param_1 == (int *)0x0) {
+      uVar10 = 2;
+    }
+    else if (*param_1 == 0 && param_1[1] == 0) {
+      uVar10 = 2;
+    }
+    else if ((*param_1 == -1) && (param_1[1] == -1)) {
+      uVar10 = 2;
     }
     else {
-      iVar4 = *(int *)((int)&extaddr->field_0 + 4);
-      if (*(int *)&extaddr->field_0 == 0 && iVar4 == 0) {
-        eVar12 = 2;
-      }
-      else if ((*(int *)&extaddr->field_0 == -1) && (iVar4 == -1)) {
-        eVar12 = 2;
-      }
-      else {
-        nVar8 = search_short(tbl,shortaddr);
-        uVar10 = CONCAT22(extraout_var,nVar8);
-        uVar3 = *(ushort *)(iVar9 + 0xc54);
-        ref = search_extended(tbl,extaddr);
-        uVar11 = CONCAT22(extraout_var_00,ref);
-        uVar13 = (uint)*(ushort *)(iVar9 + 0xc54);
-        uVar16 = uVar10;
-        if ((uVar10 < uVar3) && (uVar11 < uVar13)) {
-          if (uVar10 != uVar11) {
-            piVar14 = (int *)(uVar10 * 0x12 + *(int *)(iVar9 + 0xc50));
-            if ((*piVar14 != 0 || piVar14[1] != 0) && ((*piVar14 != -1 || (piVar14[1] != -1)))) {
-              *(byte *)((int)piVar14 + 0x11) = *(byte *)((int)piVar14 + 0x11) | 1;
-              return 0xd;
+      uVar8 = search_short(iVar6,param_2);
+      uVar2 = *(ushort *)(iVar7 + 0xc54);
+      uVar9 = search_extended(iVar6,param_1);
+      uVar12 = (uint)*(ushort *)(iVar7 + 0xc54);
+      uVar11 = uVar8;
+      if ((uVar8 < uVar2) && (uVar9 < uVar12)) {
+        if (uVar8 != uVar9) {
+          piVar13 = (int *)(uVar8 * 0x12 + *(int *)(iVar7 + 0xc50));
+          if ((*piVar13 != 0 || piVar13[1] != 0) && ((*piVar13 != -1 || (piVar13[1] != -1)))) {
+            *(byte *)((int)piVar13 + 0x11) = *(byte *)((int)piVar13 + 0x11) | 1;
+            return 0xd;
+          }
+          if (*(byte *)(piVar13 + 4) == 0) {
+            nwk_address_delete(uVar8);
+            uVar11 = uVar9;
+          }
+          else {
+            bVar1 = *(byte *)(*(int *)(iVar7 + 0xc50) + uVar9 * 0x12 + 0x10);
+            if (bVar1 == 0) {
+              nwk_address_delete(uVar9);
             }
-            if (*(byte *)(piVar14 + 4) == 0) {
-              nwk_address_delete(nVar8);
-              uVar16 = uVar11;
+            else if (bVar1 < *(byte *)(piVar13 + 4)) {
+              addr_table_ref_redirect(iVar6,uVar9,uVar8);
             }
             else {
-              bVar2 = *(byte *)(*(int *)(iVar9 + 0xc50) + uVar11 * 0x12 + 0x10);
-              if (bVar2 == 0) {
-                nwk_address_delete(ref);
-              }
-              else if (bVar2 < *(byte *)(piVar14 + 4)) {
-                addr_table_ref_redirect(tbl,ref,nVar8);
-              }
-              else {
-                addr_table_ref_redirect(tbl,nVar8,ref);
-                uVar16 = uVar11;
-              }
+              addr_table_ref_redirect(iVar6,uVar8,uVar9);
+              uVar11 = uVar9;
             }
           }
         }
-        else {
-          uVar16 = uVar11;
-          if (uVar13 <= uVar11) {
-            uVar16 = uVar10;
-          }
-        }
-        if (uVar10 < uVar3 || uVar11 < uVar13) {
-          puVar15 = (undefined1 *)(*(int *)(iVar9 + 0xc50) + uVar16 * 0x12);
-          uVar5 = *(undefined4 *)&extaddr->field_0;
-          puVar1 = (undefined4 *)((int)&extaddr->field_0 + 4);
-          uVar6 = *(undefined2 *)puVar1;
-          uVar7 = *puVar1;
-          *puVar15 = (char)*(undefined2 *)&extaddr->field_0;
-          puVar15[1] = (char)((uint)uVar5 >> 8);
-          puVar15[2] = (char)((uint)uVar5 >> 0x10);
-          puVar15[3] = (char)((uint)uVar5 >> 0x18);
-          puVar15[4] = (char)uVar6;
-          puVar15[5] = (char)((uint)uVar7 >> 8);
-          puVar15[6] = (char)((uint)uVar7 >> 0x10);
-          puVar15[7] = (char)((uint)uVar7 >> 0x18);
-          *(ezb_shortaddr_t *)(puVar15 + 8) = shortaddr;
-          addr_table_lru_update(tbl,(nwk_addr_ref_t)uVar16);
-        }
-        else {
-          nVar8 = addr_table_add(tbl,shortaddr,extaddr);
-          uVar16 = CONCAT22(extraout_var_01,nVar8);
-        }
-        iVar9 = uVar16 * 0x12 + *(int *)(iVar9 + 0xc50);
-        *(byte *)(iVar9 + 0x11) = *(byte *)(iVar9 + 0x11) & 0xfe;
-        *ref_p = (nwk_addr_ref_t)uVar16;
-        eVar12 = 0;
       }
+      else {
+        uVar11 = uVar9;
+        if (uVar12 <= uVar9) {
+          uVar11 = uVar8;
+        }
+      }
+      if (uVar8 < uVar2 || uVar9 < uVar12) {
+        puVar14 = (undefined1 *)(*(int *)(iVar7 + 0xc50) + uVar11 * 0x12);
+        iVar3 = *param_1;
+        iVar5 = param_1[1];
+        iVar4 = param_1[1];
+        *puVar14 = (char)(short)*param_1;
+        puVar14[1] = (char)((uint)iVar3 >> 8);
+        puVar14[2] = (char)((uint)iVar3 >> 0x10);
+        puVar14[3] = (char)((uint)iVar3 >> 0x18);
+        puVar14[4] = (char)(short)iVar5;
+        puVar14[5] = (char)((uint)iVar4 >> 8);
+        puVar14[6] = (char)((uint)iVar4 >> 0x10);
+        puVar14[7] = (char)((uint)iVar4 >> 0x18);
+        *(short *)(puVar14 + 8) = (short)param_2;
+        addr_table_lru_update(iVar6,uVar11);
+      }
+      else {
+        uVar11 = addr_table_add(iVar6,param_2,param_1);
+      }
+      iVar6 = uVar11 * 0x12 + *(int *)(iVar7 + 0xc50);
+      *(byte *)(iVar6 + 0x11) = *(byte *)(iVar6 + 0x11) & 0xfe;
+      *param_3 = (short)uVar11;
+      uVar10 = 0;
     }
   }
   else {
-    eVar12 = 2;
+    uVar10 = 2;
   }
-  return eVar12;
+  return uVar10;
 }
 

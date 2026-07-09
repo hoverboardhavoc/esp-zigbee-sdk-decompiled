@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> zb_zcl_metering_request_fast_poll_mode_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_metering_request_fast_poll_mode_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_metering_request_fast_poll_mode_handler(undefined4 *param_1,code *param_2)
 
 {
-  ezb_zcl_status_t eVar1;
-  esp_err_t err;
+  undefined1 uVar1;
   undefined4 local_20;
-  esp_zb_zcl_metering_request_fast_poll_mode_message_t app_message;
+  uint uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  app_message.fast_poll_update_period = '\0';
-  app_message.duration = '\0';
-  app_message._6_2_ = 0;
-  app_message.resp_info_offered.applied_update_period_in_seconds = '\0';
-  app_message.resp_info_offered._1_3_ = 0;
-                    /* WARNING: Load size is inaccurate */
-  local_20 = *arg;
-  app_message.info.cluster = 0;
-  app_message.info._0_2_ = *(ushort *)((int)arg + 0xc);
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    err = (*cb)(ESP_ZB_CORE_METERING_REQ_FAST_POLL_MODE_CB_ID,&local_20);
-    eVar1 = esp_err_to_zcl_status(err);
-    *(ezb_zcl_status_t *)((int)arg + 0x10) = eVar1;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  local_20 = *param_1;
+  uStack_1c = (uint)*(ushort *)(param_1 + 3);
+  if (param_2 != (code *)0x0) {
+    (*param_2)(0x45,&local_20,param_2);
+    uVar1 = esp_err_to_zcl_status();
+    *(undefined1 *)(param_1 + 4) = uVar1;
   }
-  if (*(char *)((int)arg + 0x10) == '\0') {
-    *(uint8_t *)((int)arg + 0x14) = app_message.fast_poll_update_period;
-    *(uint8_t *)((int)arg + 0x15) = app_message.duration;
-    *(undefined1 *)((int)arg + 0x16) = app_message._6_1_;
-    *(undefined1 *)((int)arg + 0x17) = app_message._7_1_;
-    *(uint8_t *)((int)arg + 0x18) = app_message.resp_info_offered.applied_update_period_in_seconds;
-    *(undefined1 *)((int)arg + 0x19) = app_message.resp_info_offered._1_1_;
-    *(undefined1 *)((int)arg + 0x1a) = app_message.resp_info_offered._2_1_;
-    *(undefined1 *)((int)arg + 0x1b) = app_message.resp_info_offered._3_1_;
+  if (*(char *)(param_1 + 4) == '\0') {
+    *(undefined1 *)(param_1 + 5) = (undefined1)uStack_18;
+    *(undefined1 *)((int)param_1 + 0x15) = uStack_18._1_1_;
+    *(undefined1 *)((int)param_1 + 0x16) = uStack_18._2_1_;
+    *(undefined1 *)((int)param_1 + 0x17) = uStack_18._3_1_;
+    *(undefined1 *)(param_1 + 6) = (undefined1)uStack_14;
+    *(undefined1 *)((int)param_1 + 0x19) = uStack_14._1_1_;
+    *(undefined1 *)((int)param_1 + 0x1a) = uStack_14._2_1_;
+    *(undefined1 *)((int)param_1 + 0x1b) = uStack_14._3_1_;
   }
   return;
 }

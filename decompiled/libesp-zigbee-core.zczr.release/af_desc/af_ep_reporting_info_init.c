@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_desc.o -> af_ep_reporting_info_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t af_ep_reporting_info_init(af_ep_desc_t *ep_desc)
+int af_ep_reporting_info_init(undefined1 *param_1)
 
 {
-  zcl_cluster_desc_t *pzVar1;
+  undefined2 *puVar1;
   int iVar2;
-  zcl_attr_desc_t *pzVar3;
+  undefined2 *puVar3;
   
-  if (ep_desc == (af_ep_desc_t *)0x0) {
+  if (param_1 == (undefined1 *)0x0) {
     return 2;
   }
-  zcl_reporting_restore_reporting_info(ep_desc->ep_id);
-  pzVar1 = ep_desc->cluster_list;
+  zcl_reporting_restore_reporting_info(*param_1);
+  puVar1 = *(undefined2 **)(param_1 + 4);
   do {
-    if (pzVar1 == (zcl_cluster_desc_t *)0x0) {
+    if (puVar1 == (undefined2 *)0x0) {
       return 0;
     }
-    for (pzVar3 = pzVar1->attr_list; pzVar3 != (zcl_attr_desc_t *)0x0; pzVar3 = pzVar3->next) {
-      if (((pzVar3->access & 4) != 0) &&
+    for (puVar3 = *(undefined2 **)(puVar1 + 6); puVar3 != (undefined2 *)0x0;
+        puVar3 = *(undefined2 **)(puVar3 + 6)) {
+      if (((*(byte *)((int)puVar3 + 3) & 4) != 0) &&
          (iVar2 = zcl_reporting_info_find
-                            (ep_desc->ep_id,pzVar1->cluster_id,pzVar1->role_mask,pzVar3->id,
-                             pzVar3->manuf_code), iVar2 == 0)) {
+                            (*param_1,*puVar1,*(undefined1 *)(puVar1 + 1),*puVar3,puVar3[2]),
+         iVar2 == 0)) {
         zcl_reporting_info_create
-                  (ep_desc->ep_id,ep_desc->profile_id,0,pzVar1->cluster_id,pzVar1->role_mask,
-                   pzVar3->id,pzVar3->manuf_code);
+                  (*param_1,*(undefined2 *)(param_1 + 2),0,*puVar1,*(undefined1 *)(puVar1 + 1),
+                   *puVar3,puVar3[2]);
         iVar2 = zcl_reporting_info_add();
         if (iVar2 != 0) {
           return iVar2;
         }
       }
     }
-    pzVar1 = pzVar1->next;
+    puVar1 = *(undefined2 **)(puVar1 + 8);
   } while( true );
 }
 

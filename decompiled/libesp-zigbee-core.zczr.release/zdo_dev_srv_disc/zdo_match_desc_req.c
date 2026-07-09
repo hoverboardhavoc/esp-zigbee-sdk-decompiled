@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_dev_srv_disc.o -> zdo_match_desc_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zdo_match_desc_req(zdo_match_desc_req_t *req)
+int zdo_match_desc_req(undefined2 *param_1)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
-  int iVar3;
-  uint uVar4;
-  undefined1 auStack_38 [4];
-  zdo_packet_t packet;
+  int iVar2;
+  uint uVar3;
+  undefined1 auStack_38 [20];
+  int iStack_24;
   
   memset(auStack_38,0,0x18);
-  if ((req == (zdo_match_desc_req_t *)0x0) || ((req->field).cluster_list == (uint16_t *)0x0)) {
-    iVar3 = 2;
+  if ((param_1 == (undefined2 *)0x0) || (*(int *)(param_1 + 6) == 0)) {
+    iVar2 = 2;
     goto _L0;
   }
-  iVar1 = zdo_packet_init(auStack_38,6,req->dst_nwk_addr,req->cb,req->user_ctx);
-  iVar3 = -1;
+  iVar1 = zdo_packet_init(auStack_38,6,*param_1,*(undefined4 *)(param_1 + 8),
+                          *(undefined4 *)(param_1 + 10));
+  iVar2 = -1;
   if (iVar1 != 0) goto _L0;
-  if (packet.ctx.req_ctx.arg == (zdo_packet_user_ctx_t)0x0) {
+  if (iStack_24 == 0) {
     __assert_func(0,0,0);
 _L0:
-    eVar2 = zmsg_append_le16((zmsg_t *)packet.ctx.req_ctx.arg,(req->field).profile_id);
-    if (eVar2 == 0) {
-      uVar4 = 0;
-      eVar2 = zmsg_append_u8((zmsg_t *)packet.ctx.req_ctx.arg,(req->field).num_in_clusters);
-      if (eVar2 == 0) {
-        for (; uVar4 < (req->field).num_in_clusters; uVar4 = uVar4 + 1 & 0xff) {
-          eVar2 = zmsg_append_le16((zmsg_t *)packet.ctx.req_ctx.arg,(req->field).cluster_list[uVar4]
-                                  );
-          if (eVar2 != 0) goto _L0;
+    iVar2 = zmsg_append_le16(iStack_24,param_1[3]);
+    if (iVar2 == 0) {
+      uVar3 = 0;
+      iVar2 = zmsg_append_u8(iStack_24,*(undefined1 *)(param_1 + 4));
+      if (iVar2 == 0) {
+        for (; uVar3 < *(byte *)(param_1 + 4); uVar3 = uVar3 + 1 & 0xff) {
+          iVar2 = zmsg_append_le16(iStack_24,*(undefined2 *)(*(int *)(param_1 + 6) + uVar3 * 2));
+          if (iVar2 != 0) goto _L0;
         }
-        eVar2 = zmsg_append_u8((zmsg_t *)packet.ctx.req_ctx.arg,(req->field).num_out_clusters);
-        uVar4 = 0;
-        if (eVar2 == 0) {
-          for (; uVar4 < (req->field).num_out_clusters; uVar4 = uVar4 + 1 & 0xff) {
-            eVar2 = zmsg_append_le16((zmsg_t *)packet.ctx.req_ctx.arg,
-                                     (req->field).cluster_list[(req->field).num_in_clusters + uVar4]
+        iVar2 = zmsg_append_u8(iStack_24,*(undefined1 *)((int)param_1 + 9));
+        uVar3 = 0;
+        if (iVar2 == 0) {
+          for (; uVar3 < *(byte *)((int)param_1 + 9); uVar3 = uVar3 + 1 & 0xff) {
+            iVar2 = zmsg_append_le16(iStack_24,
+                                     *(undefined2 *)
+                                      ((*(byte *)(param_1 + 4) + uVar3) * 2 + *(int *)(param_1 + 6))
                                     );
-            if (eVar2 != 0) goto _L0;
+            if (iVar2 != 0) goto _L0;
           }
           zdo_packet_send(auStack_38);
-          iVar3 = zdp_status_to_err();
-          if (iVar3 == 0) {
+          iVar2 = zdp_status_to_err();
+          if (iVar2 == 0) {
             return 0;
           }
           goto _L0;
@@ -63,13 +61,13 @@ _L0:
     }
   }
   else {
-    eVar2 = zmsg_append_le16((zmsg_t *)packet.ctx.req_ctx.arg,(req->field).nwk_addr_of_interest);
-    if (eVar2 == 0) goto _L0;
+    iVar2 = zmsg_append_le16(iStack_24,param_1[2]);
+    if (iVar2 == 0) goto _L0;
   }
 _L0:
-  iVar3 = 1;
+  iVar2 = 1;
 _L0:
   zdo_packet_free(auStack_38);
-  return iVar3;
+  return iVar2;
 }
 

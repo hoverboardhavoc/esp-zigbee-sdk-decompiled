@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_srv.o -> zcl_message_ota_upgrade_server_progress
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,81 +10,86 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_ota_upgrade_server_progress(zcl_packet_t *packet,uint8_t progress,void *info,void *out)
+uint zcl_message_ota_upgrade_server_progress
+               (undefined4 param_1,uint param_2,undefined1 *param_3,undefined2 *param_4)
 
 {
   uint uVar1;
-  undefined3 in_register_0000202d;
-  ezb_zcl_cmd_hdr_t *peVar2;
-  ezb_zcl_ota_upgrade_server_progress_upgrade_time_t *time;
   undefined4 uStack_4c;
-  ezb_zcl_ota_upgrade_server_progress_message_t message;
+  undefined4 uStack_48;
+  undefined4 uStack_44;
+  uint uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
   
-  peVar2 = (ezb_zcl_cmd_hdr_t *)CONCAT31(in_register_0000202d,progress);
   uStack_4c = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.progress = EZB_ZCL_OTA_UPGRADE_PROGRESS_START;
-  message.in.field_2._0_4_ = 0;
-  message.in.field_2.sending.file_version = 0;
-  message.in.field_2.start.query.file_version = 0;
-  message.in.field_2._12_4_ = 0;
-  message.in.field_2.start.policy.file_version = (anon_struct_4_1_72a1db13_for_policy)0;
-  message.out.result = '\0';
-  message.out._1_1_ = 0;
-  message.out.finish.current_time = 0;
-  uVar1 = zcl_packet_to_message(&uStack_4c,packet);
-  if (uVar1 != 0) goto _L0;
-  message._4_4_ = packet;
-  message.in.header = peVar2;
-  if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x5) {
-    if (info == (void *)0x0) goto _L0;
-                    /* WARNING: Load size is inaccurate */
-    message.in.progress = CONCAT31(message.in.progress._1_3_,*info);
-    message.in.progress = CONCAT22(*(undefined2 *)((int)info + 2),(undefined2)message.in.progress);
-    message.in.field_2.start.query.short_address = *(undefined2 *)((int)info + 4);
-    message.in.field_2.sending.file_version = *(uint32_t *)((int)info + 8);
+  uStack_48 = 0;
+  uStack_44 = 0;
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uVar1 = zcl_packet_to_message(&uStack_4c,param_1);
+  if (uVar1 != 0) {
+    return uVar1;
   }
-  else if (peVar2 < (ezb_zcl_cmd_hdr_t *)0x6) {
-    if (peVar2 == (ezb_zcl_cmd_hdr_t *)0x0) {
-      if (info == (void *)0x0) goto _L0;
-      memcpy(&message.in.progress,info,0x14);
+  uStack_44 = param_1;
+  uStack_40 = param_2;
+  if (param_2 == 5) {
+    if (param_3 == (undefined1 *)0x0) {
+      return 0;
     }
-    else {
-      if (peVar2 != (ezb_zcl_cmd_hdr_t *)0x2) goto _L0;
-      if (info == (void *)0x0) goto _L0;
-      message.in.progress = *(ezb_zcl_ota_upgrade_progress_t *)((int)info + 2);
-      message.in.field_2._0_4_ = *(undefined4 *)((int)info + 8);
-      message.in.field_2.sending.file_version = *(uint32_t *)((int)info + 0xc);
-      message.in.field_2.start.query.file_version._0_2_ = *(undefined2 *)((int)info + 0x1a);
+    uStack_3c = CONCAT31(uStack_3c._1_3_,*param_3);
+    uStack_3c = CONCAT22(*(undefined2 *)(param_3 + 2),(undefined2)uStack_3c);
+    uStack_38 = CONCAT22(uStack_38._2_2_,*(undefined2 *)(param_3 + 4));
+    uStack_34 = *(undefined4 *)(param_3 + 8);
+    goto _L0;
+  }
+  if (param_2 < 6) {
+    if (param_2 == 0) {
+      if (param_3 == (undefined1 *)0x0) {
+        return 0;
+      }
+      memcpy(&uStack_3c,param_3,0x14);
+      goto _L0;
+    }
+    if (param_2 == 2) {
+      if (param_3 == (undefined1 *)0x0) {
+        return 0;
+      }
+      uStack_3c = *(undefined4 *)(param_3 + 2);
+      uStack_38 = *(undefined4 *)(param_3 + 8);
+      uStack_34 = *(undefined4 *)(param_3 + 0xc);
+      uStack_30 = CONCAT22(uStack_30._2_2_,*(undefined2 *)(param_3 + 0x1a));
+      goto _L0;
     }
   }
-  else if (peVar2 != (ezb_zcl_cmd_hdr_t *)0x6) {
+  else if (param_2 == 6) goto _L0;
+  uStack_4c = CONCAT31(uStack_4c._1_3_,0x87);
 _L0:
-    uStack_4c = CONCAT31(uStack_4c._1_3_,0x87);
+  uStack_28 = CONCAT31(uStack_28._1_3_,0xfe);
+  zcl_core_action_schedule(0x3d,&uStack_4c);
+  uVar1 = 0;
+  if ((uStack_28 & 0xff) != 0xfe) {
+    uVar1 = uStack_28 & 0xff;
   }
-  message.in.field_2.start.policy.file_version._0_1_ = 0xfe;
-  zcl_core_action_schedule(0x3c,&uStack_4c);
-  if (((uint)message.in.field_2.start.policy.file_version & 0xff) != 0xfe) {
-    uVar1 = (uint)message.in.field_2.start.policy.file_version & 0xff;
-  }
-  if ((message.in.header != (ezb_zcl_cmd_hdr_t *)0x6) && (uVar1 == 0x95)) {
-    zcl_message_ota_upgrade_server_progress(packet,'\x06',(void *)0x0,(void *)0x0);
+  if ((uStack_40 != 6) && (uVar1 == 0x95)) {
+    zcl_message_ota_upgrade_server_progress(param_1,6,0,0);
     uVar1 = 0xfe;
   }
-  if ((message.in.header == (ezb_zcl_cmd_hdr_t *)0x5) && (out != (void *)0x0)) {
-    *(undefined2 *)out = message.in.field_2.start.policy.file_version._2_2_;
-    *(undefined2 *)((int)out + 2) = message.out._0_2_;
+  if ((uStack_40 == 5) && (param_4 != (undefined2 *)0x0)) {
+    *param_4 = uStack_28._2_2_;
+    param_4[1] = (undefined2)uStack_24;
   }
-_L0:
-  return (ezb_zcl_status_t)uVar1;
+  return uVar1;
 }
 

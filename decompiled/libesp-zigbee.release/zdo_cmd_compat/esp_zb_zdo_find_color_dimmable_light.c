@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zdo_cmd_compat.o -> esp_zb_zdo_find_color_dimmable_light
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_find_color_dimmable_light
-               (esp_zb_zdo_match_desc_req_param_t *cmd_req,esp_zb_zdo_match_desc_callback_t user_cb,
-               void *user_ctx)
+void esp_zb_zdo_find_color_dimmable_light(undefined4 *param_1)
 
 {
-  uint16_t color_dimmable_clusters [3];
-  esp_zb_zdo_match_desc_req_param_t req;
+  undefined4 uStack_24;
+  undefined2 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 *puStack_14;
   
-  color_dimmable_clusters[0] = 0x300;
-  if (cmd_req != (esp_zb_zdo_match_desc_req_param_t *)0x0) {
-    color_dimmable_clusters[2] = cmd_req->dst_nwk_addr;
-    register0x0000203e = cmd_req->addr_of_interest;
-    esp_zb_zdo_match_cluster
-              ((esp_zb_zdo_match_desc_req_param_t *)(color_dimmable_clusters + 2),user_cb,user_ctx);
+  uStack_24 = 0x80006;
+  uStack_20 = 0x300;
+  if (param_1 != (undefined4 *)0x0) {
+    uStack_1c = *param_1;
+    uStack_18 = 0x30104;
+    puStack_14 = &uStack_24;
+    esp_zb_zdo_match_cluster(&uStack_1c);
   }
   return;
 }

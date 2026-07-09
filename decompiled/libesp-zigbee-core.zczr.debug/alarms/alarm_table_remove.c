@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> alarms.o -> alarm_table_remove
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,47 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t alarm_table_remove(uint8_t ep_id,uint8_t alarm_code,uint16_t cluster_id)
+undefined4 alarm_table_remove(undefined4 param_1,uint param_2,uint param_3)
 
 {
-  list_t *plVar1;
-  alarms_alarm_table_t *paVar2;
-  ezb_err_t eVar3;
-  undefined3 in_register_0000202d;
-  undefined2 in_register_00002032;
-  list_t *plVar4;
+  undefined4 *puVar1;
+  int iVar2;
+  undefined4 uVar3;
+  undefined4 *puVar4;
   
-  paVar2 = get_alarm_table(ep_id);
-  if (paVar2 == (alarms_alarm_table_t *)0x0) {
-    eVar3 = 5;
+  iVar2 = get_alarm_table();
+  if (iVar2 == 0) {
+    uVar3 = 5;
   }
   else {
-    eVar3 = 5;
-    plVar4 = &paVar2->active_alarms;
-    while (plVar1 = plVar4, plVar4 = (list_t *)plVar1->head, plVar4 != (list_t *)0x0) {
-      if (((uint)*(byte *)(plVar4 + 1) == CONCAT31(in_register_0000202d,alarm_code)) &&
-         ((uint)*(ushort *)((int)(plVar4 + 1) + 2) == CONCAT22(in_register_00002032,cluster_id))) {
-        if ((list_t *)paVar2->tail == plVar4) {
-          if (plVar1 == &paVar2->active_alarms) {
-            paVar2->tail = (list_node_t *)0x0;
+    uVar3 = 5;
+    puVar4 = (undefined4 *)(iVar2 + 4);
+    while (puVar1 = puVar4, puVar4 = (undefined4 *)*puVar1, puVar4 != (undefined4 *)0x0) {
+      if ((*(byte *)(puVar4 + 1) == param_2) && (*(ushort *)((int)puVar4 + 6) == param_3)) {
+        if (*(undefined4 **)(iVar2 + 8) == puVar4) {
+          if (puVar1 == (undefined4 *)(iVar2 + 4)) {
+            *(undefined4 *)(iVar2 + 8) = 0;
           }
           else {
-            paVar2->tail = (list_node_t *)plVar1;
+            *(undefined4 **)(iVar2 + 8) = puVar1;
           }
         }
-        plVar1->head = plVar1->head->next;
-        plVar4->head = (list_node_t *)plVar4;
+        *puVar1 = *(undefined4 *)*puVar1;
+        *puVar4 = puVar4;
         alarm_table_remove_stored_entry
-                  (ep_id,*(uint8_t *)(plVar4 + 1),*(uint16_t *)((int)(plVar4 + 1) + 2),
-                   (uint32_t)plVar4[2].head);
-        paVar2->count = paVar2->count + 0xff;
-        eVar3 = 0;
-        plVar4 = plVar1;
+                  (param_1,*(undefined1 *)(puVar4 + 1),*(undefined2 *)((int)puVar4 + 6),puVar4[2]);
+        *(char *)(iVar2 + 0xd) = *(char *)(iVar2 + 0xd) + -1;
+        uVar3 = 0;
+        puVar4 = puVar1;
       }
     }
   }
-  return eVar3;
+  return uVar3;
 }
 

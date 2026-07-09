@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_dup.o -> aps_check_duplicates
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool aps_check_duplicates(aps_header_t *aps_hdr)
+int aps_check_duplicates(undefined4 param_1)
 
 {
   int iVar1;
-  _Bool _Var2;
-  undefined3 extraout_var;
+  int iVar2;
   int iVar3;
-  aps_dup_t *paVar4;
-  aps_dup_table_t *tbl;
   
-  _Var2 = aps_dup_need_check(aps_hdr);
-  iVar1 = CONCAT31(extraout_var,_Var2);
+  iVar1 = aps_dup_need_check();
   if (iVar1 != 0) {
-    iVar3 = core_globals_get();
-    paVar4 = aps_dup_table_find((aps_dup_table_t *)(iVar3 + 0x984),aps_hdr);
-    if (paVar4 == (aps_dup_t *)0x0) {
-      aps_dup_table_add((aps_dup_table_t *)(iVar3 + 0x984),aps_hdr);
+    iVar2 = core_globals_get();
+    iVar3 = aps_dup_table_find(iVar2 + 0x984,param_1);
+    if (iVar3 == 0) {
+      aps_dup_table_add(iVar2 + 0x984,param_1);
       iVar1 = 0;
     }
   }
-  return SUB41(iVar1,0);
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac.o -> mac_pal_callback_rx_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,252 +10,250 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_pal_callback_rx_done(ezb_radio_frame_t *frame,ezb_err_t rx_error)
+void mac_pal_callback_rx_done(int *param_1,int param_2)
 
 {
-  uint8_t uVar1;
-  mac_device *dev;
-  dlist_node_s *pdVar2;
-  int iVar3;
-  uint uVar4;
-  mac_operation_t op;
-  undefined4 uVar5;
-  dlist_node_s *pdVar6;
-  ezb_grpaddr_t eVar7;
-  dlist_node_s *pdVar8;
-  active_scan_callback p_Var9;
-  undefined1 auStack_70 [4];
-  mac_poll_ind_t poll_ind;
-  ushort uStack_62;
-  mac_beacon_notify_ind_t beacon_ind;
-  mac_frame_t mac_frame;
+  char cVar1;
+  int iVar2;
+  int *piVar3;
+  int iVar4;
+  uint uVar5;
+  undefined4 uVar6;
+  uint uVar7;
+  int *piVar8;
+  code *pcVar9;
+  undefined1 auStack_70 [12];
+  undefined4 uStack_64;
+  uint uStack_60;
+  ushort uStack_5c;
+  short sStack_56;
+  undefined1 uStack_53;
+  ushort uStack_52;
+  undefined1 uStack_50;
+  undefined1 uStack_4f;
+  char cStack_4e;
+  ushort *puStack_4c;
+  int iStack_48;
+  char cStack_44;
+  byte abStack_3a [2];
+  uint uStack_38;
+  uint uStack_34;
+  short sStack_30;
+  short sStack_2e;
+  ushort uStack_2c;
+  undefined1 uStack_2a;
+  byte bStack_28;
+  ushort *puStack_24;
   
-  dev = s_devices;
-  if (rx_error != 0) {
+  iVar2 = s_devices;
+  if (param_2 != 0) {
     return;
   }
-  if ((*(uint *)&(s_devices->ctx).field_0x70 & 1) == 0) {
+  if ((*(uint *)(s_devices + 0x9c) & 1) == 0) {
     return;
   }
-  if (frame == (ezb_radio_frame_t *)0x0) {
+  if (param_1 == (int *)0x0) {
     return;
   }
-  if (frame->psdu == (uint8_t *)0x0) {
+  if (*param_1 == 0) {
     return;
   }
-  iVar3 = mac_frame_parse(&beacon_ind.beacon_payload);
-  if (iVar3 != 0) {
+  iVar4 = mac_frame_parse(&iStack_48);
+  if (iVar4 != 0) {
     return;
   }
-  iVar3 = mac_filter_apply_to_rxframe(&beacon_ind.beacon_payload);
-  if (iVar3 != 0) {
+  iVar4 = mac_filter_apply_to_rxframe(&iStack_48);
+  if (iVar4 != 0) {
     return;
   }
-  if ((mac_frame.mhr.dst_panid & 8) != 0) {
+  if ((uStack_2c & 8) != 0) {
     return;
   }
-  uVar1 = (dev->ctx).cur_op;
-  if (uVar1 == '\x01') {
-    if ((mac_frame.mhr.dst_panid & 7) == 0) {
-      p_Var9 = (dev->ctx).field_7.active_scan_result_handler;
-      if (p_Var9 == (active_scan_callback)0x0) {
+  cVar1 = *(char *)(iVar2 + 0x2e);
+  if (cVar1 == '\x01') {
+    if ((uStack_2c & 7) == 0) {
+      pcVar9 = *(code **)(iVar2 + 0x38);
+      if (pcVar9 == (code *)0x0) {
         return;
       }
-      memset((void *)((int)&poll_ind.device_address.u + 6),0,0x1c);
-      if ((byte)mac_frame.mhr.fcf < 4) {
+      memset(&uStack_64,0,0x1c);
+      if (bStack_28 < 4) {
         return;
       }
-      if (*(char *)(mac_frame.mpl._0_4_ + 2) != '\0') {
+      if ((byte)puStack_24[1] != 0) {
         return;
       }
-      if (*(char *)(mac_frame.mpl._0_4_ + 3) != '\0') {
+      if (*(byte *)((int)puStack_24 + 3) != 0) {
         return;
       }
-      if ((~*(ushort *)mac_frame.mpl._0_4_ & 0xfff) != 0) {
+      if ((~*puStack_24 & 0xfff) != 0) {
         return;
       }
-      stack0xffffff9c =
-           CONCAT12((mac_frame.mhr.dst_panid & 0x3000) == 0x2000,poll_ind.device_address.u._6_2_);
-      if (mac_frame.mhr.dst_addr.u._4_1_ == '\0') {
+      uStack_64._0_3_ = CONCAT12((uStack_2c & 0x3000) == 0x2000,(undefined2)uStack_64);
+      if (abStack_3a[0] == 0) {
         return;
       }
-      memcpy(&beacon_ind,(void *)((int)&mac_frame.mhr.dst_addr.u + 4),10);
-      beacon_ind.pan_descriptor.coord_addr.u._4_2_ = mac_frame.mhr.src_addr.u._6_2_;
-      if (mac_frame.mhr.src_addr.u._6_2_ == -1) {
-        beacon_ind.pan_descriptor.coord_addr.u._4_2_ = mac_frame.mhr.src_addr.u._4_2_;
+      memcpy(&uStack_60,abStack_3a,10);
+      sStack_56 = sStack_2e;
+      if (sStack_2e == -1) {
+        sStack_56 = sStack_30;
       }
-      beacon_ind.pan_descriptor.superframe_spec._0_1_ = (byte)mac_frame.mhr.fcf - 4;
-      beacon_ind._20_4_ = mac_frame.mpl._0_4_ + 4;
-      beacon_ind.pan_descriptor.coord_addr.u._7_1_ = beacon_ind.beacon_payload[5];
-      beacon_ind.pan_descriptor.channel_page = beacon_ind.beacon_payload[0x11];
-      beacon_ind.pan_descriptor.channel_number = beacon_ind.beacon_payload[0x10];
-      beacon_ind.pan_descriptor.coord_panid = *(ezb_panid_t *)mac_frame.mpl._0_4_;
-      poll_ind.device_address.u._6_2_ =
-           CONCAT11((undefined1)mac_frame.mhr.src_panid,poll_ind.device_address.u._6_1_);
-      (*p_Var9)((active_scan_result_t *)((int)&poll_ind.device_address.u + 6),
-                (dev->ctx).scan_user_ctx);
+      cStack_4e = bStack_28 - 4;
+      puStack_4c = puStack_24 + 2;
+      uStack_53 = *(undefined1 *)(iStack_48 + 5);
+      uStack_50 = *(undefined1 *)(iStack_48 + 0x11);
+      uStack_4f = *(undefined1 *)(iStack_48 + 0x10);
+      uStack_52 = *puStack_24;
+      uStack_64._0_2_ = CONCAT11(uStack_2a,(undefined1)uStack_64);
+      (*pcVar9)(&uStack_64,*(undefined4 *)(iVar2 + 0x3c));
       return;
     }
 _L0:
-    if ((dev->ctx).pan_channel != (dev->ctx).scan_channel) {
+    if (*(char *)(iVar2 + 0x43) != *(char *)(iVar2 + 0x32)) {
       return;
     }
   }
-  else if (uVar1 == '\x02') goto _L0;
-  if ((mac_frame.mhr.dst_panid & 7) != 1) {
-    if ((mac_frame.mhr.dst_panid & 7) != 3) {
-      if ((mac_frame.mhr.dst_panid & 7) != 0) {
+  else if (cVar1 == '\x02') goto _L0;
+  if ((uStack_2c & 7) != 1) {
+    if ((uStack_2c & 7) != 3) {
+      if ((uStack_2c & 7) != 0) {
         return;
       }
-      memset((void *)((int)&poll_ind.device_address.u + 6),0,0x1c);
-      if ((byte)mac_frame.mhr.fcf < 4) {
+      memset(&uStack_64,0,0x1c);
+      if (bStack_28 < 4) {
         return;
       }
-      if (*(char *)(mac_frame.mpl._0_4_ + 2) != '\0') {
+      if ((byte)puStack_24[1] != 0) {
         return;
       }
-      if (*(char *)(mac_frame.mpl._0_4_ + 3) != '\0') {
+      if (*(byte *)((int)puStack_24 + 3) != 0) {
         return;
       }
-      if ((~*(ushort *)mac_frame.mpl._0_4_ & 0xfff) != 0) {
+      if ((~*puStack_24 & 0xfff) != 0) {
         return;
       }
-      stack0xffffff9c =
-           CONCAT12((mac_frame.mhr.dst_panid & 0x3000) == 0x2000,poll_ind.device_address.u._6_2_);
-      if (mac_frame.mhr.dst_addr.u._4_1_ == '\0') {
+      uStack_64._0_3_ = CONCAT12((uStack_2c & 0x3000) == 0x2000,(undefined2)uStack_64);
+      if (abStack_3a[0] == 0) {
         return;
       }
-      memcpy(&beacon_ind,(void *)((int)&mac_frame.mhr.dst_addr.u + 4),10);
-      beacon_ind.pan_descriptor.coord_addr.u._4_2_ = mac_frame.mhr.src_addr.u._6_2_;
-      if (mac_frame.mhr.src_addr.u._6_2_ == -1) {
-        beacon_ind.pan_descriptor.coord_addr.u._4_2_ = mac_frame.mhr.src_addr.u._4_2_;
+      memcpy(&uStack_60,abStack_3a,10);
+      sStack_56 = sStack_2e;
+      if (sStack_2e == -1) {
+        sStack_56 = sStack_30;
       }
-      beacon_ind._20_4_ = mac_frame.mpl._0_4_ + 4;
-      beacon_ind.pan_descriptor.superframe_spec._0_1_ = (byte)mac_frame.mhr.fcf - 4;
-      beacon_ind.pan_descriptor.coord_addr.u._7_1_ = beacon_ind.beacon_payload[5];
-      beacon_ind.pan_descriptor.channel_page = beacon_ind.beacon_payload[0x11];
-      beacon_ind.pan_descriptor.channel_number = beacon_ind.beacon_payload[0x10];
-      beacon_ind.pan_descriptor.coord_panid = *(ezb_panid_t *)mac_frame.mpl._0_4_;
-      poll_ind.device_address.u._6_2_ =
-           CONCAT11((undefined1)mac_frame.mhr.src_panid,poll_ind.device_address.u._6_1_);
-      nwk_mm_beacon_notify_indication
-                ((dev->ctx).iface_id,(undefined1 *)((int)&poll_ind.device_address.u + 6));
+      puStack_4c = puStack_24 + 2;
+      cStack_4e = bStack_28 - 4;
+      uStack_53 = *(undefined1 *)(iStack_48 + 5);
+      uStack_50 = *(undefined1 *)(iStack_48 + 0x11);
+      uStack_4f = *(undefined1 *)(iStack_48 + 0x10);
+      uStack_52 = *puStack_24;
+      uStack_64._0_2_ = CONCAT11(uStack_2a,(undefined1)uStack_64);
+      nwk_mm_beacon_notify_indication(*(undefined1 *)(iVar2 + 0x2c),&uStack_64);
       return;
     }
-    uVar4 = (uint)*(byte *)mac_frame.mpl._0_4_;
-    if (uVar4 != 4) {
-      if (uVar4 < 5) {
-        if (uVar4 == 1) {
-          if (((dev->pib).field_0x2a & 1) == 0) {
+    uVar5 = (uint)(byte)*puStack_24;
+    if (uVar5 != 4) {
+      if (uVar5 < 5) {
+        if (uVar5 == 1) {
+          if ((*(byte *)(iVar2 + 0x2a) & 1) == 0) {
             return;
           }
-          if (mac_frame.mhr.dst_addr.u._4_1_ != '\x03') {
+          if (abStack_3a[0] != 3) {
             return;
           }
-          stack0xffffff9c = mac_frame.mhr._8_4_;
-          beacon_ind._0_4_ = mac_frame.mhr.src_addr.u.group_addr;
-          beacon_ind.pan_descriptor.coord_addr.addr_mode =
-               *(ezb_addr_mode_t *)(mac_frame.mpl._0_4_ + 1);
-          nwk_mm_asso_indication
-                    ((dev->ctx).iface_id,(undefined1 *)((int)&poll_ind.device_address.u + 6));
+          uStack_64 = uStack_38;
+          uStack_60 = uStack_34;
+          uStack_5c = CONCAT11(uStack_5c._1_1_,*(byte *)((int)puStack_24 + 1));
+          nwk_mm_asso_indication(*(undefined1 *)(iVar2 + 0x2c),&uStack_64);
           return;
         }
-        if (uVar4 != 2) {
+        if (uVar5 != 2) {
           return;
         }
-        if (((undefined1  [116])dev->ctx & (undefined1  [116])0xffff00) !=
-            (undefined1  [116])0x60200) {
+        if ((*(uint *)(iVar2 + 0x2c) & 0xffff00) != 0x60200) {
           return;
         }
-        if ((char)mac_frame.from == '\0') {
+        if (cStack_44 == '\0') {
           return;
         }
-        micro_timer_stop(&(dev->ctx).operation_timer);
-        (dev->ctx).cur_op = '\0';
-        if (*(char *)mac_frame.mpl._0_4_ == '\x02') {
-          stack0xffffff9c = CONCAT13(uStack_62._1_1_,*(undefined3 *)(mac_frame.mpl._0_4_ + 1));
-          if (mac_frame.mhr.dst_addr.u._4_1_ == '\x03') {
-            *(undefined4 *)&(dev->pib).coord_extaddr.field_0 = mac_frame.mhr._8_4_;
-            *(ezb_grpaddr_t *)((int)&(dev->pib).coord_extaddr.field_0 + 4) =
-                 mac_frame.mhr.src_addr.u.group_addr;
+        micro_timer_stop(iVar2 + 0x8c);
+        *(undefined1 *)(iVar2 + 0x2e) = 0;
+        if ((byte)*puStack_24 == 2) {
+          uStack_64 = CONCAT13(uStack_64._3_1_,*(undefined3 *)((int)puStack_24 + 1));
+          if (abStack_3a[0] == 3) {
+            *(uint *)(iVar2 + 0x10) = uStack_38;
+            *(uint *)(iVar2 + 0x14) = uStack_34;
           }
-          mac_finish_association(dev,(mac_associate_cnf_t *)((int)&poll_ind.device_address.u + 6));
-          mac_perform_next_op(dev);
+          mac_finish_association(iVar2,&uStack_64);
+          mac_perform_next_op(iVar2);
           return;
         }
-        uVar4 = __assert_func(0,0,0,0);
+        uVar5 = __assert_func(0,0,0,0);
       }
-      if (uVar4 != 7) {
+      if (uVar5 != 7) {
         return;
       }
-      op = MAC_OPERATION_TRANSMIT_BEACON;
-      if ((dev->pib).beacon_payload_len == '\0') {
+      uVar6 = 7;
+      if (*(char *)(iVar2 + 0x23) == '\0') {
         return;
       }
 _L0:
-      mac_start_op(dev,op);
+      mac_start_op(iVar2,uVar6);
       return;
     }
-    memcpy(auStack_70,(void *)((int)&mac_frame.mhr.dst_addr.u + 4),10);
-    nwk_mm_poll_indication((dev->ctx).iface_id,auStack_70);
-    pdVar2 = (dev->ctx).pend_q.list.next;
+    memcpy(auStack_70,abStack_3a,10);
+    nwk_mm_poll_indication(*(undefined1 *)(iVar2 + 0x2c),auStack_70);
+    piVar3 = *(int **)(iVar2 + 0x60);
     do {
-      if ((zmsg_queue_t *)pdVar2 == &(dev->ctx).pend_q) {
+      if (piVar3 == (int *)(iVar2 + 0x60)) {
         return;
       }
-      zmsg_get_footer(pdVar2,(undefined1 *)((int)&poll_ind.device_address.u + 6),10);
-      if ((uint)(byte)mac_frame.mhr.dst_addr.u._4_1_ == (stack0xffffff9c & 0xff)) {
-        if ((byte)mac_frame.mhr.dst_addr.u._4_1_ == 2) {
-          uVar5._2_2_ = 0;
-          uVar5._0_2_ = uStack_62;
-          eVar7 = (ezb_grpaddr_t)(mac_frame.mhr._8_4_ & 0xffff);
+      zmsg_get_footer(piVar3,&uStack_64,10);
+      if ((uint)abStack_3a[0] == (uStack_64 & 0xff)) {
+        if (abStack_3a[0] == 2) {
+          uVar7 = uStack_38 & 0xffff;
+          uVar5 = (uint)uStack_64._2_2_;
         }
         else {
-          eVar7 = (ezb_grpaddr_t)
-                  ((uint)(ushort)beacon_ind.pan_descriptor.coord_addr._0_2_ << 0x10 |
-                  (uint)beacon_ind._0_4_ >> 0x10);
-          uVar5 = mac_frame.mhr.src_addr.u.group_addr;
-          if (mac_frame.mhr._8_4_ != (beacon_ind._0_4_ << 0x10 | (uint)uStack_62)) goto _L0;
+          uVar7 = (uint)uStack_5c << 0x10 | uStack_60 >> 0x10;
+          uVar5 = uStack_34;
+          if (uStack_38 != (uStack_60 << 0x10 | (uint)uStack_64._2_2_)) goto _L0;
         }
-        if (uVar5 == eVar7) {
-          pdVar8 = pdVar2->prev;
-          pdVar6 = pdVar2->next;
-          pdVar6->prev = pdVar8;
-          pdVar8->next = pdVar6;
-          pdVar2->next = (dlist_node_s *)0x0;
-          pdVar2->prev = (dlist_node_s *)0x0;
-          zmsg_queue_enqueue(&(dev->ctx).itx_q,pdVar2);
-          op = MAC_OPERATION_TRANSMIT_INDIRECT;
+        if (uVar5 == uVar7) {
+          piVar8 = (int *)piVar3[1];
+          iVar4 = *piVar3;
+          *(int **)(iVar4 + 4) = piVar8;
+          *piVar8 = iVar4;
+          *piVar3 = 0;
+          piVar3[1] = 0;
+          zmsg_queue_enqueue(iVar2 + 0x54,piVar3);
+          uVar6 = 8;
           goto _L0;
         }
       }
 _L0:
-      pdVar2 = pdVar2->next;
+      piVar3 = (int *)*piVar3;
     } while( true );
   }
-  if ((dev->ctx).state == '\x02') {
+  if (*(char *)(iVar2 + 0x2d) == '\x02') {
     return;
   }
-  if ((uVar1 == '\x06') && ((char)mac_frame.from != '\0')) {
-    if (mac_frame.mhr.dst_addr.u._4_1_ == '\x02') {
-      mac_frame.mhr.src_addr.u._2_2_ = 0;
-      mac_frame.mhr.src_addr.u._0_2_ = (dev->pib).coord_shortaddr;
-      eVar7 = (ezb_grpaddr_t)(mac_frame.mhr._8_4_ & 0xffff);
+  if ((cVar1 == '\x06') && (cStack_44 != '\0')) {
+    if (abStack_3a[0] == 2) {
+      uStack_34 = (uint)*(ushort *)(iVar2 + 0xe);
+      uVar5 = uStack_38 & 0xffff;
     }
-    else if ((mac_frame.mhr.dst_addr.u._4_1_ != '\x03') ||
-            (eVar7 = *(ezb_grpaddr_t *)((int)&(dev->pib).coord_extaddr.field_0 + 4),
-            mac_frame.mhr._8_4_ != *(int *)&(dev->pib).coord_extaddr.field_0)) goto _L0;
-    if (mac_frame.mhr.src_addr.u.group_addr == eVar7) {
-      micro_timer_stop(&(dev->ctx).operation_timer);
-      (dev->ctx).cur_op = '\0';
-      mac_report_poll_result(dev,'\0');
-      mac_perform_next_op(dev);
+    else if ((abStack_3a[0] != 3) ||
+            (uVar5 = *(uint *)(iVar2 + 0x14), uStack_38 != *(uint *)(iVar2 + 0x10))) goto _L0;
+    if (uStack_34 == uVar5) {
+      micro_timer_stop(iVar2 + 0x8c);
+      *(undefined1 *)(iVar2 + 0x2e) = 0;
+      mac_report_poll_result_constprop_0(iVar2,0);
+      mac_perform_next_op(iVar2);
     }
   }
 _L0:
-  nwk_mm_data_indication((dev->ctx).iface_id,&beacon_ind.beacon_payload);
+  nwk_mm_data_indication(*(undefined1 *)(iVar2 + 0x2c),&iStack_48);
   return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scene_table_remove_stored_all
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void scene_table_remove_stored_all(uint8_t ep_id)
+void scene_table_remove_stored_all(uint param_1)
 
 {
-  undefined3 in_register_00002029;
   undefined1 auStack_1c [4];
-  zcl_scene_info_iterator_t itor;
+  char cStack_18;
+  byte *pbStack_14;
   
-  ds_zcl_scene_info_iterator_init((zcl_scene_info_iterator_t *)auStack_1c);
-  while ((char)itor.length == '\0') {
-    if ((uint)*(byte *)itor._4_4_ == CONCAT31(in_register_00002029,ep_id)) {
-      ds_zcl_scene_info_delete((zcl_scene_info_iterator_t *)auStack_1c);
-      ds_zcl_scene_info_read((zcl_scene_info_iterator_t *)auStack_1c);
+  ds_zcl_scene_info_iterator_init(auStack_1c);
+  while (cStack_18 == '\0') {
+    if (*pbStack_14 == param_1) {
+      ds_zcl_scene_info_delete(auStack_1c);
+      ds_zcl_scene_info_read(auStack_1c);
     }
     else {
-      ds_zcl_scene_info_next((zcl_scene_info_iterator_t *)auStack_1c);
+      ds_zcl_scene_info_next(auStack_1c);
     }
   }
   return;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_main.o -> aps_handle_data
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_handle_data(aps_header_t *aps_hdr,zmsg_t *msg)
+void aps_handle_data(void *param_1,undefined4 param_2)
 
 {
-  _Bool _Var1;
-  undefined4 uVar2;
-  undefined3 extraout_var;
-  undefined1 auStack_24 [4];
-  aps_apsde_data_ind_t ind;
+  undefined4 uVar1;
+  int iVar2;
+  undefined1 auStack_24 [12];
+  undefined1 uStack_18;
+  undefined1 uStack_17;
+  undefined4 uStack_14;
   
-  memcpy(auStack_24,aps_hdr,0xc);
-  ind.addr_info.cluster_id._0_1_ = aps_hdr->lqi;
-  ind.addr_info.cluster_id._1_1_ = aps_hdr->rssi;
-  ind._12_4_ = msg;
-  uVar2 = zmsg_get_offset(msg);
-  zmsg_remove_header(msg,uVar2);
-  _Var1 = aps_apsde_user_data_indication((aps_apsde_data_ind_t *)auStack_24);
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    aps_apsde_data_indication((aps_apsde_data_ind_t *)auStack_24);
+  memcpy(auStack_24,param_1,0xc);
+  uStack_18 = *(undefined1 *)((int)param_1 + 0xf);
+  uStack_17 = *(undefined1 *)((int)param_1 + 0x10);
+  uStack_14 = param_2;
+  uVar1 = zmsg_get_offset(param_2);
+  zmsg_remove_header(param_2,uVar1);
+  iVar2 = aps_apsde_user_data_indication(auStack_24);
+  if (iVar2 == 0) {
+    aps_apsde_data_indication(auStack_24);
   }
   return;
 }

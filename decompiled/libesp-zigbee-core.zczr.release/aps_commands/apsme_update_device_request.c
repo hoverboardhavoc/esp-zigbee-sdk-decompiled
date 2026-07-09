@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_commands.o -> apsme_update_device_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,66 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t apsme_update_device_request(apsme_update_device_req_t *req)
+int apsme_update_device_request(int *param_1)
 
 {
-  _Bool _Var1;
+  short sVar1;
   short sVar2;
-  short sVar3;
-  undefined3 extraout_var;
+  int iVar3;
   int *piVar4;
-  zmsg_t *msg;
-  int iVar5;
-  zmsg_t *msg_00;
-  undefined4 uVar6;
-  ezb_err_t eVar7;
-  undefined4 uStack_28;
-  undefined4 uStack_24;
+  undefined4 uVar5;
+  int iVar6;
+  int iVar7;
+  int iStack_28;
+  int iStack_24;
   
-  eVar7 = 2;
-  if (req != (apsme_update_device_req_t *)0x0) {
-    _Var1 = ezb_eui64_is_invalid((ezb_eui64_s *)req);
-    eVar7 = 2;
-    if (CONCAT31(extraout_var,_Var1) == 0) {
+  iVar7 = 2;
+  if (param_1 != (int *)0x0) {
+    iVar3 = ezb_eui64_is_invalid();
+    iVar7 = 2;
+    if (iVar3 == 0) {
       piVar4 = (int *)nwk_get_extended_address();
-      if ((*piVar4 == *(int *)&req->field_0) && (piVar4[1] == *(int *)((int)&req->field_0 + 4))) {
-        apsme_update_device_indication(req);
-        eVar7 = 0;
+      if ((*piVar4 == *param_1) && (piVar4[1] == param_1[1])) {
+        apsme_update_device_indication(param_1);
+        iVar7 = 0;
       }
       else {
-        msg = (zmsg_t *)zmsg_alloc(0x3c);
-        eVar7 = 1;
-        if (msg != (zmsg_t *)0x0) {
+        iVar3 = zmsg_alloc(0x3c);
+        iVar7 = 1;
+        if (iVar3 != 0) {
           aps_frame_append_cmd_hdr(0,1,1,0);
-          zmsg_append_u8(msg,'\x06');
-          uStack_28 = *(undefined4 *)&(req->device_address).field_0;
-          uStack_24 = *(undefined4 *)((int)&(req->device_address).field_0 + 4);
-          zmsg_append_bytes(msg,8,&uStack_28);
-          uStack_28 = CONCAT22(uStack_28._2_2_,req->device_shortaddr);
-          zmsg_append_bytes(msg,2,&uStack_28);
-          zmsg_append_u8(msg,req->status);
-          iVar5 = aps_secur_get_key_pair_by_addr(req);
-          if (((iVar5 == 0) || ((*(ushort *)(iVar5 + 0x34) & 1) != 0)) &&
-             (msg_00 = (zmsg_t *)zmsg_alloc(0x2f), msg_00 != (zmsg_t *)0x0)) {
+          zmsg_append_u8_isra_0(iVar3,6);
+          iStack_28 = param_1[2];
+          iStack_24 = param_1[3];
+          zmsg_append_bytes(iVar3,8,&iStack_28);
+          iStack_28 = CONCAT22(iStack_28._2_2_,(short)param_1[4]);
+          zmsg_append_bytes(iVar3,2,&iStack_28);
+          zmsg_append_u8_isra_0(iVar3,*(undefined1 *)((int)param_1 + 0x12));
+          iVar7 = aps_secur_get_key_pair_by_addr(param_1);
+          if (((iVar7 == 0) || ((*(ushort *)(iVar7 + 0x34) & 1) != 0)) &&
+             (iVar7 = zmsg_alloc(0x2f), iVar7 != 0)) {
             aps_frame_append_cmd_hdr(0,1,0,0);
-            uVar6 = zmsg_get_offset(msg);
-            sVar2 = zmsg_get_length(msg);
-            sVar3 = zmsg_get_offset(msg);
-            iVar5 = zmsg_append_bytes_from_msg(msg_00,msg,uVar6,sVar2 - sVar3);
-            if ((iVar5 != 0) || (eVar7 = aps_send_cmd(msg_00,(ezb_extaddr_t *)req), eVar7 != 0)) {
-              zmsg_free(msg_00);
+            uVar5 = zmsg_get_offset(iVar3);
+            sVar1 = zmsg_get_length(iVar3);
+            sVar2 = zmsg_get_offset(iVar3);
+            iVar6 = zmsg_append_bytes_from_msg(iVar7,iVar3,uVar5,sVar1 - sVar2);
+            if ((iVar6 != 0) || (iVar6 = aps_send_cmd(iVar7,param_1), iVar6 != 0)) {
+              zmsg_free(iVar7);
             }
           }
-          eVar7 = aps_send_cmd(msg,(ezb_extaddr_t *)req);
-          if (eVar7 != 0) {
-            zmsg_free(msg);
+          iVar7 = aps_send_cmd(iVar3,param_1);
+          if (iVar7 != 0) {
+            zmsg_free(iVar3);
           }
         }
       }
     }
   }
-  return eVar7;
+  return iVar7;
 }
 

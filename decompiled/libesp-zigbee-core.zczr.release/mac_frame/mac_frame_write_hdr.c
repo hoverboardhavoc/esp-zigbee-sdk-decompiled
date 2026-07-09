@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> mac_frame.o -> mac_frame_write_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,103 +10,95 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t mac_frame_write_hdr(uint8_t *buf,mac_addresses_t *addresses,mac_panids_t *panids,
-                           mac_frame_version_t version,mac_frame_type_t type,mac_cmd_id_t cmd_id)
+uint mac_frame_write_hdr(undefined2 *param_1,byte *param_2,short *param_3,uint param_4,uint param_5,
+                        undefined1 param_6)
 
 {
-  ezb_shortaddr_t eVar1;
-  ezb_shortaddr_t eVar2;
+  short sVar1;
+  short sVar2;
   bool bVar3;
-  ezb_grpaddr_t eVar4;
-  ezb_grpaddr_t *peVar5;
-  ezb_grpaddr_t *peVar6;
-  uint16_t fcf;
-  mac_frame_version_t mVar7;
-  mac_frame_version_t mVar8;
-  _Bool _Var9;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
+  undefined4 uVar4;
+  short *psVar5;
+  short *psVar6;
+  uint uVar7;
+  uint uVar8;
+  int iVar9;
   uint uVar10;
   uint uVar11;
   
-  uVar10 = (uint)(addresses->destination).addr_mode;
-  uVar11 = (uint)(addresses->source).addr_mode;
-  mVar7 = uVar10 << 10 | uVar11 << 0xe | type | version;
-  eVar1 = panids->source;
-  eVar2 = panids->destination;
-  mVar8 = mVar7 & 0xffff;
+  uVar10 = (uint)param_2[10];
+  uVar11 = (uint)*param_2;
+  uVar7 = uVar10 << 10 | uVar11 << 0xe | param_5 | param_4;
+  sVar1 = *param_3;
+  sVar2 = param_3[1];
+  uVar8 = uVar7 & 0xffff;
   if (uVar10 == 0) {
-    if (((version != MAC_FRAME_VERSION_2006) && (version == MAC_FRAME_VERSION_2015)) &&
-       (uVar11 == 0)) {
-      mVar8 = mVar7 & 0xffff | 0x40;
+    if (((param_4 != 0x1000) && (param_4 == 0x2000)) && (uVar11 == 0)) {
+      uVar8 = uVar7 & 0xffff | 0x40;
     }
     goto _L0;
   }
-  if (((uVar10 != 2) || ((addresses->destination).u.short_addr != 0xffff)) &&
-     (type != MAC_FRAME_ACK)) {
-    mVar8 = mVar7 & 0xffff | 0x20;
+  if (((uVar10 != 2) || (*(short *)(param_2 + 0xc) != -1)) && (param_5 != 2)) {
+    uVar8 = uVar7 & 0xffff | 0x20;
   }
-  if (version == MAC_FRAME_VERSION_2006) {
+  if (param_4 == 0x1000) {
 _L0:
     if (uVar11 == 0) goto _L0;
   }
   else {
-    if (version != MAC_FRAME_VERSION_2015) {
-      if (version != MAC_FRAME_VERSION_2003) goto _L0;
+    if (param_4 != 0x2000) {
+      if (param_4 != 0) goto _L0;
       goto _L0;
     }
     if ((uVar11 == 0) || ((uVar10 != 2 && (uVar11 != 2)))) goto _L0;
   }
-  if (eVar1 == eVar2) {
-    mVar8 = mVar8 | 0x40;
+  if (sVar1 == sVar2) {
+    uVar8 = uVar8 | 0x40;
   }
 _L0:
-  bVar3 = (mVar8 & 0x100) == MAC_FRAME_VERSION_2003;
-  fcf = (uint16_t)mVar8;
-  *(uint16_t *)buf = fcf;
-  peVar5 = (ezb_grpaddr_t *)(buf + bVar3 + 2);
-  _Var9 = mac_fcf_has_dst_panid(fcf);
-  if (CONCAT31(extraout_var,_Var9) != 0) {
-    peVar5->group = eVar2;
-    peVar5 = (ezb_grpaddr_t *)(buf + bVar3 + 4);
+  bVar3 = (uVar8 & 0x100) == 0;
+  *param_1 = (short)uVar8;
+  psVar5 = (short *)((int)param_1 + bVar3 + 2);
+  iVar9 = mac_fcf_has_dst_panid(uVar8);
+  if (iVar9 != 0) {
+    *psVar5 = sVar2;
+    psVar5 = (short *)((int)param_1 + bVar3 + 4);
   }
   if (uVar10 == 2) {
-    peVar6 = (ezb_grpaddr_t *)&peVar5->bcast;
-    peVar5->group = (addresses->destination).u.short_addr;
+    psVar6 = psVar5 + 1;
+    *psVar5 = *(short *)(param_2 + 0xc);
   }
   else {
-    peVar6 = peVar5;
+    psVar6 = psVar5;
     if (uVar10 == 3) {
-      eVar4 = *(ezb_grpaddr_t *)((int)&(addresses->destination).u + 4);
-      *peVar5 = (addresses->destination).u.group_addr;
-      peVar5[1] = eVar4;
-      peVar6 = peVar5 + 2;
+      uVar4 = *(undefined4 *)(param_2 + 0x10);
+      *(undefined4 *)psVar5 = *(undefined4 *)(param_2 + 0xc);
+      *(undefined4 *)(psVar5 + 2) = uVar4;
+      psVar6 = psVar5 + 4;
     }
   }
-  _Var9 = mac_fcf_has_src_panid(fcf);
-  if (CONCAT31(extraout_var_00,_Var9) != 0) {
-    peVar6->group = eVar1;
-    peVar6 = (ezb_grpaddr_t *)&peVar6->bcast;
+  iVar9 = mac_fcf_has_src_panid(uVar8);
+  if (iVar9 != 0) {
+    *psVar6 = sVar1;
+    psVar6 = psVar6 + 1;
   }
   if (uVar11 == 2) {
-    peVar5 = (ezb_grpaddr_t *)&peVar6->bcast;
-    peVar6->group = (addresses->source).u.short_addr;
+    psVar5 = psVar6 + 1;
+    *psVar6 = *(short *)(param_2 + 2);
   }
   else {
-    peVar5 = peVar6;
+    psVar5 = psVar6;
     if (uVar11 == 3) {
-      eVar4 = *(ezb_grpaddr_t *)((int)&(addresses->source).u + 4);
-      *peVar6 = (addresses->source).u.group_addr;
-      peVar6[1] = eVar4;
-      peVar5 = peVar6 + 2;
+      uVar4 = *(undefined4 *)(param_2 + 6);
+      *(undefined4 *)psVar6 = *(undefined4 *)(param_2 + 2);
+      *(undefined4 *)(psVar6 + 2) = uVar4;
+      psVar5 = psVar6 + 4;
     }
   }
-  if (type == MAC_FRAME_CMD) {
-    *(mac_cmd_id_t *)&peVar5->group = cmd_id;
-    peVar5 = (ezb_grpaddr_t *)((int)&peVar5->group + 1);
+  if (param_5 == 3) {
+    *(undefined1 *)psVar5 = param_6;
+    psVar5 = (short *)((int)psVar5 + 1);
   }
-  return (char)peVar5 - (char)buf;
+  return (int)psVar5 - (int)param_1 & 0xff;
 }
 

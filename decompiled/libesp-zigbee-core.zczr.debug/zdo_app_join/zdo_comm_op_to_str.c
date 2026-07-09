@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_join.o -> zdo_comm_op_to_str
  *
  * (C) Espressif, Apache License 2.0.
@@ -11,15 +11,12 @@
  */
 
 /* WARNING: Control flow encountered bad instruction data */
-/* WARNING: Unknown calling convention */
 
-char * zdo_comm_op_to_str(zdo_comm_operation_t op)
+undefined4 zdo_comm_op_to_str(uint param_1)
 
 {
-  undefined3 in_register_00002029;
-  
-  if (CONCAT31(in_register_00002029,op) < 10) {
-    return zdo_comm_op_to_str::operation_string[CONCAT31(in_register_00002029,op)];
+  if (param_1 < 10) {
+    return *(undefined4 *)(operation_string_1 + param_1 * 4);
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_join.c",0x4c,
                 "zdo_comm_op_to_str","op <= ZDO_COMM_OP_TCLK_UPDATE");

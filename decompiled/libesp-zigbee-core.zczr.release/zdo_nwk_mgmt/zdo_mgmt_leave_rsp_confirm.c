@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_nwk_mgmt.o -> zdo_mgmt_leave_rsp_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,20 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zdo_mgmt_leave_rsp_confirm(void *result,void *arg)
+void zdo_mgmt_leave_rsp_confirm(char *param_1,int param_2)
 
 {
-  if ((result == (void *)0x0) || (arg == (void *)0x0)) {
-    arg = (void *)__assert_func(0,0,0,0);
+  if ((param_1 == (char *)0x0) || (param_2 == 0)) {
+    param_2 = __assert_func(0,0,0,0);
   }
-                    /* WARNING: Load size is inaccurate */
-  if (*result == '\0') {
+  if (*param_1 == '\0') {
     zdo_send_mgmt_req(0);
     return;
   }
-  zdo_free_mgmt_req(arg);
+  zdo_free_mgmt_req(param_2);
   return;
 }
 

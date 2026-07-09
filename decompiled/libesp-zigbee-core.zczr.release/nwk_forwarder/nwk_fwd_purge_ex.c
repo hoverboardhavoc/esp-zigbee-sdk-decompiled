@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_forwarder.o -> nwk_fwd_purge_ex
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_fwd_purge_ex(ezb_shortaddr_t dst_addr,_func__Bool_zmsg_t_ptr_void_ptr *filter,
-                     void *user_ctx)
+void nwk_fwd_purge_ex(uint param_1,code *param_2,undefined4 param_3)
 
 {
-  _Bool _Var1;
-  undefined2 in_register_0000202a;
-  uint uVar2;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  nwk_fwd_s *pnVar3;
-  nwk_fwd_s *pnVar4;
-  ushort auStack_32 [2];
-  ezb_shortaddr_t msg_dst_addr;
+  int iVar1;
+  undefined4 *puVar2;
+  undefined4 *puVar3;
+  ushort auStack_32 [7];
   
-  uVar2 = CONCAT22(in_register_0000202a,dst_addr);
-  for (pnVar3 = (nwk_fwd_s *)s_nwk_fwd.send_queue.list.next;
-      pnVar4 = (nwk_fwd_s *)s_nwk_fwd.delay_queue.mq.list.next, pnVar3 != &s_nwk_fwd;
-      pnVar3 = (nwk_fwd_s *)(pnVar3->send_queue).list.next) {
-    zmsg_read_le16((zmsg_t *)pnVar3,2,auStack_32);
-    if (((uVar2 == 0xffff) || (auStack_32[0] == uVar2)) &&
-       ((filter == (_func__Bool_zmsg_t_ptr_void_ptr *)0x0 ||
-        (_Var1 = (*filter)((zmsg_t *)pnVar3,user_ctx), CONCAT31(extraout_var,_Var1) != 0)))) {
-      pnVar4 = (nwk_fwd_s *)(pnVar3->send_queue).list.prev;
-      zmsg_queue_dequeue(&s_nwk_fwd,pnVar3);
-      nwk_fwd_finish_tx((zmsg_t *)pnVar3,8);
-      pnVar3 = pnVar4;
+  for (puVar2 = s_nwk_fwd; puVar3 = puRam000113f4, (undefined4 **)puVar2 != &s_nwk_fwd;
+      puVar2 = (undefined4 *)*puVar2) {
+    zmsg_read_le16_isra_0(puVar2,2,auStack_32);
+    if (((param_1 == 0xffff) || (auStack_32[0] == param_1)) &&
+       ((param_2 == (code *)0x0 || (iVar1 = (*param_2)(puVar2,param_3), iVar1 != 0)))) {
+      puVar3 = (undefined4 *)puVar2[1];
+      zmsg_queue_dequeue(&s_nwk_fwd,puVar2);
+      nwk_fwd_finish_tx(puVar2,8);
+      puVar2 = puVar3;
     }
   }
-  for (; pnVar4 != &s_nwk_fwd; pnVar4 = (nwk_fwd_s *)(pnVar4->send_queue).list.next) {
-    zmsg_read_le16((zmsg_t *)pnVar4,2,auStack_32);
-    if (((uVar2 == 0xffff) || (auStack_32[0] == uVar2)) &&
-       ((filter == (_func__Bool_zmsg_t_ptr_void_ptr *)0x0 ||
-        (_Var1 = (*filter)((zmsg_t *)pnVar4,user_ctx), CONCAT31(extraout_var_00,_Var1) != 0)))) {
-      pnVar3 = (nwk_fwd_s *)(pnVar4->send_queue).list.prev;
-      zmsg_tmque_dequeue(&s_nwk_fwd,pnVar4);
-      nwk_fwd_finish_tx((zmsg_t *)pnVar4,8);
-      pnVar4 = pnVar3;
+  for (; (undefined4 **)puVar3 != &s_nwk_fwd; puVar3 = (undefined4 *)*puVar3) {
+    zmsg_read_le16_isra_0(puVar3,2,auStack_32);
+    if (((param_1 == 0xffff) || (auStack_32[0] == param_1)) &&
+       ((param_2 == (code *)0x0 || (iVar1 = (*param_2)(puVar3,param_3), iVar1 != 0)))) {
+      puVar2 = (undefined4 *)puVar3[1];
+      zmsg_tmque_dequeue(&s_nwk_fwd,puVar3);
+      nwk_fwd_finish_tx(puVar3,8);
+      puVar3 = puVar2;
     }
   }
   return;

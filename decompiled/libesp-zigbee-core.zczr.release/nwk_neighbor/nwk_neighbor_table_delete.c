@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_neighbor.o -> nwk_neighbor_table_delete
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_neighbor_table_delete(nwk_neighbor_t *nbr)
+void nwk_neighbor_table_delete(short *param_1)
 
 {
   uint uVar1;
   int iVar2;
-  uint16_t uVar3;
-  int iVar4;
+  int iVar3;
+  uint uVar4;
   uint uVar5;
-  undefined2 extraout_var;
-  uint uVar6;
   
-  iVar4 = core_globals_get();
-  uVar1 = ((int)nbr - *(int *)(iVar4 + 0xb20) >> 2) * -0x49249249;
-  if ((uVar1 & 0xffff) < (uint)*(ushort *)(iVar4 + 0xb24)) goto _L171;
+  iVar3 = core_globals_get();
+  uVar1 = ((int)param_1 - *(int *)(iVar3 + 0xb20) >> 2) * -0x49249249;
+  if ((uVar1 & 0xffff) < (uint)*(ushort *)(iVar3 + 0xb24)) goto _L171;
   do {
     while( true ) {
       do {
-        iVar4 = __assert_func(0,0,0,0);
+        iVar3 = __assert_func(0,0,0,0);
 _L171:
-        if (nbr->addr_ref != 0xffff) {
+        if (*param_1 != -1) {
           nwk_address_unlock_ref();
         }
-        uVar6 = 1 << (uVar1 & 7) & 0xff;
+        uVar5 = 1 << (uVar1 & 7) & 0xff;
         uVar1 = (uVar1 << 0x10) >> 0x13;
-        uVar5 = __atomic_fetch_and_1(*(int *)(iVar4 + 0xb1c) + uVar1,~uVar6 & 0xff,5);
-      } while ((uVar6 & uVar5) == 0);
-      iVar2 = *(int *)(iVar4 + 0xb20);
-      uVar3 = nwk_neighbor_table_get_router_capacity();
-      uVar5 = *(uint *)&nbr->field_0xc & 3;
-      uVar1 = ((int)nbr - iVar2 >> 2) * -0x49249249 & 0xffff;
-      if (uVar1 < CONCAT22(extraout_var,uVar3)) break;
-      if (uVar5 == 2) {
-        nwk_neighbor_table_remove_stored_child(nbr);
-        if (*(short *)(iVar4 + 0xb28) != 0) {
-          *(short *)(iVar4 + 0xb28) = *(short *)(iVar4 + 0xb28) + -1;
+        uVar4 = __atomic_fetch_and_1(*(int *)(iVar3 + 0xb1c) + uVar1,~uVar5 & 0xff,5);
+      } while ((uVar5 & uVar4) == 0);
+      iVar2 = *(int *)(iVar3 + 0xb20);
+      uVar4 = nwk_neighbor_table_get_router_capacity();
+      uVar1 = ((int)param_1 - iVar2 >> 2) * -0x49249249 & 0xffff;
+      if (uVar1 < uVar4) break;
+      if ((*(uint *)(param_1 + 6) & 3) == 2) {
+        nwk_neighbor_table_remove_stored_child(param_1);
+        if (*(short *)(iVar3 + 0xb28) != 0) {
+          *(short *)(iVar3 + 0xb28) = *(short *)(iVar3 + 0xb28) + -1;
           return;
         }
       }
     }
-  } while ((1 < uVar5) || (*(short *)(iVar4 + 0xb2a) == 0));
-  *(short *)(iVar4 + 0xb2a) = *(short *)(iVar4 + 0xb2a) + -1;
+  } while ((1 < (*(uint *)(param_1 + 6) & 3)) || (*(short *)(iVar3 + 0xb2a) == 0));
+  *(short *)(iVar3 + 0xb2a) = *(short *)(iVar3 + 0xb2a) + -1;
   return;
 }
 

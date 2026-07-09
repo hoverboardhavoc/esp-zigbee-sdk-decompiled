@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nwk_neighbor_table_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,39 +10,44 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: itor */
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void nwk_neighbor_table_restore(void)
 
 {
   bool bVar1;
   int iVar2;
-  nwk_neighbor_t *nbr;
+  undefined2 *__s;
   int iVar3;
   uint uVar4;
   uint uVar5;
   uint uVar6;
-  undefined1 auStack_28 [4];
-  ds_child_info_iterator_t itor;
+  undefined1 auStack_28 [2];
+  undefined2 uStack_26;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined2 uStack_1c;
+  byte bStack_1a;
+  undefined1 uStack_19;
+  uint uStack_18;
+  undefined2 uStack_14;
+  char cStack_12;
   
-  itor.data._16_2_ = 0;
-  itor.data._18_1_ = 0;
-  ds_child_info_itor_read((ds_child_info_iterator_t *)auStack_28);
+  uStack_14 = 0;
+  cStack_12 = '\0';
+  ds_child_info_itor_read(auStack_28);
   bVar1 = false;
   iVar2 = 0;
   do {
-    if (itor.data._18_1_ != '\0') {
+    if (cStack_12 != '\0') {
 _L0:
       if ((bVar1) || (iVar2 != 0)) {
         nbt_refresh_stored_children();
       }
       return;
     }
-    nbr = nwk_neighbor_table_get_by_extended((ezb_extaddr_t *)&itor);
-    if (nbr == (nwk_neighbor_t *)0x0) {
-      nbr = nwk_neighbor_table_new(false);
-      if (nbr == (nwk_neighbor_t *)0x0) {
+    __s = (undefined2 *)nwk_neighbor_table_get_by_extended(&uStack_24);
+    if (__s == (undefined2 *)0x0) {
+      __s = (undefined2 *)nwk_neighbor_table_new(0);
+      if (__s == (undefined2 *)0x0) {
         iVar2 = 1;
         goto _L0;
       }
@@ -50,31 +55,30 @@ _L0:
     else {
       bVar1 = true;
     }
-    memset(nbr,0,0x1c);
-    iVar2 = nwk_address_update(&itor,auStack_28._2_2_,nbr);
+    memset(__s,0,0x1c);
+    iVar2 = nwk_address_update(&uStack_24,uStack_26,__s);
     if (iVar2 == 0) {
-      nwk_address_lock_ref(nbr->addr_ref);
-      uVar5 = *(uint *)&nbr->field_0xc;
-      *(uint *)&nbr->field_0xc = uVar5 & 0xfffffffc | 2;
-      *(uint *)&nbr->field_0xc = uVar5 & 0xfffffc3c | 0x42;
+      nwk_address_lock_ref(*__s);
+      uVar5 = *(uint *)(__s + 6);
+      *(uint *)(__s + 6) = uVar5 & 0xfffffffc | 2;
+      *(uint *)(__s + 6) = uVar5 & 0xfffffc3c | 0x42;
       iVar3 = core_globals_get();
       uVar5 = (*(byte *)(iVar3 + 0xa3c) + 1 & 0xf) << 2;
-      uVar6 = *(uint *)&nbr->field_0xc;
-      *(uint *)&nbr->field_0xc = uVar6 & 0xffffffc3 | uVar5;
-      uVar4 = (itor.data.extaddr.field_0.u8[6] & 0x1f) << 0xd;
-      *(uint *)&nbr->field_0xc = uVar6 & 0xfffc1fc3 | uVar5 | uVar4;
-      nbr->key_seq = itor.data.extaddr.field_0.u8[7];
-      *(uint *)&nbr->field_0xc =
-           uVar6 & 0xfffc1bc3 | uVar5 | uVar4 | ((uint)itor.data._12_4_ >> 4 & 1) << 10;
-      (nbr->dev).r.router_info = itor.data.extaddr.field_0.u64._4_2_;
-      nwk_neighbor_zed_set_timeout(nbr,(byte)itor.data._12_4_ & 0xf);
+      uVar6 = *(uint *)(__s + 6);
+      *(uint *)(__s + 6) = uVar6 & 0xffffffc3 | uVar5;
+      uVar4 = (bStack_1a & 0x1f) << 0xd;
+      *(uint *)(__s + 6) = uVar6 & 0xfffc1fc3 | uVar5 | uVar4;
+      *(undefined1 *)((int)__s + 7) = uStack_19;
+      *(uint *)(__s + 6) = uVar6 & 0xfffc1bc3 | uVar5 | uVar4 | (uStack_18 >> 4 & 1) << 10;
+      __s[8] = uStack_1c;
+      nwk_neighbor_zed_set_timeout(__s,uStack_18 & 0xf);
     }
     else {
       if (iVar2 != 0xd) goto _L0;
-      log_write(1,"nwk_neighbor.c","Address conflicts on stored child 0x%016llx(0x%04hx)",
-                itor.data._0_4_,itor.data.extaddr.field_0.u64._0_4_,auStack_28._2_2_);
+      log_write(1,"nwk_neighbor.c","Address conflicts on stored child 0x%016llx(0x%04hx)",uStack_24,
+                uStack_20,uStack_26);
     }
-    ds_child_info_next((ds_child_info_iterator_t *)auStack_28);
+    ds_child_info_next(auStack_28);
   } while( true );
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> identify.o -> identify_timer_ctx_get
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_identify_timer_ctx_t * identify_timer_ctx_get(uint8_t ep_id)
+void identify_timer_ctx_get(void)
 
 {
-  zcl_attr_desc_t *pzVar1;
-  zcl_identify_timer_ctx_t *pzVar2;
-  int iVar3;
-  char *pcVar4;
+  int iVar1;
+  char *pcVar2;
   
-  pzVar1 = identify_srv_get_attr_desc(ep_id,0xeff0);
-  if (pzVar1 == (zcl_attr_desc_t *)0x0) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x9d,
+  iVar1 = identify_srv_get_attr_desc(0xeff0);
+  if (iVar1 == 0) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0xaa,
                   "identify_timer_ctx_get","timer_ctx_attr_desc");
   }
-  else if ((zcl_identify_timer_ctx_t *)pzVar1->data_p != (zcl_identify_timer_ctx_t *)0x0) {
-    return (zcl_identify_timer_ctx_t *)pzVar1->data_p;
+  else if (*(int *)(iVar1 + 8) != 0) {
+    return;
   }
-  pcVar4 = "identify_timer_ctx_get";
-  iVar3 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0x9f
+  pcVar2 = "identify_timer_ctx_get";
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/identify.c",0xac
                         ,"identify_timer_ctx_get","timer_ctx");
-  if (iVar3 == 0xeff0) {
-    pzVar2 = (zcl_identify_timer_ctx_t *)ezb_zcl_set_attr_value(3,1,0xeff0,0x131b,pcVar4,0);
+  if (iVar1 == 0xeff0) {
+    ezb_zcl_set_attr_value(3,1,0xeff0,0x131b,pcVar2,0);
   }
   else {
-    pzVar2 = (zcl_identify_timer_ctx_t *)ezb_zcl_set_attr_value(3,1,0,0);
+    ezb_zcl_set_attr_value(3,1,0,0);
   }
-  return pzVar2;
+  return;
 }
 

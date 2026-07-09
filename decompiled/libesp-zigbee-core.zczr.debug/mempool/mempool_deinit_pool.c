@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mempool.o -> mempool_deinit_pool
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,48 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mempool_deinit_pool(mem_pool_t *pool)
+void mempool_deinit_pool(int param_1)
 
 {
-  mem_pool_t *pmVar1;
-  uint8_t *puVar2;
-  bitmap_t *pbVar3;
-  mem_pool_t *pool_00;
+  int iVar1;
+  undefined4 uVar2;
+  int iVar3;
   uint extraout_a1;
   uint uVar4;
   uint uVar5;
   
-  if (pool != (mem_pool_t *)0x0) {
-    if (pool->base_mem != (uint8_t *)0x0) {
+  if (param_1 != 0) {
+    if (*(int *)(param_1 + 0xc) != 0) {
       mm_free();
-      pool->base_mem = (uint8_t *)0x0;
+      *(undefined4 *)(param_1 + 0xc) = 0;
     }
-    if (pool->blk_busy_map != (bitmap_t *)0x0) {
+    if (*(int *)(param_1 + 8) != 0) {
       mm_free();
-      pool->blk_busy_map = (bitmap_t *)0x0;
+      *(undefined4 *)(param_1 + 8) = 0;
     }
     return;
   }
-  pmVar1 = (mem_pool_t *)
-           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.c",0x5f,
-                         "mempool_deinit_pool",0x10000);
-  if (pmVar1 == (mem_pool_t *)0x0) {
-    pool_00 = (mem_pool_t *)
-              __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.c",0x6e,
-                            "mempool_resize_pool",0x10000);
+  iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.c",0x5f,
+                        "mempool_deinit_pool",0x10000);
+  if (iVar1 == 0) {
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/mempool.c",0x6e,
+                  "mempool_resize_pool",0x10000);
   }
-  else {
-    pool_00 = pmVar1;
-    if (extraout_a1 != 0) {
-      puVar2 = (uint8_t *)mm_realloc(pmVar1->base_mem,pmVar1->blk_size);
-      pmVar1->base_mem = puVar2;
-      uVar5 = extraout_a1 + 7 >> 3;
-      pbVar3 = (bitmap_t *)mm_realloc(pmVar1->blk_busy_map,uVar5,1);
-      pmVar1->blk_busy_map = pbVar3;
-      if (pmVar1->blk_nr < extraout_a1) {
-        uVar4 = pmVar1->blk_nr + 7 >> 3;
-        memset(pbVar3 + uVar4,0,uVar5 - uVar4);
-      }
-      goto _L0;
+  else if (extraout_a1 != 0) {
+    uVar2 = mm_realloc(*(undefined4 *)(iVar1 + 0xc),*(undefined2 *)(iVar1 + 2));
+    *(undefined4 *)(iVar1 + 0xc) = uVar2;
+    uVar5 = extraout_a1 + 7 >> 3;
+    iVar3 = mm_realloc(*(undefined4 *)(iVar1 + 8),uVar5,1);
+    *(int *)(iVar1 + 8) = iVar3;
+    if (*(ushort *)(iVar1 + 4) < extraout_a1) {
+      uVar4 = *(ushort *)(iVar1 + 4) + 7 >> 3;
+      memset((void *)(iVar3 + uVar4),0,uVar5 - uVar4);
     }
+    goto _L0;
   }
-  mempool_deinit_pool(pool_00);
+  mempool_deinit_pool();
 _L0:
-  pmVar1->blk_nr = (uint16_t)extraout_a1;
+  *(short *)(iVar1 + 4) = (short)extraout_a1;
   return;
 }
 

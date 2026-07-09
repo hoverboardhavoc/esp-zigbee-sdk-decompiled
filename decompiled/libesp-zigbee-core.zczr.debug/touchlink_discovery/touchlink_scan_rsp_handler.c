@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink_discovery.o -> touchlink_scan_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,114 +10,103 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_scan_rsp_handler(touchlink_scan_rsp_t *rsp)
+undefined4 touchlink_scan_rsp_handler(int param_1)
 
 {
-  ezb_addr_t *peVar1;
-  undefined4 *puVar2;
-  ushort uVar3;
-  ezb_grpaddr_t eVar4;
-  undefined2 uVar5;
-  undefined4 uVar6;
-  undefined4 uVar7;
-  uint32_t uVar8;
-  undefined1 uVar9;
-  ushort uVar10;
-  uint32_t *puVar11;
-  ezb_err_t eVar12;
-  int iVar13;
+  ushort uVar1;
+  undefined2 uVar2;
+  undefined4 uVar3;
+  int iVar4;
+  undefined1 uVar5;
+  ushort uVar6;
+  int *piVar7;
+  undefined4 uVar8;
+  undefined4 *puVar9;
   
-  if (rsp == (touchlink_scan_rsp_t *)0x0) {
-    eVar12 = 2;
+  if (param_1 == 0) {
+    uVar8 = 2;
   }
   else {
-    uVar8 = rsp->transaction_id;
-    if ((uVar8 == 0) || (puVar11 = (uint32_t *)touchlink_transaction_get(), uVar8 != *puVar11)) {
-      eVar12 = 3;
+    iVar4 = *(int *)(param_1 + 0xc);
+    if ((iVar4 == 0) || (piVar7 = (int *)touchlink_transaction_get(), iVar4 != *piVar7)) {
+      uVar8 = 3;
     }
     else {
-      uVar3 = rsp->key_bitmask;
-      uVar10 = touchlink_get_key_bitmask();
-      if ((uVar3 & uVar10) == 0) {
-        eVar12 = 2;
+      uVar1 = *(ushort *)(param_1 + 0x16);
+      uVar6 = touchlink_get_key_bitmask();
+      if ((uVar1 & uVar6) == 0) {
+        uVar8 = 2;
       }
       else {
-        iVar13 = touchlink_disc_table_find(&(rsp->cmd_ctrl).peer_addr.u);
-        if (iVar13 == 0) {
-          puVar11 = (uint32_t *)touchlink_disc_table_get_entry();
-          if (puVar11 == (uint32_t *)0x0) {
-            eVar12 = 1;
+        iVar4 = touchlink_disc_table_find(param_1 + 2);
+        if (iVar4 == 0) {
+          puVar9 = (undefined4 *)touchlink_disc_table_get_entry();
+          if (puVar9 == (undefined4 *)0x0) {
+            uVar8 = 1;
           }
           else {
-            peVar1 = &(rsp->cmd_ctrl).peer_addr.u;
-            eVar4 = peVar1->group_addr;
-            puVar2 = (undefined4 *)((int)&(rsp->cmd_ctrl).peer_addr.u + 4);
-            uVar5 = *(undefined2 *)puVar2;
-            uVar6 = *puVar2;
-            *(char *)((int)puVar11 + 0xf) = (char)(peVar1->group_addr).group;
-            *(char *)(puVar11 + 4) = eVar4.group._1_1_;
-            *(char *)((int)puVar11 + 0x11) = eVar4.bcast;
-            *(char *)((int)puVar11 + 0x12) = eVar4.bcast._1_1_;
-            *(char *)((int)puVar11 + 0x13) = (char)uVar5;
-            *(char *)(puVar11 + 5) = (char)((uint)uVar6 >> 8);
-            *(char *)((int)puVar11 + 0x15) = (char)((uint)uVar6 >> 0x10);
-            *(char *)((int)puVar11 + 0x16) = (char)((uint)uVar6 >> 0x18);
-            uVar6 = *(undefined4 *)&(rsp->ext_panid).field_0;
-            puVar2 = (undefined4 *)((int)&(rsp->ext_panid).field_0 + 4);
-            uVar5 = *(undefined2 *)puVar2;
-            uVar7 = *puVar2;
-            *(char *)((int)puVar11 + 0x17) = (char)*(undefined2 *)&(rsp->ext_panid).field_0;
-            *(char *)(puVar11 + 6) = (char)((uint)uVar6 >> 8);
-            *(char *)((int)puVar11 + 0x19) = (char)((uint)uVar6 >> 0x10);
-            *(char *)((int)puVar11 + 0x1a) = (char)((uint)uVar6 >> 0x18);
-            *(char *)((int)puVar11 + 0x1b) = (char)uVar5;
-            *(char *)(puVar11 + 7) = (char)((uint)uVar7 >> 8);
-            *(char *)((int)puVar11 + 0x1d) = (char)((uint)uVar7 >> 0x10);
-            *(char *)((int)puVar11 + 0x1e) = (char)((uint)uVar7 >> 0x18);
-            *puVar11 = rsp->transaction_id;
-            *(ushort *)(puVar11 + 2) = (ushort)rsp->zigbee_info;
-            *(uint8_t *)((int)puVar11 + 10) = rsp->touchlink_info;
-            *(uint16_t *)(puVar11 + 3) = rsp->key_bitmask;
-            *(uint8_t *)((int)puVar11 + 0xe) = rsp->rssi_correction;
-            puVar11[1] = rsp->response_id;
-            *(uint8_t *)((int)puVar11 + 0x1f) = rsp->nwk_update_id;
-            *(uint8_t *)(puVar11 + 8) = rsp->channel;
-            uVar9 = touchlink_get_intrp_channel();
-            *(undefined1 *)((int)puVar11 + 0x21) = uVar9;
-            *(ezb_panid_t *)((int)puVar11 + 0x22) = rsp->pan_id;
-            *(ezb_shortaddr_t *)(puVar11 + 9) = rsp->nwk_addr;
-            *(uint8_t *)((int)puVar11 + 0x26) = rsp->n_subdevs;
-            *(uint8_t *)((int)puVar11 + 0x27) = rsp->total_group_ids;
-            *(int8_t *)(puVar11 + 0x2f) = (rsp->cmd_ctrl).rssi;
-            if ((rsp->n_subdevs == '\x01') && ((char)puVar11[10] == '\0')) {
-              peVar1 = &(rsp->cmd_ctrl).peer_addr.u;
-              eVar4 = peVar1->group_addr;
-              puVar2 = (undefined4 *)((int)&(rsp->cmd_ctrl).peer_addr.u + 4);
-              uVar5 = *(undefined2 *)puVar2;
-              uVar6 = *puVar2;
-              *(ezb_shortaddr_t *)((int)puVar11 + 0x2a) = (peVar1->group_addr).group;
-              *(ezb_shortaddr_t *)(puVar11 + 0xb) = eVar4.bcast;
-              *(undefined2 *)((int)puVar11 + 0x2e) = uVar5;
-              *(short *)(puVar11 + 0xc) = (short)((uint)uVar6 >> 0x10);
-              *(uint8_t *)((int)puVar11 + 0x32) = (rsp->sub_device).ep_id;
-              *(uint16_t *)(puVar11 + 0xd) = (rsp->sub_device).profile_id;
-              *(uint16_t *)((int)puVar11 + 0x36) = (rsp->sub_device).device_id;
-              *(uint8_t *)(puVar11 + 0xe) = (rsp->sub_device).version;
-              *(uint8_t *)((int)puVar11 + 0x39) = (rsp->sub_device).n_group_ids;
-              *(undefined1 *)(puVar11 + 10) = 1;
+            uVar8 = *(undefined4 *)(param_1 + 2);
+            uVar2 = *(undefined2 *)(param_1 + 6);
+            uVar3 = *(undefined4 *)(param_1 + 6);
+            *(char *)((int)puVar9 + 0xf) = (char)*(undefined2 *)(param_1 + 2);
+            *(char *)(puVar9 + 4) = (char)((uint)uVar8 >> 8);
+            *(char *)((int)puVar9 + 0x11) = (char)((uint)uVar8 >> 0x10);
+            *(char *)((int)puVar9 + 0x12) = (char)((uint)uVar8 >> 0x18);
+            *(char *)((int)puVar9 + 0x13) = (char)uVar2;
+            *(char *)(puVar9 + 5) = (char)((uint)uVar3 >> 8);
+            *(char *)((int)puVar9 + 0x15) = (char)((uint)uVar3 >> 0x10);
+            *(char *)((int)puVar9 + 0x16) = (char)((uint)uVar3 >> 0x18);
+            uVar8 = *(undefined4 *)(param_1 + 0x19);
+            uVar2 = *(undefined2 *)(param_1 + 0x1d);
+            uVar3 = *(undefined4 *)(param_1 + 0x1d);
+            *(char *)((int)puVar9 + 0x17) = (char)*(undefined2 *)(param_1 + 0x19);
+            *(char *)(puVar9 + 6) = (char)((uint)uVar8 >> 8);
+            *(char *)((int)puVar9 + 0x19) = (char)((uint)uVar8 >> 0x10);
+            *(char *)((int)puVar9 + 0x1a) = (char)((uint)uVar8 >> 0x18);
+            *(char *)((int)puVar9 + 0x1b) = (char)uVar2;
+            *(char *)(puVar9 + 7) = (char)((uint)uVar3 >> 8);
+            *(char *)((int)puVar9 + 0x1d) = (char)((uint)uVar3 >> 0x10);
+            *(char *)((int)puVar9 + 0x1e) = (char)((uint)uVar3 >> 0x18);
+            *puVar9 = *(undefined4 *)(param_1 + 0xc);
+            *(ushort *)(puVar9 + 2) = (ushort)*(byte *)(param_1 + 0x14);
+            *(undefined1 *)((int)puVar9 + 10) = *(undefined1 *)(param_1 + 0x15);
+            *(undefined2 *)(puVar9 + 3) = *(undefined2 *)(param_1 + 0x16);
+            *(undefined1 *)((int)puVar9 + 0xe) = *(undefined1 *)(param_1 + 0x18);
+            puVar9[1] = *(undefined4 *)(param_1 + 0x10);
+            *(undefined1 *)((int)puVar9 + 0x1f) = *(undefined1 *)(param_1 + 0x21);
+            *(undefined1 *)(puVar9 + 8) = *(undefined1 *)(param_1 + 0x22);
+            uVar5 = touchlink_get_intrp_channel();
+            *(undefined1 *)((int)puVar9 + 0x21) = uVar5;
+            *(undefined2 *)((int)puVar9 + 0x22) = *(undefined2 *)(param_1 + 0x24);
+            *(undefined2 *)(puVar9 + 9) = *(undefined2 *)(param_1 + 0x26);
+            *(undefined1 *)((int)puVar9 + 0x26) = *(undefined1 *)(param_1 + 0x28);
+            *(undefined1 *)((int)puVar9 + 0x27) = *(undefined1 *)(param_1 + 0x29);
+            *(undefined1 *)(puVar9 + 0x2f) = *(undefined1 *)(param_1 + 0xb);
+            if ((*(char *)(param_1 + 0x28) == '\x01') && (*(char *)(puVar9 + 10) == '\0')) {
+              uVar8 = *(undefined4 *)(param_1 + 2);
+              uVar2 = *(undefined2 *)(param_1 + 6);
+              uVar3 = *(undefined4 *)(param_1 + 6);
+              *(undefined2 *)((int)puVar9 + 0x2a) = *(undefined2 *)(param_1 + 2);
+              *(short *)(puVar9 + 0xb) = (short)((uint)uVar8 >> 0x10);
+              *(undefined2 *)((int)puVar9 + 0x2e) = uVar2;
+              *(short *)(puVar9 + 0xc) = (short)((uint)uVar3 >> 0x10);
+              *(undefined1 *)((int)puVar9 + 0x32) = *(undefined1 *)(param_1 + 0x2a);
+              *(undefined2 *)(puVar9 + 0xd) = *(undefined2 *)(param_1 + 0x2c);
+              *(undefined2 *)((int)puVar9 + 0x36) = *(undefined2 *)(param_1 + 0x2e);
+              *(undefined1 *)(puVar9 + 0xe) = *(undefined1 *)(param_1 + 0x30);
+              *(undefined1 *)((int)puVar9 + 0x39) = *(undefined1 *)(param_1 + 0x31);
+              *(undefined1 *)(puVar9 + 10) = 1;
             }
             touchlink_print_disc_device();
-            eVar12 = 0;
+            uVar8 = 0;
           }
         }
         else {
-          eVar12 = 3;
+          uVar8 = 3;
         }
       }
     }
   }
-  return eVar12;
+  return uVar8;
 }
 

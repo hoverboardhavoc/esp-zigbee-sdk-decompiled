@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_do_active_scan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,24 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_do_active_scan(mac_device *dev)
+void mac_do_active_scan(int param_1)
 
 {
-  ezb_err_t eVar1;
+  int iVar1;
   
-  eVar1 = mac_update_scan_channel(dev);
-  if (eVar1 == 0) {
-    mac_do_transmit(dev);
+  iVar1 = mac_update_scan_channel();
+  if (iVar1 == 0) {
+    mac_do_transmit(param_1);
   }
   else {
-    mac_pal_set_panid((dev->pib).panid);
-    mac_pal_set_rx_when_idle(*(uint *)&(dev->pib).transaction_persistence_time >> 0x11 & 1);
-    mac_set_state(dev,MAC_STATE_NORMAL);
-    mac_finish_op(dev);
-    mac_report_active_scan_result(dev,(mac_frame_t *)0x0);
-    mac_perform_next_op(dev);
+    mac_pal_set_panid(*(undefined2 *)(param_1 + 10));
+    mac_pal_set_rx_when_idle(*(uint *)(param_1 + 0x28) >> 0x11 & 1);
+    mac_set_state(param_1,0);
+    mac_finish_op(param_1);
+    mac_report_active_scan_result(param_1,0);
+    mac_perform_next_op(param_1);
   }
   return;
 }

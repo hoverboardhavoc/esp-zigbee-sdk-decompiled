@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zdo_cmd_compat.o -> ezb_active_scan_result_to_esp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,37 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void ezb_active_scan_result_to_esp
-               (ezb_nwk_active_scan_result_t *ezb,esp_zb_network_descriptor_t *esp)
+void ezb_active_scan_result_to_esp(int param_1,undefined2 *param_2)
 
 {
-  uint8_t uVar1;
-  uint8_t uVar2;
-  uint8_t uVar3;
-  uint8_t uVar4;
-  uint8_t uVar5;
-  uint8_t uVar6;
-  uint8_t uVar7;
+  undefined1 uVar1;
+  undefined1 uVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  undefined1 uVar5;
+  undefined1 uVar6;
+  undefined1 uVar7;
   
-  esp->short_pan_id = ezb->panid;
-  esp->permit_joining = (_Bool)((byte)*(undefined2 *)&ezb->field_0x10 & 1);
-  uVar1 = (ezb->extpanid).field_0.u8[1];
-  uVar2 = (ezb->extpanid).field_0.u8[2];
-  uVar3 = (ezb->extpanid).field_0.u8[3];
-  uVar4 = (ezb->extpanid).field_0.u8[4];
-  uVar5 = (ezb->extpanid).field_0.u8[5];
-  uVar6 = (ezb->extpanid).field_0.u8[6];
-  uVar7 = (ezb->extpanid).field_0.u8[7];
-  esp->extended_pan_id[0] = (ezb->extpanid).field_0.u8[0];
-  esp->extended_pan_id[1] = uVar1;
-  esp->extended_pan_id[2] = uVar2;
-  esp->extended_pan_id[3] = uVar3;
-  esp->extended_pan_id[4] = uVar4;
-  esp->extended_pan_id[5] = uVar5;
-  esp->extended_pan_id[6] = uVar6;
-  esp->extended_pan_id[7] = uVar7;
-  esp->logic_channel = ezb->channel_number;
-  esp->router_capacity = (_Bool)((byte)(*(ushort *)&ezb->field_0x10 >> 1) & 1);
-  esp->end_device_capacity = (_Bool)((byte)(*(ushort *)&ezb->field_0x10 >> 2) & 1);
+  *param_2 = *(undefined2 *)(param_1 + 2);
+  *(byte *)(param_2 + 1) = (byte)*(undefined2 *)(param_1 + 0x10) & 1;
+  uVar1 = *(undefined1 *)(param_1 + 5);
+  uVar2 = *(undefined1 *)(param_1 + 6);
+  uVar3 = *(undefined1 *)(param_1 + 7);
+  uVar4 = *(undefined1 *)(param_1 + 8);
+  uVar5 = *(undefined1 *)(param_1 + 9);
+  uVar6 = *(undefined1 *)(param_1 + 10);
+  uVar7 = *(undefined1 *)(param_1 + 0xb);
+  *(undefined1 *)((int)param_2 + 3) = *(undefined1 *)(param_1 + 4);
+  *(undefined1 *)(param_2 + 2) = uVar1;
+  *(undefined1 *)((int)param_2 + 5) = uVar2;
+  *(undefined1 *)(param_2 + 3) = uVar3;
+  *(undefined1 *)((int)param_2 + 7) = uVar4;
+  *(undefined1 *)(param_2 + 4) = uVar5;
+  *(undefined1 *)((int)param_2 + 9) = uVar6;
+  *(undefined1 *)(param_2 + 5) = uVar7;
+  *(undefined1 *)((int)param_2 + 0xb) = *(undefined1 *)(param_1 + 0xd);
+  *(byte *)(param_2 + 6) = (byte)(*(ushort *)(param_1 + 0x10) >> 1) & 1;
+  *(byte *)((int)param_2 + 0xd) = (byte)(*(ushort *)(param_1 + 0x10) >> 2) & 1;
   return;
 }
 

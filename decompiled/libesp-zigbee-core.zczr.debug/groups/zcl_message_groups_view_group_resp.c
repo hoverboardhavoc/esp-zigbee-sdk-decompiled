@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> groups.o -> zcl_message_groups_view_group_resp
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,41 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_message_groups_view_group_resp
-          (zcl_packet_t *packet,uint8_t status,uint16_t group_id,char *group_name)
+uint zcl_message_groups_view_group_resp
+               (undefined4 param_1,undefined1 param_2,undefined2 param_3,undefined4 param_4)
 
 {
   uint uVar1;
   undefined4 uStack_38;
-  ezb_zcl_groups_view_group_rsp_message_t message;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  uint uStack_24;
   
   uStack_38 = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.status = '\0';
-  message.in._5_1_ = 0;
-  message.in.group_id = 0;
-  message.in.group_name = (char *)0x0;
-  uVar1 = zcl_packet_to_message(&uStack_38,packet);
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uVar1 = zcl_packet_to_message(&uStack_38,param_1);
   if (uVar1 == 0) {
-    message.in.header = (ezb_zcl_cmd_hdr_t *)CONCAT31(message.in.header._1_3_,status);
-    message.in.header = (ezb_zcl_cmd_hdr_t *)CONCAT22(group_id,message.in.header._0_2_);
-    message.in.group_name = (char *)CONCAT31(message.in.group_name._1_3_,0xfe);
-    message._4_4_ = packet;
-    message.in._4_4_ = group_name;
-    zcl_core_action_schedule(0xe,&uStack_38);
-    if (((uint)message.in.group_name & 0xff) != 0xfe) {
-      uVar1 = (uint)message.in.group_name & 0xff;
+    uStack_2c = CONCAT31(uStack_2c._1_3_,param_2);
+    uStack_2c = CONCAT22(param_3,(undefined2)uStack_2c);
+    uStack_24 = CONCAT31(uStack_24._1_3_,0xfe);
+    uStack_30 = param_1;
+    uStack_28 = param_4;
+    zcl_core_action_schedule(0xf,&uStack_38);
+    if ((uStack_24 & 0xff) != 0xfe) {
+      uVar1 = uStack_24 & 0xff;
     }
   }
-  return (ezb_zcl_status_t)uVar1;
+  return uVar1;
 }
 

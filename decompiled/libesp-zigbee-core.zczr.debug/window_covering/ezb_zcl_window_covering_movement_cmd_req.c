@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> window_covering.o -> ezb_zcl_window_covering_movement_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,78 +10,75 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_window_covering_movement_cmd_req(ezb_zcl_window_covering_movement_cmd_t *cmd_req)
+int ezb_zcl_window_covering_movement_cmd_req(int param_1)
 
 {
   int iVar1;
-  ezb_zcl_window_covering_server_cmd_id_t eVar2;
-  ezb_zcl_window_covering_cmd_payload_t eStack_3a;
+  uint uVar2;
+  undefined2 uStack_3a;
   undefined4 uStack_38;
-  zcl_packet_t packet;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
   uStack_38 = 0;
-  packet.header.src_addr._0_4_ = 0;
-  packet.header.src_addr.u._2_4_ = 0;
-  packet.header._8_4_ = 0;
-  packet.header.dst_addr.u._0_2_ = 0;
-  packet.header.dst_addr.u._2_2_ = 0;
-  packet.header.dst_addr.u._4_4_ = 0;
-  packet.header.src_ep = '\0';
-  packet.header.dst_ep = '\0';
-  packet.header.cluster_id = 0;
-  packet.header.profile_id = 0;
-  packet.header.fc = '\0';
-  packet.header._27_1_ = 0;
-  packet.header.manuf_code = 0;
-  packet.header.tsn = '\0';
-  packet.header.rssi = '\0';
-  packet.header.cmd_id = '\0';
-  packet.header._33_1_ = 0;
-  packet._34_2_ = 0;
-  if (cmd_req == (ezb_zcl_window_covering_movement_cmd_t *)0x0) {
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 == 0) {
     iVar1 = -1;
     goto _L0;
   }
   iVar1 = zcl_packet_init(&uStack_38,0);
   if ((iVar1 != 0) ||
-     (iVar1 = zcl_cmd_to_packet(&uStack_38,0,0,(cmd_req->cmd_ctrl).dis_default_rsp,0,
-                                (char)cmd_req->cmd_id,0x102), iVar1 != 0)) goto _L0;
-  eVar2 = cmd_req->cmd_id;
-  if (eVar2 == EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_PERCENTAGE_ID) {
-    eStack_3a.lift_percentage = (cmd_req->payload).lift_percentage;
-    iVar1 = zmsg_append_bytes(packet._32_4_,1,&eStack_3a);
+     (iVar1 = zcl_cmd_to_packet(&uStack_38,0,0,*(undefined1 *)(param_1 + 0xc),0,
+                                *(undefined1 *)(param_1 + 0x18),0x102), iVar1 != 0)) goto _L0;
+  uVar2 = *(uint *)(param_1 + 0x18);
+  if (uVar2 == 5) {
+    uStack_3a = CONCAT11(uStack_3a._1_1_,*(undefined1 *)(param_1 + 0x1c));
+    iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3a);
 joined_r0x0001067a:
     if (iVar1 != 0) goto _L0;
   }
   else {
-    if (EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_PERCENTAGE_ID < eVar2) {
-      if (eVar2 == EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_VALUE_ID) {
-        eStack_3a = cmd_req->payload;
-        iVar1 = zmsg_append_bytes(packet._32_4_,2,&eStack_3a);
+    if (5 < uVar2) {
+      if (uVar2 == 7) {
+        uStack_3a = *(undefined2 *)(param_1 + 0x1c);
+        iVar1 = zmsg_append_bytes(uStack_14,2,&uStack_3a);
       }
       else {
-        if (eVar2 != EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_TILT_PERCENTAGE_ID) {
+        if (uVar2 != 8) {
           iVar1 = 2;
           goto _L0;
         }
-        eStack_3a.lift_percentage = (cmd_req->payload).lift_percentage;
-        iVar1 = zmsg_append_bytes(packet._32_4_,1,&eStack_3a);
+        uStack_3a = CONCAT11(uStack_3a._1_1_,*(undefined1 *)(param_1 + 0x1c));
+        iVar1 = zmsg_append_bytes(uStack_14,1,&uStack_3a);
       }
       goto joined_r0x0001067a;
     }
-    if (EZB_ZCL_CMD_WINDOW_COVERING_STOP_ID < eVar2) {
-      if (eVar2 != EZB_ZCL_CMD_WINDOW_COVERING_GO_TO_LIFT_VALUE_ID) {
+    if (2 < uVar2) {
+      if (uVar2 != 4) {
         iVar1 = 2;
         goto _L0;
       }
-      eStack_3a = cmd_req->payload;
-      iVar1 = zmsg_append_bytes(packet._32_4_,2,&eStack_3a);
+      uStack_3a = *(undefined2 *)(param_1 + 0x1c);
+      iVar1 = zmsg_append_bytes(uStack_14,2,&uStack_3a);
       goto joined_r0x0001067a;
     }
   }
-  zcl_packet_send(&uStack_38,&(cmd_req->cmd_ctrl).cnf_ctx);
+  zcl_packet_send(&uStack_38,param_1 + 0x10);
   iVar1 = zcl_status_to_err();
   if (iVar1 == 0) {
     return 0;

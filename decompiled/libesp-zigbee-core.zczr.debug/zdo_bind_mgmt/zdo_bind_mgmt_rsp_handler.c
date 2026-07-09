@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_bind_mgmt.o -> zdo_bind_mgmt_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,20 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_bind_mgmt_rsp_handler(void *arg)
+undefined4 zdo_bind_mgmt_rsp_handler(int param_1)
 
 {
-  zdp_status_t zVar1;
+  undefined4 uVar1;
   
-  if (arg == (void *)0x0) {
-    zVar1 = 0x80;
+  if (param_1 == 0) {
+    uVar1 = 0x80;
   }
-  else if (*(ushort *)((int)arg + 6) - 0x8021 < 2) {
-    zVar1 = zdo_bind_and_unbind_rsp_handler((zdo_packet_t *)arg);
+  else if (*(ushort *)(param_1 + 6) - 0x8021 < 2) {
+    uVar1 = zdo_bind_and_unbind_rsp_handler();
   }
   else {
-    zVar1 = 0x84;
+    uVar1 = 0x84;
   }
-  return zVar1;
+  return uVar1;
 }
 

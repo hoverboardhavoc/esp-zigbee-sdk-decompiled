@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_srv.o -> nwk_set_permit_joining_duration
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_set_permit_joining_duration(uint8_t permit_duration)
+void nwk_set_permit_joining_duration(uint param_1)
 
 {
-  undefined3 in_register_00002029;
   int iVar1;
   
   iVar1 = core_globals_get();
-  if ((uint)*(byte *)(iVar1 + 0xb07) != CONCAT31(in_register_00002029,permit_duration)) {
-    if (CONCAT31(in_register_00002029,permit_duration) == 0) {
-      nwk_set_mac_permit_joining(false);
+  if (*(byte *)(iVar1 + 0xb07) != param_1) {
+    if (param_1 == 0) {
+      nwk_set_mac_permit_joining(0);
     }
     else {
-      nwk_set_mac_permit_joining(true);
+      nwk_set_mac_permit_joining(1);
     }
-    nwk_permit_joining_status_indication(permit_duration);
+    nwk_permit_joining_status_indication(param_1);
     iVar1 = core_globals_get();
-    *(uint8_t *)(iVar1 + 0xb07) = permit_duration;
+    *(char *)(iVar1 + 0xb07) = (char)param_1;
   }
   return;
 }

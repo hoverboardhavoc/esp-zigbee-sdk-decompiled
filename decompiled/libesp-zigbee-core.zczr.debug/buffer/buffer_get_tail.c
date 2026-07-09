@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> buffer_get_tail
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,32 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t * buffer_get_tail(buffer_t *buf,uint16_t tail_size)
+void * buffer_get_tail(int param_1,uint param_2)
 
 {
   int iVar1;
-  buffer_t *buf_00;
-  uint8_t *__dest;
-  uint8_t *__src;
-  undefined2 in_register_0000202e;
+  void *pvVar2;
+  void *__src;
   uint extraout_a1;
-  buffer_t *buf_01;
+  undefined4 extraout_a1_00;
   char *__n;
   
-  if (CONCAT22(in_register_0000202e,tail_size) < 0xad) {
-    return (uint8_t *)((int)buf + (0xb0 - CONCAT22(in_register_0000202e,tail_size)));
+  if (param_2 < 0xad) {
+    return (void *)((param_1 - param_2) + 0xb0);
   }
   iVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x40,
                         "buffer_get_tail","tail_size <= (176 - sizeof(struct buf_hdr_s))");
   if (extraout_a1 < 0xad) {
-    return (uint8_t *)((iVar1 - extraout_a1) + 0xb0);
+    return (void *)((iVar1 - extraout_a1) + 0xb0);
   }
   __n = "buffer_get_tail_const";
-  buf_00 = (buffer_t *)
-           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x46,
-                         "tail_size <= (176 - sizeof(struct buf_hdr_s))");
+  pvVar2 = (void *)__assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x46,
+                                 "tail_size <= (176 - sizeof(struct buf_hdr_s))");
   if (__n != (char *)0x0) {
-    __dest = buffer_get_tail(buf_00,(uint16_t)__n);
-    __src = buffer_get_tail_const(buf_01,(uint16_t)__n);
-    buf_00 = (buffer_t *)memmove(__dest,__src,(size_t)__n);
+    pvVar2 = (void *)buffer_get_tail(__n);
+    __src = (void *)buffer_get_tail_const(extraout_a1_00,__n);
+    pvVar2 = memmove(pvVar2,__src,(size_t)__n);
   }
-  return (uint8_t *)buf_00;
+  return pvVar2;
 }
 

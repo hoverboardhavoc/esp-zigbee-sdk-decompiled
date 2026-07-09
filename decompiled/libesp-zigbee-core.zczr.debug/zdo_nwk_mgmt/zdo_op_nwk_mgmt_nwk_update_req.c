@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_nwk_mgmt.o -> zdo_op_nwk_mgmt_nwk_update_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,79 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t
-zdo_op_nwk_mgmt_nwk_update_req
-          (zdo_packet_payload_t *payload,zdp_nwk_mgmt_nwk_update_req_field_t *req,_Bool is_write)
+int zdo_op_nwk_mgmt_nwk_update_req(int param_1,uint *param_2,int param_3)
 
 {
   int iVar1;
   uint uVar2;
-  undefined3 in_register_00002031;
-  uint uStack_24;
-  uint16_t offset;
+  uint auStack_24 [4];
   
-  if ((payload == (zdo_packet_payload_t *)0x0) ||
-     (req == (zdp_nwk_mgmt_nwk_update_req_field_t *)0x0)) {
+  if ((param_1 == 0) || (param_2 == (uint *)0x0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_nwk_mgmt.c",0x1e5,
                   "zdo_op_nwk_mgmt_nwk_update_req","payload && req");
-_L0:
-    uStack_24 = CONCAT31(uStack_24._1_3_,req->scan_count);
-    iVar1 = zmsg_append_bytes(payload,1,&uStack_24);
-    if (iVar1 != 0) {
-      iVar1 = 0x8a;
-      goto _L0;
-    }
   }
   else {
-    if (CONCAT31(in_register_00002031,is_write) == 0) {
-      uStack_24 = uStack_24 & 0xffff0000;
+    if (param_3 == 0) {
+      auStack_24[0] = auStack_24[0] & 0xffff0000;
       uVar2 = zmsg_get_length();
-      af_read_le32(payload,(uint16_t *)&uStack_24,&req->scan_channels);
-      af_read_le8(payload,(uint16_t *)&uStack_24,&req->scan_duration);
-      if (req->scan_duration < 6) {
-        af_read_le8(payload,(uint16_t *)&uStack_24,&req->scan_count);
+      af_read_le32(param_1,auStack_24,param_2);
+      af_read_le8(param_1,auStack_24,param_2 + 1);
+      if ((byte)param_2[1] < 6) {
+        af_read_le8(param_1,auStack_24,(int)param_2 + 5);
       }
-      if (0xfd < req->scan_duration) {
-        af_read_le8(payload,(uint16_t *)&uStack_24,&req->nwk_update_id);
+      if (0xfd < (byte)param_2[1]) {
+        af_read_le8(param_1,auStack_24,(int)param_2 + 6);
       }
-      if (req->scan_duration == 0xff) {
-        af_read_le16(payload,(uint16_t *)&uStack_24,&req->nwk_mgmt_addr);
+      if ((char)param_2[1] == -1) {
+        af_read_le16(param_1,auStack_24,param_2 + 2);
       }
-      if (uVar2 < (uStack_24 & 0xffff)) {
-        iVar1 = 0xfe;
+      if ((auStack_24[0] & 0xffff) <= uVar2) {
+        return 0;
       }
-      else {
-        iVar1 = 0;
-      }
-      goto _L0;
+      return 0xfe;
     }
-    uStack_24 = req->scan_channels;
-    iVar1 = zmsg_append_bytes(4,&uStack_24);
+    auStack_24[0] = *param_2;
+    iVar1 = zmsg_append_bytes(4,auStack_24);
     if (iVar1 != 0) {
-      iVar1 = 0x8a;
-      goto _L0;
+      return 0x8a;
     }
-    uStack_24 = CONCAT31(uStack_24._1_3_,req->scan_duration);
-    iVar1 = zmsg_append_bytes(payload,1,&uStack_24);
+    auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,(char)param_2[1]);
+    iVar1 = zmsg_append_bytes(param_1,1,auStack_24);
     if (iVar1 != 0) {
-      iVar1 = 0x8a;
-      goto _L0;
+      return 0x8a;
     }
-    if (req->scan_duration < 6) goto _L0;
+    if (5 < (byte)param_2[1]) goto _L0;
   }
-  if (0xfd < req->scan_duration) {
-    uStack_24 = CONCAT31(uStack_24._1_3_,req->nwk_update_id);
-    iVar1 = zmsg_append_bytes(payload,1,&uStack_24);
+  auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,*(undefined1 *)((int)param_2 + 5));
+  iVar1 = zmsg_append_bytes(param_1,1,auStack_24);
+  if (iVar1 != 0) {
+    return 0x8a;
+  }
+_L0:
+  if (0xfd < (byte)param_2[1]) {
+    auStack_24[0] = CONCAT31(auStack_24[0]._1_3_,*(undefined1 *)((int)param_2 + 6));
+    iVar1 = zmsg_append_bytes(param_1,1,auStack_24);
     if (iVar1 != 0) {
-      iVar1 = 0x8a;
-      goto _L0;
+      return 0x8a;
     }
   }
-  if (req->scan_duration == 0xff) {
-    uStack_24 = CONCAT22(uStack_24._2_2_,req->nwk_mgmt_addr);
-    iVar1 = zmsg_append_bytes(payload,2,&uStack_24);
+  if ((char)param_2[1] == -1) {
+    auStack_24[0] = CONCAT22(auStack_24[0]._2_2_,(short)param_2[2]);
+    iVar1 = zmsg_append_bytes(param_1,2,auStack_24);
     if (iVar1 != 0) {
       iVar1 = 0x8a;
     }
@@ -90,7 +76,6 @@ _L0:
   else {
     iVar1 = 0;
   }
-_L0:
-  return (zdp_status_t)iVar1;
+  return iVar1;
 }
 

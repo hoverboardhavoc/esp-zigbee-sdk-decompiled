@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> level.o -> level_cluster_move_to_level_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t level_cluster_move_to_level_cmd_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void level_cluster_move_to_level_cmd_handler(int param_1,int param_2)
 
 {
-  uint8_t ep_id;
-  uint8_t cmd_id;
-  ezb_zcl_status_t eVar1;
-  _Bool _Var2;
+  undefined1 uVar1;
+  undefined1 uVar2;
   uint uVar3;
-  undefined3 extraout_var;
-  uint16_t *unaff_s2;
-  undefined1 auStack_28 [4];
-  ezb_zcl_level_move_to_level_cmd_payload_t payload;
-  uint16_t offset;
+  int iVar4;
+  undefined4 uVar5;
+  ushort *unaff_s2;
+  undefined4 uStack_28;
+  undefined2 uStack_24;
+  ushort auStack_22 [5];
   
-  ep_id = (packet->header).dst_ep;
-  cmd_id = (packet->header).cmd_id;
-  payload.transition_time = 0;
-  auStack_28[0] = '\0';
-  auStack_28[1] = 0;
-  auStack_28._2_2_ = 0;
-  payload.level = '\0';
-  payload._1_1_ = 0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  uVar1 = *(undefined1 *)(param_1 + 0x15);
+  uVar2 = *(undefined1 *)(param_1 + 0x20);
+  auStack_22[0] = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/level.c",0x159,
                   "level_cluster_move_to_level_cmd_handler","packet && rsp");
   }
   else {
-    unaff_s2 = &payload.transition_time;
-    af_read_le8(packet->payload,unaff_s2,auStack_28);
-    af_read_le16(packet->payload,unaff_s2,(uint16_t *)(auStack_28 + 2));
-    uVar3 = zmsg_get_length(packet->payload);
-    if (uVar3 < payload.transition_time) {
-      eVar1 = 0x80;
+    unaff_s2 = auStack_22;
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s2,&uStack_28);
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),unaff_s2,(int)&uStack_28 + 2);
+    uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    if (uVar3 < auStack_22[0]) {
+      uVar5 = 0x80;
       goto _L0;
     }
   }
-  af_read_le8(packet->payload,unaff_s2,&payload.level);
-  af_read_le8(packet->payload,unaff_s2,&payload.field_0x1);
-  _Var2 = level_check_options_is_exec(ep_id,cmd_id,payload.level,payload._1_1_);
-  if (CONCAT31(extraout_var,_Var2) == 0) {
-    eVar1 = '\0';
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s2,&uStack_24);
+  af_read_le8(*(undefined4 *)(param_1 + 0x24),unaff_s2,(int)&uStack_24 + 1);
+  iVar4 = level_check_options_is_exec(uVar1,uVar2,(undefined1)uStack_24,uStack_24._1_1_);
+  if (iVar4 == 0) {
+    uVar5 = 0;
   }
   else {
-    eVar1 = move_to_cvc_level(ep_id,(packet->header).cmd_id != '\0',
-                              (ezb_zcl_level_move_to_level_cmd_payload_t *)auStack_28);
+    uVar5 = move_to_cvc_level(uVar1,*(char *)(param_1 + 0x20) != '\0',&uStack_28);
   }
 _L0:
-  eVar1 = zcl_packet_setup_default_response(rsp,packet,eVar1);
-  return eVar1;
+  zcl_packet_setup_default_response(param_2,param_1,uVar5);
+  return;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_is_addr_tc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,27 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool aps_secur_is_addr_tc(ezb_extaddr_t *extaddr)
+undefined4 aps_secur_is_addr_tc(int *param_1)
 
 {
-  int iVar1;
-  _Bool _Var2;
-  ezb_extaddr_t *peVar3;
+  int *piVar1;
+  undefined4 uVar2;
   
-  iVar1 = *(int *)((int)&extaddr->field_0 + 4);
-  if (*(int *)&extaddr->field_0 == 0 && iVar1 == 0) {
-    _Var2 = false;
+  if (*param_1 == 0 && param_1[1] == 0) {
+    uVar2 = 0;
   }
-  else if ((*(int *)&extaddr->field_0 == -1) && (iVar1 == -1)) {
-    _Var2 = false;
+  else if ((*param_1 == -1) && (param_1[1] == -1)) {
+    uVar2 = 0;
   }
   else {
-    peVar3 = aps_secur_get_tc_address();
-    if ((*(int *)&extaddr->field_0 == *(int *)&peVar3->field_0) &&
-       (*(int *)((int)&extaddr->field_0 + 4) == *(int *)((int)&peVar3->field_0 + 4))) {
-      _Var2 = true;
+    piVar1 = (int *)aps_secur_get_tc_address();
+    if ((*param_1 == *piVar1) && (param_1[1] == piVar1[1])) {
+      uVar2 = 1;
     }
     else {
-      _Var2 = false;
+      uVar2 = 0;
     }
   }
-  return _Var2;
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_load_header
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_status_t zcl_packet_load_header(zcl_packet_t *packet)
+undefined4 zcl_packet_load_header(int param_1)
 
 {
   uint uVar1;
   int iVar2;
   uint uVar3;
-  zcl_status_t zVar4;
+  undefined4 uVar4;
   
-  uVar1 = zmsg_read_bytes(packet->payload,0,1,&(packet->header).fc);
+  uVar1 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),0,1,param_1 + 0x1a);
   if (uVar1 == 0) {
     uVar1 = 0xffff;
   }
-  if (((packet->header).fc & 4) == 0) {
-    (packet->header).manuf_code = 0;
+  if ((*(byte *)(param_1 + 0x1a) & 4) == 0) {
+    *(undefined2 *)(param_1 + 0x1c) = 0;
   }
   else {
-    iVar2 = zmsg_read_bytes(packet->payload,uVar1,2,&(packet->header).manuf_code);
+    iVar2 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),uVar1,2,param_1 + 0x1c);
     if (iVar2 == 0) {
       uVar1 = 0xffff;
     }
@@ -36,26 +34,26 @@ zcl_status_t zcl_packet_load_header(zcl_packet_t *packet)
       uVar1 = uVar1 + iVar2 & 0xffff;
     }
   }
-  iVar2 = zmsg_read_bytes(packet->payload,uVar1,1,&(packet->header).tsn);
+  iVar2 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),uVar1,1,param_1 + 0x1e);
   if (iVar2 == 0) {
     uVar1 = 0xffff;
   }
   else {
     uVar1 = iVar2 + uVar1 & 0xffff;
   }
-  iVar2 = zmsg_read_bytes(packet->payload,uVar1,1,&(packet->header).cmd_id);
+  iVar2 = zmsg_read_bytes(*(undefined4 *)(param_1 + 0x24),uVar1,1,param_1 + 0x20);
   if (iVar2 == 0) {
     uVar1 = 0xffff;
   }
   else {
     uVar1 = iVar2 + uVar1 & 0xffff;
   }
-  uVar3 = zmsg_get_length(packet->payload);
-  zVar4 = 0x80;
+  uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  uVar4 = 0x80;
   if (uVar1 <= uVar3) {
-    zmsg_remove_header(packet->payload);
-    zVar4 = '\0';
+    zmsg_remove_header(*(undefined4 *)(param_1 + 0x24));
+    uVar4 = 0;
   }
-  return zVar4;
+  return uVar4;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_common.o -> zcl_attr_value_is_changed
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,68 +10,46 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_attr_value_is_changed(zcl_attr_desc_t *attr_desc,void *new_value)
+uint zcl_attr_value_is_changed(int param_1,void *param_2)
 
 {
-  _Bool _Var1;
-  uint16_t uVar2;
-  undefined2 extraout_var_00;
-  size_t sVar3;
-  undefined3 extraout_var;
-  int iVar4;
-  uint uVar5;
-  uint8_t auStack_28 [4];
-  uint8_t new_val_buf [8];
   size_t __n;
-  undefined2 extraout_var_01;
+  size_t sVar1;
+  uint uVar2;
+  int iVar3;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
   
-  if (attr_desc != (zcl_attr_desc_t *)0x0) {
-    if (new_value == (void *)0x0) {
-      uVar5 = 0;
-      goto _L0;
+  if (param_1 != 0) {
+    if (param_2 == (void *)0x0) {
+      return 0;
     }
-    uVar2 = zcl_get_attr_value_size(attr_desc->type,attr_desc->data_p);
-    __n = CONCAT22(extraout_var_00,uVar2);
-    uVar2 = zcl_get_attr_value_size(attr_desc->type,new_value);
-    sVar3 = CONCAT22(extraout_var_01,uVar2);
+    __n = zcl_get_attr_value_size(*(undefined1 *)(param_1 + 2),*(undefined4 *)(param_1 + 8));
+    sVar1 = zcl_get_attr_value_size(*(undefined1 *)(param_1 + 2),param_2);
     if (__n == 0xffff) {
-      uVar5 = 0;
-      goto _L0;
+      return 0;
     }
-    if (sVar3 == 0xffff) {
-      uVar5 = 0;
-      goto _L0;
+    if (sVar1 == 0xffff) {
+      return 0;
     }
-    _Var1 = zcl_attr_type_is_composite(attr_desc->type);
-    uVar5 = CONCAT31(extraout_var,_Var1);
-    if (uVar5 != 0) {
-      if (__n == sVar3) {
-        iVar4 = memcmp(attr_desc->data_p,new_value,__n);
-        uVar5 = (uint)(iVar4 != 0);
+    uVar2 = zcl_attr_type_is_composite(*(undefined1 *)(param_1 + 2));
+    if (uVar2 != 0) {
+      if (__n != sVar1) {
+        return uVar2;
       }
-      goto _L0;
+      iVar3 = memcmp(*(void **)(param_1 + 8),param_2,__n);
+      return (uint)(iVar3 != 0);
     }
-    auStack_28[0] = '\0';
-    auStack_28[1] = '\0';
-    auStack_28[2] = '\0';
-    auStack_28[3] = '\0';
-    new_val_buf[0] = '\0';
-    new_val_buf[1] = '\0';
-    new_val_buf[2] = '\0';
-    new_val_buf[3] = '\0';
-    if (__n == sVar3) {
-      zcl_write_attr_value(auStack_28,new_value,attr_desc->type);
-      iVar4 = memcmp(attr_desc->data_p,auStack_28,__n);
-      uVar5 = (uint)(iVar4 != 0);
-      goto _L0;
+    uStack_28 = 0;
+    uStack_24 = 0;
+    if (__n == sVar1) {
+      zcl_write_attr_value(&uStack_28,param_2,*(undefined1 *)(param_1 + 2));
+      iVar3 = memcmp(*(void **)(param_1 + 8),&uStack_28,__n);
+      return (uint)(iVar3 != 0);
     }
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_common.c",0x1f7,
                   "zcl_attr_value_is_changed","old_size == new_size");
   }
-  uVar5 = 0;
-_L0:
-  return SUB41(uVar5,0);
+  return 0;
 }
 

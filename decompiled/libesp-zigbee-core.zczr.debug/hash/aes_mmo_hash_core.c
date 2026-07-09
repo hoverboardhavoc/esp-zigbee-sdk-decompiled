@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> hash.o -> aes_mmo_hash_core
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: aes */
-/* WARNING: Unknown calling convention */
-
-void aes_mmo_hash_core(uint8_t *data,uint8_t *hash)
+void aes_mmo_hash_core(int param_1,int param_2)
 
 {
   uint uVar1;
-  uint16_t *puVar2;
-  uint8_t *puStack_28;
-  ezb_crypto_key_t key;
-  crypto_aes_context_t aes;
+  int iStack_28;
+  undefined2 uStack_24;
+  undefined1 auStack_20 [16];
   
-  key.key._0_2_ = 0x10;
-  puVar2 = &key.key_len;
-  puStack_28 = hash;
-  crypto_aes_ecb_init(puVar2);
-  crypto_aes_ecb_setkey_enc(puVar2,&puStack_28);
-  crypto_aes_ecb_encrypt(puVar2,data,hash);
-  crypto_aes_ecb_free(puVar2);
+  uStack_24 = 0x10;
+  iStack_28 = param_2;
+  crypto_aes_ecb_init(auStack_20);
+  crypto_aes_ecb_setkey_enc(auStack_20,&iStack_28);
+  crypto_aes_ecb_encrypt(auStack_20,param_1,param_2);
+  crypto_aes_ecb_free(auStack_20);
   for (uVar1 = 0; uVar1 < 0x10; uVar1 = uVar1 + 1) {
-    hash[uVar1] = hash[uVar1] ^ data[uVar1];
+    *(byte *)(param_2 + uVar1) = *(byte *)(param_2 + uVar1) ^ *(byte *)(param_1 + uVar1);
   }
   return;
 }

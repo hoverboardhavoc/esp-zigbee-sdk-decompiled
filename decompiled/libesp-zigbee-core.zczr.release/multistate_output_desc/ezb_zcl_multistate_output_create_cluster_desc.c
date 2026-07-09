@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> multistate_output_desc.o -> ezb_zcl_multistate_output_create_cluster_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: server_default_cfg */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_cluster_desc_t
-ezb_zcl_multistate_output_create_cluster_desc(void *cluster_cfg,uint8_t role_mask)
+int ezb_zcl_multistate_output_create_cluster_desc(void *param_1,uint param_2)
 
 {
-  ezb_zcl_cluster_desc_t cluster_desc;
-  undefined *puVar1;
+  int iVar1;
+  undefined *puVar2;
   undefined2 uStack_18;
   undefined1 auStack_16 [2];
-  ezb_zcl_multistate_output_cluster_server_config_t server_default_cfg;
+  undefined2 uStack_14;
+  undefined1 auStack_12 [2];
   
   uStack_18 = 0;
   auStack_16[0] = 0;
-  server_default_cfg.number_of_states = 0;
-  server_default_cfg.out_of_service = false;
-  cluster_desc = (ezb_zcl_cluster_desc_t)zcl_create_cluster_desc(0x13,0);
-  if (cluster_desc != (ezb_zcl_cluster_desc_t)0x0) {
-    if ((role_mask & 1) == 0) {
-      puVar1 = &ezb_zcl_multistate_output_cluster_client_init;
+  uStack_14 = 0;
+  auStack_12[0] = 0;
+  iVar1 = zcl_create_cluster_desc(0x13,0);
+  if (iVar1 != 0) {
+    if ((param_2 & 1) == 0) {
+      puVar2 = &ezb_zcl_multistate_output_cluster_client_init;
     }
     else {
-      puVar1 = &ezb_zcl_multistate_output_cluster_server_init;
+      puVar2 = &ezb_zcl_multistate_output_cluster_server_init;
     }
-    *(undefined **)((int)cluster_desc + 8) = puVar1;
-    if (cluster_cfg != (void *)0x0) {
-      memcpy(&uStack_18,cluster_cfg,8);
+    *(undefined **)(iVar1 + 8) = puVar2;
+    if (param_1 != (void *)0x0) {
+      memcpy(&uStack_18,param_1,8);
     }
-    zcl_cluster_desc_add_revision_attr(cluster_desc,1);
-    if ((role_mask & 1) != 0) {
-      ezb_zcl_multistate_output_cluster_desc_add_attr(cluster_desc,0x4a,&uStack_18);
-      ezb_zcl_multistate_output_cluster_desc_add_attr(cluster_desc,0x51,auStack_16);
-      ezb_zcl_multistate_output_cluster_desc_add_attr(cluster_desc,0x55,&server_default_cfg);
-      ezb_zcl_multistate_output_cluster_desc_add_attr
-                (cluster_desc,0x6f,&server_default_cfg.out_of_service);
+    zcl_cluster_desc_add_revision_attr(iVar1,1);
+    if ((param_2 & 1) != 0) {
+      ezb_zcl_multistate_output_cluster_desc_add_attr(iVar1,0x4a,&uStack_18);
+      ezb_zcl_multistate_output_cluster_desc_add_attr(iVar1,0x51,auStack_16);
+      ezb_zcl_multistate_output_cluster_desc_add_attr(iVar1,0x55,&uStack_14);
+      ezb_zcl_multistate_output_cluster_desc_add_attr(iVar1,0x6f,auStack_12);
     }
   }
-  return cluster_desc;
+  return iVar1;
 }
 

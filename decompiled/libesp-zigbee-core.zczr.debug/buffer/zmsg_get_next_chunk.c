@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_get_next_chunk
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,43 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_get_next_chunk(uint16_t *length,zmsg_chunk_t *chunk)
+ushort * zmsg_get_next_chunk(ushort *param_1,int *param_2)
 
 {
-  zmsg_t *msg;
-  uint16_t offset;
   void *__dest;
-  anon_union_4_2_77b2d3ce_for_buffer_s_0 aVar1;
-  uint16_t auStack_32 [3];
-  zmsg_chunk_t zStack_2c;
+  void *pvVar1;
+  int iVar2;
+  undefined2 auStack_32 [3];
+  undefined1 auStack_2c [4];
+  void *pvStack_28;
+  ushort uStack_24;
   
-  if (*length == 0) {
-    chunk->len = 0;
+  if (*param_1 == 0) {
+    *(undefined2 *)(param_2 + 2) = 0;
   }
   else {
-    aVar1 = chunk->buffer->field_0;
-    chunk->buffer = (buffer_t *)aVar1;
-    if (aVar1 == (anon_union_4_2_77b2d3ce_for_buffer_s_0)0x0) {
-      __dest = (void *)0x10650;
+    iVar2 = *(int *)*param_2;
+    *param_2 = iVar2;
+    if (iVar2 == 0) {
+      pvVar1 = (void *)0x10650;
       auStack_32[0] = 0xf64;
-      msg = (zmsg_t *)
-            __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1cc,0x10650
-                         );
-      zmsg_get_first_chunk(msg,offset,auStack_32,&zStack_2c);
-      while (zStack_2c.len != 0) {
-        memcpy(__dest,zStack_2c.data,(uint)zStack_2c.len);
-        __dest = (void *)((int)__dest + (uint)zStack_2c.len);
-        zmsg_get_next_chunk(auStack_32,&zStack_2c);
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1cc,0x10650);
+      zmsg_get_first_chunk(auStack_32,auStack_2c);
+      __dest = pvVar1;
+      while (uStack_24 != 0) {
+        memcpy(__dest,pvStack_28,(uint)uStack_24);
+        __dest = (void *)((int)__dest + (uint)uStack_24);
+        zmsg_get_next_chunk(auStack_32,auStack_2c);
       }
-      return;
+      return (ushort *)((int)__dest - (int)pvVar1 & 0xffff);
     }
-    chunk->data = (uint8_t *)((int)aVar1 + 4);
-    chunk->len = 0xac;
-    if (*length < 0xac) {
-      chunk->len = *length;
+    param_2[1] = iVar2 + 4;
+    *(undefined2 *)(param_2 + 2) = 0xac;
+    if (*param_1 < 0xac) {
+      *(ushort *)(param_2 + 2) = *param_1;
     }
-    *length = *length - chunk->len;
+    *param_1 = *param_1 - (short)param_2[2];
   }
-  return;
+  return param_1;
 }
 

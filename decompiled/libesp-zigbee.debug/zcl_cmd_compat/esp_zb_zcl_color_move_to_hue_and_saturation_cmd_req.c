@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> zcl_cmd_compat.o -> esp_zb_zcl_color_move_to_hue_and_saturation_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-uint8_t esp_zb_zcl_color_move_to_hue_and_saturation_cmd_req
-                  (esp_zb_color_move_to_hue_saturation_cmd_t *cmd_req)
+undefined4 esp_zb_zcl_color_move_to_hue_and_saturation_cmd_req(int param_1)
 
 {
-  undefined2 uVar1;
-  uint8_t uVar2;
-  int iVar3;
-  undefined1 local_30 [4];
-  ezb_zcl_color_control_move_to_hue_and_saturation_cmd_t req;
+  int iVar1;
+  undefined4 uVar2;
+  undefined4 local_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  undefined4 uStack_14;
   
-  local_30 = (undefined1  [4])0x0;
-  req.cmd_ctrl.dst_addr._0_4_ = 0;
-  req.cmd_ctrl.dst_addr.u._2_4_ = 0;
-  req.cmd_ctrl._8_4_ = 0;
-  req.cmd_ctrl.dis_default_rsp = false;
-  req.cmd_ctrl._13_3_ = 0;
-  req.cmd_ctrl.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-  req.cmd_ctrl.cnf_ctx.user_ctx = (void *)0x0;
-  req.payload.hue = '\0';
-  req.payload.saturation = '\0';
-  req.payload.transition_time = 0;
-  if (cmd_req == (esp_zb_color_move_to_hue_saturation_cmd_t *)0x0) {
+  local_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
+  if (param_1 == 0) {
     esp_log(0x11,"ZCL_CMD_COMPAT","%s(%d): Invalid Argument",
             "esp_zb_zcl_color_move_to_hue_and_saturation_cmd_req",0x3db);
     uVar2 = 0xff;
   }
   else {
-    convert_to_ezb_specific_cmd_ctrl
-              ((ezb_zcl_cluster_cmd_ctrl_t *)local_30,(esp_zb_zcl_specific_cmd_header_t *)cmd_req);
-    uVar1._0_1_ = cmd_req->hue;
-    uVar1._1_1_ = cmd_req->saturation;
-    req.cmd_ctrl.cnf_ctx.user_ctx = (void *)CONCAT22(cmd_req->transition_time,uVar1);
-    iVar3 = ezb_zcl_color_control_move_to_hue_and_saturation_cmd_req(local_30);
-    if (iVar3 == 0) {
+    convert_to_ezb_specific_cmd_ctrl(&local_30,param_1);
+    uStack_18 = CONCAT22(*(undefined2 *)(param_1 + 0xe),*(undefined2 *)(param_1 + 0xb));
+    iVar1 = ezb_zcl_color_control_move_to_hue_and_saturation_cmd_req(&local_30);
+    if (iVar1 == 0) {
       uVar2 = zcl_get_current_tsn();
     }
     else {

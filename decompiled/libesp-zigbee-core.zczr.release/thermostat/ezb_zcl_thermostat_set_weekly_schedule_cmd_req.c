@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> thermostat.o -> ezb_zcl_thermostat_set_weekly_schedule_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,51 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_zcl_thermostat_set_weekly_schedule_cmd_req
-                    (ezb_zcl_thermostat_set_weekly_schedule_cmd_t *cmd_req)
+int ezb_zcl_thermostat_set_weekly_schedule_cmd_req(void *param_1)
 
 {
   int iVar1;
-  ezb_zcl_thermostat_weekly_schedule_transition_t *peVar2;
-  uint uVar3;
+  uint uVar2;
+  int iVar3;
   undefined1 auStack_60 [24];
-  undefined1 auStack_48 [4];
-  zcl_packet_t packet;
+  undefined1 auStack_48 [36];
+  undefined4 uStack_24;
   
   memset(auStack_48,0,0x28);
-  if ((cmd_req == (ezb_zcl_thermostat_set_weekly_schedule_cmd_t *)0x0) ||
-     (iVar1 = zcl_packet_init(auStack_48,0), iVar1 != 0)) {
+  if ((param_1 == (void *)0x0) || (iVar1 = zcl_packet_init(auStack_48,0), iVar1 != 0)) {
     iVar1 = -1;
   }
   else {
-    memcpy(auStack_60,cmd_req,10);
-    iVar1 = zcl_cmd_to_packet(auStack_48,1,0,0,(cmd_req->cmd_ctrl).dis_default_rsp,0,0x201);
+    memcpy(auStack_60,param_1,10);
+    iVar1 = zcl_cmd_to_packet(auStack_48,1,0,0,*(undefined1 *)((int)param_1 + 0xc),0,0x201);
     if ((((iVar1 == 0) &&
-         (iVar1 = zmsg_append_u8((zmsg_t *)packet._32_4_,(cmd_req->payload).num_of_trans),
-         iVar1 == 0)) &&
-        (iVar1 = zmsg_append_u8((zmsg_t *)packet._32_4_,(cmd_req->payload).day_of_week), iVar1 == 0)
-        ) && (iVar1 = zmsg_append_u8((zmsg_t *)packet._32_4_,(cmd_req->payload).mode_for_req),
-             iVar1 == 0)) {
-      uVar3 = 0;
+         (iVar1 = zmsg_append_u8(uStack_24,*(undefined1 *)((int)param_1 + 0x18)), iVar1 == 0)) &&
+        (iVar1 = zmsg_append_u8(uStack_24,*(undefined1 *)((int)param_1 + 0x19)), iVar1 == 0)) &&
+       (iVar1 = zmsg_append_u8(uStack_24,*(undefined1 *)((int)param_1 + 0x1a)), iVar1 == 0)) {
+      uVar2 = 0;
       do {
-        if (((uint)(cmd_req->payload).num_of_trans <= (uVar3 & 0xff)) ||
-           (peVar2 = (cmd_req->payload).transitions,
-           peVar2 == (ezb_zcl_thermostat_weekly_schedule_transition_t *)0x0)) break;
-        iVar1 = zmsg_append_le16((zmsg_t *)packet._32_4_,peVar2[uVar3].start_time);
+        if (((uint)*(byte *)((int)param_1 + 0x18) <= (uVar2 & 0xff)) ||
+           (*(int *)((int)param_1 + 0x1c) == 0)) break;
+        iVar3 = uVar2 * 6;
+        iVar1 = zmsg_append_le16(uStack_24,*(undefined2 *)(*(int *)((int)param_1 + 0x1c) + iVar3));
         if (((iVar1 != 0) ||
-            ((((cmd_req->payload).mode_for_req & 1) != 0 &&
-             (iVar1 = zmsg_append_le16((zmsg_t *)packet._32_4_,
-                                       (cmd_req->payload).transitions[uVar3].heat_setpoint),
+            (((*(byte *)((int)param_1 + 0x1a) & 1) != 0 &&
+             (iVar1 = zmsg_append_le16(uStack_24,
+                                       *(undefined2 *)(*(int *)((int)param_1 + 0x1c) + iVar3 + 2)),
              iVar1 != 0)))) ||
-           ((((cmd_req->payload).mode_for_req & 2) != 0 &&
-            (iVar1 = zmsg_append_le16((zmsg_t *)packet._32_4_,
-                                      (cmd_req->payload).transitions[uVar3].cool_setpoint),
+           (((*(byte *)((int)param_1 + 0x1a) & 2) != 0 &&
+            (iVar1 = zmsg_append_le16(uStack_24,
+                                      *(undefined2 *)(*(int *)((int)param_1 + 0x1c) + iVar3 + 4)),
             iVar1 != 0)))) goto _L0;
-        uVar3 = uVar3 + 1;
-      } while (uVar3 != 10);
-      zcl_packet_send(auStack_48,&(cmd_req->cmd_ctrl).cnf_ctx);
+        uVar2 = uVar2 + 1;
+      } while (uVar2 != 10);
+      zcl_packet_send(auStack_48,(int)param_1 + 0x10);
       iVar1 = zcl_status_to_err();
       if (iVar1 == 0) {
         return 0;

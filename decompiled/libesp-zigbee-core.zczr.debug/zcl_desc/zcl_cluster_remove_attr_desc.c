@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_desc.o -> zcl_cluster_remove_attr_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,42 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_attr_desc_t *
-zcl_cluster_remove_attr_desc(zcl_cluster_desc_t *cluster_desc,uint16_t attr_id,uint16_t manuf_code)
+int zcl_cluster_remove_attr_desc(int param_1,uint param_2,uint param_3)
 
 {
   int iVar1;
-  undefined2 in_register_0000202e;
-  undefined2 in_register_00002032;
-  zcl_attr_desc_t **ppzVar2;
-  zcl_attr_desc_s *pzVar3;
-  zcl_attr_desc_t *pzVar4;
+  ushort *puVar2;
+  ushort *puVar3;
   
   iVar1 = af_device_desc_is_registered();
   if (iVar1 == 0) {
-    if (cluster_desc == (zcl_cluster_desc_t *)0x0) {
-      pzVar4 = (zcl_attr_desc_t *)0x0;
+    if (param_1 == 0) {
+      iVar1 = 0;
     }
     else {
-      ppzVar2 = &cluster_desc->attr_list;
-      pzVar3 = cluster_desc->attr_list;
-      while ((pzVar3 != (zcl_attr_desc_s *)0x0 &&
-             (((pzVar4 = *ppzVar2, pzVar4 == (zcl_attr_desc_t *)0x0 ||
-               ((uint)pzVar4->id != CONCAT22(in_register_0000202e,attr_id))) ||
-              ((uint)pzVar4->manuf_code != CONCAT22(in_register_00002032,manuf_code)))))) {
-        ppzVar2 = &pzVar4->next;
-        pzVar3 = pzVar4->next;
+      puVar2 = (ushort *)(param_1 + 0xc);
+      iVar1 = *(int *)(param_1 + 0xc);
+      while ((iVar1 != 0 &&
+             (((puVar3 = *(ushort **)puVar2, puVar3 == (ushort *)0x0 || (*puVar3 != param_2)) ||
+              (puVar3[2] != param_3))))) {
+        puVar2 = puVar3 + 6;
+        iVar1 = *(int *)(puVar3 + 6);
       }
-      if (ppzVar2 == (zcl_attr_desc_t **)0x0) {
-        pzVar4 = (zcl_attr_desc_t *)0x0;
+      if (puVar2 == (ushort *)0x0) {
+        iVar1 = 0;
       }
       else {
-        pzVar4 = *ppzVar2;
-        if (pzVar4 != (zcl_attr_desc_t *)0x0) {
-          *ppzVar2 = pzVar4->next;
-          pzVar4->next = (zcl_attr_desc_s *)0x0;
+        iVar1 = *(int *)puVar2;
+        if (iVar1 != 0) {
+          *(undefined4 *)puVar2 = *(undefined4 *)(iVar1 + 0xc);
+          *(undefined4 *)(iVar1 + 0xc) = 0;
         }
       }
     }
   }
   else {
-    pzVar4 = (zcl_attr_desc_t *)0x0;
+    iVar1 = 0;
   }
-  return pzVar4;
+  return iVar1;
 }
 

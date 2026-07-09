@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_secur.o -> aps_secur_key_pair_setup_global_tclk
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,43 +10,38 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_secur_key_pair_setup_global_tclk(aps_device_key_pair_t *key_pair)
+void aps_secur_key_pair_setup_global_tclk(int param_1)
 
 {
   ushort uVar1;
-  _Bool _Var2;
-  int iVar3;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  uint8_t *__src;
-  ushort uVar4;
+  int iVar2;
+  void *__src;
+  ushort uVar3;
   
-  iVar3 = core_globals_get();
-  _Var2 = secur_is_key_valid((uint8_t *)(iVar3 + 0x990));
-  if (CONCAT31(extraout_var,_Var2) == 0) {
-    _Var2 = aps_secur_is_centralized();
-    if (CONCAT31(extraout_var_00,_Var2) == 0) {
-      __src = aps_secur_get_wellknown_secret('\x01');
+  iVar2 = core_globals_get();
+  iVar2 = secur_is_key_valid(iVar2 + 0x990);
+  if (iVar2 == 0) {
+    iVar2 = aps_secur_is_centralized();
+    if (iVar2 == 0) {
+      __src = (void *)aps_secur_get_wellknown_secret(1);
     }
     else {
-      __src = aps_secur_get_wellknown_secret('\0');
+      __src = (void *)aps_secur_get_wellknown_secret(0);
     }
   }
   else {
-    iVar3 = core_globals_get();
-    __src = (uint8_t *)(iVar3 + 0x990);
+    iVar2 = core_globals_get();
+    __src = (void *)(iVar2 + 0x990);
   }
-  uVar1 = (key_pair->field_8).flags;
-  uVar4 = uVar1 & 0xfff9;
-  (key_pair->field_8).flags = uVar4;
-  (key_pair->field_8).flags = uVar4 | 1;
-  (key_pair->field_8).flags = uVar1 & 0xff39 | 1;
-  key_pair->timeout = 0xffff;
-  key_pair->incoming_frame_cntr = 0;
-  key_pair->outgoing_frame_cntr = 0;
-  memcpy(key_pair->link_key,__src,0x10);
+  uVar1 = *(ushort *)(param_1 + 0x34);
+  uVar3 = uVar1 & 0xfff9;
+  *(ushort *)(param_1 + 0x34) = uVar3;
+  *(ushort *)(param_1 + 0x34) = uVar3 | 1;
+  *(ushort *)(param_1 + 0x34) = uVar1 & 0xff39 | 1;
+  *(undefined2 *)(param_1 + 0x10) = 0xffff;
+  *(undefined4 *)(param_1 + 0xc) = 0;
+  *(undefined4 *)(param_1 + 8) = 0;
+  memcpy((void *)(param_1 + 0x12),__src,0x10);
   return;
 }
 

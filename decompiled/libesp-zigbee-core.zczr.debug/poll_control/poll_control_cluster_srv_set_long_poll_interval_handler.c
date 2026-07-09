@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> poll_control.o -> poll_control_cluster_srv_set_long_poll_interval_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,36 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: offset */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-poll_control_cluster_srv_set_long_poll_interval_handler(zcl_packet_t *packet,zcl_packet_t *rsp)
+void poll_control_cluster_srv_set_long_poll_interval_handler(int param_1,int param_2)
 
 {
-  byte bVar1;
-  ezb_zcl_status_t eVar2;
-  uint16_t uVar3;
-  uint uVar5;
-  uint32_t uStack_18;
-  uint32_t long_poll_interval;
-  uint16_t offset;
-  ushort uVar4;
+  uint uVar1;
+  uint uVar2;
+  undefined4 uStack_18;
+  ushort uStack_12;
   
-  long_poll_interval._2_2_ = 0;
+  uStack_12 = 0;
   uStack_18 = 0;
-  if (packet == (zcl_packet_t *)0x0) {
-    uVar4 = 0xfe;
+  if (param_1 == 0) {
+    uVar2 = 0xfe;
   }
-  else if (rsp == (zcl_packet_t *)0x0) {
-    uVar4 = 0xfe;
+  else if (param_2 == 0) {
+    uVar2 = 0xfe;
   }
   else {
-    uVar5 = zmsg_get_length(packet->payload);
-    uVar3 = af_read_le32(packet->payload,(uint16_t *)((int)&long_poll_interval + 2),&uStack_18);
-    uVar4 = uVar3 & 0xff;
-    if ((uVar3 & 0xff) == 0) {
-      if (uVar5 < long_poll_interval._2_2_) {
-        uVar4 = 0x80;
+    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    uVar2 = af_read_le32(*(undefined4 *)(param_1 + 0x24),&uStack_12,&uStack_18);
+    uVar2 = uVar2 & 0xff;
+    if (uVar2 == 0) {
+      if (uVar1 < uStack_12) {
+        uVar2 = 0x80;
       }
       else {
-        bVar1 = zcl_message_poll_control_notify((packet->header).dst_ep,1,(uint8_t *)&uStack_18);
-        uVar4 = (ushort)bVar1;
+        uVar2 = zcl_message_poll_control_notify(*(undefined1 *)(param_1 + 0x15),1,&uStack_18);
       }
     }
   }
-  eVar2 = zcl_packet_setup_default_response(rsp,packet,uVar4);
-  return eVar2;
+  zcl_packet_setup_default_response(param_2,param_1,uVar2);
+  return;
 }
 

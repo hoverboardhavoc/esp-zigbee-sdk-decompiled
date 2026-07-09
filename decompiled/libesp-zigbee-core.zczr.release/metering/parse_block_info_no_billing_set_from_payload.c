@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> metering.o -> parse_block_info_no_billing_set_from_payload
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,61 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-parse_block_info_no_billing_set_from_payload
-          (zcl_packet_payload_t *payload,uint16_t *offset,
-          ezb_zcl_metering_block_info_no_billing_set_t *block_info_no_billing_set)
+int parse_block_info_no_billing_set_from_payload(undefined4 param_1,undefined4 param_2,int param_3)
 
 {
   uint uVar1;
-  ezb_zcl_status_t eVar2;
-  uint16_t uVar3;
-  uint64_t *puVar4;
-  int iVar5;
-  undefined2 extraout_var_00;
-  undefined3 extraout_var;
-  undefined2 extraout_var_01;
+  void *pvVar2;
+  int iVar3;
   uint __nmemb;
   
-  iVar5 = zcl_packet_read_variable_attr_value(0x25,block_info_no_billing_set);
-  if ((iVar5 == 6) &&
-     (uVar3 = af_read_le8(payload,offset,&block_info_no_billing_set->num_of_tiers_in_use),
-     CONCAT22(extraout_var_00,uVar3) == 1)) {
-    eVar2 = parse_summation_from_payload
-                      (payload,offset,block_info_no_billing_set->num_of_tiers_in_use,
-                       &block_info_no_billing_set->tier_summation);
-    iVar5 = CONCAT31(extraout_var,eVar2);
-    if (iVar5 != 0) goto _L0;
-    uVar3 = af_read_le8(payload,offset,
-                        &block_info_no_billing_set->num_of_tiers_and_block_thresholds_in_use);
-    if (CONCAT22(extraout_var_01,uVar3) == 1) {
-      __nmemb = (uint)block_info_no_billing_set->num_of_tiers_and_block_thresholds_in_use;
+  iVar3 = zcl_packet_read_variable_attr_value(0x25,param_3);
+  if ((iVar3 == 6) && (iVar3 = af_read_le8(param_1,param_2,param_3 + 8), iVar3 == 1)) {
+    iVar3 = parse_summation_from_payload(param_1,param_2,*(undefined1 *)(param_3 + 8),param_3 + 0xc)
+    ;
+    if (iVar3 != 0) {
+      return iVar3;
+    }
+    iVar3 = af_read_le8(param_1,param_2,param_3 + 0x10);
+    if (iVar3 == 1) {
+      __nmemb = (uint)*(byte *)(param_3 + 0x10);
       if (__nmemb == 0) {
-        return '\0';
+        return 0;
       }
-      puVar4 = (uint64_t *)calloc(__nmemb,8);
-      block_info_no_billing_set->tier_block_summation = puVar4;
-      eVar2 = 0x89;
-      if (puVar4 != (uint64_t *)0x0) {
+      pvVar2 = calloc(__nmemb,8);
+      *(int *)(param_3 + 0x14) = (int)pvVar2;
+      iVar3 = 0x89;
+      if (pvVar2 != (void *)0x0) {
         uVar1 = 0;
         do {
-          iVar5 = zcl_packet_read_variable_attr_value
-                            (payload,offset,0x25,
-                             block_info_no_billing_set->tier_block_summation + uVar1);
-          if (iVar5 != 6) {
+          iVar3 = zcl_packet_read_variable_attr_value
+                            (param_1,param_2,0x25,uVar1 * 8 + *(int *)(param_3 + 0x14));
+          if (iVar3 != 6) {
             return 0x80;
           }
           uVar1 = uVar1 + 1;
         } while (__nmemb != uVar1);
-        eVar2 = '\0';
+        iVar3 = 0;
       }
-      return eVar2;
+      return iVar3;
     }
   }
-  iVar5 = 0x80;
-_L0:
-  return (ezb_zcl_status_t)iVar5;
+  return 0x80;
 }
 

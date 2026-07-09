@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> scenes.o -> zcl_scenes_recall_scene
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,76 +10,65 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-zcl_scenes_recall_scene
-          (zcl_packet_t *packet,uint16_t group_id,uint8_t scene_id,uint16_t transition_time)
+uint zcl_scenes_recall_scene(int param_1,uint param_2,undefined1 param_3,uint param_4)
 
 {
-  uint8_t ep_id;
-  zcl_scene_table_entry_t *pzVar1;
-  zcl_attr_desc_t *pzVar2;
-  zcl_attr_desc_t *pzVar3;
-  zcl_attr_desc_t *pzVar4;
-  uint uVar5;
-  undefined2 in_register_0000202e;
-  uint extraout_a1;
-  uint16_t scene_id_00;
-  undefined3 in_register_00002031;
-  undefined2 in_register_00002036;
+  undefined1 uVar1;
+  int iVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
   uint uVar6;
-  undefined1 auStack_4c [4];
-  ezb_zcl_scenes_recall_scene_message_t message;
+  uint extraout_a1;
+  undefined1 auStack_4c [8];
+  int iStack_44;
+  undefined2 uStack_40;
+  undefined1 uStack_3e;
+  undefined2 uStack_3c;
+  undefined4 uStack_38;
+  byte bStack_34;
   
-  uVar6 = CONCAT22(in_register_00002036,transition_time);
-  scene_id_00 = (uint16_t)CONCAT31(in_register_00002031,scene_id);
-  uVar5 = CONCAT22(in_register_0000202e,group_id);
-  if (packet != (zcl_packet_t *)0x0) goto _L0;
+  if (param_1 != 0) goto _L0;
   do {
-    uVar6 = 0;
-    scene_id_00 = 0;
-    packet = (zcl_packet_t *)__assert_func(0,0);
-    uVar5 = extraout_a1;
+    param_4 = 0;
+    param_3 = 0;
+    param_1 = __assert_func(0,0);
+    param_2 = extraout_a1;
 _L0:
-    if (0xfff7 < uVar5) {
-      uVar5 = 0x87;
-      goto _L0;
+    if (0xfff7 < param_2) {
+      return 0x87;
     }
-    ep_id = (packet->header).dst_ep;
-    pzVar1 = scene_table_find_entry(ep_id,(uint16_t)uVar5,scene_id_00);
-    if (pzVar1 == (zcl_scene_table_entry_t *)0x0) {
-      uVar5 = 0x8b;
-      goto _L0;
+    uVar1 = *(undefined1 *)(param_1 + 0x15);
+    iVar2 = scene_table_find_entry(uVar1);
+    if (iVar2 == 0) {
+      return 0x8b;
     }
-    if (uVar6 == 0xffff) {
-      uVar6 = (uint)pzVar1->transition_time;
+    if (param_4 == 0xffff) {
+      param_4 = (uint)*(ushort *)(iVar2 + 6);
     }
-    pzVar2 = scenes_srv_get_attr_desc(ep_id,1);
-    pzVar3 = scenes_srv_get_attr_desc(ep_id,2);
-    pzVar4 = scenes_srv_get_attr_desc(ep_id,3);
-  } while (((pzVar2 == (zcl_attr_desc_t *)0x0) || (pzVar3 == (zcl_attr_desc_t *)0x0)) ||
-          (pzVar4 == (zcl_attr_desc_t *)0x0));
-  *(char *)pzVar2->data_p = (char)scene_id_00;
-  *(uint16_t *)pzVar3->data_p = (uint16_t)uVar5;
-  *(undefined1 *)pzVar4->data_p = 0;
+    iVar3 = scenes_srv_get_attr_desc(uVar1,1);
+    iVar4 = scenes_srv_get_attr_desc(uVar1,2);
+    iVar5 = scenes_srv_get_attr_desc(uVar1,3);
+  } while (((iVar3 == 0) || (iVar4 == 0)) || (iVar5 == 0));
+  **(undefined1 **)(iVar3 + 8) = param_3;
+  **(undefined2 **)(iVar4 + 8) = (short)param_2;
+  **(undefined1 **)(iVar5 + 8) = 0;
   memset(auStack_4c,0,0x1c);
-  uVar5 = zcl_packet_to_message(auStack_4c,packet);
-  if (uVar5 == 0) {
-    message.in.header._0_2_ = pzVar1->group_id;
-    message.in.header._2_1_ = pzVar1->scene_id;
-    message.in.group_id = (uint16_t)uVar6;
-    message.in._8_4_ = pzVar1->extension_field;
-    message.in.field_set._0_1_ = 0xfe;
-    message._4_4_ = packet;
-    zcl_core_action_schedule(0x15,auStack_4c);
-    uVar5 = (uint)(byte)message.in.field_set;
-    if ((uVar5 == 0xfe) || (uVar5 == 0)) {
-      uVar5 = 0;
-      *(undefined1 *)pzVar4->data_p = 1;
+  uVar6 = zcl_packet_to_message(auStack_4c,param_1);
+  if (uVar6 == 0) {
+    uStack_40 = *(undefined2 *)(iVar2 + 2);
+    uStack_3e = *(undefined1 *)(iVar2 + 4);
+    uStack_3c = (undefined2)param_4;
+    uStack_38 = *(undefined4 *)(iVar2 + 0x1c);
+    bStack_34 = 0xfe;
+    iStack_44 = param_1;
+    zcl_core_action_schedule(0x16,auStack_4c);
+    uVar6 = (uint)bStack_34;
+    if ((uVar6 == 0xfe) || (uVar6 == 0)) {
+      uVar6 = 0;
+      **(undefined1 **)(iVar5 + 8) = 1;
     }
   }
-_L0:
-  return (ezb_zcl_status_t)uVar5;
+  return uVar6;
 }
 

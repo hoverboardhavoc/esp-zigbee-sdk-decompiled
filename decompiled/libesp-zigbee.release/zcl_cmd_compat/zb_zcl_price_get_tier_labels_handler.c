@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zcl_cmd_compat.o -> zb_zcl_price_get_tier_labels_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,50 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: app_message */
-/* WARNING: Unknown calling convention */
-
-void zb_zcl_price_get_tier_labels_handler(void *arg,esp_zb_core_action_callback_t cb)
+void zb_zcl_price_get_tier_labels_handler(undefined2 *param_1,code *param_2)
 
 {
   char cVar1;
-  undefined4 uVar2;
-  uint32_t *puVar3;
+  int iVar2;
+  undefined4 *puVar3;
   undefined2 uStack_2c;
   undefined2 uStack_2a;
-  esp_zb_zcl_price_get_tier_labels_message_t app_message;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  undefined4 uStack_18;
+  int iStack_14;
   
-  uStack_2a = *(undefined2 *)((int)arg + 2);
-                    /* WARNING: Load size is inaccurate */
-  uStack_2c = *arg;
-  app_message.info = *(esp_zb_device_cb_common_info_t *)((int)arg + 0xc);
-  app_message.issuer_tariff_id = 0;
-  app_message.resp_info_offered.provider_id = 0;
-  app_message.resp_info_offered.issuer_event_id = 0;
-  app_message.resp_info_offered.issuer_tariff_id = 0;
-  app_message.resp_info_offered.number_of_labels = '\0';
-  app_message.resp_info_offered._13_3_ = 0;
-  if (cb != (esp_zb_core_action_callback_t)0x0) {
-    (*cb)(ESP_ZB_CORE_PRICE_GET_TIER_LABELS_CB_ID,&uStack_2c);
+  uStack_2a = param_1[1];
+  uStack_2c = *param_1;
+  uStack_28 = *(undefined4 *)(param_1 + 6);
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  iStack_14 = 0;
+  if (param_2 != (code *)0x0) {
+    (*param_2)(0x4d,&uStack_2c,param_2);
   }
-  uVar2 = app_message.resp_info_offered._12_4_;
-  cVar1 = (char)app_message.resp_info_offered.issuer_tariff_id;
-  if (((char)app_message.resp_info_offered.issuer_tariff_id == '\0') ||
-     (app_message.resp_info_offered._12_4_ == 0)) {
-    *(undefined1 *)((int)arg + 0x10) = 0x8b;
+  iVar2 = iStack_14;
+  cVar1 = (char)uStack_18;
+  if (((char)uStack_18 == '\0') || (iStack_14 == 0)) {
+    *(undefined1 *)(param_1 + 8) = 0x8b;
   }
   else {
-    *(undefined1 *)((int)arg + 0x10) = 0;
-    puVar3 = (uint32_t *)calloc(1,0x14);
-    *(uint32_t **)((int)arg + 0x14) = puVar3;
+    *(undefined1 *)(param_1 + 8) = 0;
+    puVar3 = (undefined4 *)calloc(1,0x14);
+    *(undefined4 **)(param_1 + 10) = puVar3;
     *(char *)((int)puVar3 + 0xe) = cVar1;
-    *puVar3 = app_message.issuer_tariff_id;
-    puVar3[4] = uVar2;
-    *(uint32_t **)((int)arg + 0x1c) = puVar3;
-    puVar3[1] = app_message.resp_info_offered.provider_id;
-    puVar3[2] = app_message.resp_info_offered.issuer_event_id;
+    *puVar3 = uStack_24;
+    puVar3[4] = iVar2;
+    *(undefined4 **)(param_1 + 0xe) = puVar3;
+    puVar3[1] = uStack_20;
+    puVar3[2] = uStack_1c;
     *(undefined2 *)(puVar3 + 3) = 0x100;
-    *(code **)((int)arg + 0x18) = free_memory_in_data_cnf;
+    *(code **)(param_1 + 0xc) = free_memory_in_data_cnf;
   }
   return;
 }

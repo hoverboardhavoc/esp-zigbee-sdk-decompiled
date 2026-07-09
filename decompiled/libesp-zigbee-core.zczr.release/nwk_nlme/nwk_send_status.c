@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_nlme.o -> nwk_send_status
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,49 +10,46 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void nwk_send_status(ezb_shortaddr_t dst_addr,nwk_network_status_cmd_t *cmd)
+void nwk_send_status(uint param_1,char *param_2)
 
 {
   char cVar1;
-  undefined2 in_register_0000202a;
   undefined4 uVar2;
-  zmsg_t *msg;
   int iVar3;
-  ezb_shortaddr_t eStack_12;
+  int iVar4;
+  undefined2 uStack_12;
   
   uVar2 = 0x27;
-  if (CONCAT22(in_register_0000202a,dst_addr) < 0xfff8) {
+  if (param_1 < 0xfff8) {
     uVar2 = 0x2f;
   }
-  msg = (zmsg_t *)zmsg_alloc(uVar2);
-  if (msg == (zmsg_t *)0x0) {
+  iVar3 = zmsg_alloc(uVar2);
+  if (iVar3 == 0) {
     log_write(1,"nwk_nlme.c","Failed to send NwkStatus (%d)");
     return;
   }
   zmsg_set_offset(0);
   uVar2 = nwk_get_short_address();
-  nwk_frame_write_hdr(msg,uVar2,CONCAT22(in_register_0000202a,dst_addr),0,1,0);
-  iVar3 = core_globals_get();
-  cVar1 = *(char *)(iVar3 + 0x9d9);
-  *(char *)(iVar3 + 0x9d9) = cVar1 + '\x01';
-  eStack_12 = CONCAT11(eStack_12._1_1_,cVar1);
-  zmsg_write_bytes(msg,7,1,&eStack_12);
-  zmsg_append_u8(msg,'\x03');
-  zmsg_append_u8(msg,cmd->status_code);
-  eStack_12 = cmd->target_addr;
-  zmsg_append_bytes(msg,2,&eStack_12);
-  if (cmd->status_code == '\x13') {
-    zmsg_append_u8(msg,cmd->command_id);
+  nwk_frame_write_hdr(iVar3,uVar2,param_1,0,1,0);
+  iVar4 = core_globals_get();
+  cVar1 = *(char *)(iVar4 + 0x9d9);
+  *(char *)(iVar4 + 0x9d9) = cVar1 + '\x01';
+  uStack_12 = CONCAT11(uStack_12._1_1_,cVar1);
+  zmsg_write_bytes(iVar3,7,1,&uStack_12);
+  zmsg_append_u8_isra_0(iVar3,3);
+  zmsg_append_u8_isra_0(iVar3,*param_2);
+  uStack_12 = *(undefined2 *)(param_2 + 1);
+  zmsg_append_bytes(iVar3,2,&uStack_12);
+  if (*param_2 == '\x13') {
+    zmsg_append_u8_isra_0(iVar3,param_2[3]);
   }
-  else if (cmd->status_code == '\r') {
+  else if (*param_2 == '\r') {
     uVar2 = random_add_jitter(0,0x40);
     goto _L0;
   }
   uVar2 = 0;
 _L0:
-  nwk_fwd_send_msg_delayed(msg,uVar2);
+  nwk_fwd_send_msg_delayed(iVar3,uVar2);
   return;
 }
 

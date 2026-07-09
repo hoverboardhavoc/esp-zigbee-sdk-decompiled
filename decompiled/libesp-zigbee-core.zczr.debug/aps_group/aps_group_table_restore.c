@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_group.o -> aps_group_table_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,63 +10,61 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_group_table_restore(void)
 
 {
-  ushort blk_nr;
-  bool bVar1;
+  ushort uVar1;
   bool bVar2;
-  uint16_t uVar3;
+  int iVar3;
   int iVar4;
-  int iVar5;
-  undefined2 extraout_var;
-  aps_group_t *__s;
-  bitmap_t *blk_busy;
-  undefined1 local_48 [4];
-  ds_group_info_iterator_t itor;
+  uint uVar5;
+  undefined2 *__s;
+  bool bVar6;
+  undefined4 uVar7;
+  undefined2 uStack_48;
+  undefined1 auStack_46 [32];
+  undefined2 uStack_26;
+  char cStack_24;
   
-  itor.data.ep_in_grp[0x1c] = '\0';
-  itor.data.ep_in_grp[0x1d] = '\0';
-  itor.data.ep_in_grp[0x1e] = '\0';
-  ds_group_info_itor_read((ds_group_info_iterator_t *)local_48);
-  bVar1 = false;
+  uStack_26 = 0;
+  cStack_24 = '\0';
+  ds_group_info_itor_read(&uStack_48);
+  bVar2 = false;
   do {
-    if (itor.data.ep_in_grp[0x1e] != '\0') {
-      bVar2 = false;
+    if (cStack_24 != '\0') {
+      bVar6 = false;
 _L0:
-      if ((bVar1) || (bVar2)) {
+      if ((bVar2) || (bVar6)) {
         aps_group_table_refresh_stored_groups();
       }
       return;
     }
-    __s = group_table_find(local_48._0_2_);
-    if (__s == (aps_group_t *)0x0) {
+    __s = (undefined2 *)group_table_find(uStack_48);
+    if (__s == (undefined2 *)0x0) {
+      iVar3 = core_globals_get();
+      iVar3 = *(int *)(iVar3 + 0x95c);
       iVar4 = core_globals_get();
-      iVar4 = *(int *)(iVar4 + 0x95c);
-      iVar5 = core_globals_get();
-      blk_busy = *(bitmap_t **)(iVar5 + 0x960);
-      iVar5 = core_globals_get();
-      blk_nr = *(ushort *)(iVar5 + 0x964);
-      uVar3 = mempool_alloc_idx(blk_busy,blk_nr);
-      if ((uint)blk_nr <= CONCAT22(extraout_var,uVar3)) {
-        bVar2 = true;
+      uVar7 = *(undefined4 *)(iVar4 + 0x960);
+      iVar4 = core_globals_get();
+      uVar1 = *(ushort *)(iVar4 + 0x964);
+      uVar5 = mempool_alloc_idx(uVar7,(uint)uVar1);
+      if (uVar1 <= uVar5) {
+        bVar6 = true;
         goto _L0;
       }
-      __s = (aps_group_t *)(iVar4 + CONCAT22(extraout_var,uVar3) * 0x22);
-      if (__s == (aps_group_t *)0x0) {
-        bVar2 = true;
+      __s = (undefined2 *)(iVar3 + uVar5 * 0x22);
+      if (__s == (undefined2 *)0x0) {
+        bVar6 = true;
         goto _L0;
       }
     }
     else {
-      bVar1 = true;
+      bVar2 = true;
     }
     memset(__s,0,0x22);
-    __s->group_addr = local_48._0_2_;
-    memcpy(__s->ep_in_grp,local_48 + 2,0x20);
-    ds_group_info_next((ds_group_info_iterator_t *)local_48);
+    *__s = uStack_48;
+    memcpy(__s + 1,auStack_46,0x20);
+    ds_group_info_next(&uStack_48);
   } while( true );
 }
 

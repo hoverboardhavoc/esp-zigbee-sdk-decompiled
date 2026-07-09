@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_reporting.o -> process_attr_report
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,126 +10,123 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void process_attr_report(zcl_reporting_info_t *info)
+void process_attr_report(char *param_1)
 
 {
-  ushort min_interval;
-  ushort max_interval;
   byte bVar1;
   uint uVar2;
-  _Bool _Var3;
+  int iVar3;
   int iVar4;
-  int iVar5;
-  undefined3 extraout_var;
-  undefined4 *puVar6;
-  int *piVar7;
+  undefined4 *puVar5;
+  int *piVar6;
+  uint uVar7;
   uint uVar8;
   uint uVar9;
-  uint uVar10;
   
   uVar2 = 0x7fffffff;
-  if (info == (zcl_reporting_info_t *)0x0) {
+  if (param_1 == (char *)0x0) {
     return;
   }
-  iVar4 = core_globals_get();
-  if (*(char *)(iVar4 + 0xd20) == '\0') {
+  iVar3 = core_globals_get();
+  if (*(char *)(iVar3 + 0xd20) == '\0') {
     return;
   }
-  if (info->direction != '\0') {
-    if ((info->u).send_info.min_interval != 0) {
+  if (*param_1 != '\0') {
+    if (*(short *)(param_1 + 0x10) != 0) {
       milli_timer_get_now();
     }
-    if ((info->u).send_info.min_interval == 0) {
-      (info->next_fire).val = 0x7fffffff;
+    if (*(short *)(param_1 + 0x10) == 0) {
+      param_1[0xc] = -1;
+      param_1[0xd] = -1;
+      param_1[0xe] = -1;
+      param_1[0xf] = '\x7f';
     }
     else {
-      iVar4 = milli_timer_get_now();
-      (info->next_fire).val = (uint)(info->u).send_info.min_interval * 1000 + iVar4;
+      iVar3 = milli_timer_get_now();
+      *(uint *)(param_1 + 0xc) = (uint)*(ushort *)(param_1 + 0x10) * 1000 + iVar3;
     }
     goto _L0;
   }
-  min_interval = (info->u).send_info.min_interval;
-  uVar10 = (uint)min_interval;
-  max_interval = (info->u).send_info.max_interval;
-  uVar9 = (uint)max_interval;
-  _Var3 = reporting_is_allowed(min_interval,max_interval);
-  if (CONCAT31(extraout_var,_Var3) != 0) {
-    uVar8 = *(uint *)&info->cluster_role >> 8 & 0xf;
-    if (uVar8 == 3) {
-      if ((uVar9 != 0) || ((*(uint *)&info->cluster_role >> 0xc & 6) != 0)) {
-        info->field_0x9 = info->field_0x9 & 0xf0 | 4;
-        uVar10 = 0;
+  uVar9 = (uint)*(ushort *)(param_1 + 0x10);
+  uVar8 = (uint)*(ushort *)(param_1 + 0x12);
+  iVar3 = reporting_is_allowed(uVar9,uVar8);
+  if (iVar3 != 0) {
+    uVar7 = *(uint *)(param_1 + 8) >> 8 & 0xf;
+    if (uVar7 == 3) {
+      if ((uVar8 != 0) || ((*(uint *)(param_1 + 8) >> 0xc & 6) != 0)) {
+        param_1[9] = param_1[9] & 0xf0U | 4;
+        uVar9 = 0;
 _L0:
-        iVar4 = milli_timer_get_now();
-        (info->next_fire).val = uVar10 * 1000 + iVar4;
+        iVar3 = milli_timer_get_now();
+        *(uint *)(param_1 + 0xc) = uVar9 * 1000 + iVar3;
         goto _L0;
       }
-      info->field_0x9 = info->field_0x9 & 0xf0;
+      param_1[9] = param_1[9] & 0xf0;
     }
     else {
-      if (3 < uVar8) goto _L0;
-      if (uVar8 == 1) {
-        if (uVar10 == 0) {
-          info->field_0x9 = info->field_0x9 & 0xf0 | 3;
-          uVar10 = uVar9;
+      if (3 < uVar7) goto _L0;
+      if (uVar7 == 1) {
+        if (uVar9 == 0) {
+          param_1[9] = param_1[9] & 0xf0U | 3;
+          uVar9 = uVar8;
         }
         else {
-          info->field_0x9 = info->field_0x9 & 0xf0 | 2;
+          param_1[9] = param_1[9] & 0xf0U | 2;
         }
 _L0:
-        if (uVar10 != 0xffff) goto _L0;
+        if (uVar9 != 0xffff) goto _L0;
       }
-      else if (uVar8 == 2) {
-        if ((*(uint *)&info->cluster_role >> 0xc & 2) != 0) {
-          info->field_0x9 = info->field_0x9 & 0xf0 | 3;
-          uVar10 = 0;
+      else if (uVar7 == 2) {
+        if ((*(uint *)(param_1 + 8) >> 0xc & 2) != 0) {
+          param_1[9] = param_1[9] & 0xf0U | 3;
+          uVar9 = 0;
           goto _L0;
         }
-        if (uVar10 <= uVar9) {
-          info->field_0x9 = info->field_0x9 & 0xf0 | 3;
-          uVar10 = uVar9 - uVar10 & 0xffff;
+        if (uVar9 <= uVar8) {
+          param_1[9] = param_1[9] & 0xf0U | 3;
+          uVar9 = uVar8 - uVar9 & 0xffff;
           goto _L0;
         }
-        info->field_0x9 = info->field_0x9 & 0xf0;
+        param_1[9] = param_1[9] & 0xf0;
       }
-      else if (uVar8 != 0) {
+      else if (uVar7 != 0) {
         do {
           __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zcl/zcl_reporting.c",0x126,
                         "process_attr_report",&_L0);
 _L0:
-          if (uVar8 == 4) {
-            zcl_report_attr_now(info);
-            uVar10 = *(uint *)&info->cluster_role >> 0xc;
-            bVar1 = info->field_0x9 & 0xf;
-            info->field_0x9 = bVar1 | (byte)((uVar10 & 0xb) << 4);
-            info->field_0x9 = (byte)((uVar10 & 9) << 4) | bVar1;
+          if (uVar7 == 4) {
+            zcl_report_attr_now(param_1);
+            bVar1 = param_1[9];
+            param_1[9] = bVar1 & 0xf | (byte)((*(uint *)(param_1 + 8) >> 0xc & 0xb) << 4);
+            param_1[9] = (byte)((*(uint *)(param_1 + 8) >> 0xc & 9) << 4) | bVar1 & 0xf;
             break;
           }
-        } while (uVar8 != 5);
+        } while (uVar7 != 5);
       }
     }
   }
-  (info->next_fire).val = 0x7fffffff;
+  param_1[0xc] = -1;
+  param_1[0xd] = -1;
+  param_1[0xe] = -1;
+  param_1[0xf] = '\x7f';
 _L0:
-  iVar5 = core_globals_get();
-  iVar4 = 0;
-  for (puVar6 = *(undefined4 **)(iVar5 + 0xd34); piVar7 = puVar6 + -1, piVar7 != (int *)0xfffffffc;
-      puVar6 = (undefined4 *)*puVar6) {
-    if (((piVar7 != (int *)0x0) && (iVar5 = *piVar7, iVar5 != 0)) &&
-       (*(uint *)(iVar5 + 0xc) < uVar2)) {
-      uVar2 = *(uint *)(iVar5 + 0xc);
-      iVar4 = iVar5;
+  iVar4 = core_globals_get();
+  iVar3 = 0;
+  for (puVar5 = *(undefined4 **)(iVar4 + 0xd34); piVar6 = puVar5 + -1, piVar6 != (int *)0xfffffffc;
+      puVar5 = (undefined4 *)*puVar5) {
+    if (((piVar6 != (int *)0x0) && (iVar4 = *piVar6, iVar4 != 0)) &&
+       (*(uint *)(iVar4 + 0xc) < uVar2)) {
+      uVar2 = *(uint *)(iVar4 + 0xc);
+      iVar3 = iVar4;
     }
   }
   if (uVar2 < 0x7fffffff) {
-    iVar5 = core_globals_get();
-    milli_timer_stop(iVar5 + 0xd24);
-    iVar5 = core_globals_get();
-    milli_timer_init(iVar5 + 0xd24,process_attr_report,iVar4);
     iVar4 = core_globals_get();
-    milli_timer_fire_at(iVar4 + 0xd24,uVar2);
+    milli_timer_stop(iVar4 + 0xd24);
+    iVar4 = core_globals_get();
+    milli_timer_init(iVar4 + 0xd24,process_attr_report,iVar3);
+    iVar3 = core_globals_get();
+    milli_timer_fire_at(iVar3 + 0xd24,uVar2);
   }
   return;
 }

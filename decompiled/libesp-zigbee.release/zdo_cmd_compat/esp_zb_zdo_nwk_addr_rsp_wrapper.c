@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.release -> zdo_cmd_compat.o -> esp_zb_zdo_nwk_addr_rsp_wrapper
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,72 +10,64 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_zdo_nwk_addr_rsp_wrapper(ezb_zdo_nwk_addr_req_result_t *result,void *user_ctx)
+void esp_zb_zdo_nwk_addr_rsp_wrapper(int *param_1,undefined4 *param_2)
 
 {
   byte bVar1;
-  uint8_t uVar2;
-  ezb_zdp_address_rsp_field_t *peVar3;
-  uint8_t *puVar4;
+  undefined1 uVar2;
+  undefined1 *puVar3;
+  undefined1 *puVar4;
   void *__dest;
   uint __nmemb;
   code *pcVar5;
   undefined4 local_30;
-  esp_zb_zdo_nwk_addr_rsp_t nwk_addr_rsp;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined1 *puStack_24;
   
-                    /* WARNING: Load size is inaccurate */
-  pcVar5 = *user_ctx;
+  pcVar5 = (code *)*param_2;
   if (pcVar5 != (code *)0x0) {
-    if (result->error == 0) {
-      peVar3 = result->rsp;
-      if (peVar3 == (ezb_zdp_address_rsp_field_t *)0x0) {
+    if (*param_1 == 0) {
+      puVar3 = (undefined1 *)param_1[1];
+      if (puVar3 == (undefined1 *)0x0) {
         __assert_func(0,0,0,0);
       }
       local_30 = 0;
-      nwk_addr_rsp.ieee_addr[0] = '\0';
-      nwk_addr_rsp.ieee_addr[1] = '\0';
-      nwk_addr_rsp.ieee_addr[2] = '\0';
-      nwk_addr_rsp.ieee_addr[3] = '\0';
-      nwk_addr_rsp.ieee_addr[4] = '\0';
-      nwk_addr_rsp.ieee_addr[5] = '\0';
-      nwk_addr_rsp.ieee_addr[6] = '\0';
-      nwk_addr_rsp.ieee_addr[7] = '\0';
-      nwk_addr_rsp.nwk_addr = 0;
-      nwk_addr_rsp._10_2_ = 0;
-      memcpy(&local_30,&peVar3->ieee_addr_remote_dev,8);
-      bVar1 = peVar3->num_assoc_dev;
+      uStack_2c = 0;
+      uStack_28 = 0;
+      puStack_24 = (undefined1 *)0x0;
+      memcpy(&local_30,puVar3 + 1,8);
+      bVar1 = puVar3[0xc];
       __nmemb = (uint)bVar1;
-      nwk_addr_rsp.ieee_addr._4_2_ = peVar3->nwk_addr_remote_dev;
+      uStack_28 = CONCAT22(uStack_28._2_2_,*(undefined2 *)(puVar3 + 10));
       if (__nmemb != 0) {
-        puVar4 = (uint8_t *)calloc(1,8);
-        nwk_addr_rsp._8_4_ = puVar4;
-        if (puVar4 != (uint8_t *)0x0) {
-          uVar2 = peVar3->start_index;
+        puVar4 = (undefined1 *)calloc(1,8);
+        puStack_24 = puVar4;
+        if (puVar4 != (undefined1 *)0x0) {
+          uVar2 = puVar3[0xd];
           puVar4[1] = bVar1;
           *puVar4 = uVar2;
           puVar4[2] = bVar1;
           __dest = calloc(__nmemb,2);
           *(void **)(puVar4 + 4) = __dest;
           if (__dest != (void *)0x0) {
-            memcpy(__dest,peVar3->nwk_addr_assoc_dev_list,__nmemb << 1);
+            memcpy(__dest,*(void **)(puVar3 + 0x10),__nmemb << 1);
           }
         }
       }
-      (*pcVar5)(peVar3->status,&local_30,*(undefined4 *)((int)user_ctx + 4));
-      if (nwk_addr_rsp._8_4_ != 0) {
-        if (*(void **)(nwk_addr_rsp._8_4_ + 4) != (void *)0x0) {
-          free(*(void **)(nwk_addr_rsp._8_4_ + 4));
+      (*pcVar5)(*puVar3,&local_30,param_2[1]);
+      if (puStack_24 != (undefined1 *)0x0) {
+        if (*(void **)(puStack_24 + 4) != (void *)0x0) {
+          free(*(void **)(puStack_24 + 4));
         }
-        free((void *)nwk_addr_rsp._8_4_);
+        free(puStack_24);
       }
     }
     else {
-      (*pcVar5)(0x85,0,*(undefined4 *)((int)user_ctx + 4));
+      (*pcVar5)(0x85,0,param_2[1]);
     }
   }
-  free(user_ctx);
+  free(param_2);
   return;
 }
 

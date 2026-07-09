@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aes_ccm.o -> crypto_aes_ccm_star_auth_and_decrypt
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,29 +10,25 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t crypto_aes_ccm_star_auth_and_decrypt
-                    (uint8_t *key,uint8_t *nonce,uint8_t *ad,size_t ad_len,uint8_t *input,
-                    size_t ilen,uint8_t *output,size_t output_len,size_t *olen,size_t tag_len)
+undefined4
+crypto_aes_ccm_star_auth_and_decrypt
+          (undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,int param_5,
+          uint param_6,undefined4 param_7)
 
 {
-  uint ilen_00;
-  size_t *olen_00;
-  ezb_err_t eVar1;
-  size_t in_stack_00000000;
-  size_t in_stack_ffffffc0;
-  uint8_t tag [16];
+  uint uVar1;
+  undefined4 uVar2;
+  uint in_stack_00000004;
+  undefined1 auStack_40 [24];
   
-  if (ilen < olen) {
-    eVar1 = 2;
+  if (param_6 < in_stack_00000004) {
+    uVar2 = 2;
   }
   else {
-    ilen_00 = ilen - (int)olen & 0xffff;
-    olen_00 = (size_t *)memcpy(&stack0xffffffc0,input + ilen_00,(size_t)olen);
-    eVar1 = crypto_aes_ccm_star(1,key,nonce,ad,ad_len,input,ilen_00,output,in_stack_00000000,olen_00
-                                ,(uint8_t *)olen,in_stack_ffffffc0);
+    uVar1 = param_6 - in_stack_00000004 & 0xffff;
+    memcpy(auStack_40,(void *)(param_5 + uVar1),in_stack_00000004);
+    uVar2 = crypto_aes_ccm_star(1,param_1,param_2,param_3,param_4,param_5,uVar1,param_7);
   }
-  return eVar1;
+  return uVar2;
 }
 

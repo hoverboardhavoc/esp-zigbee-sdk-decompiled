@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> secur_api.o -> secur_is_key_valid
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,23 +10,21 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool secur_is_key_valid(uint8_t *key)
+bool secur_is_key_valid(int param_1)
 
 {
-  uint8_t *puVar1;
+  char *pcVar1;
   char cVar2;
   
-  if (key == (uint8_t *)0x0) {
+  if (param_1 == 0) {
     return false;
   }
-  puVar1 = key + 0xf;
+  pcVar1 = (char *)(param_1 + 0xf);
   cVar2 = '\x10';
   do {
     cVar2 = cVar2 + -1;
-    if (*puVar1 != '\0') break;
-    puVar1 = puVar1 + -1;
+    if (*pcVar1 != '\0') break;
+    pcVar1 = pcVar1 + -1;
   } while (cVar2 != '\0');
   return cVar2 != '\0';
 }

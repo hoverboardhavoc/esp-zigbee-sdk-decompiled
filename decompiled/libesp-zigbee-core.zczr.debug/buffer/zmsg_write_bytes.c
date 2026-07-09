@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_write_bytes
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void zmsg_write_bytes(zmsg_t *msg,uint16_t offset,uint16_t length,void *buf)
+void zmsg_write_bytes(int param_1,int param_2,ushort param_3,void *param_4)
 
 {
-  undefined2 in_register_0000202e;
   char *__n;
-  uint16_t auStack_22 [3];
+  ushort auStack_22 [3];
   undefined1 auStack_1c [4];
-  zmsg_chunk_t chunk;
+  void *pvStack_18;
+  ushort uStack_14;
   
-  auStack_22[0] = length;
-  if ((int)((uint)length + CONCAT22(in_register_0000202e,offset)) <= (int)(uint)msg->length) {
-    zmsg_get_first_chunk(msg,offset,auStack_22,(zmsg_chunk_t *)auStack_1c);
-    while (__n = (char *)(uint)(ushort)chunk.data, __n != (char *)0x0) {
+  auStack_22[0] = param_3;
+  if ((int)((uint)param_3 + param_2) <= (int)(uint)*(ushort *)(param_1 + 0xe)) {
+    zmsg_get_first_chunk(auStack_22,auStack_1c);
+    while (__n = (char *)(uint)uStack_14, __n != (char *)0x0) {
 _L0:
-      memmove(chunk.buffer,buf,(size_t)__n);
-      buf = (void *)((int)buf + (uint)(ushort)chunk.data);
-      zmsg_get_next_chunk(auStack_22,(zmsg_chunk_t *)auStack_1c);
+      memmove(pvStack_18,param_4,(size_t)__n);
+      param_4 = (void *)((int)param_4 + (uint)uStack_14);
+      zmsg_get_next_chunk(auStack_22,auStack_1c);
     }
     return;
   }

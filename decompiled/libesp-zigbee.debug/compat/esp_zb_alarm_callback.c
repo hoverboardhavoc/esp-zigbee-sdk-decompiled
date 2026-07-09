@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee.debug -> compat.o -> esp_zb_alarm_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,19 +10,17 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void esp_zb_alarm_callback(void *arg)
+void esp_zb_alarm_callback(int param_1)
 
 {
-  if ((*(byte *)((int)arg + 0xc) & 1) == 0) {
-    (**(code **)((int)arg + 4))(*(undefined1 *)((int)arg + 8),*(code **)((int)arg + 4));
-    *(void **)((int)arg + 4) = arg;
-    esp_zb_scheduler_alarm_cancel((esp_zb_callback_t)arg,*(uint8_t *)((int)arg + 8));
+  if ((*(byte *)(param_1 + 0xc) & 1) == 0) {
+    (**(code **)(param_1 + 4))(*(undefined1 *)(param_1 + 8),*(code **)(param_1 + 4));
+    *(int *)(param_1 + 4) = param_1;
+    esp_zb_scheduler_alarm_cancel(param_1,*(undefined1 *)(param_1 + 8));
   }
   else {
-    (**(code **)((int)arg + 4))(*(undefined4 *)((int)arg + 8),*(code **)((int)arg + 4));
-    esp_zb_scheduler_user_alarm_cancel(arg);
+    (**(code **)(param_1 + 4))(*(undefined4 *)(param_1 + 8),*(code **)(param_1 + 4));
+    esp_zb_scheduler_user_alarm_cancel(param_1);
   }
   return;
 }

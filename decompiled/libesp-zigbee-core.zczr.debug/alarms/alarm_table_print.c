@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> alarms.o -> alarm_table_print
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,27 +10,23 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void alarm_table_print(uint8_t ep_id)
+void alarm_table_print(undefined4 param_1)
 
 {
-  list_node_t *plVar1;
-  undefined3 in_register_00002029;
-  alarms_alarm_table_t *paVar2;
+  undefined4 *puVar1;
+  int iVar2;
   char cVar3;
   
-  paVar2 = get_alarm_table(ep_id);
-  if ((paVar2 != (alarms_alarm_table_t *)0x0) &&
-     (log_write(3,"ZCL_ALARMS","alarm table ep_id=%u total=%u count=%u",
-                CONCAT31(in_register_00002029,ep_id),paVar2->total,paVar2->count),
-     paVar2->count != '\0')) {
+  iVar2 = get_alarm_table();
+  if ((iVar2 != 0) &&
+     (log_write(3,"ZCL_ALARMS","alarm table ep_id=%u total=%u count=%u",param_1,
+                *(undefined1 *)(iVar2 + 0xc),*(undefined1 *)(iVar2 + 0xd)),
+     *(char *)(iVar2 + 0xd) != '\0')) {
     cVar3 = '\0';
-    for (plVar1 = (paVar2->active_alarms).head; plVar1 != (list_node_t *)0x0; plVar1 = plVar1->next)
-    {
+    for (puVar1 = *(undefined4 **)(iVar2 + 4); puVar1 != (undefined4 *)0x0;
+        puVar1 = (undefined4 *)*puVar1) {
       log_write(3,"ZCL_ALARMS","  [%u] alarm_code=0x%02x cluster_id=0x%04x time_stamp=%lu",cVar3,
-                *(undefined1 *)&plVar1[1].next,*(undefined2 *)((int)&plVar1[1].next + 2),
-                plVar1[2].next);
+                *(undefined1 *)(puVar1 + 1),*(undefined2 *)((int)puVar1 + 6),puVar1[2]);
       cVar3 = cVar3 + '\x01';
     }
   }

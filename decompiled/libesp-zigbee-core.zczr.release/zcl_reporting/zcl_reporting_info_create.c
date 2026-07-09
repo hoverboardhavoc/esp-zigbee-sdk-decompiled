@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_reporting.o -> zcl_reporting_info_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,37 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_reporting_info_t *
-zcl_reporting_info_create
-          (uint8_t ep_id,uint16_t profile_id,_Bool direction,uint16_t cluster_id,uint8_t role,
-          uint16_t attr_id,uint16_t manuf_code)
+void zcl_reporting_info_create
+               (undefined1 param_1,undefined2 param_2,int param_3,undefined2 param_4,
+               undefined1 param_5,undefined2 param_6,undefined2 param_7)
 
 {
-  zcl_reporting_info_t *pzVar1;
-  undefined3 in_register_00002031;
+  undefined1 *puVar1;
   
-  pzVar1 = (zcl_reporting_info_t *)calloc(1,0x38);
-  if (pzVar1 != (zcl_reporting_info_t *)0x0) {
-    pzVar1->ep_id = ep_id;
-    pzVar1->direction = direction;
-    pzVar1->cluster_id = cluster_id;
-    pzVar1->cluster_role = role;
-    pzVar1->attr_id = attr_id;
-    pzVar1->profile_id = profile_id;
-    pzVar1->manuf_code = manuf_code;
-    (pzVar1->next_fire).val = 0x7fffffff;
-    pzVar1->field_0x9 = 0;
-    pzVar1->next = (zcl_reporting_info_s *)0x0;
-    if (CONCAT31(in_register_00002031,direction) == 0) {
-      *(undefined4 *)((int)&pzVar1->u + 0x18) = 5;
-      *(undefined4 *)&pzVar1->u = 5;
+  puVar1 = (undefined1 *)calloc(1,0x38);
+  if (puVar1 != (undefined1 *)0x0) {
+    puVar1[1] = param_1;
+    *puVar1 = (char)param_3;
+    *(undefined2 *)(puVar1 + 4) = param_4;
+    puVar1[8] = param_5;
+    *(undefined2 *)(puVar1 + 6) = param_6;
+    *(undefined2 *)(puVar1 + 2) = param_2;
+    *(undefined2 *)(puVar1 + 0x30) = param_7;
+    *(undefined4 *)(puVar1 + 0xc) = 0x7fffffff;
+    puVar1[9] = 0;
+    *(undefined4 *)(puVar1 + 0x34) = 0;
+    if (param_3 == 0) {
+      *(undefined4 *)(puVar1 + 0x28) = 5;
+      *(undefined4 *)(puVar1 + 0x10) = 5;
     }
     else {
-      (pzVar1->u).send_info.min_interval = 0;
+      *(undefined2 *)(puVar1 + 0x10) = 0;
     }
   }
-  return pzVar1;
+  return;
 }
 

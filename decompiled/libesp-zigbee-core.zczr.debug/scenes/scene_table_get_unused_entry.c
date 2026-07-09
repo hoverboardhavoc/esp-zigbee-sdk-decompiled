@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> scenes.o -> scene_table_get_unused_entry
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zcl_scene_table_entry_t * scene_table_get_unused_entry(uint8_t ep_id)
+byte * scene_table_get_unused_entry(void)
 
 {
   uint uVar1;
-  _Bool _Var2;
-  zcl_scene_table_t *pzVar3;
-  undefined3 extraout_var;
+  byte *pbVar2;
+  int iVar3;
   
-  pzVar3 = scene_table_get(ep_id);
-  if (pzVar3 != (zcl_scene_table_t *)0x0) {
-    for (uVar1 = 0; uVar1 < pzVar3->total; uVar1 = uVar1 + 1 & 0xff) {
-      _Var2 = scene_entry_is_used((zcl_scene_table_entry_t *)(pzVar3 + uVar1 * 4 + 1));
-      if (CONCAT31(extraout_var,_Var2) == 0) {
-        return (zcl_scene_table_entry_t *)(pzVar3 + uVar1 * 4 + 1);
+  pbVar2 = (byte *)scene_table_get();
+  if (pbVar2 != (byte *)0x0) {
+    for (uVar1 = 0; uVar1 < *pbVar2; uVar1 = uVar1 + 1 & 0xff) {
+      iVar3 = scene_entry_is_used(pbVar2 + uVar1 * 0x20 + 8);
+      if (iVar3 == 0) {
+        return pbVar2 + uVar1 * 0x20 + 8;
       }
     }
   }
-  return (zcl_scene_table_entry_t *)0x0;
+  return (byte *)0x0;
 }
 

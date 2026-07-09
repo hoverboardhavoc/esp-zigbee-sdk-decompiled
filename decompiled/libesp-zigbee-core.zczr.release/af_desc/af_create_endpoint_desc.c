@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> af_desc.o -> af_create_endpoint_desc
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-af_ep_desc_t * af_create_endpoint_desc(af_ep_config_t *ep_config)
+undefined1 * af_create_endpoint_desc(undefined1 *param_1)
 
 {
-  uint8_t uVar1;
-  uint16_t uVar2;
-  uint16_t uVar3;
-  undefined2 uVar4;
-  af_ep_desc_t *paVar5;
+  undefined1 uVar1;
+  undefined2 uVar2;
+  undefined2 uVar3;
+  undefined1 *puVar4;
   
-  paVar5 = (af_ep_desc_t *)calloc(1,0x20);
-  if (paVar5 != (af_ep_desc_t *)0x0) {
-    uVar1 = ep_config->ep_id;
-    uVar2 = ep_config->app_profile_id;
-    paVar5->ep_id = uVar1;
-    paVar5->profile_id = uVar2;
-    memset(&(paVar5->simple_desc).field_0x1,0,0xf);
-    uVar3 = ep_config->app_device_id;
-    (paVar5->simple_desc).ep_id = uVar1;
-    (paVar5->simple_desc).app_profile_id = uVar2;
-    (paVar5->simple_desc).app_device_id = uVar3;
-    uVar4 = *(undefined2 *)&ep_config->field_0x6;
-    paVar5->next = (af_ep_desc_s *)0x0;
-    (paVar5->simple_desc).field_0x6 = (byte)uVar4 & 0xf;
+  puVar4 = (undefined1 *)calloc(1,0x20);
+  if (puVar4 != (undefined1 *)0x0) {
+    uVar1 = *param_1;
+    uVar2 = *(undefined2 *)(param_1 + 2);
+    *puVar4 = uVar1;
+    *(undefined2 *)(puVar4 + 2) = uVar2;
+    memset(puVar4 + 0xd,0,0xf);
+    uVar3 = *(undefined2 *)(param_1 + 4);
+    puVar4[0xc] = uVar1;
+    *(undefined2 *)(puVar4 + 0xe) = uVar2;
+    *(undefined2 *)(puVar4 + 0x10) = uVar3;
+    uVar2 = *(undefined2 *)(param_1 + 6);
+    *(undefined4 *)(puVar4 + 0x1c) = 0;
+    puVar4[0x12] = (byte)uVar2 & 0xf;
   }
-  return paVar5;
+  return puVar4;
 }
 

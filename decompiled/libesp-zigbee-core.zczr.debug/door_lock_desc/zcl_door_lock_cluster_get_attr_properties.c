@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> door_lock_desc.o -> zcl_door_lock_cluster_get_attr_properties
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,164 +10,153 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t zcl_door_lock_cluster_get_attr_properties
-                    (uint16_t cluster_role,uint16_t attr_id,uint8_t *type,uint8_t *access)
+undefined4
+zcl_door_lock_cluster_get_attr_properties(int param_1,uint param_2,char *param_3,char *param_4)
 
 {
-  undefined2 in_register_0000202a;
-  undefined2 in_register_0000202e;
-  uint uVar1;
-  char *pcVar2;
-  char *pcVar3;
-  
-  uVar1 = CONCAT22(in_register_0000202e,attr_id);
-  if (type == (uint8_t *)0x0) {
+  if (param_3 == (char *)0x0) {
     return 2;
   }
-  if (access == (uint8_t *)0x0) {
+  if (param_4 == (char *)0x0) {
     return 2;
   }
-  if ((CONCAT22(in_register_0000202a,cluster_role) - 1U & 0xffff) < 2) {
-    if (CONCAT22(in_register_0000202a,cluster_role) != 1) {
+  if ((param_1 - 1U & 0xffff) < 2) {
+    if (param_1 != 1) {
       return 6;
     }
   }
   else {
-    pcVar3 = "cluster_role == 0x01U || cluster_role == 0x02U";
-    pcVar2 = "zcl_door_lock_cluster_get_attr_properties";
-    uVar1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/door_lock_desc.c"
-                          ,0x19);
-    type = (uint8_t *)pcVar2;
-    access = (uint8_t *)pcVar3;
+    param_4 = "cluster_role == 0x01U || cluster_role == 0x02U";
+    param_3 = "zcl_door_lock_cluster_get_attr_properties";
+    param_2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/door_lock_desc.c"
+                            ,0x19);
   }
-  if (uVar1 == 0x21) {
-    *access = '\a';
-    *type = 'B';
+  if (param_2 == 0x21) {
+    *param_4 = '\a';
+    *param_3 = 'B';
     return 0;
   }
-  if (uVar1 < 0x22) {
-    if (5 < uVar1) {
-      if (uVar1 < 0x14) {
-        if (0xf < uVar1) {
-          *access = '\x01';
-          *type = '!';
+  if (param_2 < 0x22) {
+    if (5 < param_2) {
+      if (param_2 < 0x14) {
+        if (0xf < param_2) {
+          *param_4 = '\x01';
+          *param_3 = '!';
           return 0;
         }
-        if (uVar1 == 6) {
-          *access = '\x03';
-          *type = '!';
-          return 0;
-        }
-        return 6;
-      }
-      if (uVar1 < 0x1b) {
-        if (0x13 < uVar1) {
-          *access = '\x01';
-          *type = ' ';
+        if (param_2 == 6) {
+          *param_4 = '\x03';
+          *param_3 = '!';
           return 0;
         }
         return 6;
       }
-      if (uVar1 != 0x20) {
+      if (param_2 < 0x1b) {
+        if (0x13 < param_2) {
+          *param_4 = '\x01';
+          *param_3 = ' ';
+          return 0;
+        }
+        return 6;
+      }
+      if (param_2 != 0x20) {
         return 6;
       }
       goto _L0;
     }
-    if (3 < uVar1) {
-      *access = '\x03';
-      *type = '#';
+    if (3 < param_2) {
+      *param_4 = '\x03';
+      *param_3 = '#';
       return 0;
     }
-    if (uVar1 == 2) {
-      *access = '\x01';
-      *type = '\x10';
+    if (param_2 == 2) {
+      *param_4 = '\x01';
+      *param_3 = '\x10';
       return 0;
     }
-    if (uVar1 < 3) {
-      if (uVar1 != 0) {
-        if (uVar1 == 1) {
-          *access = '\x01';
-          *type = '0';
+    if (param_2 < 3) {
+      if (param_2 != 0) {
+        if (param_2 == 1) {
+          *param_4 = '\x01';
+          *param_3 = '0';
           return 0;
         }
         return 6;
       }
     }
-    else if (uVar1 != 3) {
+    else if (param_2 != 3) {
       return 6;
     }
   }
   else {
-    if (uVar1 == 0x26) {
-      *access = '\x01';
-      *type = '\x19';
+    if (param_2 == 0x26) {
+      *param_4 = '\x01';
+      *param_3 = '\x19';
       return 0;
     }
-    if (uVar1 < 0x27) {
-      if (uVar1 != 0x24) {
-        if (0x24 < uVar1) {
-          if (uVar1 == 0x25) {
-            *access = '\a';
-            *type = '0';
+    if (param_2 < 0x27) {
+      if (param_2 != 0x24) {
+        if (0x24 < param_2) {
+          if (param_2 == 0x25) {
+            *param_4 = '\a';
+            *param_3 = '0';
             return 0;
           }
           return 6;
         }
-        if (uVar1 != 0x22) {
-          if (uVar1 == 0x23) {
-            *access = '\a';
-            *type = '#';
+        if (param_2 != 0x22) {
+          if (param_2 == 0x23) {
+            *param_4 = '\a';
+            *param_3 = '#';
             return 0;
           }
           return 6;
         }
       }
 _L0:
-      *access = '\a';
-      *type = ' ';
+      *param_4 = '\a';
+      *param_3 = ' ';
       return 0;
     }
-    if (uVar1 < 0x34) {
-      if (uVar1 < 0x32) {
-        if (uVar1 == 0x27) {
-          *access = '\x05';
-          *type = '\x19';
+    if (param_2 < 0x34) {
+      if (param_2 < 0x32) {
+        if (param_2 == 0x27) {
+          *param_4 = '\x05';
+          *param_3 = '\x19';
           return 0;
         }
-        if (uVar1 < 0x27) {
+        if (param_2 < 0x27) {
           return 6;
         }
-        if (0x2b < uVar1) {
-          if (1 < (uVar1 - 0x30 & 0xffff)) {
+        if (0x2b < param_2) {
+          if (1 < (param_2 - 0x30 & 0xffff)) {
             return 6;
           }
           goto _L0;
         }
-        if (uVar1 < 0x28) {
+        if (param_2 < 0x28) {
           return 6;
         }
       }
 _L0:
-      *access = '\a';
-      *type = '\x10';
+      *param_4 = '\a';
+      *param_3 = '\x10';
       return 0;
     }
-    if (uVar1 != 0x34) {
-      if (uVar1 < 0x34) {
+    if (param_2 != 0x34) {
+      if (param_2 < 0x34) {
         return 6;
       }
-      if ((uVar1 - 0x40 & 0xffff) < 8) {
-        *access = '\a';
-        *type = '\x19';
+      if ((param_2 - 0x40 & 0xffff) < 8) {
+        *param_4 = '\a';
+        *param_3 = '\x19';
         return 0;
       }
       return 6;
     }
   }
-  *access = '\x05';
-  *type = '0';
+  *param_4 = '\x05';
+  *param_3 = '0';
   return 0;
 }
 

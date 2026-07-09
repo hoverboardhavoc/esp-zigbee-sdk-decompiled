@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> test_utils.o -> ezb_nwk_leave_request
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,30 +10,29 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_nwk_leave_request(ezb_nwk_leave_req_t *req)
+void ezb_nwk_leave_request(undefined1 *param_1)
 
 {
-  ezb_err_t eVar1;
-  uint8_t uStack_1c;
-  uint8_t uStack_1b;
-  uint8_t uStack_1a;
-  uint8_t uStack_19;
-  nwk_leave_req_t nwk_req;
+  undefined1 uStack_1c;
+  undefined1 uStack_1b;
+  undefined1 uStack_1a;
+  undefined1 uStack_19;
+  undefined1 uStack_18;
+  undefined1 uStack_17;
+  undefined1 uStack_16;
+  undefined1 uStack_15;
+  byte bStack_14;
   
-  uStack_1c = (req->device_address).field_0.u8[0];
-  uStack_1b = (req->device_address).field_0.u8[1];
-  uStack_1a = (req->device_address).field_0.u8[2];
-  uStack_19 = (req->device_address).field_0.u8[3];
-  nwk_req.device_address.field_0.u8[0] = (req->device_address).field_0.u8[4];
-  nwk_req.device_address.field_0.u8[1] = (req->device_address).field_0.u8[5];
-  nwk_req.device_address.field_0.u8[2] = (req->device_address).field_0.u8[6];
-  nwk_req.device_address.field_0.u8[3] = (req->device_address).field_0.u8[7];
-  nwk_req.device_address.field_0.u8[4] =
-       (byte)(((byte)req->field_0x8 >> 1 & 1) << 1) |
-       nwk_req.device_address.field_0.u8[4] & 0xfc | req->field_0x8 & 1;
-  eVar1 = nwk_leave_request(&uStack_1c);
-  return eVar1;
+  uStack_1c = *param_1;
+  uStack_1b = param_1[1];
+  uStack_1a = param_1[2];
+  uStack_19 = param_1[3];
+  uStack_18 = param_1[4];
+  uStack_17 = param_1[5];
+  uStack_16 = param_1[6];
+  uStack_15 = param_1[7];
+  bStack_14 = (byte)(((byte)param_1[8] >> 1 & 1) << 1) | bStack_14 & 0xfc | param_1[8] & 1;
+  nwk_leave_request(&uStack_1c);
+  return;
 }
 

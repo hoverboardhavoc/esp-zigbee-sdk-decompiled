@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_active_scan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,33 +10,30 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t mac_active_scan(mac_device *dev,channel_page_t scan_channels,uint16_t scan_duration,
-                         active_scan_callback cb,void *user_ctx)
+undefined4
+mac_active_scan(int param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
+               undefined4 param_5)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  ezb_err_t eVar2;
+  int iVar1;
+  undefined4 uVar2;
   
-  _Var1 = mac_is_enabled(dev);
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    eVar2 = 3;
+  iVar1 = mac_is_enabled();
+  if (iVar1 == 0) {
+    uVar2 = 3;
   }
   else {
-    _Var1 = mac_can_scan(dev);
-    if (CONCAT31(extraout_var_00,_Var1) == 0) {
-      eVar2 = 9;
+    iVar1 = mac_can_scan(param_1);
+    if (iVar1 == 0) {
+      uVar2 = 9;
     }
     else {
-      (dev->ctx).field_7.active_scan_result_handler = cb;
-      (dev->ctx).scan_user_ctx = user_ctx;
-      mac_scan(dev,MAC_OPERATION_ACTIVE_SCAN,scan_channels,scan_duration);
-      eVar2 = 0;
+      *(undefined4 *)(param_1 + 0x38) = param_4;
+      *(undefined4 *)(param_1 + 0x3c) = param_5;
+      mac_scan(param_1,1,param_2,param_3);
+      uVar2 = 0;
     }
   }
-  return eVar2;
+  return uVar2;
 }
 

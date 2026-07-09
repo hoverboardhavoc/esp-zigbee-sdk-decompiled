@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_btt_add_if_absent
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,32 +10,28 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Variable defined which should be unmapped: seq_num */
-/* WARNING: Unknown calling convention */
-
-_Bool nwk_btt_add_if_absent(nwk_rx_info_t *rx_info,zmsg_t *msg)
+undefined4 nwk_btt_add_if_absent(int param_1,undefined4 param_2)
 
 {
-  ezb_shortaddr_t src_addr;
-  _Bool _Var1;
-  nwk_bt_record_t *btr;
-  uint8_t auStack_11 [4];
-  uint8_t seq_num;
+  undefined2 uVar1;
+  undefined4 uVar2;
+  int iVar3;
+  undefined1 uStack_11;
   
-  zmsg_read_bytes(msg,7,1,auStack_11);
-  src_addr = rx_info->nwk_src_addr;
-  btr = nwk_btt_find(src_addr,auStack_11[0]);
-  if (btr == (nwk_bt_record_t *)0x0) {
-    btr = nwk_btr_create(src_addr,auStack_11[0]);
-    if (btr == (nwk_bt_record_t *)0x0) {
-      return false;
+  zmsg_read_bytes(param_2,7,1,&uStack_11);
+  uVar1 = *(undefined2 *)(param_1 + 6);
+  iVar3 = nwk_btt_find(uVar1,uStack_11);
+  if (iVar3 == 0) {
+    iVar3 = nwk_btr_create(uVar1,uStack_11);
+    if (iVar3 == 0) {
+      return 0;
     }
-    _Var1 = true;
+    uVar2 = 1;
   }
   else {
-    _Var1 = false;
+    uVar2 = 0;
   }
-  nwk_btr_set_passive_ack(btr,rx_info->mac_src_addr);
-  return _Var1;
+  nwk_btr_set_passive_ack(*(undefined2 *)(param_1 + 2));
+  return uVar2;
 }
 

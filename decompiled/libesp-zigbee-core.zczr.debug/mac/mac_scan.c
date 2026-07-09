@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> mac.o -> mac_scan
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,40 +10,33 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void mac_scan(mac_device *dev,mac_operation_t scan_op,channel_page_t scan_channels,
-             uint16_t scan_duration)
+void mac_scan(int param_1,int param_2,char *param_3,undefined1 param_4)
 
 {
-  mac_operation_t extraout_a1;
-  char *pcVar1;
-  uint uVar2;
+  uint uVar1;
   
-  if (scan_op - MAC_OPERATION_ACTIVE_SCAN < 2) {
-    (dev->ctx).scan_duration = (uint8_t)scan_duration;
-    (dev->ctx).scan_channel = 0xff;
-    (dev->ctx).scan_channels.u32 =
-         (dev->ctx).scan_channels.u32 & 0x7ffffff | (scan_channels.u32 >> 0x1b) << 0x1b;
-    if (scan_channels.u32 >> 0x1b != (dev->pib).supported_channel_page.u32 >> 0x1b) {
-      (dev->ctx).scan_channels.u32 = (dev->ctx).scan_channels.u32 & 0xf8000000;
+  if (param_2 - 1U < 2) {
+    *(undefined1 *)(param_1 + 0x33) = param_4;
+    *(undefined1 *)(param_1 + 0x32) = 0xff;
+    *(uint *)(param_1 + 0x34) =
+         *(uint *)(param_1 + 0x34) & 0x7ffffff | ((uint)param_3 >> 0x1b) << 0x1b;
+    if ((uint)param_3 >> 0x1b != *(uint *)(param_1 + 0x18) >> 0x1b) {
+      *(uint *)(param_1 + 0x34) = *(uint *)(param_1 + 0x34) & 0xf8000000;
       goto _L0;
     }
   }
   else {
-    pcVar1 = "mac_scan";
-    dev = (mac_device *)
-          __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x2ee,
-                        "scan_op == MAC_OPERATION_ACTIVE_SCAN || scan_op == MAC_OPERATION_ED_SCAN");
-    scan_op = extraout_a1;
-    scan_channels = (channel_page_t)pcVar1;
+    param_3 = "mac_scan";
+    param_1 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac.c",0x2ee,
+                            "scan_op == MAC_OPERATION_ACTIVE_SCAN || scan_op == MAC_OPERATION_ED_SCAN"
+                           );
   }
-  uVar2 = (dev->ctx).scan_channels.u32 & 0xf8000000;
-  (dev->ctx).scan_channels.u32 = uVar2 | scan_channels.u32 & 0x7ffffff;
-  (dev->ctx).scan_channels.u32 =
-       uVar2 | scan_channels.u32 & 0x7ffffff & (dev->pib).supported_channel_page.u32 & 0x7ffffff;
+  uVar1 = *(uint *)(param_1 + 0x34) & 0xf8000000;
+  *(uint *)(param_1 + 0x34) = uVar1 | (uint)param_3 & 0x7ffffff;
+  *(uint *)(param_1 + 0x34) =
+       uVar1 | (uint)param_3 & 0x7ffffff & *(uint *)(param_1 + 0x18) & 0x7ffffff;
 _L0:
-  mac_start_op(dev,scan_op);
+  mac_start_op();
   return;
 }
 

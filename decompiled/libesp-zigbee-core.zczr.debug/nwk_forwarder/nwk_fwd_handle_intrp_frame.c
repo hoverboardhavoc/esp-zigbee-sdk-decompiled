@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_fwd_handle_intrp_frame
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,42 +10,49 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_fwd_handle_intrp_frame(int8_t iface_id,mac_frame_t *rx_frame)
+int nwk_fwd_handle_intrp_frame(undefined1 param_1,int *param_2)
 
 {
   int iVar1;
-  ezb_err_t eVar2;
-  undefined4 uStack_2c;
-  nwk_intrp_rx_info_t rx_info;
+  int iVar2;
+  int iStack_2c;
+  int iStack_28;
+  undefined2 uStack_24;
+  undefined2 uStack_22;
+  undefined2 uStack_20;
+  undefined2 uStack_1e;
+  undefined2 uStack_1c;
+  undefined2 uStack_1a;
+  undefined2 uStack_18;
+  undefined2 uStack_16;
+  undefined1 uStack_14;
+  undefined1 uStack_13;
+  undefined1 uStack_12;
   
-  uStack_2c = *(undefined4 *)&(rx_frame->mhr).dst_addr;
-  rx_info.mac_dst_addr._0_4_ = *(undefined4 *)((int)&(rx_frame->mhr).dst_addr.u + 2);
-  rx_info.mac_dst_addr.u.group_addr.bcast =
-       *(ezb_shortaddr_t *)((int)&(rx_frame->mhr).dst_addr.u + 6);
-  rx_info.mac_dst_addr.u._4_2_ = *(undefined2 *)&(rx_frame->mhr).src_addr;
-  rx_info.mac_dst_addr.u._6_2_ = (rx_frame->mhr).src_addr.u.short_addr;
-  rx_info.mac_src_addr._0_2_ = (rx_frame->mhr).src_addr.u.group_addr.bcast;
-  rx_info.mac_src_addr.u.short_addr = *(ezb_shortaddr_t *)((int)&(rx_frame->mhr).src_addr.u + 4);
-  rx_info.mac_src_addr.u.group_addr.bcast =
-       *(ezb_shortaddr_t *)((int)&(rx_frame->mhr).src_addr.u + 6);
-  rx_info.mac_src_addr.u._4_2_ = (rx_frame->mhr).dst_panid;
-  rx_info.mac_src_addr.u._6_2_ = (rx_frame->mhr).src_panid;
-  rx_info.dst_panid._1_1_ = (rx_frame->from->info).tx.max_csma_backoffs;
-  rx_info.src_panid._0_1_ = (rx_frame->from->info).tx.max_frame_retries;
-  rx_info.dst_panid._0_1_ = iface_id;
+  iStack_2c = param_2[1];
+  iStack_28 = param_2[2];
+  uStack_24 = (undefined2)param_2[3];
+  uStack_22 = *(undefined2 *)((int)param_2 + 0xe);
+  uStack_20 = (undefined2)param_2[4];
+  uStack_1e = *(undefined2 *)((int)param_2 + 0x12);
+  uStack_1c = (undefined2)param_2[5];
+  uStack_1a = *(undefined2 *)((int)param_2 + 0x16);
+  uStack_18 = (undefined2)param_2[6];
+  uStack_16 = *(undefined2 *)((int)param_2 + 0x1a);
+  uStack_13 = *(undefined1 *)(*param_2 + 0x11);
+  uStack_12 = *(undefined1 *)(*param_2 + 0x10);
+  uStack_14 = param_1;
   iVar1 = zmsg_alloc(9);
   if (iVar1 == 0) {
-    eVar2 = 1;
+    iVar2 = 1;
   }
   else {
-    eVar2 = zmsg_append_bytes((rx_frame->mpl).len,(rx_frame->mpl).buf);
-    if (eVar2 == 0) {
+    iVar2 = zmsg_append_bytes((char)param_2[8],param_2[9]);
+    if (iVar2 == 0) {
       *(ushort *)(iVar1 + 0x16) = *(ushort *)(iVar1 + 0x16) | 8;
-      eVar2 = nwk_handle_received_intrp_msg(iVar1,&uStack_2c);
+      iVar2 = nwk_handle_received_intrp_msg(iVar1,&iStack_2c);
     }
   }
-  return eVar2;
+  return iVar2;
 }
 

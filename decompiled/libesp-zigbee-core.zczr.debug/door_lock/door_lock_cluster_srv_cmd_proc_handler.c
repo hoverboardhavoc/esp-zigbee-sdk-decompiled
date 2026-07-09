@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> door_lock.o -> door_lock_cluster_srv_cmd_proc_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,77 +10,94 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x000102ce) */
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t door_lock_cluster_srv_cmd_proc_handler(void *arg)
+int door_lock_cluster_srv_cmd_proc_handler(int param_1)
 
 {
   int iVar1;
-  ezb_zcl_status_t eVar2;
-  int iVar3;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
+  int iVar2;
+  byte bVar3;
   byte abStack_3c [4];
-  zcl_packet_tx_option_t tx_option;
-  zcl_packet_t rsp;
+  undefined4 uStack_38;
+  undefined4 uStack_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  undefined4 uStack_24;
+  undefined4 uStack_20;
+  undefined4 uStack_1c;
+  uint uStack_18;
+  undefined4 uStack_14;
   
-  _tx_option = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  uStack_30 = 0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  uStack_24 = 0;
+  uStack_20 = 0;
+  uStack_1c = 0;
+  uStack_18 = 0;
+  uStack_14 = 0;
   abStack_3c[0] = 0;
-  if (arg == (void *)0x0) {
-    iVar1 = 1;
-    goto _L0;
+  if (param_1 == 0) {
+    return 1;
   }
-  if ((*(byte *)((int)arg + 0x1a) >> 3 & 1) != 0) {
-    iVar1 = 1;
-    goto _L0;
+  if ((*(byte *)(param_1 + 0x1a) >> 3 & 1) != 0) {
+    return 1;
   }
-  iVar1 = zcl_packet_init(&tx_option,*(byte *)((int)arg + 0x1a) >> 2 & 1);
-  if (iVar1 != 0) goto _L0;
-  iVar1 = ezb_zcl_get_attr_desc(*(undefined1 *)((int)arg + 0x15),0x101,1,0x34,0);
-  if (iVar1 == 0) {
-_L0:
-    iVar1 = 0;
+  iVar1 = zcl_packet_init(&uStack_38,*(byte *)(param_1 + 0x1a) >> 2 & 1);
+  if (iVar1 != 0) {
+    return iVar1;
   }
-  else if (**(char **)(iVar1 + 8) == '\0') {
-    iVar1 = 1;
-  }
-  else {
-    if (**(char **)(iVar1 + 8) != '\x01') {
-      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/door_lock.c",0xc6,
-                    "door_lock_cluster_srv_cmd_proc_handler",&_L0);
+  iVar1 = ezb_zcl_get_attr_desc(*(undefined1 *)(param_1 + 0x15),0x101,1,0x34,0);
+  if (iVar1 != 0) {
+    if (**(char **)(iVar1 + 8) == '\0') {
+      iVar1 = 1;
       goto _L0;
     }
-    iVar1 = 2;
+    if (**(char **)(iVar1 + 8) == '\x01') {
+      iVar1 = 2;
+      goto _L0;
+    }
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/door_lock.c",0xc6,
+                  "door_lock_cluster_srv_cmd_proc_handler",&_L0);
   }
-  iVar3 = zcl_packet_get_security(arg);
-  if (iVar3 < iVar1) {
+  iVar1 = 0;
+_L0:
+  iVar2 = zcl_packet_get_security(param_1);
+  if (iVar2 < iVar1) {
     iVar1 = 0xfe;
   }
   else {
-    if (*(char *)((int)arg + 0x20) == '\0') {
-      eVar2 = door_lock_cluster_lock_door_cmd_handler
-                        ((zcl_packet_t *)arg,(zcl_packet_t *)&tx_option);
-      iVar1 = CONCAT31(extraout_var,eVar2);
+    if (*(char *)(param_1 + 0x20) == '\0') {
+      iVar1 = door_lock_cluster_lock_door_cmd_handler(param_1,&uStack_38);
     }
-    else if (*(char *)((int)arg + 0x20) == '\x01') {
-      eVar2 = door_lock_cluster_unlock_door_cmd_handler
-                        ((zcl_packet_t *)arg,(zcl_packet_t *)&tx_option);
-      iVar1 = CONCAT31(extraout_var_00,eVar2);
+    else if (*(char *)(param_1 + 0x20) == '\x01') {
+      iVar1 = door_lock_cluster_unlock_door_cmd_handler(param_1,&uStack_38);
     }
     else {
-      iVar1 = zcl_packet_setup_default_response(&tx_option,arg,0x81);
+      iVar1 = zcl_packet_setup_default_response(&uStack_38,param_1,0x81);
     }
     if (iVar1 == 0) {
-      iVar3 = zcl_packet_get_security(arg);
-      abStack_3c[0] = abStack_3c[0] & 0xfe | iVar3 == 2;
-      zcl_packet_send_with_ext(&tx_option,0,abStack_3c);
+      if ((uStack_18 & 0xff) == 0xb) {
+        bVar3 = 0;
+      }
+      else {
+        iVar2 = zcl_packet_get_security(param_1);
+        if (iVar2 == 2) {
+          bVar3 = 1;
+        }
+        else {
+          bVar3 = 0;
+        }
+      }
+      abStack_3c[0] = abStack_3c[0] & 0xfe | bVar3;
+      zcl_packet_send_with_ext(&uStack_38,0,abStack_3c);
     }
     else {
-      zcl_packet_free(&tx_option);
+      zcl_packet_free(&uStack_38);
     }
   }
-_L0:
-  return (ezb_zcl_status_t)iVar1;
+  return iVar1;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_api.o -> ezb_nwk_get_next_neighbor
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,56 +10,52 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ezb_nwk_get_next_neighbor
-                    (ezb_nwk_info_iterator_t *iterator,ezb_nwk_neighbor_info_t *nbr_info)
+undefined4 ezb_nwk_get_next_neighbor(int *param_1,int param_2)
 
 {
-  uint8_t uVar1;
-  ezb_shortaddr_t eVar2;
-  ezb_nwk_info_iterator_t pvVar3;
-  ezb_err_t eVar4;
-  undefined4 uVar5;
-  uint uVar6;
+  undefined1 uVar1;
+  undefined2 uVar2;
+  int iVar3;
+  undefined4 uVar4;
+  uint uVar5;
   
-  if (iterator != (ezb_nwk_info_iterator_t *)0x0) {
-    eVar4 = 2;
-    if (nbr_info != (ezb_nwk_neighbor_info_t *)0x0) {
-      pvVar3 = (ezb_nwk_info_iterator_t)nwk_neighbor_table_next(*iterator);
-      *iterator = pvVar3;
-      eVar4 = 5;
-      if (pvVar3 != (ezb_nwk_info_iterator_t)0x0) {
-        nwk_neighbor_get_extaddr(nbr_info);
-        eVar2 = nwk_neighbor_get_shortaddr(pvVar3);
-        uVar5 = *(undefined4 *)((int)pvVar3 + 0xc);
-        nbr_info->short_addr = eVar2;
-        nbr_info->device_type = (byte)uVar5 & 3;
-        nbr_info->depth = (byte)(*(uint *)((int)pvVar3 + 0xc) >> 2) & 0xf;
-        nbr_info->rx_on_when_idle = (byte)(*(uint *)((int)pvVar3 + 0xc) >> 10) & 1;
-        uVar6 = *(uint *)((int)pvVar3 + 0xc) >> 6 & 0xf;
-        uVar1 = (uint8_t)uVar6;
-        if (3 < uVar6) {
-          uVar1 = '\x03';
+  if (param_1 != (int *)0x0) {
+    uVar4 = 2;
+    if (param_2 != 0) {
+      iVar3 = nwk_neighbor_table_next(*param_1);
+      *param_1 = iVar3;
+      uVar4 = 5;
+      if (iVar3 != 0) {
+        nwk_neighbor_get_extaddr(param_2);
+        uVar2 = nwk_neighbor_get_shortaddr(iVar3);
+        uVar4 = *(undefined4 *)(iVar3 + 0xc);
+        *(undefined2 *)(param_2 + 8) = uVar2;
+        *(byte *)(param_2 + 10) = (byte)uVar4 & 3;
+        *(byte *)(param_2 + 0xb) = (byte)(*(uint *)(iVar3 + 0xc) >> 2) & 0xf;
+        *(byte *)(param_2 + 0xc) = (byte)(*(uint *)(iVar3 + 0xc) >> 10) & 1;
+        uVar5 = *(uint *)(iVar3 + 0xc) >> 6 & 0xf;
+        uVar1 = (undefined1)uVar5;
+        if (3 < uVar5) {
+          uVar1 = 3;
         }
-        nbr_info->relationship = uVar1;
-        uVar1 = nwk_neighbor_get_lqa(pvVar3);
-        nbr_info->lqi = uVar1;
-        nbr_info->rssi = *(int8_t *)((int)pvVar3 + 5);
-        nbr_info->outgoing_cost = (byte)((uint)*(undefined4 *)((int)pvVar3 + 0xc) >> 0x1a) & 7;
-        nbr_info->age = (uint8_t)(*(uint *)((int)pvVar3 + 0xc) >> 0x12);
-        if ((*(uint *)((int)pvVar3 + 0xc) & 3) == 2) {
-          nbr_info->device_timeout = *(uint *)((int)pvVar3 + 0x14) >> 0x14 & 0xf;
-          nbr_info->timeout_counter = *(uint *)((int)pvVar3 + 0x14) & 0xfffff;
+        *(undefined1 *)(param_2 + 0xd) = uVar1;
+        uVar1 = nwk_neighbor_get_lqa(iVar3);
+        *(undefined1 *)(param_2 + 0xe) = uVar1;
+        *(undefined1 *)(param_2 + 0xf) = *(undefined1 *)(iVar3 + 5);
+        *(byte *)(param_2 + 0x10) = (byte)((uint)*(undefined4 *)(iVar3 + 0xc) >> 0x1a) & 7;
+        *(char *)(param_2 + 0x11) = (char)(*(uint *)(iVar3 + 0xc) >> 0x12);
+        if ((*(uint *)(iVar3 + 0xc) & 3) == 2) {
+          *(uint *)(param_2 + 0x14) = *(uint *)(iVar3 + 0x14) >> 0x14 & 0xf;
+          *(uint *)(param_2 + 0x18) = *(uint *)(iVar3 + 0x14) & 0xfffff;
         }
         else {
-          nbr_info->device_timeout = 0;
-          nbr_info->timeout_counter = 0;
+          *(undefined4 *)(param_2 + 0x14) = 0;
+          *(undefined4 *)(param_2 + 0x18) = 0;
         }
-        eVar4 = 0;
+        uVar4 = 0;
       }
     }
-    return eVar4;
+    return uVar4;
   }
   return 2;
 }

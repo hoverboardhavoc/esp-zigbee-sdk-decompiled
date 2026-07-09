@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_srv.o -> ota_upgrade_srv_ota_file_table_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,48 +10,45 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t ota_upgrade_srv_ota_file_table_init(uint8_t ep_id)
+undefined4 ota_upgrade_srv_ota_file_table_init(undefined4 param_1)
 
 {
   size_t __nmemb;
-  zcl_attr_desc_t *pzVar1;
+  int iVar1;
   undefined1 *puVar2;
   void *__s;
-  ezb_err_t eVar3;
+  undefined4 uVar3;
   
-  pzVar1 = ota_upgrade_srv_get_attr_desc(ep_id,0xeff1);
-  if (pzVar1 == (zcl_attr_desc_t *)0x0) {
-    eVar3 = 6;
+  iVar1 = ota_upgrade_srv_get_attr_desc(0xeff1);
+  if (iVar1 == 0) {
+    uVar3 = 6;
   }
   else {
     puVar2 = (undefined1 *)calloc(1,8);
-    pzVar1->data_p = puVar2;
+    *(undefined1 **)(iVar1 + 8) = puVar2;
     if (puVar2 == (undefined1 *)0x0) {
-      eVar3 = 1;
+      uVar3 = 1;
     }
     else {
-      pzVar1 = ota_upgrade_srv_get_attr_desc(ep_id,0xeff0);
-      if (pzVar1 == (zcl_attr_desc_t *)0x0) {
+      iVar1 = ota_upgrade_srv_get_attr_desc(param_1,0xeff0);
+      if (iVar1 == 0) {
         __nmemb = 0;
       }
       else {
-                    /* WARNING: Load size is inaccurate */
-        __nmemb = (size_t)*pzVar1->data_p;
+        __nmemb = (size_t)**(byte **)(iVar1 + 8);
       }
       *puVar2 = (char)__nmemb;
       __s = calloc(__nmemb,0x4c);
       *(void **)(puVar2 + 4) = __s;
       if ((__s == (void *)0x0) && (__nmemb != 0)) {
-        eVar3 = 1;
+        uVar3 = 1;
       }
       else {
         memset(__s,0,__nmemb * 0x4c);
-        eVar3 = 0;
+        uVar3 = 0;
       }
     }
   }
-  return eVar3;
+  return uVar3;
 }
 

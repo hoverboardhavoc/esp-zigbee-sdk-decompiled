@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> electrical_measurement.o -> electrical_measurement_cluster_get_meas_prof_cmd_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,99 +10,105 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
+undefined4
 electrical_measurement_cluster_get_meas_prof_cmd_handler
-          (zcl_packet_t *packet,zcl_packet_t *rsp,ezb_zcl_cmd_cnf_ctx_t *cnf_ctx)
+          (int param_1,int param_2,undefined4 *param_3)
 
 {
-  uint16_t *offset_00;
   uint uVar1;
-  int iVar2;
+  undefined4 uVar2;
   int iVar3;
+  int iVar4;
   undefined4 local_50;
   undefined4 uStack_4c;
-  ezb_zcl_electrical_measurement_get_meas_prof_message_t message;
-  uint16_t offset;
+  undefined4 uStack_48;
+  int iStack_44;
+  undefined4 uStack_40;
+  undefined4 uStack_3c;
+  undefined4 uStack_38;
+  uint uStack_34;
+  undefined4 *puStack_30;
+  undefined4 uStack_2c;
+  undefined4 uStack_28;
+  ushort auStack_22 [5];
   
-  message.out.cnf_ctx.user_ctx._2_2_ = 0;
+  auStack_22[0] = 0;
   uStack_4c = 0;
-  message.info.status = '\0';
-  message.info.dst_ep = '\0';
-  message.info.cluster_id = 0;
-  message.info.cluster_role = '\0';
-  message.info._5_1_ = 0;
-  message._6_2_ = 0;
-  message.in.header = (ezb_zcl_cmd_hdr_t *)0x0;
-  message.in.payload.attr_id = 0;
-  message.in.payload._2_2_ = 0;
-  message.in.payload.start_time = 0;
-  message.in.payload.num_of_intervals = '\0';
-  message.in.payload._9_3_ = 0;
-  message.out.result = '\0';
-  message.out._1_3_ = 0;
-  message.out.payload = (ezb_zcl_electrical_measurement_get_meas_prof_rsp_payload_t *)0x0;
-  message.out.cnf_ctx.cb = (ezb_af_user_cnf_callback_t)0x0;
-  if ((packet == (zcl_packet_t *)0x0) || (rsp == (zcl_packet_t *)0x0)) {
+  uStack_48 = 0;
+  iStack_44 = 0;
+  uStack_40 = 0;
+  uStack_3c = 0;
+  uStack_38 = 0;
+  uStack_34 = 0;
+  puStack_30 = (undefined4 *)0x0;
+  uStack_2c = 0;
+  uStack_28 = 0;
+  if ((param_1 == 0) || (param_2 == 0)) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/electrical_measurement.c"
                   ,0x7b,"electrical_measurement_cluster_get_meas_prof_cmd_handler","packet && rsp");
-_L0:
-    uVar1 = zcl_packet_to_message(&uStack_4c,packet);
-    if (uVar1 == 0) {
-      message.in.payload.num_of_intervals = 0xfe;
-      message._4_4_ = packet;
-      zcl_core_action_schedule(0x3f,&uStack_4c);
-      uVar1 = message.in.payload._8_4_ & 0xff;
-      if (uVar1 == 0xfe) {
+  }
+  else {
+    af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_40);
+    af_read_le32(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_3c);
+    af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_38);
+    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+    if (uVar1 < auStack_22[0]) {
+      uVar1 = 0x80;
+      goto _L0;
+    }
+  }
+  uVar1 = zcl_packet_to_message(&uStack_4c,param_1);
+  if (uVar1 == 0) {
+    uStack_34 = CONCAT31(uStack_34._1_3_,0xfe);
+    iStack_44 = param_1;
+    zcl_core_action_schedule(0x40,&uStack_4c);
+    uVar1 = uStack_34 & 0xff;
+    if (uVar1 == 0xfe) {
+      uVar1 = 1;
+    }
+    else if (uVar1 == 0) {
+      if (puStack_30 == (undefined4 *)0x0) {
         uVar1 = 1;
       }
-      else if (uVar1 == 0) {
-        if (message.out._0_4_ == 0) {
-          uVar1 = 1;
-        }
-        else if ((*(char *)(message.out._0_4_ + 6) == '\0') ||
-                (*(int *)(message.out._0_4_ + 0xc) != 0)) {
-          local_50 = *(undefined4 *)message.out._0_4_;
-          iVar2 = zmsg_append_bytes(rsp->payload,4,&local_50);
-          if (iVar2 == 0) {
-            local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)(message.out._0_4_ + 4));
-            iVar2 = zmsg_append_bytes(rsp->payload,1,&local_50);
-            if (iVar2 == 0) {
-              local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)(message.out._0_4_ + 5));
-              iVar2 = zmsg_append_bytes(rsp->payload,1,&local_50);
-              if (iVar2 == 0) {
-                local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)(message.out._0_4_ + 6));
-                iVar2 = zmsg_append_bytes(rsp->payload,1,&local_50);
-                if (iVar2 == 0) {
-                  local_50 = CONCAT22(local_50._2_2_,*(undefined2 *)(message.out._0_4_ + 8));
-                  iVar2 = zmsg_append_bytes(rsp->payload,2,&local_50);
-                  if (iVar2 == 0) {
-                    iVar2 = ezb_zcl_get_attr_desc
-                                      ((packet->header).dst_ep,0xb04,1,
-                                       *(undefined2 *)(message.out._0_4_ + 8),0);
-                    uVar1 = 0;
-                    if (iVar2 == 0) {
-                      uVar1 = 0x8b;
-                    }
-                    else {
-                      for (; uVar1 < *(byte *)(message.out._0_4_ + 6); uVar1 = uVar1 + 1 & 0xff) {
-                        iVar3 = zcl_packet_append_variable_attr_value
-                                          (rsp->payload,*(undefined1 *)(iVar2 + 2),
-                                           *(int *)(message.out._0_4_ + 0xc) + uVar1);
-                        if (iVar3 != 0) {
-                          uVar1 = 0x89;
-                          goto _L0;
-                        }
-                      }
-                      cnf_ctx->cb = (ezb_af_user_cnf_callback_t)message.out.payload;
-                      cnf_ctx->user_ctx = message.out.cnf_ctx.cb;
-                      uVar1 = zcl_packet_setup_response(rsp,packet,1);
-                      if (uVar1 == 0) goto _L0;
-                    }
+      else if ((*(char *)((int)puStack_30 + 6) == '\0') || (puStack_30[3] != 0)) {
+        local_50 = *puStack_30;
+        iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),4,&local_50);
+        if (iVar3 == 0) {
+          local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)(puStack_30 + 1));
+          iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&local_50);
+          if (iVar3 == 0) {
+            local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)((int)puStack_30 + 5));
+            iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&local_50);
+            if (iVar3 == 0) {
+              local_50 = CONCAT31(local_50._1_3_,*(undefined1 *)((int)puStack_30 + 6));
+              iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&local_50);
+              if (iVar3 == 0) {
+                local_50 = CONCAT22(local_50._2_2_,*(undefined2 *)(puStack_30 + 2));
+                iVar3 = zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),2,&local_50);
+                if (iVar3 == 0) {
+                  iVar3 = ezb_zcl_get_attr_desc
+                                    (*(undefined1 *)(param_1 + 0x15),0xb04,1,
+                                     *(undefined2 *)(puStack_30 + 2),0);
+                  uVar1 = 0;
+                  if (iVar3 == 0) {
+                    uVar1 = 0x8b;
                   }
                   else {
-                    uVar1 = 0x89;
+                    for (; uVar1 < *(byte *)((int)puStack_30 + 6); uVar1 = uVar1 + 1 & 0xff) {
+                      iVar4 = zcl_packet_append_variable_attr_value
+                                        (*(undefined4 *)(param_2 + 0x24),*(undefined1 *)(iVar3 + 2),
+                                         puStack_30[3] + uVar1);
+                      if (iVar4 != 0) {
+                        uVar1 = 0x89;
+                        goto _L0;
+                      }
+                    }
+                    *param_3 = uStack_2c;
+                    param_3[1] = uStack_28;
+                    uVar1 = zcl_packet_setup_response(param_2,param_1,1);
+                    if (uVar1 == 0) {
+                      return 0;
+                    }
                   }
                 }
                 else {
@@ -122,23 +128,16 @@ _L0:
           }
         }
         else {
-          uVar1 = 1;
+          uVar1 = 0x89;
         }
+      }
+      else {
+        uVar1 = 1;
       }
     }
   }
-  else {
-    offset_00 = (uint16_t *)((int)&message.out.cnf_ctx.user_ctx + 2);
-    af_read_le16(packet->payload,offset_00,(uint16_t *)&message.in);
-    af_read_le32(packet->payload,offset_00,(uint32_t *)&message.in.payload);
-    af_read_le8(packet->payload,offset_00,(uint8_t *)&message.in.payload.start_time);
-    uVar1 = zmsg_get_length(packet->payload);
-    if (message.out.cnf_ctx.user_ctx._2_2_ <= uVar1) goto _L0;
-    uVar1 = 0x80;
-  }
 _L0:
-  uVar1 = zcl_packet_setup_default_response(rsp,packet,uVar1);
-_L0:
-  return (ezb_zcl_status_t)uVar1;
+  uVar2 = zcl_packet_setup_default_response(param_2,param_1,uVar1);
+  return uVar2;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_address.o -> check_table_ref
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,22 +10,13 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool check_table_ref(uint16_t ref,bitmap_t *table_map,uint16_t table_size)
+bool check_table_ref(uint param_1,undefined4 param_2,uint param_3)
 
 {
-  _Bool _Var1;
-  undefined2 in_register_0000202a;
-  uint n;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
-  undefined2 in_register_00002032;
+  int iVar1;
   
-  n = CONCAT22(in_register_0000202a,ref);
-  if ((n < CONCAT22(in_register_00002032,table_size)) &&
-     (_Var1 = test_bitmap(n,table_map), CONCAT31(extraout_var,_Var1) != 0)) {
-    if (CONCAT22(in_register_00002032,table_size) <= n) {
+  if ((param_1 < param_3) && (iVar1 = test_bitmap(), iVar1 != 0)) {
+    if (param_3 <= param_1) {
       return false;
     }
   }
@@ -33,7 +24,7 @@ _Bool check_table_ref(uint16_t ref,bitmap_t *table_map,uint16_t table_size)
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_address.c",0x46,
                   "check_table_ref","(ref < table_size) && test_bitmap(ref, table_map)");
   }
-  _Var1 = test_bitmap(n,table_map);
-  return CONCAT31(extraout_var_00,_Var1) != 0;
+  iVar1 = test_bitmap(param_1,param_2);
+  return iVar1 != 0;
 }
 

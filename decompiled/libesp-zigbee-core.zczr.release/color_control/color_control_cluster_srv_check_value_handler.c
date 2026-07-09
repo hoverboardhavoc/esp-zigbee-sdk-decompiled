@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> color_control.o -> color_control_cluster_srv_check_value_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,40 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_zcl_status_t
-color_control_cluster_srv_check_value_handler(uint16_t attr_id,uint8_t ep_id,void *value)
+bool color_control_cluster_srv_check_value_handler(uint param_1,undefined4 param_2,ushort *param_3)
 
 {
   bool bVar1;
-  undefined2 in_register_0000202a;
-  uint uVar2;
   ushort uStack_14;
-  ushort uStack_12;
-  uint16_t min_color_temperature;
-  uint16_t max_color_temperature;
+  ushort auStack_12 [5];
   
-  uVar2 = CONCAT22(in_register_0000202a,attr_id);
-  if (uVar2 < 5) {
-    if (uVar2 < 3) {
+  if (param_1 < 5) {
+    if (param_1 < 3) {
       bVar1 = false;
-      if (uVar2 != 2) {
-                    /* WARNING: Load size is inaccurate */
-        bVar1 = *value == -1;
+      if (param_1 != 2) {
+        bVar1 = (byte)*param_3 == 0xff;
       }
     }
     else {
-                    /* WARNING: Load size is inaccurate */
-      bVar1 = 0xfeff < *value;
+      bVar1 = 0xfeff < *param_3;
     }
   }
   else {
-    if (uVar2 == 8) {
-                    /* WARNING: Load size is inaccurate */
-      bVar1 = *value < 3;
+    if (param_1 == 8) {
+      bVar1 = (byte)*param_3 < 3;
     }
     else {
-      if (uVar2 != 0x400a) {
-        if (uVar2 != 7) {
-          return '\0';
+      if (param_1 != 0x400a) {
+        if (param_1 != 7) {
+          return false;
         }
-        color_control_get_color_temperature_range(ep_id,&uStack_14,&uStack_12);
-                    /* WARNING: Load size is inaccurate */
-        if (*value < uStack_14) {
-          return '\x01';
+        color_control_get_color_temperature_range_part_0(param_2,&uStack_14,auStack_12);
+        if (*param_3 < uStack_14) {
+          return true;
         }
-        return uStack_12 < *value;
+        return auStack_12[0] < *param_3;
       }
-                    /* WARNING: Load size is inaccurate */
-      bVar1 = *value < 0x20;
+      bVar1 = (byte)*param_3 < 0x20;
     }
     bVar1 = (bool)(bVar1 ^ 1);
   }

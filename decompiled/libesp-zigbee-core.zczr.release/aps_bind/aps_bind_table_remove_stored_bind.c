@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_bind.o -> aps_bind_table_remove_stored_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,44 +10,53 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Removing unreachable block (ram,0x00010488) */
-/* WARNING: Unknown calling convention */
-
-void aps_bind_table_remove_stored_bind(aps_bind_src_t *src,aps_bind_dst_t *dst)
+void aps_bind_table_remove_stored_bind(int param_1,ushort *param_2)
 
 {
   int iVar1;
-  uint8_t uVar2;
-  int iStack_28;
-  ezb_extaddr_t dst_addr;
-  ds_bind_info_iterator_t itor;
+  char cVar2;
+  uint uStack_28;
+  int iStack_24;
+  short sStack_20;
+  char cStack_1e;
+  char cStack_1d;
+  uint uStack_1c;
+  int iStack_18;
+  short sStack_14;
+  char cStack_12;
   
-  itor.data.field_3._4_2_ = 0;
+  sStack_14 = 0;
+  cStack_12 = '\0';
   do {
-    ds_bind_info_itor_read((ds_bind_info_iterator_t *)((int)&dst_addr.field_0 + 4));
-    if ((dst_addr.field_0.u64._4_2_ == src->cluster_id) && (dst_addr.field_0.u8[6] == src->src_ep))
-    {
-      uVar2 = '\0';
-      if ((dst->field_0x5 & 1) == 0) {
-        uVar2 = (dst->field_0).extaddr.endpoint;
-      }
-      if (dst_addr.field_0.u8[7] == uVar2) {
-        if ((dst->field_0x5 & 1) == 0) {
-          iVar1 = nwk_address_extended_by_ref(&iStack_28);
-          if (iVar1 != 0) {
-            __assert_func(0,0,0,0);
-          }
-          if ((iStack_28 == itor.data._0_4_) &&
-             (dst_addr.field_0.u64._0_4_ == itor.data.field_3._0_4_)) goto _L0;
-        }
-        else if ((itor.data._0_4_ & 0xffff) == (uint)(dst->field_0).extaddr.addr_ref) {
+    ds_bind_info_itor_read(&sStack_20);
 _L0:
-          ds_internal_remove_entry
-                    (6,itor.data.field_3._4_2_,(undefined1 *)((int)&dst_addr.field_0 + 4));
+    do {
+      if (cStack_12 != '\0') {
+        return;
+      }
+      if ((sStack_20 != *(short *)(param_1 + 4)) || (cStack_1e != *(char *)(param_1 + 2))) break;
+      cVar2 = '\0';
+      if ((*(byte *)((int)param_2 + 5) & 1) == 0) {
+        cVar2 = (char)param_2[1];
+      }
+      if (cStack_1d != cVar2) break;
+      if ((*(byte *)((int)param_2 + 5) & 1) == 0) {
+        iVar1 = nwk_address_extended_by_ref(&uStack_28);
+        if (iVar1 != 0) {
+          __assert_func(0,0,0,0);
+        }
+        if ((uStack_28 == uStack_1c) && (iStack_24 == iStack_18)) {
+          if (cStack_12 == '\0') goto _L0;
+          goto _L0;
         }
       }
-    }
-    itor.data.field_3._4_2_ = itor.data.field_3._4_2_ + 1;
+      else {
+        if ((uStack_1c & 0xffff) != (uint)*param_2) break;
+_L0:
+        ds_internal_remove_entry(6,sStack_14,&sStack_20);
+      }
+    } while (cStack_12 != '\0');
+    sStack_14 = sStack_14 + 1;
   } while( true );
 }
 

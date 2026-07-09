@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_common.o -> zcl_write_attr_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,259 +10,233 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_write_attr_value(uint8_t *buffer,void *value,zcl_attr_type_t value_type)
+undefined4 zcl_write_attr_value(int *param_1,int *param_2,uint param_3)
 
 {
   byte bVar1;
-  uint16_t uVar2;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  undefined2 extraout_var_01;
-  undefined2 extraout_var_02;
-  undefined3 in_register_00002031;
-  char *pcVar3;
+  char *pcVar2;
   size_t __n;
-  uint uVar4;
-  undefined4 uVar5;
-  uint uVar6;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
+  uint uVar3;
+  int iVar4;
+  uint uVar5;
+  int iStack_18;
+  int iStack_14;
   
-  uVar6 = CONCAT31(in_register_00002031,value_type);
-  if (buffer == (uint8_t *)0x0) {
-    return false;
+  if (param_1 == (int *)0x0) {
+    return 0;
   }
-  if (value == (void *)0x0) {
-    return false;
+  if (param_2 == (int *)0x0) {
+    return 0;
   }
-  if (uVar6 == 0x2c) {
-    uVar5 = *(undefined4 *)((int)value + 4);
-                    /* WARNING: Load size is inaccurate */
-    uStack_18 = *value;
-    uStack_14 = uVar5;
-    memcpy(buffer,&uStack_18,5);
-    buffer[4] = (byte)((uint)uVar5 >> 0x18) & 0x80 | (byte)uVar5;
-    return true;
+  if (param_3 == 0x2c) {
+    iVar4 = param_2[1];
+    iStack_18 = *param_2;
+    iStack_14 = iVar4;
+    memcpy(param_1,&iStack_18,5);
+    *(byte *)(param_1 + 1) = (byte)((uint)iVar4 >> 0x18) & 0x80 | (byte)iVar4;
+    return 1;
   }
-  if (uVar6 < 0x2d) {
-    if (uVar6 == 0x21) {
+  if (param_3 < 0x2d) {
+    if (param_3 == 0x21) {
 _L0:
-                    /* WARNING: Load size is inaccurate */
-      *(undefined2 *)buffer = *value;
-      return true;
+      *(short *)param_1 = (short)*param_2;
+      return 1;
     }
-    if (uVar6 < 0x22) {
-      if (uVar6 == 0xf) goto _L0;
-      if (uVar6 < 0x10) {
-        if (uVar6 == 10) {
+    if (param_3 < 0x22) {
+      if (param_3 == 0xf) goto _L0;
+      if (param_3 < 0x10) {
+        if (param_3 == 10) {
 _L0:
-                    /* WARNING: Load size is inaccurate */
-          uStack_18 = *value;
+          iStack_18 = *param_2;
           __n = 3;
           goto _L0;
         }
-        if (uVar6 < 0xb) {
-          if (uVar6 == 0) {
-            return true;
+        if (param_3 < 0xb) {
+          if (param_3 == 0) {
+            return 1;
           }
-          if (uVar6 == 8) goto _L0;
-          if (uVar6 == 9) goto _L0;
+          if (param_3 == 8) goto _L0;
+          if (param_3 == 9) goto _L0;
           goto _L0;
         }
-        if (uVar6 == 0xd) goto _L0;
-        if (uVar6 == 0xe) goto _L0;
-        if (uVar6 == 0xb) goto _L0;
+        if (param_3 == 0xd) goto _L0;
+        if (param_3 == 0xe) goto _L0;
+        if (param_3 == 0xb) goto _L0;
       }
-      else if (uVar6 != 0x1c) {
-        if (0x1c < uVar6) {
-          if (uVar6 == 0x1e) goto _L0;
-          if (0x1e < uVar6) {
-            uVar4 = 0x1f;
+      else if (param_3 != 0x1c) {
+        if (0x1c < param_3) {
+          if (param_3 == 0x1e) goto _L0;
+          if (0x1e < param_3) {
+            uVar3 = 0x1f;
             goto _L182;
           }
 _L0:
-                    /* WARNING: Load size is inaccurate */
-          uStack_18 = *value;
-          uStack_14 = *(undefined4 *)((int)value + 4);
+          iStack_18 = *param_2;
+          iStack_14 = param_2[1];
           __n = 6;
           goto _L0;
         }
-        if (uVar6 != 0x1a) {
-          if (uVar6 == 0x1b) {
+        if (param_3 != 0x1a) {
+          if (param_3 == 0x1b) {
 _L0:
-                    /* WARNING: Load size is inaccurate */
-            *(undefined4 *)buffer = *value;
-            return true;
+            *param_1 = *param_2;
+            return 1;
           }
-          if (uVar6 == 0x18) goto _L0;
-          if (uVar6 == 0x19) goto _L0;
-          uVar4 = 0x10;
+          if (param_3 == 0x18) goto _L0;
+          if (param_3 == 0x19) goto _L0;
+          uVar3 = 0x10;
           goto _L179;
         }
         goto _L0;
       }
 _L0:
-                    /* WARNING: Load size is inaccurate */
-      uStack_18 = *value;
-      uStack_14 = *(undefined4 *)((int)value + 4);
+      iStack_18 = *param_2;
+      iStack_14 = param_2[1];
       __n = 5;
     }
     else {
-      if (uVar6 == 0x29) goto _L0;
-      if (0x29 < uVar6) {
-                    /* WARNING: Load size is inaccurate */
-        uVar5 = *value;
-        if (uVar6 == 0x2a) {
-          uStack_18 = uVar5;
-          memcpy(buffer,&uStack_18,3);
-          buffer[2] = (byte)((uint)uVar5 >> 0x18) & 0x80 | buffer[2];
-          return true;
+      if (param_3 == 0x29) goto _L0;
+      if (0x29 < param_3) {
+        iVar4 = *param_2;
+        if (param_3 == 0x2a) {
+          iStack_18 = iVar4;
+          memcpy(param_1,&iStack_18,3);
+          *(byte *)((int)param_1 + 2) =
+               (byte)((uint)iVar4 >> 0x18) & 0x80 | *(byte *)((int)param_1 + 2);
+          return 1;
         }
-        *(undefined4 *)buffer = uVar5;
-        return true;
+        *param_1 = iVar4;
+        return 1;
       }
-      if (uVar6 != 0x26) {
-        if (0x26 < uVar6) {
-          uVar4 = 0x27;
+      if (param_3 != 0x26) {
+        if (0x26 < param_3) {
+          uVar3 = 0x27;
 _L182:
-          if (uVar6 == uVar4) {
+          if (param_3 == uVar3) {
 _L0:
-                    /* WARNING: Load size is inaccurate */
-            uVar5 = *(undefined4 *)((int)value + 4);
-            *(undefined4 *)buffer = *value;
-            *(undefined4 *)(buffer + 4) = uVar5;
-            return true;
+            iVar4 = param_2[1];
+            *param_1 = *param_2;
+            param_1[1] = iVar4;
+            return 1;
           }
 _L0:
-                    /* WARNING: Load size is inaccurate */
-          *buffer = *value;
-          return true;
+          *(char *)param_1 = (char)*param_2;
+          return 1;
         }
-        if (uVar6 != 0x24) {
-          if (uVar6 == 0x25) goto _L0;
-          if (uVar6 != 0x22) goto _L0;
+        if (param_3 != 0x24) {
+          if (param_3 == 0x25) goto _L0;
+          if (param_3 != 0x22) goto _L0;
           goto _L0;
         }
         goto _L0;
       }
 _L0:
-                    /* WARNING: Load size is inaccurate */
-      uStack_18 = *value;
-      uStack_14 = *(undefined4 *)((int)value + 4);
+      iStack_18 = *param_2;
+      iStack_14 = param_2[1];
       __n = 7;
     }
 _L0:
-    value = &uStack_18;
+    param_2 = &iStack_18;
     goto _L0;
   }
-  if (uVar6 < 0x45) {
-    if (0x40 < uVar6) {
-      uVar2 = zcl_get_attr_value_size(value_type,value);
-      __n = CONCAT22(extraout_var_01,uVar2);
+  if (param_3 < 0x45) {
+    if (0x40 < param_3) {
+      __n = zcl_get_attr_value_size(param_3);
       if (__n == 0xffff) {
-        return false;
+        return 0;
       }
       goto _L0;
     }
-    if (uVar6 == 0x2f) goto _L0;
-    if (uVar6 < 0x30) {
-                    /* WARNING: Load size is inaccurate */
-      uStack_18 = *value;
-      uVar5 = *(undefined4 *)((int)value + 4);
-      bVar1 = (byte)((uint)uVar5 >> 0x18);
-      uStack_14 = uVar5;
-      if (uVar6 == 0x2d) {
-        memcpy(buffer,&uStack_18,6);
-        buffer[5] = bVar1 & 0x80 | (byte)((uint)uVar5 >> 8);
-        return true;
+    if (param_3 == 0x2f) goto _L0;
+    if (param_3 < 0x30) {
+      iStack_18 = *param_2;
+      iVar4 = param_2[1];
+      bVar1 = (byte)((uint)iVar4 >> 0x18);
+      iStack_14 = iVar4;
+      if (param_3 == 0x2d) {
+        memcpy(param_1,&iStack_18,6);
+        *(byte *)((int)param_1 + 5) = bVar1 & 0x80 | (byte)((uint)iVar4 >> 8);
+        return 1;
       }
-      memcpy(buffer,&uStack_18,7);
-      buffer[6] = bVar1 & 0x80 | (byte)((uint)uVar5 >> 0x10);
-      return true;
+      memcpy(param_1,&iStack_18,7);
+      *(byte *)((int)param_1 + 6) = bVar1 & 0x80 | (byte)((uint)iVar4 >> 0x10);
+      return 1;
     }
-    if (uVar6 == 0x39) {
-                    /* WARNING: Load size is inaccurate */
-      uStack_18 = *value;
+    if (param_3 == 0x39) {
+      iStack_18 = *param_2;
       __n = 4;
-      value = &uStack_18;
+      param_2 = &iStack_18;
       goto _L0;
     }
-    if (uVar6 < 0x3a) {
-      if ((uVar6 == 0x31) || (uVar6 == 0x38)) goto _L0;
-      uVar4 = 0x30;
+    if (param_3 < 0x3a) {
+      if ((param_3 == 0x31) || (param_3 == 0x38)) goto _L0;
+      uVar3 = 0x30;
 _L179:
-      if (uVar6 == uVar4) goto _L0;
+      if (param_3 == uVar3) goto _L0;
     }
-    else if (uVar6 == 0x3a) {
-                    /* WARNING: Load size is inaccurate */
-      uStack_18 = *value;
-      uStack_14 = *(undefined4 *)((int)value + 4);
+    else if (param_3 == 0x3a) {
+      iStack_18 = *param_2;
+      iStack_14 = param_2[1];
       __n = 8;
-      value = &uStack_18;
+      param_2 = &iStack_18;
       goto _L0;
     }
     goto _L0;
   }
-  if (uVar6 < 0xe3) {
-    if (uVar6 < 0xe0) {
-      if (uVar6 == 0x4a) {
-        uVar2 = zcl_get_attr_value_size(value_type,value);
-                    /* WARNING: Load size is inaccurate */
-        *(undefined2 *)buffer = *value;
-        uVar6 = 2;
-        if (CONCAT22(extraout_var_02,uVar2) != 0xffff) {
-          for (; (uVar6 & 0xffff) < CONCAT22(extraout_var_02,uVar2); uVar6 = uVar6 + 4) {
-                    /* WARNING: Load size is inaccurate */
-            *(uint *)(buffer + uVar6) = *value + uVar6;
+  if (param_3 < 0xe3) {
+    if (param_3 < 0xe0) {
+      if (param_3 == 0x4a) {
+        uVar3 = zcl_get_attr_value_size(0x4a);
+        *(short *)param_1 = (short)*param_2;
+        uVar5 = 2;
+        if (uVar3 != 0xffff) {
+          for (; (uVar5 & 0xffff) < uVar3; uVar5 = uVar5 + 4) {
+            *(uint *)((int)param_1 + uVar5) = *param_2 + uVar5;
           }
-          return true;
+          return 1;
         }
-        return false;
+        return 0;
       }
-      if (uVar6 < 0x4b) {
-        if (uVar6 == 0x48) {
+      if (param_3 < 0x4b) {
+        if (param_3 == 0x48) {
 _L0:
-          pcVar3 = "Unsupported data type (0x%x)!";
+          pcVar2 = "Unsupported data type (0x%x)!";
           goto _L0;
         }
-        if (uVar6 == 0x49) {
-          uVar2 = zcl_get_attr_value_size(value_type,value);
-          if (CONCAT22(extraout_var,uVar2) != 0xffff) {
-            for (uVar6 = 0; uVar6 < CONCAT22(extraout_var,uVar2); uVar6 = uVar6 + 2 & 0xffff) {
-                    /* WARNING: Load size is inaccurate */
-              *(short *)buffer = *value + (short)uVar6;
-              buffer = (uint8_t *)((int)buffer + 2);
+        if (param_3 == 0x49) {
+          uVar3 = zcl_get_attr_value_size(0x49);
+          if (uVar3 != 0xffff) {
+            for (uVar5 = 0; uVar5 < uVar3; uVar5 = uVar5 + 2 & 0xffff) {
+              *(short *)param_1 = (short)*param_2 + (short)uVar5;
+              param_1 = (int *)((int)param_1 + 2);
             }
-            return true;
+            return 1;
           }
-          return false;
+          return 0;
         }
       }
-      else if ((uVar6 == 0x4c) || ((uVar6 - 0x50 & 0xff) < 2)) goto _L0;
+      else if ((param_3 == 0x4c) || ((param_3 - 0x50 & 0xff) < 2)) goto _L0;
       goto _L0;
     }
   }
-  else if (uVar6 != 0xf0) {
-    if (uVar6 < 0xf1) {
-      if (uVar6 < 0xea) {
-        if (0xe7 < uVar6) goto _L0;
+  else if (param_3 != 0xf0) {
+    if (param_3 < 0xf1) {
+      if (param_3 < 0xea) {
+        if (0xe7 < param_3) goto _L0;
       }
-      else if (uVar6 == 0xea) goto _L0;
+      else if (param_3 == 0xea) goto _L0;
     }
-    else if (uVar6 == 0xf1) goto _L0;
+    else if (param_3 == 0xf1) goto _L0;
 _L0:
-    pcVar3 = "Unknown data type (0x%x)!";
+    pcVar2 = "Unknown data type (0x%x)!";
 _L0:
-    log_write(2,"ZCL_COMMON",pcVar3);
-    return false;
+    log_write(2,"ZCL_COMMON",pcVar2);
+    return 0;
   }
 _L0:
-  uVar2 = zcl_get_attr_value_size(value_type,value);
-  __n = CONCAT22(extraout_var_00,uVar2);
+  __n = zcl_get_attr_value_size(param_3,param_2);
 _L0:
-  memcpy(buffer,value,__n);
-  return true;
+  memcpy(param_1,param_2,__n);
+  return 1;
 }
 

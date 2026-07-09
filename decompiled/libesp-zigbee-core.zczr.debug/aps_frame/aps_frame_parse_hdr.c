@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> aps_frame.o -> aps_frame_parse_hdr
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,53 +10,50 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t aps_frame_parse_hdr(zmsg_t *msg,aps_header_t *aps_hdr)
+undefined4 aps_frame_parse_hdr(undefined4 param_1,int param_2)
 
 {
   uint uVar1;
   int iVar2;
   byte bVar3;
-  byte abStack_21 [4];
-  uint8_t scf;
+  byte abStack_21 [13];
   
-  uVar1 = zmsg_read_bytes(0,1,&aps_hdr->fcf);
-  bVar3 = aps_hdr->fcf;
+  uVar1 = zmsg_read_bytes(0,1,param_2 + 0xc);
+  bVar3 = *(byte *)(param_2 + 0xc);
   if (((bVar3 & 3) != 1) && (((bVar3 & 3) != 2 || ((bVar3 & 0x10) == 0)))) {
     if ((bVar3 & 0xc) == 0xc) {
-      iVar2 = zmsg_read_bytes(msg,uVar1,2,&(aps_hdr->addr_info).grp_addr);
+      iVar2 = zmsg_read_bytes(param_1,uVar1,2,param_2 + 4);
     }
     else {
-      iVar2 = zmsg_read_bytes(msg,uVar1,1,&(aps_hdr->addr_info).dst_ep);
+      iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 7);
     }
     uVar1 = uVar1 + iVar2 & 0xffff;
-    iVar2 = zmsg_read_bytes(msg,uVar1,2,&(aps_hdr->addr_info).cluster_id);
+    iVar2 = zmsg_read_bytes(param_1,uVar1,2,param_2 + 8);
     uVar1 = uVar1 + iVar2 & 0xffff;
-    iVar2 = zmsg_read_bytes(msg,uVar1,2,&(aps_hdr->addr_info).profile_id);
+    iVar2 = zmsg_read_bytes(param_1,uVar1,2,param_2 + 10);
     uVar1 = uVar1 + iVar2 & 0xffff;
-    iVar2 = zmsg_read_bytes(msg,uVar1,1,&(aps_hdr->addr_info).src_ep);
+    iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 6);
     uVar1 = uVar1 + iVar2 & 0xffff;
   }
-  iVar2 = zmsg_read_bytes(msg,uVar1,1,&aps_hdr->aps_cntr);
+  iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 0xd);
   uVar1 = uVar1 + iVar2 & 0xffff;
-  if ((char)aps_hdr->fcf < '\0') {
-    (aps_hdr->ext_hdr).block_nr = '\x01';
-    (aps_hdr->ext_hdr).ack_bits = '\0';
-    iVar2 = zmsg_read_bytes(msg,uVar1,1,&aps_hdr->ext_hdr);
+  if (*(char *)(param_2 + 0xc) < '\0') {
+    *(undefined1 *)(param_2 + 0x12) = 1;
+    *(undefined1 *)(param_2 + 0x13) = 0;
+    iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 0x11);
     uVar1 = iVar2 + uVar1 & 0xffff;
-    bVar3 = (aps_hdr->ext_hdr).ext_fcf & 3;
+    bVar3 = *(byte *)(param_2 + 0x11) & 3;
     if ((bVar3 == 1) || (bVar3 == 2)) {
-      iVar2 = zmsg_read_bytes(msg,uVar1,1,&(aps_hdr->ext_hdr).block_nr);
+      iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 0x12);
       uVar1 = iVar2 + uVar1 & 0xffff;
-      if ((aps_hdr->fcf & 3) == 2) {
-        iVar2 = zmsg_read_bytes(msg,uVar1,1,&(aps_hdr->ext_hdr).ack_bits);
+      if ((*(byte *)(param_2 + 0xc) & 3) == 2) {
+        iVar2 = zmsg_read_bytes(param_1,uVar1,1,param_2 + 0x13);
         uVar1 = iVar2 + uVar1 & 0xffff;
       }
     }
   }
-  if ((aps_hdr->fcf & 0x20) != 0) {
-    zmsg_read_bytes(msg,uVar1,1,abStack_21);
+  if ((*(byte *)(param_2 + 0xc) & 0x20) != 0) {
+    zmsg_read_bytes(param_1,uVar1,1,abStack_21);
     if ((abStack_21[0] & 0x20) == 0) {
       iVar2 = 5;
     }
@@ -68,8 +65,8 @@ ezb_err_t aps_frame_parse_hdr(zmsg_t *msg,aps_header_t *aps_hdr)
     }
     uVar1 = iVar2 + uVar1 & 0xffff;
   }
-  if ((aps_hdr->fcf & 3) == 1) {
-    zmsg_read_bytes(msg,uVar1,1,&aps_hdr->cmd_id);
+  if ((*(byte *)(param_2 + 0xc) & 3) == 1) {
+    zmsg_read_bytes(param_1,uVar1,1,param_2 + 0xe);
   }
   return 0;
 }

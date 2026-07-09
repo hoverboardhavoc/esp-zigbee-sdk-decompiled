@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_group.o -> aps_group_table_remove_stored_group
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,26 +10,24 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-void aps_group_table_remove_stored_group(aps_group_t *group)
+void aps_group_table_remove_stored_group(short *param_1)
 
 {
-  undefined1 auStack_38 [4];
-  ds_group_info_iterator_t itor;
+  short asStack_38 [17];
+  short sStack_16;
+  char cStack_14;
   
-  itor.data.ep_in_grp[0x1c] = '\0';
-  itor.data.ep_in_grp[0x1d] = '\0';
-  itor.data.ep_in_grp[0x1e] = '\0';
+  sStack_16 = 0;
+  cStack_14 = '\0';
   while( true ) {
-    ds_group_info_itor_read((ds_group_info_iterator_t *)auStack_38);
-    if (itor.data.ep_in_grp[0x1e] != '\0') {
+    ds_group_info_itor_read(asStack_38);
+    if (cStack_14 != '\0') {
       return;
     }
-    if (auStack_38._0_2_ == group->group_addr) break;
-    itor.data.ep_in_grp._28_2_ = itor.data.ep_in_grp._28_2_ + 1;
+    if (asStack_38[0] == *param_1) break;
+    sStack_16 = sStack_16 + 1;
   }
-  ds_internal_remove_entry(5,auStack_38);
+  ds_internal_remove_entry(5,asStack_38);
   return;
 }
 

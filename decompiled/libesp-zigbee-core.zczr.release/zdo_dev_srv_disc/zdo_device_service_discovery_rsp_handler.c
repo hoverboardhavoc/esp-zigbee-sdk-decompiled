@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zdo_dev_srv_disc.o -> zdo_device_service_discovery_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,222 +10,198 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-zdp_status_t zdo_device_service_discovery_rsp_handler(void *arg)
+undefined4 zdo_device_service_discovery_rsp_handler(int param_1)
 
 {
   ushort uVar1;
-  zmsg_t *pzVar2;
-  zdp_status_t zVar3;
-  zdo_packet_payload_t *payload;
-  ezb_shortaddr_t *peVar4;
-  undefined3 extraout_var;
-  undefined3 extraout_var_00;
+  undefined4 uVar2;
+  void *pvVar3;
+  int iVar4;
   uint uVar5;
-  int iVar6;
+  uint uVar6;
   uint uVar7;
-  uint uVar8;
   byte bStack_3b;
-  uint16_t uStack_3a;
-  undefined1 uStack_38;
-  uint8_t device_info;
-  uint16_t offset;
-  zdp_active_ep_rsp_field_t rsp;
+  ushort uStack_3a;
+  undefined4 uStack_38;
+  undefined4 local_34;
+  undefined4 uStack_30;
+  undefined4 uStack_2c;
   undefined4 uStack_28;
-  ezb_shortaddr_t *peStack_24;
+  void *pvStack_24;
   
-  if (arg == (void *)0x0) {
+  if (param_1 == 0) {
     return 0xfe;
   }
-  uVar1 = *(ushort *)((int)arg + 6);
+  uVar1 = *(ushort *)(param_1 + 6);
   if (uVar1 == 0x8004) {
     memset(&uStack_38,0,0x18);
-    pzVar2 = *(zmsg_t **)((int)arg + 0x14);
-    peVar4 = peStack_24;
-    if (pzVar2 != (zmsg_t *)0x0) {
+    iVar4 = *(int *)(param_1 + 0x14);
+    pvVar3 = pvStack_24;
+    if (iVar4 != 0) {
       uStack_3a = 0;
       bStack_3b = 0;
-      uVar5 = zmsg_get_length(pzVar2);
-      af_read_le8(pzVar2,&uStack_3a,&uStack_38);
-      af_read_le16(pzVar2,&uStack_3a,&offset);
-      af_read_le8(pzVar2,&uStack_3a,&rsp.status);
-      peVar4 = peStack_24;
-      if ((int)((uint)uStack_3a + (rsp._0_4_ & 0xff)) <= (int)uVar5) {
-        if ((_uStack_38 & 0xff) == 0) {
-          af_read_le8(pzVar2,&uStack_3a,&rsp.active_ep_count);
-          af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp.field_0x6);
-          af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp.active_ep_list);
-          af_read_le8(pzVar2,&uStack_3a,&bStack_3b);
-          rsp.active_ep_list._0_3_ =
-               CONCAT12(bStack_3b >> 4 | bStack_3b << 4,rsp.active_ep_list._0_2_);
-          af_read_le8(pzVar2,&uStack_3a,(uint8_t *)((int)&rsp.active_ep_list + 3));
-          uVar7 = (uint)rsp.active_ep_list >> 0x18;
-          peStack_24 = (ezb_shortaddr_t *)calloc(uVar7,2);
-          uVar8 = 0;
-          if (peStack_24 == (ezb_shortaddr_t *)0x0) {
-            peVar4 = (ezb_shortaddr_t *)0x0;
-            if (uVar7 != 0) goto _L0;
+      uVar5 = zmsg_get_length(iVar4);
+      af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_38);
+      af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_38 + 2);
+      af_read_le8_isra_0(iVar4,&uStack_3a,&local_34);
+      pvVar3 = pvStack_24;
+      if ((int)((uint)uStack_3a + (local_34 & 0xff)) <= (int)uVar5) {
+        if ((uStack_38 & 0xff) == 0) {
+          af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_30);
+          af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_30 + 2);
+          af_read_le16_isra_0(iVar4,&uStack_3a,&uStack_2c);
+          af_read_le8_isra_0(iVar4,&uStack_3a,&bStack_3b);
+          uStack_2c._0_3_ = CONCAT12(bStack_3b >> 4 | bStack_3b << 4,(undefined2)uStack_2c);
+          af_read_le8_isra_0(iVar4,&uStack_3a,(int)&uStack_2c + 3);
+          uVar6 = uStack_2c >> 0x18;
+          pvStack_24 = calloc(uVar6,2);
+          uVar7 = 0;
+          if (pvStack_24 == (void *)0x0) {
+            pvVar3 = (void *)0x0;
+            if (uVar6 != 0) goto _L0;
           }
           else {
-            for (; uVar8 < (uint)rsp.active_ep_list >> 0x18; uVar8 = uVar8 + 1 & 0xff) {
-              af_read_le16(pzVar2,&uStack_3a,(uint16_t *)((int)peStack_24 + uVar8 * 2));
+            for (; uVar7 < uStack_2c >> 0x18; uVar7 = uVar7 + 1 & 0xff) {
+              af_read_le16_isra_0(iVar4,&uStack_3a,(void *)((int)pvStack_24 + uVar7 * 2));
             }
           }
-          af_read_le8(pzVar2,&uStack_3a,(uint8_t *)&uStack_28);
-          peStack_24 = (ezb_shortaddr_t *)
-                       mm_realloc(peStack_24,
-                                  ((uint)rsp.active_ep_list >> 0x18) + ((uint)uStack_28 & 0xff),2);
-          uVar7 = (uint)rsp.active_ep_list >> 0x18;
-          if (peStack_24 == (ezb_shortaddr_t *)0x0) {
-            peVar4 = peStack_24;
-            if (((uint)uStack_28 & 0xff) + uVar7 != 0) goto _L0;
+          af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_28);
+          pvStack_24 = (void *)mm_realloc(pvStack_24,(uStack_2c >> 0x18) + ((uint)uStack_28 & 0xff),
+                                          2);
+          uVar6 = uStack_2c >> 0x18;
+          if (pvStack_24 == (void *)0x0) {
+            pvVar3 = pvStack_24;
+            if (((uint)uStack_28 & 0xff) + uVar6 != 0) goto _L0;
           }
           else {
-            for (; uVar7 < ((uint)rsp.active_ep_list >> 0x18) + ((uint)uStack_28 & 0xff);
-                uVar7 = uVar7 + 1 & 0xff) {
-              af_read_le16(pzVar2,&uStack_3a,peStack_24 + uVar7);
+            for (; uVar6 < (uStack_2c >> 0x18) + ((uint)uStack_28 & 0xff); uVar6 = uVar6 + 1 & 0xff)
+            {
+              af_read_le16_isra_0(iVar4,&uStack_3a,(void *)((int)pvStack_24 + uVar6 * 2));
             }
           }
         }
-        peVar4 = peStack_24;
+        pvVar3 = pvStack_24;
         if (uStack_3a <= uVar5) {
-          zdo_cb_address_rsp((zdp_address_rsp_field_t *)&uStack_38,
-                             (zdo_packet_ctx_t *)((int)arg + 8));
-          zVar3 = '\0';
-          peVar4 = peStack_24;
+          zdo_cb_address_rsp_isra_0(&uStack_38,param_1 + 8);
+          uVar2 = 0;
+          pvVar3 = pvStack_24;
           goto _L0;
         }
       }
     }
 _L0:
-    peStack_24 = peVar4;
-    zVar3 = 0xfe;
-    peVar4 = peStack_24;
+    pvStack_24 = pvVar3;
+    uVar2 = 0xfe;
+    pvVar3 = pvStack_24;
     goto _L0;
   }
   if (uVar1 < 0x8005) {
     if (uVar1 == 0x8002) {
-      pzVar2 = *(zmsg_t **)((int)arg + 0x14);
-      _uStack_38 = 0;
-      rsp.status = '\0';
-      rsp._1_1_ = 0;
-      rsp.nwk_addr_of_interest = 0;
-      rsp.active_ep_count = '\0';
-      rsp._5_3_ = 0;
-      rsp.active_ep_list = (uint8_t *)0x0;
-      uStack_28 = (ezb_shortaddr_t *)0x0;
-      if (pzVar2 == (zmsg_t *)0x0) {
+      iVar4 = *(int *)(param_1 + 0x14);
+      uStack_38 = 0;
+      local_34 = 0;
+      uStack_30 = (void *)0x0;
+      uStack_2c = 0;
+      uStack_28 = (void *)0x0;
+      if (iVar4 == 0) {
         return 0xfe;
       }
       uStack_3a = 0;
-      uVar5 = zmsg_get_length(pzVar2);
-      af_read_le8(pzVar2,&uStack_3a,&uStack_38);
-      af_read_le16(pzVar2,&uStack_3a,&offset);
+      uVar5 = zmsg_get_length(iVar4);
+      af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_38);
+      af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_38 + 2);
       if (uVar5 < uStack_3a) {
         return 0xfe;
       }
-      if (uStack_38 != '\0') {
-        rsp.status = '\0';
-        rsp._1_1_ = 0;
-        rsp.nwk_addr_of_interest = 0;
-        rsp.active_ep_count = '\0';
-        rsp._5_3_ = 0;
-        rsp.active_ep_list = (uint8_t *)0x0;
-        uStack_28 = (ezb_shortaddr_t *)0x0;
+      if ((uStack_38 & 0xff) != 0) {
+        local_34 = 0;
+        uStack_30 = (void *)0x0;
+        uStack_2c = 0;
+        uStack_28 = (void *)0x0;
         goto _L0;
       }
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp);
-      af_read_le8(pzVar2,&uStack_3a,(uint8_t *)&rsp.nwk_addr_of_interest);
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp.active_ep_count);
-      af_read_le8(pzVar2,&uStack_3a,&rsp.field_0x6);
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp.active_ep_list);
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)((int)&rsp.active_ep_list + 2));
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&uStack_28);
-      af_read_le8(pzVar2,&uStack_3a,(uint8_t *)((int)&uStack_28 + 2));
+      af_read_le16_isra_0(iVar4,&uStack_3a);
+      af_read_le8_isra_0(iVar4,&uStack_3a,(int)&local_34 + 2);
+      af_read_le16_isra_0(iVar4,&uStack_3a,&uStack_30);
+      af_read_le8_isra_0(iVar4,&uStack_3a,(int)&uStack_30 + 2);
+      af_read_le16_isra_0(iVar4,&uStack_3a,&uStack_2c);
+      af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_2c + 2);
+      af_read_le16_isra_0(iVar4,&uStack_3a,&uStack_28);
+      af_read_le8_isra_0(iVar4,&uStack_3a,(int)&uStack_28 + 2);
     }
     else {
       if (uVar1 != 0x8003) {
         if (1 < (ushort)(uVar1 + 0x8000)) {
           return 0x84;
         }
-        payload = *(zdo_packet_payload_t **)((int)arg + 0x14);
-        _uStack_38 = 0;
-        rsp.status = '\0';
-        rsp._1_1_ = 0;
-        rsp.nwk_addr_of_interest = 0;
-        rsp.active_ep_count = '\0';
-        rsp._5_3_ = 0;
-        rsp.active_ep_list = (uint8_t *)0x0;
-        uStack_28 = (ezb_shortaddr_t *)0x0;
-        if (payload != (zdo_packet_payload_t *)0x0) {
+        uStack_38 = 0;
+        local_34 = 0;
+        uStack_30 = (void *)0x0;
+        uStack_2c = 0;
+        uStack_28 = (void *)0x0;
+        if (*(int *)(param_1 + 0x14) != 0) {
           if (uVar1 == 0x8000) {
-            zVar3 = zdo_op_nwk_addr_rsp(payload,'\x02',(zdp_nwk_addr_rsp_field_t *)&uStack_38,false)
-            ;
-            iVar6 = CONCAT31(extraout_var,zVar3);
+            iVar4 = zdo_op_nwk_addr_rsp(2,&uStack_38,0);
           }
           else {
-            zVar3 = zdo_op_ieee_addr_rsp
-                              (payload,'\x02',(zdp_ieee_addr_rsp_field_t *)&uStack_38,false);
-            iVar6 = CONCAT31(extraout_var_00,zVar3);
+            iVar4 = zdo_op_ieee_addr_rsp(2,&uStack_38,0);
           }
-          if (iVar6 == 0) {
+          if (iVar4 == 0) {
             uStack_3a = 0;
-            nwk_address_update(&device_info,(uint)rsp._4_4_ >> 0x10,&uStack_3a);
-            zdo_cb_address_rsp((zdp_address_rsp_field_t *)&uStack_38,
-                               (zdo_packet_ctx_t *)((int)arg + 8));
-            zVar3 = '\0';
-            peVar4 = uStack_28;
+            nwk_address_update((int)&uStack_38 + 1,(uint)uStack_30 >> 0x10,&uStack_3a);
+            zdo_cb_address_rsp_isra_0(&uStack_38,param_1 + 8);
+            uVar2 = 0;
+            pvVar3 = uStack_28;
             goto _L0;
           }
         }
-        zVar3 = 0xfe;
-        peVar4 = uStack_28;
+        uVar2 = 0xfe;
+        pvVar3 = uStack_28;
         goto _L0;
       }
-      pzVar2 = *(zmsg_t **)((int)arg + 0x14);
-      _uStack_38 = 0;
-      rsp._0_4_ = rsp._0_4_ & 0xffff0000;
-      if (pzVar2 == (zmsg_t *)0x0) {
+      iVar4 = *(int *)(param_1 + 0x14);
+      uStack_38 = 0;
+      local_34 = local_34 & 0xffff0000;
+      if (iVar4 == 0) {
         return 0xfe;
       }
       uStack_3a = 0;
-      uVar5 = zmsg_get_length(pzVar2);
-      af_read_le8(pzVar2,&uStack_3a,&uStack_38);
-      af_read_le16(pzVar2,&uStack_3a,&offset);
+      uVar5 = zmsg_get_length(iVar4);
+      af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_38);
+      af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_38 + 2);
       if (uVar5 < uStack_3a) {
         return 0xfe;
       }
-      if (uStack_38 != '\0') {
-        rsp._0_4_ = rsp._0_4_ & 0xffff0000;
+      if ((uStack_38 & 0xff) != 0) {
+        local_34 = local_34 & 0xffff0000;
         goto _L0;
       }
-      af_read_le16(pzVar2,&uStack_3a,(uint16_t *)&rsp);
+      af_read_le16_isra_0(iVar4,&uStack_3a,&local_34);
     }
     if (uVar5 < uStack_3a) {
       return 0xfe;
     }
 _L0:
-    zdo_cb_address_rsp((zdp_address_rsp_field_t *)&uStack_38,(zdo_packet_ctx_t *)((int)arg + 8));
-    return '\0';
+    zdo_cb_address_rsp_isra_0(&uStack_38,param_1 + 8);
+    return 0;
   }
   if (uVar1 != 0x8006) {
     if (uVar1 == 0x8015) {
-      pzVar2 = *(zmsg_t **)((int)arg + 0x14);
-      _uStack_38 = 0;
-      if (pzVar2 == (zmsg_t *)0x0) {
+      iVar4 = *(int *)(param_1 + 0x14);
+      uStack_38 = 0;
+      if (iVar4 == 0) {
         return 0xfe;
       }
       uStack_3a = 0;
-      uVar5 = zmsg_get_length(pzVar2);
-      af_read_le8(pzVar2,&uStack_3a,&uStack_38);
-      af_read_le16(pzVar2,&uStack_3a,&offset);
+      uVar5 = zmsg_get_length(iVar4);
+      af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_38);
+      af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_38 + 2);
       if (uVar5 < uStack_3a) {
         return 0xfe;
       }
-      if ((_uStack_38 & 0x400000) != 0) {
-        iVar6 = core_globals_get();
-        *(undefined2 *)(iVar6 + 0x9dc) = *(undefined2 *)((int)arg + 4);
+      if ((uStack_38 & 0x400000) != 0) {
+        iVar4 = core_globals_get();
+        *(undefined2 *)(iVar4 + 0x9dc) = *(undefined2 *)(param_1 + 4);
       }
       goto _L0;
     }
@@ -233,43 +209,38 @@ _L0:
       return 0x84;
     }
   }
-  _uStack_38 = 0;
-  rsp.status = '\0';
-  rsp._1_1_ = 0;
-  rsp.nwk_addr_of_interest = 0;
-  rsp.active_ep_count = '\0';
-  rsp._5_3_ = 0;
-  pzVar2 = *(zmsg_t **)((int)arg + 0x14);
-  if (pzVar2 != (zmsg_t *)0x0) {
+  uStack_38 = 0;
+  local_34 = 0;
+  uStack_30 = (void *)0x0;
+  iVar4 = *(int *)(param_1 + 0x14);
+  if (iVar4 != 0) {
     uStack_3a = 0;
-    uVar5 = zmsg_get_length(pzVar2);
-    af_read_le8(pzVar2,&uStack_3a,&uStack_38);
-    af_read_le16(pzVar2,&uStack_3a,&offset);
-    af_read_le8(pzVar2,&uStack_3a,&rsp.status);
+    uVar5 = zmsg_get_length(iVar4);
+    af_read_le8_isra_0(iVar4,&uStack_3a,&uStack_38);
+    af_read_le16_isra_0(iVar4,&uStack_3a,(int)&uStack_38 + 2);
+    af_read_le8_isra_0(iVar4,&uStack_3a,&local_34);
     if (uStack_3a <= uVar5) {
-      if ((uStack_38 == '\0') && (uVar7 = rsp._0_4_ & 0xff, uVar7 != 0)) {
-        rsp._4_4_ = calloc(uVar7,1);
-        if (((uint8_t *)rsp._4_4_ == (uint8_t *)0x0) ||
-           (af_read_bytes(pzVar2,&uStack_3a,(uint16_t)uVar7,(uint8_t *)rsp._4_4_), uVar5 < uStack_3a
-           )) goto _L0;
+      if (((uStack_38 & 0xff) == 0) && (uVar6 = local_34 & 0xff, uVar6 != 0)) {
+        uStack_30 = calloc(uVar6,1);
+        if ((uStack_30 == (void *)0x0) ||
+           (af_read_bytes_isra_0(iVar4,&uStack_3a,uVar6,uStack_30), uVar5 < uStack_3a)) goto _L0;
       }
       else {
-        rsp.active_ep_count = '\0';
-        rsp._5_3_ = 0;
+        uStack_30 = (void *)0x0;
       }
-      zdo_cb_address_rsp((zdp_address_rsp_field_t *)&uStack_38,(zdo_packet_ctx_t *)((int)arg + 8));
-      zVar3 = '\0';
-      peVar4 = (ezb_shortaddr_t *)rsp._4_4_;
+      zdo_cb_address_rsp_isra_0(&uStack_38,param_1 + 8);
+      uVar2 = 0;
+      pvVar3 = uStack_30;
       goto _L0;
     }
   }
 _L0:
-  zVar3 = 0xfe;
-  peVar4 = (ezb_shortaddr_t *)rsp._4_4_;
+  uVar2 = 0xfe;
+  pvVar3 = uStack_30;
 _L0:
-  if (peVar4 != (ezb_shortaddr_t *)0x0) {
+  if (pvVar3 != (void *)0x0) {
     mm_free();
   }
-  return zVar3;
+  return uVar2;
 }
 

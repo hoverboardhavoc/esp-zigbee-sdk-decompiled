@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> zcl_common.o -> zcl_read_attr_value
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,252 +10,240 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-_Bool zcl_read_attr_value(void *value,uint8_t *buffer,zcl_attr_type_t value_type)
+undefined4 zcl_read_attr_value(uint *param_1,uint *param_2,uint param_3)
 
 {
-  uint8_t uVar1;
-  uint16_t uVar2;
-  undefined2 extraout_var;
-  undefined2 extraout_var_00;
-  undefined2 extraout_var_01;
-  undefined2 extraout_var_02;
-  undefined3 in_register_00002031;
-  char *pcVar3;
-  size_t sVar4;
-  uint uVar5;
-  uint uVar6;
+  char *pcVar1;
+  size_t sVar2;
+  uint uVar3;
+  uint uVar4;
   uint uStack_18;
-  ezb_zcl_uint24_t ret;
+  uint uStack_14;
   
-  uVar6 = CONCAT31(in_register_00002031,value_type);
-  if (value == (void *)0x0) {
-    return false;
+  if (param_1 == (uint *)0x0) {
+    return 0;
   }
-  if (buffer == (uint8_t *)0x0) {
-    return false;
+  if (param_2 == (uint *)0x0) {
+    return 0;
   }
-  if (uVar6 == 0x2c) {
+  if (param_3 == 0x2c) {
     uStack_18 = 0;
-    ret = 0;
-    memcpy(&uStack_18,buffer,5);
-    uVar1 = buffer[4];
-    *(uint *)value = uStack_18;
-    uVar6 = (~(int)(char)uVar1 >> 0x1f & 0x100U) - 0x100;
+    uStack_14 = 0;
+    memcpy(&uStack_18,param_2,5);
+    uVar3 = param_2[1];
+    *param_1 = uStack_18;
+    uVar3 = (~(int)(char)uVar3 >> 0x1f & 0x100U) - 0x100;
 _L0:
-    ret = uVar6 | ret;
+    uStack_14 = uVar3 | uStack_14;
     goto _L0;
   }
-  if (uVar6 < 0x2d) {
-    if (uVar6 == 0x21) {
+  if (param_3 < 0x2d) {
+    if (param_3 == 0x21) {
 _L0:
-      *(undefined2 *)value = *(undefined2 *)buffer;
-      return true;
+      *(short *)param_1 = (short)*param_2;
+      return 1;
     }
-    if (0x21 < uVar6) {
-      if (uVar6 == 0x29) goto _L0;
-      if (uVar6 < 0x2a) {
-        if (uVar6 == 0x26) goto _L0;
-        if (0x26 < uVar6) {
-          uVar5 = 0x27;
+    if (0x21 < param_3) {
+      if (param_3 == 0x29) goto _L0;
+      if (param_3 < 0x2a) {
+        if (param_3 == 0x26) goto _L0;
+        if (0x26 < param_3) {
+          uVar3 = 0x27;
 _L267:
-          if (uVar6 != uVar5) {
+          if (param_3 != uVar3) {
 _L0:
-            *(uint8_t *)value = *buffer;
-            return true;
+            *(char *)param_1 = (char)*param_2;
+            return 1;
           }
           goto _L0;
         }
-        if (uVar6 == 0x24) goto _L0;
-        if (uVar6 == 0x25) goto _L0;
-        if (uVar6 == 0x22) goto _L0;
+        if (param_3 == 0x24) goto _L0;
+        if (param_3 == 0x25) goto _L0;
+        if (param_3 == 0x22) goto _L0;
       }
-      else if (uVar6 == 0x2a) {
+      else if (param_3 == 0x2a) {
         uStack_18 = 0;
-        memcpy(&uStack_18,buffer,3);
-        uVar6 = 0;
-        if ((char)buffer[2] < '\0') {
-          uVar6 = 0xff000000;
+        memcpy(&uStack_18,param_2,3);
+        uVar3 = 0;
+        if (*(char *)((int)param_2 + 2) < '\0') {
+          uVar3 = 0xff000000;
         }
-        uStack_18 = uVar6 | uStack_18;
+        uStack_18 = uVar3 | uStack_18;
         goto _L0;
       }
 _L0:
-      uStack_18 = *(uint *)buffer;
+      uStack_18 = *param_2;
       goto _L0;
     }
-    if (uVar6 != 0xf) {
-      if (uVar6 < 0x10) {
-        if (uVar6 == 10) {
+    if (param_3 != 0xf) {
+      if (param_3 < 0x10) {
+        if (param_3 == 10) {
 _L0:
           uStack_18 = 0;
-          memcpy(&uStack_18,buffer,3);
+          memcpy(&uStack_18,param_2,3);
 _L0:
-          *(uint *)value = uStack_18;
-          return true;
+          *param_1 = uStack_18;
+          return 1;
         }
-        if (uVar6 < 0xb) {
-          if (uVar6 == 0) {
-            return true;
+        if (param_3 < 0xb) {
+          if (param_3 == 0) {
+            return 1;
           }
-          if (uVar6 == 8) goto _L0;
-          if (uVar6 == 9) goto _L0;
+          if (param_3 == 8) goto _L0;
+          if (param_3 == 9) goto _L0;
           goto _L0;
         }
-        if (uVar6 == 0xd) {
+        if (param_3 == 0xd) {
 _L0:
-          sVar4 = 6;
+          sVar2 = 6;
           goto _L0;
         }
-        if (uVar6 == 0xe) goto _L0;
-        if (uVar6 == 0xb) goto _L0;
+        if (param_3 == 0xe) goto _L0;
+        if (param_3 == 0xb) goto _L0;
 _L0:
-        sVar4 = 5;
+        sVar2 = 5;
       }
       else {
-        if (uVar6 == 0x1c) goto _L0;
-        if (uVar6 < 0x1d) {
-          if (uVar6 != 0x1a) {
-            if (uVar6 != 0x1b) {
-              if (uVar6 == 0x18) goto _L0;
-              if (uVar6 == 0x19) goto _L0;
-              uVar5 = 0x10;
+        if (param_3 == 0x1c) goto _L0;
+        if (param_3 < 0x1d) {
+          if (param_3 != 0x1a) {
+            if (param_3 != 0x1b) {
+              if (param_3 == 0x18) goto _L0;
+              if (param_3 == 0x19) goto _L0;
+              uVar3 = 0x10;
               goto _L264;
             }
             goto _L0;
           }
           goto _L0;
         }
-        if (uVar6 != 0x1e) {
-          if (0x1e < uVar6) {
-            uVar5 = 0x1f;
+        if (param_3 != 0x1e) {
+          if (0x1e < param_3) {
+            uVar3 = 0x1f;
             goto _L267;
           }
           goto _L0;
         }
 _L0:
-        sVar4 = 7;
+        sVar2 = 7;
       }
 _L0:
-      ret = 0;
+      uStack_14 = 0;
       uStack_18 = 0;
       goto _L0;
     }
 _L0:
-    uStack_18 = *(uint *)buffer;
-    ret = *(ezb_zcl_uint24_t *)(buffer + 4);
+    uStack_18 = *param_2;
+    uStack_14 = param_2[1];
   }
   else {
-    if (0x44 < uVar6) {
-      if (uVar6 < 0xe3) {
-        if (uVar6 < 0xe0) {
-          if (uVar6 == 0x4a) {
-            uVar2 = zcl_get_attr_value_size(value_type,buffer);
-            *(undefined2 *)value = *(undefined2 *)buffer;
-            uVar6 = 2;
-            if (CONCAT22(extraout_var_02,uVar2) != 0xffff) {
-              for (; (uVar6 & 0xffff) < CONCAT22(extraout_var_02,uVar2); uVar6 = uVar6 + 4) {
-                *(undefined4 *)((int)value + uVar6) = *(undefined4 *)(buffer + uVar6);
+    if (0x44 < param_3) {
+      if (param_3 < 0xe3) {
+        if (param_3 < 0xe0) {
+          if (param_3 == 0x4a) {
+            uVar3 = zcl_get_attr_value_size();
+            *(short *)param_1 = (short)*param_2;
+            uVar4 = 2;
+            if (uVar3 != 0xffff) {
+              for (; (uVar4 & 0xffff) < uVar3; uVar4 = uVar4 + 4) {
+                *(undefined4 *)((int)param_1 + uVar4) = *(undefined4 *)((int)param_2 + uVar4);
               }
-              return true;
+              return 1;
             }
-            return false;
+            return 0;
           }
-          if (uVar6 < 0x4b) {
-            if (uVar6 == 0x48) {
+          if (param_3 < 0x4b) {
+            if (param_3 == 0x48) {
 _L0:
-              pcVar3 = "Unsupported data type (0x%x)!";
+              pcVar1 = "Unsupported data type (0x%x)!";
               goto _L0;
             }
-            if (uVar6 == 0x49) {
-              uVar2 = zcl_get_attr_value_size(value_type,buffer);
-              uVar6 = 0;
-              if (CONCAT22(extraout_var,uVar2) != 0xffff) {
-                for (; (uVar6 & 0xffff) < CONCAT22(extraout_var,uVar2); uVar6 = uVar6 + 2) {
-                  *(undefined2 *)((int)value + uVar6) = *(undefined2 *)(buffer + uVar6);
+            if (param_3 == 0x49) {
+              uVar3 = zcl_get_attr_value_size();
+              uVar4 = 0;
+              if (uVar3 != 0xffff) {
+                for (; (uVar4 & 0xffff) < uVar3; uVar4 = uVar4 + 2) {
+                  *(undefined2 *)((int)param_1 + uVar4) = *(undefined2 *)((int)param_2 + uVar4);
                 }
-                return true;
+                return 1;
               }
-              return false;
+              return 0;
             }
           }
-          else if ((uVar6 == 0x4c) || ((uVar6 - 0x50 & 0xff) < 2)) goto _L0;
+          else if ((param_3 == 0x4c) || ((param_3 - 0x50 & 0xff) < 2)) goto _L0;
           goto _L0;
         }
       }
-      else if (uVar6 != 0xf0) {
-        if (uVar6 < 0xf1) {
-          if (uVar6 < 0xea) {
-            if (0xe7 < uVar6) goto _L0;
+      else if (param_3 != 0xf0) {
+        if (param_3 < 0xf1) {
+          if (param_3 < 0xea) {
+            if (0xe7 < param_3) goto _L0;
           }
-          else if (uVar6 == 0xea) goto _L0;
+          else if (param_3 == 0xea) goto _L0;
         }
-        else if (uVar6 == 0xf1) goto _L0;
+        else if (param_3 == 0xf1) goto _L0;
         goto _L0;
       }
 _L0:
-      uVar2 = zcl_get_attr_value_size(value_type,buffer);
-      sVar4 = CONCAT22(extraout_var_00,uVar2);
+      sVar2 = zcl_get_attr_value_size(param_2);
 _L0:
-      memcpy(value,buffer,sVar4);
-      return true;
+      memcpy(param_1,param_2,sVar2);
+      return 1;
     }
-    if (0x40 < uVar6) {
-      uVar2 = zcl_get_attr_value_size(value_type,buffer);
-      sVar4 = CONCAT22(extraout_var_01,uVar2);
-      if (sVar4 == 0xffff) {
-        return false;
+    if (0x40 < param_3) {
+      sVar2 = zcl_get_attr_value_size();
+      if (sVar2 == 0xffff) {
+        return 0;
       }
       goto _L0;
     }
-    if (uVar6 == 0x2f) goto _L0;
-    if (uVar6 < 0x30) {
-      if (uVar6 == 0x2d) {
+    if (param_3 == 0x2f) goto _L0;
+    if (param_3 < 0x30) {
+      if (param_3 == 0x2d) {
         uStack_18 = 0;
-        ret = 0;
-        memcpy(&uStack_18,buffer,6);
-        uVar6 = 0;
-        if ((char)buffer[5] < '\0') {
-          uVar6 = 0xffff0000;
+        uStack_14 = 0;
+        memcpy(&uStack_18,param_2,6);
+        uVar3 = 0;
+        if (*(char *)((int)param_2 + 5) < '\0') {
+          uVar3 = 0xffff0000;
         }
       }
       else {
         uStack_18 = 0;
-        ret = 0;
-        memcpy(&uStack_18,buffer,7);
-        uVar6 = 0;
-        if ((char)buffer[6] < '\0') {
-          uVar6 = 0xff000000;
+        uStack_14 = 0;
+        memcpy(&uStack_18,param_2,7);
+        uVar3 = 0;
+        if (*(char *)((int)param_2 + 6) < '\0') {
+          uVar3 = 0xff000000;
         }
       }
-      *(uint *)value = uStack_18;
+      *param_1 = uStack_18;
       goto _L0;
     }
-    if (uVar6 == 0x39) {
-      memcpy(&uStack_18,buffer,4);
-      *(uint *)value = uStack_18;
-      return true;
+    if (param_3 == 0x39) {
+      memcpy(&uStack_18,param_2,4);
+      *param_1 = uStack_18;
+      return 1;
     }
-    if (uVar6 < 0x3a) {
-      if ((uVar6 == 0x31) || (uVar6 == 0x38)) goto _L0;
-      uVar5 = 0x30;
+    if (param_3 < 0x3a) {
+      if ((param_3 == 0x31) || (param_3 == 0x38)) goto _L0;
+      uVar3 = 0x30;
 _L264:
-      if (uVar6 == uVar5) goto _L0;
+      if (param_3 == uVar3) goto _L0;
 _L0:
-      pcVar3 = "Unknown data type (0x%x)!";
+      pcVar1 = "Unknown data type (0x%x)!";
 _L0:
-      log_write(2,"ZCL_COMMON",pcVar3,uVar6);
-      return false;
+      log_write(2,"ZCL_COMMON",pcVar1,param_3);
+      return 0;
     }
-    if (uVar6 != 0x3a) goto _L0;
-    sVar4 = 8;
+    if (param_3 != 0x3a) goto _L0;
+    sVar2 = 8;
 _L0:
-    memcpy(&uStack_18,buffer,sVar4);
+    memcpy(&uStack_18,param_2,sVar2);
   }
-  *(uint *)value = uStack_18;
+  *param_1 = uStack_18;
 _L0:
-  *(ezb_zcl_uint24_t *)((int)value + 4) = ret;
-  return true;
+  param_1[1] = uStack_14;
+  return 1;
 }
 

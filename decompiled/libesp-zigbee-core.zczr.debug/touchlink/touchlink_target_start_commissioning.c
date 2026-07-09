@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 02e71c61b42f2e0f80074362fea601f2245ed9d0
- * https://github.com/espressif/esp-zigbee-sdk/commit/02e71c61b42f2e0f80074362fea601f2245ed9d0
- * Upstream date: 2026-04-16 12:25:02 +0800
- * Upstream subject: change: update esp-zigbee-lib 2.x (bce53822)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.debug -> touchlink.o -> touchlink_target_start_commissioning
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,45 +10,41 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t touchlink_target_start_commissioning(touchlink_commissioning_callback_t cb)
+undefined4 touchlink_target_start_commissioning(undefined4 param_1)
 
 {
-  _Bool _Var1;
-  undefined3 extraout_var;
+  int iVar1;
   int iVar2;
-  touchlink_commissioning_t *ptVar3;
-  ezb_err_t eVar4;
+  undefined4 uVar3;
   
-  _Var1 = touchlink_commissioning_task_is_idle();
-  if (CONCAT31(extraout_var,_Var1) == 0) {
-    eVar4 = 2;
+  iVar1 = touchlink_commissioning_task_is_idle();
+  if (iVar1 == 0) {
+    uVar3 = 2;
   }
   else {
     touchlink_set_initiator_device(0);
     touchlink_reset_transaction();
-    touchlink_commissioning_set_task('\0');
-    touchlink_commissioning_set_role(TL_COMM_ROLE_TARGET,cb);
-    iVar2 = touchlink_is_factory_new();
-    if (iVar2 != 0) {
+    touchlink_commissioning_set_task(0);
+    touchlink_commissioning_set_role(2,param_1);
+    iVar1 = touchlink_is_factory_new();
+    if (iVar1 != 0) {
       touchlink_assign_nwk_info();
     }
-    iVar2 = touchlink_get_target_timeout();
-    if (iVar2 == 0) {
-      iVar2 = 0x3c;
+    iVar1 = touchlink_get_target_timeout();
+    if (iVar1 == 0) {
+      iVar1 = 0x3c;
     }
     else {
-      iVar2 = touchlink_get_target_timeout();
+      iVar1 = touchlink_get_target_timeout();
     }
-    ptVar3 = touchlink_commissioning_get();
-    milli_timer_stop((undefined1 *)((int)&ptVar3->u + 4));
-    ptVar3 = touchlink_commissioning_get();
-    milli_timer_init((undefined1 *)((int)&ptVar3->u + 4),touchlink_target_commissioning_timeout,0);
-    ptVar3 = touchlink_commissioning_get();
-    milli_timer_start((undefined1 *)((int)&ptVar3->u + 4),iVar2 * 1000);
-    eVar4 = 0;
+    iVar2 = touchlink_commissioning_get();
+    milli_timer_stop(iVar2 + 0x10);
+    iVar2 = touchlink_commissioning_get();
+    milli_timer_init(iVar2 + 0x10,touchlink_target_commissioning_timeout,0);
+    iVar2 = touchlink_commissioning_get();
+    milli_timer_start(iVar2 + 0x10,iVar1 * 1000);
+    uVar3 = 0;
   }
-  return eVar4;
+  return uVar3;
 }
 

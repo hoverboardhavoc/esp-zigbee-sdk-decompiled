@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * https://github.com/espressif/esp-zigbee-sdk/commit/9bb2fbe73d004aaf258c1dadba7f98d929fbdfc8
- * Upstream date: 2026-07-01 11:36:50 +0800
- * Upstream subject: change: update esp-zigbee-lib (9401bce7)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_set_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,82 +10,76 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention -- yet parameter storage is locked */
-
 void aps_secur_key_pair_set_restore(void)
 
 {
-  ushort blk_nr;
-  bool bVar1;
-  uint16_t uVar2;
-  aps_device_key_pair_t *paVar3;
+  ushort uVar1;
+  bool bVar2;
+  undefined1 *puVar3;
   int iVar4;
-  undefined2 extraout_var;
   int iVar5;
-  ezb_err_t eVar6;
-  uint uVar7;
-  bitmap_t *blk_busy;
-  undefined1 auStack_54 [4];
-  ds_aps_key_pair_iterator_t itor;
+  uint uVar6;
+  undefined4 uVar7;
+  undefined1 auStack_54 [8];
+  undefined1 auStack_4c [16];
+  undefined1 auStack_3c [16];
+  undefined4 uStack_2c;
+  undefined2 uStack_28;
+  undefined2 uStack_26;
+  short sStack_24;
+  char cStack_22;
   
-  itor.data.supported_kn_methods = '\0';
-  itor.data.supported_kn_secrets = '\0';
-  itor.data.flags._0_1_ = '\0';
-  bVar1 = false;
-  ds_aps_key_pair_itor_read((ds_aps_key_pair_iterator_t *)auStack_54);
-  while ((char)itor.data.flags == '\0') {
-    paVar3 = aps_secur_get_key_pair_by_addr((ezb_extaddr_t *)auStack_54);
-    if (paVar3 == (aps_device_key_pair_t *)0x0) {
+  sStack_24 = 0;
+  cStack_22 = '\0';
+  bVar2 = false;
+  ds_aps_key_pair_itor_read(auStack_54);
+  while (cStack_22 == '\0') {
+    puVar3 = (undefined1 *)aps_secur_get_key_pair_by_addr(auStack_54);
+    if (puVar3 == (undefined1 *)0x0) {
+      iVar4 = core_globals_get();
+      iVar4 = *(int *)(iVar4 + 0x9a0);
       iVar5 = core_globals_get();
-      iVar5 = *(int *)(iVar5 + 0x9a0);
-      iVar4 = core_globals_get();
-      blk_busy = *(bitmap_t **)(iVar4 + 0x9a4);
-      iVar4 = core_globals_get();
-      blk_nr = *(ushort *)(iVar4 + 0x9a8);
-      uVar2 = mempool_alloc_idx(blk_busy,blk_nr);
-      if (((uint)blk_nr <= CONCAT22(extraout_var,uVar2)) ||
-         (paVar3 = (aps_device_key_pair_t *)(iVar5 + CONCAT22(extraout_var,uVar2) * 0x38),
-         paVar3 == (aps_device_key_pair_t *)0x0)) goto _L0;
+      uVar7 = *(undefined4 *)(iVar5 + 0x9a4);
+      iVar5 = core_globals_get();
+      uVar1 = *(ushort *)(iVar5 + 0x9a8);
+      uVar6 = mempool_alloc_idx(uVar7,(uint)uVar1);
+      if ((uVar1 <= uVar6) ||
+         (puVar3 = (undefined1 *)(iVar4 + uVar6 * 0x38), puVar3 == (undefined1 *)0x0)) goto _L0;
     }
     else {
-      bVar1 = true;
+      bVar2 = true;
     }
-    memset(&paVar3->incoming_frame_cntr,0,0x2c);
-    (paVar3->device_address).field_0.u8[0] = auStack_54[0];
-    (paVar3->device_address).field_0.u8[1] = auStack_54[1];
-    (paVar3->device_address).field_0.u8[3] = auStack_54[3];
-    (paVar3->device_address).field_0.u8[4] = (uint8_t)itor.data.device_address.field_0.u64._0_4_;
-    (paVar3->device_address).field_0.u8[5] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 8);
-    (paVar3->device_address).field_0.u8[6] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 0x10);
-    (paVar3->device_address).field_0.u8[7] =
-         (uint8_t)((uint)itor.data.device_address.field_0._0_4_ >> 0x18);
-    (paVar3->device_address).field_0.u8[2] = auStack_54[2];
-    secur_key_copy(paVar3->link_key,itor.data.device_address.field_0.u8 + 4);
-    secur_key_copy(paVar3->passphrase,itor.data.link_key + 0xc);
-    paVar3->outgoing_frame_cntr = itor.data.passphrase._12_4_;
-    paVar3->supported_kn_methods = (undefined1)itor.data.outgoing_frame_cntr;
-    paVar3->supported_kn_secrets = itor.data.outgoing_frame_cntr._1_1_;
-    paVar3->field_8 = itor.data.outgoing_frame_cntr._2_2_;
-    if ((char)itor.data.flags == '\0') {
-      itor.data._44_2_ = itor.data._44_2_ + 1;
-      ds_aps_key_pair_itor_read((ds_aps_key_pair_iterator_t *)auStack_54);
+    memset(puVar3 + 0xc,0,0x2c);
+    *puVar3 = (char)auStack_54._0_4_;
+    puVar3[1] = SUB41(auStack_54._0_4_,1);
+    puVar3[3] = SUB41(auStack_54._0_4_,3);
+    puVar3[4] = (char)auStack_54._4_4_;
+    puVar3[5] = SUB41(auStack_54._4_4_,1);
+    puVar3[6] = SUB41(auStack_54._4_4_,2);
+    puVar3[7] = SUB41(auStack_54._4_4_,3);
+    puVar3[2] = SUB41(auStack_54._0_4_,2);
+    secur_key_copy(puVar3 + 0x12,auStack_4c);
+    secur_key_copy(puVar3 + 0x22,auStack_3c);
+    *(undefined4 *)(puVar3 + 8) = uStack_2c;
+    *(undefined2 *)(puVar3 + 0x32) = uStack_28;
+    *(undefined2 *)(puVar3 + 0x34) = uStack_26;
+    if (cStack_22 == '\0') {
+      sStack_24 = sStack_24 + 1;
+      ds_aps_key_pair_itor_read(auStack_54);
     }
   }
-  if (bVar1) {
+  if (bVar2) {
 _L0:
-    iVar5 = ds_internal_remove_entry(9,0xffffffff,0);
-    if (iVar5 == 0) {
-      iVar5 = core_globals_get();
-      uVar7 = 0;
-      while ((uVar7 = bitmap_find_next_bit
-                                (*(undefined4 *)(iVar5 + 0x9a4),*(undefined2 *)(iVar5 + 0x9a8),uVar7
-                                ), uVar7 < *(ushort *)(iVar5 + 0x9a8) &&
-             (eVar6 = aps_secur_store_key_pair
-                                ((aps_device_key_pair_t *)(uVar7 * 0x38 + *(int *)(iVar5 + 0x9a0))),
-             eVar6 == 0))) {
-        uVar7 = uVar7 + 1 & 0xffff;
+    iVar4 = ds_internal_remove_entry(9,0xffffffff,0);
+    if (iVar4 == 0) {
+      iVar4 = core_globals_get();
+      uVar6 = 0;
+      while ((uVar6 = bitmap_find_next_bit
+                                (*(undefined4 *)(iVar4 + 0x9a4),*(undefined2 *)(iVar4 + 0x9a8),uVar6
+                                ), uVar6 < *(ushort *)(iVar4 + 0x9a8) &&
+             (iVar5 = aps_secur_store_key_pair(uVar6 * 0x38 + *(int *)(iVar4 + 0x9a0)), iVar5 == 0))
+            ) {
+        uVar6 = uVar6 + 1 & 0xffff;
       }
     }
   }

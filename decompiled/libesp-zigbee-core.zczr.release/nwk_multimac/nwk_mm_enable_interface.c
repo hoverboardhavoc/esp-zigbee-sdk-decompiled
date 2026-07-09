@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * https://github.com/espressif/esp-zigbee-sdk/commit/bc26b7ab9d3ed8b27084676d02ef07f61f4afac6
- * Upstream date: 2026-05-22 03:16:46 +0000
- * Upstream subject: change: update esp-zigbee-lib (73450389)
+ * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
+ * Upstream date: 2026-07-09 09:00:50 +0000
+ * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
  * Source: libesp-zigbee-core.zczr.release -> nwk_multimac.o -> nwk_mm_enable_interface
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,28 +10,22 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-/* WARNING: Unknown calling convention */
-
-ezb_err_t nwk_mm_enable_interface(uint8_t iface_id)
+undefined4 nwk_mm_enable_interface(int param_1)
 
 {
-  _Bool _Var1;
-  undefined3 in_register_00002029;
-  undefined3 extraout_var;
-  int iVar2;
-  _Bool enable;
-  ezb_err_t eVar3;
+  int iVar1;
+  undefined4 uVar2;
   
-  if (CONCAT31(in_register_00002029,iface_id) == 0) {
-    _Var1 = nwk_mm_iface_is_disabled(iface_id);
-    eVar3 = 3;
-    if (CONCAT31(extraout_var,_Var1) != 0) {
-      iVar2 = core_globals_get();
-      *(uint *)(iVar2 + 0xc7c) = *(uint *)(iVar2 + 0xc7c) & 0xffffff9f | 0x40;
-      mac_iface_set_enabled('\x01',enable);
-      eVar3 = 0;
+  if (param_1 == 0) {
+    iVar1 = nwk_mm_iface_is_disabled();
+    uVar2 = 3;
+    if (iVar1 != 0) {
+      iVar1 = core_globals_get();
+      *(uint *)(iVar1 + 0xc7c) = *(uint *)(iVar1 + 0xc7c) & 0xffffff9f | 0x40;
+      mac_iface_set_enabled_constprop_0(1);
+      uVar2 = 0;
     }
-    return eVar3;
+    return uVar2;
   }
   return 2;
 }
