@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> mempool.o -> mempool_deinit_pool
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,10 +15,9 @@ void mempool_deinit_pool(int param_1)
 {
   int iVar1;
   undefined4 uVar2;
-  int iVar3;
   uint extraout_a1;
+  uint uVar3;
   uint uVar4;
-  uint uVar5;
   
   if (param_1 != 0) {
     if (*(int *)(param_1 + 0xc) != 0) {
@@ -40,12 +39,15 @@ void mempool_deinit_pool(int param_1)
   else if (extraout_a1 != 0) {
     uVar2 = mm_realloc(*(undefined4 *)(iVar1 + 0xc),*(undefined2 *)(iVar1 + 2));
     *(undefined4 *)(iVar1 + 0xc) = uVar2;
-    uVar5 = extraout_a1 + 7 >> 3;
-    iVar3 = mm_realloc(*(undefined4 *)(iVar1 + 8),uVar5,1);
-    *(int *)(iVar1 + 8) = iVar3;
-    if (*(ushort *)(iVar1 + 4) < extraout_a1) {
-      uVar4 = *(ushort *)(iVar1 + 4) + 7 >> 3;
-      memset((void *)(iVar3 + uVar4),0,uVar5 - uVar4);
+    uVar4 = extraout_a1 + 7 >> 3;
+    uVar2 = mm_realloc(*(undefined4 *)(iVar1 + 8),uVar4,1);
+    *(undefined4 *)(iVar1 + 8) = uVar2;
+    uVar3 = (uint)*(ushort *)(iVar1 + 4);
+    if (uVar3 < extraout_a1) {
+      memset((void *)(*(int *)(iVar1 + 0xc) + uVar3 * *(ushort *)(iVar1 + 2)),0,
+             (uint)*(ushort *)(iVar1 + 2) * (extraout_a1 - uVar3));
+      uVar3 = *(ushort *)(iVar1 + 4) + 7 >> 3;
+      memset((void *)(*(int *)(iVar1 + 8) + uVar3),0,uVar4 - uVar3);
     }
     goto _L0;
   }

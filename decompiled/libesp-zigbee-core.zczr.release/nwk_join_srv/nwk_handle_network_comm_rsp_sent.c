@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_srv.o -> nwk_handle_network_comm_rsp_sent
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,14 +10,14 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-void nwk_handle_network_comm_rsp_sent(int param_1,undefined4 param_2)
+void nwk_handle_network_comm_rsp_sent(int param_1,int param_2)
 
 {
   short sVar1;
   int iVar2;
   char cStack_1d;
   undefined2 auStack_1c [2];
-  undefined1 auStack_18 [12];
+  undefined1 auStack_18 [8];
   
   zmsg_get_footer(&cStack_1d,1);
   iVar2 = nwk_frame_get_dst_extaddr(param_1,auStack_18);
@@ -27,8 +27,11 @@ void nwk_handle_network_comm_rsp_sent(int param_1,undefined4 param_2)
   sVar1 = zmsg_get_offset(param_1);
   zmsg_read_bytes(param_1,sVar1 + 1,3,auStack_1c);
   if (cStack_1d == '\a') {
-    nwk_neighbor_table_get_by_extended(auStack_18);
+    iVar2 = nwk_neighbor_table_get_by_extended(auStack_18);
     nwk_child_address_change_confirm(auStack_1c[0],param_2);
+    if ((param_2 == 0) && (iVar2 != 0)) {
+      nwk_join_indication_with_method(iVar2,2);
+    }
   }
   else {
     nwk_accept_child_done(param_2,auStack_18);

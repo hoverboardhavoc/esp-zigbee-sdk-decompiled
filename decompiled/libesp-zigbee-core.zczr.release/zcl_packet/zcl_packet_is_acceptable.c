@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_is_acceptable
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,6 +16,10 @@ undefined4 zcl_packet_is_acceptable(int param_1)
   int iVar1;
   
   if (param_1 == 0) {
+    return 0xfe;
+  }
+  iVar1 = zcl_basic_device_is_enabled(*(undefined1 *)(param_1 + 0x15));
+  if ((iVar1 == 0) && (iVar1 = zcl_packet_is_device_allowed_part_0(param_1), iVar1 == 0)) {
     return 0xfe;
   }
   iVar1 = af_endpoint_is_gateway(*(undefined1 *)(param_1 + 0x15));

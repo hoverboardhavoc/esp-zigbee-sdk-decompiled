@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> hash.o -> crypto_aes_mmo_hash
  *
  * (C) Espressif, Apache License 2.0.
@@ -10,25 +10,16 @@
  * Decompiler output may be incomplete or differ from original semantics.
  */
 
-undefined4 crypto_aes_mmo_hash(int param_1,uint param_2,void *param_3)
+void crypto_aes_mmo_hash(undefined4 param_1,undefined4 param_2,undefined4 param_3)
 
 {
-  uint uVar1;
-  undefined4 uVar2;
+  undefined1 auStack_48 [38];
+  undefined2 auStack_22 [7];
   
-  if (param_2 < 0x20000000) {
-    memset(param_3,0,0x10);
-    uVar1 = 0;
-    while (uVar1 + 0x10 <= param_2) {
-      aes_mmo_hash_core(uVar1 + param_1,param_3);
-      uVar1 = uVar1 + 0x10;
-    }
-    aes_mmo_hash_tail(uVar1 + param_1,param_2,param_3);
-    uVar2 = 0;
-  }
-  else {
-    uVar2 = 2;
-  }
-  return uVar2;
+  crypto_aes_mmo_hash_start(auStack_48);
+  crypto_aes_mmo_hash_update(auStack_48,param_1,param_2);
+  auStack_22[0] = 0;
+  crypto_aes_mmo_hash_finish(auStack_48,param_3,0x10,auStack_22);
+  return;
 }
 

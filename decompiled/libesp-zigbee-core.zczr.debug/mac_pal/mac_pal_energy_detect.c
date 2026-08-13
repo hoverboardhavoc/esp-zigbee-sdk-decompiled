@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> mac_pal.o -> mac_pal_energy_detect
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ undefined4 mac_pal_energy_detect(int param_1,undefined4 param_2,undefined4 param
       uVar1 = ezb_plat_radio_energy_detect(param_2,param_3);
       return uVar1;
     }
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_pal.c",0x197,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/mac/mac_pal.c",0x1a0,
                   "mac_pal_energy_detect","page == 0");
   }
   return 3;

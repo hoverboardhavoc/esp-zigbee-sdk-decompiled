@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-idf.remote.debug -> esp_zigbee_plat_radio_spinel.o -> esp_zigbee_platform_radio_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -58,11 +58,11 @@ undefined4 esp_zigbee_platform_radio_init(int *param_1)
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/platform_esp/esp-zigbee/platform/esp_zigbee_plat_radio_spinel.c"
-                  ,0x14a,"esp_zigbee_platform_radio_init",
+                  ,0x163,"esp_zigbee_platform_radio_init",
                   "config->radio_mode == ESP_ZIGBEE_RADIO_MODE_UART_RCP");
   }
   esp_log(0x11,"ESP-ZIGBEE","%s(%d): Radio was initialized already!",
-          "esp_zigbee_platform_radio_init",0x14c);
+          "esp_zigbee_platform_radio_init",0x165);
   return 0x103;
 }
 

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> nwk_discovery.o -> nwk_nlme_ed_scan_callback
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void nwk_nlme_ed_scan_callback(int param_1,undefined4 param_2)
     if (param_1 == 0) {
       iVar2 = core_globals_get();
       *(undefined1 *)(iVar2 + 0xac0) = 0;
-                    /* WARNING: Could not recover jumptable at 0x00010176. Too many branches */
+                    /* WARNING: Could not recover jumptable at 0x00010186. Too many branches */
                     /* WARNING: Treating indirect jump as call */
       (**(code **)(iVar1 + 0xad0))(0,param_2,*(code **)(iVar1 + 0xad0));
       return;

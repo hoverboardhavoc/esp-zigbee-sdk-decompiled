@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> zcl_packet.o -> zcl_packet_send_with_ext
  *
  * (C) Espressif, Apache License 2.0.
@@ -13,10 +13,10 @@
 undefined4 zcl_packet_send_with_ext(int param_1,undefined4 *param_2,byte *param_3)
 
 {
-  uint uVar1;
+  int iVar1;
   uint uVar2;
-  undefined4 uVar3;
-  int iVar4;
+  uint uVar3;
+  undefined4 uVar4;
   byte bVar5;
   undefined4 uStack_44;
   undefined1 auStack_40 [10];
@@ -28,17 +28,24 @@ undefined4 zcl_packet_send_with_ext(int param_1,undefined4 *param_2,byte *param_
   undefined4 uStack_28;
   undefined4 uStack_24;
   
-  if (param_1 != 0) {
-    zcl_frame_fill_header_isra_0();
-    uVar1 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
+  if (param_1 == 0) {
+    return 1;
+  }
+  iVar1 = zcl_basic_device_is_enabled(*(undefined1 *)(param_1 + 0x14));
+  if ((iVar1 == 0) && (iVar1 = zcl_packet_is_device_allowed_part_0(param_1), iVar1 == 0)) {
+    uVar4 = 1;
+  }
+  else {
+    zcl_frame_fill_header_isra_0(param_1);
+    uVar2 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
     bVar5 = 0;
     if (param_3 != (byte *)0x0) {
       bVar5 = *param_3 & 1;
     }
-    uVar2 = zcl_packet_max_available_space
+    uVar3 = zcl_packet_max_available_space
                       (*(undefined2 *)(param_1 + 0x16),bVar5,*(ushort *)(param_1 + 0x1a) >> 2 & 1);
-    uVar3 = 0x89;
-    if (uVar1 <= uVar2) {
+    uVar4 = 0x89;
+    if (uVar2 <= uVar3) {
       uStack_44 = *(undefined4 *)(param_1 + 0x24);
       *(undefined4 *)(param_1 + 0x24) = 0;
       uStack_30 = 0;
@@ -51,15 +58,15 @@ undefined4 zcl_packet_send_with_ext(int param_1,undefined4 *param_2,byte *param_
       uStack_36 = *(undefined2 *)(param_1 + 0x14);
       if (param_3 == (byte *)0x0) {
         uStack_2c._0_1_ = (byte)uStack_2c | 2;
-        iVar4 = zcl_cluster_fragment_is_supported();
-        uStack_2c._0_1_ = (byte)uStack_2c & 0xf3 | (byte)(iVar4 << 2) & 0xc;
-        uVar1 = 0;
+        iVar1 = zcl_cluster_fragment_is_supported();
+        uStack_2c._0_1_ = (byte)uStack_2c & 0xf3 | (byte)(iVar1 << 2) & 0xc;
+        uVar2 = 0;
       }
       else {
         uStack_2c._0_1_ = (byte)uStack_2c & 0xf0 | *param_3 & 0xf;
-        uVar1 = *param_3 >> 4 & 1;
+        uVar2 = *param_3 >> 4 & 1;
       }
-      uStack_2c = CONCAT31(uStack_2c._1_3_,(byte)(uVar1 << 4) | (byte)uStack_2c & 0xef);
+      uStack_2c = CONCAT31(uStack_2c._1_3_,(byte)(uVar2 << 4) | (byte)uStack_2c & 0xef);
       if (param_2 == (undefined4 *)0x0) {
         uStack_28 = 0;
         uStack_24 = 0;
@@ -69,10 +76,9 @@ undefined4 zcl_packet_send_with_ext(int param_1,undefined4 *param_2,byte *param_
         uStack_24 = param_2[1];
       }
       af_data_request(&uStack_44);
-      uVar3 = err_to_zcl_status();
+      uVar4 = err_to_zcl_status();
     }
-    return uVar3;
   }
-  return 1;
+  return uVar4;
 }
 

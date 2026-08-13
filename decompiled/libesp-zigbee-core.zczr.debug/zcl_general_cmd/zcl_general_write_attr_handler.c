@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_general_write_attr_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,7 +21,7 @@ void zcl_general_write_attr_handler(int param_1,int param_2)
   undefined4 uVar5;
   int unaff_s2;
   undefined2 uVar6;
-  undefined2 uStack_3c;
+  ushort uStack_3c;
   ushort local_3a;
   undefined4 uStack_38;
   void *pvStack_34;
@@ -78,29 +78,34 @@ _L0:
           }
           iVar3 = zcl_set_attr_value(*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16)
                                      ,uVar5,uStack_38 & 0xffff,uVar6,pvStack_34,0);
-          if (iVar3 == 0) {
-            if ((*(short *)(param_1 + 0x16) == 0x500) && ((*(byte *)(param_1 + 0x1a) & 8) == 0)) {
-              ias_zone_cluster_srv_set_attr_val_post_proc(param_1,uStack_38 & 0xffff,pvStack_34);
-            }
-            if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
-              uVar5 = 1;
-            }
-            else {
-              uVar5 = 2;
-            }
-            zcl_message_notify_attr_value
-                      (*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16),uVar5,uVar4);
+          if (iVar3 != 0) goto _L0;
+          if ((*(short *)(param_1 + 0x16) == 0x500) && ((*(byte *)(param_1 + 0x1a) & 8) == 0)) {
+            ias_zone_cluster_srv_set_attr_val_post_proc(param_1,uStack_38 & 0xffff,pvStack_34);
           }
+          if ((*(byte *)(param_1 + 0x1a) & 8) == 0) {
+            uVar5 = 1;
+          }
+          else {
+            uVar5 = 2;
+          }
+          zcl_message_notify_attr_value
+                    (*(undefined1 *)(param_1 + 0x15),*(undefined2 *)(param_1 + 0x16),uVar5,uVar4);
         }
-        uStack_3c = CONCAT11(uStack_3c._1_1_,(char)iVar3);
-        zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_3c);
-        if (iVar3 != 0) {
-          uStack_3c = (undefined2)uStack_38;
+        else {
+_L0:
+          uStack_3c = CONCAT11(uStack_3c._1_1_,(char)iVar3);
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_3c);
+          uStack_3c = (ushort)uStack_38;
           zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),2,&uStack_3c);
         }
         mm_free(pvStack_34);
       }
       if (local_3a == uVar2) {
+        iVar1 = zmsg_get_length(*(undefined4 *)(param_2 + 0x24));
+        if (iVar1 == 0) {
+          uStack_3c = uStack_3c & 0xff00;
+          zmsg_append_bytes(*(undefined4 *)(param_2 + 0x24),1,&uStack_3c);
+        }
         zcl_packet_setup_response(param_2,param_1,4);
         return;
       }

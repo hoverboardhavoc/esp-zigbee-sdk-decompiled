@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_cli.o -> nwk_handle_mlme_asso_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -53,9 +53,8 @@ void nwk_handle_mlme_asso_confirm(uint param_1,undefined2 *param_2)
       nwk_set_short_address(uVar3);
       iVar5 = core_globals_get();
       nwk_set_extended_panid(iVar5 + 0xac8);
-      iVar5 = core_globals_get();
-      *(undefined1 *)(iVar5 + 0x9df) = *(undefined1 *)(iVar10 + 10);
       cVar4 = '\x0f';
+      nwk_set_update_id(*(undefined1 *)(iVar10 + 10));
       uVar11 = *(uint *)(iVar10 + 0x10) >> 0x14 & 0xf;
       if (uVar11 < 0xe) {
         cVar4 = (char)uVar11 + '\x01';

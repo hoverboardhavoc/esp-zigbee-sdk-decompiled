@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> aps_bind.o -> aps_bind_table_iterator_next
  *
  * (C) Espressif, Apache License 2.0.
@@ -47,7 +47,7 @@ void aps_bind_table_iterator_next(char *param_1)
   uVar5 = bitmap_find_next_bit(iVar4 + 6,*(undefined2 *)(iVar3 + 0x97c),uVar5 + 1 & 0xffff);
   if (uVar5 < *(ushort *)(iVar3 + 0x97c)) {
     iVar2 = *(int *)(iVar3 + 0x974);
-_L178:
+_L183:
     *(uint *)(param_1 + 8) = iVar2 + uVar5 * 6;
     return;
   }
@@ -68,7 +68,7 @@ _L178:
     uVar5 = bitmap_find_first_bit(iVar6 + 6,uVar1);
     if (uVar5 < *(ushort *)(iVar4 + 0x97c)) {
       iVar2 = *(int *)(iVar4 + 0x974);
-      goto _L178;
+      goto _L183;
     }
     __assert_func(0,0,0,0);
 _L0:

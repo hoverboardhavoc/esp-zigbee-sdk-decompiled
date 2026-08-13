@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> zcl_general_cmd.o -> zcl_config_report_cmd_req
  *
  * (C) Espressif, Apache License 2.0.
@@ -84,13 +84,13 @@ int zcl_config_report_cmd_req(int param_1)
               else {
                 iVar3 = zcl_packet_append_variable_attr_value(uStack_14,pcVar1[8],pcVar1 + 0x10);
               }
-              goto joined_r0x00011cd0;
+              goto joined_r0x00011de6;
             }
           }
           else {
             uStack_3a = *(ushort *)(pcVar1 + 8);
             iVar3 = zmsg_append_bytes(uStack_14,2,&uStack_3a);
-joined_r0x00011cd0:
+joined_r0x00011de6:
             if (iVar3 != 0) goto _L0;
           }
           iVar2 = iVar2 + 1;

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_nlme.o -> nwk_do_leave_continue
  *
  * (C) Espressif, Apache License 2.0.
@@ -33,7 +33,7 @@ void nwk_do_leave_continue(uint param_1,uint param_2,uint param_3)
   
   iVar1 = core_globals_get();
   if ((*(byte *)(iVar1 + 0xb18) & 1) == 0) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x14b,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x14f,
                   "nwk_do_leave_continue","(((*core_globals_get()).nwk).ctx).is_joined");
   }
   else {
@@ -67,8 +67,7 @@ void nwk_do_leave_continue(uint param_1,uint param_2,uint param_3)
     iVar1 = core_globals_get();
     unaff_s3 = 0x1000;
     *(undefined2 *)(iVar1 + 0x9dc) = 0xffff;
-    iVar1 = core_globals_get();
-    *(undefined1 *)(iVar1 + 0x9df) = 0;
+    nwk_set_update_id(0);
     nwk_set_short_address(0xffff);
     uStack_28 = 0;
     uStack_24 = 0;
@@ -87,7 +86,7 @@ void nwk_do_leave_continue(uint param_1,uint param_2,uint param_3)
     if (iVar1 == 0) goto _L0;
   }
   else {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x15b,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x15f,
                   "nwk_do_leave_continue",
                   "(nwk_address_ref_by_extended(nwk_get_extended_address(), &addr_ref)) == 0");
   }
@@ -110,7 +109,7 @@ _L0:
   else {
     if (1 < (byte)(*(char *)(iVar1 + 0xac8) - 1U)) {
       pcVar2 = "nwk_do_leave_continue";
-      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x1a4,&_LC18);
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_nlme.c",0x1a8,&_LC18);
       if (unaff_s7 <= tp) {
                     /* WARNING: Bad instruction - Truncating control flow here */
         halt_baddata();

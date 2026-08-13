@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_touchlink.o -> touchlink_zdo_target_start_network_response
  *
  * (C) Espressif, Apache License 2.0.
@@ -54,7 +54,7 @@ void touchlink_zdo_target_start_network_response(int param_1)
     uVar4 = touchlink_assign_random_channel();
     *(undefined1 *)(param_1 + 0xc) = uVar4;
   }
-  uVar5 = touchlink_validate_pan_id(*(undefined2 *)(param_1 + 10));
+  uVar5 = touchlink_generate_pan_id(*(undefined2 *)(param_1 + 10));
   *(undefined2 *)(param_1 + 10) = uVar5;
   touchlink_send_network_start_rsp(param_1);
   return;

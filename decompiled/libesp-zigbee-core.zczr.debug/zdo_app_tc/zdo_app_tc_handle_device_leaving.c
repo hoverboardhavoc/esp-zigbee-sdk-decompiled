@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_tc.o -> zdo_app_tc_handle_device_leaving
  *
  * (C) Espressif, Apache License 2.0.
@@ -30,7 +30,7 @@ void zdo_app_tc_handle_device_leaving(undefined2 *param_1)
   if ((*(int *)(param_1 + 1) == 0 && *(int *)(param_1 + 3) == 0) ||
      (piVar2 = (int *)nwk_get_extended_address(),
      *(int *)(param_1 + 3) == piVar2[1] && *(int *)(param_1 + 1) == *piVar2)) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_tc.c",0x98,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_tc.c",0xa9,
                   "zdo_app_tc_handle_device_leaving",
                   "!ezb_eui64_is_all_zero(&ind->device_address) && !ezb_eui64_compare(&ind->device_address, nwk_get_extended_address())"
                  );

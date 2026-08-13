@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_forwarder.o -> nwk_btr_create
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,10 +20,10 @@ undefined4 * nwk_btr_create(undefined4 param_1,undefined4 param_2)
     if (0x59 < uVar1) {
       return (undefined4 *)0x0;
     }
-    if (*(char *)((int)&DAT_00011a44 + (uVar1 + 6) * 8 + 3) == '\0') break;
+    if (*(char *)((int)&DAT_00011a5c + (uVar1 + 6) * 8 + 3) == '\0') break;
     uVar1 = uVar1 + 1 & 0xff;
   }
-  nwk_btr_setup(&DAT_00011a44 + (uVar1 + 6) * 2,param_1,param_2);
-  return &DAT_00011a44 + (uVar1 + 6) * 2;
+  nwk_btr_setup(&DAT_00011a5c + (uVar1 + 6) * 2,param_1,param_2);
+  return &DAT_00011a5c + (uVar1 + 6) * 2;
 }
 

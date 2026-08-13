@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_cli.o -> nwk_handle_network_comm_rsp
  *
  * (C) Espressif, Apache License 2.0.
@@ -20,7 +20,7 @@ void nwk_handle_network_comm_rsp(int param_1,int param_2)
   ushort uVar5;
   undefined2 uStack_34;
   byte bStack_32;
-  int local_30;
+  int iStack_30;
   int iStack_2c;
   undefined1 auStack_28 [20];
   
@@ -36,12 +36,15 @@ void nwk_handle_network_comm_rsp(int param_1,int param_2)
     if (*(short *)(param_2 + 2) == *(short *)(param_2 + 6)) {
       if (uVar5 != ((*(ushort *)(param_1 + 0x16) & 2) != 0)) goto _L0;
       iVar2 = nwk_frame_get_src_extaddr(param_1,auStack_28);
-      if ((iVar2 == 0) && (iVar2 = nwk_frame_get_dst_extaddr(param_1,&local_30), iVar2 == 0)) {
-        piVar3 = (int *)nwk_get_extended_address();
-        if ((local_30 == *piVar3) &&
-           ((iStack_2c == piVar3[1] &&
-            (uVar5 = *(ushort *)(param_2 + 6), uVar4 = nwk_get_parent_shortaddr(), uVar5 == uVar4)))
-           ) {
+      if (iVar2 == 0) {
+        iVar2 = nwk_frame_get_dst_extaddr(param_1,&iStack_30);
+        if (iVar2 == 0) {
+          piVar3 = (int *)nwk_get_extended_address();
+          if ((iStack_30 != *piVar3) || (iStack_2c != piVar3[1])) goto _L0;
+        }
+        uVar5 = *(ushort *)(param_2 + 6);
+        uVar4 = nwk_get_parent_shortaddr();
+        if (uVar5 == uVar4) {
           uStack_34 = 0;
           bStack_32 = 0;
           sVar1 = zmsg_get_offset(param_1);
@@ -74,6 +77,7 @@ void nwk_handle_network_comm_rsp(int param_1,int param_2)
       }
     }
   }
+_L0:
   if (param_1 == 0) {
     return;
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_table_dump_dst
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,18 +34,18 @@ int bind_table_dump_dst(undefined2 *param_1)
   iVar10 = -0x55555555;
   uVar2 = ((int)param_1 - *(int *)(iVar3 + 0x974) >> 1) * -0x55555555;
   if ((*(byte *)((int)param_1 + 5) & 1) != 0) {
-    iVar3 = log_write(3,"aps_bind.c",0x10eb4,uVar2 & 0xffff,*param_1);
+    iVar3 = log_write(3,"aps_bind.c",0x10edc,uVar2 & 0xffff,*param_1);
     return iVar3;
   }
   iVar3 = nwk_address_extended_by_ref(*param_1,&uStack_18);
   if (iVar3 == 0) {
-    iVar3 = log_write(3,"aps_bind.c",0x10ec8,uVar2 & 0xffff,uStack_18,uStack_14,
+    iVar3 = log_write(3,"aps_bind.c",0x10ef0,uVar2 & 0xffff,uStack_18,uStack_14,
                       *(undefined1 *)(param_1 + 1));
     return iVar3;
   }
   pcVar9 = "(nwk_address_extended_by_ref(dst->extaddr.addr_ref, &dst_addr)) == 0";
   pcVar8 = "bind_table_dump_dst";
-  uVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x1c7);
+  uVar4 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x1d4);
   if (0xfd < (extraout_a1 - 1U & 0xff)) {
     return 2;
   }

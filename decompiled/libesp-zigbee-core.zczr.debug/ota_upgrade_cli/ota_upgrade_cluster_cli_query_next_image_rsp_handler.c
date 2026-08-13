@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_query_next_image_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -35,7 +35,10 @@ void ota_upgrade_cluster_cli_query_next_image_rsp_handler(int param_1,int param_
   }
   else {
     iVar1 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
-    if (**(char **)(iVar1 + 0x18) == '\0') {
+    if (iVar1 == 0) {
+      iVar3 = 0xfe;
+    }
+    else if (**(char **)(iVar1 + 0x18) == '\0') {
       uVar2 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
       af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_34);
       if ((uStack_34 & 0xff) == 0) {
@@ -48,15 +51,13 @@ void ota_upgrade_cluster_cli_query_next_image_rsp_handler(int param_1,int param_
         iVar3 = 0x80;
       }
       else {
+        ota_upgrade_download_stop_retry(iVar1,1);
         iVar3 = zcl_message_ota_upgrade_query_next_image(param_1,&uStack_34);
-        if (iVar3 == 0) {
-          ota_upgrade_download_stop_timer(iVar1,0);
-          iVar3 = ota_upgrade_handle_next_image(iVar1,&uStack_34);
-          if (iVar3 == 0) {
-            zcl_message_ota_upgrade_downloading_progress(param_1,0,&uStack_34);
-            ota_upgrade_setup_image_block_request(param_2,iVar1,param_1);
-            return;
-          }
+        if ((iVar3 == 0) && (iVar3 = ota_upgrade_handle_next_image(iVar1,&uStack_34,0), iVar3 == 0))
+        {
+          zcl_message_ota_upgrade_downloading_progress(param_1,0,&uStack_34);
+          ota_upgrade_setup_image_block_request(param_2,iVar1,param_1);
+          return;
         }
       }
     }

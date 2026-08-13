@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_resize
  *
  * (C) Espressif, Apache License 2.0.
@@ -18,7 +18,7 @@ undefined4 zmsg_resize(int param_1,short param_2)
   ushort uVar3;
   undefined4 uVar4;
   int *piVar5;
-  int iVar6;
+  undefined4 *puVar6;
   int *piVar7;
   
   piVar5 = (int *)(param_1 + 8);
@@ -39,12 +39,13 @@ _L0:
       return uVar4;
     }
     if (*piVar5 == 0) {
-      iVar6 = mempool_malloc(0);
-      *piVar5 = iVar6;
-      if (iVar6 == 0) {
+      puVar6 = (undefined4 *)mempool_malloc(0);
+      *piVar5 = (int)puVar6;
+      if (puVar6 == (undefined4 *)0x0) {
         uVar4 = 1;
         goto _L0;
       }
+      *puVar6 = 0;
     }
     else {
       piVar7 = (int *)*piVar7;

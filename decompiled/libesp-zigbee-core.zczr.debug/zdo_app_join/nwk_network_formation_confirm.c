@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> zdo_app_join.o -> nwk_network_formation_confirm
  *
  * (C) Espressif, Apache License 2.0.
@@ -31,7 +31,7 @@ void nwk_network_formation_confirm(uint param_1)
       __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/zdo/zdo_app_join.c",0x1bc,
                     "nwk_network_formation_confirm","(nwk_secur_switch_key(key_seq)) == 0");
       if (&stack0x00000000 != (undefined1 *)0x10) {
-        FUN_0001104e();
+        FUN_00011066();
         return;
       }
                     /* WARNING: Bad instruction - Truncating control flow here */

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> secur_ic.o -> secur_ic_get_key
  *
  * (C) Espressif, Apache License 2.0.
@@ -29,7 +29,8 @@ undefined4 secur_ic_get_key(int param_1,int param_2)
     secur_ic_get_stored_ic(auStack_30);
     if (cStack_12 == '\0') {
       uVar1 = ic_size(uStack_28);
-      uVar1 = crypto_aes_mmo_hash(auStack_27,uVar1,param_2);
+      crypto_aes_mmo_hash(auStack_27,uVar1,param_2);
+      uVar1 = 0;
     }
     else {
       uVar1 = 5;

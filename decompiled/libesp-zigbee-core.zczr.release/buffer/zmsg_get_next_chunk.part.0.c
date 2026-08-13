@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> buffer.o -> zmsg_get_next_chunk.part.0
  *
  * (C) Espressif, Apache License 2.0.
@@ -15,65 +15,68 @@ undefined4 zmsg_get_next_chunk_part_0(void)
 {
   ushort uVar1;
   ushort uVar2;
-  undefined4 *puVar3;
-  undefined4 uVar4;
-  undefined4 *puVar5;
-  int iVar6;
-  undefined4 *puVar7;
+  int *piVar3;
+  int *piVar4;
+  int *piVar5;
+  int *piVar6;
+  undefined4 uVar7;
+  int iVar8;
+  undefined4 *puVar9;
   int extraout_a1;
   uint __n;
-  uint uVar8;
+  undefined4 *puVar10;
+  uint uVar11;
   
-  iVar6 = __assert_func(0,0,0,0);
-  uVar1 = *(ushort *)(iVar6 + 0xc);
-  uVar2 = *(ushort *)(iVar6 + 0x10);
-  puVar3 = (undefined4 *)(iVar6 + 8);
-  uVar8 = 0;
-  puVar5 = puVar3;
+  iVar8 = __assert_func(0,0,0,0);
+  uVar1 = *(ushort *)(iVar8 + 0xc);
+  uVar2 = *(ushort *)(iVar8 + 0x10);
+  piVar5 = (int *)(iVar8 + 8);
+  uVar11 = 0;
+  piVar6 = piVar5;
   do {
-    if ((extraout_a1 + (uint)uVar1 + (uint)uVar2 & 0xffff) <= uVar8) {
-      puVar7 = puVar3;
-      if (puVar3 == puVar5) {
-        do {
-          puVar5 = puVar7;
-          puVar7 = (undefined4 *)*puVar5;
-        } while ((undefined4 *)*puVar5 != (undefined4 *)0x0);
+    if ((extraout_a1 + (uint)uVar1 + (uint)uVar2 & 0xffff) <= uVar11) {
+      piVar4 = piVar5;
+      if (piVar5 == piVar6) {
+        while (piVar3 = piVar4, piVar3 != (int *)0x0) {
+          piVar6 = piVar3;
+          piVar4 = (int *)*piVar3;
+        }
       }
-      __n = (uint)*(ushort *)(iVar6 + 0x10);
+      __n = (uint)*(ushort *)(iVar8 + 0x10);
       if (__n != 0) {
         if (0xac < __n) {
           buffer_get_tail_part_0();
           goto _L0;
         }
-        memmove((void *)((0xb0 - __n) + (int)puVar3),(void *)((int)puVar5 + (0xb0 - __n)),__n);
+        memmove((void *)((0xb0 - __n) + (int)piVar5),(void *)((int)piVar6 + (0xb0 - __n)),__n);
       }
-      uVar4 = 0;
+      uVar7 = 0;
       goto _L0;
     }
 _L0:
-    if ((undefined4 *)*puVar3 == (undefined4 *)0x0) {
-      puVar7 = (undefined4 *)mempool_malloc();
-      *puVar3 = puVar7;
-      if (puVar7 == (undefined4 *)0x0) {
-        uVar4 = 1;
+    if (*piVar5 == 0) {
+      puVar9 = (undefined4 *)mempool_malloc(0);
+      *piVar5 = (int)puVar9;
+      if (puVar9 == (undefined4 *)0x0) {
+        uVar7 = 1;
 _L0:
-        puVar5 = (undefined4 *)*puVar3;
-        while (puVar5 != (undefined4 *)0x0) {
-          puVar7 = (undefined4 *)*puVar5;
-          *puVar5 = 0;
+        puVar9 = (undefined4 *)*piVar5;
+        while (puVar9 != (undefined4 *)0x0) {
+          puVar10 = (undefined4 *)*puVar9;
+          *puVar9 = 0;
           mempool_free(0);
-          puVar5 = puVar7;
+          puVar9 = puVar10;
         }
-        *puVar3 = 0;
-        return uVar4;
+        *piVar5 = 0;
+        return uVar7;
       }
+      *puVar9 = 0;
     }
     else {
-      puVar5 = (undefined4 *)*puVar5;
-      puVar7 = (undefined4 *)*puVar3;
+      piVar6 = (int *)*piVar6;
     }
-    puVar3 = puVar7;
-    uVar8 = uVar8 + 0xac & 0xffff;
+    piVar5 = (int *)*piVar5;
+    uVar11 = uVar11 + 0xac & 0xffff;
   } while( true );
 }
 

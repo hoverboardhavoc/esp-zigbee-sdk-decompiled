@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> buffer.o -> zmsg_get_next_chunk
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,9 +28,9 @@ ushort * zmsg_get_next_chunk(ushort *param_1,int *param_2)
     iVar2 = *(int *)*param_2;
     *param_2 = iVar2;
     if (iVar2 == 0) {
-      pvVar1 = (void *)0x10650;
-      auStack_32[0] = 0xf64;
-      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1cc,0x10650);
+      pvVar1 = (void *)0x10654;
+      auStack_32[0] = 0xf68;
+      __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/buffer.c",0x1cd,0x10654);
       zmsg_get_first_chunk(auStack_32,auStack_2c);
       __dest = pvVar1;
       while (uStack_24 != 0) {

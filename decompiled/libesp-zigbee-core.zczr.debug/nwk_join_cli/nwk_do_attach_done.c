@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_join_cli.o -> nwk_do_attach_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,10 +23,10 @@ void nwk_do_attach_done(int param_1,undefined4 param_2)
   uint uVar8;
   uint uVar9;
   uint uVar10;
-  short local_30;
-  ushort uStack_2e;
-  undefined1 auStack_2c [10];
-  short asStack_22 [7];
+  short local_20;
+  ushort uStack_1e;
+  undefined1 auStack_1c [10];
+  short sStack_12;
   
   iVar2 = core_globals_get();
   iVar2 = *(int *)(iVar2 + 0xac4);
@@ -41,8 +41,7 @@ void nwk_do_attach_done(int param_1,undefined4 param_2)
     nwk_set_short_address(param_2);
     iVar3 = core_globals_get();
     nwk_set_extended_panid(iVar3 + 0xac8);
-    iVar3 = core_globals_get();
-    *(undefined1 *)(iVar3 + 0x9df) = *(undefined1 *)(iVar2 + 10);
+    nwk_set_update_id(*(undefined1 *)(iVar2 + 10));
     uVar9 = *(uint *)(iVar2 + 0x10) >> 0x14 & 0xf;
     if (uVar9 < 0xe) {
       cVar1 = (char)uVar9 + '\x01';
@@ -54,21 +53,21 @@ void nwk_do_attach_done(int param_1,undefined4 param_2)
     *(char *)(iVar3 + 0xa3c) = cVar1;
     uVar4 = nwk_get_extended_address();
     uVar5 = nwk_get_short_address();
-    iVar3 = nwk_address_update(uVar4,uVar5,asStack_22);
+    iVar3 = nwk_address_update(uVar4,uVar5,&sStack_12);
     if (iVar3 == 0) {
-      nwk_address_lock_ref(asStack_22[0]);
-      nwk_mm_get_pib_attr(*(byte *)(iVar2 + 0x13) & 0x1f,0x4b,&uStack_2e);
-      nwk_mm_get_pib_attr(*(byte *)(iVar2 + 0x13) & 0x1f,0x4a,auStack_2c,8);
-      iVar3 = nwk_address_by_extended(auStack_2c,1,0,&local_30);
+      nwk_address_lock_ref(sStack_12);
+      nwk_mm_get_pib_attr(*(byte *)(iVar2 + 0x13) & 0x1f,0x4b,&uStack_1e);
+      nwk_mm_get_pib_attr(*(byte *)(iVar2 + 0x13) & 0x1f,0x4a,auStack_1c,8);
+      iVar3 = nwk_address_by_extended(auStack_1c,1,0,&local_20);
       if (iVar3 != 0) goto _L0;
-      if (uStack_2e < 0xfff8) {
-        iVar3 = nwk_address_update(auStack_2c,asStack_22);
+      if (uStack_1e < 0xfff8) {
+        iVar3 = nwk_address_update(auStack_1c,&sStack_12);
         if (iVar3 != 0) goto _L0;
-        if (asStack_22[0] == local_30) goto _L0;
+        if (sStack_12 == local_20) goto _L0;
         goto _L0;
       }
 _L0:
-      psVar6 = (short *)nwk_neighbor_table_get_by_addr_ref(asStack_22[0]);
+      psVar6 = (short *)nwk_neighbor_table_get_by_addr_ref(sStack_12);
       if (psVar6 == (short *)0x0) goto _L0;
     }
     else {
@@ -94,8 +93,8 @@ _L0:
                       "nwk_do_attach_done","(nbr = nwk_neighbor_table_new(1)) != ((void *)0)");
         goto _L0;
       }
-      nwk_address_lock_ref(asStack_22[0]);
-      *psVar6 = asStack_22[0];
+      nwk_address_lock_ref(sStack_12);
+      *psVar6 = sStack_12;
     }
     uVar9 = (*(byte *)(iVar2 + 0x13) & 0x1f) << 0xd;
     uVar10 = *(uint *)(psVar6 + 6);

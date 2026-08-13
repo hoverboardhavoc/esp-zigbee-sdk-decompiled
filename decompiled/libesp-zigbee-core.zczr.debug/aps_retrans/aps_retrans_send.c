@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_retrans_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,7 +23,7 @@ void aps_retrans_send(undefined4 *param_1)
   int aiStack_3c [7];
   
   if (param_1 == (undefined4 *)0x0) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xbf,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xc1,
                   "aps_retrans_send","retrans != ((void *)0)");
   }
   else if (3 < *(byte *)(param_1 + 6)) {
@@ -57,11 +57,11 @@ void aps_retrans_send(undefined4 *param_1)
     if (1 < *(byte *)((int)param_1 + 0x1a)) goto _L0;
   }
   else {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xcf,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xd1,
                   "aps_retrans_send",
                   "(zmsg_append_bytes_from_msg(msg, retrans->tx_msg, 0, hdr_sz)) == 0");
 _L0:
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xd0,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0xd2,
                   "aps_retrans_send",
                   "(zmsg_append_bytes_from_msg(msg, retrans->tx_msg, tx_offset, tx_len)) == 0");
 _L0:

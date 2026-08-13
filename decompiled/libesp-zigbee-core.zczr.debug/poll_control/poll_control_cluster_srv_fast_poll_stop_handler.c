@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> poll_control.o -> poll_control_cluster_srv_fast_poll_stop_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -23,8 +23,9 @@ void poll_control_cluster_srv_fast_poll_stop_handler(int param_1,int param_2)
     uVar2 = 0xfe;
   }
   else {
-    iVar1 = poll_control_source_is_exist_in_bind_table
-                      (*(undefined1 *)(param_1 + 0x14),*(undefined2 *)(param_1 + 2));
+    iVar1 = poll_control_check_binding
+                      (*(undefined1 *)(param_1 + 0x15),*(undefined1 *)(param_1 + 0x14),
+                       *(undefined2 *)(param_1 + 2));
     if (iVar1 == 0) {
       uVar2 = 1;
     }

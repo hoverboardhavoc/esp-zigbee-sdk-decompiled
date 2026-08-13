@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_cluster_cli_image_block_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -36,18 +36,17 @@ int ota_upgrade_cluster_cli_image_block_rsp_handler(int param_1,int param_2)
   uStack_2c = 0;
   pvStack_28 = (void *)0x0;
   if (param_1 == 0) {
-    iVar2 = 1;
+    iVar1 = 1;
   }
   else if (param_2 == 0) {
-    iVar2 = 1;
+    iVar1 = 1;
   }
   else {
-    iVar1 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
-    iVar2 = ota_upgrade_download_stop_timer();
+    iVar2 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x15));
     if (iVar2 == 0) {
-      iVar2 = 0xfe;
+      iVar1 = 0xfe;
     }
-    else if (**(char **)(iVar1 + 0x18) == '\x01') {
+    else if (**(char **)(iVar2 + 0x18) == '\x01') {
       uVar3 = zmsg_get_length(*(undefined4 *)(param_1 + 0x24));
       af_read_le8(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_3c);
       if ((uStack_3c & 0xff) == 0) {
@@ -59,7 +58,7 @@ int ota_upgrade_cluster_cli_image_block_rsp_handler(int param_1,int param_2)
         __size = uStack_2c & 0xff;
         pvStack_28 = calloc(1,__size);
         if ((pvStack_28 == (void *)0x0) && (__size != 0)) {
-          iVar2 = 0x89;
+          iVar1 = 0x89;
           goto _L0;
         }
         af_read_bytes(*(undefined4 *)(param_1 + 0x24),auStack_22,__size,pvStack_28);
@@ -70,45 +69,48 @@ int ota_upgrade_cluster_cli_image_block_rsp_handler(int param_1,int param_2)
         af_read_le16(*(undefined4 *)(param_1 + 0x24),auStack_22,&uStack_30);
       }
       if (uVar3 < auStack_22[0]) {
-        iVar2 = 0x80;
-      }
-      else if ((uStack_3c & 0xff) == 0) {
-        iVar2 = ota_upgrade_handle_image_block_with_success(iVar1,&uStack_3c);
-        if (iVar2 == 0) {
-          iVar2 = ota_upgrade_setup_upgrade_end_request(param_2,iVar1,param_1,0);
-        }
-        else {
-          if (iVar2 != 0x99) {
-            iVar2 = 0xfe;
-            goto _L0;
-          }
-          iVar2 = ota_upgrade_setup_image_block_request(param_2,iVar1,param_1);
-        }
-        if (iVar2 == 0) {
-          zcl_message_ota_upgrade_downloading_progress(param_1,1,&uStack_3c);
-          if (**(char **)(iVar1 + 0x18) == '\x02') {
-            zcl_message_ota_upgrade_downloading_progress(param_1,3,&uStack_3c);
-          }
-        }
-      }
-      else if ((uStack_3c & 0xff) == 0x97) {
-        iVar2 = 0x85;
+        iVar1 = 0x80;
       }
       else {
-        iVar2 = 0x95;
+        ota_upgrade_download_stop_retry(iVar2,3);
+        if ((uStack_3c & 0xff) == 0) {
+          iVar1 = ota_upgrade_handle_image_block_with_success(iVar2,&uStack_3c);
+          if (iVar1 == 0) {
+            iVar1 = ota_upgrade_setup_upgrade_end_request(param_2,iVar2,param_1,0);
+          }
+          else {
+            if (iVar1 != 0x99) {
+              iVar1 = 0xfe;
+              goto _L0;
+            }
+            iVar1 = ota_upgrade_setup_image_block_request(param_2,iVar2,param_1);
+          }
+          if (iVar1 == 0) {
+            zcl_message_ota_upgrade_downloading_progress(param_1,1,&uStack_3c);
+            if (**(char **)(iVar2 + 0x18) == '\x02') {
+              zcl_message_ota_upgrade_downloading_progress(param_1,3,&uStack_3c);
+            }
+          }
+        }
+        else if ((uStack_3c & 0xff) == 0x97) {
+          iVar1 = 0x85;
+        }
+        else {
+          iVar1 = 0x95;
+        }
       }
     }
     else {
-      iVar2 = 0xfe;
+      iVar1 = 0xfe;
     }
   }
 _L0:
   if (pvStack_28 != (void *)0x0) {
     mm_free();
   }
-  if (iVar2 != 0) {
-    iVar2 = zcl_packet_setup_default_response(param_2,param_1,iVar2);
+  if (iVar1 != 0) {
+    iVar1 = zcl_packet_setup_default_response(param_2,param_1,iVar1);
   }
-  return iVar2;
+  return iVar1;
 }
 

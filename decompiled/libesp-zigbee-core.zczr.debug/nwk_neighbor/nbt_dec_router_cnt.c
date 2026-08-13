@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_dec_router_cnt
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,7 +22,7 @@ uint nbt_dec_router_cnt(uint param_1)
     return param_1;
   }
   uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0xd9,
-                        "nbt_dec_router_cnt",&_LC4);
+                        "nbt_dec_router_cnt",0x1010c);
   uVar1 = 1 << (uVar2 & 7) & 0xff;
   uVar2 = __atomic_fetch_or_1((uVar2 >> 3) + extraout_a1,uVar1,5);
   return (uint)((uVar2 & uVar1) != 0);

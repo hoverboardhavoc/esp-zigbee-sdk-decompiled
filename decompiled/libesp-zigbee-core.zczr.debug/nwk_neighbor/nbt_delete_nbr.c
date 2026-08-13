@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> nwk_neighbor.o -> nbt_delete_nbr
  *
  * (C) Espressif, Apache License 2.0.
@@ -21,14 +21,14 @@ void nbt_delete_nbr(undefined4 *param_1,short *param_2)
     if (*param_2 != -1) goto _L0;
   }
   else {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x100,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x10a,
                   "nbt_delete_nbr","idx < tbl->ent_nr");
 _L0:
     nwk_address_unlock_ref();
   }
   iVar2 = test_and_clr_bitmap(uVar1 & 0xffff,*param_1);
   if (iVar2 == 0) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x104,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x10e,
                   "nbt_delete_nbr","test_and_clr_bitmap(idx, tbl->ent_in_use)");
   }
   else {
@@ -41,11 +41,11 @@ _L0:
       return;
     }
   }
-  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x106,
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x110,
                 "nbt_delete_nbr","nwk_device_type_is_zed(nbr->device_type)");
 _L0:
   if (((*(uint *)(param_2 + 6) & 3) != 0) && ((*(uint *)(param_2 + 6) & 3) != 1)) {
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x10a,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/nwk/nwk_neighbor.c",0x114,
                   "nbt_delete_nbr","nwk_device_type_is_zczr(nbr->device_type)");
   }
   nbt_dec_router_cnt(param_1);

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> aps_retrans.o -> aps_reasm_ent_input
  *
  * (C) Espressif, Apache License 2.0.
@@ -86,7 +86,7 @@ void aps_reasm_ent_input(undefined4 *param_1,int param_2,undefined4 *param_3)
       }
       else {
         if (bVar8 < bStack_22) break;
-        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x22f,
+        __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x231,
                       "aps_reasm_ent_input","frag_blk > next_blk");
       }
       zmsg_free(puVar7);
@@ -106,7 +106,7 @@ void aps_reasm_ent_input(undefined4 *param_1,int param_2,undefined4 *param_3)
       aps_handle_data(param_2,uVar5);
       return;
     }
-    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x247,
+    __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_retrans.c",0x249,
                   "aps_reasm_ent_input","ent->frag_q.length == 1");
     uVar6 = nwk_pim_get_fast_poll_interval();
     nwk_pim_start_fast_poll(0x1900 / uVar6);

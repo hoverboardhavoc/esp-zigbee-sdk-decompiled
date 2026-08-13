@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> aps_secur.o -> aps_secur_key_pair_set_restore
  *
  * (C) Espressif, Apache License 2.0.
@@ -61,6 +61,7 @@ void aps_secur_key_pair_set_restore(void)
     secur_key_copy(puVar3 + 0x12,auStack_4c);
     secur_key_copy(puVar3 + 0x22,auStack_3c);
     *(undefined4 *)(puVar3 + 8) = uStack_2c;
+    *(undefined2 *)(puVar3 + 0x10) = 0xffff;
     *(undefined2 *)(puVar3 + 0x32) = uStack_28;
     *(undefined2 *)(puVar3 + 0x34) = uStack_26;
     if (cStack_22 == '\0') {

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> nwk_join_cli.o -> nwk_handle_attach_timer
  *
  * (C) Espressif, Apache License 2.0.
@@ -12,18 +12,18 @@
 
 /* WARNING: Removing unreachable block (ram,0x0001049e) */
 /* WARNING: Removing unreachable block (ram,0x000104b0) */
-/* WARNING: Removing unreachable block (ram,0x0001050a) */
-/* WARNING: Removing unreachable block (ram,0x0001050e) */
-/* WARNING: Removing unreachable block (ram,0x00010542) */
-/* WARNING: Removing unreachable block (ram,0x00010552) */
-/* WARNING: Removing unreachable block (ram,0x000105a0) */
-/* WARNING: Removing unreachable block (ram,0x000105ac) */
-/* WARNING: Removing unreachable block (ram,0x000105bc) */
-/* WARNING: Removing unreachable block (ram,0x000105c8) */
-/* WARNING: Removing unreachable block (ram,0x000105d8) */
-/* WARNING: Removing unreachable block (ram,0x000105e6) */
-/* WARNING: Removing unreachable block (ram,0x000105fa) */
-/* WARNING: Removing unreachable block (ram,0x00010684) */
+/* WARNING: Removing unreachable block (ram,0x00010504) */
+/* WARNING: Removing unreachable block (ram,0x00010508) */
+/* WARNING: Removing unreachable block (ram,0x0001053c) */
+/* WARNING: Removing unreachable block (ram,0x0001054c) */
+/* WARNING: Removing unreachable block (ram,0x0001059a) */
+/* WARNING: Removing unreachable block (ram,0x000105a6) */
+/* WARNING: Removing unreachable block (ram,0x000105b6) */
+/* WARNING: Removing unreachable block (ram,0x000105c2) */
+/* WARNING: Removing unreachable block (ram,0x000105d2) */
+/* WARNING: Removing unreachable block (ram,0x000105e0) */
+/* WARNING: Removing unreachable block (ram,0x000105f4) */
+/* WARNING: Removing unreachable block (ram,0x0001067e) */
 
 void nwk_handle_attach_timer(void)
 

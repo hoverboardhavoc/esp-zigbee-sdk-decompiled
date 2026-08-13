@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ota_upgrade_packet_send
  *
  * (C) Espressif, Apache License 2.0.
@@ -16,27 +16,23 @@ undefined4 ota_upgrade_packet_send(int param_1)
   int iVar1;
   undefined4 uVar2;
   undefined4 *puVar3;
-  code *pcStack_18;
-  int iStack_14;
   
   if (param_1 == 0) {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",
-                  0x16d,"ota_upgrade_packet_send","packet");
+                  0x15c,"ota_upgrade_packet_send","packet");
   }
   else {
-    pcStack_18 = (code *)0x0;
-    iStack_14 = 0;
     iVar1 = ota_upgrade_downloading_context_get(*(undefined1 *)(param_1 + 0x14));
     if (iVar1 != 0) {
-      pcStack_18 = ota_upgrade_packet_confirm_handler;
-      iStack_14 = iVar1;
       zcl_packet_clone(iVar1 + 0x4c,param_1);
-      uVar2 = zcl_packet_send(param_1,&pcStack_18);
+      zcl_packet_send(param_1,0);
+      milli_timer_stop(iVar1 + 0x3c);
+      uVar2 = milli_timer_start(iVar1 + 0x3c,*(undefined4 *)(iVar1 + 0x34));
       return uVar2;
     }
   }
   uVar2 = __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c"
-                        ,0x171,"ota_upgrade_packet_send","context");
+                        ,0x15f,"ota_upgrade_packet_send","context");
   iVar1 = ota_upgrade_cli_get_attr_desc(0xeff0);
   if (iVar1 == 0) {
     return 5;

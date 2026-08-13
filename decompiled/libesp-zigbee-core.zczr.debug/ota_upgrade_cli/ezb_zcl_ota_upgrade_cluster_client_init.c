@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> ota_upgrade_cli.o -> ezb_zcl_ota_upgrade_cluster_client_init
  *
  * (C) Espressif, Apache License 2.0.
@@ -34,10 +34,10 @@ void ezb_zcl_ota_upgrade_cluster_client_init(void)
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",
-                  0x396,"ezb_zcl_ota_upgrade_cluster_client_init",
+                  0x394,"ezb_zcl_ota_upgrade_cluster_client_init",
                   "ota_upgrade_downloading_context_init(ep_id) == 0");
   }
-  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",0x397
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/api/zcl/cluster/ota_upgrade_cli.c",0x395
                 ,"ezb_zcl_ota_upgrade_cluster_client_init",
                 "zcl_cluster_template_add(&template) == EZB_ZCL_STATUS_SUCCESS");
   ota_upgrade_downloading_context_deinit();

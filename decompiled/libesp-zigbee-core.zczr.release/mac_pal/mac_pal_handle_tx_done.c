@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> mac_pal.o -> mac_pal_handle_tx_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -22,46 +22,46 @@ void mac_pal_handle_tx_done(int param_1,undefined4 param_2,int param_3)
   uint uVar7;
   
   micro_timer_stop(&s_mac_pal_ctx);
-  if ((((DAT_00010590 & 4) == 0) && (param_3 == 0x1e1)) &&
-     (s_mac_pal_ctx._1_1_ < *(byte *)(param_1 + 0x11))) {
-    s_mac_pal_ctx._1_1_ = s_mac_pal_ctx._1_1_ + 1;
+  if ((((DAT_00010644 & 4) == 0) && (param_3 == 0x1e1)) &&
+     (DAT_0001062d < *(byte *)(param_1 + 0x11))) {
+    DAT_0001062d = DAT_0001062d + 1;
   }
   else {
-    s_mac_pal_ctx._1_1_ = 0;
-    if ((((DAT_00010590 & 2) != 0) || (param_3 == 0)) || (*(byte *)(param_1 + 0x10) <= DAT_0001057a)
+    DAT_0001062d = 0;
+    if ((((DAT_00010644 & 2) != 0) || (param_3 == 0)) || (*(byte *)(param_1 + 0x10) <= DAT_0001062e)
        ) {
       set_state(2);
       mac_pal_callback_tx_done(param_1,param_2,param_3);
       return;
     }
-    DAT_0001057a = DAT_0001057a + 1;
+    DAT_0001062e = DAT_0001062e + 1;
   }
-  bVar1 = *(byte *)(DAT_0001057c + 0x13);
-  bVar2 = *(byte *)(DAT_0001057c + 0x12);
-  cVar3 = *(char *)(DAT_0001057c + 0x11);
-  uVar4 = (uint)s_mac_pal_ctx._1_1_;
+  bVar1 = *(byte *)(DAT_00010630 + 0x13);
+  bVar2 = *(byte *)(DAT_00010630 + 0x12);
+  cVar3 = *(char *)(DAT_00010630 + 0x11);
+  uVar4 = (uint)DAT_0001062d;
   set_state(3);
-  iVar6 = DAT_0001057c;
-  if (((DAT_00010590 & 4) == 0) && (cVar3 != '\0')) {
+  iVar6 = DAT_00010630;
+  if (((DAT_00010644 & 4) == 0) && (cVar3 != '\0')) {
     uVar7 = uVar4 + bVar1 & 0xff;
     uVar4 = (uint)bVar2;
     if (uVar7 < bVar2) {
       uVar4 = uVar7;
     }
     iVar6 = random_noncrypto_range_u32(0,1 << (uVar4 & 0x1f));
-    if ((DAT_0001057b & 1) == 0) {
+    if ((DAT_00010646 & 1) == 0) {
       ezb_plat_radio_sleep();
     }
     else {
-      ezb_plat_radio_receive(*(undefined1 *)(DAT_0001057c + 5));
+      ezb_plat_radio_receive(*(undefined1 *)(DAT_00010630 + 5));
     }
     micro_timer_start(&s_mac_pal_ctx,iVar6 * 0x140);
     return;
   }
-  if ((char)s_mac_pal_ctx != '\x03') {
+  if (s_mac_pal_ctx != '\x03') {
     return;
   }
-  iVar5 = ezb_plat_radio_receive(*(undefined1 *)(DAT_0001057c + 5));
+  iVar5 = ezb_plat_radio_receive(*(undefined1 *)(DAT_00010630 + 5));
   if (iVar5 == 0) goto _L0;
   do {
     __assert_func(0,0,0,0);

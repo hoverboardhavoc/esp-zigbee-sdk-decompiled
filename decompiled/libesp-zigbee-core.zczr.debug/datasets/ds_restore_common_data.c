@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> datasets.o -> ds_restore_common_data
  *
  * (C) Espressif, Apache License 2.0.
@@ -60,8 +60,7 @@ void ds_restore_common_data(void)
     nwk_set_extended_address((int)&uStack_34 + 3);
     iVar2 = core_globals_get();
     *(ushort *)(iVar2 + 0x9dc) = CONCAT11(uStack_28,uStack_29);
-    iVar2 = core_globals_get();
-    *(undefined1 *)(iVar2 + 0x9df) = uStack_27;
+    nwk_set_update_id(uStack_27);
     nwk_set_device_type(((CONCAT11(bStack_25,uStack_26) & 0x30) << 0x10) >> 0x14);
     nwk_set_rx_on_when_idle(((CONCAT11(bStack_25,uStack_26) & 0x40) << 0x10) >> 0x16);
     nwk_set_pan_channel((uint)bStack_25 | uStack_24 << 8);
@@ -73,14 +72,18 @@ void ds_restore_common_data(void)
     return;
   }
   __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/datasets.c",0x116,
-                "ds_restore_common_data",0x10608);
+                "ds_restore_common_data",
+                "error != ((ezb_err_t)((0x06) == 0 ? 0 : ((((EZB_ERR_CATEGORY_GENERIC) & 0xff) << 8) | ((0x06) & 0xff))))"
+               );
   iVar1 = ezb_plat_datasets_delete(1,0xffffffff);
   ds_log(3,iVar1,1,0);
   if (iVar1 != 6) {
     return;
   }
-  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/datasets.c",0x11d,__func___0,
-                0x10608);
+  __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/common/datasets.c",0x11d,
+                "ds_delete_common_data",
+                "error != ((ezb_err_t)((0x06) == 0 ? 0 : ((((EZB_ERR_CATEGORY_GENERIC) & 0xff) << 8) | ((0x06) & 0xff))))"
+               );
                     /* WARNING: Bad instruction - Truncating control flow here */
   halt_baddata();
 }

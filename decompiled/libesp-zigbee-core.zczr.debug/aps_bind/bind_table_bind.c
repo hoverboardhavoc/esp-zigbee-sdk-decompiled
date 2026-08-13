@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> aps_bind.o -> bind_table_bind
  *
  * (C) Espressif, Apache License 2.0.
@@ -27,7 +27,7 @@ void bind_table_bind(int param_1,int param_2)
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/aps/aps_bind.c",0x76,"bind_table_bind"
-                  ,&_LC10);
+                  ,"dst_idx < (((((*core_globals_get()).aps).ctx).bind_table).dst_tbl).ent_nr");
   }
   *(char *)(param_2 + 4) = *(char *)(param_2 + 4) + '\x01';
   iVar2 = core_globals_get();

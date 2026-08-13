@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.release -> zdo_nwk_mgmt.o -> zdo_nwk_mgmt_rsp_handler
  *
  * (C) Espressif, Apache License 2.0.
@@ -28,35 +28,41 @@ int zdo_nwk_mgmt_rsp_handler(int param_1)
   }
   uVar1 = *(ushort *)(param_1 + 6);
   if (uVar1 == 0x8034) {
+    uStack_48 = uStack_48 & 0xffffff00;
+    if ((*(int *)(param_1 + 0x14) == 0) ||
+       (iVar2 = zdo_op_nwk_mgmt_leave_rsp(&uStack_48,0), iVar2 != 0)) {
+      return 0xfe;
+    }
 _L0:
-    auStack_4c[0] = auStack_4c[0] & 0xff00;
-    iVar2 = *(int *)(param_1 + 0x14);
-    if (iVar2 != 0) {
+    zdo_cb_nwk_mgmt_lqi_rsp_isra_0(&uStack_48,param_1 + 8);
+    return iVar2;
+  }
+  if (0x8034 < uVar1) {
+    if (uVar1 == 0x8036) {
+      iVar2 = *(int *)(param_1 + 0x14);
+      auStack_4c[0] = auStack_4c[0] & 0xff00;
+      if (iVar2 == 0) {
+        return 0xfe;
+      }
       uStack_48 = uStack_48 & 0xffff0000;
       uVar3 = zmsg_get_length(iVar2);
       af_read_le8_isra_0(iVar2,&uStack_48,auStack_4c);
-      if ((uStack_48 & 0xffff) <= uVar3) {
-        zdo_cb_nwk_mgmt_lqi_rsp_isra_0(auStack_4c,param_1 + 8);
-        return 0;
+      if (uVar3 < (uStack_48 & 0xffff)) {
+        return 0xfe;
       }
+      zdo_cb_nwk_mgmt_lqi_rsp_isra_0(auStack_4c,param_1 + 8);
+      return 0;
     }
-    return 0xfe;
-  }
-  if (0x8034 < uVar1) {
-    if (uVar1 != 0x8036) {
-      if (uVar1 != 0x8038) {
-        return 0x84;
-      }
-      memset(&uStack_48,0,0x28);
-      if (*(int *)(param_1 + 0x14) != 0) {
-        iVar2 = zdo_op_nwk_mgmt_nwk_update_notify(&uStack_48,0);
-        if (iVar2 == 0) {
-          zdo_cb_nwk_mgmt_lqi_rsp_isra_0(&uStack_48,param_1 + 8);
-          return 0;
-        }
-        return iVar2;
-      }
+    if (uVar1 != 0x8038) {
+      return 0x84;
+    }
+    memset(&uStack_48,0,0x28);
+    if (*(int *)(param_1 + 0x14) == 0) {
       return 0xfe;
+    }
+    iVar2 = zdo_op_nwk_mgmt_nwk_update_notify(&uStack_48,0);
+    if (iVar2 != 0) {
+      return iVar2;
     }
     goto _L0;
   }

@@ -1,8 +1,8 @@
 /*
- * Last changed at upstream commit 0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * https://github.com/espressif/esp-zigbee-sdk/commit/0dbfa9988ffc315d4d533fc462a8328b10d4d371
- * Upstream date: 2026-07-09 09:00:50 +0000
- * Upstream subject: change: update esp-zigbee-lib (170bcb5a)
+ * Last changed at upstream commit ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * https://github.com/espressif/esp-zigbee-sdk/commit/ecca8a8cee0ba565a3b8dbe9d288517b724f31a9
+ * Upstream date: 2026-08-13 06:13:24 +0000
+ * Upstream subject: change: update esp-zigbee-lib (e4bad48f)
  * Source: libesp-zigbee-core.zczr.debug -> bdb_touchlink.o -> touchlink_initiator_process_device_annce_done
  *
  * (C) Espressif, Apache License 2.0.
@@ -24,7 +24,7 @@ void touchlink_initiator_process_device_annce_done(int param_1)
   }
   else {
     __assert_func("//builds/thread_zigbee/esp-zigbee/src/core/commissioning/bdb/bdb_touchlink.c",
-                  0x149,"touchlink_initiator_process_device_annce_done",
+                  0x155,"touchlink_initiator_process_device_annce_done",
                   "(*touchlink_commissioning_get()).role == TL_COMM_ROLE_INITIATOR");
   }
   touchlink_commissioning_task_result(1);
